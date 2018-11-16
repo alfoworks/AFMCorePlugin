@@ -13,16 +13,20 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.server.ServerListPingEvent;
 import org.bukkit.scheduler.BukkitScheduler;
 import ru.allformine.afmcp.eco.server;
 
-public final class main extends org.bukkit.plugin.java.JavaPlugin
+public final class main extends org.bukkit.plugin.java.JavaPlugin implements Listener
 {
   public void onEnable()
   {
     getLogger().info("AFMCorePlugin is enabled. Author: Iterator.");
     Bukkit.getMessenger().registerOutgoingPluginChannel(this, "FactionsShow");
-    
+    getServer().getPluginManager().registerEvents(this, this);
+
     BukkitScheduler scheduler = getServer().getScheduler();
     scheduler.scheduleSyncRepeatingTask(this, new Runnable()
     {
@@ -272,4 +276,12 @@ public final class main extends org.bukkit.plugin.java.JavaPlugin
     }
     return false;
   }
+
+    //Проверка, лол.
+    @EventHandler
+    public void onPing(ServerListPingEvent event) {
+        event.forEach(player -> {
+            player.setPlayerListName("idi_nahui");
+        });
+    }
 }
