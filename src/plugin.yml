@@ -1,0 +1,30 @@
+name: AFMCorePlugin
+main: ru.allformine.afmcp.main
+version: 1.1
+author: Iterator
+commands:
+  afm:
+    description: Test command
+    usage: Использование /afm
+    permission: afmcp.afm
+    permission-message: Прав нет, но вы держитесь.
+  tokens:
+    description: Узнать баланс внутриигрового счета.
+    usage: Использование /tokens
+    permissions: afmcp.tokens
+    permission-message: Прав нет, но вы держитесь.
+  eco:
+    description: Админские команды для управления валютой.
+    usage: Использование /eco
+    permissions: afmcp.eco
+    permission-message: Прав нет, но вы держитесь.
+  vip:
+    desciption: Приобрести донатную подписку.
+    usage: Использование /vip
+    permission: afmcp.vip
+    permission-message: Прав нет, но вы держитесь.
+  fregen:
+    description: Вернуть заприваченные фракцией чанки в изначальное состояние и удалить её.
+    usage: Использование /fregen имя
+    permission: afmcp.fregen
+    permission-message: Прав нет, но вы держитесь.
