@@ -27,9 +27,14 @@ public class main extends JavaPlugin implements Listener {
                 public void onPacketSending(PacketEvent event) {
                     WrappedServerPing ping = event.getPacket().getServerPings().read(0);
 
-                    //сука, таки deprecated было здесь не зря :/
                     ping.setPlayers(Arrays.asList(new WrappedGameProfile(UUID.randomUUID(), "Lenin_")));
+
+                    System.out.println("AFMCP Test");
                 }
             });
+    }
+
+    public void onDisable() {
+        System.out.println("Disabling AFMCP.");
     }
 }
