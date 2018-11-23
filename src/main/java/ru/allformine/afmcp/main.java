@@ -40,7 +40,7 @@ public class main extends JavaPlugin implements Listener {
                     public void onPacketSending(PacketEvent event) {
                         WrappedServerPing ping = event.getPacket().getServerPings().read(0);
 
-                        List<WrappedGameProfile> players = Collections.emptyList();
+                        List<WrappedGameProfile> players = new ArrayList<WrappedGameProfile>();
 
                         for (Player p: Bukkit.getServer().getOnlinePlayers()) {
                             if(!vmng.isVanished(p)) {
