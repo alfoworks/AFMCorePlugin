@@ -2,5 +2,6 @@ name: AFMCorePlugin
 main: ru.allformine.afmcp.main
 version: 1.2
 author: Iterator
-depend: [ProtocolLib, Factions]
+depend: [ProtocolLib]
+softdepend: [Factions]
 commands:
