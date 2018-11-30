@@ -30,6 +30,7 @@ public class main extends JavaPlugin implements Listener {
         manager.registerEvents(this,this);
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "FactionsShow");
 
+        //Бля
         BukkitTask CFN = new CFNChannelTask(this,
                 manager.getPlugin("Factions")).runTaskTimer(this,
                 20,
