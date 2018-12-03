@@ -16,31 +16,10 @@ import java.util.Random;
 public class CFNChannelTask extends BukkitRunnable {
     private final JavaPlugin plugin;
     private Plugin Factions;
-    ArrayList<ChatColor> colors = new ArrayList<ChatColor>();
-    Random randomizer;
 
     public CFNChannelTask(JavaPlugin plugin, Plugin Factions) {
         this.plugin = plugin;
         this.Factions = Factions;
-
-        this.colors.add(ChatColor.BLUE);
-        this.colors.add(ChatColor.WHITE);
-        this.colors.add(ChatColor.DARK_BLUE);
-        this.colors.add(ChatColor.DARK_PURPLE);
-        this.colors.add(ChatColor.LIGHT_PURPLE);
-        this.colors.add(ChatColor.YELLOW);
-        this.colors.add(ChatColor.AQUA);
-        this.colors.add(ChatColor.BLACK);
-        this.colors.add(ChatColor.DARK_AQUA);
-        this.colors.add(ChatColor.DARK_GRAY);
-        this.colors.add(ChatColor.DARK_GREEN);
-        this.colors.add(ChatColor.DARK_RED);
-        this.colors.add(ChatColor.GOLD);
-        this.colors.add(ChatColor.GRAY);
-        this.colors.add(ChatColor.GREEN);
-        this.colors.add(ChatColor.RED);
-
-        this.randomizer = new Random();
     }
 
     public void run() {
@@ -52,7 +31,7 @@ public class CFNChannelTask extends BukkitRunnable {
             if(Factions != null) {
                 str = "nope xD";
             } else {
-                str = colors.get(randomizer.nextInt(colors.size()))+"SpaceUnion Beta";
+                str = ChatColor.BLUE+"SpaceUnion Beta";
             }
 
             try {

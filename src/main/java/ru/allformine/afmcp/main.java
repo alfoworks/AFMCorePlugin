@@ -71,7 +71,7 @@ public class main extends JavaPlugin implements Listener {
         if(event.getPlayer().hasPermission("afmcp.staff")) {
             for(Player p : Bukkit.getOnlinePlayers()) {
                 if(p.hasPermission("afmcp.staff") && !p.equals(event.getPlayer())) {
-                    p.sendMessage(ChatColor.DARK_AQUA+""+p.getName()+" "+ChatColor.GREEN+"вошел в игру! "+ChatColor.DARK_AQUA+"(персонал)");
+                    p.sendMessage(ChatColor.DARK_AQUA+""+event.getPlayer().getName()+" "+ChatColor.GREEN+"вошел в игру! "+ChatColor.DARK_AQUA+"(персонал)");
                 }
             }
         }
@@ -82,7 +82,7 @@ public class main extends JavaPlugin implements Listener {
         if(event.getPlayer().hasPermission("afmcp.staff")) {
             for(Player p : Bukkit.getOnlinePlayers()) {
                 if(p.hasPermission("afmcp.staff") && !p.equals(event.getPlayer())) {
-                    p.sendMessage(ChatColor.DARK_AQUA+""+p.getName()+" "+ChatColor.GREEN+"вышел из игры! "+ChatColor.DARK_AQUA+"(персонал)");
+                    p.sendMessage(ChatColor.DARK_AQUA+""+event.getPlayer().getName()+" "+ChatColor.GREEN+"вышел из игры! "+ChatColor.DARK_AQUA+"(персонал)");
                 }
             }
         }
