@@ -9,6 +9,7 @@ import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.wrappers.WrappedGameProfile;
 import com.comphenix.protocol.wrappers.WrappedServerPing;
 import com.dthielke.herochat.ChannelChatEvent;
+import com.dthielke.herochat.Chatter;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -72,7 +73,7 @@ public class main extends JavaPlugin implements Listener {
 
                     String MOTD;
                     MOTD = StringUtils.center(ChatColor.GOLD+"AllForMine SpaceUnion", 40);
-                    MOTD = MOTD+StringUtils.center(ChatColor.YELLOW+"Закрытый бета-тест", 40);
+                    MOTD = MOTD+"\n"+StringUtils.center(ChatColor.YELLOW+"Закрытый бета-тест", 40);
 
                     ping.setMotD(MOTD);
                 }
@@ -119,17 +120,32 @@ public class main extends JavaPlugin implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void ChannelChatEvent(ChannelChatEvent event) {
-        String message = "[**"+event.getChannel().getName()+"**] "+event.getMessage();
+        String channelName = event.getChannel().getName();
         int logLevel = 1;
+        String message = event.getMessage();
 
         if(event.getChannel().getName().equals("Local")) {
             Location location = event.getSender().getPlayer().getLocation();
-            message = "{"+String.valueOf(location.getX())+String.valueOf(location.getY())+String.valueOf(location.getZ())+"} "+message;
+            int x = (int) Math.round(location.getX());
+            int y = (int) Math.round(location.getY());
+            int z = (int) Math.round(location.getZ());
+            message = "{"+String.valueOf(x)+" "+String.valueOf(y)+" "+String.valueOf(z)+"}";
 
             logLevel = 2;
         } else if(event.getChannel().getName().contains("convo")) {
+            //Небольшой костыль для получения ника игрока, которому отправляется личное сообщение.
+            Set<Chatter> chatMembers = event.getChannel().getMembers();
+            for(Chatter chatter : chatMembers) {
+                if(!chatter.getPlayer().getDisplayName().equals(event.getSender().getPlayer().getDisplayName())) {
+                    channelName = chatter.getPlayer().getDisplayName();
+                    break;
+                }
+            }
+
             logLevel = 2;
         }
+
+        message = "["+channelName+"] "+message;
 
         for (String item : triggerWords) {
             if(event.getMessage().toLowerCase().contains(item)) {

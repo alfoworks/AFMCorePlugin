@@ -10,14 +10,11 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Random;
-
 public class CFNChannelTask extends BukkitRunnable {
     private final JavaPlugin plugin;
     private Plugin Factions;
 
-    public CFNChannelTask(JavaPlugin plugin, Plugin Factions) {
+    CFNChannelTask(JavaPlugin plugin, Plugin Factions) {
         this.plugin = plugin;
         this.Factions = Factions;
     }
