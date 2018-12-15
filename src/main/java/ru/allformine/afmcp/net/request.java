@@ -1,5 +1,6 @@
 package ru.allformine.afmcp.net;
 
+import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -11,9 +12,13 @@ public class request {
 
         try {
             HttpPost request = new HttpPost(url);
-            StringEntity params =new StringEntity(JSON);
-            request.addHeader("content-type", "application/json");
+            StringEntity params = new StringEntity(JSON);
+            request.addHeader("Content-Type", "application/json");
             request.setEntity(params);
+
+            HttpResponse response = httpClient.execute(request);
+
+            System.out.println("Response: "+response.toString());
         } catch (Exception ex) {
             ex.printStackTrace();
         }
