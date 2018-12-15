@@ -129,7 +129,7 @@ public class main extends JavaPlugin implements Listener {
             int x = (int) Math.round(location.getX());
             int y = (int) Math.round(location.getY());
             int z = (int) Math.round(location.getZ());
-            message = "{"+String.valueOf(x)+" "+String.valueOf(y)+" "+String.valueOf(z)+"}";
+            message = "{"+String.valueOf(x)+" "+String.valueOf(y)+" "+String.valueOf(z)+"} "+message;
 
             logLevel = 2;
         } else if(event.getChannel().getName().contains("convo")) {
