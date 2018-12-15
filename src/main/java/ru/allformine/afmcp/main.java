@@ -16,6 +16,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerAchievementAwardedEvent;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import ru.allformine.afmcp.net.discord.discord;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -30,8 +31,11 @@ import java.util.*;
 
 public class main extends JavaPlugin implements Listener {
     private VanishManager vmng = null;
+    private String[] notLoggedCommands = {"/g", "/t", "/l"};
 
     public void onEnable() {
+        discord.sendMessage("(SpaceUnion) сервер поднялся!", false, "TechInfo");
+
         PluginManager manager = this.getServer().getPluginManager();
 
         manager.registerEvents(this,this);
@@ -54,10 +58,12 @@ public class main extends JavaPlugin implements Listener {
                 public void onPacketSending(PacketEvent event) {
                     WrappedServerPing ping = event.getPacket().getServerPings().read(0);
                     List < WrappedGameProfile > players = new ArrayList < WrappedGameProfile > ();
-
-                    ping.setPlayersOnline(200);
-                    ping.setPlayersMaximum(400);
-                    ping.setMotD("Test MOTD.");
+                    for (Player p: Bukkit.getServer().getOnlinePlayers()) {
+                        if (!vmng.isVanished(p)) {
+                            players.add(new WrappedGameProfile(UUID.randomUUID(), p.getDisplayName()));
+                        }
+                    }
+                    ping.setPlayersOnline(players.size());
                     ping.setPlayers(players);
                 }
             });
@@ -79,7 +85,7 @@ public class main extends JavaPlugin implements Listener {
             }
         }
 
-        discord.sendMessage(message, null, event.getPlayer().getDisplayName());
+        discord.sendMessage(message, true, event.getPlayer().getDisplayName());
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -97,7 +103,7 @@ public class main extends JavaPlugin implements Listener {
             }
         }
 
-        discord.sendMessage(message, null, event.getPlayer().getDisplayName());
+        discord.sendMessage(message, true, event.getPlayer().getDisplayName());
     }
 
 
@@ -105,17 +111,27 @@ public class main extends JavaPlugin implements Listener {
     public void ChannelChatEvent(ChannelChatEvent event) {
         String message = "(SpaceUnion) [**"+event.getChannel().getName()+"**] "+event.getMessage();
 
-        discord.sendMessage(message, null, event.getSender().getName());
+        discord.sendMessage(message, true, event.getSender().getName());
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onPlayerAchievmentAwarded(PlayerAchievementAwardedEvent event) {
         String message = "(SpaceUnion) Игрок получил достижение **"+event.getAchievement().name()+"**.";
 
-        discord.sendMessage(message, null, event.getPlayer().getDisplayName());
+        discord.sendMessage(message, true, event.getPlayer().getDisplayName());
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent event) {
+        String[] message = event.getMessage().split(" ");
+        String command = message[0];
+
+        if(!Arrays.asList(notLoggedCommands).contains(command)) {
+            discord.sendMessage("(SpaceUnion) игрок выполнил команду **"+event.getMessage()+"**", true, event.getPlayer().getDisplayName());
+        }
     }
 
     public void onDisable() {
-        System.out.println("Disabling AFMCP.");
+        discord.sendMessage("(SpaceUnion) сервер упал!", false, "TechInfo");
     }
 }
