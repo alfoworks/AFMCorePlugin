@@ -8,12 +8,15 @@ import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.wrappers.WrappedGameProfile;
 import com.comphenix.protocol.wrappers.WrappedServerPing;
+import com.dthielke.herochat.ChannelChatEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerAchievementAwardedEvent;
+import ru.allformine.afmcp.net.discord.discord;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.PluginManager;
@@ -34,7 +37,6 @@ public class main extends JavaPlugin implements Listener {
         manager.registerEvents(this,this);
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "FactionsShow");
 
-        //Бля
         BukkitTask CFN = new CFNChannelTask(this,
                 manager.getPlugin("Factions")).runTaskTimer(this,
                 60,
@@ -52,40 +54,65 @@ public class main extends JavaPlugin implements Listener {
                 public void onPacketSending(PacketEvent event) {
                     WrappedServerPing ping = event.getPacket().getServerPings().read(0);
                     List < WrappedGameProfile > players = new ArrayList < WrappedGameProfile > ();
-                    for (Player p: Bukkit.getServer().getOnlinePlayers()) {
-                        if (!vmng.isVanished(p)) {
-                            players.add(new WrappedGameProfile(UUID.randomUUID(), p.getDisplayName()));
-                        }
-                    }
-                    ping.setPlayersOnline(players.size());
+
+                    ping.setPlayersOnline(200);
+                    ping.setPlayersMaximum(400);
+                    ping.setMotD("Test MOTD.");
                     ping.setPlayers(players);
                 }
             });
         }
-
-
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onPlayerJoin(PlayerJoinEvent event) {
-        if(event.getPlayer().hasPermission("afmcp.staff")) {
+        boolean isStaff = event.getPlayer().hasPermission("afmcp.staff");
+        String message = "(SpaceUnion) Игрок **вошел** в меня, о даа.";
+
+        if(isStaff) {
+            message += " (персонал)";
+
             for(Player p : Bukkit.getOnlinePlayers()) {
                 if(p.hasPermission("afmcp.staff") && !p.equals(event.getPlayer())) {
                     p.sendMessage(ChatColor.DARK_AQUA+""+event.getPlayer().getName()+" "+ChatColor.GREEN+"вошел в игру! "+ChatColor.DARK_AQUA+"(персонал)");
                 }
             }
         }
+
+        discord.sendMessage(message, null, event.getPlayer().getDisplayName());
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onPlayerQuit(PlayerQuitEvent event) {
-        if(event.getPlayer().hasPermission("afmcp.staff")) {
+        boolean isStaff = event.getPlayer().hasPermission("afmcp.staff");
+        String message = "(SpaceUnion) Игрок **вышел** из игры.";
+
+        if(isStaff) {
+            message += " (персонал)";
+
             for(Player p : Bukkit.getOnlinePlayers()) {
                 if(p.hasPermission("afmcp.staff") && !p.equals(event.getPlayer())) {
                     p.sendMessage(ChatColor.DARK_AQUA+""+event.getPlayer().getName()+" "+ChatColor.GREEN+"вышел из игры! "+ChatColor.DARK_AQUA+"(персонал)");
                 }
             }
         }
+
+        discord.sendMessage(message, null, event.getPlayer().getDisplayName());
+    }
+
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void ChannelChatEvent(ChannelChatEvent event) {
+        String message = "(SpaceUnion) [**"+event.getChannel().getName()+"**] "+event.getMessage();
+
+        discord.sendMessage(message, null, event.getSender().getName());
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onPlayerAchievmentAwarded(PlayerAchievementAwardedEvent event) {
+        String message = "(SpaceUnion) Игрок получил достижение **"+event.getAchievement().name()+"**.";
+
+        discord.sendMessage(message, null, event.getPlayer().getDisplayName());
     }
 
     public void onDisable() {
