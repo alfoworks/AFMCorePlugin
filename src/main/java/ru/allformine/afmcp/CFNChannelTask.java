@@ -31,7 +31,7 @@ public class CFNChannelTask extends BukkitRunnable {
             if(Factions != null) {
                 str = "nope xD";
             } else {
-                str = ChatColor.BLUE+"SpaceUnion Beta";
+                str = ChatColor.BLUE+"SpaceUnion ЗБТ";
             }
 
             try {

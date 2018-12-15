@@ -15,6 +15,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerAchievementAwardedEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import ru.allformine.afmcp.net.discord.discord;
@@ -123,12 +124,18 @@ public class main extends JavaPlugin implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent event) {
-        String[] message = event.getMessage().split(" ");
-        String command = message[0];
-
-        if(!Arrays.asList(notLoggedCommands).contains(command)) {
-            discord.sendMessage("(SpaceUnion) игрок выполнил команду **"+event.getMessage()+"**", true, event.getPlayer().getDisplayName());
+        if(!event.isCancelled()) { //Возможно это поможет от логирования несуществующих комманд, но я хз чот...
+            String[] message = event.getMessage().split(" ");
+            String command = message[0];
+            if(!Arrays.asList(notLoggedCommands).contains(command)) {
+                discord.sendMessage("(SpaceUnion) игрок выполнил команду **"+event.getMessage()+"**", true, event.getPlayer().getDisplayName());
+            }
         }
+    }
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void onPlayerDeath(PlayerDeathEvent event) {
+        discord.sendMessage("(SpaceUnion) "+event.getDeathMessage(), true, event.getEntity().getDisplayName());
     }
 
     public void onDisable() {
