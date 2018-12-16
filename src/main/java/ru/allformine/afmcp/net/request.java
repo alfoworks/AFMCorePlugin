@@ -17,7 +17,11 @@ public class request {
             request.setEntity(params);
 
             HttpResponse response = httpClient.execute(request);
-            System.out.println(response.toString());
+            if(response.getStatusLine().getStatusCode() != 204) {
+                System.out.println("An error occurred when plugin tried to send log data.");
+                System.out.println("JSON: "+JSON);
+                System.out.println("Response: "+response.toString());
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }

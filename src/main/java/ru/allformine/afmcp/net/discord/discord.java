@@ -29,7 +29,6 @@ public class discord {
 
         String JSONString = new Gson().toJson(JSON);
 
-        System.out.println("JSONDebug: "+JSONString);
         request.sendPost(JSONString, url);
     }
 }

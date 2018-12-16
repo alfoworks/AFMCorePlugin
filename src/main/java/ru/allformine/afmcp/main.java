@@ -81,7 +81,7 @@ public class main extends JavaPlugin implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerJoin(PlayerJoinEvent event) {
         boolean isStaff = event.getPlayer().hasPermission("afmcp.staff");
         String message = "Игрок **вошел** в меня, о даа.";
@@ -99,7 +99,7 @@ public class main extends JavaPlugin implements Listener {
         discord.sendMessage(message, true, event.getPlayer().getDisplayName(), 1);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerQuit(PlayerQuitEvent event) {
         boolean isStaff = event.getPlayer().hasPermission("afmcp.staff");
         String message = "Игрок **вышел** из игры.";
@@ -118,7 +118,7 @@ public class main extends JavaPlugin implements Listener {
     }
 
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler(priority = EventPriority.MONITOR)
     public void ChannelChatEvent(ChannelChatEvent event) {
         String channelName = event.getChannel().getName();
         int logLevel = 1;
@@ -156,14 +156,14 @@ public class main extends JavaPlugin implements Listener {
         discord.sendMessage(message, true, event.getSender().getName(), logLevel);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerAchievmentAwarded(PlayerAchievementAwardedEvent event) {
         String message = "Игрок получил достижение **"+event.getAchievement().name()+"**.";
 
         discord.sendMessage(message, true, event.getPlayer().getDisplayName(), 1);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent event) {
         if(!event.isCancelled()) { //Возможно это поможет от логирования несуществующих комманд, но я хз чот...
             String[] message = event.getMessage().split(" ");
@@ -174,7 +174,7 @@ public class main extends JavaPlugin implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGH)
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerDeath(PlayerDeathEvent event) {
         discord.sendMessage(event.getDeathMessage(), true, event.getEntity().getDisplayName(), 1);
     }
