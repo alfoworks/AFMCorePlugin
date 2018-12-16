@@ -137,7 +137,7 @@ public class main extends JavaPlugin implements Listener {
             Set<Chatter> chatMembers = event.getChannel().getMembers();
             for(Chatter chatter : chatMembers) {
                 if(!chatter.getPlayer().getDisplayName().equals(event.getSender().getPlayer().getDisplayName())) {
-                    channelName = chatter.getPlayer().getDisplayName();
+                    channelName = "Личное сообщение игроку "+chatter.getPlayer().getDisplayName();
                     break;
                 }
             }
