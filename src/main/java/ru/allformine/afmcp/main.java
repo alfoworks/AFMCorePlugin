@@ -88,12 +88,12 @@ public class main extends JavaPlugin implements Listener {
     //Сообщение в дискорд о входе/выходе игрока
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerJoin(PlayerJoinEvent event) {
-        PlayerQuitJoin.sendPlayerQuitJoinMessage(event.getPlayer(), true);
+        PlayerQuitJoin.sendPlayerQuitJoinMessage(event.getPlayer(), true, this);
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerQuit(PlayerQuitEvent event) {
-        PlayerQuitJoin.sendPlayerQuitJoinMessage(event.getPlayer(), false);
+        PlayerQuitJoin.sendPlayerQuitJoinMessage(event.getPlayer(), false, this);
     }
 
     //Сообщение в дискорд из чата.

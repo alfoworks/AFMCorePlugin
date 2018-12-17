@@ -3,10 +3,11 @@ package ru.allformine.afmcp;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 import ru.allformine.afmcp.net.discord.discord;
 
 public class PlayerQuitJoin {
-    public static void sendPlayerQuitJoinMessage(Player player, boolean act) {
+    public static void sendPlayerQuitJoinMessage(Player player, boolean act, JavaPlugin plugin) {
         boolean isStaff = player.hasPermission("afmcp.staff");
         int logLevel = 1;
         String message;
@@ -28,6 +29,6 @@ public class PlayerQuitJoin {
             logLevel = 2;
         }
 
-        discord.sendMessage(message, true, player.getDisplayName(), logLevel);
+        discord.sendMessage(message, true, player.getDisplayName(), logLevel, plugin);
     }
 }
