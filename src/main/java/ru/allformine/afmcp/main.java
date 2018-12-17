@@ -21,6 +21,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerAchievementAwardedEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import ru.allformine.afmcp.CFNTasks.CFNTaskSpace;
+import ru.allformine.afmcp.CFNTasks.CFNTaskTechno;
 import ru.allformine.afmcp.net.discord.discord;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -38,26 +40,26 @@ public class main extends JavaPlugin implements Listener {
     private String[] triggerWords = {"дюп", "баг", "краш", "нойра"};
 
     public void onEnable() {
-        discord.sendMessage("Сервер поднялся!", false, "TechInfo", 1);
-
         PluginManager manager = this.getServer().getPluginManager();
 
         manager.registerEvents(this,this);
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "FactionsShow");
 
-        new CFNChannelTask(this,
-                manager.getPlugin("Factions")).runTaskTimer(this,
-                60,
-                20);
+        //костыль для определения сервера - спейс или технач, для запуска нужной задачи в планировщике
+        if(manager.getPlugin("Factions") != null) { //можно было бы сделать с помощью конфига, но мне чот лень этим заниматсо
+            new CFNTaskTechno(this).runTaskTimer(this, 60, 20);
+        } else {
+            new CFNTaskSpace(this).runTaskTimer(this, 60, 20);
+        }
 
-        try {
+        try { //Проверялка на то, есть ли плагин на ваниш.
             //noinspection deprecation
             vmng = VanishNoPacket.getManager();
         } catch(VanishNotLoadedException ex) {
             System.out.println("Can't found VanishNoPacket.");
         }
 
-        if (vmng != null) {
+        if (vmng != null) { //Анти-ванишепалилка
             ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(this, ListenerPriority.NORMAL, Collections.singletonList(PacketType.Status.Server.OUT_SERVER_INFO), ListenerOptions.ASYNC) {
                 @Override
                 public void onPacketSending(PacketEvent event) {
@@ -79,57 +81,34 @@ public class main extends JavaPlugin implements Listener {
                 }
             });
         }
+
+        discord.sendMessage("Сервер поднялся!", false, "TechInfo", 1, this); //отправляем в дс сообщеньку, что сервак врублен.
     }
 
+    //Сообщение в дискорд о входе/выходе игрока
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerJoin(PlayerJoinEvent event) {
-        boolean isStaff = event.getPlayer().hasPermission("afmcp.staff");
-        String message = "Игрок **вошел** в меня, о даа.";
-
-        if(isStaff) {
-            message += " (персонал)";
-
-            for(Player p : Bukkit.getOnlinePlayers()) {
-                if(p.hasPermission("afmcp.staff") && !p.equals(event.getPlayer())) {
-                    p.sendMessage(ChatColor.DARK_AQUA+""+event.getPlayer().getName()+" "+ChatColor.GREEN+"вошел в игру! "+ChatColor.DARK_AQUA+"(персонал)");
-                }
-            }
-        }
-
-        discord.sendMessage(message, true, event.getPlayer().getDisplayName(), 1);
+        PlayerQuitJoin.sendPlayerQuitJoinMessage(event.getPlayer(), true);
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerQuit(PlayerQuitEvent event) {
-        boolean isStaff = event.getPlayer().hasPermission("afmcp.staff");
-        String message = "Игрок **вышел** из игры.";
-
-        if(isStaff) {
-            message += " (персонал)";
-
-            for(Player p : Bukkit.getOnlinePlayers()) {
-                if(p.hasPermission("afmcp.staff") && !p.equals(event.getPlayer())) {
-                    p.sendMessage(ChatColor.DARK_AQUA+""+event.getPlayer().getName()+" "+ChatColor.GREEN+"вышел из игры! "+ChatColor.DARK_AQUA+"(персонал)");
-                }
-            }
-        }
-
-        discord.sendMessage(message, true, event.getPlayer().getDisplayName(), 1);
+        PlayerQuitJoin.sendPlayerQuitJoinMessage(event.getPlayer(), false);
     }
 
-
+    //Сообщение в дискорд из чата.
     @EventHandler(priority = EventPriority.MONITOR)
     public void ChannelChatEvent(ChannelChatEvent event) {
         String channelName = event.getChannel().getName();
         int logLevel = 1;
-        String message = event.getMessage();
+        StringBuilder message = new StringBuilder(event.getMessage());
 
         if(event.getChannel().getName().equals("Local")) {
             Location location = event.getSender().getPlayer().getLocation();
             int x = (int) Math.round(location.getX());
             int y = (int) Math.round(location.getY());
             int z = (int) Math.round(location.getZ());
-            message = "{"+String.valueOf(x)+" "+String.valueOf(y)+" "+String.valueOf(z)+"} "+message;
+            message.insert(0, "{" + String.valueOf(x) + " " + String.valueOf(y) + " " + String.valueOf(z) + "} ");
 
             logLevel = 2;
         } else if(event.getChannel().getName().contains("convo")) {
@@ -145,41 +124,45 @@ public class main extends JavaPlugin implements Listener {
             logLevel = 2;
         }
 
-        message = "["+channelName+"] "+message;
+        message.insert(0, "[" + channelName + "] ");
 
         for (String item : triggerWords) {
             if(event.getMessage().toLowerCase().contains(item)) {
-                message = "Обнаруженно триггер-слово: "+item+" @here\n"+message;
+                message.insert(0, "Обнаруженно триггер-слово: " + item + " @here\n");
             }
         }
 
-        discord.sendMessage(message, true, event.getSender().getName(), logLevel);
+        discord.sendMessage(message.toString(), true, event.getSender().getName(), logLevel, this);
     }
 
+    //Сообщение в дискорд о том, что игрок получил ачивку (здесь какой-то непонятный краш)
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onPlayerAchievmentAwarded(PlayerAchievementAwardedEvent event) {
+    public void onPlayerAchievementAwarded(PlayerAchievementAwardedEvent event) {
         String message = "Игрок получил достижение **"+event.getAchievement().name()+"**.";
 
-        discord.sendMessage(message, true, event.getPlayer().getDisplayName(), 1);
+        discord.sendMessage(message, true, event.getPlayer().getDisplayName(), 1, this);
     }
 
+    //Сообщение в дискорд о том, что игрок выполнил команду (причем неважно, успешно или нет)
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent event) {
         if(!event.isCancelled()) { //Возможно это поможет от логирования несуществующих комманд, но я хз чот...
             String[] message = event.getMessage().split(" ");
             String command = message[0];
             if(!Arrays.asList(notLoggedCommands).contains(command)) {
-                discord.sendMessage("Игрок выполнил команду **"+event.getMessage()+"**", true, event.getPlayer().getDisplayName(), 2);
+                discord.sendMessage("Игрок выполнил команду **"+event.getMessage()+"**", true, event.getPlayer().getDisplayName(), 2, this);
             }
         }
     }
 
+    //Сообщение в дискорд о смерти игрока
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerDeath(PlayerDeathEvent event) {
-        discord.sendMessage(event.getDeathMessage(), true, event.getEntity().getDisplayName(), 1);
+        discord.sendMessage(event.getDeathMessage(), true, event.getEntity().getDisplayName(), 1, this);
     }
 
+    //Сообщение в дискорд о том, что сервер упал.
     public void onDisable() {
-        discord.sendMessage("Сервер упал!", false, "TechInfo", 1);
+        discord.sendMessage("Сервер упал!", false, "TechInfo", 1, this);
     }
 }
