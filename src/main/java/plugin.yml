@@ -1,7 +1,15 @@
 name: AFMCorePlugin
 main: ru.allformine.afmcp.main
-version: 1.2
+version: 1.4
 author: Iterator
 depend: [ProtocolLib, VanishNoPacket, Herochat]
 softdepend: [Factions]
 commands:
+  afmcp:
+    description: Тестовая комаеда, хыыы
+    usage: /afmcp
+  freeze:
+    description: Заморозить игрока.
+    usage: /freeze <ник>
+    permission: afmcp.staff
+    permission-message: У тебя нет прав, иди нахуй, бля.

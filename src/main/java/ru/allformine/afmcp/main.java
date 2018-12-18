@@ -14,18 +14,18 @@ import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerAchievementAwardedEvent;
-import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.event.inventory.InventoryOpenEvent;
+import org.bukkit.event.player.*;
 import ru.allformine.afmcp.CFNTasks.CFNTaskSpace;
 import ru.allformine.afmcp.CFNTasks.CFNTaskTechno;
 import ru.allformine.afmcp.net.discord.discord;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.kitteh.vanish.VanishManager;
@@ -38,6 +38,8 @@ public class main extends JavaPlugin implements Listener {
     private VanishManager vmng = null;
     private String[] notLoggedCommands = {"/g", "/t", "/l"};
     private String[] triggerWords = {"дюп", "баг", "краш", "нойра"};
+
+    private ArrayList<Player> frozenPlayers = new ArrayList<>();
 
     public void onEnable() {
         PluginManager manager = this.getServer().getPluginManager();
@@ -163,6 +165,56 @@ public class main extends JavaPlugin implements Listener {
 
     //Сообщение в дискорд о том, что сервер упал.
     public void onDisable() {
-        discord.sendMessage("Сервер упал!", false, "TechInfo", 1, this);
+        discord.sendMessageSync("Сервер упал!", false, "TechInfo", 1, this);
+    }
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void onPlayerMove(PlayerMoveEvent event) {
+        if(frozenPlayers.contains(event.getPlayer())) {
+            event.setCancelled(true);
+
+            event.getPlayer().sendMessage(ChatColor.RED+"Freeze "+ChatColor.RESET+"> вас заморозили.");
+        }
+    }
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void onPlayerInteract(PlayerInteractEvent event) {
+        if(frozenPlayers.contains(event.getPlayer())) {
+            event.setCancelled(true);
+
+            event.getPlayer().sendMessage(ChatColor.RED+"Freeze "+ChatColor.RESET+"> вас заморозили.");
+        }
+    }
+
+    //Ебанные команды
+    @Override
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        if (cmd.getName().equalsIgnoreCase("afmcp")) {
+            sender.sendMessage("Твоя мать шлюха");
+            return true;
+        } else if(cmd.getName().equalsIgnoreCase("freeze")) {
+            if(args.length > 0) {
+                Player player = Bukkit.getPlayer(args[0]); //да мне похуй, что оно блядь не поддерживается. МНЕ ПОХУЙ!
+                if(player != null) {
+                    if(!frozenPlayers.contains(player)) {
+                        frozenPlayers.add(player);
+
+                        sender.sendMessage(ChatColor.RED+"Freeze "+ChatColor.RESET+"> вы успешно заморозили этого игрока.");
+                        player.sendMessage(ChatColor.RED+"Freeze "+ChatColor.RESET+"> вас заморозили.");
+                    } else {
+                        frozenPlayers.remove(player);
+
+                        sender.sendMessage(ChatColor.RED+"Freeze "+ChatColor.RESET+"> вы успешно разморозили этого игрока.");
+                        player.sendMessage(ChatColor.RED+"Freeze "+ChatColor.RESET+"> вас разморозили.");
+                    }
+                } else {
+                    sender.sendMessage(ChatColor.RED+"Freeze "+ChatColor.RESET+"> игрок не найден.");
+                }
+            } else {
+                sender.sendMessage(ChatColor.RED+"Freeze "+ChatColor.RESET+"> укажите ник игрока.");
+            }
+        }
+
+        return false;
     }
 }
