@@ -10,6 +10,11 @@ commands:
     usage: /afmcp
   freeze:
     description: Заморозить игрока.
-    usage: /freeze <ник>
+    usage: Использование /freeze <ник>
+    permission: afmcp.staff
+    permission-message: У тебя нет прав, иди нахуй, бля.
+  rawbc:
+    description: Отправить сообщение в таком виде, в котором вы его написали.
+    usage: Использование /rawbc <сообщение>
     permission: afmcp.staff
     permission-message: У тебя нет прав, иди нахуй, бля.

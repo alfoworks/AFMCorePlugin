@@ -2,6 +2,7 @@
   <dictionary name="Iterator">
     <words>
       <w>preprocess</w>
+      <w>rawbc</w>
     </words>
   </dictionary>
 </component>

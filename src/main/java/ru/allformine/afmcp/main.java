@@ -84,6 +84,17 @@ public class main extends JavaPlugin implements Listener {
             });
         }
 
+        ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(this, ListenerPriority.NORMAL, Collections.singletonList(PacketType.Play.Server.WINDOW_ITEMS), ListenerOptions.ASYNC) {
+            @Override
+            public void onPacketSending(PacketEvent event) {
+                if(frozenPlayers.contains(event.getPlayer())) {
+                    event.setCancelled(true);
+
+                    event.getPlayer().sendMessage(ChatColor.RED+"Freeze "+ChatColor.RESET+"> вы заморожены!");
+                }
+            }
+        });
+
         discord.sendMessage("Сервер поднялся!", false, "TechInfo", 1, this); //отправляем в дс сообщеньку, что сервак врублен.
     }
 
@@ -173,7 +184,7 @@ public class main extends JavaPlugin implements Listener {
         if(frozenPlayers.contains(event.getPlayer())) {
             event.setCancelled(true);
 
-            event.getPlayer().sendMessage(ChatColor.RED+"Freeze "+ChatColor.RESET+"> вас заморозили.");
+            event.getPlayer().sendMessage(ChatColor.RED+"Freeze "+ChatColor.RESET+"> вы заморожены!");
         }
     }
 
@@ -182,7 +193,7 @@ public class main extends JavaPlugin implements Listener {
         if(frozenPlayers.contains(event.getPlayer())) {
             event.setCancelled(true);
 
-            event.getPlayer().sendMessage(ChatColor.RED+"Freeze "+ChatColor.RESET+"> вас заморозили.");
+            event.getPlayer().sendMessage(ChatColor.RED+"Freeze "+ChatColor.RESET+"> вы заморожены!");
         }
     }
 
@@ -211,7 +222,14 @@ public class main extends JavaPlugin implements Listener {
                     sender.sendMessage(ChatColor.RED+"Freeze "+ChatColor.RESET+"> игрок не найден.");
                 }
             } else {
-                sender.sendMessage(ChatColor.RED+"Freeze "+ChatColor.RESET+"> укажите ник игрока.");
+                return false;
+            }
+            return true;
+        } else if(cmd.getName().equalsIgnoreCase("rawbc")) {
+            if(args.length > 0) {
+                Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
+            } else {
+                return false;
             }
         }
 
