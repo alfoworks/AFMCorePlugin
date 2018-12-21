@@ -21,7 +21,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.player.*;
 import ru.allformine.afmcp.CFNTasks.CFNTaskSpace;
 import ru.allformine.afmcp.CFNTasks.CFNTaskTechno;
@@ -84,14 +83,17 @@ public class main extends JavaPlugin implements Listener {
             });
         }
 
+        ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(this, ListenerPriority.NORMAL, Collections.singletonList(PacketType.Handshake.Client.SET_PROTOCOL), ListenerOptions.ASYNC) {
+            @Override
+            public void onPacketReceiving(PacketEvent event) {
+                discord.sendMessageSync(event.getPacket().toString(), false, "DEBUG", 2);
+            }
+        });
+
         ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(this, ListenerPriority.NORMAL, Collections.singletonList(PacketType.Play.Server.WINDOW_ITEMS), ListenerOptions.ASYNC) {
             @Override
-            public void onPacketSending(PacketEvent event) {
-                if(frozenPlayers.contains(event.getPlayer())) {
-                    event.setCancelled(true);
-
-                    event.getPlayer().sendMessage(ChatColor.RED+"Freeze "+ChatColor.RESET+"> вы заморожены!");
-                }
+            public void onPacketReceiving(PacketEvent event) {
+                event.setCancelled(true);
             }
         });
 
@@ -176,7 +178,7 @@ public class main extends JavaPlugin implements Listener {
 
     //Сообщение в дискорд о том, что сервер упал.
     public void onDisable() {
-        discord.sendMessageSync("Сервер упал!", false, "TechInfo", 1, this);
+        discord.sendMessageSync("Сервер упал!", false, "TechInfo", 1);
     }
 
     @EventHandler(priority = EventPriority.HIGH)

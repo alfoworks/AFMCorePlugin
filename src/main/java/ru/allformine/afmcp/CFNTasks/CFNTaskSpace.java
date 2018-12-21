@@ -22,7 +22,7 @@ public class CFNTaskSpace extends BukkitRunnable {
             ByteArrayOutputStream b = new ByteArrayOutputStream();
             DataOutputStream out = new DataOutputStream(b);
 
-            String str = ChatColor.BLUE+"SpaceUnion ЗБТ";
+            String str = ChatColor.YELLOW+"SpaceUnion ЗБТ";
 
             try {
                 out.writeUTF(str);
