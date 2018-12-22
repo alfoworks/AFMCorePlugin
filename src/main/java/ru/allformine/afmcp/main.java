@@ -192,10 +192,12 @@ public class main extends JavaPlugin implements Listener {
             event.getPlayer().sendMessage(ChatColor.RED+"Freeze "+ChatColor.RESET+"> вы заморожены!");
         }
 
-        if(event.getMaterial().name().equals("MO_GRAVITATIONAL_ANOMALY") || !event.getPlayer().isOp()) {
-            event.getPlayer().sendMessage(ChatColor.YELLOW+"Вы не можете совершать действия с данным блоком.");
+        if(event.hasBlock()) {
+            if(event.getMaterial().name().equals("MO_GRAVITATIONAL_ANOMALY") || !event.getPlayer().isOp()) {
+                event.getPlayer().sendMessage(ChatColor.YELLOW+"Вы не можете совершать действия с данным блоком.");
 
-            event.setCancelled(true);
+                event.setCancelled(true);
+            }
         }
     }
 
