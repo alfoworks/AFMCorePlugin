@@ -20,6 +20,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.*;
 import ru.allformine.afmcp.CFNTasks.CFNTaskSpace;
@@ -190,13 +191,14 @@ public class main extends JavaPlugin implements Listener {
 
             event.getPlayer().sendMessage(ChatColor.RED+"Freeze "+ChatColor.RESET+"> вы заморожены!");
         }
+    }
 
-        if(event.hasBlock()) {
-            if(event.getMaterial().name().equals("MO_GRAVITATIONAL_ANOMALY")) {
-                event.getPlayer().sendMessage(ChatColor.YELLOW+"Вы не можете сломать данный блок.");
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onBlockBreak(BlockBreakEvent event) {
+        if(event.getBlock().getType().name().equals("MO_GRAVITATIONAL_ANOMALY") || !event.getPlayer().isOp()) {
+            event.getPlayer().sendMessage(ChatColor.YELLOW+"Вы не можете сломать данный блок.");
 
-                event.setCancelled(true);
-            }
+            event.setCancelled(true);
         }
     }
 
