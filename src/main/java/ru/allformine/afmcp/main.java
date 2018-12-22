@@ -193,7 +193,7 @@ public class main extends JavaPlugin implements Listener {
         }
 
         if(event.hasBlock()) {
-            if(event.getMaterial().name().equals("MO_GRAVITATIONAL_ANOMALY") || !event.getPlayer().isOp()) {
+            if(event.getMaterial().name().equals("MO_GRAVITATIONAL_ANOMALY") && !event.getPlayer().isOp()) {
                 event.getPlayer().sendMessage(ChatColor.YELLOW+"Вы не можете совершать действия с данным блоком.");
 
                 event.setCancelled(true);
@@ -203,7 +203,7 @@ public class main extends JavaPlugin implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onBlockBreak(BlockBreakEvent event) {
-        if(event.getBlock().getType().name().equals("MO_GRAVITATIONAL_ANOMALY") || !event.getPlayer().isOp()) {
+        if(event.getBlock().getType().name().equals("MO_GRAVITATIONAL_ANOMALY") && !event.getPlayer().isOp()) {
             event.getPlayer().sendMessage(ChatColor.YELLOW+"Вы не можете сломать данный блок.");
 
             event.setCancelled(true);
