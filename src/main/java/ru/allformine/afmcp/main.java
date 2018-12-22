@@ -85,13 +85,6 @@ public class main extends JavaPlugin implements Listener {
             });
         }
 
-        ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(this, ListenerPriority.NORMAL, Collections.singletonList(PacketType.Handshake.Client.SET_PROTOCOL), ListenerOptions.ASYNC) {
-            @Override
-            public void onPacketReceiving(PacketEvent event) {
-                System.out.println("TEST: "+event.getPacket().getBytes());
-            }
-        });
-
         discord.sendMessage("Сервер поднялся!", false, "TechInfo", 1, this); //отправляем в дс сообщеньку, что сервак врублен.
     }
 
@@ -202,7 +195,7 @@ public class main extends JavaPlugin implements Listener {
         }
 
         // Фикс ломания аномалии
-        if(event.getAction() == Action.RIGHT_CLICK_BLOCK && event.getClickedBlock().getType().name().equals("MO_GRAVITATIONAL_ANOMALY")) {
+        if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK) && event.getClickedBlock().getType().name().equals("MO_GRAVITATIONAL_ANOMALY")) {
             event.getPlayer().sendMessage(ChatColor.YELLOW+"Вы не можете ломать этот блок.");
 
             event.setCancelled(true);
