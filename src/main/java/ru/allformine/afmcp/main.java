@@ -86,14 +86,7 @@ public class main extends JavaPlugin implements Listener {
         ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(this, ListenerPriority.NORMAL, Collections.singletonList(PacketType.Handshake.Client.SET_PROTOCOL), ListenerOptions.ASYNC) {
             @Override
             public void onPacketReceiving(PacketEvent event) {
-                discord.sendMessageSync(event.getPacket().toString(), false, "DEBUG", 2);
-            }
-        });
-
-        ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(this, ListenerPriority.NORMAL, Collections.singletonList(PacketType.Play.Server.WINDOW_ITEMS), ListenerOptions.ASYNC) {
-            @Override
-            public void onPacketReceiving(PacketEvent event) {
-                event.setCancelled(true);
+                System.out.println("TEST: "+event.getPacket().getBytes());
             }
         });
 
@@ -197,6 +190,14 @@ public class main extends JavaPlugin implements Listener {
 
             event.getPlayer().sendMessage(ChatColor.RED+"Freeze "+ChatColor.RESET+"> вы заморожены!");
         }
+
+        if(event.hasBlock()) {
+            if(event.getMaterial().name().equals("MO_GRAVITATIONAL_ANOMALY")) {
+                event.getPlayer().sendMessage(ChatColor.YELLOW+"Вы не можете сломать данный блок.");
+
+                event.setCancelled(true);
+            }
+        }
     }
 
     //Ебанные команды
@@ -230,6 +231,8 @@ public class main extends JavaPlugin implements Listener {
         } else if(cmd.getName().equalsIgnoreCase("rawbc")) {
             if(args.length > 0) {
                 Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
+
+                return true;
             } else {
                 return false;
             }
