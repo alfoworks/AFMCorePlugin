@@ -20,6 +20,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.*;
@@ -192,19 +193,17 @@ public class main extends JavaPlugin implements Listener {
             event.getPlayer().sendMessage(ChatColor.RED+"Freeze "+ChatColor.RESET+"> вы заморожены!");
         }
 
-        if(event.hasBlock()) {
+        if(event.hasBlock()) { // На всякий случай
             if(event.getMaterial().name().equals("MO_GRAVITATIONAL_ANOMALY") && !event.getPlayer().isOp()) {
                 event.getPlayer().sendMessage(ChatColor.YELLOW+"Вы не можете совершать действия с данным блоком.");
 
                 event.setCancelled(true);
             }
         }
-    }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void onBlockBreak(BlockBreakEvent event) {
-        if(event.getBlock().getType().name().equals("MO_GRAVITATIONAL_ANOMALY") && !event.getPlayer().isOp()) {
-            event.getPlayer().sendMessage(ChatColor.YELLOW+"Вы не можете сломать данный блок.");
+        // Фикс ломания аномалии
+        if(event.getAction() == Action.RIGHT_CLICK_BLOCK && event.getClickedBlock().getType().name().equals("MO_GRAVITATIONAL_ANOMALY")) {
+            event.getPlayer().sendMessage(ChatColor.YELLOW+"Вы не можете ломать этот блок.");
 
             event.setCancelled(true);
         }
