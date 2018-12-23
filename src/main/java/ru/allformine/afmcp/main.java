@@ -22,6 +22,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.*;
 import ru.allformine.afmcp.CFNTasks.CFNTaskSpace;
@@ -186,7 +187,7 @@ public class main extends JavaPlugin implements Listener {
             event.getPlayer().sendMessage(ChatColor.RED+"Freeze "+ChatColor.RESET+"> вы заморожены!");
         }
 
-        if(event.hasBlock()) { // На всякий случай
+        if(event.hasBlock()) { // Запрещает делать любые действия с аномалией, когда она в виде айтема (на всяикй)
             if(event.getMaterial().name().equals("MO_GRAVITATIONAL_ANOMALY") && !event.getPlayer().isOp()) {
                 event.getPlayer().sendMessage(ChatColor.YELLOW+"Вы не можете совершать действия с данным блоком.");
 
@@ -194,10 +195,17 @@ public class main extends JavaPlugin implements Listener {
             }
         }
 
-        // Фикс ломания аномалии
+        // Запрещает ломать аномалию ведром воды, если ведром воды нажали ПРЯМО на нее.
         if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK) && event.getClickedBlock().getType().name().equals("MO_GRAVITATIONAL_ANOMALY")) {
             event.getPlayer().sendMessage(ChatColor.YELLOW+"Вы не можете ломать этот блок.");
 
+            event.setCancelled(true);
+        }
+    }
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void onBlockFromTo(BlockFromToEvent event) { // Запрещает ломать аномалию ведром воды, если ведром воды нажали на блок, расположенный вплотную к аномалии
+        if(event.getBlock().getType().name().equals("MO_GRAVITATIONAL_ANOMALY")) {
             event.setCancelled(true);
         }
     }
