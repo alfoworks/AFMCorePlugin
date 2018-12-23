@@ -20,9 +20,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockFromToEvent;
+import org.bukkit.event.block.*;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.*;
 import ru.allformine.afmcp.CFNTasks.CFNTaskSpace;
@@ -206,8 +204,10 @@ public class main extends JavaPlugin implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)
     // Запрещает ломать аномалию ведром воды, если ведром воды нажали на блок, расположенный вплотную к аномалии
-    public void onBlockFromTo(BlockFromToEvent event) {
-        if(event.getBlock().getType().name().equals("MO_GRAVITATIONAL_ANOMALY")) {
+    public void onBlockPlace(BlockPlaceEvent event) {
+        if(event.getBlockAgainst().getType().name().equals("MO_GRAVITATIONAL_ANOMALY") && !event.getPlayer().isOp()) {
+            event.getPlayer().sendMessage(ChatColor.YELLOW+"Вы не можете сломать данный блок.");
+
             event.setCancelled(true);
         }
     }
