@@ -187,7 +187,8 @@ public class main extends JavaPlugin implements Listener {
             event.getPlayer().sendMessage(ChatColor.RED+"Freeze "+ChatColor.RESET+"> вы заморожены!");
         }
 
-        if(event.hasBlock()) { // Запрещает делать любые действия с аномалией, когда она в виде айтема (на всяикй)
+        // Запрещает делать любые действия с аномалией, когда она в виде айтема (на всяикй пожарный)
+        if(event.hasBlock()) {
             if(event.getMaterial().name().equals("MO_GRAVITATIONAL_ANOMALY") && !event.getPlayer().isOp()) {
                 event.getPlayer().sendMessage(ChatColor.YELLOW+"Вы не можете совершать действия с данным блоком.");
 
@@ -196,7 +197,7 @@ public class main extends JavaPlugin implements Listener {
         }
 
         // Запрещает ломать аномалию ведром воды, если ведром воды нажали ПРЯМО на нее.
-        if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK) && event.getClickedBlock().getType().name().equals("MO_GRAVITATIONAL_ANOMALY")) {
+        if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK) && event.getClickedBlock().getType().name().equals("MO_GRAVITATIONAL_ANOMALY") && !event.getPlayer().isOp()) {
             event.getPlayer().sendMessage(ChatColor.YELLOW+"Вы не можете ломать этот блок.");
 
             event.setCancelled(true);
@@ -204,7 +205,8 @@ public class main extends JavaPlugin implements Listener {
     }
 
     @EventHandler(priority = EventPriority.HIGH)
-    public void onBlockFromTo(BlockFromToEvent event) { // Запрещает ломать аномалию ведром воды, если ведром воды нажали на блок, расположенный вплотную к аномалии
+    // Запрещает ломать аномалию ведром воды, если ведром воды нажали на блок, расположенный вплотную к аномалии
+    public void onBlockFromTo(BlockFromToEvent event) {
         if(event.getBlock().getType().name().equals("MO_GRAVITATIONAL_ANOMALY")) {
             event.setCancelled(true);
         }
