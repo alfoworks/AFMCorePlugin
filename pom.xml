@@ -32,6 +32,15 @@
         </dependency>
 
         <dependency>
+            <groupId>org.bukkit</groupId>
+            <artifactId>craftbukkit</artifactId>
+            <version>1.7.10-R0.1-SNAPSHOT</version>
+            <systemPath>${project.basedir}/dependencies/spigot.jar</systemPath>
+            <type>jar</type>
+            <scope>system</scope>
+        </dependency>
+
+        <dependency>
             <groupId>com.comphenix.protocol</groupId>
             <artifactId>ProtocolLib-Parent</artifactId>
             <version>LATEST</version>
