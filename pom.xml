@@ -21,19 +21,14 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
-    <repositories>
-        <repository>
-            <id>spigot-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-        </repository>
-    </repositories>
-
     <dependencies>
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
             <version>1.7.10-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
+            <systemPath>${project.basedir}/dependencies/Thermos.jar</systemPath>
+            <type>jar</type>
+            <scope>system</scope>
         </dependency>
 
         <dependency>
