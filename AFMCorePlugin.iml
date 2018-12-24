@@ -67,6 +67,33 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: com.comphenix.protocol:ProtocolLib-Parent:LATEST">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/dependencies/ProtocolLib.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: org.kitteh:VanishNoPacket:LATEST">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/dependencies/VanishNoPacket.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: org.dthielke:HeroChat:LATEST">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/dependencies/Herochat.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.5.6" level="project" />
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.4.10" level="project" />
     <orderEntry type="library" name="Maven: commons-logging:commons-logging:1.2" level="project" />

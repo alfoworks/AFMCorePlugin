@@ -32,6 +32,33 @@
         </dependency>
 
         <dependency>
+            <groupId>com.comphenix.protocol</groupId>
+            <artifactId>ProtocolLib-Parent</artifactId>
+            <version>LATEST</version>
+            <systemPath>${project.basedir}/dependencies/ProtocolLib.jar</systemPath>
+            <type>jar</type>
+            <scope>system</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.kitteh</groupId>
+            <artifactId>VanishNoPacket</artifactId>
+            <version>LATEST</version>
+            <systemPath>${project.basedir}/dependencies/VanishNoPacket.jar</systemPath>
+            <type>jar</type>
+            <scope>system</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.dthielke</groupId>
+            <artifactId>HeroChat</artifactId>
+            <version>LATEST</version>
+            <systemPath>${project.basedir}/dependencies/Herochat.jar</systemPath>
+            <type>jar</type>
+            <scope>system</scope>
+        </dependency>
+
+        <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>LATEST</version>
