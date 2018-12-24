@@ -4,7 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import ru.allformine.afmcp.net.discord.discord;
+import ru.allformine.afmcp.net.discord.Discord;
 
 public class PlayerQuitJoin {
     public static void sendPlayerQuitJoinMessage(Player player, boolean act, JavaPlugin plugin) {
@@ -29,6 +29,6 @@ public class PlayerQuitJoin {
             logLevel = 2;
         }
 
-        discord.sendMessage(message, true, player.getDisplayName(), logLevel, plugin);
+        Discord.sendMessage(message, true, player.getDisplayName(), logLevel, plugin);
     }
 }

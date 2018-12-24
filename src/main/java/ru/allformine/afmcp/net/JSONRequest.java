@@ -6,7 +6,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 
-public class request {
+public class JSONRequest {
     public static void sendPost(String JSON, String url) {
         HttpClient httpClient = HttpClientBuilder.create().build();
 

@@ -2,14 +2,13 @@ package ru.allformine.afmcp.net.discord;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.libs.com.google.gson.Gson;
 import org.bukkit.plugin.java.JavaPlugin;
-import ru.allformine.afmcp.net.request;
+import ru.allformine.afmcp.net.JSONRequest;
 
-public class discord {
+public class Discord {
     private static void send(String message, boolean avatarFromName, String name, int logLevel) { //ебаный костыль
         String url;
         if(logLevel == 1) {
@@ -32,7 +31,7 @@ public class discord {
 
         String JSONString = new Gson().toJson(JSON);
 
-        request.sendPost(JSONString, url);
+        JSONRequest.sendPost(JSONString, url);
     }
 
     public static void sendMessage(String message, boolean avatarFromName, String name, int logLevel, JavaPlugin plugin) {
