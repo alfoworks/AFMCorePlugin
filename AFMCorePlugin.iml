@@ -59,7 +59,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.bukkit:bukkit:1.7.10-R0.1-SNAPSHOT" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: org.bukkit:craftbukkit:1.7.10-R0.1-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.5.6" level="project" />
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.4.10" level="project" />
     <orderEntry type="library" name="Maven: commons-logging:commons-logging:1.2" level="project" />
