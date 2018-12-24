@@ -26,7 +26,7 @@ import org.kitteh.vanish.staticaccess.VanishNotLoadedException;
 import java.util.*;
 import static ru.allformine.afmcp.References.frozenPlayers;
 
-public class Main extends JavaPlugin implements Listener {
+public class AFMCorePlugin extends JavaPlugin implements Listener {
     private VanishManager vmng = null;
 
     public void onEnable() {

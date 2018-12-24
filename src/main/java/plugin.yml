@@ -1,5 +1,5 @@
 name: AFMCorePlugin
-main: ru.allformine.afmcp.Main
+main: ru.allformine.afmcp.AFMCorePlugin
 version: 1.4
 author: Iterator
 depend: [ProtocolLib, VanishNoPacket, Herochat]
