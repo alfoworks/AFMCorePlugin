@@ -3,7 +3,7 @@ package ru.allformine.afmcp;
 import com.dthielke.herochat.ChannelChatEvent;
 import com.dthielke.herochat.Chatter;
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
+import org.bukkit.Location;//123
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
