@@ -127,7 +127,7 @@ public class AFMCorePlugin extends JavaPlugin implements Listener {
             }
         } else if(cmd.getName().equalsIgnoreCase("cfntext")) {
             if(args.length > 0) {
-                if(args[1].equalsIgnoreCase("clear")) {
+                if(args[0].equalsIgnoreCase("clear")) {
                     currentCFNTask.cancel();
                     runCFNTask();
                     References.CFNTaskCustomTextRunnig = false;
