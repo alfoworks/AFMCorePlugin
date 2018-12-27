@@ -138,7 +138,7 @@ public class AFMCorePlugin extends JavaPlugin implements Listener {
 
                 if(!References.CFNTaskCustomTextRunnig) {
                     currentCFNTask.cancel();
-                    new CFNTaskCustom(this).runTaskTimer(this, 60, 20);
+                    currentCFNTask = new CFNTaskCustom(this).runTaskTimer(this, 60, 20);
                 }
 
                 return true;
