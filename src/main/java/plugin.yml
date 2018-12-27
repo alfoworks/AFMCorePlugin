@@ -18,9 +18,9 @@ commands:
     usage: "Использование: /rawbc <сообщение>"
     permission: afmcp.staff
     permission-message: У тебя нет прав, иди нахуй, бля.
-  cfntext:
-    description: Изменить текст в оверлее.
-    usage: "Использование: /cfntext <сообщение>"
+  notify:
+    description: Отослать уведомление в оверлей всем игрокам.
+    usage: "Использование: /notify <сообщение не больше 48 символов>"
     permission: afmcp.staff
     permission-message: У тебя нет прав, иди нахуй, бля.
   vip:

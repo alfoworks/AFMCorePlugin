@@ -11,6 +11,7 @@ import com.comphenix.protocol.wrappers.WrappedServerPing;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import ru.allformine.afmcp.net.eco.eco;
@@ -21,6 +22,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.kitteh.vanish.VanishManager;
 import org.kitteh.vanish.staticaccess.VanishNoPacket;
 import org.kitteh.vanish.staticaccess.VanishNotLoadedException;
+
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.util.*;
 import static ru.allformine.afmcp.References.frozenPlayers;
 
@@ -148,7 +153,7 @@ public class AFMCorePlugin extends JavaPlugin implements Listener {
                                 +ChatColor.WHITE
                                 +" - "
                                 +ChatColor.YELLOW
-                                +String.valueOf(this.getConfig().getInt("vips."+key+"price"))
+                                +String.valueOf(this.getConfig().getInt("vips."+key+".price"))
                                 +" токенов");
                     }
                     return true;
@@ -160,7 +165,7 @@ public class AFMCorePlugin extends JavaPlugin implements Listener {
         } else if(cmd.getName().equalsIgnoreCase("afmreload")) {
             this.reloadConfig();
             sender.sendMessage(ChatColor.GREEN+"AFMCP "+ChatColor.WHITE+" > Конфиг был успещно перезагружен.");
-        } else if(cmd.getName().equalsIgnoreCase("afmreload")) {
+        } else if(cmd.getName().equalsIgnoreCase("tokens")) {
             if(sender instanceof Player) {
                 String playerBal = eco.getBalance(sender.getName());
 
@@ -171,6 +176,48 @@ public class AFMCorePlugin extends JavaPlugin implements Listener {
 
                 sender.sendMessage(ChatColor.GREEN+"AFMEco "+ChatColor.WHITE+"> Ваш баланс: "+ChatColor.GREEN+playerBal+" токенов"+ChatColor.WHITE+".");
                 return true;
+            } else {
+                sender.sendMessage(ChatColor.RED+"Данная команда может быть выполнена только игроком.");
+                return true;
+            }
+        } else if(cmd.getName().equalsIgnoreCase("notify")) {
+            if(args.length > 0 && String.join(" ", args).length() <= 48) {
+                JavaPlugin plugin = this;
+
+                for(Player p : Bukkit.getOnlinePlayers()) {
+                    ByteArrayOutputStream b = new ByteArrayOutputStream();
+                    DataOutputStream out = new DataOutputStream(b);
+
+                    String str = String.join(" ", args);
+
+                    try {
+                        out.writeUTF(str);
+                    } catch(IOException e) {
+                        System.out.println("Error sending FactionsShow data.");
+                    }
+
+                    p.sendPluginMessage(this, "FactionsShow", b.toByteArray());
+                    p.playSound(p.getLocation(), Sound.NOTE_PLING, 10, -2);
+                }
+
+                Bukkit.getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
+                    public void run() {
+                        for(Player p : Bukkit.getOnlinePlayers()) {
+                            ByteArrayOutputStream b = new ByteArrayOutputStream();
+                            DataOutputStream out = new DataOutputStream(b);
+
+                            try {
+                                out.writeUTF("");
+                            } catch(IOException e) {
+                                System.out.println("Error sending FactionsShow data.");
+                            }
+
+                            p.sendPluginMessage(plugin, "FactionsShow", b.toByteArray());
+                        }
+                    }
+                }, 100L);
+            } else {
+                return false;
             }
         }
 
