@@ -144,6 +144,8 @@ public class AFMCorePlugin extends JavaPlugin implements Listener {
                     Discord.sendMessage("@everyone\nИгрок "+sender.getName()+" приобрёл подписку **"+args[0]+"**!!!", false, "DonationAlerts", 1, this);
 
                     eco.rem(sender.getName(), String.valueOf(cost), this);
+
+                    return true;
                 } else {
                     sender.sendMessage(ChatColor.YELLOW+"AFMEco "+ChatColor.WHITE+"> Список доступных привелегий:");
 
@@ -153,7 +155,7 @@ public class AFMCorePlugin extends JavaPlugin implements Listener {
                                 +ChatColor.WHITE
                                 +" - "
                                 +ChatColor.YELLOW
-                                +String.valueOf(this.getConfig().getInt("vips."+key+".price"))
+                                +String.valueOf(this.getConfig().getInt("vips."+key+".cost"))
                                 +" токенов");
                     }
                     return true;
@@ -191,13 +193,13 @@ public class AFMCorePlugin extends JavaPlugin implements Listener {
                     String str = String.join(" ", args);
 
                     try {
-                        out.writeUTF(str);
+                        out.writeUTF(ChatColor.translateAlternateColorCodes('&', str));
                     } catch(IOException e) {
                         System.out.println("Error sending FactionsShow data.");
                     }
 
                     p.sendPluginMessage(this, "FactionsShow", b.toByteArray());
-                    p.playSound(p.getLocation(), Sound.NOTE_PLING, 10, -2);
+                    p.playSound(p.getLocation(), Sound.NOTE_PLING, 10, -3);
                 }
 
                 Bukkit.getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
@@ -216,6 +218,8 @@ public class AFMCorePlugin extends JavaPlugin implements Listener {
                         }
                     }
                 }, 100L);
+
+                return true;
             } else {
                 return false;
             }
