@@ -10,16 +10,27 @@ commands:
     usage: /afmcp
   freeze:
     description: Заморозить игрока.
-    usage: Использование /freeze <ник>
+    usage: "Использование: /freeze <ник>"
     permission: afmcp.staff
     permission-message: У тебя нет прав, иди нахуй, бля.
   rawbc:
     description: Отправить сообщение в таком виде, в котором вы его написали.
-    usage: Использование /rawbc <сообщение>
+    usage: "Использование: /rawbc <сообщение>"
     permission: afmcp.staff
     permission-message: У тебя нет прав, иди нахуй, бля.
   cfntext:
     description: Изменить текст в оверлее.
-    usage: Использование /cfntext <сообщение>
+    usage: "Использование: /cfntext <сообщение>"
     permission: afmcp.staff
+    permission-message: У тебя нет прав, иди нахуй, бля.
+  vip:
+    description: Купить VIP-статус
+    usage: "Использование: /vip <Alpha | Beta | Gamma>"
+  tokens:
+    description: Посмотреть, сколько токенов на счету.
+    usage: "Использование: /tokens"
+  afmreload:
+    description: Изменить текст в оверлее.
+    usage: "Использование: /afmreload"
+    permission: afmcp.reload
     permission-message: У тебя нет прав, иди нахуй, бля.

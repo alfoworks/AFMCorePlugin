@@ -13,14 +13,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import ru.allformine.afmcp.net.eco.eco;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
-import org.bukkit.scheduler.BukkitTask;
-import ru.allformine.afmcp.CFNTasks.CFNTaskCustom;
-import ru.allformine.afmcp.CFNTasks.CFNTaskSpace;
-import ru.allformine.afmcp.CFNTasks.CFNTaskTechno;
 import ru.allformine.afmcp.net.discord.Discord;
-import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.kitteh.vanish.VanishManager;
 import org.kitteh.vanish.staticaccess.VanishNoPacket;
@@ -30,24 +26,12 @@ import static ru.allformine.afmcp.References.frozenPlayers;
 
 public class AFMCorePlugin extends JavaPlugin implements Listener {
     private VanishManager vmng = null;
-    private BukkitTask currentCFNTask;
-
-    private void runCFNTask() {
-        if(Bukkit.getPluginManager().getPlugin("Factions") != null) { //можно было бы сделать с помощью конфига, но мне чот лень этим заниматсо
-            currentCFNTask = new CFNTaskTechno(this).runTaskTimer(this, 60, 20);
-        } else {
-            currentCFNTask = new CFNTaskSpace(this).runTaskTimer(this, 60, 20);
-        }
-
-    }
 
     public void onEnable() {
-        PluginManager manager = this.getServer().getPluginManager();
-
         new EventListener(this);
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "FactionsShow");
 
-        runCFNTask();
+        this.saveDefaultConfig();
 
         try { //Проверялка на то, есть ли плагин на ваниш.
             //noinspection deprecation
@@ -84,7 +68,7 @@ public class AFMCorePlugin extends JavaPlugin implements Listener {
 
     //Сообщение в дискорд о том, что сервер упал.
     public void onDisable() {
-        Discord.sendMessageSync("Сервер упал!", false, "TechInfo", 1);
+        Discord.sendMessageSync("Сервер упал!", false, "TechInfo", 1, this);
     }
 
     //Ебанные команды
@@ -125,29 +109,68 @@ public class AFMCorePlugin extends JavaPlugin implements Listener {
             } else {
                 return false;
             }
-        } else if(cmd.getName().equalsIgnoreCase("cfntext")) {
-            if(args.length > 0) {
-                if(args[0].equalsIgnoreCase("clear")) {
-                    currentCFNTask.cancel();
-                    runCFNTask();
-                    References.CFNTaskCustomTextRunnig = false;
-                    sender.sendMessage(ChatColor.GREEN+"Текст был успешно сброшен.");
+        } else if(cmd.getName().equalsIgnoreCase("vip")) {
+            if(sender instanceof Player) {
+                if(args.length > 0 && this.getConfig().contains("vips."+args[0])) {
+                    String playerBal = eco.getBalance(sender.getName());
+                    int cost = this.getConfig().getInt("vips."+args[0]+".cost");
+
+                    if(playerBal == null) {
+                        sender.sendMessage(ChatColor.RED+"AFMEco "+ChatColor.WHITE+"> Произошла ошибка при выполнении команды.");
+                        return true;
+                    }
+
+                    if(Integer.valueOf(playerBal) < cost) {
+                        int needed = cost - Integer.valueOf(playerBal);
+
+                        sender.sendMessage(ChatColor.RED
+                                +"AFMEco "
+                                +ChatColor.WHITE
+                                +"> У вас недостаточно токенов. Вам нужно еще "
+                                +ChatColor.RED
+                                +String.valueOf(needed)
+                                +"токенов"+ChatColor.WHITE
+                                +".");
+                        return true;
+                    }
+
+                    sender.sendMessage(ChatColor.GREEN+"AFMEco "+ChatColor.WHITE+"> Вы успешно приобрели привелегию. Спасибо!");
+                    Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "givevip "+sender.getName()+" "+args[0]+" 30");
+                    Discord.sendMessage("@everyone\nИгрок "+sender.getName()+" приобрёл подписку **"+args[0]+"**!!!", false, "DonationAlerts", 1, this);
+
+                    eco.rem(sender.getName(), String.valueOf(cost), this);
+                } else {
+                    sender.sendMessage(ChatColor.YELLOW+"AFMEco "+ChatColor.WHITE+"> Список доступных привелегий:");
+
+                    for(String key : this.getConfig().getConfigurationSection("vips").getKeys(false)) {
+                        sender.sendMessage(ChatColor.YELLOW
+                                +key
+                                +ChatColor.WHITE
+                                +" - "
+                                +ChatColor.YELLOW
+                                +String.valueOf(this.getConfig().getInt("vips."+key+"price"))
+                                +" токенов");
+                    }
+                    return true;
+                }
+            } else {
+                sender.sendMessage(ChatColor.RED+"Данная команда может быть выполнена только игроком.");
+                return true;
+            }
+        } else if(cmd.getName().equalsIgnoreCase("afmreload")) {
+            this.reloadConfig();
+            sender.sendMessage(ChatColor.GREEN+"AFMCP "+ChatColor.WHITE+" > Конфиг был успещно перезагружен.");
+        } else if(cmd.getName().equalsIgnoreCase("afmreload")) {
+            if(sender instanceof Player) {
+                String playerBal = eco.getBalance(sender.getName());
+
+                if(playerBal == null) {
+                    sender.sendMessage(ChatColor.RED+"AFMEco "+ChatColor.WHITE+"> Произошла ошибка при выполнении команды.");
                     return true;
                 }
 
-                References.CFNTaskCustomText = ChatColor.translateAlternateColorCodes('&', String.join(" ", args));
-
-                if(!References.CFNTaskCustomTextRunnig) {
-                    currentCFNTask.cancel();
-                    currentCFNTask = new CFNTaskCustom(this).runTaskTimer(this, 60, 20);
-
-                    References.CFNTaskCustomTextRunnig = true;
-                }
-
-                sender.sendMessage(ChatColor.GREEN+"Текст был успешно изменен.");
+                sender.sendMessage(ChatColor.GREEN+"AFMEco "+ChatColor.WHITE+"> Ваш баланс: "+ChatColor.GREEN+playerBal+" токенов"+ChatColor.WHITE+".");
                 return true;
-            } else {
-                return false;
             }
         }
 

@@ -1,0 +1,31 @@
+discord:
+  webhooks:
+    url_lvl1: "https://discordapp.com/api/webhooks/523289724639510548/cEkuF1hXAqH5KjCIHIpNUS2oNc-wvDgBjA7S2TETZt9Xu9uF5U8wKuHInx2vHYQmIOTJ"
+    url_lvl2: "https://discordapp.com/api/webhooks/523488651330453564/Yes5EtngU8HmBnUoQKS3DZVWdghfd58cf3LD8w_WeWLxuQo3U91PZaKtEbEfNO-YVRiF"
+
+    player_avatar_url: "https://allformine.ru/banava?name="
+  logger:
+    ignoredCommands:
+      - "/l"
+      - "/t"
+      - "/g"
+      - "/msg"
+      - "/r"
+      - "/pm"
+      - "/st"
+    triggerWords:
+      - "дюп"
+      - "краш"
+      - "баг"
+      - "чит"
+vips:
+  alpha:
+    cost: 1990
+  beta:
+    cost: 4990
+  gamma:
+    cost: 7990
+cfn:
+  servername: "SpaceUnion"
+balanceapi:
+  url: "https://allformine.ru/balanceapi"

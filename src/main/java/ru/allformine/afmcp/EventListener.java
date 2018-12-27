@@ -13,11 +13,8 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.plugin.java.JavaPlugin;
 import ru.allformine.afmcp.net.discord.Discord;
-import java.util.Arrays;
 import java.util.Set;
 import static ru.allformine.afmcp.References.frozenPlayers;
-import static ru.allformine.afmcp.References.notLoggedCommands;
-import static ru.allformine.afmcp.References.triggerWords;
 
 class EventListener implements Listener {
     private JavaPlugin plugin;
@@ -69,8 +66,8 @@ class EventListener implements Listener {
 
         message.insert(0, "[" + channelName + "] ");
 
-        for (String item : triggerWords) {
-            if(event.getMessage().toLowerCase().contains(item)) {
+        for (String item : event.getMessage().toLowerCase().split(" ")) {
+            if(plugin.getConfig().getStringList("discord.logger.triggerWords").contains(item)) {
                 message.insert(0, "Обнаруженно триггер-слово: " + item + " @here\n");
             }
         }
@@ -81,9 +78,13 @@ class EventListener implements Listener {
     //Сообщение в дискорд о том, что игрок получил ачивку (здесь какой-то непонятный краш)
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerAchievementAwarded(PlayerAchievementAwardedEvent event) {
-        String message = "Игрок получил достижение **"+event.getAchievement().name()+"**.";
+        try {
+            String message = "Игрок получил достижение **"+event.getAchievement().name()+"**.";
 
-        Discord.sendMessage(message, true, event.getPlayer().getDisplayName(), 1, plugin);
+            Discord.sendMessage(message, true, event.getPlayer().getDisplayName(), 1, plugin);
+        } catch(Exception e) {
+            System.out.println("A client-side error occurred when was trying to log an achievement"); //при получении НЕванильной ачивки какая-то ошибка..
+        }
     }
 
     //Сообщение в дискорд о том, что игрок выполнил команду (причем неважно, успешно или нет)
@@ -92,7 +93,7 @@ class EventListener implements Listener {
         if(!event.isCancelled()) { //Возможно это поможет от логирования несуществующих комманд, но я хз чот...
             String[] message = event.getMessage().split(" ");
             String command = message[0];
-            if(!Arrays.asList(notLoggedCommands).contains(command)) {
+            if(!plugin.getConfig().getStringList("discord.logger.ignoredCommands").contains(command)) {
                 Discord.sendMessage("Игрок выполнил команду **"+event.getMessage()+"**", true, event.getPlayer().getDisplayName(), 2, plugin);
             }
         }
