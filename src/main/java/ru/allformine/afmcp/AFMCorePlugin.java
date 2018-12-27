@@ -131,6 +131,7 @@ public class AFMCorePlugin extends JavaPlugin implements Listener {
                     currentCFNTask.cancel();
                     runCFNTask();
                     References.CFNTaskCustomTextRunnig = false;
+                    sender.sendMessage(ChatColor.GREEN+"Текст был успешно сброшен.");
                     return true;
                 }
 
@@ -143,6 +144,7 @@ public class AFMCorePlugin extends JavaPlugin implements Listener {
                     References.CFNTaskCustomTextRunnig = true;
                 }
 
+                sender.sendMessage(ChatColor.GREEN+"Текст был успешно изменен.");
                 return true;
             } else {
                 return false;
