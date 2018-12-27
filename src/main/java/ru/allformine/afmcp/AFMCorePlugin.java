@@ -15,6 +15,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.bukkit.scheduler.BukkitTask;
+import ru.allformine.afmcp.CFNTasks.CFNTaskCustom;
 import ru.allformine.afmcp.CFNTasks.CFNTaskSpace;
 import ru.allformine.afmcp.CFNTasks.CFNTaskTechno;
 import ru.allformine.afmcp.net.discord.Discord;
@@ -28,6 +30,16 @@ import static ru.allformine.afmcp.References.frozenPlayers;
 
 public class AFMCorePlugin extends JavaPlugin implements Listener {
     private VanishManager vmng = null;
+    private BukkitTask currentCFNTask;
+
+    private void runCFNTask() {
+        if(Bukkit.getPluginManager().getPlugin("Factions") != null) { //можно было бы сделать с помощью конфига, но мне чот лень этим заниматсо
+            currentCFNTask = new CFNTaskTechno(this).runTaskTimer(this, 60, 20);
+        } else {
+            currentCFNTask = new CFNTaskSpace(this).runTaskTimer(this, 60, 20);
+        }
+
+    }
 
     public void onEnable() {
         PluginManager manager = this.getServer().getPluginManager();
@@ -35,12 +47,7 @@ public class AFMCorePlugin extends JavaPlugin implements Listener {
         new EventListener(this);
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "FactionsShow");
 
-        //костыль для определения сервера - спейс или технач, для запуска нужной задачи в планировщике
-        if(manager.getPlugin("Factions") != null) { //можно было бы сделать с помощью конфига, но мне чот лень этим заниматсо
-            new CFNTaskTechno(this).runTaskTimer(this, 60, 20);
-        } else {
-            new CFNTaskSpace(this).runTaskTimer(this, 60, 20);
-        }
+        runCFNTask();
 
         try { //Проверялка на то, есть ли плагин на ваниш.
             //noinspection deprecation
@@ -113,6 +120,26 @@ public class AFMCorePlugin extends JavaPlugin implements Listener {
         } else if(cmd.getName().equalsIgnoreCase("rawbc")) {
             if(args.length > 0) {
                 Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
+
+                return true;
+            } else {
+                return false;
+            }
+        } else if(cmd.getName().equalsIgnoreCase("cfntext")) {
+            if(args.length > 0) {
+                if(args[1].equalsIgnoreCase("clear")) {
+                    currentCFNTask.cancel();
+                    runCFNTask();
+                    References.CFNTaskCustomTextRunnig = false;
+                    return true;
+                }
+
+                References.CFNTaskCustomText = ChatColor.translateAlternateColorCodes('&', String.join(" ", args));
+
+                if(!References.CFNTaskCustomTextRunnig) {
+                    currentCFNTask.cancel();
+                    new CFNTaskCustom(this).runTaskTimer(this, 60, 20);
+                }
 
                 return true;
             } else {
