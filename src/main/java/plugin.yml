@@ -30,7 +30,7 @@ commands:
     description: Посмотреть, сколько токенов на счету.
     usage: "Использование: /tokens"
   afmreload:
-    description: Изменить текст в оверлее.
+    description: Перезагрузить конфигурацию плагина.
     usage: "Использование: /afmreload"
     permission: afmcp.reload
     permission-message: У тебя нет прав, иди нахуй, бля.

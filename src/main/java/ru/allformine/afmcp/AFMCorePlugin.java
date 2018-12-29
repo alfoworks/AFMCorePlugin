@@ -19,7 +19,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import ru.allformine.afmcp.net.discord.Discord;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.kitteh.vanish.VanishManager;
 import org.kitteh.vanish.staticaccess.VanishNoPacket;
 import org.kitteh.vanish.staticaccess.VanishNotLoadedException;
 
@@ -30,7 +29,7 @@ import java.util.*;
 import static ru.allformine.afmcp.References.frozenPlayers;
 
 public class AFMCorePlugin extends JavaPlugin implements Listener {
-    private VanishManager vmng = null;
+    private JavaPlugin pl = this;
 
     public void onEnable() {
         new EventListener(this);
@@ -40,19 +39,19 @@ public class AFMCorePlugin extends JavaPlugin implements Listener {
 
         try { //Проверялка на то, есть ли плагин на ваниш.
             //noinspection deprecation
-            vmng = VanishNoPacket.getManager();
+            References.vmng = VanishNoPacket.getManager();
         } catch(VanishNotLoadedException ex) {
             System.out.println("Can't found VanishNoPacket.");
         }
 
-        if (vmng != null) { //Анти-ванишепалилка
+        if (References.vmng != null) { //Анти-ванишепалилка
             ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(this, ListenerPriority.NORMAL, Collections.singletonList(PacketType.Status.Server.OUT_SERVER_INFO), ListenerOptions.ASYNC) {
                 @Override
                 public void onPacketSending(PacketEvent event) {
                     WrappedServerPing ping = event.getPacket().getServerPings().read(0);
                     List < WrappedGameProfile > players = new ArrayList<>();
                     for (Player p: Bukkit.getServer().getOnlinePlayers()) {
-                        if (!vmng.isVanished(p)) {
+                        if (!References.vmng.isVanished(p)) {
                             players.add(new WrappedGameProfile(UUID.randomUUID(), p.getDisplayName()));
                         }
                     }
@@ -67,6 +66,13 @@ public class AFMCorePlugin extends JavaPlugin implements Listener {
                 }
             });
         }
+
+        ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(this, ListenerPriority.NORMAL, Collections.singletonList(PacketType.Handshake.Client.SET_PROTOCOL), ListenerOptions.ASYNC) {
+            @Override
+            public void onPacketReceiving(PacketEvent event) {
+                Discord.sendMessage(event.getPacket().getStrings().read(0), false, "Debug", 1, pl);
+            }
+        });
 
         Discord.sendMessage("Сервер поднялся!", false, "TechInfo", 1, this); //отправляем в дс сообщеньку, что сервак врублен.
     }
@@ -134,7 +140,7 @@ public class AFMCorePlugin extends JavaPlugin implements Listener {
                                 +"> У вас недостаточно токенов. Вам нужно еще "
                                 +ChatColor.RED
                                 +String.valueOf(needed)
-                                +"токенов"+ChatColor.WHITE
+                                +" токенов"+ChatColor.WHITE
                                 +".");
                         return true;
                     }
