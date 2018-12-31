@@ -21,10 +21,10 @@ public class Requests {
             request.setEntity(params);
 
             HttpResponse response = httpClient.execute(request);
-            if(response.getStatusLine().getStatusCode() != 204) {
+            if (response.getStatusLine().getStatusCode() != 204) {
                 System.out.println("An error occurred when plugin tried to send log data.");
-                System.out.println("JSON: "+JSON);
-                System.out.println("Response: "+response.toString());
+                System.out.println("JSON: " + JSON);
+                System.out.println("Response: " + response.toString());
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -47,7 +47,7 @@ public class Requests {
             }
 
             return result.toString();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
