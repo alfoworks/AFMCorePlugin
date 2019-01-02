@@ -17,7 +17,7 @@ public class TPSWatchdog extends BukkitRunnable {
 
         return 100 / (elapsed / 1000.0D);
     }
-    private boolean tpsisdown = false;
+    private static boolean tpsisdown = false;
     public void run() {
         TICKS[(TICK_COUNT% TICKS.length)] = System.currentTimeMillis();
         TICK_COUNT+= 1;
