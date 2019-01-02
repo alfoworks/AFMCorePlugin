@@ -27,7 +27,7 @@ public class TPSWatchdog extends BukkitRunnable {
             tpsisdown = true;
         }
         else if(getTPS() >= 17 && tpsisdown == true){
-            Discord.sendMessage("TPS вернулся в норму");
+            Discord.sendMessage("TPS вернулся в норму", false, "TechInfo", 1);
             tpsisdown = false;
         }
     }
