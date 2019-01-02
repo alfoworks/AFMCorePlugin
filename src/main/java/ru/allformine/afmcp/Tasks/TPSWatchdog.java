@@ -17,13 +17,18 @@ public class TPSWatchdog extends BukkitRunnable {
 
         return 100 / (elapsed / 1000.0D);
     }
-
+    private boolean tpsisdown = false;
     public void run() {
         TICKS[(TICK_COUNT% TICKS.length)] = System.currentTimeMillis();
         TICK_COUNT+= 1;
 
-        if(getTPS() < 17) {
+        if(getTPS() < 17 && tpsisdown == false) {
             Discord.sendMessage("@everyone\nTPS опустился ниже 17!", false, "Анальная опасность!", 1);
+            tpsisdown = true;
+        }
+        else if(getTPS() >= 17 && tpsisdown == true){
+            Discord.sendMessage("TPS вернулся в норму");
+            tpsisdown == false;
         }
     }
 }
