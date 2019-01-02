@@ -19,26 +19,6 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
-    <repositories>
-        <repository>
-            <id>dev-azure-com-allformine-afmcoreplugin</id>
-            <url>https://pkgs.dev.azure.com/AllForMine/_packaging/AFMCorePlugin/maven/v1</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-    <distributionManagement>
-        <relocation>
-            <groupId>org.apache</groupId>
-            <artifactId>AFMCorePlugin</artifactId>
-            <version>1.0</version>
-            <message>We have moved the Project under Apache</message>
-        </relocation>
-    </distributionManagement>
     <dependencies>
         <dependency>
             <groupId>org.bukkit</groupId>
