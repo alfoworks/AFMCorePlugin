@@ -1,4 +1,4 @@
-package ru.allformine.afmcp.ModUtils;
+package ru.allformine.afmcp.modutils;
 
 import ru.allformine.afmcp.References;
 

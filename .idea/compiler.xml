@@ -9,8 +9,5 @@
         <module name="AFMCorePlugin" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="AFMCorePlugin" target="8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

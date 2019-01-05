@@ -1,11 +1,11 @@
 discord:
-  webhooks:
+  webhooks: # ссылки вебхуков разных уровней доступа
     url_lvl1: "https://discordapp.com/api/webhooks/523289724639510548/cEkuF1hXAqH5KjCIHIpNUS2oNc-wvDgBjA7S2TETZt9Xu9uF5U8wKuHInx2vHYQmIOTJ"
     url_lvl2: "https://discordapp.com/api/webhooks/523488651330453564/Yes5EtngU8HmBnUoQKS3DZVWdghfd58cf3LD8w_WeWLxuQo3U91PZaKtEbEfNO-YVRiF"
 
-    player_avatar_url: "https://allformine.ru/banava?name="
+    player_avatar_url: "https://allformine.ru/banava?name=" # ссылка на API для получения ссылки на аватар
   logger:
-    ignoredCommands:
+    ignoredCommands: # данные команды не будут отправлены в дискорд.
       - "/l"
       - "/t"
       - "/g"
@@ -13,19 +13,29 @@ discord:
       - "/r"
       - "/pm"
       - "/st"
-    triggerWords:
+    triggerWords: # если в сообщении человека будут обнаружены следующие слова, то об этом отправится предупреждение в дискорд.
       - "дюп"
       - "краш"
       - "баг"
       - "чит"
-vips:
-  alpha:
-    cost: 1990
+vips: # VIP-привелегии.
+  alpha: # PEX-группа привелегии, которая будет выдана игроку при покупке через плагин VipZero
+    cost: 1990 # цена в токенах
   beta:
     cost: 4990
   gamma:
     cost: 7990
-cfn:
-  servername: "SpaceUnion"
 balanceapi:
   url: "https://allformine.ru/balanceapi"
+loader_groups: # чтобы настроить игроку или группе прогрузку чанков, надо выдать ему permission
+  alpha: # типа afmcp.loader.<группа>
+    count: 1 # лимит прогрузчиков
+    loadAfterLogoutTime: -1 # сколько нужно грузить чанк после выхода игрока из игры в секундах.
+  beta:                     # если не нужно грузить после выхода, необходимо поставить -1
+    count: 2
+    loadAfterLogoutTime: 3600
+  gamma:
+    count: 3
+    loadAfterLogoutTime: 10800
+playerdata: # НЕ МЕНЯТЬ. Внутренняя инфа плагина
+loaders: # Здесь записаны прогрузчики.

@@ -18,19 +18,17 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.kitteh.vanish.staticaccess.VanishNoPacket;
 import org.kitteh.vanish.staticaccess.VanishNotLoadedException;
-import ru.allformine.afmcp.Tasks.NewYearTask;
-import ru.allformine.afmcp.Tasks.TPSWatchdog;
 import ru.allformine.afmcp.net.discord.Discord;
-import ru.allformine.afmcp.net.eco.eco;
+import ru.allformine.afmcp.net.eco.Eco;
+import ru.allformine.afmcp.tasks.TPSWatchdog;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 import static ru.allformine.afmcp.References.frozenPlayers;
 
 public class AFMCorePlugin extends JavaPlugin {
+    private Random random = new Random(); //Создаем экземпляр класса рандома на весь плагин, дабы он был без повторений
+
     public static Plugin getPlugin() {
         return Bukkit.getPluginManager().getPlugin("AFMCorePlugin");
     }
@@ -41,15 +39,12 @@ public class AFMCorePlugin extends JavaPlugin {
         this.saveDefaultConfig();
 
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new TPSWatchdog(), 100L, 1L);
-        Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new NewYearTask(), 20L, 1L);
-        this.getLogger().info("Started TPSWatchdog task.");
-        this.getLogger().info("Started NewYear task.");
 
         try { //Проверялка на то, есть ли плагин на ваниш.
             //noinspection deprecation
             References.vmng = VanishNoPacket.getManager();
         } catch (VanishNotLoadedException ex) {
-            System.out.println("Can't found VanishNoPacket.");
+            System.out.println("Can't find VanishNoPacket.");
         }
 
         if (References.vmng != null) { //Анти-ванишепалилка
@@ -67,20 +62,13 @@ public class AFMCorePlugin extends JavaPlugin {
                     ping.setPlayers(players);
 
                     String MOTD;
-                    MOTD = StringUtils.center(ChatColor.GOLD + "AllForMine SpaceUnion", 40);
+                    MOTD = StringUtils.center(References.colors[random.nextInt(References.colors.length)] + "AllForMine SpaceUnion", 40);
                     MOTD = MOTD + "\n" + StringUtils.center(ChatColor.YELLOW + "Закрытый бета-тест", 40);
 
                     ping.setMotD(MOTD);
                 }
             });
         }
-
-        ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(this, ListenerPriority.NORMAL, Collections.singletonList(PacketType.Handshake.Client.SET_PROTOCOL), ListenerOptions.ASYNC) {
-            @Override
-            public void onPacketReceiving(PacketEvent event) {
-                Discord.sendMessage(event.getPacket().getStrings().read(0), false, "Debug", 1);
-            }
-        });
 
         Discord.sendMessage("Сервер поднялся!", false, "TechInfo", 1); //отправляем в дс сообщеньку, что сервак врублен.
     }
@@ -131,7 +119,7 @@ public class AFMCorePlugin extends JavaPlugin {
         } else if (cmd.getName().equalsIgnoreCase("vip")) {
             if (sender instanceof Player) {
                 if (args.length > 0 && this.getConfig().contains("vips." + args[0])) {
-                    String playerBal = eco.getBalance(sender.getName());
+                    String playerBal = Eco.getBalance(sender.getName());
                     int cost = this.getConfig().getInt("vips." + args[0] + ".cost");
 
                     if (playerBal == null) {
@@ -157,7 +145,7 @@ public class AFMCorePlugin extends JavaPlugin {
                     Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "givevip " + sender.getName() + " " + args[0] + " 30");
                     Discord.sendMessage("@everyone\nИгрок " + sender.getName() + " приобрёл подписку **" + args[0] + "**!!!", false, "DonationAlerts", 1);
 
-                    eco.rem(sender.getName(), String.valueOf(cost), this);
+                    Eco.rem(sender.getName(), String.valueOf(cost), this);
 
                     return true;
                 } else {
@@ -183,7 +171,7 @@ public class AFMCorePlugin extends JavaPlugin {
             sender.sendMessage(ChatColor.GREEN + "AFMCP " + ChatColor.WHITE + " > Конфиг был успещно перезагружен.");
         } else if (cmd.getName().equalsIgnoreCase("tokens")) {
             if (sender instanceof Player) {
-                String playerBal = eco.getBalance(sender.getName());
+                String playerBal = Eco.getBalance(sender.getName());
 
                 if (playerBal == null) {
                     sender.sendMessage(ChatColor.RED + "AFMEco " + ChatColor.WHITE + "> Произошла ошибка при выполнении команды.");
@@ -200,6 +188,32 @@ public class AFMCorePlugin extends JavaPlugin {
             if (args.length > 0 && String.join(" ", args).length() <= 48) {
                 Notify.NotifyAll(ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
 
+                return true;
+            } else {
+                return false;
+            }
+        } else if (cmd.getName().equalsIgnoreCase("gift")) {
+            if (sender instanceof Player) {
+                if (!this.getConfig().getBoolean("playerdata."+sender.getName()+".giftGiven")) {
+                    String[] kits = new String[]{"ny1", "ny2"};
+                    String kit = kits[random.nextInt(kits.length)];
+                    Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "kitgive " + sender.getName() + " " + kit + " 1");
+                    sender.sendMessage(ChatColor.LIGHT_PURPLE + "Gifts " + ChatColor.WHITE + "> Вы получили свой новогодний подарок!");
+
+                    this.getConfig().set("playerdata."+sender.getName()+".giftGiven", true);
+                    this.saveConfig();
+                } else {
+                    sender.sendMessage(ChatColor.LIGHT_PURPLE + "Gifts " + ChatColor.WHITE + "> Вы уже получили подарок.");
+                }
+            } else {
+                sender.sendMessage(ChatColor.RED + "Данная команда может быть выполнена только игроком.");
+            }
+            return true;
+        } else if (cmd.getName().equalsIgnoreCase("afmcplog")) {
+            if (args.length > 0 && (args[0].equals("true") || args[0].equals("false"))) {
+                References.log = args[0].equals("true");
+
+                sender.sendMessage(ChatColor.AQUA+ "DiscordLogging " + ChatColor.WHITE + "> Логгирование было успешно переключено.");
                 return true;
             } else {
                 return false;

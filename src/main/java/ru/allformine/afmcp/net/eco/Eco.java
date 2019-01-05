@@ -3,7 +3,7 @@ package ru.allformine.afmcp.net.eco;
 import org.bukkit.plugin.java.JavaPlugin;
 import ru.allformine.afmcp.net.Requests;
 
-public class eco {
+public class Eco {
     public static String getBalance(String nickname) {
         String resp = Requests.sendGet("https://allformine.ru/balanceapi?check=z5FXxPQqFJMKk5eGyTR2zhms6iAGwp&act=get&nick="
                 + nickname);

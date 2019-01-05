@@ -34,3 +34,11 @@ commands:
     usage: "Использование: /afmreload"
     permission: afmcp.reload
     permission-message: У тебя нет прав, иди нахуй, бля.
+  gift:
+    description: Получить новогодний подарок.
+    usage: "Использование: /gift"
+  afmcplog:
+    description: Включить/выключить логгирование в дискорд.
+    usage: "Использование: /afmcplog <true|false>"
+    permission: afmcp.log
+    permission-message: У тебя нет прав, иди нахуй, бля.

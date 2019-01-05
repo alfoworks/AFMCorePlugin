@@ -11,6 +11,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.*;
+import org.bukkit.event.world.ChunkUnloadEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import ru.allformine.afmcp.net.discord.Discord;
 
@@ -31,6 +32,12 @@ class EventListener implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerJoin(PlayerJoinEvent event) {
         PlayerQuitJoin.sendPlayerQuitJoinMessage(event.getPlayer(), true);
+
+        if(plugin.getConfig().get("playerdata."+event.getPlayer().getName()) == null) {
+            plugin.getConfig().set("playerdata."+event.getPlayer().getName()+".giftGiven", false);
+
+            System.out.println("Created configuration section for player "+event.getPlayer().getName());
+        }
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
@@ -85,7 +92,7 @@ class EventListener implements Listener {
 
             Discord.sendMessage(message, true, event.getPlayer().getDisplayName(), 1);
         } catch (Exception e) {
-            System.out.println("A client-side error occurred when was trying to log an achievement"); //при получении НЕванильной ачивки какая-то ошибка..
+            System.out.println("The achievement is not vanilla or some other bad thing happened."); //при получении НЕванильной ачивки какая-то ошибка..
         }
     }
 
@@ -104,6 +111,10 @@ class EventListener implements Listener {
     //Сообщение в дискорд о смерти игрока
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerDeath(PlayerDeathEvent event) {
+        if(event.getEntity().getDisplayName().equals("Sila_Zemli")) {
+            event.setDeathMessage(event.getEntity().getDisplayName()+" умер от СПИДа");
+        }
+
         Discord.sendMessage(event.getDeathMessage(), true, event.getEntity().getDisplayName(), 1);
     }
 
@@ -150,4 +161,15 @@ class EventListener implements Listener {
             event.setCancelled(true);
         }
     }
+
+    /* НЕДОПИСАНО!!!
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onChunkUnload(ChunkUnloadEvent event) {
+        String x = String.valueOf(event.getChunk().getX());
+        String z = String.valueOf(event.getChunk().getZ());
+        if(plugin.getConfig().get("loaders."+x+"_"+z) != null) {
+
+        }
+    }
+    **/
 }
