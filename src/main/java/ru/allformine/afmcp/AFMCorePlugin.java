@@ -196,7 +196,7 @@ public class AFMCorePlugin extends JavaPlugin {
         } else if (cmd.getName().equalsIgnoreCase("gift")) {
             if (sender instanceof Player) {
                 if (!this.getConfig().getBoolean("playerdata."+sender.getName()+".giftGiven")) {
-                    String[] kits = new String[]{"ny1", "ny2"};
+                    String[] kits = new String[]{"ny1", "ny2", "ny1", "ny1"};
                     String kit = kits[random.nextInt(kits.length)];
                     Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "kitgive " + sender.getName() + " " + kit + " 1");
                     sender.sendMessage(ChatColor.LIGHT_PURPLE + "Gifts " + ChatColor.WHITE + "> Отлично! Для получения своего подарка напишите /kit "+kit);
