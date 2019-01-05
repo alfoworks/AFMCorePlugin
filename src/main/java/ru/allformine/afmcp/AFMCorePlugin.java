@@ -169,6 +169,7 @@ public class AFMCorePlugin extends JavaPlugin {
         } else if (cmd.getName().equalsIgnoreCase("afmreload")) {
             this.reloadConfig();
             sender.sendMessage(ChatColor.GREEN + "AFMCP " + ChatColor.WHITE + " > Конфиг был успещно перезагружен.");
+            return true;
         } else if (cmd.getName().equalsIgnoreCase("tokens")) {
             if (sender instanceof Player) {
                 String playerBal = Eco.getBalance(sender.getName());
@@ -198,7 +199,7 @@ public class AFMCorePlugin extends JavaPlugin {
                     String[] kits = new String[]{"ny1", "ny2"};
                     String kit = kits[random.nextInt(kits.length)];
                     Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "kitgive " + sender.getName() + " " + kit + " 1");
-                    sender.sendMessage(ChatColor.LIGHT_PURPLE + "Gifts " + ChatColor.WHITE + "> Вы получили свой новогодний подарок!");
+                    sender.sendMessage(ChatColor.LIGHT_PURPLE + "Gifts " + ChatColor.WHITE + "> Отлично! Для получения своего подарка напишите /kit "+kit);
 
                     this.getConfig().set("playerdata."+sender.getName()+".giftGiven", true);
                     this.saveConfig();

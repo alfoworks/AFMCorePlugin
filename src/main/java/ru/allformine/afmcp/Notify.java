@@ -10,7 +10,7 @@ import java.io.IOException;
 
 class Notify {
     static void NotifyAll(String message) {
-        for (Player p : Bukkit.getOnlinePlayers()) {
+        for (Player p : Bukkit.getServer().getOnlinePlayers()) {
             ByteArrayOutputStream b = new ByteArrayOutputStream();
             DataOutputStream out = new DataOutputStream(b);
 
@@ -26,7 +26,7 @@ class Notify {
         }
 
         Bukkit.getScheduler().scheduleSyncDelayedTask(AFMCorePlugin.getPlugin(), () -> {
-            for (Player p : Bukkit.getOnlinePlayers()) {
+            for (Player p : Bukkit.getServer().getOnlinePlayers()) {
                 p.sendPluginMessage(AFMCorePlugin.getPlugin(), "FactionsShow", new byte[] {});
             }
         }, 200L);
