@@ -22,11 +22,12 @@ public class TPSWatchdog extends BukkitRunnable {
         TICKS[(TICK_COUNT% TICKS.length)] = System.currentTimeMillis();
         TICK_COUNT+= 1;
 
-        if(getTPS() < 17 && !tpsIsDown) {
-            Discord.sendMessage("@everyone\nTPS опустился ниже 17!", false, "TechInfo", 1);
+        int WARN_TPS = 14;
+        if(getTPS() < WARN_TPS && !tpsIsDown) {
+            Discord.sendMessage("@everyone\nTPS опустился ниже "+String.valueOf(WARN_TPS)+"!", false, "Анальная опасность!", 1);
             tpsIsDown = true;
         }
-        else if(getTPS() >= 17 && tpsIsDown){
+        else if(getTPS() >= WARN_TPS && tpsIsDown){
             Discord.sendMessage("TPS вернулся в норму", false, "TechInfo", 1);
             tpsIsDown = false;
         }
