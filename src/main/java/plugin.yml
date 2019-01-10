@@ -25,7 +25,7 @@ commands:
     permission-message: У тебя нет прав, иди нахуй, бля.
   notifyplayer:
     description: Отослать уведомление в оверлей игроку.
-    usage: "Использование: /notify <игрок> <сообщение не больше 48 символов>"
+    usage: "Использование: /notifyplayer <игрок> <сообщение не больше 48 символов>"
     permission: afmcp.staff
     permission-message: У тебя нет прав, иди нахуй, бля.
   vip:

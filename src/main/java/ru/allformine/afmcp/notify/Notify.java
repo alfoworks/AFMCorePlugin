@@ -1,10 +1,8 @@
 package ru.allformine.afmcp.notify;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import ru.allformine.afmcp.AFMCorePlugin;
-
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -26,7 +24,7 @@ public class Notify {
 
         Bukkit.getScheduler().scheduleSyncDelayedTask(AFMCorePlugin.getPlugin(), () -> {
             for (Player p : Bukkit.getServer().getOnlinePlayers()) {
-                p.sendPluginMessage(AFMCorePlugin.getPlugin(), "FactionsShow", new byte[] {});
+                p.sendPluginMessage(AFMCorePlugin.getPlugin(), "FactionsShow", Util.getEmptyString());
             }
         }, 200L);
     }
@@ -43,6 +41,6 @@ public class Notify {
 
         p.sendPluginMessage(AFMCorePlugin.getPlugin(), "FactionsShow", b.toByteArray());
 
-        Bukkit.getScheduler().scheduleSyncDelayedTask(AFMCorePlugin.getPlugin(), () -> p.sendPluginMessage(AFMCorePlugin.getPlugin(), "FactionsShow", new byte[] {}), 200L);
+        Bukkit.getScheduler().scheduleSyncDelayedTask(AFMCorePlugin.getPlugin(), () -> p.sendPluginMessage(AFMCorePlugin.getPlugin(), "FactionsShow", Util.getEmptyString()), 200L);
     }
 }

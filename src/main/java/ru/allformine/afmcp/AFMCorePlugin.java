@@ -199,7 +199,7 @@ public class AFMCorePlugin extends JavaPlugin {
                 Player player = Bukkit.getPlayer(args[0]);
 
                 if(player != null) {
-                    String text = String.join(" ", Arrays.asList(args).remove(0));
+                    String text = String.join(" ", new ArrayList<>(Arrays.asList(args)).remove(0));
                     if(text.length() <= 48) {
                         Notify.notifyPlayer(ChatColor.translateAlternateColorCodes('&', String.join(" ", args)), player);
                         sender.sendMessage(ChatColor.BLUE+"Notify "+ChatColor.WHITE+"> Сообщение было успешно отправлено!");
