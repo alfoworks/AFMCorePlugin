@@ -1,15 +1,16 @@
-package ru.allformine.afmcp;
+package ru.allformine.afmcp.notify;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+import ru.allformine.afmcp.AFMCorePlugin;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-class Notify {
-    static void NotifyAll(String message) {
+public class Notify {
+    public static void notifyAll(String message) {
         for (Player p : Bukkit.getServer().getOnlinePlayers()) {
             ByteArrayOutputStream b = new ByteArrayOutputStream();
             DataOutputStream out = new DataOutputStream(b);
@@ -21,8 +22,6 @@ class Notify {
             }
 
             p.sendPluginMessage(AFMCorePlugin.getPlugin(), "FactionsShow", b.toByteArray());
-            p.playSound(p.getLocation(), Sound.NOTE_PLING, 10, 1);
-            p.playSound(p.getLocation(), Sound.NOTE_PLING, 10, -5);
         }
 
         Bukkit.getScheduler().scheduleSyncDelayedTask(AFMCorePlugin.getPlugin(), () -> {
@@ -32,7 +31,7 @@ class Notify {
         }, 200L);
     }
 
-    static void NotifyPlayer(Player p, String message) {
+    public static void notifyPlayer(String message, Player p) {
         ByteArrayOutputStream b = new ByteArrayOutputStream();
         DataOutputStream out = new DataOutputStream(b);
 
@@ -43,8 +42,6 @@ class Notify {
         }
 
         p.sendPluginMessage(AFMCorePlugin.getPlugin(), "FactionsShow", b.toByteArray());
-        p.playSound(p.getLocation(), Sound.NOTE_PLING, 10, 1);
-        p.playSound(p.getLocation(), Sound.NOTE_PLING, 10, -5);
 
         Bukkit.getScheduler().scheduleSyncDelayedTask(AFMCorePlugin.getPlugin(), () -> p.sendPluginMessage(AFMCorePlugin.getPlugin(), "FactionsShow", new byte[] {}), 200L);
     }

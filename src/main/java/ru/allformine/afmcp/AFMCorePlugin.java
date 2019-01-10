@@ -20,8 +20,8 @@ import org.kitteh.vanish.staticaccess.VanishNoPacket;
 import org.kitteh.vanish.staticaccess.VanishNotLoadedException;
 import ru.allformine.afmcp.net.discord.Discord;
 import ru.allformine.afmcp.net.eco.Eco;
+import ru.allformine.afmcp.notify.Notify;
 import ru.allformine.afmcp.tasks.TPSWatchdog;
-
 import java.util.*;
 
 import static ru.allformine.afmcp.References.frozenPlayers;
@@ -75,7 +75,7 @@ public class AFMCorePlugin extends JavaPlugin {
 
     //Сообщение в дискорд о том, что сервер упал.
     public void onDisable() {
-        Discord.sendMessageSync("Сервер упал!", false, "TechInfo", 1);
+        Discord.sendMessageSync("@everyone Сервер упал!", false, "TechInfo", 1);
     }
 
     //Ебанные команды
@@ -187,7 +187,28 @@ public class AFMCorePlugin extends JavaPlugin {
             }
         } else if (cmd.getName().equalsIgnoreCase("notify")) {
             if (args.length > 0 && String.join(" ", args).length() <= 48) {
-                Notify.NotifyAll(ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
+                Notify.notifyAll(ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
+                sender.sendMessage(ChatColor.BLUE+"Notify "+ChatColor.WHITE+"> Сообщение было успешно отправлено!");
+
+                return true;
+            } else {
+                return false;
+            }
+        } else if(cmd.getName().equalsIgnoreCase("notifyplayer")) {
+            if(args.length > 0) {
+                Player player = Bukkit.getPlayer(args[0]);
+
+                if(player != null) {
+                    String text = String.join(" ", Arrays.asList(args).remove(0));
+                    if(text.length() <= 48) {
+                        Notify.notifyPlayer(ChatColor.translateAlternateColorCodes('&', String.join(" ", args)), player);
+                        sender.sendMessage(ChatColor.BLUE+"Notify "+ChatColor.WHITE+"> Сообщение было успешно отправлено!");
+                    } else {
+                        return false;
+                    }
+                } else {
+                    sender.sendMessage(ChatColor.BLUE + "Notify " + ChatColor.RESET + "> игрок не найден.");
+                }
 
                 return true;
             } else {
