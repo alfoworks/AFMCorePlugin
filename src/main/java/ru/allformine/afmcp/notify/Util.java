@@ -10,7 +10,7 @@ class Util {
 
         try {
             out.writeUTF("");
-        } catch(Exception e) {
+        } catch (Exception e) {
 
         }
 

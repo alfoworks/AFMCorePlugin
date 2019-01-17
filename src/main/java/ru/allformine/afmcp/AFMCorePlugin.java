@@ -1,14 +1,5 @@
 package ru.allformine.afmcp;
 
-import com.comphenix.protocol.PacketType;
-import com.comphenix.protocol.ProtocolLibrary;
-import com.comphenix.protocol.events.ListenerOptions;
-import com.comphenix.protocol.events.ListenerPriority;
-import com.comphenix.protocol.events.PacketAdapter;
-import com.comphenix.protocol.events.PacketEvent;
-import com.comphenix.protocol.wrappers.WrappedGameProfile;
-import com.comphenix.protocol.wrappers.WrappedServerPing;
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -22,7 +13,10 @@ import ru.allformine.afmcp.net.discord.Discord;
 import ru.allformine.afmcp.net.eco.Eco;
 import ru.allformine.afmcp.notify.Notify;
 import ru.allformine.afmcp.tasks.TPSWatchdog;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
 
 import static ru.allformine.afmcp.References.frozenPlayers;
 
@@ -42,32 +36,9 @@ public class AFMCorePlugin extends JavaPlugin {
 
         try { //Проверялка на то, есть ли плагин на ваниш.
             //noinspection deprecation
-            References.vmng = VanishNoPacket.getManager();
+            ProtocolHandler.vanishManager = VanishNoPacket.getManager();
         } catch (VanishNotLoadedException ex) {
             System.out.println("Can't find VanishNoPacket.");
-        }
-
-        if (References.vmng != null) { //Анти-ванишепалилка
-            ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(this, ListenerPriority.NORMAL, Collections.singletonList(PacketType.Status.Server.OUT_SERVER_INFO), ListenerOptions.ASYNC) {
-                @Override
-                public void onPacketSending(PacketEvent event) {
-                    WrappedServerPing ping = event.getPacket().getServerPings().read(0);
-                    List<WrappedGameProfile> players = new ArrayList<>();
-                    for (Player p : Bukkit.getServer().getOnlinePlayers()) {
-                        if (!References.vmng.isVanished(p)) {
-                            players.add(new WrappedGameProfile(UUID.randomUUID(), p.getDisplayName()));
-                        }
-                    }
-                    ping.setPlayersOnline(players.size());
-                    ping.setPlayers(players);
-
-                    String MOTD;
-                    MOTD = StringUtils.center(References.colors[random.nextInt(References.colors.length)] + "AllForMine SpaceUnion", 40);
-                    MOTD = MOTD + "\n" + StringUtils.center(ChatColor.YELLOW + "Закрытый бета-тест", 40);
-
-                    ping.setMotD(MOTD);
-                }
-            });
         }
 
         Discord.sendMessage("Сервер поднялся!", false, "TechInfo", 1); //отправляем в дс сообщеньку, что сервак врублен.
@@ -188,21 +159,21 @@ public class AFMCorePlugin extends JavaPlugin {
         } else if (cmd.getName().equalsIgnoreCase("notify")) {
             if (args.length > 0 && String.join(" ", args).length() <= 48) {
                 Notify.notifyAll(ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
-                sender.sendMessage(ChatColor.BLUE+"Notify "+ChatColor.WHITE+"> Сообщение было успешно отправлено!");
+                sender.sendMessage(ChatColor.BLUE + "Notify " + ChatColor.WHITE + "> Сообщение было успешно отправлено!");
 
                 return true;
             } else {
                 return false;
             }
-        } else if(cmd.getName().equalsIgnoreCase("notifyplayer")) {
-            if(args.length > 0) {
+        } else if (cmd.getName().equalsIgnoreCase("notifyplayer")) {
+            if (args.length > 0) {
                 Player player = Bukkit.getPlayer(args[0]);
 
-                if(player != null) {
+                if (player != null) {
                     String text = String.join(" ", new ArrayList<>(Arrays.asList(args)).remove(0));
-                    if(text.length() <= 48) {
+                    if (text.length() <= 48) {
                         Notify.notifyPlayer(ChatColor.translateAlternateColorCodes('&', String.join(" ", args)), player);
-                        sender.sendMessage(ChatColor.BLUE+"Notify "+ChatColor.WHITE+"> Сообщение было успешно отправлено!");
+                        sender.sendMessage(ChatColor.BLUE + "Notify " + ChatColor.WHITE + "> Сообщение было успешно отправлено!");
                     } else {
                         return false;
                     }
@@ -216,13 +187,13 @@ public class AFMCorePlugin extends JavaPlugin {
             }
         } else if (cmd.getName().equalsIgnoreCase("gift")) {
             if (sender instanceof Player) {
-                if (!this.getConfig().getBoolean("playerdata."+sender.getName()+".giftGiven")) {
+                if (!this.getConfig().getBoolean("playerdata." + sender.getName() + ".giftGiven")) {
                     String[] kits = new String[]{"ny1", "ny2", "ny1", "ny1"};
                     String kit = kits[random.nextInt(kits.length)];
                     Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "kitgive " + sender.getName() + " " + kit + " 1");
-                    sender.sendMessage(ChatColor.LIGHT_PURPLE + "Gifts " + ChatColor.WHITE + "> Отлично! Для получения своего подарка напишите /kit "+kit);
+                    sender.sendMessage(ChatColor.LIGHT_PURPLE + "Gifts " + ChatColor.WHITE + "> Отлично! Для получения своего подарка напишите /kit " + kit);
 
-                    this.getConfig().set("playerdata."+sender.getName()+".giftGiven", true);
+                    this.getConfig().set("playerdata." + sender.getName() + ".giftGiven", true);
                     this.saveConfig();
                 } else {
                     sender.sendMessage(ChatColor.LIGHT_PURPLE + "Gifts " + ChatColor.WHITE + "> Вы уже получили подарок.");
@@ -235,7 +206,21 @@ public class AFMCorePlugin extends JavaPlugin {
             if (args.length > 0 && (args[0].equals("true") || args[0].equals("false"))) {
                 References.log = args[0].equals("true");
 
-                sender.sendMessage(ChatColor.AQUA+ "DiscordLogging " + ChatColor.WHITE + "> Логгирование было успешно переключено.");
+                sender.sendMessage(ChatColor.AQUA + "DiscordLogging " + ChatColor.WHITE + "> Логгирование было успешно переключено.");
+                return true;
+            } else {
+                return false;
+            }
+        } else if (cmd.getName().equalsIgnoreCase("server_maintenance")) {
+            if (args.length > 0 && (args[0].equals("true") || args[0].equals("false"))) {
+                this.getConfig().set("server_maintenance.enabled", args[0].equals("true"));
+                sender.sendMessage(ChatColor.DARK_AQUA + "Maintenance " + ChatColor.WHITE + "> Режим тех. работ был переключен.");
+
+                for (Player p : Bukkit.getServer().getOnlinePlayers()) {
+                    if (!p.hasPermission("afmcp.staff")) {
+                        p.kickPlayer(ChatColor.translateAlternateColorCodes('&', this.getConfig().getString("server_maintenance.kickMessage")));
+                    }
+                }
                 return true;
             } else {
                 return false;

@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class Discord {
     private static void send(String message, boolean avatarFromName, String name, int logLevel) {
-        if(References.log) { //Лучше было бы, конечно, отключить слушатели ивентов, но чот лень...
+        if (References.log) { //Лучше было бы, конечно, отключить слушатели ивентов, но чот лень...
             Plugin plugin = AFMCorePlugin.getPlugin();
 
             String url = plugin.getConfig().getString("discord.webhooks.url_lvl" + String.valueOf(logLevel));

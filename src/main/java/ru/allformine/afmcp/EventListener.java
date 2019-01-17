@@ -11,7 +11,6 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.*;
-import org.bukkit.event.world.ChunkUnloadEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import ru.allformine.afmcp.net.discord.Discord;
 
@@ -33,10 +32,10 @@ class EventListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         PlayerQuitJoin.sendPlayerQuitJoinMessage(event.getPlayer(), true);
 
-        if(plugin.getConfig().get("playerdata."+event.getPlayer().getName()) == null) {
-            plugin.getConfig().set("playerdata."+event.getPlayer().getName()+".giftGiven", false);
+        if (plugin.getConfig().get("playerdata." + event.getPlayer().getName()) == null) {
+            plugin.getConfig().set("playerdata." + event.getPlayer().getName() + ".giftGiven", false);
 
-            System.out.println("Created configuration section for player "+event.getPlayer().getName());
+            System.out.println("Created configuration section for player " + event.getPlayer().getName());
         }
     }
 
@@ -111,8 +110,8 @@ class EventListener implements Listener {
     //Сообщение в дискорд о смерти игрока
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerDeath(PlayerDeathEvent event) {
-        if(event.getEntity().getDisplayName().equals("Sila_Zemli")) {
-            event.setDeathMessage(event.getEntity().getDisplayName()+" умер от СПИДа");
+        if (event.getEntity().getDisplayName().equals("Sila_Zemli")) {
+            event.setDeathMessage(event.getEntity().getDisplayName() + " умер от СПИДа");
         }
 
         Discord.sendMessage(event.getDeathMessage(), true, event.getEntity().getDisplayName(), 1);
@@ -172,4 +171,12 @@ class EventListener implements Listener {
         }
     }
     **/
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void onPlayerLogin(PlayerLoginEvent event) {
+        if (plugin.getConfig().getBoolean("server_maintenance.enabled") && !event.getPlayer().hasPermission("afmcp.staff")) {
+            event.setKickMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("server_maintenance.kickMessage")));
+            event.setResult(PlayerLoginEvent.Result.KICK_OTHER);
+        }
+    }
 }

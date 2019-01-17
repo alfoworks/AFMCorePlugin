@@ -47,3 +47,8 @@ commands:
     usage: "Использование: /afmcplog <true|false>"
     permission: afmcp.log
     permission-message: У тебя нет прав, иди нахуй, бля.
+maintenance:
+  description: Включить/выключить режим тех.работ на сервере
+  usage: "Использование: /maintenance <true|false>"
+  permission: afmcp.maintenance
+  permission-message: У тебя нет прав, иди нахуй, бля.

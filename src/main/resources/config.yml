@@ -6,18 +6,18 @@ discord:
     player_avatar_url: "https://allformine.ru/banava?name=" # ссылка на API для получения ссылки на аватар
   logger:
     ignoredCommands: # данные команды не будут отправлены в дискорд.
-      - "/l"
-      - "/t"
-      - "/g"
-      - "/msg"
-      - "/r"
-      - "/pm"
-      - "/st"
+    - "/l"
+    - "/t"
+    - "/g"
+    - "/msg"
+    - "/r"
+    - "/pm"
+    - "/st"
     triggerWords: # если в сообщении человека будут обнаружены следующие слова, то об этом отправится предупреждение в дискорд.
-      - "дюп"
-      - "краш"
-      - "баг"
-      - "чит"
+    - "дюп"
+    - "краш"
+    - "баг"
+    - "чит"
 tps:
   alarm_if_less: 14 # Если TPS ниже, чем данное число, то в дискорд отправится сообщение.
   bad_tps_count: 100 # Уведомление в дискорд отправится только в том случае, если количество TPS ниже нормы продержится данное количество тиков.
@@ -30,8 +30,15 @@ vips: # VIP-привелегии.
     cost: 7990
 balanceapi:
   url: "https://allformine.ru/balanceapi"
+protocol: # Все, что связано с ServerListPing и LegacyPing
+  motd: # Плагин меняет MOTD сервера.
+    firstLine: "Здесь могла бы быть ваша реклама"
+    secondLine: "Но её не будет, иди нахуй"
+  hide_vanished: # Скрывать игроков в ванише из..
+    serverListPing: true
+    legacyPing: true
 loader_groups: # чтобы настроить игроку или группе прогрузку чанков, надо выдать ему permission
-  alpha: # типа afmcp.loader.<группа>
+  alpha:       # типа afmcp.loader.<группа>
     count: 1 # лимит прогрузчиков
     loadAfterLogoutTime: -1 # сколько нужно грузить чанк после выхода игрока из игры в секундах.
   beta:                     # если не нужно грузить после выхода, необходимо поставить -1
@@ -40,5 +47,8 @@ loader_groups: # чтобы настроить игроку или группе 
   gamma:
     count: 3
     loadAfterLogoutTime: 10800
+server_maintenance:
+  enabled: false
+  kickMessage: "&cВ данным момент сервер на технических работах.\n&fВы можете узнать о них больше в группе ВК, Discord или сайте сервера."
 playerdata: # НЕ МЕНЯТЬ. Внутренняя инфа плагина
 loaders: # Здесь записаны прогрузчики.
