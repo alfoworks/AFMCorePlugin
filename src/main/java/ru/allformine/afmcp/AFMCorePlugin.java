@@ -213,7 +213,7 @@ public class AFMCorePlugin extends JavaPlugin {
             } else {
                 return false;
             }
-        } else if (cmd.getName().equalsIgnoreCase("server_maintenance")) {
+        } else if (cmd.getName().equalsIgnoreCase("maintenance")) {
             if (args.length > 0 && (args[0].equals("true") || args[0].equals("false"))) {
                 this.getConfig().set("server_maintenance.enabled", args[0].equals("true"));
                 sender.sendMessage(ChatColor.DARK_AQUA + "Maintenance " + ChatColor.WHITE + "> Режим тех. работ был переключен.");
