@@ -41,6 +41,8 @@ public class AFMCorePlugin extends JavaPlugin {
             System.out.println("Can't find VanishNoPacket.");
         }
 
+        ProtocolHandler.startHandler();
+
         Discord.sendMessage("Сервер поднялся!", false, "TechInfo", 1); //отправляем в дс сообщеньку, что сервак врублен.
     }
 

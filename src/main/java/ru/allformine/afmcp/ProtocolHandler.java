@@ -22,7 +22,7 @@ public class ProtocolHandler {
     private static Random random = new Random();
     private static Plugin plugin = AFMCorePlugin.getPlugin();
 
-    public ProtocolHandler() {
+    public static void startHandler() {
         if (plugin.getConfig().getBoolean("protocol.hide_vanished.serverListPing")) {
             ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(plugin, ListenerPriority.NORMAL, Collections.singletonList(PacketType.Status.Server.OUT_SERVER_INFO), ListenerOptions.ASYNC) {
                 @Override
@@ -53,7 +53,7 @@ public class ProtocolHandler {
 
     //----------------------------------------------------------------------------//
 
-    private String getNewMoTD() {
+    private static String getNewMoTD() {
         String MOTD;
         MOTD = StringUtils.center(References.colors[random.nextInt(References.colors.length)] + AFMCorePlugin.getPlugin().getConfig().getString("protocol.motd.firstLine"), 80);
         MOTD = MOTD + "\n" + StringUtils.center(ChatColor.YELLOW + AFMCorePlugin.getPlugin().getConfig().getString("protocol.motd.secondLine"), 80);
