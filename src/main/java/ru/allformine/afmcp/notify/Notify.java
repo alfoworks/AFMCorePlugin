@@ -22,12 +22,6 @@ public class Notify {
 
             p.sendPluginMessage(AFMCorePlugin.getPlugin(), "FactionsShow", b.toByteArray());
         }
-
-        Bukkit.getScheduler().scheduleSyncDelayedTask(AFMCorePlugin.getPlugin(), () -> {
-            for (Player p : Bukkit.getServer().getOnlinePlayers()) {
-                p.sendPluginMessage(AFMCorePlugin.getPlugin(), "FactionsShow", Util.getEmptyString());
-            }
-        }, 200L);
     }
 
     public static void notifyPlayer(String message, Player p) {
@@ -41,7 +35,5 @@ public class Notify {
         }
 
         p.sendPluginMessage(AFMCorePlugin.getPlugin(), "FactionsShow", b.toByteArray());
-
-        Bukkit.getScheduler().scheduleSyncDelayedTask(AFMCorePlugin.getPlugin(), () -> p.sendPluginMessage(AFMCorePlugin.getPlugin(), "FactionsShow", Util.getEmptyString()), 200L);
     }
 }

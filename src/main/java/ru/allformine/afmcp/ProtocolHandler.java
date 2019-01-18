@@ -22,7 +22,7 @@ public class ProtocolHandler {
     private static Random random = new Random();
     private static Plugin plugin = AFMCorePlugin.getPlugin();
 
-    public static void startHandler() {
+    static void startHandler() {
         if (plugin.getConfig().getBoolean("protocol.hide_vanished.serverListPing")) {
             ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(plugin, ListenerPriority.NORMAL, Collections.singletonList(PacketType.Status.Server.OUT_SERVER_INFO), ListenerOptions.ASYNC) {
                 @Override
@@ -30,7 +30,7 @@ public class ProtocolHandler {
                     WrappedServerPing ping = event.getPacket().getServerPings().read(0);
                     List<WrappedGameProfile> players = new ArrayList<>();
                     for (Player p : Bukkit.getServer().getOnlinePlayers()) {
-                        if (isPlayerVanished(p.getName())) {
+                        if (!isPlayerVanished(p.getName())) {
                             players.add(new WrappedGameProfile(UUID.randomUUID(), p.getDisplayName()));
                         }
                     }
