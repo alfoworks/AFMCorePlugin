@@ -17,10 +17,10 @@ public class Notify {
             try {
                 out.writeUTF(message);
             } catch (IOException e) {
-                System.out.println("Error sending FactionsShow data.");
+                e.printStackTrace();
             }
 
-            p.sendPluginMessage(AFMCorePlugin.getPlugin(), "FactionsShow", b.toByteArray());
+            p.sendPluginMessage(AFMCorePlugin.getPlugin(), "Notify", b.toByteArray());
         }
     }
 
@@ -31,9 +31,9 @@ public class Notify {
         try {
             out.writeUTF(message);
         } catch (IOException e) {
-            System.out.println("Error sending FactionsShow data.");
+            e.printStackTrace();
         }
 
-        p.sendPluginMessage(AFMCorePlugin.getPlugin(), "FactionsShow", b.toByteArray());
+        p.sendPluginMessage(AFMCorePlugin.getPlugin(), "Notify", b.toByteArray());
     }
 }

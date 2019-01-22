@@ -5,12 +5,13 @@ import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.net.discord.Discord;
 
 public class TPSWatchdog extends BukkitRunnable {
-    private static int TICK_COUNT = 0;
-    private static long[] TICKS = new long[600];
-    private static int BAD_TPS_COUNT = 0;
-    private static boolean tpsIsDown = false;
+    private int TICK_COUNT = 0;
+    private long[] TICKS = new long[600];
+    private int BAD_TPS_COUNT = 0;
+    private boolean tpsIsDown = false;
+    private int WARN_TPS = AFMCorePlugin.getPlugin().getConfig().getInt("tps.alarm_if_less");
 
-    private static double getTPS() {
+    private double getTPS() {
         if (TICK_COUNT < 100) {
             return 20.0D;
         }
@@ -24,7 +25,6 @@ public class TPSWatchdog extends BukkitRunnable {
         TICKS[(TICK_COUNT % TICKS.length)] = System.currentTimeMillis();
         TICK_COUNT += 1;
 
-        int WARN_TPS = AFMCorePlugin.getPlugin().getConfig().getInt("tps.alarm_if_less");
         if (getTPS() < WARN_TPS) {
             BAD_TPS_COUNT += 1;
         }

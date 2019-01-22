@@ -8,7 +8,6 @@ import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.wrappers.WrappedGameProfile;
 import com.comphenix.protocol.wrappers.WrappedServerPing;
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -55,8 +54,8 @@ public class ProtocolHandler {
 
     private static String getNewMoTD() {
         String MOTD;
-        MOTD = StringUtils.center(References.colors[random.nextInt(References.colors.length)] + AFMCorePlugin.getPlugin().getConfig().getString("protocol.motd.firstLine"), 80);
-        MOTD = MOTD + "\n" + StringUtils.center(ChatColor.YELLOW + AFMCorePlugin.getPlugin().getConfig().getString("protocol.motd.secondLine"), 80);
+        MOTD = References.colors[random.nextInt(References.colors.length)] + AFMCorePlugin.getPlugin().getConfig().getString("protocol.motd.firstLine");
+        MOTD = MOTD + "\n" + ChatColor.YELLOW + AFMCorePlugin.getPlugin().getConfig().getString("protocol.motd.secondLine");
 
         return MOTD;
     }

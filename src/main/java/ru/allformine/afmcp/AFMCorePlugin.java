@@ -11,6 +11,7 @@ import org.kitteh.vanish.staticaccess.VanishNoPacket;
 import org.kitteh.vanish.staticaccess.VanishNotLoadedException;
 import ru.allformine.afmcp.net.discord.Discord;
 import ru.allformine.afmcp.net.eco.Eco;
+import ru.allformine.afmcp.net.socket.APIServer;
 import ru.allformine.afmcp.notify.Notify;
 import ru.allformine.afmcp.tasks.TPSWatchdog;
 
@@ -32,7 +33,10 @@ public class AFMCorePlugin extends JavaPlugin {
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "FactionsShow");
         this.saveDefaultConfig();
 
+        References.sender = new ServerAPICommandSender();
+
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new TPSWatchdog(), 100L, 1L);
+        Bukkit.getServer().getScheduler().runTaskAsynchronously(this, new APIServer());
 
         try { //Проверялка на то, есть ли плагин на ваниш.
             //noinspection deprecation

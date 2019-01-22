@@ -50,5 +50,9 @@ loader_groups: # чтобы настроить игроку или группе 
 server_maintenance:
   enabled: false
   kickMessage: "&cВ данным момент сервер на технических работах.\n&fВы можете узнать о них больше в группе ВК, Discord или сайте сервера."
+server_api: # API для бота Discord - TCP сервер.
+  enabled: true # Включить/выключить TCP сервер.
+  port: 4049
+  acceptOnlyFromLocalhost: true # Принимать запросы только с localhost'а (отключение может повлечь за собой плохие последствия!)
 playerdata: # НЕ МЕНЯТЬ. Внутренняя инфа плагина
 loaders: # Здесь записаны прогрузчики.
