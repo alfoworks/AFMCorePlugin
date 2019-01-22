@@ -26,12 +26,14 @@ public class APIServer extends BukkitRunnable {
             while (true) {
                 Socket socket = serverSocket.accept();
 
-                if (acceptOnlyFromLocalhost && !socket.getInetAddress().isAnyLocalAddress()) {
+                /* Временно идёт нахуй
+                if (acceptOnlyFromLocalhost && socket.getInetAddress().isAnyLocalAddress()) {
                     System.out.println("[AFMCP_APISERVER] Client connection DENIED: not localhost.");
 
                     socket.close();
                     return;
                 }
+                */
 
                 System.out.println("[AFMCP_APISERVER] New client connected.");
 
