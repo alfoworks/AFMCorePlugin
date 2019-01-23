@@ -51,53 +51,57 @@ public class APIServer extends BukkitRunnable {
                 do {
                     text = reader.readLine();
 
+                    System.out.println("[AFMCP_APISERVER] Received line: \""+text+"\"");
+
                     List<String> args = Arrays.asList(text.split(" "));
-                    String cmd = args.remove(0);
+                    if(args.toArray().length > 0) {
+                        String cmd = args.remove(0);
 
-                    if (cmd.equals("EX_COMMAND")) {
-                        String bukkitCommand = String.join(" ", args.subList(1, args.size()));
+                        if (cmd.equals("EX_COMMAND")) {
+                            String bukkitCommand = String.join(" ", args.subList(1, args.size()));
 
-                        Bukkit.getServer().dispatchCommand(References.sender, bukkitCommand);
+                            Bukkit.getServer().dispatchCommand(References.sender, bukkitCommand);
 
-                        writer.println("{'status': 'OK', 'resp': '"+References.sender.getLastOutput()+"'}");
-                    } else if(cmd.equals("TAKE_SCREENSHOT")) {
-                        if(args.toArray().length > 0) {
-                            String playerNick = args.get(0);
-                            Player player = Bukkit.getServer().getPlayer(playerNick);
+                            writer.println("{'status': 'OK', 'resp': '"+References.sender.getLastOutput()+"'}");
+                        } else if(cmd.equals("TAKE_SCREENSHOT")) {
+                            if(args.toArray().length > 0) {
+                                String playerNick = args.get(0);
+                                Player player = Bukkit.getServer().getPlayer(playerNick);
 
-                            if(player != null) {
-                                ByteArrayOutputStream b = new ByteArrayOutputStream();
-                                DataOutputStream out = new DataOutputStream(b);
+                                if(player != null) {
+                                    ByteArrayOutputStream b = new ByteArrayOutputStream();
+                                    DataOutputStream out = new DataOutputStream(b);
 
-                                try {
-                                    out.writeByte(1);
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-
-                                Bukkit.getServer().sendPluginMessage(AFMCorePlugin.getPlugin(), "scr", b.toByteArray());
-
-                                this.playerImages.put(player, new Object[]{false, ""});
-
-                                long timeStart = System.currentTimeMillis();
-
-                                while(!((boolean) this.playerImages.get(player)[0])) {
-                                    if(System.currentTimeMillis() > timeStart+5000) {
-                                        return;
+                                    try {
+                                        out.writeByte(1);
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
                                     }
-                                }
 
-                                if((boolean) this.playerImages.get(player)[0]) {
-                                    writer.println("{'status': 'OK', 'resp': '"+this.playerImages.get(player)[1]+"'}");
+                                    Bukkit.getServer().sendPluginMessage(AFMCorePlugin.getPlugin(), "scr", b.toByteArray());
+
+                                    this.playerImages.put(player, new Object[]{false, ""});
+
+                                    long timeStart = System.currentTimeMillis();
+
+                                    while(!((boolean) this.playerImages.get(player)[0])) {
+                                        if(System.currentTimeMillis() > timeStart+5000) {
+                                            return;
+                                        }
+                                    }
+
+                                    if((boolean) this.playerImages.get(player)[0]) {
+                                        writer.println("{'status': 'OK', 'resp': '"+this.playerImages.get(player)[1]+"'}");
+                                    } else {
+                                        writer.println("{'status': 'ERR', 'resp': 'Target player not responding'}");
+                                    }
+                                    this.playerImages.remove(player);
                                 } else {
-                                    writer.println("{'status': 'ERR', 'resp': 'Target player not responding'}");
+                                    writer.println("{'status': 'ERR', 'resp': 'Player not found!'}");
                                 }
-                                this.playerImages.remove(player);
                             } else {
-                                writer.println("{'status': 'ERR', 'resp': 'Player not found!'}");
+                                writer.println("{'status': 'ERR', 'resp': 'Invalid arguments'}");
                             }
-                        } else {
-                            writer.println("{'status': 'ERR', 'resp': 'Invalid arguments'}");
                         }
                     }
                 } while (!socket.isClosed());
