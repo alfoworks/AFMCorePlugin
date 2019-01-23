@@ -7,6 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.messaging.PluginMessageListener;
 import org.kitteh.vanish.staticaccess.VanishNoPacket;
 import org.kitteh.vanish.staticaccess.VanishNotLoadedException;
 import ru.allformine.afmcp.net.discord.Discord;
@@ -15,14 +16,18 @@ import ru.allformine.afmcp.net.socket.APIServer;
 import ru.allformine.afmcp.notify.Notify;
 import ru.allformine.afmcp.tasks.TPSWatchdog;
 
+import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
 import static ru.allformine.afmcp.References.frozenPlayers;
 
-public class AFMCorePlugin extends JavaPlugin {
+public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
     private Random random = new Random(); //Создаем экземпляр класса рандома на весь плагин, дабы он был без повторений
+    private APIServer apiServer = new APIServer();
 
     public static Plugin getPlugin() {
         return Bukkit.getPluginManager().getPlugin("AFMCorePlugin");
@@ -30,13 +35,13 @@ public class AFMCorePlugin extends JavaPlugin {
 
     public void onEnable() {
         new EventListener(this);
-        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "FactionsShow");
+        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "Notify");
         this.saveDefaultConfig();
 
         References.sender = new ServerAPICommandSender();
 
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new TPSWatchdog(), 100L, 1L);
-        Bukkit.getServer().getScheduler().runTaskAsynchronously(this, new APIServer());
+        Bukkit.getServer().getScheduler().runTaskAsynchronously(this,apiServer);
 
         try { //Проверялка на то, есть ли плагин на ваниш.
             //noinspection deprecation
@@ -53,6 +58,22 @@ public class AFMCorePlugin extends JavaPlugin {
     //Сообщение в дискорд о том, что сервер упал.
     public void onDisable() {
         Discord.sendMessageSync("@everyone Сервер упал!", false, "TechInfo", 1);
+    }
+
+    //Скриншотер
+    @Override
+    public void onPluginMessageReceived(String channel, Player player, byte[] message) {
+        if(channel.equals("scr")) {
+            DataInputStream in = new DataInputStream(new ByteArrayInputStream(message));
+
+            try {
+                String image = in.readUTF();
+                Object[] info = {true, image};
+                apiServer.playerImages.put(player, info);
+            } catch(IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     //Ебанные команды

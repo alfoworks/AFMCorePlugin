@@ -1,17 +1,20 @@
 package ru.allformine.afmcp.net.socket;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.References;
-
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class APIServer extends BukkitRunnable {
+    public HashMap<Player, Object[]> playerImages = new HashMap<>();
+
     public void run() {
         int port = AFMCorePlugin.getPlugin().getConfig().getInt("server_api.port");
         boolean acceptOnlyFromLocalhost = AFMCorePlugin.getPlugin().getConfig().getBoolean("server_api.acceptOnlyFromLocalhost");
@@ -56,12 +59,51 @@ public class APIServer extends BukkitRunnable {
 
                         Bukkit.getServer().dispatchCommand(References.sender, bukkitCommand);
 
-                        writer.println(References.sender.getLastOutput());
+                        writer.println("{'status': 'OK', 'resp': '"+References.sender.getLastOutput()+"'}");
+                    } else if(cmd.equals("TAKE_SCREENSHOT")) {
+                        if(args.toArray().length > 0) {
+                            String playerNick = args.get(0);
+                            Player player = Bukkit.getServer().getPlayer(playerNick);
+
+                            if(player != null) {
+                                ByteArrayOutputStream b = new ByteArrayOutputStream();
+                                DataOutputStream out = new DataOutputStream(b);
+
+                                try {
+                                    out.writeByte(1);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+
+                                Bukkit.getServer().sendPluginMessage(AFMCorePlugin.getPlugin(), "scr", b.toByteArray());
+
+                                this.playerImages.put(player, new Object[]{false, ""});
+
+                                long timeStart = System.currentTimeMillis();
+
+                                while(!((boolean) this.playerImages.get(player)[0])) {
+                                    if(System.currentTimeMillis() > timeStart+5000) {
+                                        return;
+                                    }
+                                }
+
+                                if((boolean) this.playerImages.get(player)[0]) {
+                                    writer.println("{'status': 'OK', 'resp': '"+this.playerImages.get(player)[1]+"'}");
+                                } else {
+                                    writer.println("{'status': 'ERR', 'resp': 'Target player not responding'}");
+                                }
+                                this.playerImages.remove(player);
+                            } else {
+                                writer.println("{'status': 'ERR', 'resp': 'Player not found!'}");
+                            }
+                        } else {
+                            writer.println("{'status': 'ERR', 'resp': 'Invalid arguments'}");
+                        }
                     }
                 } while (!socket.isClosed());
             }
 
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             System.out.println("[AFMCP_APISERVER] Server exception: " + ex.getMessage());
             ex.printStackTrace();
         }
