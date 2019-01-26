@@ -8,9 +8,15 @@ import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.ServerAPICommandSender;
 import ru.allformine.afmcp.net.NetUtils;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 public class HTTPServer extends BukkitRunnable {
@@ -25,7 +31,7 @@ public class HTTPServer extends BukkitRunnable {
             server.bind(new InetSocketAddress(port), 0);
 
 
-            HttpContext context = server.createContext("/", new EchoHandler());
+            HttpContext context = server.createContext("/serverAPI", new EchoHandler());
             context.setAuthenticator(new Auth());
 
             server.setExecutor(null);
@@ -41,33 +47,37 @@ public class HTTPServer extends BukkitRunnable {
     static class EchoHandler implements HttpHandler {
         @Override
         public void handle(HttpExchange exchange) throws IOException {
-            Map<String, String> params = NetUtils.queryToMap(exchange.getRequestURI().getQuery());
-            String cmd = params.get("cmd");
+            InputStreamReader isr = new InputStreamReader(exchange.getRequestBody());
+            BufferedReader br = new BufferedReader(isr);
 
             String response = "";
 
-            if(cmd != null) {
-                if(cmd.equals("EX_COMMAND")) {
-                    String extra = params.get("extra");
-                    if(extra != null) {
-                        ServerAPICommandSender sender = new ServerAPICommandSender();
+            List<String> args = Arrays.asList(br.readLine().split(" "));
+            String cmd = args.remove(0);
 
-                        Bukkit.getServer().dispatchCommand(sender, extra);
+            if(cmd.equals("EX_COMMAND")) {
+                String commandData = String.join(" ", args);
 
-                        response = String.join(" ", sender.getOutput());
+                if(commandData.length() > 0) {
+                    ServerAPICommandSender sender = new ServerAPICommandSender();
+                    Bukkit.getServer().dispatchCommand(sender, commandData);
+
+                    String commandOut = String.join("\n", sender.getOutput());
+
+                    if(commandOut.length() > 0) {
+                        response = NetUtils.statusTextResponse("ok", commandOut);
                     } else {
-                        response = "{'status': 'err', 'resp': 'Command for execute at server is required'}";
+                        response = NetUtils.statusTextResponse("ok", "<no response from command>");
                     }
                 }
             } else {
-                response = "{'status': 'err', 'resp': 'No command specified'}";
+                response = NetUtils.statusTextResponse("err", "Wrong command");
             }
 
-            byte[] bytes = response.getBytes();
-            exchange.sendResponseHeaders(200, bytes.length);
-
+            exchange.sendResponseHeaders(200, response.length());
             OutputStream os = exchange.getResponseBody();
-            os.write(bytes);
+            os.write(response.getBytes());
+
             os.close();
         }
     }
