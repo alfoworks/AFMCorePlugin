@@ -12,7 +12,7 @@ import org.kitteh.vanish.staticaccess.VanishNoPacket;
 import org.kitteh.vanish.staticaccess.VanishNotLoadedException;
 import ru.allformine.afmcp.net.discord.Discord;
 import ru.allformine.afmcp.net.eco.Eco;
-import ru.allformine.afmcp.net.socket.APIServer;
+import ru.allformine.afmcp.net.socket.HTTPServer;
 import ru.allformine.afmcp.notify.Notify;
 import ru.allformine.afmcp.tasks.TPSWatchdog;
 
@@ -27,7 +27,7 @@ import static ru.allformine.afmcp.References.frozenPlayers;
 
 public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
     private Random random = new Random(); //Создаем экземпляр класса рандома на весь плагин, дабы он был без повторений
-    private APIServer apiServer = new APIServer();
+    private HTTPServer apiServer = new HTTPServer();
 
     public static Plugin getPlugin() {
         return Bukkit.getPluginManager().getPlugin("AFMCorePlugin");
@@ -36,12 +36,11 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
     public void onEnable() {
         new EventListener(this);
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "Notify");
+        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "scr");
         this.saveDefaultConfig();
 
-        References.sender = new ServerAPICommandSender();
-
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new TPSWatchdog(), 100L, 1L);
-        Bukkit.getServer().getScheduler().runTaskAsynchronously(this,apiServer);
+        Bukkit.getServer().getScheduler().runTaskAsynchronously(this, apiServer);
 
         try { //Проверялка на то, есть ли плагин на ваниш.
             //noinspection deprecation
@@ -69,7 +68,7 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
             try {
                 String image = in.readUTF();
                 Object[] info = {true, image};
-                apiServer.playerImages.put(player, info);
+                //apiServer.screenshotData.put(player, info);
             } catch(IOException e) {
                 e.printStackTrace();
             }

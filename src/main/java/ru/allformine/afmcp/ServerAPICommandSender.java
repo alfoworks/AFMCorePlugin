@@ -3,12 +3,15 @@ package ru.allformine.afmcp;
 import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_7_R4.command.CraftConsoleCommandSender;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ServerAPICommandSender extends CraftConsoleCommandSender {
-    private String lastOutput = "";
+    private List<String> outputList = new ArrayList<>();
 
     @Override
     public void sendRawMessage(String message) {
-        lastOutput = ChatColor.stripColor(message);
+        outputList.add(ChatColor.stripColor(message));
     }
 
     @Override
@@ -16,7 +19,7 @@ public class ServerAPICommandSender extends CraftConsoleCommandSender {
         return "ServerAPI";
     }
 
-    public String getLastOutput() {
-        return lastOutput;
+    public List<String> getOutput() {
+        return outputList;
     }
 }
