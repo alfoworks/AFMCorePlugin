@@ -1,4 +1,4 @@
-package ru.allformine.afmcp.net;
+package ru.allformine.afmcp.net.http;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;

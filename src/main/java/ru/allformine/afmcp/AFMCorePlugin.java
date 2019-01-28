@@ -12,7 +12,7 @@ import org.kitteh.vanish.staticaccess.VanishNoPacket;
 import org.kitteh.vanish.staticaccess.VanishNotLoadedException;
 import ru.allformine.afmcp.net.discord.Discord;
 import ru.allformine.afmcp.net.eco.Eco;
-import ru.allformine.afmcp.net.socket.HTTPServer;
+import ru.allformine.afmcp.net.http.HTTPServer;
 import ru.allformine.afmcp.notify.Notify;
 import ru.allformine.afmcp.tasks.TPSWatchdog;
 
@@ -65,12 +65,14 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
         if(channel.equals("scr")) {
             DataInputStream in = new DataInputStream(new ByteArrayInputStream(message));
 
-            try {
-                String image = in.readUTF();
-                Object[] info = {true, image};
-                //apiServer.screenshotData.put(player, info);
-            } catch(IOException e) {
-                e.printStackTrace();
+            if (apiServer.playerScreenshotData.get(player) != null) {
+                try {
+                    String image = in.readUTF();
+                    Object[] info = {true, image};
+                    apiServer.playerScreenshotData.put(player, info);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

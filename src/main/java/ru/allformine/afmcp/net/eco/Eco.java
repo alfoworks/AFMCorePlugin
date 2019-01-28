@@ -1,7 +1,7 @@
 package ru.allformine.afmcp.net.eco;
 
 import org.bukkit.plugin.java.JavaPlugin;
-import ru.allformine.afmcp.net.Requests;
+import ru.allformine.afmcp.net.http.Requests;
 
 public class Eco {
     public static String getBalance(String nickname) {

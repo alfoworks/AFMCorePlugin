@@ -5,7 +5,7 @@ import org.bukkit.craftbukkit.libs.com.google.gson.Gson;
 import org.bukkit.plugin.Plugin;
 import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.References;
-import ru.allformine.afmcp.net.Requests;
+import ru.allformine.afmcp.net.http.Requests;
 
 import java.util.HashMap;
 import java.util.Map;

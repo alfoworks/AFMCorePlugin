@@ -37,17 +37,21 @@ public class ProtocolHandler {
                     ping.setPlayers(players);
 
                     ping.setMotD(getNewMoTD());
+
+                    if (plugin.getConfig().getBoolean("server_maintenance.enabled")) {
+                        ping.setVersionName("Сервер на тех. работах!");
+                    }
                 }
             });
         }
     }
 
     public static boolean isPlayerVanished(String nickname) { // Метод публичный, потому что будет использоваться в модах.
-        if (vanishManager != null) {
-            return vanishManager.isVanished(nickname);
-        } else {
-            return false; //В случае, если нет VanishManager'а мы разрешаем добавлять игрока
+        if (vanishManager == null) {
+            return false;
         }
+
+        return vanishManager.isVanished(nickname);
     }
 
     //----------------------------------------------------------------------------//
