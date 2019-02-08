@@ -106,7 +106,7 @@ public class HTTPServer extends BukkitRunnable {
                             ByteArrayOutputStream b = new ByteArrayOutputStream();
                             DataOutputStream out = new DataOutputStream(b);
 
-                            player.sendPluginMessage(AFMCorePlugin.getPlugin(), "scr", new byte[]{});
+                            player.sendPluginMessage(AFMCorePlugin.getPlugin(), "C234Fb", new byte[]{});
 
                             long startTime = System.currentTimeMillis();
                             while (!playerScreenshotConfirmation.get(player)) {
