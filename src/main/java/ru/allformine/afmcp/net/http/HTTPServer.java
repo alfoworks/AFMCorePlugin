@@ -110,7 +110,7 @@ public class HTTPServer extends BukkitRunnable {
 
                             long startTime = System.currentTimeMillis();
                             while (!playerScreenshotConfirmation.get(player)) {
-                                if (startTime + 5000 >= System.currentTimeMillis()) {
+                                if (System.currentTimeMillis() >= startTime + 5000) {
                                     break;
                                 }
                             }
