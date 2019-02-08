@@ -8,12 +8,15 @@ import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.wrappers.WrappedGameProfile;
 import com.comphenix.protocol.wrappers.WrappedServerPing;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.kitteh.vanish.VanishManager;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class ProtocolHandler {
@@ -61,17 +64,32 @@ public class ProtocolHandler {
     //----------------------------------------------------------------------------//
 
     private static String getNewMoTD() {
-        StringBuilder firstLine = new StringBuilder();
-        StringBuilder secondLine = new StringBuilder();
+        String MoTD;
+        String firstLine = plugin.getConfig().getString("protocol.motd.firstLine");
+        String secondLine = "До релиза: неизвестно";
 
-        for (int i = 0; i < 40; i++) {
-            firstLine.append("Aa");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+
+        try {
+            long timeUp = format.parse("2019/02/27 20:00:00").getTime();
+            long diff = System.currentTimeMillis() - timeUp;
+
+            long diffSeconds = diff / 1000 % 60;
+            long diffMinutes = diff / (60 * 1000) % 60;
+            long diffHours = diff / (60 * 60 * 1000) % 24;
+            long diffDays = diff / (24 * 60 * 60 * 1000);
+
+            String sb = String.valueOf(diffDays) + " дней, " +
+                    diffHours + " часов, " +
+                    diffMinutes + " минут, " +
+                    diffSeconds + " секунд";
+            secondLine = "До релиза: " + sb;
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
 
-        for (int i = 0; i < 60; i++) {
-            secondLine.append("x");
-        }
+        MoTD = StringUtils.center(firstLine, 42) + "\n" + StringUtils.center(secondLine, 42);
 
-        return firstLine.toString() + "\n" + secondLine.toString();
+        return MoTD;
     }
 }
