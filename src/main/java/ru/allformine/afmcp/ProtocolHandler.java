@@ -21,6 +21,10 @@ public class ProtocolHandler {
     private static Random random = new Random();
     private static Plugin plugin = AFMCorePlugin.getPlugin();
 
+    private static ChatColor getRandomColor() {
+        return References.colors[random.nextInt(References.colors.length)];
+    }
+
     static void startHandler() {
         if (plugin.getConfig().getBoolean("protocol.hide_vanished.serverListPing")) {
             ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(plugin, ListenerPriority.NORMAL, Collections.singletonList(PacketType.Status.Server.OUT_SERVER_INFO), ListenerOptions.ASYNC) {
@@ -57,10 +61,17 @@ public class ProtocolHandler {
     //----------------------------------------------------------------------------//
 
     private static String getNewMoTD() {
-        String MOTD;
-        MOTD = References.colors[random.nextInt(References.colors.length)] + AFMCorePlugin.getPlugin().getConfig().getString("protocol.motd.firstLine");
-        MOTD = MOTD + "\n" + ChatColor.YELLOW + AFMCorePlugin.getPlugin().getConfig().getString("protocol.motd.secondLine");
+        StringBuilder firstLine = new StringBuilder();
+        StringBuilder secondLine = new StringBuilder();
 
-        return MOTD;
+        for (int i = 0; i < 40; i++) {
+            firstLine.append("Aa");
+        }
+
+        for (int i = 0; i < 60; i++) {
+            secondLine.append("x");
+        }
+
+        return firstLine.toString() + "\n" + secondLine.toString();
     }
 }
