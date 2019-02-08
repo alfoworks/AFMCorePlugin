@@ -1,5 +1,6 @@
 package ru.allformine.afmcp;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -67,9 +68,12 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
 
             if (apiServer.playerScreenshotData.get(player) != null) {
                 try {
-                    String image = in.readUTF();
-                    Object[] info = {true, image};
-                    apiServer.playerScreenshotData.put(player, info);
+                    if (in.readByte() != 9) {
+                        byte[] prevArr = apiServer.playerScreenshotData.get(player);
+                        apiServer.playerScreenshotData.put(player, ArrayUtils.addAll(prevArr, message));
+                    } else if (in.readByte() == 9) {
+                        apiServer.playerScreenshotConfirmation.put(player, true);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

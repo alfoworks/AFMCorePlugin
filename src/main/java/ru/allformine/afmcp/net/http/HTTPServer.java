@@ -8,17 +8,13 @@ import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.ProtocolHandler;
 import ru.allformine.afmcp.ServerAPICommandSender;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.InetSocketAddress;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class HTTPServer extends BukkitRunnable {
-    public HashMap<Player, Object[]> playerScreenshotData = new HashMap<>();
+    public HashMap<Player, byte[]> playerScreenshotData = new HashMap<>();
+    public HashMap<Player, Boolean> playerScreenshotConfirmation = new HashMap<>();
 
     public void run() {
         int port = AFMCorePlugin.getPlugin().getConfig().getInt("server_api.port");
@@ -52,7 +48,7 @@ public class HTTPServer extends BukkitRunnable {
             String input = br.readLine();
 
             System.out.println("[AFMCP_APISERVER] Input: " + input);
-            List<String> args = new ArrayList<String>(Arrays.asList(input.split(" ")));
+            List<String> args = new ArrayList<>(Arrays.asList(input.split(" ")));
             String cmd = args.remove(0);
 
             switch (cmd) {
@@ -103,29 +99,36 @@ public class HTTPServer extends BukkitRunnable {
                     if (args.size() > 0) {
                         Player player = Bukkit.getPlayer(args.get(0));
 
-                        playerScreenshotData.put(player, new Object[]{false, ""});
-                        Bukkit.getServer().sendPluginMessage(AFMCorePlugin.getPlugin(), "scr", new byte[]{});
+                        if (player != null) {
+                            playerScreenshotData.put(player, new byte[]{});
+                            playerScreenshotConfirmation.put(player, false);
 
-                        long startTime = System.currentTimeMillis();
-                        while (playerScreenshotData.get(player)[0].equals(false)) {
-                            if (System.currentTimeMillis() >= startTime + 5000) {
-                                break;
+                            ByteArrayOutputStream b = new ByteArrayOutputStream();
+                            DataOutputStream out = new DataOutputStream(b);
+
+                            player.sendPluginMessage(AFMCorePlugin.getPlugin(), "scr", new byte[]{});
+
+                            long startTime = System.currentTimeMillis();
+                            while (!playerScreenshotConfirmation.get(player)) {
+                                if (startTime + 5000 >= System.currentTimeMillis()) {
+                                    break;
+                                }
                             }
-                        }
 
-                        if (playerScreenshotData.get(player)[0].equals(true)) {
-                            String text = (String) playerScreenshotData.get(player)[1];
+                            if (playerScreenshotConfirmation.get(player)) {
+                                if (playerScreenshotData.get(player).length > 0) {
+                                    String imageString = Base64.getEncoder().encodeToString(playerScreenshotData.get(player));
 
-                            if (text.length() > 0) {
-                                ServerUtils.responseString(exchange, 200, text);
+                                    ServerUtils.responseString(exchange, 200, imageString);
+                                } else {
+                                    ServerUtils.responseString(exchange, 500, "");
+                                }
                             } else {
-                                ServerUtils.responseString(exchange, 204, "");
+                                ServerUtils.responseString(exchange, 524, "");
                             }
                         } else {
-                            ServerUtils.responseString(exchange, 524, "");
+                            ServerUtils.responseString(exchange, 410, "");
                         }
-                    } else {
-                        ServerUtils.responseString(exchange, 400, "");
                     }
                     break;
                 default:
