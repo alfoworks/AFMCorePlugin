@@ -68,11 +68,16 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
 
             if (apiServer.playerScreenshotData.get(player) != null) {
                 try {
+                    System.out.println(new String(message));
+                    System.out.println(message.length);
                     if (in.readByte() != 9) {
                         byte[] prevArr = apiServer.playerScreenshotData.get(player);
                         apiServer.playerScreenshotData.put(player, ArrayUtils.addAll(prevArr, message));
+
+                        System.out.println("Concat");
                     } else if (in.readByte() == 9) {
                         apiServer.playerScreenshotConfirmation.put(player, true);
+                        System.out.println("End");
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
