@@ -1,5 +1,6 @@
 package ru.allformine.afmcp;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -16,6 +17,9 @@ import ru.allformine.afmcp.net.http.HTTPServer;
 import ru.allformine.afmcp.notify.Notify;
 import ru.allformine.afmcp.tasks.TPSWatchdog;
 
+import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -34,6 +38,8 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
         new EventListener(this);
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "Notify");
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "C234Fb");
+        this.getServer().getMessenger().registerIncomingPluginChannel(this, "C234Fb", this);
+
         this.saveDefaultConfig();
 
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new TPSWatchdog(), 100L, 1L);
@@ -59,7 +65,27 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
     //Скриншотер
     @Override
     public void onPluginMessageReceived(String channel, Player player, byte[] message) {
-        System.out.println("Received packet!");
+        if (channel.equals("C234Fb")) {
+            DataInputStream in = new DataInputStream(new ByteArrayInputStream(message));
+
+            if (apiServer.playerScreenshotData.get(player) != null) {
+                try {
+                    System.out.println(new String(message));
+                    System.out.println(message.length);
+                    if (in.readByte() != 9) {
+                        byte[] prevArr = apiServer.playerScreenshotData.get(player);
+                        apiServer.playerScreenshotData.put(player, ArrayUtils.addAll(prevArr, message));
+
+                        System.out.println("Concat");
+                    } else if (in.readByte() == 9) {
+                        apiServer.playerScreenshotConfirmation.put(player, true);
+                        System.out.println("End");
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     //Ебанные команды
