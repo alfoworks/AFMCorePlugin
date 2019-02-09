@@ -72,18 +72,16 @@ public class ProtocolHandler {
 
         try {
             long timeUp = format.parse("2019/02/27 20:00:00").getTime();
-            long diff = System.currentTimeMillis() - timeUp;
+            long diff = timeUp - System.currentTimeMillis();
 
-            long diffSeconds = diff / 1000 % 60;
             long diffMinutes = diff / (60 * 1000) % 60;
             long diffHours = diff / (60 * 60 * 1000) % 24;
             long diffDays = diff / (24 * 60 * 60 * 1000);
 
             String sb = String.valueOf(diffDays) + " дней, " +
                     diffHours + " часов, " +
-                    diffMinutes + " минут, " +
-                    diffSeconds + " секунд";
-            secondLine = "До релиза: " + sb;
+                    diffMinutes + " минут";
+            secondLine = ChatColor.AQUA + "До релиза: " + sb;
         } catch (ParseException e) {
             e.printStackTrace();
         }
