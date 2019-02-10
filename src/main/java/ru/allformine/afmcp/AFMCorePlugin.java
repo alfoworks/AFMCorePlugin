@@ -1,6 +1,5 @@
 package ru.allformine.afmcp;
 
-import org.apache.commons.lang.ArrayUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -17,8 +16,6 @@ import ru.allformine.afmcp.net.http.HTTPServer;
 import ru.allformine.afmcp.notify.Notify;
 import ru.allformine.afmcp.tasks.TPSWatchdog;
 
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -65,18 +62,8 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
     @Override
     public void onPluginMessageReceived(String channel, Player player, byte[] message) {
         if (channel.equals("C234Fb")) {
-            DataInputStream in = new DataInputStream(new ByteArrayInputStream(message));
-
-            if (apiServer.playerScreenshotData.get(player) != null) {
-                if (message.length >= 10240) {
-                    byte[] prevArr = apiServer.playerScreenshotData.get(player);
-                    apiServer.playerScreenshotData.put(player, ArrayUtils.addAll(prevArr, message));
-
-                    System.out.println("Concat");
-                } else {
-                    apiServer.playerScreenshotConfirmation.put(player, true);
-                    System.out.println("End");
-                }
+            for (byte _byte : message) {
+                System.out.println(_byte);
             }
         }
     }
