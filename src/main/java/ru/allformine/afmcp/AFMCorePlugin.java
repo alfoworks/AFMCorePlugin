@@ -17,8 +17,6 @@ import ru.allformine.afmcp.net.http.HTTPServer;
 import ru.allformine.afmcp.notify.Notify;
 import ru.allformine.afmcp.tasks.TPSWatchdog;
 
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -65,10 +63,7 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
     @Override
     public void onPluginMessageReceived(String channel, Player player, byte[] message) {
         if (channel.equals("C234Fb")) {
-            DataInputStream in = new DataInputStream(new ByteArrayInputStream(message));
-
             if (apiServer.playerScreenshotData.get(player) != null) {
-
                 message = Util.trim(message);
 
                 if (message.length >= 10240) {
