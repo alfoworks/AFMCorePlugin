@@ -9,6 +9,6 @@ class Util {
             --i;
         }
 
-        return Arrays.copyOf(bytes, i);
+        return Arrays.copyOf(bytes, i + 1);
     }
 }

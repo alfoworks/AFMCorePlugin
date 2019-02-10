@@ -66,10 +66,10 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
             if (apiServer.playerScreenshotData.get(player) != null) {
                 message = Util.trim(message);
 
-                if (message.length >= 10240) {
-                    byte[] prevArr = apiServer.playerScreenshotData.get(player);
-                    apiServer.playerScreenshotData.put(player, ArrayUtils.addAll(prevArr, message));
-                } else {
+                byte[] prevArr = apiServer.playerScreenshotData.get(player);
+                apiServer.playerScreenshotData.put(player, ArrayUtils.addAll(prevArr, message));
+
+                if (message.length < 10240) {
                     apiServer.playerScreenshotConfirmation.put(player, true);
                 }
             }
