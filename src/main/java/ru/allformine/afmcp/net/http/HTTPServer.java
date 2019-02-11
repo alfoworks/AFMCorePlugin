@@ -16,6 +16,8 @@ public class HTTPServer extends BukkitRunnable {
     public HashMap<Player, byte[]> playerScreenshotData = new HashMap<>();
     public HashMap<Player, Boolean> playerScreenshotConfirmation = new HashMap<>();
 
+    String[] allowedPicModes = {"highres", "lowres", "extralowres", "grayscale"};
+
     public void run() {
         int port = AFMCorePlugin.getPlugin().getConfig().getInt("server_api.port");
         HttpServer server;
@@ -106,7 +108,21 @@ public class HTTPServer extends BukkitRunnable {
                             ByteArrayOutputStream b = new ByteArrayOutputStream();
                             DataOutputStream out = new DataOutputStream(b);
 
-                            player.sendPluginMessage(AFMCorePlugin.getPlugin(), "C234Fb", new byte[]{});
+                            String mode = "16colors";
+
+                            if (args.size() > 1) {
+                                if (Arrays.asList(allowedPicModes).contains(args.get(1))) {
+                                    mode = args.get(1);
+                                }
+                            }
+
+                            try {
+                                out.writeUTF(mode);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            player.sendPluginMessage(AFMCorePlugin.getPlugin(), "C234Fb", b.toByteArray());
 
                             long startTime = System.currentTimeMillis();
                             while (!playerScreenshotConfirmation.get(player)) {
