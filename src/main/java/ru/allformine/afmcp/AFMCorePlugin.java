@@ -65,6 +65,7 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
         if (channel.equals("C234Fb")) {
             if (apiServer.playerScreenshotData.get(player) != null) {
                 message = Util.trim(message);
+                message = Arrays.copyOf(message, message.length - 1);
 
                 byte[] prevArr = apiServer.playerScreenshotData.get(player);
                 apiServer.playerScreenshotData.put(player, ArrayUtils.addAll(prevArr, message));
