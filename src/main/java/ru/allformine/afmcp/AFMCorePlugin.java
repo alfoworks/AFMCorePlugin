@@ -1,10 +1,13 @@
 package ru.allformine.afmcp;
 
+import com.sk89q.worldguard.bukkit.WGBukkit;
+import com.sk89q.worldguard.protection.managers.RegionManager;
 import org.apache.commons.lang.ArrayUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -14,8 +17,7 @@ import org.kitteh.vanish.staticaccess.VanishNotLoadedException;
 import ru.allformine.afmcp.net.discord.Discord;
 import ru.allformine.afmcp.net.eco.Eco;
 import ru.allformine.afmcp.net.http.HTTPServer;
-import ru.allformine.afmcp.notify.Notify;
-import ru.allformine.afmcp.tasks.TPSWatchdog;
+import ru.allformine.afmcp.packet.Notify;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,10 +38,10 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "Notify");
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "C234Fb");
         this.getServer().getMessenger().registerIncomingPluginChannel(this, "C234Fb", this);
+        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "ambient");
 
         this.saveDefaultConfig();
 
-        Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new TPSWatchdog(), 100L, 1L);
         Bukkit.getServer().getScheduler().runTaskAsynchronously(this, apiServer);
 
         try { //Проверялка на то, есть ли плагин на ваниш.
@@ -184,7 +186,7 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
                 sender.sendMessage(ChatColor.RED + "Данная команда может быть выполнена только игроком.");
                 return true;
             }
-        } else if (cmd.getName().equalsIgnoreCase("notify")) {
+        } else if (cmd.getName().equalsIgnoreCase("packet")) {
             if (args.length > 0 && String.join(" ", args).length() <= 48) {
                 Notify.notifyAll(ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
                 sender.sendMessage(ChatColor.BLUE + "Notify " + ChatColor.WHITE + "> Сообщение было успешно отправлено!");
@@ -253,6 +255,49 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
             } else {
                 return false;
             }
+        } else if (cmd.getName().equalsIgnoreCase("ambient")) {
+            if (args.length < 2) {
+                return false;
+            } else if (sender instanceof ConsoleCommandSender) {
+                sender.sendMessage(ChatColor.DARK_PURPLE + "AmbientMusic " + ChatColor.WHITE + "> Данная команда может быть выполнена только игроком.");
+                return true;
+            }
+
+            Player player = (Player) sender;
+            RegionManager regionManager = WGBukkit.getRegionManager(player.getWorld());
+
+            if (regionManager == null) {
+                sender.sendMessage(ChatColor.DARK_PURPLE + "AmbientMusic " + ChatColor.WHITE + "> Произошла ошибка.");
+                return true;
+            }
+
+            if (regionManager.getRegion(args[1]) == null) {
+                sender.sendMessage(ChatColor.DARK_PURPLE + "AmbientMusic " + ChatColor.WHITE + "> Регион с таким именем не найден.");
+                return true;
+            }
+
+            String rg_name = args[1].toLowerCase();
+
+            if (args[0].equalsIgnoreCase("add")) {
+                if (args.length < 3) {
+                    return false;
+                }
+
+                this.getConfig().set("ambient_data." + rg_name + "url", args[2]);
+            } else if (args[0].equalsIgnoreCase("remove")) {
+                if (this.getConfig().getString("ambient_data." + rg_name + "url") == null) {
+                    sender.sendMessage(ChatColor.DARK_PURPLE + "AmbientMusic " + ChatColor.WHITE + "> Запись не найдена.");
+                    return true;
+                }
+
+                this.getConfig().set("ambient_data." + rg_name + "url", null);
+            } else {
+                return false;
+            }
+
+            this.saveConfig();
+
+            sender.sendMessage(ChatColor.DARK_PURPLE + "AmbientMusic " + ChatColor.WHITE + "> Действие было выполнено.");
         }
 
         return false;

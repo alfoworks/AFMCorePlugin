@@ -2,6 +2,8 @@ package ru.allformine.afmcp;
 
 import com.dthielke.herochat.ChannelChatEvent;
 import com.dthielke.herochat.Chatter;
+import com.sk89q.worldguard.bukkit.WGBukkit;
+import com.sk89q.worldguard.protection.managers.RegionManager;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
@@ -13,6 +15,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.plugin.java.JavaPlugin;
 import ru.allformine.afmcp.net.discord.Discord;
+import ru.allformine.afmcp.packet.Ambient;
 
 import java.util.Set;
 
@@ -37,11 +40,27 @@ class EventListener implements Listener {
 
             System.out.println("Created configuration section for player " + event.getPlayer().getName());
         }
+
+        RegionManager regionManager = WGBukkit.getRegionManager(event.getPlayer().getWorld());
+        String playerRegionName = Util.getLastElement(regionManager.getApplicableRegions(event.getPlayer().getLocation()).getRegions()).getId();
+        String url = plugin.getConfig().getString("ambient_data." + playerRegionName + ".url");
+
+        if (url != null && References.playerCurrentMusic.get(event.getPlayer()) != null && References.playerCurrentMusic.get(event.getPlayer()).equals(playerRegionName)) {
+            Ambient.sendAmbientMusicPacket(false, event.getPlayer(), url);
+            References.playerCurrentMusic.put(event.getPlayer(), playerRegionName);
+        } else if (url == null && References.playerCurrentMusic.get(event.getPlayer()) != null) {
+            Ambient.sendAmbientMusicPacket(true, event.getPlayer(), "");
+            References.playerCurrentMusic.remove(event.getPlayer());
+        }
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerQuit(PlayerQuitEvent event) {
         PlayerQuitJoin.sendPlayerQuitJoinMessage(event.getPlayer(), false);
+
+        if (References.playerCurrentMusic.get(event.getPlayer()) != null) {
+            References.playerCurrentMusic.remove(event.getPlayer());
+        }
     }
 
     //Сообщение в дискорд из чата.
@@ -117,12 +136,28 @@ class EventListener implements Listener {
         Discord.sendMessage(event.getDeathMessage(), true, event.getEntity().getDisplayName(), 1);
     }
 
-    @EventHandler(priority = EventPriority.HIGH)
+    @EventHandler(priority = EventPriority.NORMAL)
     public void onPlayerMove(PlayerMoveEvent event) {
         if (frozenPlayers.contains(event.getPlayer())) {
             event.setCancelled(true);
 
             event.getPlayer().sendMessage(ChatColor.RED + "Freeze " + ChatColor.RESET + "> вы заморожены!");
+        }
+
+        if (!event.isCancelled()) {
+            RegionManager regionManager = WGBukkit.getRegionManager(event.getPlayer().getWorld());
+            String playerRegionName = Util.getLastElement(regionManager.getApplicableRegions(event.getPlayer().getLocation()).getRegions()).getId();
+            String url = plugin.getConfig().getString("ambient_data." + playerRegionName + ".url"); /*
+                                                                                                    TODO возможно, обращаться каждый раз, когда игрок движется - не дело.
+                                                                                                    надо будет проверить..
+                                                                                                    */
+            if (url != null && References.playerCurrentMusic.get(event.getPlayer()) != null && References.playerCurrentMusic.get(event.getPlayer()).equals(playerRegionName)) {
+                Ambient.sendAmbientMusicPacket(false, event.getPlayer(), url);
+                References.playerCurrentMusic.put(event.getPlayer(), playerRegionName);
+            } else if (url == null && References.playerCurrentMusic.get(event.getPlayer()) != null) {
+                Ambient.sendAmbientMusicPacket(true, event.getPlayer(), "");
+                References.playerCurrentMusic.remove(event.getPlayer());
+            }
         }
     }
 
@@ -177,6 +212,36 @@ class EventListener implements Listener {
         if (plugin.getConfig().getBoolean("server_maintenance.enabled") && !event.getPlayer().hasPermission("afmcp.staff")) {
             event.setKickMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("server_maintenance.kickMessage")));
             event.setResult(PlayerLoginEvent.Result.KICK_OTHER);
+        }
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onPlayerTeleport(PlayerTeleportEvent event) {
+        RegionManager regionManager = WGBukkit.getRegionManager(event.getPlayer().getWorld());
+        String playerRegionName = Util.getLastElement(regionManager.getApplicableRegions(event.getPlayer().getLocation()).getRegions()).getId();
+        String url = plugin.getConfig().getString("ambient_data." + playerRegionName + ".url");
+
+        if (url != null && References.playerCurrentMusic.get(event.getPlayer()) != null && References.playerCurrentMusic.get(event.getPlayer()).equals(playerRegionName)) {
+            Ambient.sendAmbientMusicPacket(false, event.getPlayer(), url);
+            References.playerCurrentMusic.put(event.getPlayer(), playerRegionName);
+        } else if (url == null && References.playerCurrentMusic.get(event.getPlayer()) != null) {
+            Ambient.sendAmbientMusicPacket(true, event.getPlayer(), "");
+            References.playerCurrentMusic.remove(event.getPlayer());
+        }
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onPlayerRespawn(PlayerRespawnEvent event) {
+        RegionManager regionManager = WGBukkit.getRegionManager(event.getPlayer().getWorld());
+        String playerRegionName = Util.getLastElement(regionManager.getApplicableRegions(event.getPlayer().getLocation()).getRegions()).getId();
+        String url = plugin.getConfig().getString("ambient_data." + playerRegionName + ".url");
+
+        if (url != null && References.playerCurrentMusic.get(event.getPlayer()) != null && References.playerCurrentMusic.get(event.getPlayer()).equals(playerRegionName)) {
+            Ambient.sendAmbientMusicPacket(false, event.getPlayer(), url);
+            References.playerCurrentMusic.put(event.getPlayer(), playerRegionName);
+        } else if (url == null && References.playerCurrentMusic.get(event.getPlayer()) != null) {
+            Ambient.sendAmbientMusicPacket(true, event.getPlayer(), "");
+            References.playerCurrentMusic.remove(event.getPlayer());
         }
     }
 }

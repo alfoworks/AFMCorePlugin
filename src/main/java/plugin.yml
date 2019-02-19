@@ -20,7 +20,7 @@ commands:
     permission-message: У тебя нет прав, иди нахуй, бля.
   notify:
     description: Отослать уведомление в оверлей всем игрокам.
-    usage: "Использование: /notify <сообщение не больше 48 символов>"
+    usage: "Использование: /packet <сообщение не больше 48 символов>"
     permission: afmcp.staff
     permission-message: У тебя нет прав, иди нахуй, бля.
   notifyplayer:
@@ -51,4 +51,9 @@ commands:
     description: Включить/выключить режим тех.работ на сервере
     usage: "Использование: /maintenance <true|false>"
     permission: afmcp.maintenance
+    permission-message: У тебя нет прав, иди нахуй, бля.
+  ambient:
+    description: Включить/выключить режим тех.работ на сервере
+    usage: "Использование: /ambient <add/remove> <имя региона> <ссылка на mp3>"
+    permission: afmcp.ambient
     permission-message: У тебя нет прав, иди нахуй, бля.

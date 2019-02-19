@@ -66,6 +66,15 @@
         </dependency>
 
         <dependency>
+            <groupId>com.sk89q.worldguard</groupId>
+            <artifactId>WorldGuard</artifactId>
+            <version>LATEST</version>
+            <systemPath>${project.basedir}/dependencies/worldguard-6.2.jar</systemPath>
+            <type>jar</type>
+            <scope>system</scope>
+        </dependency>
+
+        <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>LATEST</version>

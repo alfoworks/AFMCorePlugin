@@ -1,4 +1,4 @@
-package ru.allformine.afmcp.notify;
+package ru.allformine.afmcp.packet;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
