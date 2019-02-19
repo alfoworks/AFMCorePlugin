@@ -47,10 +47,10 @@ class EventListener implements Listener {
             String playerRegionName = Util.getLastElement(regionManager.getApplicableRegions(event.getPlayer().getLocation()).getRegions()).getId();
             String url = plugin.getConfig().getString("ambient_data." + playerRegionName + ".url");
 
-            if (url != null && References.playerCurrentMusic.get(event.getPlayer()) != null && References.playerCurrentMusic.get(event.getPlayer()).equals(playerRegionName)) {
+            if (url != null && (References.playerCurrentMusic.get(event.getPlayer()) != null || !References.playerCurrentMusic.get(event.getPlayer()).equals(playerRegionName))) {
                 Ambient.sendAmbientMusicPacket(false, event.getPlayer(), url);
                 References.playerCurrentMusic.put(event.getPlayer(), playerRegionName);
-            } else if (url == null && References.playerCurrentMusic.get(event.getPlayer()) != null) {
+            } else {
                 Ambient.sendAmbientMusicPacket(true, event.getPlayer(), "");
                 References.playerCurrentMusic.remove(event.getPlayer());
             }
@@ -153,10 +153,10 @@ class EventListener implements Listener {
                 String playerRegionName = Util.getLastElement(regionManager.getApplicableRegions(event.getPlayer().getLocation()).getRegions()).getId();
                 String url = plugin.getConfig().getString("ambient_data." + playerRegionName + ".url");
 
-                if (url != null && References.playerCurrentMusic.get(event.getPlayer()) != null && References.playerCurrentMusic.get(event.getPlayer()).equals(playerRegionName)) {
+                if (url != null && (References.playerCurrentMusic.get(event.getPlayer()) != null || !References.playerCurrentMusic.get(event.getPlayer()).equals(playerRegionName))) {
                     Ambient.sendAmbientMusicPacket(false, event.getPlayer(), url);
                     References.playerCurrentMusic.put(event.getPlayer(), playerRegionName);
-                } else if (url == null && References.playerCurrentMusic.get(event.getPlayer()) != null) {
+                } else {
                     Ambient.sendAmbientMusicPacket(true, event.getPlayer(), "");
                     References.playerCurrentMusic.remove(event.getPlayer());
                 }
@@ -225,10 +225,10 @@ class EventListener implements Listener {
             String playerRegionName = Util.getLastElement(regionManager.getApplicableRegions(event.getPlayer().getLocation()).getRegions()).getId();
             String url = plugin.getConfig().getString("ambient_data." + playerRegionName + ".url");
 
-            if (url != null && References.playerCurrentMusic.get(event.getPlayer()) != null && References.playerCurrentMusic.get(event.getPlayer()).equals(playerRegionName)) {
+            if (url != null && (References.playerCurrentMusic.get(event.getPlayer()) != null || !References.playerCurrentMusic.get(event.getPlayer()).equals(playerRegionName))) {
                 Ambient.sendAmbientMusicPacket(false, event.getPlayer(), url);
                 References.playerCurrentMusic.put(event.getPlayer(), playerRegionName);
-            } else if (url == null && References.playerCurrentMusic.get(event.getPlayer()) != null) {
+            } else {
                 Ambient.sendAmbientMusicPacket(true, event.getPlayer(), "");
                 References.playerCurrentMusic.remove(event.getPlayer());
             }
@@ -242,10 +242,10 @@ class EventListener implements Listener {
             String playerRegionName = Util.getLastElement(regionManager.getApplicableRegions(event.getPlayer().getLocation()).getRegions()).getId();
             String url = plugin.getConfig().getString("ambient_data." + playerRegionName + ".url");
 
-            if (url != null && References.playerCurrentMusic.get(event.getPlayer()) != null && References.playerCurrentMusic.get(event.getPlayer()).equals(playerRegionName)) {
+            if (url != null && (References.playerCurrentMusic.get(event.getPlayer()) != null || !References.playerCurrentMusic.get(event.getPlayer()).equals(playerRegionName))) {
                 Ambient.sendAmbientMusicPacket(false, event.getPlayer(), url);
                 References.playerCurrentMusic.put(event.getPlayer(), playerRegionName);
-            } else if (url == null && References.playerCurrentMusic.get(event.getPlayer()) != null) {
+            } else {
                 Ambient.sendAmbientMusicPacket(true, event.getPlayer(), "");
                 References.playerCurrentMusic.remove(event.getPlayer());
             }
