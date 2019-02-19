@@ -283,21 +283,22 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
                     return false;
                 }
 
-                this.getConfig().set("ambient_data." + rg_name + "url", args[2]);
+                this.getConfig().set("ambient_data." + rg_name + ".url", args[2]);
             } else if (args[0].equalsIgnoreCase("remove")) {
-                if (this.getConfig().getString("ambient_data." + rg_name + "url") == null) {
+                if (this.getConfig().getString("ambient_data." + rg_name + ".url") == null) {
                     sender.sendMessage(ChatColor.DARK_PURPLE + "AmbientMusic " + ChatColor.WHITE + "> Запись не найдена.");
                     return true;
                 }
 
-                this.getConfig().set("ambient_data." + rg_name + "url", null);
+                this.getConfig().set("ambient_data." + rg_name + ".url", null);
             } else {
                 return false;
             }
 
             this.saveConfig();
-
             sender.sendMessage(ChatColor.DARK_PURPLE + "AmbientMusic " + ChatColor.WHITE + "> Действие было выполнено.");
+
+            return true;
         }
 
         return false;
