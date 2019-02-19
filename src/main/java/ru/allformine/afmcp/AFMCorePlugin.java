@@ -21,12 +21,10 @@ import ru.allformine.afmcp.packet.Notify;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Random;
 
 import static ru.allformine.afmcp.References.frozenPlayers;
 
 public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
-    private Random random = new Random(); //Создаем экземпляр класса рандома на весь плагин, дабы он был без повторений
     private HTTPServer apiServer = new HTTPServer();
 
     public static Plugin getPlugin() {
@@ -215,23 +213,6 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
             } else {
                 return false;
             }
-        } else if (cmd.getName().equalsIgnoreCase("gift")) {
-            if (sender instanceof Player) {
-                if (!this.getConfig().getBoolean("playerdata." + sender.getName() + ".giftGiven")) {
-                    String[] kits = new String[]{"ny1", "ny2", "ny1", "ny1"};
-                    String kit = kits[random.nextInt(kits.length)];
-                    Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "kitgive " + sender.getName() + " " + kit + " 1");
-                    sender.sendMessage(ChatColor.LIGHT_PURPLE + "Gifts " + ChatColor.WHITE + "> Отлично! Для получения своего подарка напишите /kit " + kit);
-
-                    this.getConfig().set("playerdata." + sender.getName() + ".giftGiven", true);
-                    this.saveConfig();
-                } else {
-                    sender.sendMessage(ChatColor.LIGHT_PURPLE + "Gifts " + ChatColor.WHITE + "> Вы уже получили подарок.");
-                }
-            } else {
-                sender.sendMessage(ChatColor.RED + "Данная команда может быть выполнена только игроком.");
-            }
-            return true;
         } else if (cmd.getName().equalsIgnoreCase("afmcplog")) {
             if (args.length > 0 && (args[0].equals("true") || args[0].equals("false"))) {
                 References.log = args[0].equals("true");
@@ -256,11 +237,13 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
                 return false;
             }
         } else if (cmd.getName().equalsIgnoreCase("ambient")) {
-            if (args.length < 2) {
-                return false;
-            } else if (sender instanceof ConsoleCommandSender) {
+            if (sender instanceof ConsoleCommandSender) {
                 sender.sendMessage(ChatColor.DARK_PURPLE + "AmbientMusic " + ChatColor.WHITE + "> Данная команда может быть выполнена только игроком.");
                 return true;
+            }
+
+            if (args.length < 2) {
+                return false;
             }
 
             Player player = (Player) sender;
