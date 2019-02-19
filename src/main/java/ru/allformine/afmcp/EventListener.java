@@ -42,15 +42,18 @@ class EventListener implements Listener {
         }
 
         RegionManager regionManager = WGBukkit.getRegionManager(event.getPlayer().getWorld());
-        String playerRegionName = Util.getLastElement(regionManager.getApplicableRegions(event.getPlayer().getLocation()).getRegions()).getId();
-        String url = plugin.getConfig().getString("ambient_data." + playerRegionName + ".url");
 
-        if (url != null && References.playerCurrentMusic.get(event.getPlayer()) != null && References.playerCurrentMusic.get(event.getPlayer()).equals(playerRegionName)) {
-            Ambient.sendAmbientMusicPacket(false, event.getPlayer(), url);
-            References.playerCurrentMusic.put(event.getPlayer(), playerRegionName);
-        } else if (url == null && References.playerCurrentMusic.get(event.getPlayer()) != null) {
-            Ambient.sendAmbientMusicPacket(true, event.getPlayer(), "");
-            References.playerCurrentMusic.remove(event.getPlayer());
+        if (!regionManager.getApplicableRegions(event.getPlayer().getLocation()).getRegions().isEmpty()) {
+            String playerRegionName = Util.getLastElement(regionManager.getApplicableRegions(event.getPlayer().getLocation()).getRegions()).getId();
+            String url = plugin.getConfig().getString("ambient_data." + playerRegionName + ".url");
+
+            if (url != null && References.playerCurrentMusic.get(event.getPlayer()) != null && References.playerCurrentMusic.get(event.getPlayer()).equals(playerRegionName)) {
+                Ambient.sendAmbientMusicPacket(false, event.getPlayer(), url);
+                References.playerCurrentMusic.put(event.getPlayer(), playerRegionName);
+            } else if (url == null && References.playerCurrentMusic.get(event.getPlayer()) != null) {
+                Ambient.sendAmbientMusicPacket(true, event.getPlayer(), "");
+                References.playerCurrentMusic.remove(event.getPlayer());
+            }
         }
     }
 
@@ -146,17 +149,17 @@ class EventListener implements Listener {
 
         if (!event.isCancelled()) {
             RegionManager regionManager = WGBukkit.getRegionManager(event.getPlayer().getWorld());
-            String playerRegionName = Util.getLastElement(regionManager.getApplicableRegions(event.getPlayer().getLocation()).getRegions()).getId();
-            String url = plugin.getConfig().getString("ambient_data." + playerRegionName + ".url"); /*
-                                                                                                    TODO возможно, обращаться каждый раз, когда игрок движется - не дело.
-                                                                                                    надо будет проверить..
-                                                                                                    */
-            if (url != null && References.playerCurrentMusic.get(event.getPlayer()) != null && References.playerCurrentMusic.get(event.getPlayer()).equals(playerRegionName)) {
-                Ambient.sendAmbientMusicPacket(false, event.getPlayer(), url);
-                References.playerCurrentMusic.put(event.getPlayer(), playerRegionName);
-            } else if (url == null && References.playerCurrentMusic.get(event.getPlayer()) != null) {
-                Ambient.sendAmbientMusicPacket(true, event.getPlayer(), "");
-                References.playerCurrentMusic.remove(event.getPlayer());
+            if (!regionManager.getApplicableRegions(event.getPlayer().getLocation()).getRegions().isEmpty()) {
+                String playerRegionName = Util.getLastElement(regionManager.getApplicableRegions(event.getPlayer().getLocation()).getRegions()).getId();
+                String url = plugin.getConfig().getString("ambient_data." + playerRegionName + ".url");
+
+                if (url != null && References.playerCurrentMusic.get(event.getPlayer()) != null && References.playerCurrentMusic.get(event.getPlayer()).equals(playerRegionName)) {
+                    Ambient.sendAmbientMusicPacket(false, event.getPlayer(), url);
+                    References.playerCurrentMusic.put(event.getPlayer(), playerRegionName);
+                } else if (url == null && References.playerCurrentMusic.get(event.getPlayer()) != null) {
+                    Ambient.sendAmbientMusicPacket(true, event.getPlayer(), "");
+                    References.playerCurrentMusic.remove(event.getPlayer());
+                }
             }
         }
     }
@@ -218,30 +221,34 @@ class EventListener implements Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void onPlayerTeleport(PlayerTeleportEvent event) {
         RegionManager regionManager = WGBukkit.getRegionManager(event.getPlayer().getWorld());
-        String playerRegionName = Util.getLastElement(regionManager.getApplicableRegions(event.getPlayer().getLocation()).getRegions()).getId();
-        String url = plugin.getConfig().getString("ambient_data." + playerRegionName + ".url");
+        if (!regionManager.getApplicableRegions(event.getPlayer().getLocation()).getRegions().isEmpty()) {
+            String playerRegionName = Util.getLastElement(regionManager.getApplicableRegions(event.getPlayer().getLocation()).getRegions()).getId();
+            String url = plugin.getConfig().getString("ambient_data." + playerRegionName + ".url");
 
-        if (url != null && References.playerCurrentMusic.get(event.getPlayer()) != null && References.playerCurrentMusic.get(event.getPlayer()).equals(playerRegionName)) {
-            Ambient.sendAmbientMusicPacket(false, event.getPlayer(), url);
-            References.playerCurrentMusic.put(event.getPlayer(), playerRegionName);
-        } else if (url == null && References.playerCurrentMusic.get(event.getPlayer()) != null) {
-            Ambient.sendAmbientMusicPacket(true, event.getPlayer(), "");
-            References.playerCurrentMusic.remove(event.getPlayer());
+            if (url != null && References.playerCurrentMusic.get(event.getPlayer()) != null && References.playerCurrentMusic.get(event.getPlayer()).equals(playerRegionName)) {
+                Ambient.sendAmbientMusicPacket(false, event.getPlayer(), url);
+                References.playerCurrentMusic.put(event.getPlayer(), playerRegionName);
+            } else if (url == null && References.playerCurrentMusic.get(event.getPlayer()) != null) {
+                Ambient.sendAmbientMusicPacket(true, event.getPlayer(), "");
+                References.playerCurrentMusic.remove(event.getPlayer());
+            }
         }
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onPlayerRespawn(PlayerRespawnEvent event) {
         RegionManager regionManager = WGBukkit.getRegionManager(event.getPlayer().getWorld());
-        String playerRegionName = Util.getLastElement(regionManager.getApplicableRegions(event.getPlayer().getLocation()).getRegions()).getId();
-        String url = plugin.getConfig().getString("ambient_data." + playerRegionName + ".url");
+        if (!regionManager.getApplicableRegions(event.getPlayer().getLocation()).getRegions().isEmpty()) {
+            String playerRegionName = Util.getLastElement(regionManager.getApplicableRegions(event.getPlayer().getLocation()).getRegions()).getId();
+            String url = plugin.getConfig().getString("ambient_data." + playerRegionName + ".url");
 
-        if (url != null && References.playerCurrentMusic.get(event.getPlayer()) != null && References.playerCurrentMusic.get(event.getPlayer()).equals(playerRegionName)) {
-            Ambient.sendAmbientMusicPacket(false, event.getPlayer(), url);
-            References.playerCurrentMusic.put(event.getPlayer(), playerRegionName);
-        } else if (url == null && References.playerCurrentMusic.get(event.getPlayer()) != null) {
-            Ambient.sendAmbientMusicPacket(true, event.getPlayer(), "");
-            References.playerCurrentMusic.remove(event.getPlayer());
+            if (url != null && References.playerCurrentMusic.get(event.getPlayer()) != null && References.playerCurrentMusic.get(event.getPlayer()).equals(playerRegionName)) {
+                Ambient.sendAmbientMusicPacket(false, event.getPlayer(), url);
+                References.playerCurrentMusic.put(event.getPlayer(), playerRegionName);
+            } else if (url == null && References.playerCurrentMusic.get(event.getPlayer()) != null) {
+                Ambient.sendAmbientMusicPacket(true, event.getPlayer(), "");
+                References.playerCurrentMusic.remove(event.getPlayer());
+            }
         }
     }
 }
