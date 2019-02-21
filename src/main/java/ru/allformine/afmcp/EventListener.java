@@ -54,6 +54,7 @@ class EventListener implements Listener {
                 References.playerCurrentMusic.remove(event.getPlayer());
             }
         } else if (References.playerCurrentMusic.get(event.getPlayer()) != null) {
+            Ambient.sendAmbientMusicPacket(true, event.getPlayer(), "");
             References.playerCurrentMusic.remove(event.getPlayer());
         }
     }
@@ -162,6 +163,7 @@ class EventListener implements Listener {
                     References.playerCurrentMusic.remove(event.getPlayer());
                 }
             } else if (References.playerCurrentMusic.get(event.getPlayer()) != null) {
+                Ambient.sendAmbientMusicPacket(true, event.getPlayer(), "");
                 References.playerCurrentMusic.remove(event.getPlayer());
             }
         }
@@ -236,6 +238,7 @@ class EventListener implements Listener {
                 References.playerCurrentMusic.remove(event.getPlayer());
             }
         } else if (References.playerCurrentMusic.get(event.getPlayer()) != null) {
+            Ambient.sendAmbientMusicPacket(true, event.getPlayer(), "");
             References.playerCurrentMusic.remove(event.getPlayer());
         }
     }
