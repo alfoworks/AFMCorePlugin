@@ -327,7 +327,7 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
 
             this.saveConfig();
             sender.sendMessage(ChatColor.DARK_PURPLE + "RGName " + ChatColor.WHITE + "> Действие было выполнено.");
-
+            WGRegionEvent.OnPlayerEnterOrLeave(player);
             return true;
         }
 

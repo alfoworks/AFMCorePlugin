@@ -38,7 +38,7 @@ class EventListener implements Listener {
             System.out.println("Created configuration section for player " + event.getPlayer().getName());
         }
 
-        WGRegionEvent.OnPlayerEnterOrLeave(event);
+        WGRegionEvent.OnPlayerEnterOrLeave(event.getPlayer());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
@@ -131,7 +131,7 @@ class EventListener implements Listener {
             event.getPlayer().sendMessage(ChatColor.RED + "Freeze " + ChatColor.RESET + "> вы заморожены!");
         }
 
-        WGRegionEvent.OnPlayerEnterOrLeave(event);
+        WGRegionEvent.OnPlayerEnterOrLeave(event.getPlayer());
     }
 
     @EventHandler(priority = EventPriority.HIGH)
@@ -190,11 +190,11 @@ class EventListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onPlayerTeleport(PlayerTeleportEvent event) {
-        WGRegionEvent.OnPlayerEnterOrLeave(event);
+        WGRegionEvent.OnPlayerEnterOrLeave(event.getPlayer());
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onPlayerRespawn(PlayerRespawnEvent event) {
-        WGRegionEvent.OnPlayerEnterOrLeave(event);
+        WGRegionEvent.OnPlayerEnterOrLeave(event.getPlayer());
     }
 }
