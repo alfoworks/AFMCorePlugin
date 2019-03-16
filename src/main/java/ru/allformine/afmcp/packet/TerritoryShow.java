@@ -1,5 +1,6 @@
 package ru.allformine.afmcp.packet;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import ru.allformine.afmcp.AFMCorePlugin;
 
@@ -14,7 +15,7 @@ public class TerritoryShow {
         DataOutputStream out = new DataOutputStream(b);
 
         try {
-            out.writeUTF(name);
+            out.writeUTF(ChatColor.translateAlternateColorCodes('&', name));
         } catch (IOException e) {
             e.printStackTrace();
         }

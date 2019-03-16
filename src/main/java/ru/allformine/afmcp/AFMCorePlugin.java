@@ -185,7 +185,7 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
                 sender.sendMessage(ChatColor.RED + "Данная команда может быть выполнена только игроком.");
                 return true;
             }
-        } else if (cmd.getName().equalsIgnoreCase("packet")) {
+        } else if (cmd.getName().equalsIgnoreCase("notify")) {
             if (args.length > 0 && String.join(" ", args).length() <= 48) {
                 Notify.notifyAll(ChatColor.translateAlternateColorCodes('&', String.join(" ", args)));
                 sender.sendMessage(ChatColor.BLUE + "Notify " + ChatColor.WHITE + "> Сообщение было успешно отправлено!");
