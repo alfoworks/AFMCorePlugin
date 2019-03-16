@@ -37,6 +37,7 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "C234Fb");
         this.getServer().getMessenger().registerIncomingPluginChannel(this, "C234Fb", this);
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "ambient");
+        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "territoryshow");
 
         this.saveDefaultConfig();
 
@@ -280,6 +281,52 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
 
             this.saveConfig();
             sender.sendMessage(ChatColor.DARK_PURPLE + "AmbientMusic " + ChatColor.WHITE + "> Действие было выполнено.");
+
+            return true;
+        } else if (cmd.getName().equalsIgnoreCase("rgname")) {
+            if (sender instanceof ConsoleCommandSender) {
+                sender.sendMessage(ChatColor.DARK_PURPLE + "RGName " + ChatColor.WHITE + "> Данная команда может быть выполнена только игроком.");
+                return true;
+            }
+
+            if (args.length < 2) {
+                return false;
+            }
+
+            Player player = (Player) sender;
+            RegionManager regionManager = WGBukkit.getRegionManager(player.getWorld());
+
+            if (regionManager == null) {
+                sender.sendMessage(ChatColor.DARK_PURPLE + "RGName " + ChatColor.WHITE + "> Произошла ошибка.");
+                return true;
+            }
+
+            if (regionManager.getRegion(args[1]) == null) {
+                sender.sendMessage(ChatColor.DARK_PURPLE + "RGName " + ChatColor.WHITE + "> Регион с таким именем не найден.");
+                return true;
+            }
+
+            String rg_name = args[1].toLowerCase();
+
+            if (args[0].equalsIgnoreCase("add")) {
+                if (args.length < 3) {
+                    return false;
+                }
+
+                this.getConfig().set("rgname_data." + rg_name + ".name", args[2]);
+            } else if (args[0].equalsIgnoreCase("remove")) {
+                if (this.getConfig().getString("rgname_data." + rg_name + ".name") == null) {
+                    sender.sendMessage(ChatColor.DARK_PURPLE + "RGName " + ChatColor.WHITE + "> Запись не найдена.");
+                    return true;
+                }
+
+                this.getConfig().set("rgname_data." + rg_name + ".name", null);
+            } else {
+                return false;
+            }
+
+            this.saveConfig();
+            sender.sendMessage(ChatColor.DARK_PURPLE + "RGName " + ChatColor.WHITE + "> Действие было выполнено.");
 
             return true;
         }

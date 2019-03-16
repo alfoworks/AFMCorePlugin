@@ -15,8 +15,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.kitteh.vanish.VanishManager;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class ProtocolHandler {
@@ -65,26 +63,8 @@ public class ProtocolHandler {
 
     private static String getNewMoTD() {
         String MoTD;
-        String firstLine = plugin.getConfig().getString("protocol.motd.firstLine");
-        String secondLine = "До релиза: неизвестно";
-
-        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-
-        try {
-            long timeUp = format.parse("2019/02/27 20:00:00").getTime();
-            long diff = timeUp - System.currentTimeMillis();
-
-            long diffMinutes = diff / (60 * 1000) % 60;
-            long diffHours = diff / (60 * 60 * 1000) % 24;
-            long diffDays = diff / (24 * 60 * 60 * 1000);
-
-            String sb = String.valueOf(diffDays) + " дней, " +
-                    diffHours + " часов, " +
-                    diffMinutes + " минут";
-            secondLine = ChatColor.AQUA + "До релиза: " + sb;
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        String firstLine = ChatColor.AQUA + plugin.getConfig().getString("protocol.motd.firstLine");
+        String secondLine = ChatColor.RED + plugin.getConfig().getString("protocol.motd.secondLine");
 
         MoTD = StringUtils.center(firstLine, 42) + "\n" + StringUtils.center(secondLine, 42);
 

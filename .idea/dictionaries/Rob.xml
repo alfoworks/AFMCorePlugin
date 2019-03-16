@@ -14,8 +14,10 @@
       <w>motd</w>
       <w>notifyplayer</w>
       <w>preprocess</w>
+      <w>rgname</w>
       <w>sila</w>
       <w>teleport</w>
+      <w>territoryshow</w>
       <w>zemli</w>
     </words>
   </dictionary>

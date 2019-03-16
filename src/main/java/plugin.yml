@@ -1,6 +1,6 @@
 name: AFMCorePlugin
 main: ru.allformine.afmcp.AFMCorePlugin
-version: 2.0
+version: 2.1
 author: Iterator
 depend: [ProtocolLib, VanishNoPacket, Herochat]
 softdepend: [Factions]
@@ -56,4 +56,9 @@ commands:
     description: Включить/выключить режим тех.работ на сервере
     usage: "Использование: /ambient <add/remove> <имя региона> <ссылка на mp3>"
     permission: afmcp.ambient
+    permission-message: У тебя нет прав, иди нахуй, бля.
+  rgname:
+    description: Установить имя региону, чтобы игрок видел его справа от быстрых слотов
+    usage: "Использование: /rgname <add/remove> <имя региона> <текст>"
+    permission: afmcp.rgname
     permission-message: У тебя нет прав, иди нахуй, бля.
