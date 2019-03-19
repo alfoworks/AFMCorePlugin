@@ -61,7 +61,7 @@ public class HTTPServer extends BukkitRunnable {
                         ServerAPICommandSender sender = new ServerAPICommandSender();
 
                         Bukkit.dispatchCommand(sender, minecraftCommand);
-                        String commandOutput = String.join(" ", sender.getOutput());
+                        String commandOutput = String.join("\n", sender.getOutput());
 
                         if (commandOutput.length() > 0) {
                             ServerUtils.responseString(exchange, 200, commandOutput);
