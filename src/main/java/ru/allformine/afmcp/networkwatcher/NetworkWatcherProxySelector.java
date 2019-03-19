@@ -16,11 +16,11 @@ public class NetworkWatcherProxySelector extends ProxySelector {
 
     private final ProxySelector defaultSelector;
 
-    public ProxySelector getDefaultSelector() {
+    ProxySelector getDefaultSelector() {
         return defaultSelector;
     }
 
-    public NetworkWatcherProxySelector(ProxySelector defaultSelector) {
+    NetworkWatcherProxySelector(ProxySelector defaultSelector) {
         this.defaultSelector = defaultSelector;
     }
 
@@ -32,7 +32,6 @@ public class NetworkWatcherProxySelector extends ProxySelector {
                 System.out.println("Plugin " + plugin.getName() + " attempted to establish connection " + uri + " in main server thread");
             } else {
                 System.out.println("Something attempted to access " + uri + " in main server thread, printing stack trace");
-                Thread.dumpStack();
             }
         }
         return defaultSelector.select(uri);
