@@ -17,6 +17,7 @@ import org.kitteh.vanish.staticaccess.VanishNotLoadedException;
 import ru.allformine.afmcp.net.discord.Discord;
 import ru.allformine.afmcp.net.eco.Eco;
 import ru.allformine.afmcp.net.http.HTTPServer;
+import ru.allformine.afmcp.networkwatcher.NetworkWatcher;
 import ru.allformine.afmcp.packet.Notify;
 
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ import static ru.allformine.afmcp.References.frozenPlayers;
 
 public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
     private HTTPServer apiServer = new HTTPServer();
+    private NetworkWatcher watcher = new NetworkWatcher();
 
     public static Plugin getPlugin() {
         return Bukkit.getPluginManager().getPlugin("AFMCorePlugin");
@@ -52,12 +54,16 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
 
         ProtocolHandler.startHandler();
 
+        watcher.register();
+
         Discord.sendMessage("Сервер поднялся!", false, "TechInfo", 1); //отправляем в дс сообщеньку, что сервак врублен.
     }
 
     //Сообщение в дискорд о том, что сервер упал.
     public void onDisable() {
         Discord.sendMessageSync("@everyone Сервер упал!", false, "TechInfo", 1);
+
+        watcher.unregister();
     }
 
     //Скриншотер
@@ -201,7 +207,7 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
                 if (player != null) {
                     String text = String.join(" ", new ArrayList<>(Arrays.asList(args)).remove(0));
                     if (text.length() <= 48) {
-                        Notify.notifyPlayer(ChatColor.translateAlternateColorCodes('&', String.join(" ", args)), player);
+                        Notify.notifyPlayer(ChatColor.translateAlternateColorCodes('&', text), player);
                         sender.sendMessage(ChatColor.BLUE + "Notify " + ChatColor.WHITE + "> Сообщение было успешно отправлено!");
                     } else {
                         return false;
@@ -306,7 +312,11 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
                 return true;
             }
 
-            String rg_name = args[1].toLowerCase();
+            ArrayList<String> args2 = new ArrayList<String>(Arrays.asList(args)); //Ебаная ява, ненавижу..
+            args2.remove(0);
+            args2.remove(0);
+
+            String rg_name = String.join("", args2);
 
             if (args[0].equalsIgnoreCase("add")) {
                 if (args.length < 3) {
@@ -329,6 +339,21 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
             sender.sendMessage(ChatColor.DARK_PURPLE + "RGName " + ChatColor.WHITE + "> Действие было выполнено.");
             WGRegionEvent.OnPlayerEnterOrLeave(player);
             return true;
+        } else if (cmd.getName().equalsIgnoreCase("nw")) {
+            if (args.length > 0 && (args[0].equals("true") || args[0].equals("false"))) {
+                this.getConfig().set("networkwatcher", args[0].equals("true"));
+
+                if (args[0].equals("true") && !watcher.registered) {
+                    watcher.register();
+                } else if (watcher.registered) {
+                    watcher.unregister();
+                }
+
+                sender.sendMessage(ChatColor.DARK_AQUA + "NetworkWatcher " + ChatColor.WHITE + "> NetworkWatcher был переключен.");
+                return true;
+            } else {
+                return false;
+            }
         }
 
         return false;

@@ -57,3 +57,4 @@ playerdata: # НЕ МЕНЯТЬ. Внутренняя инфа плагина
 loaders: # Здесь записаны прогрузчики.
 ambient_data:
 rgname_data:
+networkwatcher: false

@@ -1,6 +1,6 @@
 name: AFMCorePlugin
 main: ru.allformine.afmcp.AFMCorePlugin
-version: 2.1
+version: 2.2
 author: Iterator
 depend: [ProtocolLib, VanishNoPacket, Herochat]
 softdepend: [Factions]
@@ -20,7 +20,7 @@ commands:
     permission-message: У тебя нет прав, иди нахуй, бля.
   notify:
     description: Отослать уведомление в оверлей всем игрокам.
-    usage: "Использование: /packet <сообщение не больше 48 символов>"
+    usage: "Использование: /notify <сообщение не больше 48 символов>"
     permission: afmcp.staff
     permission-message: У тебя нет прав, иди нахуй, бля.
   notifyplayer:
@@ -61,4 +61,9 @@ commands:
     description: Установить имя региону, чтобы игрок видел его справа от быстрых слотов
     usage: "Использование: /rgname <add/remove> <имя региона> <текст>"
     permission: afmcp.rgname
+    permission-message: У тебя нет прав, иди нахуй, бля.
+  nw:
+    description: Включить/выключить следитель за сетевой активностью плагинов.
+    usage: "Использование: /nw <true/false>"
+    permission: afmcp.nw
     permission-message: У тебя нет прав, иди нахуй, бля.
