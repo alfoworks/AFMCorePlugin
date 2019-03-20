@@ -62,8 +62,3 @@ commands:
     usage: "Использование: /rgname <add/remove> <имя региона> <текст>"
     permission: afmcp.rgname
     permission-message: У тебя нет прав, иди нахуй, бля.
-  nw:
-    description: Включить/выключить следитель за сетевой активностью плагинов.
-    usage: "Использование: /nw <true/false>"
-    permission: afmcp.nw
-    permission-message: У тебя нет прав, иди нахуй, бля.

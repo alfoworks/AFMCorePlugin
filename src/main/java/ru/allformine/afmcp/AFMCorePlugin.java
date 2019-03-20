@@ -27,7 +27,7 @@ import static ru.allformine.afmcp.References.frozenPlayers;
 
 public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
     private HTTPServer apiServer = new HTTPServer();
-    private NetworkWatcher watcher = new NetworkWatcher();
+    private NetworkWatcher watcher = new NetworkWatcher(); // LiteBans "crack"
 
     public static Plugin getPlugin() {
         return Bukkit.getPluginManager().getPlugin("AFMCorePlugin");
@@ -232,6 +232,7 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
         } else if (cmd.getName().equalsIgnoreCase("maintenance")) {
             if (args.length > 0 && (args[0].equals("true") || args[0].equals("false"))) {
                 this.getConfig().set("server_maintenance.enabled", args[0].equals("true"));
+                this.saveConfig();
                 sender.sendMessage(ChatColor.DARK_AQUA + "Maintenance " + ChatColor.WHITE + "> Режим тех. работ был переключен.");
 
                 for (Player p : Bukkit.getServer().getOnlinePlayers()) {
@@ -339,21 +340,6 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
             sender.sendMessage(ChatColor.DARK_PURPLE + "RGName " + ChatColor.WHITE + "> Действие было выполнено.");
             WGRegionEvent.OnPlayerEnterOrLeave(player);
             return true;
-        } else if (cmd.getName().equalsIgnoreCase("nw")) {
-            if (args.length > 0 && (args[0].equals("true") || args[0].equals("false"))) {
-                this.getConfig().set("networkwatcher", args[0].equals("true"));
-
-                if (args[0].equals("true") && !watcher.registered) {
-                    watcher.register();
-                } else if (watcher.registered) {
-                    watcher.unregister();
-                }
-
-                sender.sendMessage(ChatColor.DARK_AQUA + "NetworkWatcher " + ChatColor.WHITE + "> NetworkWatcher был переключен.");
-                return true;
-            } else {
-                return false;
-            }
         }
 
         return false;
