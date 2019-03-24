@@ -17,18 +17,14 @@ import org.kitteh.vanish.staticaccess.VanishNotLoadedException;
 import ru.allformine.afmcp.net.discord.Discord;
 import ru.allformine.afmcp.net.eco.Eco;
 import ru.allformine.afmcp.net.http.HTTPServer;
-import ru.allformine.afmcp.networkwatcher.NetworkWatcher;
 import ru.allformine.afmcp.packet.Notify;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import static ru.allformine.afmcp.References.frozenPlayers;
 
 public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
     private HTTPServer apiServer = new HTTPServer();
-    private NetworkWatcher watcher = new NetworkWatcher(); // LiteBans "crack"
-
     public static Plugin getPlugin() {
         return Bukkit.getPluginManager().getPlugin("AFMCorePlugin");
     }
@@ -54,16 +50,14 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
 
         ProtocolHandler.startHandler();
 
-        watcher.register();
-
         Discord.sendMessage("Сервер поднялся!", false, "TechInfo", 1); //отправляем в дс сообщеньку, что сервак врублен.
     }
 
     //Сообщение в дискорд о том, что сервер упал.
     public void onDisable() {
-        Discord.sendMessageSync("@everyone Сервер упал!", false, "TechInfo", 1);
+        apiServer.cancel();
 
-        watcher.unregister();
+        Discord.sendMessageSync("@everyone Сервер упал!", false, "TechInfo", 1);
     }
 
     //Скриншотер
@@ -201,11 +195,11 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
                 return false;
             }
         } else if (cmd.getName().equalsIgnoreCase("notifyplayer")) {
-            if (args.length > 0) {
+            if (args.length > 2) {
                 Player player = Bukkit.getPlayer(args[0]);
 
                 if (player != null) {
-                    String text = String.join(" ", new ArrayList<>(Arrays.asList(args)).remove(0));
+                    String text = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
                     if (text.length() <= 48) {
                         Notify.notifyPlayer(ChatColor.translateAlternateColorCodes('&', text), player);
                         sender.sendMessage(ChatColor.BLUE + "Notify " + ChatColor.WHITE + "> Сообщение было успешно отправлено!");
@@ -313,11 +307,7 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
                 return true;
             }
 
-            ArrayList<String> args2 = new ArrayList<String>(Arrays.asList(args)); //Ебаная ява, ненавижу..
-            args2.remove(0);
-            args2.remove(0);
-
-            String rg_name = String.join("", args2);
+            String rg_name = String.join("", Arrays.copyOfRange(args, 2, args.length));
 
             if (args[0].equalsIgnoreCase("add")) {
                 if (args.length < 3) {
