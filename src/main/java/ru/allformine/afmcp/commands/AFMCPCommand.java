@@ -4,7 +4,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import java.util.ArrayList;
 
-public class AFMCMCommand {
+public class AFMCPCommand {
     public String name = "afmcp";
     public String displayName = "TestCommand";
     public ChatColor commandChatColor = ChatColor.BLUE;

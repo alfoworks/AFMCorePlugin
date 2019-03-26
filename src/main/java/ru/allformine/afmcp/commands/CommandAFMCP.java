@@ -4,9 +4,9 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import java.util.ArrayList;
 
-public class CommandAFMCM extends AFMCMCommand {
-    public String name = "afmcm";
-    public String displayName = "AFMCM";
+public class CommandAFMCP extends AFMCPCommand {
+    public String name = "afmcp";
+    public String displayName = "AFMCP";
     public ChatColor commandChatColor = ChatColor.BLACK;
 
     public boolean run(ArrayList<String> args, CommandSender sender) {

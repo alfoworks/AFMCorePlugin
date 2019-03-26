@@ -1,12 +1,12 @@
 package ru.allformine.afmcp;
 
-import ru.allformine.afmcp.commands.AFMCMCommand;
+import ru.allformine.afmcp.commands.AFMCPCommand;
 import java.util.HashMap;
 
-public class CommandHandler {
-    static HashMap<String, AFMCMCommand> commands = new HashMap<>();
+class CommandHandler {
+    static HashMap<String, AFMCPCommand> commands = new HashMap<>();
 
-    public static void addConnabd(AFMCMCommand AFMCMCommand) {
-        commands.put(AFMCMCommand.name, AFMCMCommand);
+    static void addCommand(AFMCPCommand command) {
+        commands.put(command.name, command);
     }
 }

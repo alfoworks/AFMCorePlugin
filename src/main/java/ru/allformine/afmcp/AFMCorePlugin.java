@@ -10,8 +10,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.messaging.PluginMessageListener;
 import org.kitteh.vanish.staticaccess.VanishNoPacket;
 import org.kitteh.vanish.staticaccess.VanishNotLoadedException;
-import ru.allformine.afmcp.commands.AFMCMCommand;
-import ru.allformine.afmcp.commands.CommandAFMCM;
+import ru.allformine.afmcp.commands.AFMCPCommand;
+import ru.allformine.afmcp.commands.CommandAFMCP;
 import ru.allformine.afmcp.net.discord.Discord;
 import ru.allformine.afmcp.net.http.HTTPServer;
 import java.util.ArrayList;
@@ -45,7 +45,7 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
 
         ProtocolHandler.startHandler();
 
-        CommandHandler.addConnabd(new CommandAFMCM());
+        CommandHandler.addCommand(new CommandAFMCP());
 
         Discord.sendMessage("Сервер поднялся!", false, "TechInfo", 1); //отправляем в дс сообщеньку, что сервак врублен.
     }
@@ -78,7 +78,7 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
     //Ебанные команды
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        AFMCMCommand command = CommandHandler.commands.get(cmd.getName());
+        AFMCPCommand command = CommandHandler.commands.get(cmd.getName());
 
         if(command != null) {
             ArrayList<String> args_list = new ArrayList<>(Arrays.asList(args));
