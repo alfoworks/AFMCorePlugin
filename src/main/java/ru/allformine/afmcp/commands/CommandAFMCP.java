@@ -5,12 +5,25 @@ import org.bukkit.command.CommandSender;
 import java.util.ArrayList;
 
 public class CommandAFMCP extends AFMCPCommand {
-    public String name = "afmcp";
-    public String displayName = "AFMCP";
-    public ChatColor commandChatColor = ChatColor.BLACK;
+    @Override
+    public String getName() {
+        return "afmcp";
+    }
+
+    @Override
+    public String getDisplayName() {
+        return "AFMCP";
+    }
+
+    @Override
+    public ChatColor getCommandChatColor() {
+        return ChatColor.BLACK;
+    }
 
     public boolean run(ArrayList<String> args, CommandSender sender) {
-        reply(sender, "Плагин работает!");
+        int test = 0;
+
+        System.out.println(90 / test);
 
         return true;
     }

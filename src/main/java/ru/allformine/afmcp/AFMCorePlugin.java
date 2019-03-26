@@ -2,8 +2,10 @@ package ru.allformine.afmcp;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -83,7 +85,16 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
         if(command != null) {
             ArrayList<String> args_list = new ArrayList<>(Arrays.asList(args));
 
-            return command.run(args_list, sender);
+            try {
+                return command.run(args_list, sender);
+            } catch(Exception e) {
+                sender.sendMessage(ChatColor.RED+command.getDisplayName()+" > Произошла ошибка при выполнении команды!");
+                sender.sendMessage(ChatColor.RED+e.toString());
+
+                e.printStackTrace();
+
+                return true;
+            }
         }
 
         return false;

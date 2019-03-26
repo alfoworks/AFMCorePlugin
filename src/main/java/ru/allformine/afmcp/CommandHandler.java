@@ -7,6 +7,6 @@ class CommandHandler {
     static HashMap<String, AFMCPCommand> commands = new HashMap<>();
 
     static void addCommand(AFMCPCommand command) {
-        commands.put(command.name, command);
+        commands.put(command.getName(), command);
     }
 }
