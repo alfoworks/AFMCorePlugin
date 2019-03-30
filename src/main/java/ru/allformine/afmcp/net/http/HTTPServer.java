@@ -5,8 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import ru.allformine.afmcp.AFMCorePlugin;
-import ru.allformine.afmcp.ProtocolHandler;
-import ru.allformine.afmcp.ServerAPICommandSender;
+import ru.allformine.afmcp.hadkers.ProtocolHandler;
 
 import java.io.*;
 import java.net.InetSocketAddress;
@@ -16,7 +15,7 @@ public class HTTPServer extends BukkitRunnable {
     public HashMap<Player, byte[]> playerScreenshotData = new HashMap<>();
     public HashMap<Player, Boolean> playerScreenshotConfirmation = new HashMap<>();
 
-    String[] allowedPicModes = {"highres", "lowres", "extralowres", "grayscale"};
+    private String[] allowedPicModes = {"highres", "lowres", "extralowres", "grayscale"};
 
     public void run() {
         int port = AFMCorePlugin.getPlugin().getConfig().getInt("server_api.port");
@@ -40,6 +39,12 @@ public class HTTPServer extends BukkitRunnable {
             System.out.println("[AFMCP_APISERVER] Error starting api server!");
             e.printStackTrace();
         }
+    }
+
+    public void stop() {
+        this.cancel();
+
+        System.out.println("[AFMCP_APISERVER] Server is shutting down!!");
     }
 
     class EchoHandler implements HttpHandler {
@@ -99,6 +104,7 @@ public class HTTPServer extends BukkitRunnable {
                     break;
                 case "TAKE_SCREENSHOT":
                     if (args.size() > 0) {
+                        //noinspection deprecation
                         Player player = Bukkit.getPlayer(args.get(0));
 
                         if (player != null) {

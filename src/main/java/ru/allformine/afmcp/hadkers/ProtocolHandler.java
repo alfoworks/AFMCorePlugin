@@ -1,4 +1,4 @@
-package ru.allformine.afmcp;
+package ru.allformine.afmcp.hadkers;
 
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
@@ -14,11 +14,12 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.kitteh.vanish.VanishManager;
-
+import ru.allformine.afmcp.AFMCorePlugin;
+import ru.allformine.afmcp.References;
 import java.util.*;
 
 public class ProtocolHandler {
-    static VanishManager vanishManager;
+    public static VanishManager vanishManager;
     private static Random random = new Random();
     private static Plugin plugin = AFMCorePlugin.getPlugin();
 
@@ -26,7 +27,7 @@ public class ProtocolHandler {
         return References.colors[random.nextInt(References.colors.length)];
     }
 
-    static void startHandler() {
+    public static void startHandler() {
         if (plugin.getConfig().getBoolean("protocol.hide_vanished.serverListPing")) {
             ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(plugin, ListenerPriority.NORMAL, Collections.singletonList(PacketType.Status.Server.OUT_SERVER_INFO), ListenerOptions.ASYNC) {
                 @Override
@@ -63,8 +64,8 @@ public class ProtocolHandler {
 
     private static String getNewMoTD() {
         String MoTD;
-        String firstLine = ChatColor.AQUA + plugin.getConfig().getString("protocol.motd.firstLine");
-        String secondLine = ChatColor.RED + plugin.getConfig().getString("protocol.motd.secondLine");
+        String firstLine = getRandomColor() + plugin.getConfig().getString("protocol.motd.firstLine");
+        String secondLine = getRandomColor() + plugin.getConfig().getString("protocol.motd.secondLine");
 
         MoTD = StringUtils.center(firstLine, 42) + "\n" + StringUtils.center(secondLine, 42);
 

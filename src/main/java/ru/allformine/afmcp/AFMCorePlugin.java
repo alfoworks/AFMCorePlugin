@@ -5,22 +5,32 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.messaging.PluginMessageListener;
 import org.kitteh.vanish.staticaccess.VanishNoPacket;
 import org.kitteh.vanish.staticaccess.VanishNotLoadedException;
-import ru.allformine.afmcp.commands.AFMCPCommand;
-import ru.allformine.afmcp.commands.CommandAFMCP;
-import ru.allformine.afmcp.net.discord.Discord;
+import ru.allformine.afmcp.commands.*;
+import ru.allformine.afmcp.hadkers.CommandHandler;
+import ru.allformine.afmcp.hadkers.EventListener;
+import ru.allformine.afmcp.hadkers.ProtocolHandler;
 import ru.allformine.afmcp.net.http.HTTPServer;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
     private HTTPServer apiServer = new HTTPServer();
+
+    private static byte[] trim(byte[] bytes) {
+        int i = bytes.length - 1;
+        while (i >= 0 && bytes[i] == 0) {
+            --i;
+        }
+
+        return Arrays.copyOf(bytes, i + 1);
+    }
+
     public static Plugin getPlugin() {
         return Bukkit.getPluginManager().getPlugin("AFMCorePlugin");
     }
@@ -38,7 +48,7 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
 
         Bukkit.getServer().getScheduler().runTaskAsynchronously(this, apiServer);
 
-        try { //Проверялка на то, есть ли плагин на ваниш.
+        try {
             //noinspection deprecation
             ProtocolHandler.vanishManager = VanishNoPacket.getManager();
         } catch (VanishNotLoadedException ex) {
@@ -48,23 +58,26 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
         ProtocolHandler.startHandler();
 
         CommandHandler.addCommand(new CommandAFMCP());
-
-        Discord.sendMessage("Сервер поднялся!", false, "TechInfo", 1); //отправляем в дс сообщеньку, что сервак врублен.
+        CommandHandler.addCommand(new CommandAFMCPLog());
+        CommandHandler.addCommand(new CommandFreeze());
+        CommandHandler.addCommand(new CommandMaintenance());
+        CommandHandler.addCommand(new CommandNotify());
+        CommandHandler.addCommand(new CommandPluginReload());
+        CommandHandler.addCommand(new CommandRawBC());
+        CommandHandler.addCommand(new CommandRGParam());
+        CommandHandler.addCommand(new CommandTokens());
+        CommandHandler.addCommand(new CommandVIP());
     }
 
-    //Сообщение в дискорд о том, что сервер упал.
     public void onDisable() {
-        apiServer.cancel();
-
-        Discord.sendMessageSync("@everyone Сервер упал!", false, "TechInfo", 1);
+        apiServer.stop();
     }
 
-    //Скриншотер
     @Override
     public void onPluginMessageReceived(String channel, Player player, byte[] message) {
         if (channel.equals("C234Fb")) {
             if (apiServer.playerScreenshotData.get(player) != null) {
-                message = Util.trim(message);
+                message = trim(message);
                 message = Arrays.copyOf(message, message.length - 1);
 
                 byte[] prevArr = apiServer.playerScreenshotData.get(player);
@@ -77,21 +90,26 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
         }
     }
 
-    //Ебанные команды
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        AFMCPCommand command = CommandHandler.commands.get(cmd.getName());
+        AFMCPCommand command = CommandHandler.commands.get(cmd.getName().toLowerCase());
 
         if(command != null) {
-            ArrayList<String> args_list = new ArrayList<>(Arrays.asList(args));
+            if(command.isPlayerOnly() && !(sender instanceof Player)) {
+                ArrayList<String> args_list = new ArrayList<>(Arrays.asList(args));
 
-            try {
-                return command.run(args_list, sender);
-            } catch(Exception e) {
-                sender.sendMessage(ChatColor.RED+command.getDisplayName()+" > Произошла ошибка при выполнении команды!");
-                sender.sendMessage(ChatColor.RED+e.toString());
+                try {
+                    return command.run(args_list, sender);
+                } catch(Exception e) {
+                    sender.sendMessage(ChatColor.RED+command.getDisplayName()+" > Произошла ошибка при выполнении команды!");
+                    sender.sendMessage(ChatColor.RED+e.toString());
 
-                e.printStackTrace();
+                    e.printStackTrace();
+
+                    return true;
+                }
+            } else {
+                sender.sendMessage(ChatColor.RED+command.getDisplayName()+" > Данная команда не может быть выполнена из консоли!!");
 
                 return true;
             }

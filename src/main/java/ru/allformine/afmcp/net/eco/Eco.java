@@ -1,6 +1,6 @@
 package ru.allformine.afmcp.net.eco;
 
-import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.Plugin;
 import ru.allformine.afmcp.net.http.Requests;
 
 public class Eco {
@@ -15,7 +15,7 @@ public class Eco {
         }
     }
 
-    public static boolean rem(String nickname, String val, JavaPlugin plugin) {
+    public static boolean rem(String nickname, String val, Plugin plugin) {
         String resp = Requests.sendGet(plugin.getConfig().getString("balanceapi.url") + "?check=z5FXxPQqFJMKk5eGyTR2zhms6iAGwp&act=rem&nick="
                 + nickname + "&dif=" + val);
 

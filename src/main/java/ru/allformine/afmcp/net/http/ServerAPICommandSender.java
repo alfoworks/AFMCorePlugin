@@ -1,4 +1,4 @@
-package ru.allformine.afmcp;
+package ru.allformine.afmcp.net.http;
 
 import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_7_R4.command.CraftConsoleCommandSender;

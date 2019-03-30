@@ -2,12 +2,13 @@ package ru.allformine.afmcp.commands;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
+import ru.allformine.afmcp.AFMCorePlugin;
 import java.util.ArrayList;
 
-public class CommandAFMCP extends AFMCPCommand {
+public class CommandPluginReload extends AFMCPCommand {
     @Override
     public String getName() {
-        return "afmcp";
+        return "afmreload";
     }
 
     @Override
@@ -21,7 +22,9 @@ public class CommandAFMCP extends AFMCPCommand {
     }
 
     public boolean run(ArrayList<String> args, CommandSender sender) {
-        reply(sender, "Плагин работает!");
+        AFMCorePlugin.getPlugin().reloadConfig();
+
+        reply(sender, "Плагин был перезапущен.");
 
         return true;
     }

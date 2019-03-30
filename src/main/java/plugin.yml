@@ -52,13 +52,8 @@ commands:
     usage: "Использование: /maintenance <true|false>"
     permission: afmcp.maintenance
     permission-message: У тебя нет прав, иди нахуй, бля.
-  ambient:
-    description: Включить/выключить режим тех.работ на сервере
-    usage: "Использование: /ambient <add/remove> <имя региона> <ссылка на mp3>"
-    permission: afmcp.ambient
-    permission-message: У тебя нет прав, иди нахуй, бля.
-  rgname:
-    description: Установить имя региону, чтобы игрок видел его справа от быстрых слотов
-    usage: "Использование: /rgname <add/remove> <имя региона> <текст>"
-    permission: afmcp.rgname
+  rgparam:
+    description: Дополнительные настройки региона (фоновая музыка и имя)
+    usage: "Использование: /rg param"
+    permission: afmcp.rgparam
     permission-message: У тебя нет прав, иди нахуй, бля.

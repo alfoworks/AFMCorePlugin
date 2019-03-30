@@ -2,6 +2,17 @@
   <dictionary name="temp">
     <words>
       <w>afmcp</w>
+      <w>afmcplog</w>
+      <w>afmreload</w>
+      <w>allformine</w>
+      <w>apiserver</w>
+      <w>noire</w>
+      <w>rawbc</w>
+      <w>rgmame</w>
+      <w>rgname</w>
+      <w>rgparam</w>
+      <w>sila</w>
+      <w>zemli</w>
     </words>
   </dictionary>
 </component>
