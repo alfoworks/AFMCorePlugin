@@ -16,6 +16,7 @@ import ru.allformine.afmcp.hadkers.CommandHandler;
 import ru.allformine.afmcp.hadkers.EventListener;
 import ru.allformine.afmcp.hadkers.ProtocolHandler;
 import ru.allformine.afmcp.net.http.HTTPServer;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -95,7 +96,7 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
         AFMCPCommand command = CommandHandler.commands.get(cmd.getName().toLowerCase());
 
         if(command != null) {
-            if(command.isPlayerOnly() && !(sender instanceof Player)) {
+            if ((command.isPlayerOnly() && sender instanceof Player) || !command.isPlayerOnly()) {
                 ArrayList<String> args_list = new ArrayList<>(Arrays.asList(args));
 
                 try {

@@ -56,7 +56,7 @@ public class EventListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.HIGH)
     public void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
         if(event.isCancelled()) {
             System.out.println(event.getRightClicked().toString() + ", " + event.getRightClicked().getEntityId() + ", " + event.getPlayer().getDisplayName());
