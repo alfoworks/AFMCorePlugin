@@ -24,7 +24,6 @@ public class EventListener implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerJoin(PlayerJoinEvent event) {
         PluginEvents.quitOrJoin(event.getPlayer(), true);
-        ;
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
@@ -60,7 +59,7 @@ public class EventListener implements Listener {
     @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
     public void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
         if(event.isCancelled()) {
-            System.out.println(event.getRightClicked().toString()+", "+event.getRightClicked().getEntityId());
+            System.out.println(event.getRightClicked().toString() + ", " + event.getRightClicked().getEntityId() + ", " + event.getPlayer().getDisplayName());
         }
     }
 
