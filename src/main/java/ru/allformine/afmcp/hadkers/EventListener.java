@@ -4,6 +4,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -59,7 +60,18 @@ public class EventListener implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
         if(event.isCancelled()) {
-            System.out.println(event.getRightClicked().toString() + ", " + event.getRightClicked().getEntityId() + ", " + event.getPlayer().getDisplayName());
+            if (event.getRightClicked().toString().equals("customnpcs-CustomNpc")) {
+                event.setCancelled(false);
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void onEntitySpawn(EntitySpawnEvent event) {
+        if (event.isCancelled()) {
+            if (event.getEntity().toString().equals("customnpcs-CustomNpc")) {
+                event.setCancelled(false);
+            }
         }
     }
 
