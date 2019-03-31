@@ -37,7 +37,8 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
     }
 
     public void onEnable() {
-        new EventListener(this);
+        EventListener listener = new EventListener();
+        Bukkit.getPluginManager().registerEvents(listener, this);
 
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "Notify");
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "C234Fb");
