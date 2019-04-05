@@ -15,6 +15,7 @@ import ru.allformine.afmcp.commands.*;
 import ru.allformine.afmcp.hadkers.CommandHandler;
 import ru.allformine.afmcp.hadkers.EventListener;
 import ru.allformine.afmcp.hadkers.ProtocolHandler;
+import ru.allformine.afmcp.net.discord.Discord;
 import ru.allformine.afmcp.net.http.HTTPServer;
 
 import java.util.ArrayList;
@@ -69,10 +70,14 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
         CommandHandler.addCommand(new CommandRGParam());
         CommandHandler.addCommand(new CommandTokens());
         CommandHandler.addCommand(new CommandVIP());
+
+        Discord.sendMessageServer(Discord.MessageTypeServer.TYPE_SERVER_STARTED);
     }
 
     public void onDisable() {
         apiServer.stop();
+
+        Discord.sendMessageServer(Discord.MessageTypeServer.TYPE_SERVER_STOPPED);
     }
 
     @Override

@@ -4,13 +4,15 @@ import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import ru.allformine.afmcp.net.discord.Discord;
 import ru.allformine.afmcp.packet.Ambient;
 import ru.allformine.afmcp.packet.TerritoryShow;
+
 import java.util.HashMap;
 
 public class PluginEvents {
-    private static HashMap<Player, String> playerCurrentMusic = new HashMap<>();
-    private static HashMap<Player, String> playerCurrentNamedRegion = new HashMap<>();
+    public static HashMap<Player, String> playerCurrentMusic = new HashMap<>();
+    public static HashMap<Player, String> playerCurrentNamedRegion = new HashMap<>();
 
     private static String defaultTSText = ChatColor.YELLOW+"allformine.ru";
 
@@ -20,8 +22,12 @@ public class PluginEvents {
 
         if (act) { //true - вошел в игру, false - вышел.
             message = " вошел в игру!";
+
+            Discord.sendMessagePlayer(Discord.MessageTypePlayer.TYPE_PLAYER_JOINED, "", player);
         } else {
             message = " вышел из игры!";
+
+            Discord.sendMessagePlayer(Discord.MessageTypePlayer.TYPE_PLAYER_LEFT, "", player);
         }
 
         if (isStaff) {
@@ -61,7 +67,7 @@ public class PluginEvents {
         }
     }
 
-    public static void onPlayerRegionLeft(Player player, ProtectedRegion region) {
+    public static void onPlayerRegionLeft(Player player) {
         // ===============AmbientMusic
         if (playerCurrentMusic.get(player) != null) {
             Ambient.sendAmbientMusicPacket(true, player, "");
