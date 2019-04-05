@@ -40,6 +40,7 @@ public class PluginEvents {
     }
 
     public static void onPlayerRegionJoin(Player player, ProtectedRegion region) {
+        System.out.println(player.getDisplayName() + " entered region " + region.getId());
         // ===============AmbientMusic
         String url = AFMCorePlugin.getPlugin().getConfig().getString("ambient_data." + region.getId() + ".url");
 
@@ -68,6 +69,7 @@ public class PluginEvents {
     }
 
     public static void onPlayerRegionLeft(Player player) {
+        System.out.println(player.getDisplayName() + " left region");
         // ===============AmbientMusic
         if (playerCurrentMusic.get(player) != null) {
             Ambient.sendAmbientMusicPacket(true, player, "");

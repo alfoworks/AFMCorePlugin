@@ -133,11 +133,6 @@ public class EventListener implements Listener {
         updateRegions(event.getPlayer());
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
-    public void onPlayerBucket(PlayerBucketEmptyEvent event) {
-        System.out.println(event.getPlayer().getDisplayName() + ", " + event.getBlockClicked().getType());
-    }
-
     @EventHandler
     public void onPlayerAchievement(PlayerAchievementAwardedEvent event) {
         Discord.sendMessagePlayer(Discord.MessageTypePlayer.TYPE_PLAYER_EARNED_ACHIEVEMENT, event.getAchievement().toString(), event.getPlayer());
