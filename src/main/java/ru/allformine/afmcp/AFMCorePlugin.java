@@ -12,9 +12,9 @@ import org.bukkit.plugin.messaging.PluginMessageListener;
 import org.kitteh.vanish.staticaccess.VanishNoPacket;
 import org.kitteh.vanish.staticaccess.VanishNotLoadedException;
 import ru.allformine.afmcp.commands.*;
-import ru.allformine.afmcp.hadkers.CommandHandler;
-import ru.allformine.afmcp.hadkers.EventListener;
-import ru.allformine.afmcp.hadkers.ProtocolHandler;
+import ru.allformine.afmcp.hadlers.CommandHandler;
+import ru.allformine.afmcp.hadlers.EventListener;
+import ru.allformine.afmcp.hadlers.ProtocolHandler;
 import ru.allformine.afmcp.net.discord.Discord;
 import ru.allformine.afmcp.net.http.HTTPServer;
 

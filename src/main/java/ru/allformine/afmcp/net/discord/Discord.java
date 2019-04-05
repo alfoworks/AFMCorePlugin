@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import ru.allformine.afmcp.AFMCorePlugin;
+import ru.allformine.afmcp.References;
 import ru.allformine.afmcp.net.http.Requests;
 
 import java.util.HashMap;
@@ -28,6 +29,10 @@ public class Discord {
 
     private static void sendMessage(String text, String username, String avatarUrl, int logLevel) {
         Plugin plugin = AFMCorePlugin.getPlugin();
+
+        if (!References.log) {
+            return;
+        }
 
         String url = plugin.getConfig().getString("discord.webhooks.url_lvl" + String.valueOf(logLevel));
 

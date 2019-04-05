@@ -1,6 +1,7 @@
-package ru.allformine.afmcp.hadkers;
+package ru.allformine.afmcp.hadlers;
 
 import ru.allformine.afmcp.commands.AFMCPCommand;
+
 import java.util.HashMap;
 
 public class CommandHandler {

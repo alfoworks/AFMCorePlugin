@@ -1,4 +1,4 @@
-package ru.allformine.afmcp.hadkers;
+package ru.allformine.afmcp.hadlers;
 
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
@@ -16,6 +16,7 @@ import org.bukkit.plugin.Plugin;
 import org.kitteh.vanish.VanishManager;
 import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.References;
+
 import java.util.*;
 
 public class ProtocolHandler {

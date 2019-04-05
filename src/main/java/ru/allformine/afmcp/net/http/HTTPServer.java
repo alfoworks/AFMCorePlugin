@@ -5,7 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import ru.allformine.afmcp.AFMCorePlugin;
-import ru.allformine.afmcp.hadkers.ProtocolHandler;
+import ru.allformine.afmcp.hadlers.ProtocolHandler;
 
 import java.io.*;
 import java.net.InetSocketAddress;

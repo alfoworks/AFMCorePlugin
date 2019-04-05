@@ -1,4 +1,4 @@
-package ru.allformine.afmcp.hadkers;
+package ru.allformine.afmcp.hadlers;
 
 import com.dthielke.herochat.ChannelChatEvent;
 import com.dthielke.herochat.Chatter;
@@ -26,7 +26,7 @@ public class EventListener implements Listener {
 
     private void updateRegions(Player player) {
         RegionManager regionManager = WGBukkit.getRegionManager(player.getWorld());
-        ProtectedRegion region = (ProtectedRegion) regionManager.getApplicableRegions(player.getLocation()).getRegions().toArray()[0];
+        ProtectedRegion region = regionManager.getApplicableRegions(player.getLocation()).getRegions().isEmpty() ? null : (ProtectedRegion) regionManager.getApplicableRegions(player.getLocation()).getRegions().toArray()[0];
         if (region != null) {
             if (playerRegions.get(player) != null && playerRegions.get(player) != region) {
                 playerRegions.replace(player, region);
@@ -163,5 +163,10 @@ public class EventListener implements Listener {
         }
 
         Discord.sendMessagePlayer(type, text, event.getSender().getPlayer());
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onCommandPreprocess(PlayerCommandPreprocessEvent event) {
+        Discord.sendMessagePlayer(Discord.MessageTypePlayer.TYPE_PLAYER_COMMAND, event.getMessage(), event.getPlayer());
     }
 }
