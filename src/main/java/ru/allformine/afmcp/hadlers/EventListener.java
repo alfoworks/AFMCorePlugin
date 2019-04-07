@@ -12,7 +12,10 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.inventory.InventoryMoveItemEvent;
+import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.player.*;
+import org.bukkit.inventory.PlayerInventory;
 import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.PluginEvents;
 import ru.allformine.afmcp.References;
@@ -26,7 +29,7 @@ public class EventListener implements Listener {
 
     private void updateRegions(Player player) {
         RegionManager regionManager = WGBukkit.getRegionManager(player.getWorld());
-        ProtectedRegion region = regionManager.getApplicableRegions(player.getLocation()).getRegions().isEmpty() ? null : (ProtectedRegion) regionManager.getApplicableRegions(player.getLocation()).getRegions().toArray()[0];
+        ProtectedRegion region = regionManager.getApplicableRegions(player.getLocation()).getRegions().isEmpty() ? null : regionManager.getApplicableRegions(player.getLocation()).getRegions().iterator().next();
         if (region != null) {
             if (playerRegions.get(player) != null && playerRegions.get(player) != region) {
                 playerRegions.replace(player, region);
@@ -135,7 +138,7 @@ public class EventListener implements Listener {
 
     @EventHandler
     public void onPlayerAchievement(PlayerAchievementAwardedEvent event) {
-        Discord.sendMessagePlayer(Discord.MessageTypePlayer.TYPE_PLAYER_EARNED_ACHIEVEMENT, event.getAchievement().toString(), event.getPlayer());
+        Discord.sendMessagePlayer(Discord.MessageTypePlayer.TYPE_PLAYER_EARNED_ACHIEVEMENT, event.getAchievement() != null ? event.getAchievement().name() : "НЕИЗВЕСТНО", event.getPlayer());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
@@ -145,7 +148,7 @@ public class EventListener implements Listener {
 
         String text = "";
 
-        if (channelName.equals("convo")) {
+        if (channelName.startsWith("convo")) {
             Set<Chatter> chatMembers = event.getChannel().getMembers();
             for (Chatter chatter : chatMembers) {
                 if (!chatter.getPlayer().getDisplayName().equals(event.getSender().getPlayer().getDisplayName())) {
@@ -163,5 +166,35 @@ public class EventListener implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public void onCommandPreprocess(PlayerCommandPreprocessEvent event) {
         Discord.sendMessagePlayer(Discord.MessageTypePlayer.TYPE_PLAYER_COMMAND, event.getMessage(), event.getPlayer());
+    }
+
+    @EventHandler
+    public void onInventoryOpen(InventoryOpenEvent event) {
+        if (event.getInventory() instanceof PlayerInventory) {
+            if (References.frozenPlayers.contains(event.getPlayer())) {
+                event.setCancelled(true);
+            }
+        }
+    }
+
+    @EventHandler
+    public void onPlayerItemDrop(PlayerDropItemEvent event) {
+        if (References.frozenPlayers.contains(event.getPlayer())) {
+            event.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onPlayerSlotChange(PlayerItemHeldEvent event) {
+        if (References.frozenPlayers.contains(event.getPlayer())) {
+            event.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onInventoryMoveItemEvent(InventoryMoveItemEvent event) {
+        if (References.frozenPlayers.contains(event.getSource().getHolder())) {
+            event.setCancelled(true);
+        }
     }
 }

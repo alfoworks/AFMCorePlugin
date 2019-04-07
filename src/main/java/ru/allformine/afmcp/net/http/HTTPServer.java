@@ -41,12 +41,6 @@ public class HTTPServer extends BukkitRunnable {
         }
     }
 
-    public void stop() {
-        this.cancel();
-
-        System.out.println("[AFMCP_APISERVER] Server is shutting down!!");
-    }
-
     class EchoHandler implements HttpHandler {
         @Override
         public void handle(HttpExchange exchange) throws IOException {

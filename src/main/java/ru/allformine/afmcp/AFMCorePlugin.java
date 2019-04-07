@@ -17,6 +17,7 @@ import ru.allformine.afmcp.hadlers.EventListener;
 import ru.allformine.afmcp.hadlers.ProtocolHandler;
 import ru.allformine.afmcp.net.discord.Discord;
 import ru.allformine.afmcp.net.http.HTTPServer;
+import ru.allformine.afmcp.tasks.TPSWatchdog;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,6 +51,7 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
         this.saveDefaultConfig();
 
         Bukkit.getServer().getScheduler().runTaskAsynchronously(this, apiServer);
+        Bukkit.getServer().getScheduler().runTaskTimer(this, new TPSWatchdog(this.getConfig().getInt("tps.alarm_if_less")), 0L, 60L);
 
         try {
             //noinspection deprecation
@@ -75,7 +77,7 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
     }
 
     public void onDisable() {
-        apiServer.stop();
+        apiServer.cancel();
 
         Discord.sendMessageServer(Discord.MessageTypeServer.TYPE_SERVER_STOPPED);
     }

@@ -23,11 +23,11 @@ public class PluginEvents {
         if (act) { //true - вошел в игру, false - вышел.
             message = " вошел в игру!";
 
-            Discord.sendMessagePlayer(Discord.MessageTypePlayer.TYPE_PLAYER_JOINED, "", player);
+            Discord.sendMessagePlayer(!isStaff ? Discord.MessageTypePlayer.TYPE_PLAYER_JOINED : Discord.MessageTypePlayer.TYPE_STAFF_JOINED, "", player);
         } else {
             message = " вышел из игры!";
 
-            Discord.sendMessagePlayer(Discord.MessageTypePlayer.TYPE_PLAYER_LEFT, "", player);
+            Discord.sendMessagePlayer(!isStaff ? Discord.MessageTypePlayer.TYPE_PLAYER_LEFT : Discord.MessageTypePlayer.TYPE_STAFF_LEFT, "", player);
         }
 
         if (isStaff) {
