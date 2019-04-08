@@ -35,11 +35,11 @@ public class TPSWatchdog extends BukkitRunnable {
         // =======================
         if (getTPS() < WARN_TPS) {
             if (!tps_flag_time) {
-                bad_tps_time = System.currentTimeMillis();
+                bad_tps_time = System.currentTimeMillis() + 7000;
                 tps_flag_time = true;
             }
 
-            if (bad_tps_time >= System.currentTimeMillis() + 7000 && !notify_flag) {
+            if (System.currentTimeMillis() >= bad_tps_time && !notify_flag) {
                 Discord.sendMessageServer(Discord.MessageTypeServer.TPS_IS_BAD);
 
                 notify_flag = true;

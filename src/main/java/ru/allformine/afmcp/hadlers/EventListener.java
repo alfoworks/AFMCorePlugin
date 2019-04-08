@@ -35,6 +35,10 @@ public class EventListener implements Listener {
                 playerRegions.replace(player, region);
 
                 PluginEvents.onPlayerRegionJoin(player, region);
+            } else if (playerRegions.get(player) == null) {
+                playerRegions.put(player, region);
+
+                PluginEvents.onPlayerRegionJoin(player, region);
             }
         } else {
             if (playerRegions.get(player) != null) {
@@ -52,7 +56,7 @@ public class EventListener implements Listener {
         updateRegions(event.getPlayer());
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
+    @EventHandler(priority = EventPriority.LOW)
     public void onPlayerQuit(PlayerQuitEvent event) {
         PluginEvents.quitOrJoin(event.getPlayer(), false);
 
@@ -124,6 +128,11 @@ public class EventListener implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerTeleport(PlayerTeleportEvent event) {
         updateRegions(event.getPlayer());
+
+        if (References.frozenPlayers.contains(event.getPlayer())) {
+            event.setCancelled(true);
+            event.getPlayer().sendMessage(ChatColor.RED + "Freeze " + ChatColor.RESET + "> вы заморожены!");
+        }
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
@@ -134,6 +143,11 @@ public class EventListener implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerPortal(PlayerPortalEvent event) {
         updateRegions(event.getPlayer());
+
+        if (References.frozenPlayers.contains(event.getPlayer())) {
+            event.setCancelled(true);
+            event.getPlayer().sendMessage(ChatColor.RED + "Freeze " + ChatColor.RESET + "> вы заморожены!");
+        }
     }
 
     @EventHandler
@@ -173,6 +187,7 @@ public class EventListener implements Listener {
         if (event.getInventory() instanceof PlayerInventory) {
             if (References.frozenPlayers.contains(event.getPlayer())) {
                 event.setCancelled(true);
+                ((Player) event.getPlayer()).sendMessage(ChatColor.RED + "Freeze " + ChatColor.RESET + "> вы заморожены!");
             }
         }
     }
@@ -181,6 +196,7 @@ public class EventListener implements Listener {
     public void onPlayerItemDrop(PlayerDropItemEvent event) {
         if (References.frozenPlayers.contains(event.getPlayer())) {
             event.setCancelled(true);
+            event.getPlayer().sendMessage(ChatColor.RED + "Freeze " + ChatColor.RESET + "> вы заморожены!");
         }
     }
 
@@ -188,13 +204,16 @@ public class EventListener implements Listener {
     public void onPlayerSlotChange(PlayerItemHeldEvent event) {
         if (References.frozenPlayers.contains(event.getPlayer())) {
             event.setCancelled(true);
+            event.getPlayer().sendMessage(ChatColor.RED + "Freeze " + ChatColor.RESET + "> вы заморожены!");
         }
     }
 
     @EventHandler
     public void onInventoryMoveItemEvent(InventoryMoveItemEvent event) {
-        if (References.frozenPlayers.contains(event.getSource().getHolder())) {
+        Player player = (Player) event.getSource().getHolder();
+        if (References.frozenPlayers.contains(player)) {
             event.setCancelled(true);
+            player.sendMessage(ChatColor.RED + "Freeze " + ChatColor.RESET + "> вы заморожены!");
         }
     }
 }
