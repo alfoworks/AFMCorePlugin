@@ -51,7 +51,7 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
         this.saveDefaultConfig();
 
         Bukkit.getServer().getScheduler().runTaskAsynchronously(this, apiServer);
-        Bukkit.getServer().getScheduler().runTaskTimer(this, new TPSWatchdog(this.getConfig().getInt("tps.alarm_if_less")), 0L, 60L);
+        Bukkit.getServer().getScheduler().runTaskTimer(this, new TPSWatchdog(this.getConfig().getInt("tps.alarm_if_less")), 0L, 1L);
 
         try {
             //noinspection deprecation

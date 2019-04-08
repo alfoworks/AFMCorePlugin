@@ -22,6 +22,7 @@ public class Discord {
 
     public enum MessageTypePlayer {
         TYPE_PLAYER_JOINED,
+        TYPE_PLAYER_JOINED_FIRST_TIME,
         TYPE_PLAYER_LEFT,
         TYPE_STAFF_JOINED,
         TYPE_STAFF_LEFT,
@@ -64,7 +65,7 @@ public class Discord {
         } else if (type == MessageTypeServer.TYPE_SERVER_STOPPED) {
             text = "❌ Сервер упал! (<@&394132635791654913>)";
         } else if (type == MessageTypeServer.TPS_IS_BAD) {
-            text = "\uD83D\uDCC9 TPS опустился ниже 14!";
+            text = "\uD83D\uDCC9 TPS опустился ниже 14! (<@&394132635791654913>)";
         } else if (type == MessageTypeServer.TPS_NORMALIZED) {
             text = "\uD83D\uDCC8 TPS вернулся в норму.";
         } else {
@@ -80,6 +81,8 @@ public class Discord {
 
         if (type == MessageTypePlayer.TYPE_PLAYER_JOINED) {
             text = "➡ Вошел в игру.";
+        } else if (type == MessageTypePlayer.TYPE_PLAYER_JOINED_FIRST_TIME) {
+            text = "\uD83D\uDD30➡ Вошел в игру впервые!";
         } else if (type == MessageTypePlayer.TYPE_PLAYER_LEFT) {
             text = "⬅ Вышел из игры.";
         } else if (type == MessageTypePlayer.TYPE_STAFF_JOINED) {

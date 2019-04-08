@@ -35,7 +35,7 @@ public class TPSWatchdog extends BukkitRunnable {
         // =======================
         if (getTPS() < WARN_TPS) {
             if (!tps_flag_time) {
-                bad_tps_time = System.currentTimeMillis() + 7000;
+                bad_tps_time = System.currentTimeMillis() + 1000;
                 tps_flag_time = true;
             }
 

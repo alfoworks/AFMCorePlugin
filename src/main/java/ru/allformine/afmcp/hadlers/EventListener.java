@@ -2,7 +2,10 @@ package ru.allformine.afmcp.hadlers;
 
 import com.dthielke.herochat.ChannelChatEvent;
 import com.dthielke.herochat.Chatter;
+import com.sk89q.worldguard.bukkit.WGBukkit;
+import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
+import net.minecraftforge.cauldron.block.CraftCustomContainer;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -26,7 +29,6 @@ public class EventListener implements Listener {
     private HashMap<Player, ProtectedRegion> playerRegions = new HashMap<>();
 
     private void updateRegions(Player player) {
-        /*
         RegionManager regionManager = WGBukkit.getRegionManager(player.getWorld());
         ProtectedRegion region = regionManager.getApplicableRegions(player.getLocation()).getRegions().isEmpty() ? null : regionManager.getApplicableRegions(player.getLocation()).getRegions().iterator().next();
         if (region != null) {
@@ -46,12 +48,15 @@ public class EventListener implements Listener {
                 PluginEvents.onPlayerRegionLeft(player);
             }
         }
-        */
     }
     
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerJoin(PlayerJoinEvent event) {
         PluginEvents.quitOrJoin(event.getPlayer(), true);
+
+        if (!event.getPlayer().hasPlayedBefore()) {
+            Discord.sendMessagePlayer(Discord.MessageTypePlayer.TYPE_PLAYER_JOINED_FIRST_TIME, "", event.getPlayer());
+        }
 
         updateRegions(event.getPlayer());
     }
@@ -155,7 +160,7 @@ public class EventListener implements Listener {
 
     @EventHandler
     public void onPlayerAchievement(PlayerAchievementAwardedEvent event) {
-        Discord.sendMessagePlayer(Discord.MessageTypePlayer.TYPE_PLAYER_EARNED_ACHIEVEMENT, event.getAchievement() != null ? event.getAchievement().name() : "НЕИЗВЕСТНО", event.getPlayer());
+        Discord.sendMessagePlayer(Discord.MessageTypePlayer.TYPE_PLAYER_EARNED_ACHIEVEMENT, event.getAchievement() != null ? event.getAchievement().name() : "НЕИЗВЕСТНО (" + event.getAchievement().getClass().getName() + ")", event.getPlayer());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
@@ -213,10 +218,12 @@ public class EventListener implements Listener {
 
     @EventHandler
     public void onInventoryMoveItemEvent(InventoryMoveItemEvent event) {
-        Player player = (Player) event.getSource().getHolder();
-        if (References.frozenPlayers.contains(player)) {
-            event.setCancelled(true);
-            player.sendMessage(ChatColor.RED + "Freeze " + ChatColor.RESET + "> вы заморожены!");
+        if (!(event.getSource().getHolder() instanceof CraftCustomContainer)) {
+            Player player = (Player) event.getSource().getHolder();
+            if (References.frozenPlayers.contains(player)) {
+                event.setCancelled(true);
+                player.sendMessage(ChatColor.RED + "Freeze " + ChatColor.RESET + "> вы заморожены!");
+            }
         }
     }
 }

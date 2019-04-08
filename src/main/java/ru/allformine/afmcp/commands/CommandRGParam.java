@@ -7,6 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import ru.allformine.afmcp.AFMCorePlugin;
+
 import java.util.ArrayList;
 
 public class CommandRGParam extends AFMCPCommand {
@@ -18,6 +19,11 @@ public class CommandRGParam extends AFMCPCommand {
     @Override
     public String getDisplayName() {
         return "RGParam";
+    }
+
+    @Override
+    public boolean isPlayerOnly() {
+        return true;
     }
 
     @Override

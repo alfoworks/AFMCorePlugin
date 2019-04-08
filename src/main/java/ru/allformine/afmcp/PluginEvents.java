@@ -14,13 +14,15 @@ public class PluginEvents {
     public static HashMap<Player, String> playerCurrentMusic = new HashMap<>();
     public static HashMap<Player, String> playerCurrentNamedRegion = new HashMap<>();
 
-    private static String defaultTSText = ChatColor.YELLOW+"allformine.ru";
+    private static String defaultTSText = ChatColor.GREEN + "AllForMine.ru";
 
     public static void quitOrJoin(Player player, boolean act) {
         boolean isStaff = player.hasPermission("afmcp.staff");
         String message;
 
         if (act) { //true - вошел в игру, false - вышел.
+            TerritoryShow.sendTSPacketToPlayer(defaultTSText, player);
+
             message = " вошел в игру!";
 
             Discord.sendMessagePlayer(!isStaff ? Discord.MessageTypePlayer.TYPE_PLAYER_JOINED : Discord.MessageTypePlayer.TYPE_STAFF_JOINED, "", player);
