@@ -160,7 +160,7 @@ public class EventListener implements Listener {
 
     @EventHandler
     public void onPlayerAchievement(PlayerAchievementAwardedEvent event) {
-        Discord.sendMessagePlayer(Discord.MessageTypePlayer.TYPE_PLAYER_EARNED_ACHIEVEMENT, event.getAchievement() != null ? event.getAchievement().name() : "НЕИЗВЕСТНО (" + event.getAchievement().getClass().getName() + ")", event.getPlayer());
+        Discord.sendMessagePlayer(Discord.MessageTypePlayer.TYPE_PLAYER_EARNED_ACHIEVEMENT, event.getAchievement() != null ? event.getAchievement().name() : "НЕИЗВЕСТНО", event.getPlayer());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
@@ -193,7 +193,7 @@ public class EventListener implements Listener {
     @EventHandler
     public void onInventoryOpen(InventoryOpenEvent event) {
         if (event.getInventory() instanceof PlayerInventory) {
-            if (References.frozenPlayers.contains(event.getPlayer())) {
+            if (References.frozenPlayers.contains((Player) event.getPlayer())) {
                 event.setCancelled(true);
                 ((Player) event.getPlayer()).sendMessage(ChatColor.RED + "Freeze " + ChatColor.RESET + "> вы заморожены!");
             }
