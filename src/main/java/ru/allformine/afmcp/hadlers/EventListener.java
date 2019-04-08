@@ -2,8 +2,6 @@ package ru.allformine.afmcp.hadlers;
 
 import com.dthielke.herochat.ChannelChatEvent;
 import com.dthielke.herochat.Chatter;
-import com.sk89q.worldguard.bukkit.WGBukkit;
-import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -28,6 +26,7 @@ public class EventListener implements Listener {
     private HashMap<Player, ProtectedRegion> playerRegions = new HashMap<>();
 
     private void updateRegions(Player player) {
+        /*
         RegionManager regionManager = WGBukkit.getRegionManager(player.getWorld());
         ProtectedRegion region = regionManager.getApplicableRegions(player.getLocation()).getRegions().isEmpty() ? null : regionManager.getApplicableRegions(player.getLocation()).getRegions().iterator().next();
         if (region != null) {
@@ -47,6 +46,7 @@ public class EventListener implements Listener {
                 PluginEvents.onPlayerRegionLeft(player);
             }
         }
+        */
     }
     
     @EventHandler(priority = EventPriority.MONITOR)
@@ -65,6 +65,9 @@ public class EventListener implements Listener {
         }
         if (PluginEvents.playerCurrentNamedRegion.get(event.getPlayer()) != null) {
             PluginEvents.playerCurrentNamedRegion.remove(event.getPlayer());
+        }
+        if (playerRegions.get(event.getPlayer()) != null) {
+            playerRegions.remove(event.getPlayer());
         }
     }
 
