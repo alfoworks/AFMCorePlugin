@@ -14,7 +14,7 @@ public class PluginEvents {
     public static HashMap<Player, String> playerCurrentMusic = new HashMap<>();
     public static HashMap<Player, String> playerCurrentNamedRegion = new HashMap<>();
 
-    private static String defaultTSText = ChatColor.GREEN + "AllForMine.ru";
+    private static String defaultTSText = ChatColor.GREEN + "www.AllForMine.ru";
 
     public static void quitOrJoin(Player player, boolean act) {
         boolean isStaff = player.hasPermission("afmcp.staff");

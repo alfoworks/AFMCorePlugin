@@ -5,7 +5,6 @@ import com.dthielke.herochat.Chatter;
 import com.sk89q.worldguard.bukkit.WGBukkit;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
-import net.minecraftforge.cauldron.block.CraftCustomContainer;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,15 +12,12 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.inventory.InventoryMoveItemEvent;
-import org.bukkit.event.inventory.InventoryOpenEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.*;
-import org.bukkit.inventory.PlayerInventory;
 import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.PluginEvents;
 import ru.allformine.afmcp.References;
 import ru.allformine.afmcp.net.discord.Discord;
-
 import java.util.HashMap;
 import java.util.Set;
 
@@ -191,16 +187,6 @@ public class EventListener implements Listener {
     }
 
     @EventHandler
-    public void onInventoryOpen(InventoryOpenEvent event) {
-        if (event.getInventory() instanceof PlayerInventory) {
-            if (References.frozenPlayers.contains((Player) event.getPlayer())) {
-                event.setCancelled(true);
-                ((Player) event.getPlayer()).sendMessage(ChatColor.RED + "Freeze " + ChatColor.RESET + "> вы заморожены!");
-            }
-        }
-    }
-
-    @EventHandler
     public void onPlayerItemDrop(PlayerDropItemEvent event) {
         if (References.frozenPlayers.contains(event.getPlayer())) {
             event.setCancelled(true);
@@ -217,13 +203,11 @@ public class EventListener implements Listener {
     }
 
     @EventHandler
-    public void onInventoryMoveItemEvent(InventoryMoveItemEvent event) {
-        if (!(event.getSource().getHolder() instanceof CraftCustomContainer)) {
-            Player player = (Player) event.getSource().getHolder();
-            if (References.frozenPlayers.contains(player)) {
-                event.setCancelled(true);
-                player.sendMessage(ChatColor.RED + "Freeze " + ChatColor.RESET + "> вы заморожены!");
-            }
+    public void onInventoryClick(InventoryClickEvent event) {
+        Player player = (Player) event.getClickedInventory().getHolder();
+        if (References.frozenPlayers.contains(player)) {
+            event.setCancelled(true);
+            player.sendMessage(ChatColor.RED + "Freeze " + ChatColor.RESET + "> вы заморожены!");
         }
     }
 }
