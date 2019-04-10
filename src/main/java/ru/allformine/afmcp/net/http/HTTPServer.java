@@ -62,7 +62,7 @@ public class HTTPServer extends BukkitRunnable {
                         Bukkit.dispatchCommand(sender, minecraftCommand);
 
                         long startTime = System.currentTimeMillis();
-                        while (String.join("\n", sender.getOutput()).length() < 0) {
+                        while (String.join("\n", sender.getOutput()).length() < 1) {
                             if (System.currentTimeMillis() >= startTime + 5000) {
                                 break;
                             }

@@ -205,13 +205,11 @@ public class EventListener implements Listener {
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
-        if(!(event.getClickedInventory() instanceof CraftCustomContainer)) {
-            Player player = (Player) event.getClickedInventory().getHolder();
+        Player player = (Player) event.getWhoClicked();
 
-            if (References.frozenPlayers.contains(player)) {
-                event.setCancelled(true);
-                player.sendMessage(ChatColor.RED + "Freeze " + ChatColor.RESET + "> вы заморожены!");
-            }
+        if (References.frozenPlayers.contains(player)) {
+            event.setCancelled(true);
+            player.sendMessage(ChatColor.RED + "Freeze " + ChatColor.RESET + "> вы заморожены!");
         }
     }
 }
