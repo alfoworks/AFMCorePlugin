@@ -60,6 +60,14 @@ public class HTTPServer extends BukkitRunnable {
                         ServerAPICommandSender sender = new ServerAPICommandSender();
 
                         Bukkit.dispatchCommand(sender, minecraftCommand);
+
+                        long startTime = System.currentTimeMillis();
+                        while (String.join("\n", sender.getOutput()).length() < 0) {
+                            if (System.currentTimeMillis() >= startTime + 5000) {
+                                break;
+                            }
+                        }
+
                         String commandOutput = String.join("\n", sender.getOutput());
 
                         if (commandOutput.length() > 0) {
