@@ -207,7 +207,7 @@ public class EventListener implements Listener {
     public void onInventoryClick(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
 
-        if (References.frozenPlayers.contains(player)) {
+        if (player != null && References.frozenPlayers.contains(player)) {
             event.setCancelled(true);
             player.sendMessage(ChatColor.RED + "Freeze " + ChatColor.RESET + "> вы заморожены!");
         }
