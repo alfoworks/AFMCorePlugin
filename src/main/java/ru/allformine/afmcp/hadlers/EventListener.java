@@ -5,6 +5,7 @@ import com.dthielke.herochat.Chatter;
 import com.sk89q.worldguard.bukkit.WGBukkit;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
+import net.minecraftforge.cauldron.block.CraftCustomContainer;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -204,10 +205,13 @@ public class EventListener implements Listener {
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
-        Player player = (Player) event.getClickedInventory().getHolder();
-        if (References.frozenPlayers.contains(player)) {
-            event.setCancelled(true);
-            player.sendMessage(ChatColor.RED + "Freeze " + ChatColor.RESET + "> вы заморожены!");
+        if(!(event.getClickedInventory() instanceof CraftCustomContainer)) {
+            Player player = (Player) event.getClickedInventory().getHolder();
+
+            if (References.frozenPlayers.contains(player)) {
+                event.setCancelled(true);
+                player.sendMessage(ChatColor.RED + "Freeze " + ChatColor.RESET + "> вы заморожены!");
+            }
         }
     }
 }
