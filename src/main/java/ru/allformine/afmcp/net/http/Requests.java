@@ -1,7 +1,7 @@
 package ru.allformine.afmcp.net.http;
 
 import ru.allformine.afmcp.AFMCorePlugin;
-import sun.net.www.protocol.http.HttpURLConnection;
+import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -14,29 +14,31 @@ public class Requests {
         try {
             URL url = new URL(urlString);
             URLConnection con = url.openConnection();
-            HttpURLConnection http = (HttpURLConnection)con;
-            http.setRequestMethod("POST"); // PUT is another valid option
-            http.setDoOutput(true);
+            HttpsURLConnection connection = (HttpsURLConnection)con;
+            connection.setRequestMethod("POST"); // PUT is another valid option
+            connection.setDoOutput(true);
 
             byte[] out = JSON.getBytes(StandardCharsets.UTF_8);
             int length = out.length;
 
-            http.setFixedLengthStreamingMode(length);
-            http.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-            http.connect();
+            connection.setFixedLengthStreamingMode(length);
+            connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+            connection.connect();
 
-            try(OutputStream os = http.getOutputStream()) {
+            try(OutputStream os = connection.getOutputStream()) {
                 os.write(out);
             }
 
-            if(http.getResponseCode() != 200 || http.getResponseCode() != 204) {
+            if(connection.getResponseCode() != 200 || connection.getResponseCode() != 204) {
                 AFMCorePlugin.logger.error("Can't send JSON to url "+urlString+".");
                 AFMCorePlugin.logger.error("JSON: "+JSON);
-                AFMCorePlugin.logger.error(new BufferedReader(new InputStreamReader(http.getErrorStream())).readLine());
+                AFMCorePlugin.logger.error(new BufferedReader(new InputStreamReader(connection.getErrorStream())).readLine());
             }
         } catch(Exception e) {
             AFMCorePlugin.logger.error("Can't send JSON to url "+urlString+".");
             AFMCorePlugin.logger.error("JSON: "+JSON);
+
+            e.printStackTrace();
         }
     }
 }
