@@ -15,14 +15,15 @@ public class Requests {
             URL url = new URL(urlString);
             URLConnection con = url.openConnection();
             HttpsURLConnection connection = (HttpsURLConnection)con;
-            connection.setRequestMethod("POST"); // PUT is another valid option
+            connection.setRequestMethod("POST");
             connection.setDoOutput(true);
 
             byte[] out = JSON.getBytes(StandardCharsets.UTF_8);
             int length = out.length;
 
             connection.setFixedLengthStreamingMode(length);
-            connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+            connection.addRequestProperty("Content-Type", "application/json; charset=UTF-8");
+            connection.addRequestProperty("User-Agent", "Mozilla 5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.0.11) ");
             connection.connect();
 
             try(OutputStream os = connection.getOutputStream()) {
@@ -30,9 +31,16 @@ public class Requests {
             }
 
             if(connection.getResponseCode() != 200 || connection.getResponseCode() != 204) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+                StringBuilder result = new StringBuilder();
+                String line;
+                while((line = reader.readLine()) != null) {
+                    result.append("\n").append(line);
+                }
+
                 AFMCorePlugin.logger.error("Can't send JSON to url "+urlString+".");
                 AFMCorePlugin.logger.error("JSON: "+JSON);
-                AFMCorePlugin.logger.error(new BufferedReader(new InputStreamReader(connection.getErrorStream())).readLine());
+                AFMCorePlugin.logger.error("Response: "+result.toString());
             }
         } catch(Exception e) {
             AFMCorePlugin.logger.error("Can't send JSON to url "+urlString+".");
