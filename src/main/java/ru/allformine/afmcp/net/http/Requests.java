@@ -1,30 +1,41 @@
 package ru.allformine.afmcp.net.http;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.HttpClientBuilder;
 import ru.allformine.afmcp.AFMCorePlugin;
+import sun.net.www.protocol.http.HttpURLConnection;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
 
 public class Requests {
-    public static void sendPostJSON(String JSON, String url) {
-        HttpClient httpClient = HttpClientBuilder.create().build();
-
+    public static void sendPostJSON(String JSON, String urlString) {
         try {
-            HttpPost request = new HttpPost(url);
-            StringEntity params = new StringEntity(JSON, "UTF-8");
-            request.addHeader("Content-Type", "application/json");
-            request.setEntity(params);
+            URL url = new URL(urlString);
+            URLConnection con = url.openConnection();
+            HttpURLConnection http = (HttpURLConnection)con;
+            http.setRequestMethod("POST"); // PUT is another valid option
+            http.setDoOutput(true);
 
-            HttpResponse response = httpClient.execute(request);
-            if (response.getStatusLine().getStatusCode() != 204 || response.getStatusLine().getStatusCode() != 200) {
-                AFMCorePlugin.logger.error("Error sending JSON data.");
-                AFMCorePlugin.logger.error("JSON: "+JSON);
-                AFMCorePlugin.logger.error("Response: "+response.toString());
+            byte[] out = JSON.getBytes(StandardCharsets.UTF_8);
+            int length = out.length;
+
+            http.setFixedLengthStreamingMode(length);
+            http.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+            http.connect();
+
+            try(OutputStream os = http.getOutputStream()) {
+                os.write(out);
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
+
+            if(http.getResponseCode() != 200 || http.getResponseCode() != 204) {
+                AFMCorePlugin.logger.error("Can't send JSON to url "+urlString+".");
+                AFMCorePlugin.logger.error("JSON: "+JSON);
+                AFMCorePlugin.logger.error(new BufferedReader(new InputStreamReader(http.getErrorStream())).readLine());
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
         }
     }
 }

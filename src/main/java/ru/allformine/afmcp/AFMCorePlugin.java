@@ -61,6 +61,4 @@ public class AFMCorePlugin {
     public void onServerStart(GameStartedServerEvent event) {
         Discord.sendMessageServer(Discord.MessageTypeServer.TYPE_SERVER_STARTED);
     }
-
-
 }

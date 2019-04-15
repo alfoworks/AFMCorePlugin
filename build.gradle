@@ -2,12 +2,13 @@ plugins {
     id 'org.spongepowered.plugin' version '0.8.1'
 }
 
+defaultTasks 'build', 'shadowJar'
+
 group = pluginGroup
 version = pluginVersion
 
 dependencies {
     compile 'org.spongepowered:spongeapi:7.0.0'
-    compile 'org.apache.httpcomponents:httpclient:4.5.8'
 }
 
 sponge.plugin.id = pluginId
