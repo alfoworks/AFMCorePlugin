@@ -36,6 +36,11 @@ public class AFMCorePlugin {
     private Path configDir;
     private Path configFile;
 
+    @Inject
+    private void setLogger(Logger logger) {
+        AFMCorePlugin.logger = logger;
+    }
+
     private ConfigurationLoader<CommentedConfigurationNode> configLoader;
     private static CommentedConfigurationNode configNode;
 
@@ -51,7 +56,7 @@ public class AFMCorePlugin {
 
     @Listener
     public void onServerStart(GameStartedServerEvent event) {
-        Discord.sendMessageServer(Discord.MessageTypeServer.TYPE_SERVER_STARTED);
+       Discord.sendMessageServer(Discord.MessageTypeServer.TYPE_SERVER_STARTED);
     }
 
     @Listener
@@ -75,22 +80,14 @@ public class AFMCorePlugin {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
-            load();
         }
+
+        load();
     }
 
     private void load() {
         try {
             configNode = configLoader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void save() {
-        try {
-            configLoader.save(configNode);
         } catch (IOException e) {
             e.printStackTrace();
         }
