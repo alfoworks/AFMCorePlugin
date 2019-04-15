@@ -60,5 +60,7 @@ public class AFMCorePlugin {
     @Listener
     public void onServerStart(GameStartedServerEvent event) {
         Discord.sendMessageServer(Discord.MessageTypeServer.TYPE_SERVER_STARTED);
+
+        logger.info(AFMCorePlugin.config.getString("discord.webhooks.url_lvl1"));
     }
 }
