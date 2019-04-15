@@ -1,18 +1,16 @@
 package ru.allformine.afmcp;
 
 import com.google.inject.Inject;
-import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.commented.CommentedConfigurationNode;
+import ninja.leaping.configurate.hocon.HoconConfigurationLoader;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
-import ninja.leaping.configurate.objectmapping.ObjectMappingException;
 import org.slf4j.Logger;
-import org.spongepowered.api.Game;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.asset.Asset;
-import org.spongepowered.api.config.DefaultConfig;
+import org.spongepowered.api.config.ConfigDir;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.game.state.GamePreInitializationEvent;
 import org.spongepowered.api.event.game.state.GameStartedServerEvent;
+import org.spongepowered.api.event.game.state.GameStoppingServerEvent;
 import org.spongepowered.api.plugin.Plugin;
 import ru.allformine.afmcp.handlers.EventListener;
 import ru.allformine.afmcp.net.discord.Discord;
@@ -20,6 +18,7 @@ import ru.allformine.afmcp.net.discord.Discord;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Plugin(
         id = "afmcp",
@@ -32,35 +31,74 @@ import java.nio.file.Path;
 )
 public class AFMCorePlugin {
     @Inject
-    private Game game;
-    @Inject
     public static Logger logger;
 
-    @Inject @DefaultConfig(sharedRoot = true)
-    private Path path;
-    @Inject @DefaultConfig(sharedRoot = true)
-    private ConfigurationLoader<CommentedConfigurationNode> loader;
+    @Inject
+    @ConfigDir(sharedRoot = false)
+    private Path configDir;
 
-    public static ConfigurationNode config;
+    private Path configFile = Paths.get(configDir + "/config.conf");
+
+    private ConfigurationLoader<CommentedConfigurationNode> configLoader = HoconConfigurationLoader.builder().setPath(configFile).build();
+    private static CommentedConfigurationNode configNode;
 
     @Listener
     public void preInit(GamePreInitializationEvent event) {
         Sponge.getEventManager().registerListeners(this, new EventListener());
 
-        try {
-            if (!Files.exists(path)) {
-                Sponge.getAssetManager().getAsset(this, "default.conf").get().copyToFile(path);
+        if (!Files.exists(configDir)) {
+            try {
+                Files.createDirectories(configDir);
+            } catch (IOException io) {
+                io.printStackTrace();
             }
-            config = loader.load();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+        setup();
     }
 
     @Listener
     public void onServerStart(GameStartedServerEvent event) {
-        Discord.sendMessageServer(Discord.MessageTypeServer.TYPE_SERVER_STARTED);
+        logger.info(configNode.getString("discord.webhooks.url_lvl1"));
 
-        logger.info(AFMCorePlugin.config.getString("discord.webhooks.url_lvl1"));
+        Discord.sendMessageServer(Discord.MessageTypeServer.TYPE_SERVER_STARTED);
+    }
+
+    @Listener
+    public void onServerStop(GameStoppingServerEvent event) {
+        Discord.sendMessageServer(Discord.MessageTypeServer.TYPE_SERVER_STOPPED);
+    }
+
+    // Всякая хуйня для конфигов
+    private void setup() {
+        if (!Files.exists(configFile)) {
+            try {
+                Files.createFile(configFile);
+                Sponge.getAssetManager().getAsset(this, "default.conf").get().copyToFile(configFile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            load();
+        }
+    }
+
+    private void load() {
+        try {
+            configNode = configLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void save() {
+        try {
+            configLoader.save(configNode);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static CommentedConfigurationNode getConfig() {
+        return configNode;
     }
 }

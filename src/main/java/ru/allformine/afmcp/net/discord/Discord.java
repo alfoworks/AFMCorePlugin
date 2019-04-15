@@ -32,13 +32,13 @@ public class Discord {
     }
 
     private static void sendMessage(String text, String username, String avatarUrl, int logLevel) {
-        String url = AFMCorePlugin.config.getString("discord.webhooks.url_lvl" + String.valueOf(logLevel));
+        String url = AFMCorePlugin.getConfig().getString("discord.webhooks.url_lvl" + String.valueOf(logLevel));
 
         Map<String, String> JSON = new HashMap<>();
         JSON.put("content", text);
 
         if (avatarUrl != null) {
-            JSON.put("avatar_url", AFMCorePlugin.config.getString("discord.webhooks.player_avatar_url") + username);
+            JSON.put("avatar_url", AFMCorePlugin.getConfig().getString("discord.webhooks.player_avatar_url") + username);
         }
         if (username != null) {
             JSON.put("username", username);
@@ -101,7 +101,7 @@ public class Discord {
 
         int finalLogLevel = logLevel; // костыль от идеи, спасибо, идея!
 
-        Task.builder().execute(() -> sendMessage(text, player.getName(), AFMCorePlugin.config.getString("discord.webhook.player_avatar_url") + player.getName(), finalLogLevel))
+        Task.builder().execute(() -> sendMessage(text, player.getName(), AFMCorePlugin.getConfig().getString("discord.webhook.player_avatar_url") + player.getName(), finalLogLevel))
                 .async()
                 .name("AFMCP - Discord Send Message").submit(Sponge.getPluginManager().getPlugin("afmcp").get().getInstance().get());
     }

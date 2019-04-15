@@ -35,7 +35,8 @@ public class Requests {
                 AFMCorePlugin.logger.error(new BufferedReader(new InputStreamReader(http.getErrorStream())).readLine());
             }
         } catch(Exception e) {
-            e.printStackTrace();
+            AFMCorePlugin.logger.error("Can't send JSON to url "+urlString+".");
+            AFMCorePlugin.logger.error("JSON: "+JSON);
         }
     }
 }
