@@ -1,5 +1,6 @@
 package ru.allformine.afmcp.serverapi;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.source.ConsoleSource;
 import org.spongepowered.api.service.context.Context;
@@ -36,67 +37,67 @@ public class ServerAPISender implements ConsoleSource {
 
     @Override
     public Optional<CommandSource> getCommandSource() {
-        return Optional.empty();
+        return Sponge.getServer().getConsole().getCommandSource();
     }
 
     @Override
     public SubjectCollection getContainingCollection() {
-        return null;
+        return Sponge.getServer().getConsole().getContainingCollection();
     }
 
     @Override
     public SubjectReference asSubjectReference() {
-        return null;
+        return Sponge.getServer().getConsole().asSubjectReference();
     }
 
     @Override
     public boolean isSubjectDataPersisted() {
-        return false;
+        return Sponge.getServer().getConsole().isSubjectDataPersisted();
     }
 
     @Override
     public SubjectData getSubjectData() {
-        return null;
+        return Sponge.getServer().getConsole().getSubjectData();
     }
 
     @Override
     public SubjectData getTransientSubjectData() {
-        return null;
+        return Sponge.getServer().getConsole().getTransientSubjectData();
     }
 
     @Override
     public Tristate getPermissionValue(Set<Context> contexts, String permission) {
-        return null;
+        return Sponge.getServer().getConsole().getPermissionValue(contexts, permission);
     }
 
     @Override
     public boolean isChildOf(Set<Context> contexts, SubjectReference parent) {
-        return false;
+        return Sponge.getServer().getConsole().isChildOf(contexts, parent);
     }
 
     @Override
     public List<SubjectReference> getParents(Set<Context> contexts) {
-        return null;
+        return Sponge.getServer().getConsole().getParents(contexts);
     }
 
     @Override
     public Optional<String> getOption(Set<Context> contexts, String key) {
-        return Optional.empty();
+        return Sponge.getServer().getConsole().getOption(key);
     }
 
     @Override
     public String getIdentifier() {
-        return null;
+        return Sponge.getServer().getConsole().getIdentifier();
     }
 
     @Override
     public Set<Context> getActiveContexts() {
-        return null;
+        return Sponge.getServer().getConsole().getActiveContexts();
     }
 
     @Override
     public MessageChannel getMessageChannel() {
-        return null;
+        return Sponge.getServer().getConsole().getMessageChannel();
     }
 
     @Override
