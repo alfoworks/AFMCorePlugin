@@ -64,11 +64,13 @@ public class HTTPServer implements Runnable {
                                 .submit(Sponge.getPluginManager().getPlugin("afmcp").get().getInstance().get());
 
                         long timeStart = System.currentTimeMillis();
-                        while (true) {
-                            if (sender.getOutput().size() != 0 || System.currentTimeMillis() >= timeStart + 2500) {
-                                break;
+                        do {
+                            try {
+                                Thread.sleep(0);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
                             }
-                        }
+                        } while (sender.getOutput().size() == 0 && System.currentTimeMillis() < timeStart + 2500);
 
                         String commandOutput = String.join("\n", sender.getOutput());
 
