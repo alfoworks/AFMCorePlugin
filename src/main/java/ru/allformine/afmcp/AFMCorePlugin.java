@@ -12,8 +12,11 @@ import org.spongepowered.api.event.game.state.GamePreInitializationEvent;
 import org.spongepowered.api.event.game.state.GameStartedServerEvent;
 import org.spongepowered.api.event.game.state.GameStoppingServerEvent;
 import org.spongepowered.api.plugin.Plugin;
-import ru.allformine.afmcp.handlers.EventListener;
+import org.spongepowered.api.scheduler.Task;
+import ru.allformine.afmcp.handlers.DiscordWebhookListener;
 import ru.allformine.afmcp.net.discord.Discord;
+import ru.allformine.afmcp.serverapi.HTTPServer;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -28,6 +31,8 @@ import java.nio.file.Path;
         }
 )
 public class AFMCorePlugin {
+    private Task apiServerTask;
+
     @Inject
     public static Logger logger;
 
@@ -46,7 +51,7 @@ public class AFMCorePlugin {
 
     @Listener
     public void preInit(GamePreInitializationEvent event) {
-        Sponge.getEventManager().registerListeners(this, new EventListener());
+        Sponge.getEventManager().registerListeners(this, new DiscordWebhookListener());
 
         configFile = configDir.resolve("config.conf");
         configLoader = HoconConfigurationLoader.builder().setPath(configFile).build();
@@ -57,11 +62,17 @@ public class AFMCorePlugin {
     @Listener
     public void onServerStart(GameStartedServerEvent event) {
        Discord.sendMessageServer(Discord.MessageTypeServer.TYPE_SERVER_STARTED);
+
+        Task.builder().execute(HTTPServer::new)
+                .async().name("AFMCP APISERVER")
+                .submit(this);
     }
 
     @Listener
     public void onServerStop(GameStoppingServerEvent event) {
         Discord.sendMessageServer(Discord.MessageTypeServer.TYPE_SERVER_STOPPED);
+
+        apiServerTask.cancel();
     }
 
     private void configSetup() {

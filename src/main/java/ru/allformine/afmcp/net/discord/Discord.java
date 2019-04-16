@@ -6,10 +6,15 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.scheduler.Task;
 import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.net.http.Requests;
+
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class Discord {
+    private static long lastMessageTime = 0;
+    private static int messageCount = 0;
+
     public enum MessageTypeServer {
         TYPE_SERVER_STARTED,
         TYPE_SERVER_STOPPED,
@@ -102,7 +107,7 @@ public class Discord {
         int finalLogLevel = logLevel; // костыль от идеи, спасибо, идея!
 
         Task.builder().execute(() -> sendMessage(text, player.getName(), AFMCorePlugin.getConfig().getNode("discord", "webhooks", "player_avatar_url" + player.getName()).getString(), finalLogLevel))
-                .async()
+                .async().delay(AFMCorePlugin.getConfig().getNode("discord", "webhooks", "send_delay_secs").getInt(), TimeUnit.SECONDS)
                 .name("AFMCP - Discord Send Message").submit(Sponge.getPluginManager().getPlugin("afmcp").get().getInstance().get());
     }
 }

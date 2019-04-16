@@ -10,7 +10,7 @@ import org.spongepowered.api.event.message.MessageChannelEvent;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
 import ru.allformine.afmcp.net.discord.Discord;
 
-public class EventListener {
+public class DiscordWebhookListener {
     @Listener
     public void onPlayerJoin(ClientConnectionEvent.Join event) {
         Discord.sendMessagePlayer(event.getTargetEntity().hasPlayedBefore() ? Discord.MessageTypePlayer.TYPE_PLAYER_JOINED : Discord.MessageTypePlayer.TYPE_PLAYER_JOINED_FIRST_TIME, "", event.getTargetEntity());
@@ -18,7 +18,7 @@ public class EventListener {
 
     @Listener
     public void onPlayerQuit(ClientConnectionEvent.Disconnect event) {
-        Discord.sendMessagePlayer(Discord.MessageTypePlayer.TYPE_STAFF_LEFT, "", event.getTargetEntity());
+        Discord.sendMessagePlayer(Discord.MessageTypePlayer.TYPE_PLAYER_LEFT, "", event.getTargetEntity());
     }
 
     @Listener
