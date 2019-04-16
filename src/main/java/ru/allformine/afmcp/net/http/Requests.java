@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
 public class Requests {
@@ -19,7 +18,7 @@ public class Requests {
             connection.setRequestMethod("POST");
             connection.setDoOutput(true);
 
-            byte[] out = URLEncoder.encode(JSON, "UTF-8").getBytes(StandardCharsets.UTF_8);
+            byte[] out = JSON.getBytes(StandardCharsets.UTF_8);
             int length = out.length;
 
             connection.setFixedLengthStreamingMode(length);

@@ -7,6 +7,9 @@ defaultTasks 'build', 'shadowJar'
 group = pluginGroup
 version = pluginVersion
 
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
+
 dependencies {
     compile 'org.spongepowered:spongeapi:7.0.0'
 }
