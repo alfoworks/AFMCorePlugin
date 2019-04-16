@@ -63,7 +63,7 @@ public class AFMCorePlugin {
     public void onServerStart(GameStartedServerEvent event) {
        Discord.sendMessageServer(Discord.MessageTypeServer.TYPE_SERVER_STARTED);
 
-        apiServerTask = Task.builder().execute(HTTPServer::new)
+        apiServerTask = Task.builder().execute(new HTTPServer())
                 .async().name("AFMCP APISERVER")
                 .submit(this);
     }
