@@ -1,6 +1,7 @@
 package ru.allformine.afmcp.net.http;
 
 import ru.allformine.afmcp.AFMCorePlugin;
+
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -30,7 +31,7 @@ public class Requests {
                 os.write(out);
             }
 
-            if(connection.getResponseCode() != 200 || connection.getResponseCode() != 204) {
+            if (connection.getErrorStream() != null) {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
                 StringBuilder result = new StringBuilder();
                 String line;

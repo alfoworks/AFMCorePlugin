@@ -3,7 +3,6 @@ package ru.allformine.afmcp.serverapi;
 import com.sun.net.httpserver.*;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.scheduler.Task;
 import ru.allformine.afmcp.AFMCorePlugin;
 
 import java.io.BufferedReader;
@@ -13,11 +12,10 @@ import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Consumer;
 
-public class HTTPServer implements Consumer<Task> {
+public class HTTPServer implements Runnable {
     @Override
-    public void accept(Task task) {
+    public void run() {
         int port = AFMCorePlugin.getConfig().getNode("server_api", "port").getInt();
         HttpServer server;
 
