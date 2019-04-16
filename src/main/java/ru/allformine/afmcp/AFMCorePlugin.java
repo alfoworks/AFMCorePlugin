@@ -6,6 +6,7 @@ import ninja.leaping.configurate.hocon.HoconConfigurationLoader;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
 import org.slf4j.Logger;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.command.spec.CommandSpec;
 import org.spongepowered.api.config.ConfigDir;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.game.state.GamePreInitializationEvent;
@@ -13,6 +14,8 @@ import org.spongepowered.api.event.game.state.GameStartedServerEvent;
 import org.spongepowered.api.event.game.state.GameStoppingServerEvent;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.scheduler.Task;
+import org.spongepowered.api.text.Text;
+import ru.allformine.afmcp.commands.RestartCommand;
 import ru.allformine.afmcp.handlers.DiscordWebhookListener;
 import ru.allformine.afmcp.net.discord.Discord;
 import ru.allformine.afmcp.serverapi.HTTPServer;
@@ -57,6 +60,14 @@ public class AFMCorePlugin {
         configLoader = HoconConfigurationLoader.builder().setPath(configFile).build();
 
         configSetup();
+
+        CommandSpec restartCommandSpec = CommandSpec.builder()
+                .description(Text.of("Server restart command"))
+                .permission("afmcp.admin")
+                .executor(new RestartCommand())
+                .build();
+
+        Sponge.getCommandManager().register(this, restartCommandSpec, "afmrestart", "servrestart");
     }
 
     @Listener

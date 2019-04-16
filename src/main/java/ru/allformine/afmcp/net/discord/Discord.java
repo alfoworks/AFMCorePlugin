@@ -12,8 +12,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class Discord {
-    private static long lastMessageTime = 0;
-    private static int messageCount = 0;
+    public static boolean serverRestart = false;
 
     public enum MessageTypeServer {
         TYPE_SERVER_STARTED,
@@ -60,7 +59,11 @@ public class Discord {
         if (type == MessageTypeServer.TYPE_SERVER_STARTED) {
             text = "✅ Сервер поднялся!";
         } else if (type == MessageTypeServer.TYPE_SERVER_STOPPED) {
-            text = "❌ Сервер упал! (<@&394132635791654913>)";
+            if (serverRestart) {
+                text = "⌛ Сервер ушёл на рестарт!";
+            } else {
+                text = "❌ Сервер упал! (<@&394132635791654913>)";
+            }
         } else if (type == MessageTypeServer.TPS_IS_BAD) {
             text = "\uD83D\uDCC9 TPS опустился ниже 14! (<@&394132635791654913>)";
         } else if (type == MessageTypeServer.TPS_NORMALIZED) {
