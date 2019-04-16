@@ -67,7 +67,7 @@ public class ServerAPISender implements ConsoleSource {
 
     @Override
     public Tristate getPermissionValue(Set<Context> contexts, String permission) {
-        return Sponge.getServer().getConsole().getPermissionValue(contexts, permission);
+        return Tristate.TRUE;
     }
 
     @Override
