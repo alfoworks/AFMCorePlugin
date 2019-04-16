@@ -44,59 +44,59 @@ public class HTTPServer implements Runnable {
     class EchoHandler implements HttpHandler {
         @Override
         public void handle(HttpExchange exchange) throws IOException {
-            try {
-                InputStreamReader isr = new InputStreamReader(exchange.getRequestBody());
-                BufferedReader br = new BufferedReader(isr);
-                String input = br.readLine();
+            InputStreamReader isr = new InputStreamReader(exchange.getRequestBody());
+            BufferedReader br = new BufferedReader(isr);
+            String input = br.readLine();
 
-                AFMCorePlugin.logger.info("[AFMCP_APISERVER] Input: " + input);
-                List<String> args = new ArrayList<>(Arrays.asList(input.split(" ")));
-                String cmd = args.remove(0);
+            AFMCorePlugin.logger.info("[AFMCP_APISERVER] Input: " + input);
+            List<String> args = new ArrayList<>(Arrays.asList(input.split(" ")));
+            String cmd = args.remove(0);
 
-                switch (cmd) {
-                    case "EX_COMMAND":
-                        String minecraftCommand = String.join(" ", args);
+            switch (cmd) {
+                case "EX_COMMAND":
+                    String minecraftCommand = String.join(" ", args);
 
-                        if (minecraftCommand.length() > 0) {
-                            ServerAPISender sender = new ServerAPISender();
+                    if (minecraftCommand.length() > 0) {
+                        ServerAPISender sender = new ServerAPISender();
 
-                            Task.builder().execute(() -> Sponge.getCommandManager().process(sender, minecraftCommand))
-                                    .name("AFMCP APISERVER command")
-                                    .submit(Sponge.getPluginManager().getPlugin("afmcp").get().getInstance().get());
+                        Task.builder().execute(() -> Sponge.getCommandManager().process(sender, minecraftCommand))
+                                .name("AFMCP APISERVER command")
+                                .submit(Sponge.getPluginManager().getPlugin("afmcp").get().getInstance().get());
 
-                            String commandOutput = String.join("\n", sender.getOutput());
+                        while (sender.getOutput().size() < 1) {
 
-                            if (commandOutput.length() > 0) {
-                                ServerUtils.responseString(exchange, 200, commandOutput);
-                            } else {
-                                ServerUtils.responseString(exchange, 204, commandOutput);
-                            }
+                        }
+
+                        String commandOutput = String.join("\n", sender.getOutput());
+
+                        if (commandOutput.length() > 0) {
+                            ServerUtils.responseString(exchange, 200, commandOutput);
                         } else {
-                            ServerUtils.responseString(exchange, 400, "");
+                            ServerUtils.responseString(exchange, 204, commandOutput);
                         }
-                        break;
-                    case "PLAYER_LIST":
-                        List<String> playerList = new ArrayList<>();
+                    } else {
+                        ServerUtils.responseString(exchange, 400, "");
+                    }
+                    break;
+                case "PLAYER_LIST":
+                    List<String> playerList = new ArrayList<>();
 
-                        for (Player player : Sponge.getServer().getOnlinePlayers()) {
-                            playerList.add(player.getName());
-                        }
+                    for (Player player : Sponge.getServer().getOnlinePlayers()) {
+                        playerList.add(player.getName());
+                    }
 
-                        if (playerList.size() > 0) {
-                            ServerUtils.responseString(exchange, 200, String.join("\n", playerList));
-                        } else {
-                            ServerUtils.responseString(exchange, 204, "");
-                        }
-                        break;
-                    case "TAKE_SCREENSHOT":
-                        ServerUtils.responseString(exchange, 200, defaultBase64);
-                        break;
-                    default:
-                        ServerUtils.responseString(exchange, 405, "");
-                        break;
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+                    if (playerList.size() > 0) {
+                        ServerUtils.responseString(exchange, 200, String.join("\n", playerList));
+                    } else {
+                        ServerUtils.responseString(exchange, 204, "");
+                    }
+                    break;
+                case "TAKE_SCREENSHOT":
+                    ServerUtils.responseString(exchange, 200, defaultBase64);
+                    break;
+                default:
+                    ServerUtils.responseString(exchange, 405, "");
+                    break;
             }
         }
     }
