@@ -2,26 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d122824-c45f-4dc9-9772-e9cb0c4f4b11" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gradle/4.4.1/fileChanges/last-build.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/4.4.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/4.4.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/AFMCorePlugin-sponge1.12.main/assets/afmcp/config.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/AFMCorePlugin-sponge1.12.main/ru/allformine/afmcp/AFMCorePlugin.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/AFMCorePlugin-sponge1.12.main/ru/allformine/afmcp/commands/RestartCommand.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/AFMCorePlugin-sponge1.12.main/ru/allformine/afmcp/handlers/DiscordWebhookListener.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/AFMCorePlugin-sponge1.12.main/ru/allformine/afmcp/handlers/VanishEventListener.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/AFMCorePlugin-sponge1.12.main/ru/allformine/afmcp/net/discord/Discord$MessageTypePlayer.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/AFMCorePlugin-sponge1.12.main/ru/allformine/afmcp/net/discord/Discord$MessageTypeServer.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/AFMCorePlugin-sponge1.12.main/ru/allformine/afmcp/net/discord/Discord.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/AFMCorePlugin-sponge1.12.main/ru/allformine/afmcp/net/http/Requests.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/AFMCorePlugin-sponge1.12.main/ru/allformine/afmcp/serverapi/HTTPServer$Auth.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/AFMCorePlugin-sponge1.12.main/ru/allformine/afmcp/serverapi/HTTPServer$EchoHandler.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/AFMCorePlugin-sponge1.12.main/ru/allformine/afmcp/serverapi/HTTPServer.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/AFMCorePlugin-sponge1.12.main/ru/allformine/afmcp/serverapi/ServerAPISender.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/AFMCorePlugin-sponge1.12.main/ru/allformine/afmcp/serverapi/ServerUtils.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/AFMCorePlugin-sponge1.12.main/ru/allformine/afmcp/serverapi/VanishManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/handlers/VanishEventListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/handlers/VanishEventListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/serverapi/VanishManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/serverapi/VanishManager.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -42,11 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/serverapi/VanishManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+            <state relative-caret-position="136">
+              <caret line="8" column="89" selection-start-line="8" selection-start-column="89" selection-end-line="8" selection-end-column="89" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -54,11 +35,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/handlers/VanishEventListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="49" lean-forward="true" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="49" />
+            <state relative-caret-position="187">
+              <caret line="11" column="47" lean-forward="true" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -106,9 +87,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/handlers/VanishManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/serverapi/VanishManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/AFMCorePlugin.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/handlers/VanishEventListener.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/serverapi/VanishManager.java" />
       </list>
     </option>
   </component>
@@ -180,7 +161,14 @@
       <option name="project" value="LOCAL" />
       <updated>1555953170204</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="При выходе игрока тоже чекаем пермишн // VanishListener">
+      <created>1555960779087</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1555960779087</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView">
@@ -211,9 +199,9 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4993573" weight="0.32974428" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="7" sideWeight="0.49807197" visible="true" weight="0.32974428" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4974293" weight="0.32974428" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32974428" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50192803" side_tool="true" weight="0.32974428" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5025707" side_tool="true" weight="0.32974428" />
       <window_info anchor="bottom" id="Build" order="10" sideWeight="0.4993573" weight="0.32974428" />
       <window_info active="true" anchor="bottom" id="Messages" order="11" sideWeight="0.4993573" visible="true" weight="0.32974428" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -269,7 +257,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Вынес пермишн в константу" />
-    <option name="LAST_COMMIT_MESSAGE" value="Вынес пермишн в константу" />
+    <MESSAGE value="При выходе игрока тоже чекаем пермишн // VanishListener" />
+    <option name="LAST_COMMIT_MESSAGE" value="При выходе игрока тоже чекаем пермишн // VanishListener" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/handlers/DiscordWebhookListener.java">
@@ -292,20 +281,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/serverapi/VanishManager.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/handlers/VanishEventListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+        <state relative-caret-position="187">
+          <caret line="11" column="47" lean-forward="true" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/handlers/VanishEventListener.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/serverapi/VanishManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="49" lean-forward="true" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="49" />
+        <state relative-caret-position="136">
+          <caret line="8" column="89" selection-start-line="8" selection-start-column="89" selection-end-line="8" selection-end-column="89" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
