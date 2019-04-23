@@ -3,7 +3,8 @@ package ru.allformine.afmcp.handlers;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
-import ru.allformine.afmcp.serverapi.VanishManager;
+import ru.allformine.afmcp.VanishManager;
+
 public class VanishEventListener {
     @Listener
     public void onPlayerJoin(ClientConnectionEvent.Join event) {

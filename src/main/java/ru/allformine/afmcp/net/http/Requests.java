@@ -50,4 +50,24 @@ public class Requests {
             e.printStackTrace();
         }
     }
+
+    public static GETResponse sendGet(String url) {  // здесь нет никаких проверок на null'ы и успешность всего
+        try {                                   // в принципе, может быть больно
+            URL obj = new URL(url);
+            HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
+            int code = con.getResponseCode();
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuilder response = new StringBuilder();
+
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+            return new GETResponse(response.toString(),code);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

@@ -16,6 +16,7 @@ import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.scheduler.Task;
 import org.spongepowered.api.text.Text;
 import ru.allformine.afmcp.commands.RestartCommand;
+import ru.allformine.afmcp.commands.TokensCommand;
 import ru.allformine.afmcp.handlers.DiscordWebhookListener;
 import ru.allformine.afmcp.net.discord.Discord;
 import ru.allformine.afmcp.serverapi.HTTPServer;
@@ -71,6 +72,14 @@ public class AFMCorePlugin {
                 .build();
 
         Sponge.getCommandManager().register(this, restartCommandSpec, "afmrestart", "servrestart");
+        //////////////////// КОМАНДА ЗАРЕГИСТРИРОВАНА ////////////////////
+        CommandSpec tokensCommandSpec = CommandSpec.builder()
+                .description(Text.of("Command for get balance"))
+                .executor(new TokensCommand())
+                .build();
+        Sponge.getCommandManager().register(this, tokensCommandSpec, "tokens");
+        //////////////////////////////////////////////////////////////////
+
     }
 
     @Listener
