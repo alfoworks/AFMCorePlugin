@@ -20,9 +20,9 @@ import ru.allformine.afmcp.commands.RestartCommand;
 import ru.allformine.afmcp.commands.TokensCommand;
 import ru.allformine.afmcp.commands.VipCommand;
 import ru.allformine.afmcp.handlers.DiscordWebhookListener;
+import ru.allformine.afmcp.handlers.VanishEventListener;
 import ru.allformine.afmcp.net.discord.Discord;
 import ru.allformine.afmcp.serverapi.HTTPServer;
-import ru.allformine.afmcp.handlers.VanishEventListener;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -34,27 +34,28 @@ import java.nio.file.Path;
         description = "A plugin for a couple of random tasks.",
         url = "http://allformine.ru",
         authors = {
-                "Iterator"
+                "Iterator, HeroBrine1st_Erq"
         }
 )
 public class AFMCorePlugin {
-    private Task apiServerTask;
-
     @Inject
     public static Logger logger;
-
+    private static CommentedConfigurationNode configNode;
+    private Task apiServerTask;
     @Inject
     @ConfigDir(sharedRoot = false)
     private Path configDir;
     private Path configFile;
+    private ConfigurationLoader<CommentedConfigurationNode> configLoader;
+
+    public static CommentedConfigurationNode getConfig() {
+        return configNode;
+    }
 
     @Inject
     private void setLogger(Logger logger) {
         AFMCorePlugin.logger = logger;
     }
-
-    private ConfigurationLoader<CommentedConfigurationNode> configLoader;
-    private static CommentedConfigurationNode configNode;
 
     @Listener
     public void preInit(GamePreInitializationEvent event) {
@@ -62,6 +63,7 @@ public class AFMCorePlugin {
         ////////////////////////////// ИВЕНТЫ ЗАРЕГИСТРИРОВАНЫ //////////////////////////////
         Sponge.getEventManager().registerListeners(this, new VanishEventListener());
         /////////////////////////////////////////////////////////////////////////////////////
+
         configFile = configDir.resolve("config.conf");
         configLoader = HoconConfigurationLoader.builder().setPath(configFile).build();
 
@@ -79,7 +81,9 @@ public class AFMCorePlugin {
                 .description(Text.of("Command for get balance"))
                 .executor(new TokensCommand())
                 .build();
+
         Sponge.getCommandManager().register(this, tokensCommandSpec, "tokens");
+
         CommandSpec vipCommandSpec = CommandSpec.builder()
                 .description(Text.of("Command for buy a vip"))
                 .executor(new VipCommand())
@@ -87,6 +91,7 @@ public class AFMCorePlugin {
                         GenericArguments.onlyOne(GenericArguments.string(Text.of("selectedVip")))
                 )
                 .build();
+
         Sponge.getCommandManager().register(this, vipCommandSpec, "vip");
         //////////////////////////////////////////////////////////////////
 
@@ -94,7 +99,7 @@ public class AFMCorePlugin {
 
     @Listener
     public void onServerStart(GameStartedServerEvent event) {
-       Discord.sendMessageServer(Discord.MessageTypeServer.TYPE_SERVER_STARTED);
+        Discord.sendMessageServer(Discord.MessageTypeServer.TYPE_SERVER_STARTED);
 
         apiServerTask = Task.builder().execute(new HTTPServer())
                 .async().name("AFMCP APISERVER")
@@ -135,9 +140,5 @@ public class AFMCorePlugin {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static CommentedConfigurationNode getConfig(){
-        return configNode;
     }
 }

@@ -16,19 +16,21 @@ public class TokensCommand implements CommandExecutor {
     private ConfigurationNode configNode = AFMCorePlugin.getConfig();
     private String key = configNode.getNode("key").getString();
     private String balanceUrl = configNode.getNode("balanceUrl").getString();
+
     public CommandResult execute(CommandSource source, CommandContext args) throws CommandException {
-        if(source instanceof Player) {
+        if (source instanceof Player) {
             String url = balanceUrl + "&act=get&key=" + key + "&nickname=" + source.getName(); // есть причины. что бы это не заработало: это слишком просто
             GETResponse response = Requests.sendGet(url);
-            if(response.responseCode == 200){
+
+            if (response != null && response.responseCode == 200) {
                 String responseToPlayer = "Ваш баланс: " + response.response + " токенов.";
                 source.sendMessage(Text.of(responseToPlayer));
                 return CommandResult.success();
-            }else{
+            } else {
                 source.sendMessage(Text.of("Произошла серверная ошибка при выполнении команды."));
-                throw new CommandException(Text.of("Request " + url + " returned " + response.responseCode));
+                throw new CommandException(Text.of(response.responseCode));
             }
-        }else{
+        } else {
             source.sendMessage(Text.of("Вы не являетесь игроком"));
             return CommandResult.success();
         }

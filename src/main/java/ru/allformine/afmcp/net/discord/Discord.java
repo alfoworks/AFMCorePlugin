@@ -14,27 +14,6 @@ import java.util.concurrent.TimeUnit;
 public class Discord {
     public static boolean serverRestart = false;
 
-    public enum MessageTypeServer {
-        TYPE_SERVER_STARTED,
-        TYPE_SERVER_STOPPED,
-
-        TPS_IS_BAD,
-        TPS_NORMALIZED
-    }
-
-    public enum MessageTypePlayer {
-        TYPE_PLAYER_JOINED,
-        TYPE_PLAYER_JOINED_FIRST_TIME,
-        TYPE_PLAYER_LEFT,
-        TYPE_STAFF_JOINED,
-        TYPE_STAFF_LEFT,
-        TYPE_PLAYER_DIED,
-        TYPE_PLAYER_EARNED_ADVANCEMENT,
-        TYPE_PLAYER_CHAT,
-        TYPE_PLAYER_CHAT_LVL2,
-        TYPE_PLAYER_COMMAND
-    }
-
     private static void sendMessage(String text, String username, String avatarUrl, int logLevel) {
         String url = AFMCorePlugin.getConfig().getNode("discord", "webhooks", "url_lvl" + String.valueOf(logLevel)).getString();
 
@@ -112,5 +91,26 @@ public class Discord {
         Task.builder().execute(() -> sendMessage(text, player.getName(), AFMCorePlugin.getConfig().getNode("discord", "webhooks", "player_avatar_url" + player.getName()).getString(), finalLogLevel))
                 .async().delay(AFMCorePlugin.getConfig().getNode("discord", "webhooks", "send_delay_secs").getInt(), TimeUnit.SECONDS)
                 .name("AFMCP - Discord Send Message").submit(Sponge.getPluginManager().getPlugin("afmcp").get().getInstance().get());
+    }
+
+    public enum MessageTypeServer {
+        TYPE_SERVER_STARTED,
+        TYPE_SERVER_STOPPED,
+
+        TPS_IS_BAD,
+        TPS_NORMALIZED
+    }
+
+    public enum MessageTypePlayer {
+        TYPE_PLAYER_JOINED,
+        TYPE_PLAYER_JOINED_FIRST_TIME,
+        TYPE_PLAYER_LEFT,
+        TYPE_STAFF_JOINED,
+        TYPE_STAFF_LEFT,
+        TYPE_PLAYER_DIED,
+        TYPE_PLAYER_EARNED_ADVANCEMENT,
+        TYPE_PLAYER_CHAT,
+        TYPE_PLAYER_CHAT_LVL2,
+        TYPE_PLAYER_COMMAND
     }
 }

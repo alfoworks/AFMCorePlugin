@@ -13,8 +13,9 @@ public class VanishEventListener {
             VanishManager.vanishPlayer(player);
         }
     }
+
     @Listener
-    public void onPlayerQuit(ClientConnectionEvent.Disconnect event){
+    public void onPlayerQuit(ClientConnectionEvent.Disconnect event) {
         Player player = event.getTargetEntity();
         if (player.hasPermission(VanishManager.vanishPermission)) {
             VanishManager.unvanishPlayer(player);

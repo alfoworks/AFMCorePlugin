@@ -15,7 +15,7 @@ public class Requests {
         try {
             URL url = new URL(urlString);
             URLConnection con = url.openConnection();
-            HttpsURLConnection connection = (HttpsURLConnection)con;
+            HttpsURLConnection connection = (HttpsURLConnection) con;
             connection.setRequestMethod("POST");
             connection.setDoOutput(true);
 
@@ -27,7 +27,7 @@ public class Requests {
             connection.addRequestProperty("User-Agent", "Mozilla 5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.0.11) ");
             connection.connect();
 
-            try(OutputStream os = connection.getOutputStream()) {
+            try (OutputStream os = connection.getOutputStream()) {
                 os.write(out);
             }
 
@@ -35,17 +35,17 @@ public class Requests {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
                 StringBuilder result = new StringBuilder();
                 String line;
-                while((line = reader.readLine()) != null) {
+                while ((line = reader.readLine()) != null) {
                     result.append("\n").append(line);
                 }
 
-                AFMCorePlugin.logger.error("Can't send JSON to url "+urlString+".");
-                AFMCorePlugin.logger.error("JSON: "+JSON);
-                AFMCorePlugin.logger.error("Response: "+result.toString());
+                AFMCorePlugin.logger.error("Can't send JSON to url " + urlString + ".");
+                AFMCorePlugin.logger.error("JSON: " + JSON);
+                AFMCorePlugin.logger.error("Response: " + result.toString());
             }
-        } catch(Exception e) {
-            AFMCorePlugin.logger.error("Can't send JSON to url "+urlString+".");
-            AFMCorePlugin.logger.error("JSON: "+JSON);
+        } catch (Exception e) {
+            AFMCorePlugin.logger.error("Can't send JSON to url " + urlString + ".");
+            AFMCorePlugin.logger.error("JSON: " + JSON);
 
             e.printStackTrace();
         }
@@ -64,7 +64,7 @@ public class Requests {
                 response.append(inputLine);
             }
             in.close();
-            return new GETResponse(response.toString(),code);
+            return new GETResponse(response.toString(), code);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
