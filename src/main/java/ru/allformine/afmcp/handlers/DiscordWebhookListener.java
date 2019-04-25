@@ -28,7 +28,7 @@ public class DiscordWebhookListener {
 
     @Listener
     public void onCommandSend(SendCommandEvent event, @First Player p) {
-        Discord.sendMessagePlayer(Discord.MessageTypePlayer.TYPE_PLAYER_COMMAND, event.getCommand()+" "+event.getArguments(), p);
+        Discord.sendMessagePlayer(Discord.MessageTypePlayer.TYPE_PLAYER_COMMAND, event.getCommand() + " " + event.getArguments(), p);
     }
 
     @Listener
@@ -38,7 +38,7 @@ public class DiscordWebhookListener {
 
     @Listener
     public void onDeath(DestructEntityEvent.Death event) {
-        if(event.getTargetEntity() instanceof Player) {
+        if (event.getTargetEntity() instanceof Player) {
             Discord.sendMessagePlayer(Discord.MessageTypePlayer.TYPE_PLAYER_DIED, event.getMessage().toPlain(), (Player) event.getTargetEntity());
         }
     }
