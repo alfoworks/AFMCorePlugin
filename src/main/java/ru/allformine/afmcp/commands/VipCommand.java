@@ -25,7 +25,7 @@ public class VipCommand implements CommandExecutor {
             for (Map.Entry<Object, ? extends ConfigurationNode> entry : vips.entrySet()) {
                 Object key = entry.getKey();
                 ConfigurationNode value = entry.getValue();
-                Integer cost = value.getNode("cost").getInt();
+                int cost = value.getNode("cost").getInt();
                 String fullName = value.getNode("fullName").getString();
                 String name = key.toString();
                 //builder.append("/vip ").append(name).append(" -> ").append().append(" цена: ").append(cost).append(" токенов.\n");
@@ -38,7 +38,7 @@ public class VipCommand implements CommandExecutor {
         if (source instanceof Player) {
             ConfigurationNode vipNode = configNode.getNode("vips", vipToBuy);
             if(vipNode != null && !vipNode.isVirtual()){
-                Integer cost = vipNode.getNode("cost").getInt();
+                int cost = vipNode.getNode("cost").getInt();
                 String fullName = vipNode.getNode("fullName").getString();
                 // TODO: покупка привелегии
                 source.sendMessage(Text.of("Вы купили привелегию " + fullName + " за " + cost + " токенов."));
