@@ -23,19 +23,25 @@ public class VipCommand implements CommandExecutor {
                 Object key = entry.getKey();
                 ConfigurationNode value = entry.getValue();
                 Integer cost = value.getNode("cost").getInt();
+                String fullName = value.getNode("fullName").getString();
                 String name = key.toString();
-                builder.append(name).append(": ").append(cost).append(" токенов.\n");
+                //builder.append("/vip ").append(name).append(" -> ").append().append(" цена: ").append(cost).append(" токенов.\n");
+                builder.append(fullName).append(":").append("Цена: ").append(cost).append(" токенов. Для покупки: /vip ").append(name).append("\n");
             }
             source.sendMessage(Text.of(builder));
             return CommandResult.success();
         }
         if(source instanceof Player) {
             ConfigurationNode vipNode = configNode.getNode("vips", vipToBuy);
-            Integer cost = vipNode.getNode("cost").getInt();
-            String fullName = vipNode.getNode("fullName").getString();
-            // TODO: покупка привелегии
-            source.sendMessage(Text.of("Вы купили привелегию " + fullName + " за " + cost + " токенов."));
-            // Sponge.getServer(). броадкаст , если нужно
+            if(vipNode != null && !vipNode.isVirtual()){
+                Integer cost = vipNode.getNode("cost").getInt();
+                String fullName = vipNode.getNode("fullName").getString();
+                // TODO: покупка привелегии
+                source.sendMessage(Text.of("Вы купили привелегию " + fullName + " за " + cost + " токенов."));
+                // Sponge.getServer(). странный комментарий, оставлю
+            }else{
+                source.sendMessage(Text.of("Неверное имя привилегии. Введите /vip для получения всех привелегий"));
+            }
             return CommandResult.success();
         }else{
             source.sendMessage(Text.of("Вы не являетесь игроком."));
