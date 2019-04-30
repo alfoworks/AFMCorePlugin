@@ -19,7 +19,7 @@ public class VipCommand implements CommandExecutor {
     public CommandResult execute(CommandSource source, CommandContext args) throws CommandException {
         String vipToBuy = args.<String>getOne(Text.of("selectedVip")).get();
 
-        if (vipToBuy.toLowerCase() == "list") {
+        if (vipToBuy.toLowerCase().equals("list")) {
             StringBuilder builder = new StringBuilder("Доступно к покупке:\n"); // TODO: дописать строку
 
             for (Map.Entry<Object, ? extends ConfigurationNode> entry : vips.entrySet()) {
