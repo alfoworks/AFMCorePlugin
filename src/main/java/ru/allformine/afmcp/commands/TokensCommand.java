@@ -27,7 +27,7 @@ public class TokensCommand implements CommandExecutor {
                 return CommandResult.success();
             } else {
                 source.sendMessage(Text.of("Произошла серверная ошибка при выполнении команды."));
-                throw new CommandException(Text.of(response.responseCode));
+                throw new CommandException(Text.of(response.toString()));
             }
         } else {
             source.sendMessage(Text.of("Вы не являетесь игроком"));

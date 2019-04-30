@@ -18,4 +18,8 @@ public class GETResponse {
         this.response = null;
         this.responseCode = responseCode;
     }
+
+    public String toString(){
+        return "GETResponse{\"response\"=" + this.response + ",\"responseCode\"=" + this.responseCode + "}";
+    }
 }

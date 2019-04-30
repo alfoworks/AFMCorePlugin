@@ -64,6 +64,17 @@ public class Requests {
                 response.append(inputLine);
             }
             in.close();
+            if (con.getErrorStream() != null) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+                StringBuilder result = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    result.append("\n").append(line);
+                }
+
+                AFMCorePlugin.logger.error("Can't send GET to url " + url + ".");
+                AFMCorePlugin.logger.error("Response: " + result.toString());
+            }
             return new GETResponse(response.toString(), code);
         } catch (Exception e) {
             e.printStackTrace();
