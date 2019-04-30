@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0d122824-c45f-4dc9-9772-e9cb0c4f4b11" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/commands/TokensCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/commands/TokensCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/afmcp/config.conf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/afmcp/config.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/commands/VipCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/commands/VipCommand.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -25,11 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/commands/VipCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="18" column="49" lean-forward="true" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="49" />
+            <state relative-caret-position="187">
+              <caret line="26" column="59" lean-forward="true" selection-start-line="26" selection-start-column="59" selection-end-line="26" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#893#901#0" expanded="true" />
@@ -38,11 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/commands/TokensCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="372">
-              <caret line="24" column="87" selection-start-line="24" selection-start-column="87" selection-end-line="24" selection-end-column="87" />
+            <state relative-caret-position="491">
+              <caret line="31" column="16" lean-forward="true" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -128,10 +127,10 @@
         <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/net/http/Requests.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/net/http/GETResponse.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/AFMCorePlugin.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/commands/VipCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/VanishManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/commands/TokensCommand.java" />
         <option value="$PROJECT_DIR$/src/main/resources/assets/afmcp/config.conf" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/commands/VipCommand.java" />
       </list>
     </option>
   </component>
@@ -304,7 +303,21 @@
       <option name="project" value="LOCAL" />
       <updated>1556624552968</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="#29 fix (прошлый фикс был #28)">
+      <created>1556627007012</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1556627007012</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Test vip">
+      <created>1556627185589</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1556627185589</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TodoView">
@@ -320,7 +333,7 @@
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.283419" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.283419" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -399,7 +412,9 @@
     <MESSAGE value="Таак епта, Integer ебать, хуемое нахуй, блядь, заменяем на int, тааак, падажжи ебана" />
     <MESSAGE value="Таак епта, ворн ебать, хуемое, блядь, заменяем на isEmpty, тааак, падажжи ебана" />
     <MESSAGE value="#29 fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="#29 fix" />
+    <MESSAGE value="#29 fix (прошлый фикс был #28)" />
+    <MESSAGE value="Test vip" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test vip" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/serverapi/VanishManager.java" />
@@ -475,6 +490,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/net/http/Requests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="661">
+          <caret line="62" column="57" selection-start-line="62" selection-start-column="57" selection-end-line="62" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/VanishManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -490,10 +515,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/net/http/Requests.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/assets/afmcp/config.conf">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="661">
-          <caret line="62" column="57" selection-start-line="62" selection-start-column="57" selection-end-line="62" selection-end-column="57" />
+        <state relative-caret-position="357">
+          <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/commands/TokensCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="491">
+          <caret line="31" column="16" lean-forward="true" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -502,28 +534,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/commands/VipCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="18" column="49" lean-forward="true" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="49" />
+        <state relative-caret-position="187">
+          <caret line="26" column="59" lean-forward="true" selection-start-line="26" selection-start-column="59" selection-end-line="26" selection-end-column="59" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#893#901#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/assets/afmcp/config.conf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="26" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/commands/TokensCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="24" column="87" selection-start-line="24" selection-start-column="87" selection-end-line="24" selection-end-column="87" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
