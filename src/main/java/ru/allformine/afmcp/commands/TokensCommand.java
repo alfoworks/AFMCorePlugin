@@ -13,10 +13,9 @@ import ru.allformine.afmcp.net.http.GETResponse;
 import ru.allformine.afmcp.net.http.Requests;
 
 public class TokensCommand implements CommandExecutor {
-    private ConfigurationNode configNode = AFMCorePlugin.getConfig();
+    private ConfigurationNode configNode = AFMCorePlugin.getConfig().getNode("eco");
     private String key = configNode.getNode("key").getString();
     private String balanceUrl = configNode.getNode("balanceUrl").getString();
-
     public CommandResult execute(CommandSource source, CommandContext args) throws CommandException {
         if (source instanceof Player) {
             String url = balanceUrl + "&act=get&key=" + key + "&nickname=" + source.getName(); // есть причины. что бы это не заработало: это слишком просто
