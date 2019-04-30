@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public class VanishManager {
     public static final String vanishPermission = "afmcp.vanish.onjoin";
-    private static HashMap<Player, Boolean> vanishedPlayers;
+    private static HashMap<Player, Boolean> vanishedPlayers = new HashMap<>();
 
     public static boolean isVanished(Player player) {
         return vanishedPlayers.containsKey(player);
