@@ -33,7 +33,7 @@ public class Discord {
         TYPE_PLAYER_COMMAND
     }
 
-    private static void sendMessage(String text, String username, String avatarUrl, int logLevel) {
+    public static void sendMessage(String text, String username, String avatarUrl, int logLevel) {
         Plugin plugin = AFMCorePlugin.getPlugin();
 
         if (!References.log) {

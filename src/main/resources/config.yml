@@ -2,6 +2,7 @@ discord:
   webhooks: # ссылки вебхуков разных уровней доступа
     url_lvl1: "https://discordapp.com/api/webhooks/523289724639510548/cEkuF1hXAqH5KjCIHIpNUS2oNc-wvDgBjA7S2TETZt9Xu9uF5U8wKuHInx2vHYQmIOTJ"
     url_lvl2: "https://discordapp.com/api/webhooks/523488651330453564/Yes5EtngU8HmBnUoQKS3DZVWdghfd58cf3LD8w_WeWLxuQo3U91PZaKtEbEfNO-YVRiF"
+    url_lvl2: "https://discordapp.com/api/webhooks/577146531778527232/OmmHTmQkWQCDSqQgTNsHKQLXAYMWzoDEMXZK0rYN5aejIqriw8VSP9cdyL2Tv9u2wZx-"
 
     player_avatar_url: "https://allformine.ru/banava?name=" # ссылка на API для получения ссылки на аватар
   logger:

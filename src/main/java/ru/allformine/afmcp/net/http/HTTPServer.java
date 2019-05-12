@@ -2,6 +2,7 @@ package ru.allformine.afmcp.net.http;
 
 import com.sun.net.httpserver.*;
 import org.bukkit.Bukkit;
+import org.bukkit.craftbukkit.libs.com.google.gson.Gson;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import ru.allformine.afmcp.AFMCorePlugin;
@@ -99,7 +100,7 @@ public class HTTPServer extends BukkitRunnable {
                     }
 
                     if (players.size() > 0) {
-                        ServerUtils.responseString(exchange, 200, String.join("\n", players));
+                        ServerUtils.responseString(exchange, 200, new Gson().toJson(players));
                     } else {
                         ServerUtils.responseString(exchange, 204, "");
                     }
