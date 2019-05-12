@@ -51,7 +51,6 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
         // ====== TEST STUFF
 
         Bukkit.getMessenger().registerIncomingPluginChannel(this, "FML|HS", this);
-        Bukkit.getMessenger().registerIncomingPluginChannel(this, "FML|HS", this);
         Bukkit.getMessenger().registerIncomingPluginChannel(this, "FML", this);
         Bukkit.getMessenger().registerIncomingPluginChannel(this, "FML|MP", this);
         Bukkit.getMessenger().registerIncomingPluginChannel(this, "FORGE", this);
