@@ -16,6 +16,7 @@ import org.bukkit.plugin.Plugin;
 import org.kitteh.vanish.VanishManager;
 import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.References;
+import ru.allformine.afmcp.net.discord.Discord;
 
 import java.util.*;
 
@@ -51,9 +52,23 @@ public class ProtocolHandler {
                 }
             });
         }
+
+        ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(plugin,
+                ListenerPriority.NORMAL,
+                PacketType.Handshake.Client.SET_PROTOCOL, PacketType.Login.Server.DISCONNECT) {
+
+            @Override
+            public void onPacketReceiving(final PacketEvent event) {
+                if (event.getPacketType() == PacketType.Handshake.Client.SET_PROTOCOL) {
+                    if (event.getPacket().getProtocols().read(0) == PacketType.Protocol.LOGIN) {
+                        Discord.sendMessage(event.getPlayer().getAddress().toString()+", "+String.valueOf(event.getPacket().getIntegers().read(0)), "Test Info", "", 3);
+                    }
+                }
+            }
+        });
     }
 
-    public static boolean isPlayerVanished(String nickname) { // Метод публичный, потому что будет использоваться в модах.
+    public static boolean isPlayerVanished(String nickname) {
         if (vanishManager == null) {
             return false;
         }

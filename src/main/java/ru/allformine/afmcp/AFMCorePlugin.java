@@ -48,15 +48,6 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "ambient");
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "territoryshow");
 
-        // ====== TEST STUFF
-
-        Bukkit.getMessenger().registerIncomingPluginChannel(this, "FML|HS", this);
-        Bukkit.getMessenger().registerIncomingPluginChannel(this, "FML", this);
-        Bukkit.getMessenger().registerIncomingPluginChannel(this, "FML|MP", this);
-        Bukkit.getMessenger().registerIncomingPluginChannel(this, "FORGE", this);
-
-        // =================
-
         this.saveDefaultConfig();
 
         Bukkit.getServer().getScheduler().runTaskAsynchronously(this, apiServer);
@@ -128,10 +119,6 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
 
                     return true;
                 }
-            } else {
-                sender.sendMessage(ChatColor.RED+command.getDisplayName()+" > Данная команда не может быть выполнена из консоли!!");
-
-                return true;
             }
         }
 
