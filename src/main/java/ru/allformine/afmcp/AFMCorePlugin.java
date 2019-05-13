@@ -50,6 +50,9 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "ambient");
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "territoryshow");
 
+        this.getServer().getMessenger().registerIncomingPluginChannel(this, "FML", this);
+        this.getServer().getMessenger().registerIncomingPluginChannel(this, "FML|HS", this);
+
         this.saveDefaultConfig();
 
         Bukkit.getServer().getScheduler().runTaskAsynchronously(this, apiServer);
