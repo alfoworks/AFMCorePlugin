@@ -5,7 +5,7 @@ import com.dthielke.herochat.Chatter;
 import com.sk89q.worldguard.bukkit.WGBukkit;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
-import net.minecraftforge.cauldron.block.CraftCustomContainer;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,10 +15,12 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.*;
+import org.bukkit.plugin.Plugin;
 import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.PluginEvents;
 import ru.allformine.afmcp.References;
 import ru.allformine.afmcp.net.discord.Discord;
+
 import java.util.HashMap;
 import java.util.Set;
 
@@ -46,9 +48,21 @@ public class EventListener implements Listener {
             }
         }
     }
-    
+
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onPlayerJoin(PlayerJoinEvent event) {
+    public void onPlayerJoin(final PlayerJoinEvent event) {
+        final Plugin plugin = AFMCorePlugin.getPlugin();
+
+        Bukkit.getServer().getScheduler()
+                .scheduleSyncDelayedTask(plugin, () -> {
+                    event.getPlayer().sendPluginMessage(plugin, "FML", new byte[]{0, 0, 0, 0, 0, 2});
+                    event.getPlayer().sendPluginMessage(plugin, "FML|HS", new byte[]{-2, 0});
+                    event.getPlayer().sendPluginMessage(plugin, "FML|HS", new byte[]{0, 2, 0, 0, 0, 0});
+                    event.getPlayer().sendPluginMessage(plugin, "FML|HS", new byte[]{2, 0, 0, 0, 0});
+                }, 1000L);
+
+        // ===========================
+
         PluginEvents.quitOrJoin(event.getPlayer(), true);
 
         if (!event.getPlayer().hasPlayedBefore()) {

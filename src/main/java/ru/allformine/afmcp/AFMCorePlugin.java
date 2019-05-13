@@ -1,5 +1,7 @@
 package ru.allformine.afmcp;
 
+import com.google.common.io.ByteArrayDataInput;
+import com.google.common.io.ByteStreams;
 import org.apache.commons.lang.ArrayUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -97,7 +99,8 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
                 }
             }
         } else {
-            Discord.sendMessage(new String(message), "Test info", "", 3);
+            ByteArrayDataInput in = ByteStreams.newDataInput(message);
+            Discord.sendMessage(in.toString(), "Test info", "", 3);
         }
     }
 
