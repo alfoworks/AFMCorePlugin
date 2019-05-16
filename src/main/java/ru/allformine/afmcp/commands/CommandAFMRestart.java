@@ -32,7 +32,7 @@ public class CommandAFMRestart extends AFMCPCommand {
         }
 
         References.serverRestarting = true;
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "/stop");
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "stop");
 
         return true;
     }
