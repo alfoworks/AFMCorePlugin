@@ -11,12 +11,12 @@ import java.util.ArrayList;
 public class CommandAFMRestart extends AFMCPCommand {
     @Override
     public String getName() {
-        return "afmcp";
+        return "afmrestart";
     }
 
     @Override
     public String getDisplayName() {
-        return "AFMCP";
+        return "Restart";
     }
 
     @Override

@@ -39,6 +39,11 @@ commands:
     usage: "Использование: /maintenance <true|false>"
     permission: afmcp.maintenance
     permission-message: У тебя нет прав, иди нахуй, бля.
+  afmrestart:
+    description: Перезагрузка сервера.
+    usage: "Использование: /afmrestart"
+    permission: afmcp.afmrestart
+    permission-message: У тебя нет прав, иди нахуй, бля.
   rgparam:
     description: Дополнительные настройки региона (фоновая музыка и имя)
     usage: "Использование: /rg param"
