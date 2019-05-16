@@ -1,7 +1,5 @@
 package ru.allformine.afmcp;
 
-import com.google.common.io.ByteArrayDataInput;
-import com.google.common.io.ByteStreams;
 import org.apache.commons.lang.ArrayUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -50,12 +48,6 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "ambient");
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "territoryshow");
 
-        Bukkit.getMessenger().registerIncomingPluginChannel(this, "FML|HS", this);
-        Bukkit.getMessenger().registerOutgoingPluginChannel(this, "FML|HS");
-        Bukkit.getMessenger().registerOutgoingPluginChannel(this, "FML");
-        Bukkit.getMessenger().registerOutgoingPluginChannel(this, "FML|MP");
-        Bukkit.getMessenger().registerOutgoingPluginChannel(this, "FORGE");
-
         this.saveDefaultConfig();
 
         Bukkit.getServer().getScheduler().runTaskAsynchronously(this, apiServer);
@@ -71,7 +63,7 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
         ProtocolHandler.startHandler();
 
         CommandHandler.addCommand(new CommandAFMCP());
-        CommandHandler.addCommand(new CommandAFMCPLog());
+        CommandHandler.addCommand(new CommandAFMRestart());
         CommandHandler.addCommand(new CommandFreeze());
         CommandHandler.addCommand(new CommandMaintenance());
         CommandHandler.addCommand(new CommandNotify());
@@ -85,7 +77,7 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
     }
 
     public void onDisable() {
-        apiServer.cancel();
+        Bukkit.getScheduler().cancelTask(apiServer.getTaskId());
 
         Discord.sendMessageServer(Discord.MessageTypeServer.TYPE_SERVER_STOPPED);
     }
@@ -104,9 +96,6 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
                     apiServer.playerScreenshotConfirmation.put(player, true);
                 }
             }
-        } else {
-            ByteArrayDataInput in = ByteStreams.newDataInput(message);
-            Discord.sendMessage(in.toString(), "Test info", "", 3);
         }
     }
 

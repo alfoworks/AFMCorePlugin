@@ -1,6 +1,6 @@
 name: AFMCorePlugin
 main: ru.allformine.afmcp.AFMCorePlugin
-version: 2.3-beta
+version: 2.4
 author: Iterator
 depend: [ProtocolLib, VanishNoPacket, Herochat]
 softdepend: [Factions]
@@ -23,11 +23,6 @@ commands:
     usage: "Использование: /notify <сообщение не больше 48 символов>"
     permission: afmcp.staff
     permission-message: У тебя нет прав, иди нахуй, бля.
-  notifyplayer:
-    description: Отослать уведомление в оверлей игроку.
-    usage: "Использование: /notifyplayer <игрок> <сообщение не больше 48 символов>"
-    permission: afmcp.staff
-    permission-message: У тебя нет прав, иди нахуй, бля.
   vip:
     description: Купить VIP-статус
     usage: "Использование: /vip <Alpha | Beta | Gamma>"
@@ -38,14 +33,6 @@ commands:
     description: Перезагрузить конфигурацию плагина.
     usage: "Использование: /afmreload"
     permission: afmcp.reload
-    permission-message: У тебя нет прав, иди нахуй, бля.
-  gift:
-    description: Получить новогодний подарок.
-    usage: "Использование: /gift"
-  afmcplog:
-    description: Включить/выключить логгирование в дискорд.
-    usage: "Использование: /afmcplog <true|false>"
-    permission: afmcp.log
     permission-message: У тебя нет прав, иди нахуй, бля.
   maintenance:
     description: Включить/выключить режим тех.работ на сервере

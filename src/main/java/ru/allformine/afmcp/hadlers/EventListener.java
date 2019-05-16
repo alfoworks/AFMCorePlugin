@@ -51,18 +51,6 @@ public class EventListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerJoin(final PlayerJoinEvent event) {
-        final Plugin plugin = AFMCorePlugin.getPlugin();
-
-        Bukkit.getServer().getScheduler()
-                .scheduleSyncDelayedTask(plugin, () -> {
-                    event.getPlayer().sendPluginMessage(plugin, "FML", new byte[]{0, 0, 0, 0, 0, 2});
-                    event.getPlayer().sendPluginMessage(plugin, "FML|HS", new byte[]{-2, 0});
-                    event.getPlayer().sendPluginMessage(plugin, "FML|HS", new byte[]{0, 2, 0, 0, 0, 0});
-                    event.getPlayer().sendPluginMessage(plugin, "FML|HS", new byte[]{2, 0, 0, 0, 0});
-                }, 1000L);
-
-        // ===========================
-
         PluginEvents.quitOrJoin(event.getPlayer(), true);
 
         if (!event.getPlayer().hasPlayedBefore()) {

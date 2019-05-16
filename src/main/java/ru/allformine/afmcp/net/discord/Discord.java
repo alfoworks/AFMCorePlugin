@@ -33,7 +33,7 @@ public class Discord {
         TYPE_PLAYER_COMMAND
     }
 
-    public static void sendMessage(String text, String username, String avatarUrl, int logLevel) {
+    private static void sendMessage(String text, String username, String avatarUrl, int logLevel) {
         Plugin plugin = AFMCorePlugin.getPlugin();
 
         if (!References.log) {
@@ -63,7 +63,11 @@ public class Discord {
         if (type == MessageTypeServer.TYPE_SERVER_STARTED) {
             text = "✅ Сервер поднялся!";
         } else if (type == MessageTypeServer.TYPE_SERVER_STOPPED) {
-            text = "❌ Сервер упал! (<@&394132635791654913>)";
+            if(References.serverRestarting) {
+                text = "⌛ Сервер ушёл на рестарт!";
+            } else {
+                text = "❌ Сервер упал! (<@&394132635791654913>)";
+            }
         } else if (type == MessageTypeServer.TPS_IS_BAD) {
             text = "\uD83D\uDCC9 TPS опустился ниже 14! (<@&394132635791654913>)";
         } else if (type == MessageTypeServer.TPS_NORMALIZED) {
