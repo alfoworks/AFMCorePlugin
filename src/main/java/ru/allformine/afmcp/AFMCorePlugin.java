@@ -24,6 +24,7 @@ import java.util.Arrays;
 
 public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
     private HTTPServer apiServer = new HTTPServer();
+    private int apiServerTaskId;
 
     private static byte[] trim(byte[] bytes) {
         int i = bytes.length - 1;
@@ -50,7 +51,7 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
 
         this.saveDefaultConfig();
 
-        Bukkit.getServer().getScheduler().runTaskAsynchronously(this, apiServer);
+        apiServerTaskId = Bukkit.getServer().getScheduler().runTaskAsynchronously(this, apiServer).getTaskId();
         Bukkit.getServer().getScheduler().runTaskTimer(this, new TPSWatchdog(this.getConfig().getInt("tps.alarm_if_less")), 0L, 1L);
 
         try {
@@ -77,7 +78,7 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
     }
 
     public void onDisable() {
-        Bukkit.getScheduler().cancelTask(apiServer.getTaskId());
+        Bukkit.getScheduler().cancelTask(apiServerTaskId);
 
         Discord.sendMessageServer(Discord.MessageTypeServer.TYPE_SERVER_STOPPED);
     }
