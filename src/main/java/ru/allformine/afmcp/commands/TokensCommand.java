@@ -1,12 +1,10 @@
 package ru.allformine.afmcp.commands;
 
 import ninja.leaping.configurate.ConfigurationNode;
-import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.args.CommandContext;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextColors;
 import ru.allformine.afmcp.AFMCorePlugin;
@@ -18,9 +16,9 @@ public class TokensCommand extends AFMCPCommand {
     private String key = configNode.getNode("key").getString();
     private String balanceUrl = configNode.getNode("balanceUrl").getString();
 
-    public CommandResult execute(CommandSource source, CommandContext args) throws CommandException {
+    public CommandResult execute(CommandSource source, CommandContext args) {
         if (source instanceof Player) {
-            String url = balanceUrl + "&act=get&key=" + key + "&nickname=" + source.getName();
+            String url = balanceUrl + "&act=get&key=" + key + "&nick=" + source.getName();
             GETResponse response = Requests.sendGet(url);
 
             if (response != null && response.responseCode == 200) {
