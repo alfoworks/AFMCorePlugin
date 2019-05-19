@@ -60,9 +60,7 @@ public class AFMCorePlugin {
     @Listener
     public void preInit(GamePreInitializationEvent event) {
         Sponge.getEventManager().registerListeners(this, new DiscordWebhookListener());
-        ////////////////////////////// ИВЕНТЫ ЗАРЕГИСТРИРОВАНЫ //////////////////////////////
         Sponge.getEventManager().registerListeners(this, new VanishEventListener());
-        /////////////////////////////////////////////////////////////////////////////////////
 
         configFile = configDir.resolve("config.conf");
         configLoader = HoconConfigurationLoader.builder().setPath(configFile).build();
@@ -70,22 +68,22 @@ public class AFMCorePlugin {
         configSetup();
 
         CommandSpec restartCommandSpec = CommandSpec.builder()
-                .description(Text.of("Server restart command"))
+                .description(Text.of("Команда для перезагрузки сервера, единственная верная."))
                 .permission("afmcp.admin")
                 .executor(new RestartCommand())
                 .build();
 
         Sponge.getCommandManager().register(this, restartCommandSpec, "afmrestart", "servrestart");
-        //////////////////// КОМАНДА ЗАРЕГИСТРИРОВАНА ////////////////////
+
         CommandSpec tokensCommandSpec = CommandSpec.builder()
-                .description(Text.of("Command for get balance"))
+                .description(Text.of("Команда для получения количества токенов."))
                 .executor(new TokensCommand())
                 .build();
 
         Sponge.getCommandManager().register(this, tokensCommandSpec, "tokens");
 
         CommandSpec vipCommandSpec = CommandSpec.builder()
-                .description(Text.of("Command for buy a vip"))
+                .description(Text.of("Команда для покупки привелегий."))
                 .executor(new VipCommand())
                 .arguments(
                         GenericArguments.onlyOne(GenericArguments.string(Text.of("selectedVip")))
@@ -93,8 +91,6 @@ public class AFMCorePlugin {
                 .build();
 
         Sponge.getCommandManager().register(this, vipCommandSpec, "vip");
-        //////////////////////////////////////////////////////////////////
-
     }
 
     @Listener
