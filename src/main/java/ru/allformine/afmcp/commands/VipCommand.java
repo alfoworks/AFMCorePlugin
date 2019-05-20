@@ -6,11 +6,14 @@ import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.args.CommandContext;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.TextTemplate;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextColors;
 import ru.allformine.afmcp.AFMCorePlugin;
 
 import java.util.Map;
+
+import static org.spongepowered.api.text.TextTemplate.of;
 
 public class VipCommand extends AFMCPCommand {
     private ConfigurationNode configNode = AFMCorePlugin.getConfig();
@@ -28,7 +31,8 @@ public class VipCommand extends AFMCPCommand {
 
                 String fullName = value.getNode("fullName").getString();
 
-                reply(source, String.format("%s%s %s- %s%s", getColor(), fullName, TextColors.WHITE, getColor(), cost));
+                TextTemplate template = of(getColor(), fullName, TextColors.WHITE, " - ", getColor(), cost, " токенов", TextColors.WHITE + ".");
+                reply(source, template.toString());
             }
 
             reply(source, "Для покупки любой из этих привилегий, напишите /vip <имя>.");

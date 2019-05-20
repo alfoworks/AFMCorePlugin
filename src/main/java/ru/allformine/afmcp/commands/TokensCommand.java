@@ -5,6 +5,7 @@ import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.args.CommandContext;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextColors;
 import ru.allformine.afmcp.AFMCorePlugin;
@@ -22,7 +23,7 @@ public class TokensCommand extends AFMCPCommand {
             GETResponse response = Requests.sendGet(url);
 
             if (response != null && response.responseCode == 200) {
-                reply(source, "Ваш баланс: "+getColor()+response.response+TextColors.WHITE+" токенов.");
+                reply(source, "Ваш баланс: " + Text.builder(response.response).color(getColor()) + " токенов.");
             } else {
                 reply(source, "Произошла неизвестная ошибка при выполнении команды!");
             }

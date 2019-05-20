@@ -24,6 +24,8 @@ public class AFMCPCommand implements CommandExecutor {
     }
 
     void reply(CommandSource source, String text) {
-        source.sendMessage(Text.builder(getColor() + getName() + TextColors.WHITE + " > " + text).build());
+        // Что за ебанутая параша?! Все реально так плохо? Зачем такие заморочки? Почему просто не сделать как
+        // в ебанном бакките? Серьезно, блять...
+        source.sendMessage(Text.builder(getName()).color(getColor()).append(Text.of(" > ")).color(TextColors.WHITE).append(Text.of(text)).build());
     }
 }
