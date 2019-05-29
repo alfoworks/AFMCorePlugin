@@ -32,7 +32,7 @@ public class DiscordWebhookListener {
     }
 
     @Listener
-    public void onAdvancement(AdvancementEvent event) {
+    public void onAdvancement(AdvancementEvent.Grant event) {
         Discord.sendMessagePlayer(Discord.MessageTypePlayer.TYPE_PLAYER_EARNED_ADVANCEMENT, event.getAdvancement().getName(), event.getTargetEntity());
     }
 

@@ -1,7 +1,6 @@
 package ru.allformine.afmcp.net.http;
 
 import ru.allformine.afmcp.AFMCorePlugin;
-
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -51,8 +50,8 @@ public class Requests {
         }
     }
 
-    public static GETResponse sendGet(String url) {  // здесь нет никаких проверок на null'ы и успешность всего
-        try {                                   // в принципе, может быть больно
+    public static GETResponse sendGet(String url) {
+        try {
             URL obj = new URL(url);
             HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
             int code = con.getResponseCode();
