@@ -13,6 +13,7 @@ import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class HTTPServer implements Runnable {
@@ -95,8 +96,21 @@ public class HTTPServer implements Runnable {
                         ServerUtils.responseString(exchange, 204, "");
                     }
                     break;
-                case "TAKE_SCREENSHOT":
+                case "TAKE_SCREENSHOT": // TODO: Надо доделать
                     ServerUtils.responseString(exchange, 500, "Иди нахуй.");
+                    break;
+                case "SERVER_INFO":
+                    int playerCount = Sponge.getServer().getOnlinePlayers().size();
+                    int maxPlayers = Sponge.getServer().getMaxPlayers();
+                    long uptime = System.currentTimeMillis() - AFMCorePlugin.startTime;
+
+                    HashMap<String, Object> info = new HashMap<>();
+                    info.put("players", playerCount);
+                    info.put("maxPlayers", maxPlayers);
+                    info.put("serverUptime", uptime);
+
+                    String json = new Gson().toJson(info);
+                    ServerUtils.responseString(exchange, 200, json);
                     break;
                 default:
                     ServerUtils.responseString(exchange, 405, "");

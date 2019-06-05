@@ -10,8 +10,8 @@ import org.spongepowered.api.command.args.GenericArguments;
 import org.spongepowered.api.command.spec.CommandSpec;
 import org.spongepowered.api.config.ConfigDir;
 import org.spongepowered.api.event.Listener;
+import org.spongepowered.api.event.game.state.GameAboutToStartServerEvent;
 import org.spongepowered.api.event.game.state.GamePreInitializationEvent;
-import org.spongepowered.api.event.game.state.GameStartedServerEvent;
 import org.spongepowered.api.event.game.state.GameStoppingServerEvent;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.scheduler.Task;
@@ -47,6 +47,8 @@ public class AFMCorePlugin {
     private Path configDir;
     private Path configFile;
     private ConfigurationLoader<CommentedConfigurationNode> configLoader;
+
+    public static long startTime = 0;
 
     public static CommentedConfigurationNode getConfig() {
         return configNode;
@@ -94,7 +96,9 @@ public class AFMCorePlugin {
     }
 
     @Listener
-    public void onServerStart(GameStartedServerEvent event) {
+    public void onServerStart(GameAboutToStartServerEvent event) {
+        startTime = System.currentTimeMillis();
+
         Discord.sendMessageServer(Discord.MessageTypeServer.TYPE_SERVER_STARTED);
 
         apiServerTask = Task.builder().execute(new HTTPServer())
