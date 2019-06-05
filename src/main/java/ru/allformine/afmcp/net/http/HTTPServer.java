@@ -6,6 +6,7 @@ import org.bukkit.craftbukkit.libs.com.google.gson.Gson;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import ru.allformine.afmcp.AFMCorePlugin;
+import ru.allformine.afmcp.References;
 import ru.allformine.afmcp.hadlers.ProtocolHandler;
 
 import java.io.*;
@@ -155,6 +156,25 @@ public class HTTPServer extends BukkitRunnable {
                             ServerUtils.responseString(exchange, 410, "");
                         }
                     }
+                    break;
+                case "SERVER_INFO":
+                    int playerCount = 0;
+                    int maxPlayers = Bukkit.getMaxPlayers();
+                    long uptime = System.currentTimeMillis() - References.startTime;
+
+                    for (Player player : Bukkit.getOnlinePlayers()) {
+                        if (!ProtocolHandler.isPlayerVanished(player.getName())) {
+                            playerCount++;
+                        }
+                    }
+
+                    HashMap<String, Object> info = new HashMap<>();
+                    info.put("players", playerCount);
+                    info.put("maxPlayers", maxPlayers);
+                    info.put("serverUptime", uptime);
+
+                    String json = new Gson().toJson(info);
+                    ServerUtils.responseString(exchange, 200, json);
                     break;
                 default:
                     ServerUtils.responseString(exchange, 405, "");

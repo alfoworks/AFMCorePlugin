@@ -4,7 +4,11 @@
       <w>afmrestart</w>
       <w>convo</w>
       <w>customnpcs</w>
+      <w>grayscale</w>
+      <w>highres</w>
+      <w>lowres</w>
       <w>preprocess</w>
+      <w>setrestart</w>
       <w>teleport</w>
       <w>webhook</w>
       <w>webhooks</w>

@@ -74,6 +74,8 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
         CommandHandler.addCommand(new CommandTokens());
         CommandHandler.addCommand(new CommandVIP());
 
+        References.startTime = System.currentTimeMillis();
+
         Discord.sendMessageServer(Discord.MessageTypeServer.TYPE_SERVER_STARTED);
     }
 
