@@ -16,6 +16,7 @@ import org.spongepowered.api.event.game.state.GameStoppingServerEvent;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.scheduler.Task;
 import org.spongepowered.api.text.Text;
+import ru.allformine.afmcp.commands.RawBCCommand;
 import ru.allformine.afmcp.commands.RestartCommand;
 import ru.allformine.afmcp.commands.TokensCommand;
 import ru.allformine.afmcp.commands.VipCommand;
@@ -93,6 +94,16 @@ public class AFMCorePlugin {
                 .build();
 
         Sponge.getCommandManager().register(this, vipCommandSpec, "vip");
+
+        CommandSpec rawBCspec = CommandSpec.builder()
+                .description(Text.of("Отправить текст в чат в таком виде, в каком вы его пишете."))
+                .executor(new RawBCCommand())
+                .arguments(
+                        GenericArguments.onlyOne(GenericArguments.string(Text.of("text")))
+                )
+                .build();
+
+        Sponge.getCommandManager().register(this, vipCommandSpec, "rawbc");
     }
 
     @Listener
