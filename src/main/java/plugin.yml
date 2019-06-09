@@ -44,6 +44,11 @@ commands:
     usage: "Использование: /afmrestart"
     permission: afmcp.afmrestart
     permission-message: У тебя нет прав, иди нахуй, бля.
+  setrestart:
+    description: Перезагрузка сервера.
+    usage: "Использование: /setrestart"
+    permission: afmcp.nobody
+    permission-message: У тебя нет прав, иди нахуй, бля.
   rgparam:
     description: Дополнительные настройки региона (фоновая музыка и имя)
     usage: "Использование: /rg param"
