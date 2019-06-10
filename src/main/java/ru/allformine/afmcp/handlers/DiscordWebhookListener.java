@@ -1,5 +1,6 @@
 package ru.allformine.afmcp.handlers;
 
+import br.net.fabiozumbi12.UltimateChat.Sponge.API.SendChannelMessageEvent;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.advancement.AdvancementEvent;
@@ -24,6 +25,13 @@ public class DiscordWebhookListener {
     @Listener
     public void onPlayerChat(MessageChannelEvent.Chat event, @First Player p /*нихуя не понимаю, че это за нахуй ебать*/) {
         Discord.sendMessagePlayer(Discord.MessageTypePlayer.TYPE_PLAYER_CHAT, event.getRawMessage().toPlain(), p);
+    }
+
+    @Listener
+    public void onSendChannelMessageEvent(SendChannelMessageEvent event) {
+        if (event.getSender() instanceof Player) {
+            Discord.sendMessagePlayer(Discord.MessageTypePlayer.TYPE_PLAYER_CHAT, String.format("[%s] %s", event.getChannel().getName(), event.getMessage().toPlain()), (Player) event.getSender());
+        }
     }
 
     @Listener
