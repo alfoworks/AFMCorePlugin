@@ -103,7 +103,7 @@ public class AFMCorePlugin {
                 )
                 .build();
 
-        Sponge.getCommandManager().register(this, vipCommandSpec, "rawbc");
+        Sponge.getCommandManager().register(this, rawBCspec, "rawbc");
     }
 
     @Listener
