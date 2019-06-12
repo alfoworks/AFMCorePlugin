@@ -99,7 +99,7 @@ public class AFMCorePlugin {
                 .description(Text.of("Отправить текст в чат в таком виде, в каком вы его пишете."))
                 .executor(new RawBCCommand())
                 .arguments(
-                        GenericArguments.allOf(GenericArguments.string(Text.of("Text")))
+                        GenericArguments.remainingJoinedStrings(Text.of("text"))
                 )
                 .build();
 
