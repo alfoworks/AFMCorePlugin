@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module external.linked.project.id="AFMCorePlugin-sponge1.12:main" external.linked.project.path="$MODULE_DIR$/../.." external.root.project.path="$MODULE_DIR$/../.." external.system.id="GRADLE" external.system.module.group="ru.allformine.afmcp" external.system.module.type="sourceSet" external.system.module.version="0.2" type="JAVA_MODULE" version="4">
-  <component name="ExternalSystem" externalSystem="GRADLE" externalSystemModuleGroup="ru.allformine.afmcp" externalSystemModuleType="sourceSet" externalSystemModuleVersion="0.4" linkedProjectId="AFMCorePlugin-sponge1.12:main" linkedProjectPath="$MODULE_DIR$/../.." rootProjectPath="$MODULE_DIR$/../.." />
+  <component name="ExternalSystem" externalSystem="GRADLE" externalSystemModuleGroup="ru.allformine.afmcp" externalSystemModuleType="sourceSet" externalSystemModuleVersion="0.5" linkedProjectId="AFMCorePlugin-sponge1.12:main" linkedProjectPath="$MODULE_DIR$/../.." rootProjectPath="$MODULE_DIR$/../.." />
   <component name="FacetManager">
     <facet type="minecraft" name="Minecraft">
       <configuration>

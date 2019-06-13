@@ -89,7 +89,7 @@ public class AFMCorePlugin {
                 .description(Text.of("Команда для покупки привелегий."))
                 .executor(new VipCommand())
                 .arguments(
-                        GenericArguments.onlyOne(GenericArguments.string(Text.of("selectedVip")))
+                        GenericArguments.optional(GenericArguments.string(Text.of("selectedVip")))
                 )
                 .build();
 

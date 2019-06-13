@@ -6,6 +6,7 @@ import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.args.CommandContext;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.TextTemplate;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextColors;
 import ru.allformine.afmcp.AFMCorePlugin;
@@ -23,12 +24,13 @@ public class TokensCommand extends AFMCPCommand {
             GETResponse response = Requests.sendGet(url);
 
             if (response != null && response.responseCode == 200) {
-                reply(source, "Ваш баланс: " + Text.builder(response.response).color(getColor()) + " токенов.");
+                reply(source, TextTemplate.of("Ваш баланс: ", getColor(), response.response, " токенов", TextColors.WHITE, ".").toText());
             } else {
-                reply(source, "Произошла неизвестная ошибка при выполнении команды!");
+                reply(source, Text.of("Произошла неизвестная ошибка."));
+                System.out.println(response == null ? "no response" : response.response + String.valueOf(response.responseCode));
             }
         } else {
-            reply(source, "Данную команду может выполнить только игрок.");
+            reply(source, Text.of("Данную команду может выполнить только игрок."));
         }
 
         return CommandResult.success();

@@ -17,7 +17,7 @@ public class RawBCCommand extends AFMCPCommand {
             player.sendMessage(TextSerializers.FORMATTING_CODE.deserialize(Text.of(args.<String>getOne("text").get()).toPlain()));
         }
 
-        reply(scr, "Сообщение отправлено.");
+        reply(scr, Text.of("Сообщение успешно отправлено!"));
 
         return CommandResult.success();
     }
@@ -29,6 +29,6 @@ public class RawBCCommand extends AFMCPCommand {
 
     @Override
     public TextColor getColor() {
-        return TextColors.RED;
+        return TextColors.DARK_PURPLE;
     }
 }

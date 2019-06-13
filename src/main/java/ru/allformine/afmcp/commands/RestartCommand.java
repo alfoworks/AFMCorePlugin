@@ -20,7 +20,7 @@ public class RestartCommand extends AFMCPCommand {
         Discord.serverRestart = true;
         Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "stop");
 
-        reply(scr, "Сервер перезагружается!");
+        reply(scr, Text.of("Сервер перезапускается!"));
 
         return CommandResult.success();
     }
