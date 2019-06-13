@@ -5,7 +5,6 @@ import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.args.CommandContext;
 import org.spongepowered.api.command.spec.CommandExecutor;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.TextTemplate;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextColors;
 
@@ -24,6 +23,6 @@ public class AFMCPCommand implements CommandExecutor {
     }
 
     void reply(CommandSource source, Text text) {
-        source.sendMessage(TextTemplate.of("", getColor(), getName(), TextColors.WHITE, " > ", text).toText());
+        source.sendMessage(Text.builder(getName()).color(getColor()).append(Text.builder(" > ").color(TextColors.WHITE).append(text).build()).build());
     }
 }
