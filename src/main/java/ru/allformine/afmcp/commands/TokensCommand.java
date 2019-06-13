@@ -27,7 +27,6 @@ public class TokensCommand extends AFMCPCommand {
                 reply(source, TextTemplate.of("Ваш баланс: ", getColor(), response.response, " токенов", TextColors.WHITE, ".").toText());
             } else {
                 reply(source, Text.of("Произошла неизвестная ошибка."));
-                System.out.println(response == null ? "no response" : response.response + String.valueOf(response.responseCode));
             }
         } else {
             reply(source, Text.of("Данную команду может выполнить только игрок."));

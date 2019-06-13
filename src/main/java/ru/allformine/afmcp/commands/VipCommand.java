@@ -29,7 +29,7 @@ public class VipCommand extends AFMCPCommand {
 
                 String fullName = value.getNode("fullName").getString();
 
-                reply(source, TextTemplate.of("\t", getColor(), fullName, TextColors.WHITE, " - ", getColor(), cost, "токенов").toText());
+                source.sendMessage(TextTemplate.of("    ", getColor(), fullName, TextColors.WHITE, " - ", getColor(), cost, "токенов").toText());
             }
 
             reply(source, Text.of("Для покупки любой из этих привилегий, напишите /vip <имя>."));
