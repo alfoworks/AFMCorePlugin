@@ -24,6 +24,6 @@ public class AFMCPCommand implements CommandExecutor {
     }
 
     void reply(CommandSource source, Text text) {
-        source.sendMessage(TextTemplate.of(getColor(), getName(), TextColors.WHITE, " > ", text));
+        source.sendMessage(TextTemplate.of(getColor(), getName(), TextColors.WHITE, " > ", text).toText());
     }
 }
