@@ -5,14 +5,18 @@ import ninja.leaping.configurate.commented.CommentedConfigurationNode;
 import ninja.leaping.configurate.hocon.HoconConfigurationLoader;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
 import org.slf4j.Logger;
+import org.spongepowered.api.Platform;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.args.GenericArguments;
 import org.spongepowered.api.command.spec.CommandSpec;
 import org.spongepowered.api.config.ConfigDir;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.game.state.GameAboutToStartServerEvent;
+import org.spongepowered.api.event.game.state.GameInitializationEvent;
 import org.spongepowered.api.event.game.state.GamePreInitializationEvent;
 import org.spongepowered.api.event.game.state.GameStoppingServerEvent;
+import org.spongepowered.api.network.ChannelBinding;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.scheduler.Task;
 import org.spongepowered.api.text.Text;
@@ -25,8 +29,14 @@ import ru.allformine.afmcp.net.discord.Discord;
 import ru.allformine.afmcp.serverapi.HTTPServer;
 
 import java.io.IOException;
+import java.nio.channels.Channel;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+import static jdk.nashorn.internal.objects.NativeString.trim;
 
 @Plugin(
         id = "afmcp",
@@ -42,6 +52,9 @@ public class AFMCorePlugin {
     public static Logger logger;
     private static CommentedConfigurationNode configNode;
     private Task apiServerTask;
+
+    public static Map<String,ChannelBinding.RawDataChannel> channel = new HashMap<>();
+
     @Inject
     @ConfigDir(sharedRoot = false)
     private Path configDir;
@@ -93,6 +106,22 @@ public class AFMCorePlugin {
                 .build();
 
         Sponge.getCommandManager().register(this, vipCommandSpec, "vip");
+    }
+
+    @Listener
+    public void init(GameInitializationEvent event){
+        channel.put("screenshot", Sponge.getGame()
+                .getChannelRegistrar()
+                .createRawChannel(this, "C234Fb"));
+
+        //TODO: ебитесь с этим сами
+//        channel.get("screenshot").addListener(Platform.Type.SERVER, (buf, con, side) -> {
+//            byte[] message = buf.readByteArray();
+//            if (apiServerTask..playerScreenshotData.get(player) != null) {
+//                message = trim(message);
+//                message = Arrays.copyOf(message, message.length - 1);
+//            }
+//        });
     }
 
     @Listener
