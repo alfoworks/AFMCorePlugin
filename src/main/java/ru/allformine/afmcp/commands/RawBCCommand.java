@@ -8,30 +8,27 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextColors;
-import ru.allformine.afmcp.net.discord.Discord;
+import org.spongepowered.api.text.serializer.TextSerializers;
 
-public class RestartCommand extends AFMCPCommand {
+public class RawBCCommand extends AFMCPCommand {
     @Override
     public CommandResult execute(CommandSource scr, CommandContext args) {
         for (Player player : Sponge.getServer().getOnlinePlayers()) {
-            player.kick(Text.builder("Сервер ушёл на рестарт! Увидимся через минуту <3").color(TextColors.LIGHT_PURPLE).build());
+            player.sendMessage(TextSerializers.FORMATTING_CODE.deserialize(Text.of(args.<String>getOne("text").get()).toPlain()));
         }
 
-        Discord.serverRestart = true;
-        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "stop");
-
-        reply(scr, Text.of("Сервер перезапускается!"));
+        reply(scr, Text.of("Сообщение успешно отправлено!"));
 
         return CommandResult.success();
     }
 
     @Override
     public String getName() {
-        return "AFMRestart";
+        return "RawBC";
     }
 
     @Override
     public TextColor getColor() {
-        return TextColors.RED;
+        return TextColors.DARK_PURPLE;
     }
 }

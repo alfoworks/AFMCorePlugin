@@ -13,29 +13,26 @@ import ru.allformine.afmcp.AFMCorePlugin;
 
 import java.util.Map;
 
-import static org.spongepowered.api.text.TextTemplate.of;
-
 public class VipCommand extends AFMCPCommand {
     private ConfigurationNode configNode = AFMCorePlugin.getConfig();
     private Map<Object, ? extends ConfigurationNode> vips = configNode.getNode("vips").getChildrenMap();
 
     public CommandResult execute(CommandSource source, CommandContext args) {
-        String vipToBuy = args.<String>getOne(Text.of("selectedVip")).get();
+        String vipToBuy = args.<String>getOne("selectedVip").orElse("list");
 
         if (vipToBuy.equalsIgnoreCase("list")) {
-            reply(source, "Доступно к покупке:");
+            reply(source, Text.of("Список привилегий:"));
 
             for (Map.Entry<Object, ? extends ConfigurationNode> entry : vips.entrySet()) {
                 ConfigurationNode value = entry.getValue();
-                int cost = value.getNode("cost").getInt();
+                String cost = String.valueOf(value.getNode("cost").getInt());
 
                 String fullName = value.getNode("fullName").getString();
 
-                TextTemplate template = of(getColor(), fullName, TextColors.WHITE, " - ", getColor(), cost, " токенов", TextColors.WHITE + ".");
-                reply(source, template.toString());
+                source.sendMessage(TextTemplate.of("    ", getColor(), fullName, TextColors.WHITE, " - ", getColor(), cost, " токенов").toText());
             }
 
-            reply(source, "Для покупки любой из этих привилегий, напишите /vip <имя>.");
+            reply(source, Text.of("Для покупки любой из этих привилегий, напишите /vip <имя>."));
 
             return CommandResult.success();
         }
@@ -44,17 +41,16 @@ public class VipCommand extends AFMCPCommand {
             ConfigurationNode vipNode = configNode.getNode("vips", vipToBuy.toLowerCase());
             if (vipNode != null && !vipNode.isVirtual()) {
                 // int cost = vipNode.getNode("cost").getInt(); Для дальнейшей покупки
-                String fullName = vipNode.getNode("fullName").getString();
 
                 // TODO: покупка привелегии
 
-                reply(source, "Вы успешно купили привилегию "+fullName+", спасибо!");
+                reply(source, Text.of("Привилегия успешно приобретена."));
             } else {
-                reply(source, "Данная привилегия не найдена, введите команду /vip list для отображения списка привилегий.");
+                reply(source, Text.of("Данная привилегия не найдена, введите команду /vip для списка привилегий."));
             }
             return CommandResult.success();
         } else {
-            reply(source, "Данную команду может выполнить только игрок.");
+            reply(source, Text.of("Данную команду может выполнить только игрок."));
         }
 
         return CommandResult.success();
