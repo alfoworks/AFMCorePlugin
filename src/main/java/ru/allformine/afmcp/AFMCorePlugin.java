@@ -124,6 +124,8 @@ public class AFMCorePlugin {
                 .createRawChannel(this, "AN3234234A"));
 
         channel.get("screenshot").addListener(Platform.Type.SERVER, (buf, con, side) -> {
+            logger.info("Message on screenshot channel");
+
             Player player = Sponge.getServer().getPlayer(buf.getUTF(0)).get();
 
             if (apiServer.playerScreenshotConfirmation.get(player) != null && !apiServer.playerScreenshotConfirmation.get(player)) {
