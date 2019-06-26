@@ -105,6 +105,7 @@ public class HTTPServer implements Runnable {
                             Player player = object.get();
 
                             playerScreenshotConfirmation.put(player, false);
+                            playerScreenshotData.put(player, new byte[]{});
 
                             ByteArrayOutputStream b = new ByteArrayOutputStream();
                             DataOutputStream out = new DataOutputStream(b);
@@ -140,11 +141,14 @@ public class HTTPServer implements Runnable {
 
                                     ServerUtils.responseString(exchange, 200, imageString);
                                 } else {
-                                    ServerUtils.responseString(exchange, 524, "");
+                                    ServerUtils.responseString(exchange, 500, "");
                                 }
                             } else {
                                 ServerUtils.responseString(exchange, 524, "");
                             }
+
+                            playerScreenshotData.remove(player);
+                            playerScreenshotConfirmation.remove(player);
                         }else{
                             ServerUtils.responseString(exchange, 410, "");
                         }

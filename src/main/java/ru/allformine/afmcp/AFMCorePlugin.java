@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import ninja.leaping.configurate.commented.CommentedConfigurationNode;
 import ninja.leaping.configurate.hocon.HoconConfigurationLoader;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
+import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
 import org.spongepowered.api.Platform;
 import org.spongepowered.api.Sponge;
@@ -17,6 +18,7 @@ import org.spongepowered.api.event.game.state.GameInitializationEvent;
 import org.spongepowered.api.event.game.state.GamePreInitializationEvent;
 import org.spongepowered.api.event.game.state.GameStoppingServerEvent;
 import org.spongepowered.api.network.ChannelBinding;
+import org.spongepowered.api.network.PlayerConnection;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.scheduler.Task;
 import org.spongepowered.api.text.Text;
@@ -124,13 +126,23 @@ public class AFMCorePlugin {
                 .createRawChannel(this, "AN3234234A"));
 
         channel.get("screenshot").addListener(Platform.Type.SERVER, (buf, con, side) -> {
-            logger.info("Message on screenshot channel");
+            if (!(con instanceof PlayerConnection)) {
+                return;
+            }
 
-            Player player = Sponge.getServer().getPlayer(buf.getUTF(0)).get();
+            Player player = ((PlayerConnection) con).getPlayer();
 
-            if (apiServer.playerScreenshotConfirmation.get(player) != null && !apiServer.playerScreenshotConfirmation.get(player)) {
-                logger.info("Screenshot test");
+            if (apiServer.playerScreenshotConfirmation.get(player) == null) {
+                return;
+            }
+
+            byte[] chunkByteArray = buf.readByteArray();
+
+            if (chunkByteArray.length == 0) {
                 apiServer.playerScreenshotConfirmation.replace(player, true);
+            } else {
+                byte[] prevArr = apiServer.playerScreenshotData.get(player);
+                apiServer.playerScreenshotData.replace(player, ArrayUtils.addAll(prevArr, chunkByteArray));
             }
         });
     }
