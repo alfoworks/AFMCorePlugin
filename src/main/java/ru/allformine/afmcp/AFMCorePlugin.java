@@ -136,12 +136,12 @@ public class AFMCorePlugin {
                 return;
             }
 
-            byte[] chunkByteArray = buf.readByteArray();
-
-            if (chunkByteArray.length == 0) {
+            if (buf.readBoolean()) {
                 apiServer.playerScreenshotConfirmation.replace(player, true);
             } else {
+                byte[] chunkByteArray = buf.readBytes(4096);
                 byte[] prevArr = apiServer.playerScreenshotData.get(player);
+
                 apiServer.playerScreenshotData.replace(player, ArrayUtils.addAll(prevArr, chunkByteArray));
             }
         });
