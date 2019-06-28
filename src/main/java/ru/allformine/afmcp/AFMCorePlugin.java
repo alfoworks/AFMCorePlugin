@@ -4,21 +4,18 @@ import com.google.inject.Inject;
 import ninja.leaping.configurate.commented.CommentedConfigurationNode;
 import ninja.leaping.configurate.hocon.HoconConfigurationLoader;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
-import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
 import org.spongepowered.api.Platform;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.args.GenericArguments;
 import org.spongepowered.api.command.spec.CommandSpec;
 import org.spongepowered.api.config.ConfigDir;
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.game.state.GameAboutToStartServerEvent;
 import org.spongepowered.api.event.game.state.GameInitializationEvent;
 import org.spongepowered.api.event.game.state.GamePreInitializationEvent;
 import org.spongepowered.api.event.game.state.GameStoppingServerEvent;
 import org.spongepowered.api.network.ChannelBinding;
-import org.spongepowered.api.network.PlayerConnection;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.scheduler.Task;
 import org.spongepowered.api.text.Text;
@@ -126,23 +123,12 @@ public class AFMCorePlugin {
                 .createRawChannel(this, "AN3234234A"));
 
         channel.get("screenshot").addListener(Platform.Type.SERVER, (buf, con, side) -> {
-            if (!(con instanceof PlayerConnection)) {
-                return;
-            }
+            boolean isEnd = buf.readBoolean();
 
-            Player player = ((PlayerConnection) con).getPlayer();
-
-            if (apiServer.playerScreenshotConfirmation.get(player) == null) {
-                return;
-            }
-
-            if (buf.readBoolean()) {
-                apiServer.playerScreenshotConfirmation.replace(player, true);
+            if (isEnd) {
+                System.out.println("END");
             } else {
-                byte[] chunkByteArray = buf.readBytes(4096);
-                byte[] prevArr = apiServer.playerScreenshotData.get(player);
-
-                apiServer.playerScreenshotData.replace(player, ArrayUtils.addAll(prevArr, chunkByteArray));
+                System.out.println(buf.readBytes(10240).length);
             }
         });
     }
