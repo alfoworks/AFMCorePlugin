@@ -50,7 +50,6 @@ public class AFMCorePlugin {
     private static CommentedConfigurationNode configNode;
 
     private Task apiServerTask;
-    private HTTPServer apiServer;
 
     public static Map<String, ChannelBinding.RawDataChannel> channel = new HashMap<>();
 
@@ -141,7 +140,7 @@ public class AFMCorePlugin {
         //Discord.sendMessageServer(Discord.MessageTypeServer.TYPE_SERVER_STARTED);
         Webhook.sendServerMessage(Webhook.TypeServerMessage.SERVER_STARTED);
 
-        apiServer = new HTTPServer();
+        HTTPServer apiServer = new HTTPServer();
 
         apiServerTask = Task.builder().execute(apiServer)
                 .async().name("AFMCP APISERVER")
