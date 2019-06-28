@@ -19,7 +19,7 @@ public class Eco {
     }
 
     public OptionalInt getBalance() {
-        String url = apiUrl + "&act=get&nick=" + this.player.getName();
+        String url = String.format("%s&act=%s&nick=%s", apiUrl, "get", this.player.getName());
         GETResponse response = Requests.sendGet(url);
         if (response != null && response.responseCode == 200) {
             return OptionalInt.of(Integer.parseInt(response.response));
@@ -29,19 +29,20 @@ public class Eco {
     }
 
     public boolean increase(int count) {
-        String url = apiUrl + "&act=increase&nick=" + this.player.getName() + "&var=" + count;
+        String url = String.format("%s&act=%s&nick=%s&var=%s", apiUrl, "increase", this.player.getName(), count);
         GETResponse response = Requests.sendGet(url);
         return response != null && response.responseCode == 200;
     }
 
     public boolean decrease(int count) {
-        String url = apiUrl + "&act=reduction&nick=" + this.player.getName() + "&var=" + count;
+        String url = String.format("%s&act=%s&nick=%s&var=%s", apiUrl, "reduction", this.player.getName(), count);
         GETResponse response = Requests.sendGet(url);
         return response != null && response.responseCode == 200;
     }
 
     public boolean reset() {
         String url = apiUrl + "&act=reset&nick=" + this.player.getName();
+        String url = String.format("%s&act=%s&nick=%s", apiUrl, "reset", this.player.getName());
         GETResponse response = Requests.sendGet(url);
         return response != null && response.responseCode == 200;
     }
