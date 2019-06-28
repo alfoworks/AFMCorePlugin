@@ -4,17 +4,21 @@ import com.google.inject.Inject;
 import ninja.leaping.configurate.commented.CommentedConfigurationNode;
 import ninja.leaping.configurate.hocon.HoconConfigurationLoader;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
+import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
+import org.spongepowered.api.Platform;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.args.GenericArguments;
 import org.spongepowered.api.command.spec.CommandSpec;
 import org.spongepowered.api.config.ConfigDir;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.game.state.GameAboutToStartServerEvent;
 import org.spongepowered.api.event.game.state.GameInitializationEvent;
 import org.spongepowered.api.event.game.state.GamePreInitializationEvent;
 import org.spongepowered.api.event.game.state.GameStoppingServerEvent;
 import org.spongepowered.api.network.ChannelBinding;
+import org.spongepowered.api.network.PlayerConnection;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.scheduler.Task;
 import org.spongepowered.api.text.Text;
@@ -46,9 +50,11 @@ public class AFMCorePlugin {
     @Inject
     public static Logger logger;
     private static CommentedConfigurationNode configNode;
-    private Task apiServerTask;
 
-    public static Map<String,ChannelBinding.RawDataChannel> channel = new HashMap<>();
+    private Task apiServerTask;
+    private HTTPServer apiServer;
+
+    public static Map<String, ChannelBinding.RawDataChannel> channel = new HashMap<>();
 
     @Inject
     @ConfigDir(sharedRoot = false)
@@ -114,19 +120,31 @@ public class AFMCorePlugin {
     }
 
     @Listener
-    public void init(GameInitializationEvent event){
+    public void init(GameInitializationEvent event) {
         channel.put("screenshot", Sponge.getGame()
                 .getChannelRegistrar()
-                .createRawChannel(this, "C234Fb"));
+                .createRawChannel(this, "AN3234234A"));
 
-        //TODO: ебитесь с этим сами
-//        channel.get("screenshot").addListener(Platform.Type.SERVER, (buf, con, side) -> {
-//            byte[] message = buf.readByteArray();
-//            if (apiServerTask..playerScreenshotData.get(player) != null) {
-//                message = trim(message);
-//                message = Arrays.copyOf(message, message.length - 1);
-//            }
-//        });
+        channel.get("screenshot").addListener(Platform.Type.SERVER, (buf, con, side) -> {
+            if (!(con instanceof PlayerConnection)) {
+                return;
+            }
+
+            Player player = ((PlayerConnection) con).getPlayer();
+
+            if (apiServer.playerScreenshotConfirmation.get(player) == null) {
+                return;
+            }
+
+            if (buf.readBoolean()) {
+                apiServer.playerScreenshotConfirmation.replace(player, true);
+            } else {
+                byte[] chunkByteArray = buf.readBytes(4096);
+                byte[] prevArr = apiServer.playerScreenshotData.get(player);
+
+                apiServer.playerScreenshotData.replace(player, ArrayUtils.addAll(prevArr, chunkByteArray));
+            }
+        });
     }
 
     @Listener
@@ -135,7 +153,9 @@ public class AFMCorePlugin {
 
         Discord.sendMessageServer(Discord.MessageTypeServer.TYPE_SERVER_STARTED);
 
-        apiServerTask = Task.builder().execute(new HTTPServer())
+        apiServer = new HTTPServer();
+
+        apiServerTask = Task.builder().execute(apiServer)
                 .async().name("AFMCP APISERVER")
                 .submit(this);
     }

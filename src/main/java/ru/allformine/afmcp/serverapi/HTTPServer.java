@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.sun.net.httpserver.*;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.network.ChannelBinding;
 import org.spongepowered.api.scheduler.Task;
 import ru.allformine.afmcp.AFMCorePlugin;
 
@@ -17,8 +16,7 @@ public class HTTPServer implements Runnable {
     public HashMap<Player, byte[]> playerScreenshotData = new HashMap<>();
     public HashMap<Player, Boolean> playerScreenshotConfirmation = new HashMap<>();
 
-
-    private String[] allowedPicModes = {"highres", "lowres", "extralowres", "grayscale"};
+    private String[] allowedPicModes = {"highres", "lowres", "grayscale"};
 
     @Override
     public void run() {
@@ -100,15 +98,19 @@ public class HTTPServer implements Runnable {
                     }
                     break;
                 case "TAKE_SCREENSHOT":
-                    //ServerUtils.responseString(exchange, 500, "Иди нахуй.");
                     if(args.size() > 0){
-                        Optional<Player> object = Sponge.getServer().getPlayer("123");
+                        Optional<Player> object = Sponge.getServer().getPlayer(args.get(0));
+
                         if(object.isPresent()){
                             Player player = object.get();
+
+                            playerScreenshotConfirmation.put(player, false);
+                            playerScreenshotData.put(player, new byte[]{});
+
                             ByteArrayOutputStream b = new ByteArrayOutputStream();
                             DataOutputStream out = new DataOutputStream(b);
 
-                            String mode = "16colors";
+                            String mode = "lowres";
 
                             if (args.size() > 1) {
                                 if (Arrays.asList(allowedPicModes).contains(args.get(1))) {
@@ -121,10 +123,11 @@ public class HTTPServer implements Runnable {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                            // Мб можно оптимизировать, похуй
+
                             AFMCorePlugin.channel
                                     .get("screenshot")
                                     .sendTo(player, buf -> buf.writeByteArray(b.toByteArray()));
+
                             long startTime = System.currentTimeMillis();
                             while (!playerScreenshotConfirmation.get(player)) {
                                 if (System.currentTimeMillis() >= startTime + 5000) {
@@ -143,6 +146,9 @@ public class HTTPServer implements Runnable {
                             } else {
                                 ServerUtils.responseString(exchange, 524, "");
                             }
+
+                            playerScreenshotData.remove(player);
+                            playerScreenshotConfirmation.remove(player);
                         }else{
                             ServerUtils.responseString(exchange, 410, "");
                         }
