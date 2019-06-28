@@ -16,7 +16,7 @@ import ru.allformine.afmcp.net.http.Requests;
 public class TokensCommand extends AFMCPCommand {
     private ConfigurationNode configNode = AFMCorePlugin.getConfig().getNode("eco");
     private String key = configNode.getNode("key").getString();
-    private String balanceUrl = configNode.getNode("balanceUrl").getString();
+    private String balanceUrl = configNode.getNode("balanceApiUrl").getString();
 
     public CommandResult execute(CommandSource source, CommandContext args) {
         if (source instanceof Player) {
