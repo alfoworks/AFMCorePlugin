@@ -41,7 +41,6 @@ public class Eco {
     }
 
     public boolean reset() {
-        String url = apiUrl + "&act=reset&nick=" + this.player.getName();
         String url = String.format("%s&act=%s&nick=%s", apiUrl, "reset", this.player.getName());
         GETResponse response = Requests.sendGet(url);
         return response != null && response.responseCode == 200;
