@@ -12,14 +12,13 @@ public class Eco {
     private static ConfigurationNode configNode = AFMCorePlugin.getConfig().getNode("eco");
     private static String key = configNode.getNode("key").getString();
     private static String apiUrl = configNode.getNode("balanceApiUrl").getString() + "&key=" + key;
-    private Player player;
-
+    public String nickname;
     public Eco(Player player) {
-        this.player = player;
+        this.nickname = player.getName();
     }
 
     public OptionalInt getBalance() {
-        String url = String.format("%s&act=%s&nick=%s", apiUrl, "get", this.player.getName());
+        String url = String.format("%s&act=%s&nick=%s", apiUrl, "get", this.nickname);
         GETResponse response = Requests.sendGet(url);
         if (response != null && response.responseCode == 200) {
             return OptionalInt.of(Integer.parseInt(response.response));
@@ -29,19 +28,19 @@ public class Eco {
     }
 
     public boolean increase(int count) {
-        String url = String.format("%s&act=%s&nick=%s&var=%s", apiUrl, "increase", this.player.getName(), count);
+        String url = String.format("%s&act=%s&nick=%s&var=%s", apiUrl, "increase", this.nickname, count);
         GETResponse response = Requests.sendGet(url);
         return response != null && response.responseCode == 200;
     }
 
     public boolean decrease(int count) {
-        String url = String.format("%s&act=%s&nick=%s&var=%s", apiUrl, "reduction", this.player.getName(), count);
+        String url = String.format("%s&act=%s&nick=%s&var=%s", apiUrl, "reduction", this.nickname, count);
         GETResponse response = Requests.sendGet(url);
         return response != null && response.responseCode == 200;
     }
 
     public boolean reset() {
-        String url = String.format("%s&act=%s&nick=%s", apiUrl, "reset", this.player.getName());
+        String url = String.format("%s&act=%s&nick=%s", apiUrl, "reset", this.nickname);
         GETResponse response = Requests.sendGet(url);
         return response != null && response.responseCode == 200;
     }
