@@ -8,7 +8,7 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextColors;
-import ru.allformine.afmcp.net.discord.Discord;
+import ru.allformine.afmcp.AFMCorePlugin;
 
 public class RestartCommand extends AFMCPCommand {
     @Override
@@ -17,7 +17,7 @@ public class RestartCommand extends AFMCPCommand {
             player.kick(Text.builder("Сервер ушёл на рестарт! Увидимся через минуту <3").color(TextColors.LIGHT_PURPLE).build());
         }
 
-        Discord.serverRestart = true;
+        AFMCorePlugin.serverRestart = true;
         Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "stop");
 
         reply(scr, Text.of("Сервер перезапускается!"));

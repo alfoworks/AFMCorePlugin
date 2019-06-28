@@ -1,6 +1,7 @@
 package ru.allformine.afmcp.net.http;
 
 import ru.allformine.afmcp.AFMCorePlugin;
+
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -10,7 +11,7 @@ import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 
 public class Requests {
-    public static void sendPostJSON(String JSON, String urlString) {
+    public static Response sendPostJSON(String JSON, String urlString) {
         try {
             URL url = new URL(urlString);
             URLConnection con = url.openConnection();
@@ -30,6 +31,16 @@ public class Requests {
                 os.write(out);
             }
 
+            int code = connection.getResponseCode();
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            StringBuilder response = new StringBuilder();
+
+            String inputLine;
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+
             if (connection.getErrorStream() != null) {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
                 StringBuilder result = new StringBuilder();
@@ -42,15 +53,17 @@ public class Requests {
                 AFMCorePlugin.logger.error("JSON: " + JSON);
                 AFMCorePlugin.logger.error("Response: " + result.toString());
             }
+            return new Response(response.toString(), code);
         } catch (Exception e) {
             AFMCorePlugin.logger.error("Can't send JSON to url " + urlString + ".");
             AFMCorePlugin.logger.error("JSON: " + JSON);
 
             e.printStackTrace();
+            return null;
         }
     }
 
-    public static GETResponse sendGet(String url) {
+    public static Response sendGet(String url) {
         try {
             URL obj = new URL(url);
             HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
@@ -74,7 +87,7 @@ public class Requests {
                 AFMCorePlugin.logger.error("Can't send GET to url " + url + ".");
                 AFMCorePlugin.logger.error("Response: " + result.toString());
             }
-            return new GETResponse(response.toString(), code);
+            return new Response(response.toString(), code);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

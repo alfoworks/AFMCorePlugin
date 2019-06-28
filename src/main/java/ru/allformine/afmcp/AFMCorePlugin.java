@@ -25,7 +25,7 @@ import ru.allformine.afmcp.commands.TokensCommand;
 import ru.allformine.afmcp.commands.VipCommand;
 import ru.allformine.afmcp.handlers.DiscordWebhookListener;
 import ru.allformine.afmcp.handlers.VanishEventListener;
-import ru.allformine.afmcp.net.discord.Discord;
+import ru.allformine.afmcp.net.api.Webhook;
 import ru.allformine.afmcp.serverapi.HTTPServer;
 
 import java.io.IOException;
@@ -44,6 +44,7 @@ import java.util.Map;
         }
 )
 public class AFMCorePlugin {
+    public static boolean serverRestart = false;
     @Inject
     public static Logger logger;
     private static CommentedConfigurationNode configNode;
@@ -137,7 +138,8 @@ public class AFMCorePlugin {
     public void onServerStart(GameAboutToStartServerEvent event) {
         startTime = System.currentTimeMillis();
 
-        Discord.sendMessageServer(Discord.MessageTypeServer.TYPE_SERVER_STARTED);
+        //Discord.sendMessageServer(Discord.MessageTypeServer.TYPE_SERVER_STARTED);
+        Webhook.sendServerMessage(Webhook.TypeServerMessage.SERVER_STARTED);
 
         apiServer = new HTTPServer();
 
@@ -148,8 +150,12 @@ public class AFMCorePlugin {
 
     @Listener
     public void onServerStop(GameStoppingServerEvent event) {
-        Discord.sendMessageServer(Discord.MessageTypeServer.TYPE_SERVER_STOPPED);
-
+        //Discord.sendMessageServer(Discord.MessageTypeServer.TYPE_SERVER_STOPPED);
+        if (serverRestart) {
+            Webhook.sendServerMessage(Webhook.TypeServerMessage.SERVER_RESTARTING);
+        } else {
+            Webhook.sendServerMessage(Webhook.TypeServerMessage.SERVER_STOPPED);
+        }
         apiServerTask.cancel();
     }
 
