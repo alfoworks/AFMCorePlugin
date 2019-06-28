@@ -124,8 +124,13 @@ public class AFMCorePlugin {
 
         channel.get("screenshot").addListener(Platform.Type.SERVER, (buf, con, side) -> {
             boolean isEnd = buf.readBoolean();
-            byte[] chunkByteArray = buf.readBytes(10240);
-            System.out.println(String.format("%s, %s", isEnd, chunkByteArray.length));
+            System.out.println(isEnd);
+            try {
+                byte[] chunkByteArray = buf.readBytes(10240);
+                System.out.println(chunkByteArray.length);
+            } catch (Exception e) {
+                //
+            }
         });
     }
 
