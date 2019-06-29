@@ -1,5 +1,18 @@
+buildscript {
+    repositories {
+        maven {
+            name = 'forge'
+            url = 'https://files.minecraftforge.net/maven'
+        }
+    }
+
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+    }
+}
+
 plugins {
-    id 'org.spongepowered.plugin' version '0.8.1'
+    id 'org.spongepowered.plugin' version '0.9.0'
 }
 
 repositories {
@@ -8,17 +21,21 @@ repositories {
     }
 }
 
-defaultTasks 'build', 'shadowJar'
-
-group = pluginGroup
-version = pluginVersion
-
-compileJava.options.encoding = "UTF-8"
-compileTestJava.options.encoding = "UTF-8"
+group = "ru.allformine.afmcp"
+version = "0.6"
 
 dependencies {
-    compile 'org.spongepowered:spongeapi:7.0.0'
+    compile 'org.spongepowered:spongeapi:7.1.0'
     compile name: 'uchat'
 }
 
-sponge.plugin.id = pluginId
+sponge.plugin.id = "afmcm"
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+minecraft {
+    version = "1.12.2-14.23.5.2815"
+    mappings = "snapshot_20171003"
+    runDir = 'run'
+}
+
