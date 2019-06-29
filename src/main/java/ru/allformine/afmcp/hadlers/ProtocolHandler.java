@@ -13,7 +13,6 @@ import org.bukkit.plugin.Plugin;
 import org.kitteh.vanish.VanishManager;
 import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.References;
-import ru.allformine.afmcp.net.discord.Discord;
 
 import java.util.*;
 

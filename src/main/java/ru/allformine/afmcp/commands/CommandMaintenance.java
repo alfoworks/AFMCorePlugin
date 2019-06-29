@@ -6,6 +6,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import ru.allformine.afmcp.AFMCorePlugin;
+import ru.allformine.afmcp.net.api.Webhook;
+
 import java.util.ArrayList;
 
 public class CommandMaintenance extends AFMCPCommand {
@@ -27,6 +29,9 @@ public class CommandMaintenance extends AFMCPCommand {
     public boolean run(ArrayList<String> args, CommandSender sender) {
         if (args.size() > 0 && (args.get(0).equals("true") || args.get(0).equals("false"))) {
             Plugin plugin = AFMCorePlugin.getPlugin();
+
+            if(args.get(0).equals("true"))
+                Webhook.sendServerMessage(Webhook.TypeServerMessage.SERVER_MAINTENANCE);
 
             plugin.getConfig().set("server_maintenance.enabled", args.get(0).equals("true"));
             plugin.saveConfig();

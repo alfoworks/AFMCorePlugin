@@ -4,7 +4,6 @@ import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import ru.allformine.afmcp.net.discord.Discord;
 import ru.allformine.afmcp.packet.Ambient;
 import ru.allformine.afmcp.packet.TerritoryShow;
 
@@ -22,14 +21,9 @@ public class PluginEvents {
 
         if (act) { //true - вошел в игру, false - вышел.
             TerritoryShow.sendTSPacketToPlayer(defaultTSText, player);
-
             message = " вошел в игру!";
-
-            Discord.sendMessagePlayer(!isStaff ? Discord.MessageTypePlayer.TYPE_PLAYER_JOINED : Discord.MessageTypePlayer.TYPE_STAFF_JOINED, "", player);
         } else {
             message = " вышел из игры!";
-
-            Discord.sendMessagePlayer(!isStaff ? Discord.MessageTypePlayer.TYPE_PLAYER_LEFT : Discord.MessageTypePlayer.TYPE_STAFF_LEFT, "", player);
         }
 
         if (isStaff) {

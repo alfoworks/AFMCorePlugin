@@ -15,9 +15,8 @@ import ru.allformine.afmcp.commands.*;
 import ru.allformine.afmcp.hadlers.CommandHandler;
 import ru.allformine.afmcp.hadlers.EventListener;
 import ru.allformine.afmcp.hadlers.ProtocolHandler;
-import ru.allformine.afmcp.net.discord.Discord;
+import ru.allformine.afmcp.net.api.Webhook;
 import ru.allformine.afmcp.net.http.HTTPServer;
-import ru.allformine.afmcp.tasks.TPSWatchdog;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,7 +51,6 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
         this.saveDefaultConfig();
 
         apiServerTaskId = Bukkit.getServer().getScheduler().runTaskAsynchronously(this, apiServer).getTaskId();
-        Bukkit.getServer().getScheduler().runTaskTimer(this, new TPSWatchdog(this.getConfig().getInt("tps.alarm_if_less")), 0L, 1L);
 
         try {
             //noinspection deprecation
@@ -75,14 +73,16 @@ public class AFMCorePlugin extends JavaPlugin implements PluginMessageListener {
         CommandHandler.addCommand(new CommandVIP());
 
         References.startTime = System.currentTimeMillis();
-
-        Discord.sendMessageServer(Discord.MessageTypeServer.TYPE_SERVER_STARTED);
+        Webhook.sendServerMessage(Webhook.TypeServerMessage.SERVER_STARTED);
     }
 
     public void onDisable() {
         Bukkit.getScheduler().cancelTask(apiServerTaskId);
 
-        Discord.sendMessageServer(Discord.MessageTypeServer.TYPE_SERVER_STOPPED);
+        if(References.serverRestarting) {
+            Webhook.sendServerMessage(Webhook.TypeServerMessage.SERVER_RESTARTING);
+        }else
+            Webhook.sendServerMessage(Webhook.TypeServerMessage.SERVER_STOPPED);
     }
 
     @Override

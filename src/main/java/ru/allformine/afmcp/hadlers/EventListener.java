@@ -5,7 +5,6 @@ import com.dthielke.herochat.Chatter;
 import com.sk89q.worldguard.bukkit.WGBukkit;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,11 +14,10 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.*;
-import org.bukkit.plugin.Plugin;
 import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.PluginEvents;
 import ru.allformine.afmcp.References;
-import ru.allformine.afmcp.net.discord.Discord;
+import ru.allformine.afmcp.net.api.Webhook;
 
 import java.util.HashMap;
 import java.util.Set;
@@ -53,17 +51,17 @@ public class EventListener implements Listener {
     public void onPlayerJoin(final PlayerJoinEvent event) {
         PluginEvents.quitOrJoin(event.getPlayer(), true);
 
-        if (!event.getPlayer().hasPlayedBefore()) {
-            Discord.sendMessagePlayer(Discord.MessageTypePlayer.TYPE_PLAYER_JOINED_FIRST_TIME, "", event.getPlayer());
-        }
-
+        Webhook.TypePlayerMessage type = event.getPlayer().hasPlayedBefore() ?
+                Webhook.TypePlayerMessage.JOINED_SERVER :
+                Webhook.TypePlayerMessage.JOINED_FIRST_TIME;
+        Webhook.sendPlayerMessage(type, event.getPlayer());
         updateRegions(event.getPlayer());
     }
 
     @EventHandler(priority = EventPriority.LOW)
     public void onPlayerQuit(PlayerQuitEvent event) {
         PluginEvents.quitOrJoin(event.getPlayer(), false);
-
+        Webhook.sendPlayerMessage(Webhook.TypePlayerMessage.LEFT_SERVER, event.getPlayer());
         if (PluginEvents.playerCurrentMusic.get(event.getPlayer()) != null) {
             PluginEvents.playerCurrentMusic.remove(event.getPlayer());
         }
@@ -81,7 +79,10 @@ public class EventListener implements Listener {
             event.setDeathMessage(event.getEntity().getDisplayName() + " умер от СПИДа (" + event.getDeathMessage() + ")");
         }
 
-        Discord.sendMessagePlayer(Discord.MessageTypePlayer.TYPE_PLAYER_DIED, event.getDeathMessage(), event.getEntity().getPlayer());
+        Webhook.sendPlayerMessage(Webhook.TypePlayerMessage.DIED,
+                event.getEntity().getPlayer(),
+                event.getDeathMessage()
+        );
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
@@ -159,34 +160,46 @@ public class EventListener implements Listener {
 
     @EventHandler
     public void onPlayerAchievement(PlayerAchievementAwardedEvent event) {
-        Discord.sendMessagePlayer(Discord.MessageTypePlayer.TYPE_PLAYER_EARNED_ACHIEVEMENT, event.getAchievement() != null ? event.getAchievement().name() : "НЕИЗВЕСТНО", event.getPlayer());
+        Webhook.sendPlayerMessage(Webhook.TypePlayerMessage.EARNED_ADVANCEMENT,
+                event.getPlayer(),
+                event.getAchievement() != null ? event.getAchievement().name() : "НЕИЗВЕСТНО"
+        );
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onPlayerChat(ChannelChatEvent event) {
-        String channelName = event.getChannel().getName();
-        Discord.MessageTypePlayer type = channelName.equals("Global") || channelName.equals("Trade") ? Discord.MessageTypePlayer.TYPE_PLAYER_CHAT : Discord.MessageTypePlayer.TYPE_PLAYER_CHAT_LVL2;
-
-        String text = "";
-
-        if (channelName.startsWith("convo")) {
-            Set<Chatter> chatMembers = event.getChannel().getMembers();
-            for (Chatter chatter : chatMembers) {
-                if (!chatter.getPlayer().getDisplayName().equals(event.getSender().getPlayer().getDisplayName())) {
-                    text = "[" + event.getSender().getPlayer().getDisplayName() + " -> " + chatter.getPlayer().getDisplayName() + "] " + event.getMessage();
-                    break;
+    public void onPlayerChat(ChannelChatEvent event) { // TODO: рефакторинг. Полный.
+        if (event.getSender() instanceof Player) {
+            String channelName = event.getChannel().getName();
+            Player sender = (Player) event.getSender();
+            String message = event.getMessage();
+            if (channelName.equalsIgnoreCase("Local") || channelName.startsWith("convo") ) {
+                if(channelName.startsWith("convo")){
+                    Set<Chatter> chatMembers = event.getChannel().getMembers();
+                    for (Chatter chatter : chatMembers) { //Особенно этой херни
+                        if (!chatter.getPlayer().getDisplayName().equals(event.getSender().getPlayer().getDisplayName())) {
+                            channelName = String.format("%s -> %s",event.getSender().getPlayer().getDisplayName(),chatter.getPlayer().getDisplayName());
+                            break;
+                        }
+                    }
                 }
+                int x = (int) sender.getLocation().getX();
+                int y = (int) sender.getLocation().getY();
+                int z = (int) sender.getLocation().getZ();
+                Webhook.sendPlayerMessage(Webhook.TypePlayerMessage.LVL2_CHAT_MESSAGE,
+                        sender,
+                        String.format("X: %s, Y: %s, Z: %s", x, y, z),
+                        channelName,
+                        message
+                );
+            } else {
+                Webhook.sendPlayerMessage(Webhook.TypePlayerMessage.CHAT_MESSAGE, sender, channelName, message);
             }
-        } else {
-            text = "[" + channelName + "] " + event.getMessage();
         }
-
-        Discord.sendMessagePlayer(type, text, event.getSender().getPlayer());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onCommandPreprocess(PlayerCommandPreprocessEvent event) {
-        Discord.sendMessagePlayer(Discord.MessageTypePlayer.TYPE_PLAYER_COMMAND, event.getMessage(), event.getPlayer());
+        Webhook.sendPlayerMessage(Webhook.TypePlayerMessage.COMMAND, event.getPlayer(), event.getMessage());
     }
 
     @EventHandler
