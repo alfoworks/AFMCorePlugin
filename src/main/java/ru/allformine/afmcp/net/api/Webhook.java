@@ -1,8 +1,9 @@
 package ru.allformine.afmcp.net.api;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.craftbukkit.libs.com.google.gson.JsonArray;
+import org.bukkit.craftbukkit.libs.com.google.gson.JsonObject;
+import org.bukkit.craftbukkit.libs.com.google.gson.JsonPrimitive;
 import org.bukkit.entity.Player;
 import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.net.http.Requests;
@@ -53,7 +54,7 @@ public class Webhook {
     private static JsonArray arrayToJson(String[] array) { // TODO: Дикий костыль
         JsonArray jsonArray = new JsonArray();
         for (String s : array) {
-            jsonArray.add(s);
+            jsonArray.add(new JsonPrimitive(s));
         }
         return jsonArray;
     }
