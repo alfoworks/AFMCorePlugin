@@ -94,7 +94,7 @@ public class HTTPServer extends BukkitRunnable {
                         if (returnVanishPlayers) {
                             players.add(p.getName());
                         } else {
-                            if (ProtocolHandler.isPlayerVanished(p.getName())) {
+                            if (ProtocolHandler.isntPlayerVanished(p.getName())) {
                                 players.add(p.getName());
                             }
                         }
@@ -163,7 +163,7 @@ public class HTTPServer extends BukkitRunnable {
                     long uptime = System.currentTimeMillis() - References.startTime;
 
                     for (Player player : Bukkit.getOnlinePlayers()) {
-                        if (ProtocolHandler.isPlayerVanished(player.getName())) {
+                        if (ProtocolHandler.isntPlayerVanished(player.getName())) {
                             playerCount++;
                         }
                     }

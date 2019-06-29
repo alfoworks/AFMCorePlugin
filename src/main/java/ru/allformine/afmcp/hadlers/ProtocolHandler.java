@@ -33,7 +33,7 @@ public class ProtocolHandler {
                     WrappedServerPing ping = event.getPacket().getServerPings().read(0);
                     List<WrappedGameProfile> players = new ArrayList<>();
                     for (Player p : Bukkit.getServer().getOnlinePlayers()) {
-                        if (isPlayerVanished(p.getName())) {
+                        if (isntPlayerVanished(p.getName())) {
                             players.add(new WrappedGameProfile(UUID.randomUUID(), p.getDisplayName()));
                         }
                     }
@@ -50,7 +50,7 @@ public class ProtocolHandler {
         }
     }
 
-    public static boolean isPlayerVanished(String nickname) {
+    public static boolean isntPlayerVanished(String nickname) {
         if (vanishManager == null) {
             return true;
         }
