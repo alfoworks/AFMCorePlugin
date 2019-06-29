@@ -168,32 +168,30 @@ public class EventListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerChat(ChannelChatEvent event) { // TODO: рефакторинг. Полный.
-        if (event.getSender() instanceof Player) {
-            String channelName = event.getChannel().getName();
-            Player sender = (Player) event.getSender();
-            String message = event.getMessage();
-            if (channelName.equalsIgnoreCase("Local") || channelName.startsWith("convo") ) {
-                if(channelName.startsWith("convo")){
-                    Set<Chatter> chatMembers = event.getChannel().getMembers();
-                    for (Chatter chatter : chatMembers) { //Особенно этой херни
-                        if (!chatter.getPlayer().getDisplayName().equals(event.getSender().getPlayer().getDisplayName())) {
-                            channelName = String.format("%s -> %s",event.getSender().getPlayer().getDisplayName(),chatter.getPlayer().getDisplayName());
-                            break;
-                        }
+        String channelName = event.getChannel().getName();
+        Player sender = (Player) event.getSender();
+        String message = event.getMessage();
+        if (channelName.equalsIgnoreCase("Local") || channelName.startsWith("convo") ) {
+            if(channelName.startsWith("convo")){
+                Set<Chatter> chatMembers = event.getChannel().getMembers();
+                for (Chatter chatter : chatMembers) { //Особенно этой херни
+                    if (!chatter.getPlayer().getDisplayName().equals(event.getSender().getPlayer().getDisplayName())) {
+                        channelName = String.format("%s -> %s",event.getSender().getPlayer().getDisplayName(),chatter.getPlayer().getDisplayName());
+                        break;
                     }
                 }
-                int x = (int) sender.getLocation().getX();
-                int y = (int) sender.getLocation().getY();
-                int z = (int) sender.getLocation().getZ();
-                Webhook.sendPlayerMessage(Webhook.TypePlayerMessage.LVL2_CHAT_MESSAGE,
-                        sender,
-                        String.format("X: %s, Y: %s, Z: %s", x, y, z),
-                        channelName,
-                        message
-                );
-            } else {
-                Webhook.sendPlayerMessage(Webhook.TypePlayerMessage.CHAT_MESSAGE, sender, channelName, message);
             }
+            int x = (int) sender.getLocation().getX();
+            int y = (int) sender.getLocation().getY();
+            int z = (int) sender.getLocation().getZ();
+            Webhook.sendPlayerMessage(Webhook.TypePlayerMessage.LVL2_CHAT_MESSAGE,
+                    sender,
+                    String.format("X: %s, Y: %s, Z: %s", x, y, z),
+                    channelName,
+                    message
+            );
+        } else {
+            Webhook.sendPlayerMessage(Webhook.TypePlayerMessage.CHAT_MESSAGE, sender, channelName, message);
         }
     }
 

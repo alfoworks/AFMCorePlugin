@@ -41,6 +41,14 @@ public class Webhook {
         PACKETHACK_USAGE_DETECTED,
     }
 
+    private static JsonArray arrayToJson(String[] array) { // TODO: Дикий костыль
+        JsonArray jsonArray = new JsonArray();
+        for (String s : array) {
+            jsonArray.add(new JsonPrimitive(s));
+        }
+        return jsonArray;
+    }
+
     private static void sendApiRequest(JsonObject object, String type, String group, String[] extra) {
         object.addProperty("token", token);
         object.addProperty("server_id", server_id);
@@ -48,15 +56,8 @@ public class Webhook {
         object.addProperty("group", group);
         object.add("arguments", arrayToJson(extra));
         final String json = object.toString();
+        System.out.println(json);
         Requests.sendPost(json, apiUrl);
-    }
-
-    private static JsonArray arrayToJson(String[] array) { // TODO: Дикий костыль
-        JsonArray jsonArray = new JsonArray();
-        for (String s : array) {
-            jsonArray.add(new JsonPrimitive(s));
-        }
-        return jsonArray;
     }
 
     public static void sendSecureAlert(TypeSecureAlert type, Player player, String... extra) {
