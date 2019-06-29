@@ -168,6 +168,7 @@ public class EventListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerChat(ChannelChatEvent event) { // TODO: рефакторинг. Полный.
+        System.out.println("onPlayerChat");
         String channelName = event.getChannel().getName();
         Player sender = (Player) event.getSender();
         String message = event.getMessage();
