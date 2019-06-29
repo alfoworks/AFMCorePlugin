@@ -34,6 +34,8 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.lang.Math.min;
+
 @Plugin(
         id = "afmcp",
         name = "AFMCorePlugin",
@@ -128,7 +130,7 @@ public class AFMCorePlugin {
             if (isEnd) {
                 System.out.println("END");
             } else {
-                System.out.println(buf.readBytes(10240).length);
+                System.out.println(buf.readBytes(min(10240, buf.available())).length);
             }
         });
     }
