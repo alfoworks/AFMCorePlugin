@@ -28,6 +28,7 @@ import ru.allformine.afmcp.commands.TokensCommand;
 import ru.allformine.afmcp.commands.VipCommand;
 import ru.allformine.afmcp.handlers.DiscordWebhookListener;
 import ru.allformine.afmcp.handlers.VanishEventListener;
+import ru.allformine.afmcp.jumppad.JumpPadEventListener;
 import ru.allformine.afmcp.net.api.Webhook;
 import ru.allformine.afmcp.serverapi.HTTPServer;
 
@@ -80,6 +81,7 @@ public class AFMCorePlugin {
     public void preInit(GamePreInitializationEvent event) {
         Sponge.getEventManager().registerListeners(this, new DiscordWebhookListener());
         Sponge.getEventManager().registerListeners(this, new VanishEventListener());
+        Sponge.getEventManager().registerListeners(this, new JumpPadEventListener());
 
         configFile = configDir.resolve("config.conf");
         configLoader = HoconConfigurationLoader.builder().setPath(configFile).build();
