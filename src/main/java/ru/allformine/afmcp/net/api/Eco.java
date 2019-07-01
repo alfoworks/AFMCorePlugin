@@ -17,6 +17,10 @@ public class Eco {
         this.nickname = player.getName();
     }
 
+    public Eco(String nickname) {
+        this.nickname = nickname;
+    }
+
     public OptionalInt getBalance() {
         String url = String.format("%s&act=%s&nick=%s", apiUrl, "get", this.nickname);
         Response response = Requests.sendGet(url);
