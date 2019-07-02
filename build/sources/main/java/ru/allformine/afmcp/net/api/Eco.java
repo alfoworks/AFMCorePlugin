@@ -24,14 +24,16 @@ public class Eco {
     private Response sendGet(String url) {
         Response response = Requests.sendGet(url);
         if (response != null && response.responseCode != 200) {
-            System.out.println();
+            System.out.println("An error occurred while executing request " + url);
+            System.out.println(response.responseCode);
+            System.out.println(response.response);
         }
         return response;
     }
 
     public OptionalInt getBalance() {
         String url = String.format("%s&act=%s&nick=%s", apiUrl, "get", this.nickname);
-        Response response = Requests.sendGet(url);
+        Response response = sendGet(url);
         if (response != null && response.responseCode == 200) {
             return OptionalInt.of(Integer.parseInt(response.response));
         } else {
@@ -41,19 +43,19 @@ public class Eco {
 
     public boolean increase(int count) {
         String url = String.format("%s&act=%s&nick=%s&var=%s", apiUrl, "increase", this.nickname, count);
-        Response response = Requests.sendGet(url);
+        Response response = sendGet(url);
         return response != null && response.responseCode == 200;
     }
 
     public boolean decrease(int count) {
         String url = String.format("%s&act=%s&nick=%s&var=%s", apiUrl, "reduction", this.nickname, count);
-        Response response = Requests.sendGet(url);
+        Response response = sendGet(url);
         return response != null && response.responseCode == 200;
     }
 
     public boolean reset() {
         String url = String.format("%s&act=%s&nick=%s", apiUrl, "reset", this.nickname);
-        Response response = Requests.sendGet(url);
+        Response response = sendGet(url);
         return response != null && response.responseCode == 200;
     }
 }

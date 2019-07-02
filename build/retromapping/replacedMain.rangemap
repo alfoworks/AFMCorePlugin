@@ -1,6 +1,7 @@
 Symbol range map extraction starting
 Processing 19 files
 startProcessing "ru\allformine\afmcp\AFMCorePlugin.java" md5: 605496ca8ddbebb0181662c0fa9a6541
+Cache Hit!
 @|ru\allformine\afmcp\AFMCorePlugin.java|8|27|ru.allformine.afmcp|package|ru.allformine.afmcp|(file)
 Class Start: ru.allformine.afmcp.AFMCorePlugin
    @|ru\allformine\afmcp\AFMCorePlugin.java|2010|2016|Plugin|class|org.spongepowered.api.plugin.Plugin
@@ -995,7 +996,7 @@ Enum Start: ru.allformine.afmcp.jumppad.JumpPadTypes
 Enum End  : ru.allformine.afmcp.jumppad.JumpPadTypes
 endProcessing "ru\allformine\afmcp\jumppad\JumpPadTypes.java"
 
-startProcessing "ru\allformine\afmcp\net\api\Eco.java" md5: 1d5abc88d00b823e05b389e930f2a463
+startProcessing "ru\allformine\afmcp\net\api\Eco.java" md5: 1f16d68d3a71f7ead2ecff274abeb0c9
 @|ru\allformine\afmcp\net\api\Eco.java|8|35|ru.allformine.afmcp.net.api|package|ru.allformine.afmcp.net.api|(file)
 Class Start: ru.allformine.afmcp.net.api.Eco
    @|ru\allformine\afmcp\net\api\Eco.java|327|330|Eco|class|ru.allformine.afmcp.net.api.Eco
@@ -1048,67 +1049,72 @@ Class Start: ru.allformine.afmcp.net.api.Eco
       @|ru\allformine\afmcp\net\api\Eco.java|916|928|responseCode|field|ru.allformine.afmcp.net.http.Response|responseCode
       @|ru\allformine\afmcp\net\api\Eco.java|951|957|System|class|java.lang.System
       @|ru\allformine\afmcp\net\api\Eco.java|958|961|out|field|java.lang.System|out
-      @|ru\allformine\afmcp\net\api\Eco.java|962|969|println|method|java.io.PrintStream|println|()V
+      @|ru\allformine\afmcp\net\api\Eco.java|962|969|println|method|java.io.PrintStream|println|(Ljava/lang/String;)V
+      @|ru\allformine\afmcp\net\api\Eco.java|1017|1020|url|param|ru.allformine.afmcp.net.api.Eco|sendGet|(Ljava/lang/String;)Lru/allformine/afmcp/net/http/Response;|url|0
+      @|ru\allformine\afmcp\net\api\Eco.java|1035|1041|System|class|java.lang.System
+      @|ru\allformine\afmcp\net\api\Eco.java|1042|1045|out|field|java.lang.System|out
+      @|ru\allformine\afmcp\net\api\Eco.java|1046|1053|println|method|java.io.PrintStream|println|(I)V
+      @|ru\allformine\afmcp\net\api\Eco.java|1063|1075|responseCode|field|ru.allformine.afmcp.net.http.Response|responseCode
+      @|ru\allformine\afmcp\net\api\Eco.java|1090|1096|System|class|java.lang.System
+      @|ru\allformine\afmcp\net\api\Eco.java|1097|1100|out|field|java.lang.System|out
+      @|ru\allformine\afmcp\net\api\Eco.java|1101|1108|println|method|java.io.PrintStream|println|(Ljava/lang/String;)V
+      @|ru\allformine\afmcp\net\api\Eco.java|1118|1126|response|field|ru.allformine.afmcp.net.http.Response|response
    Method End: sendGet(Ljava/lang/String;)Lru/allformine/afmcp/net/http/Response;
    Method Start: getBalance()Ljava/util/OptionalInt;
-      @|ru\allformine\afmcp\net\api\Eco.java|1026|1037|OptionalInt|class|java.util.OptionalInt
-      @|ru\allformine\afmcp\net\api\Eco.java|1038|1048|getBalance|method|ru.allformine.afmcp.net.api.Eco|getBalance|()Ljava/util/OptionalInt;
-      @|ru\allformine\afmcp\net\api\Eco.java|1061|1067|String|class|java.lang.String
-      @|ru\allformine\afmcp\net\api\Eco.java|1074|1080|String|class|java.lang.String
-      @|ru\allformine\afmcp\net\api\Eco.java|1081|1087|format|method|java.lang.String|format|(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
-      @|ru\allformine\afmcp\net\api\Eco.java|1109|1115|apiUrl|field|ru.allformine.afmcp.net.api.Eco|apiUrl
-      @|ru\allformine\afmcp\net\api\Eco.java|1129|1137|nickname|field|ru.allformine.afmcp.net.api.Eco|nickname
-      @|ru\allformine\afmcp\net\api\Eco.java|1148|1156|Response|class|ru.allformine.afmcp.net.http.Response
-      @|ru\allformine\afmcp\net\api\Eco.java|1168|1176|Requests|class|ru.allformine.afmcp.net.http.Requests
-      @|ru\allformine\afmcp\net\api\Eco.java|1177|1184|sendGet|method|ru.allformine.afmcp.net.http.Requests|sendGet|(Ljava/lang/String;)Lru/allformine/afmcp/net/http/Response;
-      @|ru\allformine\afmcp\net\api\Eco.java|1232|1244|responseCode|field|ru.allformine.afmcp.net.http.Response|responseCode
-      @|ru\allformine\afmcp\net\api\Eco.java|1274|1285|OptionalInt|class|java.util.OptionalInt
-      @|ru\allformine\afmcp\net\api\Eco.java|1286|1288|of|method|java.util.OptionalInt|of|(I)Ljava/util/OptionalInt;
-      @|ru\allformine\afmcp\net\api\Eco.java|1289|1296|Integer|class|java.lang.Integer
-      @|ru\allformine\afmcp\net\api\Eco.java|1297|1305|parseInt|method|java.lang.Integer|parseInt|(Ljava/lang/String;)I
-      @|ru\allformine\afmcp\net\api\Eco.java|1315|1323|response|field|ru.allformine.afmcp.net.http.Response|response
-      @|ru\allformine\afmcp\net\api\Eco.java|1363|1374|OptionalInt|class|java.util.OptionalInt
-      @|ru\allformine\afmcp\net\api\Eco.java|1375|1380|empty|method|java.util.OptionalInt|empty|()Ljava/util/OptionalInt;
+      @|ru\allformine\afmcp\net\api\Eco.java|1182|1193|OptionalInt|class|java.util.OptionalInt
+      @|ru\allformine\afmcp\net\api\Eco.java|1194|1204|getBalance|method|ru.allformine.afmcp.net.api.Eco|getBalance|()Ljava/util/OptionalInt;
+      @|ru\allformine\afmcp\net\api\Eco.java|1217|1223|String|class|java.lang.String
+      @|ru\allformine\afmcp\net\api\Eco.java|1230|1236|String|class|java.lang.String
+      @|ru\allformine\afmcp\net\api\Eco.java|1237|1243|format|method|java.lang.String|format|(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      @|ru\allformine\afmcp\net\api\Eco.java|1265|1271|apiUrl|field|ru.allformine.afmcp.net.api.Eco|apiUrl
+      @|ru\allformine\afmcp\net\api\Eco.java|1285|1293|nickname|field|ru.allformine.afmcp.net.api.Eco|nickname
+      @|ru\allformine\afmcp\net\api\Eco.java|1304|1312|Response|class|ru.allformine.afmcp.net.http.Response
+      @|ru\allformine\afmcp\net\api\Eco.java|1324|1331|sendGet|method|ru.allformine.afmcp.net.api.Eco|sendGet|(Ljava/lang/String;)Lru/allformine/afmcp/net/http/Response;
+      @|ru\allformine\afmcp\net\api\Eco.java|1379|1391|responseCode|field|ru.allformine.afmcp.net.http.Response|responseCode
+      @|ru\allformine\afmcp\net\api\Eco.java|1421|1432|OptionalInt|class|java.util.OptionalInt
+      @|ru\allformine\afmcp\net\api\Eco.java|1433|1435|of|method|java.util.OptionalInt|of|(I)Ljava/util/OptionalInt;
+      @|ru\allformine\afmcp\net\api\Eco.java|1436|1443|Integer|class|java.lang.Integer
+      @|ru\allformine\afmcp\net\api\Eco.java|1444|1452|parseInt|method|java.lang.Integer|parseInt|(Ljava/lang/String;)I
+      @|ru\allformine\afmcp\net\api\Eco.java|1462|1470|response|field|ru.allformine.afmcp.net.http.Response|response
+      @|ru\allformine\afmcp\net\api\Eco.java|1510|1521|OptionalInt|class|java.util.OptionalInt
+      @|ru\allformine\afmcp\net\api\Eco.java|1522|1527|empty|method|java.util.OptionalInt|empty|()Ljava/util/OptionalInt;
    Method End: getBalance()Ljava/util/OptionalInt;
    Method Start: increase(I)Z
-      @|ru\allformine\afmcp\net\api\Eco.java|1433|1438|count|param|ru.allformine.afmcp.net.api.Eco|increase|(I)Z|count|0
-      @|ru\allformine\afmcp\net\api\Eco.java|1420|1428|increase|method|ru.allformine.afmcp.net.api.Eco|increase|(I)Z
-      @|ru\allformine\afmcp\net\api\Eco.java|1450|1456|String|class|java.lang.String
-      @|ru\allformine\afmcp\net\api\Eco.java|1463|1469|String|class|java.lang.String
-      @|ru\allformine\afmcp\net\api\Eco.java|1470|1476|format|method|java.lang.String|format|(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
-      @|ru\allformine\afmcp\net\api\Eco.java|1505|1511|apiUrl|field|ru.allformine.afmcp.net.api.Eco|apiUrl
-      @|ru\allformine\afmcp\net\api\Eco.java|1530|1538|nickname|field|ru.allformine.afmcp.net.api.Eco|nickname
-      @|ru\allformine\afmcp\net\api\Eco.java|1540|1545|count|param|ru.allformine.afmcp.net.api.Eco|increase|(I)Z|count|0
-      @|ru\allformine\afmcp\net\api\Eco.java|1556|1564|Response|class|ru.allformine.afmcp.net.http.Response
-      @|ru\allformine\afmcp\net\api\Eco.java|1576|1584|Requests|class|ru.allformine.afmcp.net.http.Requests
-      @|ru\allformine\afmcp\net\api\Eco.java|1585|1592|sendGet|method|ru.allformine.afmcp.net.http.Requests|sendGet|(Ljava/lang/String;)Lru/allformine/afmcp/net/http/Response;
-      @|ru\allformine\afmcp\net\api\Eco.java|1643|1655|responseCode|field|ru.allformine.afmcp.net.http.Response|responseCode
+      @|ru\allformine\afmcp\net\api\Eco.java|1580|1585|count|param|ru.allformine.afmcp.net.api.Eco|increase|(I)Z|count|0
+      @|ru\allformine\afmcp\net\api\Eco.java|1567|1575|increase|method|ru.allformine.afmcp.net.api.Eco|increase|(I)Z
+      @|ru\allformine\afmcp\net\api\Eco.java|1597|1603|String|class|java.lang.String
+      @|ru\allformine\afmcp\net\api\Eco.java|1610|1616|String|class|java.lang.String
+      @|ru\allformine\afmcp\net\api\Eco.java|1617|1623|format|method|java.lang.String|format|(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      @|ru\allformine\afmcp\net\api\Eco.java|1652|1658|apiUrl|field|ru.allformine.afmcp.net.api.Eco|apiUrl
+      @|ru\allformine\afmcp\net\api\Eco.java|1677|1685|nickname|field|ru.allformine.afmcp.net.api.Eco|nickname
+      @|ru\allformine\afmcp\net\api\Eco.java|1687|1692|count|param|ru.allformine.afmcp.net.api.Eco|increase|(I)Z|count|0
+      @|ru\allformine\afmcp\net\api\Eco.java|1703|1711|Response|class|ru.allformine.afmcp.net.http.Response
+      @|ru\allformine\afmcp\net\api\Eco.java|1723|1730|sendGet|method|ru.allformine.afmcp.net.api.Eco|sendGet|(Ljava/lang/String;)Lru/allformine/afmcp/net/http/Response;
+      @|ru\allformine\afmcp\net\api\Eco.java|1781|1793|responseCode|field|ru.allformine.afmcp.net.http.Response|responseCode
    Method End: increase(I)Z
    Method Start: decrease(I)Z
-      @|ru\allformine\afmcp\net\api\Eco.java|1703|1708|count|param|ru.allformine.afmcp.net.api.Eco|decrease|(I)Z|count|0
-      @|ru\allformine\afmcp\net\api\Eco.java|1690|1698|decrease|method|ru.allformine.afmcp.net.api.Eco|decrease|(I)Z
-      @|ru\allformine\afmcp\net\api\Eco.java|1720|1726|String|class|java.lang.String
-      @|ru\allformine\afmcp\net\api\Eco.java|1733|1739|String|class|java.lang.String
-      @|ru\allformine\afmcp\net\api\Eco.java|1740|1746|format|method|java.lang.String|format|(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
-      @|ru\allformine\afmcp\net\api\Eco.java|1775|1781|apiUrl|field|ru.allformine.afmcp.net.api.Eco|apiUrl
-      @|ru\allformine\afmcp\net\api\Eco.java|1801|1809|nickname|field|ru.allformine.afmcp.net.api.Eco|nickname
-      @|ru\allformine\afmcp\net\api\Eco.java|1811|1816|count|param|ru.allformine.afmcp.net.api.Eco|decrease|(I)Z|count|0
-      @|ru\allformine\afmcp\net\api\Eco.java|1827|1835|Response|class|ru.allformine.afmcp.net.http.Response
-      @|ru\allformine\afmcp\net\api\Eco.java|1847|1855|Requests|class|ru.allformine.afmcp.net.http.Requests
-      @|ru\allformine\afmcp\net\api\Eco.java|1856|1863|sendGet|method|ru.allformine.afmcp.net.http.Requests|sendGet|(Ljava/lang/String;)Lru/allformine/afmcp/net/http/Response;
-      @|ru\allformine\afmcp\net\api\Eco.java|1914|1926|responseCode|field|ru.allformine.afmcp.net.http.Response|responseCode
+      @|ru\allformine\afmcp\net\api\Eco.java|1841|1846|count|param|ru.allformine.afmcp.net.api.Eco|decrease|(I)Z|count|0
+      @|ru\allformine\afmcp\net\api\Eco.java|1828|1836|decrease|method|ru.allformine.afmcp.net.api.Eco|decrease|(I)Z
+      @|ru\allformine\afmcp\net\api\Eco.java|1858|1864|String|class|java.lang.String
+      @|ru\allformine\afmcp\net\api\Eco.java|1871|1877|String|class|java.lang.String
+      @|ru\allformine\afmcp\net\api\Eco.java|1878|1884|format|method|java.lang.String|format|(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      @|ru\allformine\afmcp\net\api\Eco.java|1913|1919|apiUrl|field|ru.allformine.afmcp.net.api.Eco|apiUrl
+      @|ru\allformine\afmcp\net\api\Eco.java|1939|1947|nickname|field|ru.allformine.afmcp.net.api.Eco|nickname
+      @|ru\allformine\afmcp\net\api\Eco.java|1949|1954|count|param|ru.allformine.afmcp.net.api.Eco|decrease|(I)Z|count|0
+      @|ru\allformine\afmcp\net\api\Eco.java|1965|1973|Response|class|ru.allformine.afmcp.net.http.Response
+      @|ru\allformine\afmcp\net\api\Eco.java|1985|1992|sendGet|method|ru.allformine.afmcp.net.api.Eco|sendGet|(Ljava/lang/String;)Lru/allformine/afmcp/net/http/Response;
+      @|ru\allformine\afmcp\net\api\Eco.java|2043|2055|responseCode|field|ru.allformine.afmcp.net.http.Response|responseCode
    Method End: decrease(I)Z
    Method Start: reset()Z
-      @|ru\allformine\afmcp\net\api\Eco.java|1961|1966|reset|method|ru.allformine.afmcp.net.api.Eco|reset|()Z
-      @|ru\allformine\afmcp\net\api\Eco.java|1979|1985|String|class|java.lang.String
-      @|ru\allformine\afmcp\net\api\Eco.java|1992|1998|String|class|java.lang.String
-      @|ru\allformine\afmcp\net\api\Eco.java|1999|2005|format|method|java.lang.String|format|(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
-      @|ru\allformine\afmcp\net\api\Eco.java|2027|2033|apiUrl|field|ru.allformine.afmcp.net.api.Eco|apiUrl
-      @|ru\allformine\afmcp\net\api\Eco.java|2049|2057|nickname|field|ru.allformine.afmcp.net.api.Eco|nickname
-      @|ru\allformine\afmcp\net\api\Eco.java|2068|2076|Response|class|ru.allformine.afmcp.net.http.Response
-      @|ru\allformine\afmcp\net\api\Eco.java|2088|2096|Requests|class|ru.allformine.afmcp.net.http.Requests
-      @|ru\allformine\afmcp\net\api\Eco.java|2097|2104|sendGet|method|ru.allformine.afmcp.net.http.Requests|sendGet|(Ljava/lang/String;)Lru/allformine/afmcp/net/http/Response;
-      @|ru\allformine\afmcp\net\api\Eco.java|2155|2167|responseCode|field|ru.allformine.afmcp.net.http.Response|responseCode
+      @|ru\allformine\afmcp\net\api\Eco.java|2090|2095|reset|method|ru.allformine.afmcp.net.api.Eco|reset|()Z
+      @|ru\allformine\afmcp\net\api\Eco.java|2108|2114|String|class|java.lang.String
+      @|ru\allformine\afmcp\net\api\Eco.java|2121|2127|String|class|java.lang.String
+      @|ru\allformine\afmcp\net\api\Eco.java|2128|2134|format|method|java.lang.String|format|(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      @|ru\allformine\afmcp\net\api\Eco.java|2156|2162|apiUrl|field|ru.allformine.afmcp.net.api.Eco|apiUrl
+      @|ru\allformine\afmcp\net\api\Eco.java|2178|2186|nickname|field|ru.allformine.afmcp.net.api.Eco|nickname
+      @|ru\allformine\afmcp\net\api\Eco.java|2197|2205|Response|class|ru.allformine.afmcp.net.http.Response
+      @|ru\allformine\afmcp\net\api\Eco.java|2217|2224|sendGet|method|ru.allformine.afmcp.net.api.Eco|sendGet|(Ljava/lang/String;)Lru/allformine/afmcp/net/http/Response;
+      @|ru\allformine\afmcp\net\api\Eco.java|2275|2287|responseCode|field|ru.allformine.afmcp.net.http.Response|responseCode
    Method End: reset()Z
 Class End  : ru.allformine.afmcp.net.api.Eco
 endProcessing "ru\allformine\afmcp\net\api\Eco.java"
@@ -1265,6 +1271,7 @@ Class End  : ru.allformine.afmcp.net.api.Webhook
 endProcessing "ru\allformine\afmcp\net\api\Webhook.java"
 
 startProcessing "ru\allformine\afmcp\net\http\Requests.java" md5: 0976aff19366f64016c00aa3ba61bf3e
+Cache Hit!
 @|ru\allformine\afmcp\net\http\Requests.java|8|36|ru.allformine.afmcp.net.http|package|ru.allformine.afmcp.net.http|(file)
 Class Start: ru.allformine.afmcp.net.http.Requests
    @|ru\allformine\afmcp\net\http\Requests.java|325|333|Requests|class|ru.allformine.afmcp.net.http.Requests
@@ -1897,6 +1904,7 @@ Class End  : ru.allformine.afmcp.serverapi.ServerUtils
 endProcessing "ru\allformine\afmcp\serverapi\ServerUtils.java"
 
 startProcessing "ru\allformine\afmcp\test\PacketHandler.java" md5: 1add9950e95dda72ede5192e4a5428b3
+Cache Hit!
 @|ru\allformine\afmcp\test\PacketHandler.java|8|32|ru.allformine.afmcp.test|package|ru.allformine.afmcp.test|(file)
 Class Start: ru.allformine.afmcp.test.PacketHandler
    @|ru\allformine\afmcp\test\PacketHandler.java|224|237|PacketHandler|class|ru.allformine.afmcp.test.PacketHandler

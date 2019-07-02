@@ -1,6 +1,7 @@
 Symbol range map extraction starting
 Processing 19 files
 startProcessing "ru\allformine\afmcp\AFMCorePlugin.java" md5: 605496ca8ddbebb0181662c0fa9a6541
+Cache Hit!
 endProcessing "ru\allformine\afmcp\AFMCorePlugin.java"
 
 startProcessing "ru\allformine\afmcp\VanishManager.java" md5: ced6e131bce5bf8cb0ae6495c067645c
@@ -43,7 +44,7 @@ startProcessing "ru\allformine\afmcp\jumppad\JumpPadTypes.java" md5: 53678d0fa04
 Cache Hit!
 endProcessing "ru\allformine\afmcp\jumppad\JumpPadTypes.java"
 
-startProcessing "ru\allformine\afmcp\net\api\Eco.java" md5: 1d5abc88d00b823e05b389e930f2a463
+startProcessing "ru\allformine\afmcp\net\api\Eco.java" md5: 1f16d68d3a71f7ead2ecff274abeb0c9
 endProcessing "ru\allformine\afmcp\net\api\Eco.java"
 
 startProcessing "ru\allformine\afmcp\net\api\Webhook.java" md5: 33d009f5f0164b2210db39dc8fbe0014
@@ -51,6 +52,7 @@ Cache Hit!
 endProcessing "ru\allformine\afmcp\net\api\Webhook.java"
 
 startProcessing "ru\allformine\afmcp\net\http\Requests.java" md5: 0976aff19366f64016c00aa3ba61bf3e
+Cache Hit!
 endProcessing "ru\allformine\afmcp\net\http\Requests.java"
 
 startProcessing "ru\allformine\afmcp\net\http\Response.java" md5: 0b36875283f473f839a6257546ef2e25
@@ -70,5 +72,6 @@ Cache Hit!
 endProcessing "ru\allformine\afmcp\serverapi\ServerUtils.java"
 
 startProcessing "ru\allformine\afmcp\test\PacketHandler.java" md5: 1add9950e95dda72ede5192e4a5428b3
+Cache Hit!
 endProcessing "ru\allformine\afmcp\test\PacketHandler.java"
 
