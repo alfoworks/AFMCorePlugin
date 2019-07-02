@@ -21,7 +21,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Gradle: :uchat:" level="project" />
-    <orderEntry type="module" module-name="AFMCorePlugin-sponge1.12_api" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
@@ -40,6 +39,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module" module-name="AFMCorePlugin-sponge1.12_api" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
@@ -84,11 +84,11 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.12.2-14.23.5.2815/snapshot/20171003/forgeSrc-1.12.2-14.23.5.2815.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../.gradle/minecraft/forgeSrc-1.12.2-14.23.5.2815-PROJECT(AFMCorePlugin-sponge1.12).jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.12.2-14.23.5.2815/snapshot/20171003/forgeSrc-1.12.2-14.23.5.2815-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../.gradle/minecraft/forgeSrc-1.12.2-14.23.5.2815-PROJECT(AFMCorePlugin-sponge1.12)-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>

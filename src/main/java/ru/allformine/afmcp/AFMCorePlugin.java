@@ -1,6 +1,9 @@
 package ru.allformine.afmcp;
 
 import com.google.inject.Inject;
+import io.netty.channel.ChannelFuture;
+import net.minecraft.network.NetworkSystem;
+import net.minecraft.server.MinecraftServer;
 import ninja.leaping.configurate.commented.CommentedConfigurationNode;
 import ninja.leaping.configurate.hocon.HoconConfigurationLoader;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
@@ -31,6 +34,7 @@ import ru.allformine.afmcp.handlers.VanishEventListener;
 import ru.allformine.afmcp.jumppad.JumpPadEventListener;
 import ru.allformine.afmcp.net.api.Webhook;
 import ru.allformine.afmcp.serverapi.HTTPServer;
+import ru.allformine.afmcp.test.PacketHandler;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -152,6 +156,11 @@ public class AFMCorePlugin {
                 apiServer.playerScreenshotData.replace(player, ArrayUtils.addAll(prevArr, chunkByteArray));
             }
         });
+
+        NetworkSystem networkSystem = ((MinecraftServer) Sponge.getServer()).getNetworkSystem();
+        for (ChannelFuture channelFuture : networkSystem.endpoints) {
+            channelFuture.channel().pipeline().addFirst(new PacketHandler());
+        }
     }
 
     @Listener

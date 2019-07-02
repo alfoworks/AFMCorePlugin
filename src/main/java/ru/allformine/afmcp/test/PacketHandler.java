@@ -2,13 +2,11 @@ package ru.allformine.afmcp.test;
 
 import io.netty.channel.ChannelDuplexHandler;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelPipeline;
 import io.netty.channel.ChannelPromise;
 import ru.allformine.afmcp.AFMCorePlugin;
 
 public class PacketHandler extends ChannelDuplexHandler {
-    public PacketHandler(ChannelPipeline pipeline) {
-        pipeline.addBefore("packet_handler", "PacketHandler", this);
+    public PacketHandler() {
         AFMCorePlugin.logger.info("PacketHandler attached!");
     }
 
