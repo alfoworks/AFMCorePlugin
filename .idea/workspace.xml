@@ -4,20 +4,8 @@
     <list default="true" id="0d122824-c45f-4dc9-9772-e9cb0c4f4b11" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__aopalliance_aopalliance_1_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__aopalliance_aopalliance_1_0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_flowpowered_flow_math_1_0_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_flowpowered_flow_math_1_0_3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_flowpowered_flow_noise_1_0_1_SNAPSHOT.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_flowpowered_flow_noise_1_0_1_SNAPSHOT.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_inject_javax_inject_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_inject_javax_inject_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_spongepowered_plugin_meta_0_4_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_spongepowered_plugin_meta_0_4_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/AFMCorePlugin-sponge1.12_api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/AFMCorePlugin-sponge1.12_api.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/AFMCorePlugin-sponge1.12_main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/AFMCorePlugin-sponge1.12_main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/AFMCorePlugin-sponge1.12_test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/AFMCorePlugin-sponge1.12_test.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/net/api/Eco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/net/api/Eco.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/net/http/Requests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/net/http/Requests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/afmcp/config.conf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/afmcp/config.conf" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -55,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/net/api/Eco.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-94">
-              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+            <state relative-caret-position="337">
+              <caret line="54" column="88" lean-forward="true" selection-start-line="54" selection-start-column="88" selection-end-line="54" selection-end-column="88" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#796#797#0" expanded="true" />
@@ -72,7 +60,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/assets/afmcp/config.conf">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
+            <state relative-caret-position="17">
               <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
             </state>
           </provider>
@@ -90,11 +78,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/net/http/Requests.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
+            <state relative-caret-position="230">
+              <caret line="54" column="47" lean-forward="true" selection-start-line="54" selection-start-column="47" selection-end-line="54" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -574,7 +562,14 @@
       <option name="project" value="LOCAL" />
       <updated>1561998337180</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Делаем блядь вот так и должно сука ебаный респонс мне вернуть">
+      <created>1562059087772</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1562059087772</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TodoView">
@@ -590,7 +585,7 @@
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28598973" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28598973" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -605,9 +600,9 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4993573" weight="0.32974428" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49807197" weight="0.32839838" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="7" sideWeight="0.4974293" visible="true" weight="0.32839838" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49871466" weight="0.32974428" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5012854" side_tool="true" visible="true" weight="0.32974428" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5025707" side_tool="true" weight="0.32839838" />
       <window_info anchor="bottom" id="Build" order="10" sideWeight="0.4993573" weight="0.32974428" />
       <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.4993573" weight="0.32839838" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -665,7 +660,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="Уже начинает доёбывать.." />
     <MESSAGE value="Новая команда для рабочей пересылки сообщений с дискорда" />
     <MESSAGE value="Поддержка плагина на чаты" />
     <MESSAGE value="Мелкие исправления" />
@@ -690,7 +684,8 @@
     <MESSAGE value="Мини-рефакторинг - удалил дубликаты кода." />
     <MESSAGE value="Встречайте рабочий /vip" />
     <MESSAGE value="Нерабочий, блядь. Профиксил нахуй и вывод в консоль, ебал форжградл." />
-    <option name="LAST_COMMIT_MESSAGE" value="Нерабочий, блядь. Профиксил нахуй и вывод в консоль, ебал форжградл." />
+    <MESSAGE value="Делаем блядь вот так и должно сука ебаный респонс мне вернуть" />
+    <option name="LAST_COMMIT_MESSAGE" value="Делаем блядь вот так и должно сука ебаный респонс мне вернуть" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -827,30 +822,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/assets/afmcp/config.conf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/net/http/Response.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="33" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/handlers/DiscordWebhookListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-136">
-          <caret line="22" column="70" selection-start-line="22" selection-start-column="70" selection-end-line="22" selection-end-column="70" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/io/PrintStream.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1360">
@@ -875,15 +846,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/net/api/Eco.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/net/http/Response.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-94">
-          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#796#797#0" expanded="true" />
-            <element signature="e#836#837#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="204">
+          <caret line="12" column="33" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/assets/afmcp/config.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -902,12 +875,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/net/http/Requests.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/handlers/DiscordWebhookListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
+        <state relative-caret-position="-136">
+          <caret line="22" column="70" selection-start-line="22" selection-start-column="70" selection-end-line="22" selection-end-column="70" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/net/http/Requests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="54" column="47" lean-forward="true" selection-start-line="54" selection-start-column="47" selection-end-line="54" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/net/api/Eco.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="54" column="88" lean-forward="true" selection-start-line="54" selection-start-column="88" selection-end-line="54" selection-end-column="88" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#796#797#0" expanded="true" />
+            <element signature="e#836#837#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -952,7 +947,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>1.8</last-edited>
+          <last-edited>1.8.0_211</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

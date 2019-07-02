@@ -4,7 +4,6 @@ import ru.allformine.afmcp.AFMCorePlugin;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.URL;
@@ -52,7 +51,7 @@ public class Requests {
         }
     }
 
-    public static Response sendGet(String url) throws IOException {
+    public static Response sendGet(String url) {
         try {
             URL obj = new URL(url);
             HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
@@ -79,9 +78,8 @@ public class Requests {
                 AFMCorePlugin.logger.error("Response: " + result.toString());
                 return new Response(result.toString(), code);
             }
-
+            return null;
         } catch (Exception e) {
-
             e.printStackTrace();
             return null;
         }
