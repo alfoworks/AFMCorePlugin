@@ -21,6 +21,14 @@ public class Eco {
         this.nickname = nickname;
     }
 
+    private Response sendGet(String url) {
+        Response response = Requests.sendGet(url);
+        if (response != null && response.responseCode != 200) {
+            System.out.println();
+        }
+        return response;
+    }
+
     public OptionalInt getBalance() {
         String url = String.format("%s&act=%s&nick=%s", apiUrl, "get", this.nickname);
         Response response = Requests.sendGet(url);

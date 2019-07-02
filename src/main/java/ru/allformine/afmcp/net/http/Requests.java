@@ -4,6 +4,7 @@ import ru.allformine.afmcp.AFMCorePlugin;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.URL;
@@ -51,19 +52,21 @@ public class Requests {
         }
     }
 
-    public static Response sendGet(String url) {
+    public static Response sendGet(String url) throws IOException {
         try {
             URL obj = new URL(url);
             HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
             int code = con.getResponseCode();
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            String inputLine;
-            StringBuilder response = new StringBuilder();
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
+            if (code >= 200 && code < 300) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                String inputLine;
+                StringBuilder response = new StringBuilder();
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+                return new Response(response.toString(), code);
             }
-            in.close();
             if (con.getErrorStream() != null) {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(con.getErrorStream()));
                 StringBuilder result = new StringBuilder();
@@ -74,9 +77,11 @@ public class Requests {
 
                 AFMCorePlugin.logger.error("Can't send GET to url " + url + ".");
                 AFMCorePlugin.logger.error("Response: " + result.toString());
+                return new Response(result.toString(), code);
             }
-            return new Response(response.toString(), code);
+
         } catch (Exception e) {
+
             e.printStackTrace();
             return null;
         }
