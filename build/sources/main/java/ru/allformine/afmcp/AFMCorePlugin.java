@@ -158,7 +158,7 @@ public class AFMCorePlugin {
         });
 
         NetworkSystem networkSystem = ((MinecraftServer) Sponge.getServer()).getNetworkSystem();
-        for (ChannelFuture channelFuture : networkSystem.endpoints) {
+        for (ChannelFuture channelFuture : networkSystem.endpoints) { // ЭТО НЕ ОШИБКА! ОНО НОРМАЛЬНО КОМПИЛИТСЯ
             channelFuture.channel().pipeline().addFirst(new PacketHandler());
         }
     }

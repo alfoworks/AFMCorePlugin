@@ -1,7 +1,6 @@
 Symbol range map extraction starting
 Processing 19 files
-startProcessing "ru\allformine\afmcp\AFMCorePlugin.java" md5: 605496ca8ddbebb0181662c0fa9a6541
-Cache Hit!
+startProcessing "ru\allformine\afmcp\AFMCorePlugin.java" md5: de0903ff2ffa43229a4c6f17bf4edd66
 @|ru\allformine\afmcp\AFMCorePlugin.java|8|27|ru.allformine.afmcp|package|ru.allformine.afmcp|(file)
 Class Start: ru.allformine.afmcp.AFMCorePlugin
    @|ru\allformine\afmcp\AFMCorePlugin.java|2010|2016|Plugin|class|org.spongepowered.api.plugin.Plugin
@@ -201,81 +200,81 @@ Class Start: ru.allformine.afmcp.AFMCorePlugin
       @|ru\allformine\afmcp\AFMCorePlugin.java|6164|6180|getNetworkSystem|method|net.minecraft.server.MinecraftServer|getNetworkSystem|()Lnet/minecraft/network/NetworkSystem;
       @|ru\allformine\afmcp\AFMCorePlugin.java|6197|6210|ChannelFuture|class|io.netty.channel.ChannelFuture
       @|ru\allformine\afmcp\AFMCorePlugin.java|6241|6250|endpoints|field|net.minecraft.network.NetworkSystem|endpoints
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6280|6287|channel|method|io.netty.channel.ChannelFuture|channel|()Lio/netty/channel/Channel;
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6290|6298|pipeline|method|io.netty.channel.Channel|pipeline|()Lio/netty/channel/ChannelPipeline;
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6301|6309|addFirst|method|io.netty.channel.ChannelPipeline|addFirst|([Lio/netty/channel/ChannelHandler;)Lio/netty/channel/ChannelPipeline;
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6314|6327|PacketHandler|class|ru.allformine.afmcp.test.PacketHandler
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6323|6330|channel|method|io.netty.channel.ChannelFuture|channel|()Lio/netty/channel/Channel;
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6333|6341|pipeline|method|io.netty.channel.Channel|pipeline|()Lio/netty/channel/ChannelPipeline;
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6344|6352|addFirst|method|io.netty.channel.ChannelPipeline|addFirst|([Lio/netty/channel/ChannelHandler;)Lio/netty/channel/ChannelPipeline;
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6357|6370|PacketHandler|class|ru.allformine.afmcp.test.PacketHandler
    Method End: init(Lorg/spongepowered/api/event/game/state/GameInitializationEvent;)V
    Method Start: onServerStart(Lorg/spongepowered/api/event/game/state/GameAboutToStartServerEvent;)V
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6421|6426|event|param|ru.allformine.afmcp.AFMCorePlugin|onServerStart|(Lorg/spongepowered/api/event/game/state/GameAboutToStartServerEvent;)V|event|0
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6354|6362|Listener|class|org.spongepowered.api.event.Listener
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6379|6392|onServerStart|method|ru.allformine.afmcp.AFMCorePlugin|onServerStart|(Lorg/spongepowered/api/event/game/state/GameAboutToStartServerEvent;)V
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6393|6420|GameAboutToStartServerEvent|class|org.spongepowered.api.event.game.state.GameAboutToStartServerEvent
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6438|6447|startTime|field|ru.allformine.afmcp.AFMCorePlugin|startTime
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6450|6456|System|class|java.lang.System
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6457|6474|currentTimeMillis|method|java.lang.System|currentTimeMillis|()J
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6571|6578|Webhook|class|ru.allformine.afmcp.net.api.Webhook
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6579|6596|sendServerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendServerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypeServerMessage;[Ljava/lang/String;)V
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6597|6622|Webhook.TypeServerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6623|6637|SERVER_STARTED|field|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage|SERVER_STARTED
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6654|6663|apiServer|field|ru.allformine.afmcp.AFMCorePlugin|apiServer
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6670|6680|HTTPServer|class|ru.allformine.afmcp.serverapi.HTTPServer
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6693|6706|apiServerTask|field|ru.allformine.afmcp.AFMCorePlugin|apiServerTask
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6709|6713|Task|class|org.spongepowered.api.scheduler.Task
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6714|6721|builder|method|org.spongepowered.api.scheduler.Task|builder|()Lorg/spongepowered/api/scheduler/Task$Builder;
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6724|6731|execute|method|org.spongepowered.api.scheduler.Task.Builder|execute|(Ljava/lang/Runnable;)Lorg/spongepowered/api/scheduler/Task$Builder;
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6737|6746|apiServer|field|ru.allformine.afmcp.AFMCorePlugin|apiServer
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6765|6770|async|method|org.spongepowered.api.scheduler.Task.Builder|async|()Lorg/spongepowered/api/scheduler/Task$Builder;
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6773|6777|name|method|org.spongepowered.api.scheduler.Task.Builder|name|(Ljava/lang/String;)Lorg/spongepowered/api/scheduler/Task$Builder;
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6814|6820|submit|method|org.spongepowered.api.scheduler.Task.Builder|submit|(Ljava/lang/Object;)Lorg/spongepowered/api/scheduler/Task;
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6464|6469|event|param|ru.allformine.afmcp.AFMCorePlugin|onServerStart|(Lorg/spongepowered/api/event/game/state/GameAboutToStartServerEvent;)V|event|0
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6397|6405|Listener|class|org.spongepowered.api.event.Listener
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6422|6435|onServerStart|method|ru.allformine.afmcp.AFMCorePlugin|onServerStart|(Lorg/spongepowered/api/event/game/state/GameAboutToStartServerEvent;)V
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6436|6463|GameAboutToStartServerEvent|class|org.spongepowered.api.event.game.state.GameAboutToStartServerEvent
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6481|6490|startTime|field|ru.allformine.afmcp.AFMCorePlugin|startTime
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6493|6499|System|class|java.lang.System
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6500|6517|currentTimeMillis|method|java.lang.System|currentTimeMillis|()J
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6614|6621|Webhook|class|ru.allformine.afmcp.net.api.Webhook
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6622|6639|sendServerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendServerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypeServerMessage;[Ljava/lang/String;)V
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6640|6665|Webhook.TypeServerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6666|6680|SERVER_STARTED|field|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage|SERVER_STARTED
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6697|6706|apiServer|field|ru.allformine.afmcp.AFMCorePlugin|apiServer
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6713|6723|HTTPServer|class|ru.allformine.afmcp.serverapi.HTTPServer
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6736|6749|apiServerTask|field|ru.allformine.afmcp.AFMCorePlugin|apiServerTask
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6752|6756|Task|class|org.spongepowered.api.scheduler.Task
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6757|6764|builder|method|org.spongepowered.api.scheduler.Task|builder|()Lorg/spongepowered/api/scheduler/Task$Builder;
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6767|6774|execute|method|org.spongepowered.api.scheduler.Task.Builder|execute|(Ljava/lang/Runnable;)Lorg/spongepowered/api/scheduler/Task$Builder;
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6780|6789|apiServer|field|ru.allformine.afmcp.AFMCorePlugin|apiServer
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6808|6813|async|method|org.spongepowered.api.scheduler.Task.Builder|async|()Lorg/spongepowered/api/scheduler/Task$Builder;
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6816|6820|name|method|org.spongepowered.api.scheduler.Task.Builder|name|(Ljava/lang/String;)Lorg/spongepowered/api/scheduler/Task$Builder;
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6857|6863|submit|method|org.spongepowered.api.scheduler.Task.Builder|submit|(Ljava/lang/Object;)Lorg/spongepowered/api/scheduler/Task;
    Method End: onServerStart(Lorg/spongepowered/api/event/game/state/GameAboutToStartServerEvent;)V
    Method Start: onServerStop(Lorg/spongepowered/api/event/game/state/GameStoppingServerEvent;)V
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6902|6907|event|param|ru.allformine.afmcp.AFMCorePlugin|onServerStop|(Lorg/spongepowered/api/event/game/state/GameStoppingServerEvent;)V|event|0
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6840|6848|Listener|class|org.spongepowered.api.event.Listener
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6865|6877|onServerStop|method|ru.allformine.afmcp.AFMCorePlugin|onServerStop|(Lorg/spongepowered/api/event/game/state/GameStoppingServerEvent;)V
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6878|6901|GameStoppingServerEvent|class|org.spongepowered.api.event.game.state.GameStoppingServerEvent
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7007|7020|serverRestart|field|ru.allformine.afmcp.AFMCorePlugin|serverRestart
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7036|7043|Webhook|class|ru.allformine.afmcp.net.api.Webhook
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7044|7061|sendServerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendServerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypeServerMessage;[Ljava/lang/String;)V
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7062|7087|Webhook.TypeServerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7088|7105|SERVER_RESTARTING|field|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage|SERVER_RESTARTING
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7137|7144|Webhook|class|ru.allformine.afmcp.net.api.Webhook
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7145|7162|sendServerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendServerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypeServerMessage;[Ljava/lang/String;)V
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7163|7188|Webhook.TypeServerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7189|7203|SERVER_STOPPED|field|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage|SERVER_STOPPED
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7224|7237|apiServerTask|field|ru.allformine.afmcp.AFMCorePlugin|apiServerTask
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7238|7244|cancel|method|org.spongepowered.api.scheduler.Task|cancel|()Z
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6945|6950|event|param|ru.allformine.afmcp.AFMCorePlugin|onServerStop|(Lorg/spongepowered/api/event/game/state/GameStoppingServerEvent;)V|event|0
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6883|6891|Listener|class|org.spongepowered.api.event.Listener
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6908|6920|onServerStop|method|ru.allformine.afmcp.AFMCorePlugin|onServerStop|(Lorg/spongepowered/api/event/game/state/GameStoppingServerEvent;)V
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6921|6944|GameStoppingServerEvent|class|org.spongepowered.api.event.game.state.GameStoppingServerEvent
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7050|7063|serverRestart|field|ru.allformine.afmcp.AFMCorePlugin|serverRestart
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7079|7086|Webhook|class|ru.allformine.afmcp.net.api.Webhook
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7087|7104|sendServerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendServerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypeServerMessage;[Ljava/lang/String;)V
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7105|7130|Webhook.TypeServerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7131|7148|SERVER_RESTARTING|field|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage|SERVER_RESTARTING
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7180|7187|Webhook|class|ru.allformine.afmcp.net.api.Webhook
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7188|7205|sendServerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendServerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypeServerMessage;[Ljava/lang/String;)V
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7206|7231|Webhook.TypeServerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7232|7246|SERVER_STOPPED|field|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage|SERVER_STOPPED
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7267|7280|apiServerTask|field|ru.allformine.afmcp.AFMCorePlugin|apiServerTask
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7281|7287|cancel|method|org.spongepowered.api.scheduler.Task|cancel|()Z
    Method End: onServerStop(Lorg/spongepowered/api/event/game/state/GameStoppingServerEvent;)V
    Method Start: configSetup()V
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7272|7283|configSetup|method|ru.allformine.afmcp.AFMCorePlugin|configSetup|()V
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7301|7306|Files|class|java.nio.file.Files
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7307|7313|exists|method|java.nio.file.Files|exists|(Ljava/nio/file/Path;[Ljava/nio/file/LinkOption;)Z
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7314|7323|configDir|field|ru.allformine.afmcp.AFMCorePlugin|configDir
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7362|7367|Files|class|java.nio.file.Files
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7368|7385|createDirectories|method|java.nio.file.Files|createDirectories|(Ljava/nio/file/Path;[Ljava/nio/file/attribute/FileAttribute;)Ljava/nio/file/Path;
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7386|7395|configDir|field|ru.allformine.afmcp.AFMCorePlugin|configDir
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7419|7430|IOException|class|java.io.IOException
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7456|7471|printStackTrace|method|java.lang.Throwable|printStackTrace|()V
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7513|7518|Files|class|java.nio.file.Files
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7519|7525|exists|method|java.nio.file.Files|exists|(Ljava/nio/file/Path;[Ljava/nio/file/LinkOption;)Z
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7526|7536|configFile|field|ru.allformine.afmcp.AFMCorePlugin|configFile
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7634|7640|Sponge|class|org.spongepowered.api.Sponge
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7641|7656|getAssetManager|method|org.spongepowered.api.Sponge|getAssetManager|()Lorg/spongepowered/api/asset/AssetManager;
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7659|7667|getAsset|method|org.spongepowered.api.asset.AssetManager|getAsset|(Ljava/lang/Object;Ljava/lang/String;)Ljava/util/Optional;
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7689|7692|get|method|java.util.Optional|get|()Ljava/lang/Object;
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7695|7705|copyToFile|method|org.spongepowered.api.asset.Asset|copyToFile|(Ljava/nio/file/Path;)V
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7706|7716|configFile|field|ru.allformine.afmcp.AFMCorePlugin|configFile
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7740|7751|IOException|class|java.io.IOException
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7775|7790|printStackTrace|method|java.lang.Throwable|printStackTrace|()V
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7827|7831|load|method|ru.allformine.afmcp.AFMCorePlugin|load|()V
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7315|7326|configSetup|method|ru.allformine.afmcp.AFMCorePlugin|configSetup|()V
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7344|7349|Files|class|java.nio.file.Files
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7350|7356|exists|method|java.nio.file.Files|exists|(Ljava/nio/file/Path;[Ljava/nio/file/LinkOption;)Z
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7357|7366|configDir|field|ru.allformine.afmcp.AFMCorePlugin|configDir
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7405|7410|Files|class|java.nio.file.Files
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7411|7428|createDirectories|method|java.nio.file.Files|createDirectories|(Ljava/nio/file/Path;[Ljava/nio/file/attribute/FileAttribute;)Ljava/nio/file/Path;
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7429|7438|configDir|field|ru.allformine.afmcp.AFMCorePlugin|configDir
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7462|7473|IOException|class|java.io.IOException
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7499|7514|printStackTrace|method|java.lang.Throwable|printStackTrace|()V
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7556|7561|Files|class|java.nio.file.Files
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7562|7568|exists|method|java.nio.file.Files|exists|(Ljava/nio/file/Path;[Ljava/nio/file/LinkOption;)Z
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7569|7579|configFile|field|ru.allformine.afmcp.AFMCorePlugin|configFile
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7677|7683|Sponge|class|org.spongepowered.api.Sponge
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7684|7699|getAssetManager|method|org.spongepowered.api.Sponge|getAssetManager|()Lorg/spongepowered/api/asset/AssetManager;
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7702|7710|getAsset|method|org.spongepowered.api.asset.AssetManager|getAsset|(Ljava/lang/Object;Ljava/lang/String;)Ljava/util/Optional;
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7732|7735|get|method|java.util.Optional|get|()Ljava/lang/Object;
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7738|7748|copyToFile|method|org.spongepowered.api.asset.Asset|copyToFile|(Ljava/nio/file/Path;)V
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7749|7759|configFile|field|ru.allformine.afmcp.AFMCorePlugin|configFile
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7783|7794|IOException|class|java.io.IOException
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7818|7833|printStackTrace|method|java.lang.Throwable|printStackTrace|()V
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7870|7874|load|method|ru.allformine.afmcp.AFMCorePlugin|load|()V
    Method End: configSetup()V
    Method Start: load()V
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7859|7863|load|method|ru.allformine.afmcp.AFMCorePlugin|load|()V
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7894|7904|configNode|field|ru.allformine.afmcp.AFMCorePlugin|configNode
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7907|7919|configLoader|field|ru.allformine.afmcp.AFMCorePlugin|configLoader
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7920|7924|load|method|ninja.leaping.configurate.loader.ConfigurationLoader|load|()Lninja/leaping/configurate/ConfigurationNode;
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7945|7956|IOException|class|java.io.IOException
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7976|7991|printStackTrace|method|java.lang.Throwable|printStackTrace|()V
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7902|7906|load|method|ru.allformine.afmcp.AFMCorePlugin|load|()V
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7937|7947|configNode|field|ru.allformine.afmcp.AFMCorePlugin|configNode
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7950|7962|configLoader|field|ru.allformine.afmcp.AFMCorePlugin|configLoader
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7963|7967|load|method|ninja.leaping.configurate.loader.ConfigurationLoader|load|()Lninja/leaping/configurate/ConfigurationNode;
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7988|7999|IOException|class|java.io.IOException
+      @|ru\allformine\afmcp\AFMCorePlugin.java|8019|8034|printStackTrace|method|java.lang.Throwable|printStackTrace|()V
    Method End: load()V
 Class End  : ru.allformine.afmcp.AFMCorePlugin
 endProcessing "ru\allformine\afmcp\AFMCorePlugin.java"
@@ -996,7 +995,8 @@ Enum Start: ru.allformine.afmcp.jumppad.JumpPadTypes
 Enum End  : ru.allformine.afmcp.jumppad.JumpPadTypes
 endProcessing "ru\allformine\afmcp\jumppad\JumpPadTypes.java"
 
-startProcessing "ru\allformine\afmcp\net\api\Eco.java" md5: 1f16d68d3a71f7ead2ecff274abeb0c9
+startProcessing "ru\allformine\afmcp\net\api\Eco.java" md5: b405cbe558fefd9b1c6f3e29cb785480
+Cache Hit!
 @|ru\allformine\afmcp\net\api\Eco.java|8|35|ru.allformine.afmcp.net.api|package|ru.allformine.afmcp.net.api|(file)
 Class Start: ru.allformine.afmcp.net.api.Eco
    @|ru\allformine\afmcp\net\api\Eco.java|327|330|Eco|class|ru.allformine.afmcp.net.api.Eco
@@ -1047,74 +1047,70 @@ Class Start: ru.allformine.afmcp.net.api.Eco
       @|ru\allformine\afmcp\net\api\Eco.java|861|868|sendGet|method|ru.allformine.afmcp.net.http.Requests|sendGet|(Ljava/lang/String;)Lru/allformine/afmcp/net/http/Response;
       @|ru\allformine\afmcp\net\api\Eco.java|869|872|url|param|ru.allformine.afmcp.net.api.Eco|sendGet|(Ljava/lang/String;)Lru/allformine/afmcp/net/http/Response;|url|0
       @|ru\allformine\afmcp\net\api\Eco.java|916|928|responseCode|field|ru.allformine.afmcp.net.http.Response|responseCode
-      @|ru\allformine\afmcp\net\api\Eco.java|951|957|System|class|java.lang.System
-      @|ru\allformine\afmcp\net\api\Eco.java|958|961|out|field|java.lang.System|out
-      @|ru\allformine\afmcp\net\api\Eco.java|962|969|println|method|java.io.PrintStream|println|(Ljava/lang/String;)V
-      @|ru\allformine\afmcp\net\api\Eco.java|1017|1020|url|param|ru.allformine.afmcp.net.api.Eco|sendGet|(Ljava/lang/String;)Lru/allformine/afmcp/net/http/Response;|url|0
-      @|ru\allformine\afmcp\net\api\Eco.java|1035|1041|System|class|java.lang.System
-      @|ru\allformine\afmcp\net\api\Eco.java|1042|1045|out|field|java.lang.System|out
-      @|ru\allformine\afmcp\net\api\Eco.java|1046|1053|println|method|java.io.PrintStream|println|(I)V
-      @|ru\allformine\afmcp\net\api\Eco.java|1063|1075|responseCode|field|ru.allformine.afmcp.net.http.Response|responseCode
-      @|ru\allformine\afmcp\net\api\Eco.java|1090|1096|System|class|java.lang.System
-      @|ru\allformine\afmcp\net\api\Eco.java|1097|1100|out|field|java.lang.System|out
-      @|ru\allformine\afmcp\net\api\Eco.java|1101|1108|println|method|java.io.PrintStream|println|(Ljava/lang/String;)V
-      @|ru\allformine\afmcp\net\api\Eco.java|1118|1126|response|field|ru.allformine.afmcp.net.http.Response|response
+      @|ru\allformine\afmcp\net\api\Eco.java|951|964|AFMCorePlugin|class|ru.allformine.afmcp.AFMCorePlugin
+      @|ru\allformine\afmcp\net\api\Eco.java|965|971|logger|field|ru.allformine.afmcp.AFMCorePlugin|logger
+      @|ru\allformine\afmcp\net\api\Eco.java|972|977|error|method|org.slf4j.Logger|error|(Ljava/lang/String;)V
+      @|ru\allformine\afmcp\net\api\Eco.java|999|1005|String|class|java.lang.String
+      @|ru\allformine\afmcp\net\api\Eco.java|1006|1012|format|method|java.lang.String|format|(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      @|ru\allformine\afmcp\net\api\Eco.java|1130|1133|url|param|ru.allformine.afmcp.net.api.Eco|sendGet|(Ljava/lang/String;)Lru/allformine/afmcp/net/http/Response;|url|0
+      @|ru\allformine\afmcp\net\api\Eco.java|1172|1184|responseCode|field|ru.allformine.afmcp.net.http.Response|responseCode
+      @|ru\allformine\afmcp\net\api\Eco.java|1223|1231|response|field|ru.allformine.afmcp.net.http.Response|response
    Method End: sendGet(Ljava/lang/String;)Lru/allformine/afmcp/net/http/Response;
    Method Start: getBalance()Ljava/util/OptionalInt;
-      @|ru\allformine\afmcp\net\api\Eco.java|1182|1193|OptionalInt|class|java.util.OptionalInt
-      @|ru\allformine\afmcp\net\api\Eco.java|1194|1204|getBalance|method|ru.allformine.afmcp.net.api.Eco|getBalance|()Ljava/util/OptionalInt;
-      @|ru\allformine\afmcp\net\api\Eco.java|1217|1223|String|class|java.lang.String
-      @|ru\allformine\afmcp\net\api\Eco.java|1230|1236|String|class|java.lang.String
-      @|ru\allformine\afmcp\net\api\Eco.java|1237|1243|format|method|java.lang.String|format|(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
-      @|ru\allformine\afmcp\net\api\Eco.java|1265|1271|apiUrl|field|ru.allformine.afmcp.net.api.Eco|apiUrl
-      @|ru\allformine\afmcp\net\api\Eco.java|1285|1293|nickname|field|ru.allformine.afmcp.net.api.Eco|nickname
-      @|ru\allformine\afmcp\net\api\Eco.java|1304|1312|Response|class|ru.allformine.afmcp.net.http.Response
-      @|ru\allformine\afmcp\net\api\Eco.java|1324|1331|sendGet|method|ru.allformine.afmcp.net.api.Eco|sendGet|(Ljava/lang/String;)Lru/allformine/afmcp/net/http/Response;
-      @|ru\allformine\afmcp\net\api\Eco.java|1379|1391|responseCode|field|ru.allformine.afmcp.net.http.Response|responseCode
-      @|ru\allformine\afmcp\net\api\Eco.java|1421|1432|OptionalInt|class|java.util.OptionalInt
-      @|ru\allformine\afmcp\net\api\Eco.java|1433|1435|of|method|java.util.OptionalInt|of|(I)Ljava/util/OptionalInt;
-      @|ru\allformine\afmcp\net\api\Eco.java|1436|1443|Integer|class|java.lang.Integer
-      @|ru\allformine\afmcp\net\api\Eco.java|1444|1452|parseInt|method|java.lang.Integer|parseInt|(Ljava/lang/String;)I
-      @|ru\allformine\afmcp\net\api\Eco.java|1462|1470|response|field|ru.allformine.afmcp.net.http.Response|response
-      @|ru\allformine\afmcp\net\api\Eco.java|1510|1521|OptionalInt|class|java.util.OptionalInt
-      @|ru\allformine\afmcp\net\api\Eco.java|1522|1527|empty|method|java.util.OptionalInt|empty|()Ljava/util/OptionalInt;
+      @|ru\allformine\afmcp\net\api\Eco.java|1301|1312|OptionalInt|class|java.util.OptionalInt
+      @|ru\allformine\afmcp\net\api\Eco.java|1313|1323|getBalance|method|ru.allformine.afmcp.net.api.Eco|getBalance|()Ljava/util/OptionalInt;
+      @|ru\allformine\afmcp\net\api\Eco.java|1336|1342|String|class|java.lang.String
+      @|ru\allformine\afmcp\net\api\Eco.java|1349|1355|String|class|java.lang.String
+      @|ru\allformine\afmcp\net\api\Eco.java|1356|1362|format|method|java.lang.String|format|(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      @|ru\allformine\afmcp\net\api\Eco.java|1384|1390|apiUrl|field|ru.allformine.afmcp.net.api.Eco|apiUrl
+      @|ru\allformine\afmcp\net\api\Eco.java|1404|1412|nickname|field|ru.allformine.afmcp.net.api.Eco|nickname
+      @|ru\allformine\afmcp\net\api\Eco.java|1423|1431|Response|class|ru.allformine.afmcp.net.http.Response
+      @|ru\allformine\afmcp\net\api\Eco.java|1443|1450|sendGet|method|ru.allformine.afmcp.net.api.Eco|sendGet|(Ljava/lang/String;)Lru/allformine/afmcp/net/http/Response;
+      @|ru\allformine\afmcp\net\api\Eco.java|1498|1510|responseCode|field|ru.allformine.afmcp.net.http.Response|responseCode
+      @|ru\allformine\afmcp\net\api\Eco.java|1540|1551|OptionalInt|class|java.util.OptionalInt
+      @|ru\allformine\afmcp\net\api\Eco.java|1552|1554|of|method|java.util.OptionalInt|of|(I)Ljava/util/OptionalInt;
+      @|ru\allformine\afmcp\net\api\Eco.java|1555|1562|Integer|class|java.lang.Integer
+      @|ru\allformine\afmcp\net\api\Eco.java|1563|1571|parseInt|method|java.lang.Integer|parseInt|(Ljava/lang/String;)I
+      @|ru\allformine\afmcp\net\api\Eco.java|1581|1589|response|field|ru.allformine.afmcp.net.http.Response|response
+      @|ru\allformine\afmcp\net\api\Eco.java|1629|1640|OptionalInt|class|java.util.OptionalInt
+      @|ru\allformine\afmcp\net\api\Eco.java|1641|1646|empty|method|java.util.OptionalInt|empty|()Ljava/util/OptionalInt;
    Method End: getBalance()Ljava/util/OptionalInt;
    Method Start: increase(I)Z
-      @|ru\allformine\afmcp\net\api\Eco.java|1580|1585|count|param|ru.allformine.afmcp.net.api.Eco|increase|(I)Z|count|0
-      @|ru\allformine\afmcp\net\api\Eco.java|1567|1575|increase|method|ru.allformine.afmcp.net.api.Eco|increase|(I)Z
-      @|ru\allformine\afmcp\net\api\Eco.java|1597|1603|String|class|java.lang.String
-      @|ru\allformine\afmcp\net\api\Eco.java|1610|1616|String|class|java.lang.String
-      @|ru\allformine\afmcp\net\api\Eco.java|1617|1623|format|method|java.lang.String|format|(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
-      @|ru\allformine\afmcp\net\api\Eco.java|1652|1658|apiUrl|field|ru.allformine.afmcp.net.api.Eco|apiUrl
-      @|ru\allformine\afmcp\net\api\Eco.java|1677|1685|nickname|field|ru.allformine.afmcp.net.api.Eco|nickname
-      @|ru\allformine\afmcp\net\api\Eco.java|1687|1692|count|param|ru.allformine.afmcp.net.api.Eco|increase|(I)Z|count|0
-      @|ru\allformine\afmcp\net\api\Eco.java|1703|1711|Response|class|ru.allformine.afmcp.net.http.Response
-      @|ru\allformine\afmcp\net\api\Eco.java|1723|1730|sendGet|method|ru.allformine.afmcp.net.api.Eco|sendGet|(Ljava/lang/String;)Lru/allformine/afmcp/net/http/Response;
-      @|ru\allformine\afmcp\net\api\Eco.java|1781|1793|responseCode|field|ru.allformine.afmcp.net.http.Response|responseCode
+      @|ru\allformine\afmcp\net\api\Eco.java|1699|1704|count|param|ru.allformine.afmcp.net.api.Eco|increase|(I)Z|count|0
+      @|ru\allformine\afmcp\net\api\Eco.java|1686|1694|increase|method|ru.allformine.afmcp.net.api.Eco|increase|(I)Z
+      @|ru\allformine\afmcp\net\api\Eco.java|1716|1722|String|class|java.lang.String
+      @|ru\allformine\afmcp\net\api\Eco.java|1729|1735|String|class|java.lang.String
+      @|ru\allformine\afmcp\net\api\Eco.java|1736|1742|format|method|java.lang.String|format|(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      @|ru\allformine\afmcp\net\api\Eco.java|1771|1777|apiUrl|field|ru.allformine.afmcp.net.api.Eco|apiUrl
+      @|ru\allformine\afmcp\net\api\Eco.java|1796|1804|nickname|field|ru.allformine.afmcp.net.api.Eco|nickname
+      @|ru\allformine\afmcp\net\api\Eco.java|1806|1811|count|param|ru.allformine.afmcp.net.api.Eco|increase|(I)Z|count|0
+      @|ru\allformine\afmcp\net\api\Eco.java|1822|1830|Response|class|ru.allformine.afmcp.net.http.Response
+      @|ru\allformine\afmcp\net\api\Eco.java|1842|1849|sendGet|method|ru.allformine.afmcp.net.api.Eco|sendGet|(Ljava/lang/String;)Lru/allformine/afmcp/net/http/Response;
+      @|ru\allformine\afmcp\net\api\Eco.java|1900|1912|responseCode|field|ru.allformine.afmcp.net.http.Response|responseCode
    Method End: increase(I)Z
    Method Start: decrease(I)Z
-      @|ru\allformine\afmcp\net\api\Eco.java|1841|1846|count|param|ru.allformine.afmcp.net.api.Eco|decrease|(I)Z|count|0
-      @|ru\allformine\afmcp\net\api\Eco.java|1828|1836|decrease|method|ru.allformine.afmcp.net.api.Eco|decrease|(I)Z
-      @|ru\allformine\afmcp\net\api\Eco.java|1858|1864|String|class|java.lang.String
-      @|ru\allformine\afmcp\net\api\Eco.java|1871|1877|String|class|java.lang.String
-      @|ru\allformine\afmcp\net\api\Eco.java|1878|1884|format|method|java.lang.String|format|(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
-      @|ru\allformine\afmcp\net\api\Eco.java|1913|1919|apiUrl|field|ru.allformine.afmcp.net.api.Eco|apiUrl
-      @|ru\allformine\afmcp\net\api\Eco.java|1939|1947|nickname|field|ru.allformine.afmcp.net.api.Eco|nickname
-      @|ru\allformine\afmcp\net\api\Eco.java|1949|1954|count|param|ru.allformine.afmcp.net.api.Eco|decrease|(I)Z|count|0
-      @|ru\allformine\afmcp\net\api\Eco.java|1965|1973|Response|class|ru.allformine.afmcp.net.http.Response
-      @|ru\allformine\afmcp\net\api\Eco.java|1985|1992|sendGet|method|ru.allformine.afmcp.net.api.Eco|sendGet|(Ljava/lang/String;)Lru/allformine/afmcp/net/http/Response;
-      @|ru\allformine\afmcp\net\api\Eco.java|2043|2055|responseCode|field|ru.allformine.afmcp.net.http.Response|responseCode
+      @|ru\allformine\afmcp\net\api\Eco.java|1960|1965|count|param|ru.allformine.afmcp.net.api.Eco|decrease|(I)Z|count|0
+      @|ru\allformine\afmcp\net\api\Eco.java|1947|1955|decrease|method|ru.allformine.afmcp.net.api.Eco|decrease|(I)Z
+      @|ru\allformine\afmcp\net\api\Eco.java|1977|1983|String|class|java.lang.String
+      @|ru\allformine\afmcp\net\api\Eco.java|1990|1996|String|class|java.lang.String
+      @|ru\allformine\afmcp\net\api\Eco.java|1997|2003|format|method|java.lang.String|format|(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      @|ru\allformine\afmcp\net\api\Eco.java|2032|2038|apiUrl|field|ru.allformine.afmcp.net.api.Eco|apiUrl
+      @|ru\allformine\afmcp\net\api\Eco.java|2058|2066|nickname|field|ru.allformine.afmcp.net.api.Eco|nickname
+      @|ru\allformine\afmcp\net\api\Eco.java|2068|2073|count|param|ru.allformine.afmcp.net.api.Eco|decrease|(I)Z|count|0
+      @|ru\allformine\afmcp\net\api\Eco.java|2084|2092|Response|class|ru.allformine.afmcp.net.http.Response
+      @|ru\allformine\afmcp\net\api\Eco.java|2104|2111|sendGet|method|ru.allformine.afmcp.net.api.Eco|sendGet|(Ljava/lang/String;)Lru/allformine/afmcp/net/http/Response;
+      @|ru\allformine\afmcp\net\api\Eco.java|2162|2174|responseCode|field|ru.allformine.afmcp.net.http.Response|responseCode
    Method End: decrease(I)Z
    Method Start: reset()Z
-      @|ru\allformine\afmcp\net\api\Eco.java|2090|2095|reset|method|ru.allformine.afmcp.net.api.Eco|reset|()Z
-      @|ru\allformine\afmcp\net\api\Eco.java|2108|2114|String|class|java.lang.String
-      @|ru\allformine\afmcp\net\api\Eco.java|2121|2127|String|class|java.lang.String
-      @|ru\allformine\afmcp\net\api\Eco.java|2128|2134|format|method|java.lang.String|format|(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
-      @|ru\allformine\afmcp\net\api\Eco.java|2156|2162|apiUrl|field|ru.allformine.afmcp.net.api.Eco|apiUrl
-      @|ru\allformine\afmcp\net\api\Eco.java|2178|2186|nickname|field|ru.allformine.afmcp.net.api.Eco|nickname
-      @|ru\allformine\afmcp\net\api\Eco.java|2197|2205|Response|class|ru.allformine.afmcp.net.http.Response
-      @|ru\allformine\afmcp\net\api\Eco.java|2217|2224|sendGet|method|ru.allformine.afmcp.net.api.Eco|sendGet|(Ljava/lang/String;)Lru/allformine/afmcp/net/http/Response;
-      @|ru\allformine\afmcp\net\api\Eco.java|2275|2287|responseCode|field|ru.allformine.afmcp.net.http.Response|responseCode
+      @|ru\allformine\afmcp\net\api\Eco.java|2209|2214|reset|method|ru.allformine.afmcp.net.api.Eco|reset|()Z
+      @|ru\allformine\afmcp\net\api\Eco.java|2227|2233|String|class|java.lang.String
+      @|ru\allformine\afmcp\net\api\Eco.java|2240|2246|String|class|java.lang.String
+      @|ru\allformine\afmcp\net\api\Eco.java|2247|2253|format|method|java.lang.String|format|(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      @|ru\allformine\afmcp\net\api\Eco.java|2275|2281|apiUrl|field|ru.allformine.afmcp.net.api.Eco|apiUrl
+      @|ru\allformine\afmcp\net\api\Eco.java|2297|2305|nickname|field|ru.allformine.afmcp.net.api.Eco|nickname
+      @|ru\allformine\afmcp\net\api\Eco.java|2316|2324|Response|class|ru.allformine.afmcp.net.http.Response
+      @|ru\allformine\afmcp\net\api\Eco.java|2336|2343|sendGet|method|ru.allformine.afmcp.net.api.Eco|sendGet|(Ljava/lang/String;)Lru/allformine/afmcp/net/http/Response;
+      @|ru\allformine\afmcp\net\api\Eco.java|2394|2406|responseCode|field|ru.allformine.afmcp.net.http.Response|responseCode
    Method End: reset()Z
 Class End  : ru.allformine.afmcp.net.api.Eco
 endProcessing "ru\allformine\afmcp\net\api\Eco.java"
@@ -1270,7 +1266,7 @@ Class Start: ru.allformine.afmcp.net.api.Webhook
 Class End  : ru.allformine.afmcp.net.api.Webhook
 endProcessing "ru\allformine\afmcp\net\api\Webhook.java"
 
-startProcessing "ru\allformine\afmcp\net\http\Requests.java" md5: 0976aff19366f64016c00aa3ba61bf3e
+startProcessing "ru\allformine\afmcp\net\http\Requests.java" md5: 81f09cfd571211a5c9ff3183a18a0da4
 Cache Hit!
 @|ru\allformine\afmcp\net\http\Requests.java|8|36|ru.allformine.afmcp.net.http|package|ru.allformine.afmcp.net.http|(file)
 Class Start: ru.allformine.afmcp.net.http.Requests
@@ -1360,29 +1356,21 @@ Class Start: ru.allformine.afmcp.net.http.Requests
       @|ru\allformine\afmcp\net\http\Requests.java|2674|2679|close|method|java.lang.AutoCloseable|close|()V
       @|ru\allformine\afmcp\net\http\Requests.java|2710|2718|Response|class|ru.allformine.afmcp.net.http.Response
       @|ru\allformine\afmcp\net\http\Requests.java|2728|2736|toString|method|java.lang.Object|toString|()Ljava/lang/String;
-      @|ru\allformine\afmcp\net\http\Requests.java|2781|2795|getErrorStream|method|java.net.HttpURLConnection|getErrorStream|()Ljava/io/InputStream;
-      @|ru\allformine\afmcp\net\http\Requests.java|2825|2839|BufferedReader|class|java.io.BufferedReader
-      @|ru\allformine\afmcp\net\http\Requests.java|2853|2867|BufferedReader|class|java.io.BufferedReader
-      @|ru\allformine\afmcp\net\http\Requests.java|2872|2889|InputStreamReader|class|java.io.InputStreamReader
-      @|ru\allformine\afmcp\net\http\Requests.java|2894|2908|getErrorStream|method|java.net.HttpURLConnection|getErrorStream|()Ljava/io/InputStream;
-      @|ru\allformine\afmcp\net\http\Requests.java|2930|2943|StringBuilder|class|java.lang.StringBuilder
-      @|ru\allformine\afmcp\net\http\Requests.java|2957|2970|StringBuilder|class|java.lang.StringBuilder
-      @|ru\allformine\afmcp\net\http\Requests.java|2990|2996|String|class|java.lang.String
-      @|ru\allformine\afmcp\net\http\Requests.java|3041|3049|readLine|method|java.io.BufferedReader|readLine|()Ljava/lang/String;
-      @|ru\allformine\afmcp\net\http\Requests.java|3091|3097|append|method|java.lang.AbstractStringBuilder|append|(Ljava/lang/String;)Ljava/lang/AbstractStringBuilder;
-      @|ru\allformine\afmcp\net\http\Requests.java|3104|3110|append|method|java.lang.AbstractStringBuilder|append|(Ljava/lang/String;)Ljava/lang/AbstractStringBuilder;
-      @|ru\allformine\afmcp\net\http\Requests.java|3153|3166|AFMCorePlugin|class|ru.allformine.afmcp.AFMCorePlugin
-      @|ru\allformine\afmcp\net\http\Requests.java|3167|3173|logger|field|ru.allformine.afmcp.AFMCorePlugin|logger
-      @|ru\allformine\afmcp\net\http\Requests.java|3174|3179|error|method|org.slf4j.Logger|error|(Ljava/lang/String;)V
-      @|ru\allformine\afmcp\net\http\Requests.java|3207|3210|url|param|ru.allformine.afmcp.net.http.Requests|sendGet|(Ljava/lang/String;)Lru/allformine/afmcp/net/http/Response;|url|0
-      @|ru\allformine\afmcp\net\http\Requests.java|3235|3248|AFMCorePlugin|class|ru.allformine.afmcp.AFMCorePlugin
-      @|ru\allformine\afmcp\net\http\Requests.java|3249|3255|logger|field|ru.allformine.afmcp.AFMCorePlugin|logger
-      @|ru\allformine\afmcp\net\http\Requests.java|3256|3261|error|method|org.slf4j.Logger|error|(Ljava/lang/String;)V
-      @|ru\allformine\afmcp\net\http\Requests.java|3284|3292|toString|method|java.lang.Object|toString|()Ljava/lang/String;
-      @|ru\allformine\afmcp\net\http\Requests.java|3324|3332|Response|class|ru.allformine.afmcp.net.http.Response
-      @|ru\allformine\afmcp\net\http\Requests.java|3340|3348|toString|method|java.lang.Object|toString|()Ljava/lang/String;
-      @|ru\allformine\afmcp\net\http\Requests.java|3415|3424|Exception|class|java.lang.Exception
-      @|ru\allformine\afmcp\net\http\Requests.java|3444|3459|printStackTrace|method|java.lang.Throwable|printStackTrace|()V
+      @|ru\allformine\afmcp\net\http\Requests.java|2774|2788|getErrorStream|method|java.net.HttpURLConnection|getErrorStream|()Ljava/io/InputStream;
+      @|ru\allformine\afmcp\net\http\Requests.java|2818|2832|BufferedReader|class|java.io.BufferedReader
+      @|ru\allformine\afmcp\net\http\Requests.java|2846|2860|BufferedReader|class|java.io.BufferedReader
+      @|ru\allformine\afmcp\net\http\Requests.java|2865|2882|InputStreamReader|class|java.io.InputStreamReader
+      @|ru\allformine\afmcp\net\http\Requests.java|2887|2901|getErrorStream|method|java.net.HttpURLConnection|getErrorStream|()Ljava/io/InputStream;
+      @|ru\allformine\afmcp\net\http\Requests.java|2923|2936|StringBuilder|class|java.lang.StringBuilder
+      @|ru\allformine\afmcp\net\http\Requests.java|2950|2963|StringBuilder|class|java.lang.StringBuilder
+      @|ru\allformine\afmcp\net\http\Requests.java|2983|2989|String|class|java.lang.String
+      @|ru\allformine\afmcp\net\http\Requests.java|3034|3042|readLine|method|java.io.BufferedReader|readLine|()Ljava/lang/String;
+      @|ru\allformine\afmcp\net\http\Requests.java|3084|3090|append|method|java.lang.AbstractStringBuilder|append|(Ljava/lang/String;)Ljava/lang/AbstractStringBuilder;
+      @|ru\allformine\afmcp\net\http\Requests.java|3097|3103|append|method|java.lang.AbstractStringBuilder|append|(Ljava/lang/String;)Ljava/lang/AbstractStringBuilder;
+      @|ru\allformine\afmcp\net\http\Requests.java|3156|3164|Response|class|ru.allformine.afmcp.net.http.Response
+      @|ru\allformine\afmcp\net\http\Requests.java|3172|3180|toString|method|java.lang.Object|toString|()Ljava/lang/String;
+      @|ru\allformine\afmcp\net\http\Requests.java|3247|3256|Exception|class|java.lang.Exception
+      @|ru\allformine\afmcp\net\http\Requests.java|3276|3291|printStackTrace|method|java.lang.Throwable|printStackTrace|()V
    Method End: sendGet(Ljava/lang/String;)Lru/allformine/afmcp/net/http/Response;
 Class End  : ru.allformine.afmcp.net.http.Requests
 endProcessing "ru\allformine\afmcp\net\http\Requests.java"
