@@ -13,14 +13,10 @@
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/ru/allformine/afmcp/AFMCorePlugin.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ru/allformine/afmcp/AFMCorePlugin.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/libs/AFMCorePlugin-sponge1.12-0.6-sources.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/AFMCorePlugin-sponge1.12-0.6-sources.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/libs/AFMCorePlugin-sponge1.12-0.6.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/AFMCorePlugin-sponge1.12-0.6.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/META-INF/afmcp_at.cfg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/retromapping/replacedMain.rangemap" beforeDir="false" afterPath="$PROJECT_DIR$/build/retromapping/replacedMain.rangemap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/retromapping/retromappedReplacedMain.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/retromapping/retromappedReplacedMain.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/sources/main/java/ru/allformine/afmcp/AFMCorePlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/build/sources/main/java/ru/allformine/afmcp/AFMCorePlugin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/taskLogs/extractRangemapReplacedMain.log" beforeDir="false" afterPath="$PROJECT_DIR$/build/taskLogs/extractRangemapReplacedMain.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/taskLogs/retromapReplacedMain.log" beforeDir="false" afterPath="$PROJECT_DIR$/build/taskLogs/retromapReplacedMain.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/jar/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/jar/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/AFMCorePlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/AFMCorePlugin.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -41,26 +37,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/AFMCorePlugin.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="448">
               <caret line="167" column="19" selection-start-line="167" selection-start-column="19" selection-end-line="167" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/java/lang/Object.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="558">
-              <caret line="234" column="18" selection-start-line="234" selection-start-column="18" selection-end-line="234" selection-end-column="18" />
-              <folding>
-                <element signature="e#10065#10066#0" expanded="true" />
-                <element signature="e#10148#10149#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -75,11 +58,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/test/PacketHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="24" selection-start-line="24" selection-end-line="24" />
+            <state relative-caret-position="255">
+              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -145,12 +128,12 @@
         <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/net/api/Webhook.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/commands/VipCommand.java" />
         <option value="$PROJECT_DIR$/src/main/resources/assets/afmcp/config.conf" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/test/PacketHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/net/api/Eco.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/net/http/Requests.java" />
         <option value="$PROJECT_DIR$/src/main/resources/META-INF/afmcp_at.cfg" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/AFMCorePlugin.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/test/PacketHandler.java" />
       </list>
     </option>
   </component>
@@ -253,7 +236,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562185426070" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562186089729" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -569,7 +552,14 @@
       <option name="project" value="LOCAL" />
       <updated>1562184978872</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Время эквилибристики">
+      <created>1562185626673</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1562185626673</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TodoView">
@@ -583,6 +573,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1688" y="-289" width="1696" height="1066" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29523227" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -692,8 +683,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="Мелкие исправления" />
-    <MESSAGE value="ЕБУчАЯяяяя ГУбкааааааааа!!!!!!!!!!!!!" />
     <MESSAGE value="ЭТО БЕУБАС!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ГОВНОКОЖУ ДЛЯ ВАС" />
     <MESSAGE value="ненавижу" />
     <MESSAGE value="в пзиду" />
@@ -717,7 +706,9 @@
     <MESSAGE value="Второй билд, мать вашу, забыл про эту хуйню блядь" />
     <MESSAGE value="Ситуация в опасной близости от жидкого обсёра" />
     <MESSAGE value="Хм" />
-    <option name="LAST_COMMIT_MESSAGE" value="Хм" />
+    <MESSAGE value="Время эквелибристики" />
+    <MESSAGE value="Время эквилибристики" />
+    <option name="LAST_COMMIT_MESSAGE" value="Время эквилибристики" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -1001,27 +992,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-all/4.1.9.Final/69b921f5e296428c88c2ea4418e630443a699b06/netty-all-4.1.9.Final-sources.jar!/io/netty/channel/ChannelPipeline.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3">
-          <caret line="502" column="42" selection-start-line="502" selection-start-column="42" selection-end-line="502" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/test/PacketHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/java/lang/Object.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="234" column="18" selection-start-line="234" selection-start-column="18" selection-end-line="234" selection-end-column="18" />
+        <state relative-caret-position="1652">
+          <caret line="496" column="4" selection-start-line="496" selection-start-column="4" selection-end-line="496" selection-end-column="4" />
           <folding>
             <element signature="e#10065#10066#0" expanded="true" />
             <element signature="e#10148#10149#0" expanded="true" />
@@ -1029,10 +1003,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-all/4.1.9.Final/69b921f5e296428c88c2ea4418e630443a699b06/netty-all-4.1.9.Final-sources.jar!/io/netty/channel/ChannelPipeline.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3">
+          <caret line="502" column="42" selection-start-line="502" selection-start-column="42" selection-end-line="502" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/AFMCorePlugin.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="448">
           <caret line="167" column="19" selection-start-line="167" selection-start-column="19" selection-end-line="167" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/test/PacketHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

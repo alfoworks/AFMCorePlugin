@@ -1,6 +1,6 @@
 Symbol range map extraction starting
 Processing 19 files
-startProcessing "ru\allformine\afmcp\AFMCorePlugin.java" md5: 166cc1e42662bd87635bd21891d553fe
+startProcessing "ru\allformine\afmcp\AFMCorePlugin.java" md5: 2ea617f98cd01a109d491568a1b964ca
 @|ru\allformine\afmcp\AFMCorePlugin.java|8|27|ru.allformine.afmcp|package|ru.allformine.afmcp|(file)
 Class Start: ru.allformine.afmcp.AFMCorePlugin
    @|ru\allformine\afmcp\AFMCorePlugin.java|2065|2071|Plugin|class|org.spongepowered.api.plugin.Plugin
@@ -208,85 +208,88 @@ Class Start: ru.allformine.afmcp.AFMCorePlugin
       @|ru\allformine\afmcp\AFMCorePlugin.java|6451|6464|ChannelFuture|class|io.netty.channel.ChannelFuture
       @|ru\allformine\afmcp\AFMCorePlugin.java|6482|6485|get|method|java.lang.reflect.Field|get|(Ljava/lang/Object;)Ljava/lang/Object;
       @|ru\allformine\afmcp\AFMCorePlugin.java|6519|6532|ChannelFuture|class|io.netty.channel.ChannelFuture
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6592|6599|channel|method|io.netty.channel.ChannelFuture|channel|()Lio/netty/channel/Channel;
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6602|6610|pipeline|method|io.netty.channel.Channel|pipeline|()Lio/netty/channel/ChannelPipeline;
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6613|6622|addBefore|method|io.netty.channel.ChannelPipeline|addBefore|(Ljava/lang/String;Ljava/lang/String;Lio/netty/channel/ChannelHandler;)Lio/netty/channel/ChannelPipeline;
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6662|6675|PacketHandler|class|ru.allformine.afmcp.test.PacketHandler
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6711|6720|Exception|class|java.lang.Exception
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6738|6744|logger|field|ru.allformine.afmcp.AFMCorePlugin|logger
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6745|6750|error|method|org.slf4j.Logger|error|(Ljava/lang/String;)V
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6797|6812|printStackTrace|method|java.lang.Throwable|printStackTrace|()V
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6694|6701|channel|method|io.netty.channel.ChannelFuture|channel|()Lio/netty/channel/Channel;
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6704|6712|pipeline|method|io.netty.channel.Channel|pipeline|()Lio/netty/channel/ChannelPipeline;
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6715|6722|replace|method|io.netty.channel.ChannelPipeline|replace|(Lio/netty/channel/ChannelHandler;Ljava/lang/String;Lio/netty/channel/ChannelHandler;)Lio/netty/channel/ChannelPipeline;
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6737|6744|channel|method|io.netty.channel.ChannelFuture|channel|()Lio/netty/channel/Channel;
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6747|6755|pipeline|method|io.netty.channel.Channel|pipeline|()Lio/netty/channel/ChannelPipeline;
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6758|6763|first|method|io.netty.channel.ChannelPipeline|first|()Lio/netty/channel/ChannelHandler;
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6788|6801|PacketHandler|class|ru.allformine.afmcp.test.PacketHandler
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6837|6846|Exception|class|java.lang.Exception
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6864|6870|logger|field|ru.allformine.afmcp.AFMCorePlugin|logger
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6871|6876|error|method|org.slf4j.Logger|error|(Ljava/lang/String;)V
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6923|6938|printStackTrace|method|java.lang.Throwable|printStackTrace|()V
    Method End: init(Lorg/spongepowered/api/event/game/state/GameInitializationEvent;)V
    Method Start: onServerStart(Lorg/spongepowered/api/event/game/state/GameAboutToStartServerEvent;)V
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6905|6910|event|param|ru.allformine.afmcp.AFMCorePlugin|onServerStart|(Lorg/spongepowered/api/event/game/state/GameAboutToStartServerEvent;)V|event|0
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6838|6846|Listener|class|org.spongepowered.api.event.Listener
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6863|6876|onServerStart|method|ru.allformine.afmcp.AFMCorePlugin|onServerStart|(Lorg/spongepowered/api/event/game/state/GameAboutToStartServerEvent;)V
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6877|6904|GameAboutToStartServerEvent|class|org.spongepowered.api.event.game.state.GameAboutToStartServerEvent
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6922|6931|startTime|field|ru.allformine.afmcp.AFMCorePlugin|startTime
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6934|6940|System|class|java.lang.System
-      @|ru\allformine\afmcp\AFMCorePlugin.java|6941|6958|currentTimeMillis|method|java.lang.System|currentTimeMillis|()J
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7055|7062|Webhook|class|ru.allformine.afmcp.net.api.Webhook
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7063|7080|sendServerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendServerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypeServerMessage;[Ljava/lang/String;)V
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7081|7106|Webhook.TypeServerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7107|7121|SERVER_STARTED|field|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage|SERVER_STARTED
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7138|7147|apiServer|field|ru.allformine.afmcp.AFMCorePlugin|apiServer
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7154|7164|HTTPServer|class|ru.allformine.afmcp.serverapi.HTTPServer
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7177|7190|apiServerTask|field|ru.allformine.afmcp.AFMCorePlugin|apiServerTask
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7193|7197|Task|class|org.spongepowered.api.scheduler.Task
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7198|7205|builder|method|org.spongepowered.api.scheduler.Task|builder|()Lorg/spongepowered/api/scheduler/Task$Builder;
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7208|7215|execute|method|org.spongepowered.api.scheduler.Task.Builder|execute|(Ljava/lang/Runnable;)Lorg/spongepowered/api/scheduler/Task$Builder;
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7221|7230|apiServer|field|ru.allformine.afmcp.AFMCorePlugin|apiServer
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7249|7254|async|method|org.spongepowered.api.scheduler.Task.Builder|async|()Lorg/spongepowered/api/scheduler/Task$Builder;
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7257|7261|name|method|org.spongepowered.api.scheduler.Task.Builder|name|(Ljava/lang/String;)Lorg/spongepowered/api/scheduler/Task$Builder;
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7298|7304|submit|method|org.spongepowered.api.scheduler.Task.Builder|submit|(Ljava/lang/Object;)Lorg/spongepowered/api/scheduler/Task;
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7031|7036|event|param|ru.allformine.afmcp.AFMCorePlugin|onServerStart|(Lorg/spongepowered/api/event/game/state/GameAboutToStartServerEvent;)V|event|0
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6964|6972|Listener|class|org.spongepowered.api.event.Listener
+      @|ru\allformine\afmcp\AFMCorePlugin.java|6989|7002|onServerStart|method|ru.allformine.afmcp.AFMCorePlugin|onServerStart|(Lorg/spongepowered/api/event/game/state/GameAboutToStartServerEvent;)V
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7003|7030|GameAboutToStartServerEvent|class|org.spongepowered.api.event.game.state.GameAboutToStartServerEvent
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7048|7057|startTime|field|ru.allformine.afmcp.AFMCorePlugin|startTime
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7060|7066|System|class|java.lang.System
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7067|7084|currentTimeMillis|method|java.lang.System|currentTimeMillis|()J
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7181|7188|Webhook|class|ru.allformine.afmcp.net.api.Webhook
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7189|7206|sendServerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendServerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypeServerMessage;[Ljava/lang/String;)V
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7207|7232|Webhook.TypeServerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7233|7247|SERVER_STARTED|field|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage|SERVER_STARTED
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7264|7273|apiServer|field|ru.allformine.afmcp.AFMCorePlugin|apiServer
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7280|7290|HTTPServer|class|ru.allformine.afmcp.serverapi.HTTPServer
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7303|7316|apiServerTask|field|ru.allformine.afmcp.AFMCorePlugin|apiServerTask
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7319|7323|Task|class|org.spongepowered.api.scheduler.Task
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7324|7331|builder|method|org.spongepowered.api.scheduler.Task|builder|()Lorg/spongepowered/api/scheduler/Task$Builder;
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7334|7341|execute|method|org.spongepowered.api.scheduler.Task.Builder|execute|(Ljava/lang/Runnable;)Lorg/spongepowered/api/scheduler/Task$Builder;
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7347|7356|apiServer|field|ru.allformine.afmcp.AFMCorePlugin|apiServer
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7375|7380|async|method|org.spongepowered.api.scheduler.Task.Builder|async|()Lorg/spongepowered/api/scheduler/Task$Builder;
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7383|7387|name|method|org.spongepowered.api.scheduler.Task.Builder|name|(Ljava/lang/String;)Lorg/spongepowered/api/scheduler/Task$Builder;
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7424|7430|submit|method|org.spongepowered.api.scheduler.Task.Builder|submit|(Ljava/lang/Object;)Lorg/spongepowered/api/scheduler/Task;
    Method End: onServerStart(Lorg/spongepowered/api/event/game/state/GameAboutToStartServerEvent;)V
    Method Start: onServerStop(Lorg/spongepowered/api/event/game/state/GameStoppingServerEvent;)V
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7386|7391|event|param|ru.allformine.afmcp.AFMCorePlugin|onServerStop|(Lorg/spongepowered/api/event/game/state/GameStoppingServerEvent;)V|event|0
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7324|7332|Listener|class|org.spongepowered.api.event.Listener
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7349|7361|onServerStop|method|ru.allformine.afmcp.AFMCorePlugin|onServerStop|(Lorg/spongepowered/api/event/game/state/GameStoppingServerEvent;)V
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7362|7385|GameStoppingServerEvent|class|org.spongepowered.api.event.game.state.GameStoppingServerEvent
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7491|7504|serverRestart|field|ru.allformine.afmcp.AFMCorePlugin|serverRestart
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7520|7527|Webhook|class|ru.allformine.afmcp.net.api.Webhook
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7528|7545|sendServerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendServerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypeServerMessage;[Ljava/lang/String;)V
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7546|7571|Webhook.TypeServerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7572|7589|SERVER_RESTARTING|field|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage|SERVER_RESTARTING
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7621|7628|Webhook|class|ru.allformine.afmcp.net.api.Webhook
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7629|7646|sendServerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendServerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypeServerMessage;[Ljava/lang/String;)V
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7647|7672|Webhook.TypeServerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7673|7687|SERVER_STOPPED|field|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage|SERVER_STOPPED
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7708|7721|apiServerTask|field|ru.allformine.afmcp.AFMCorePlugin|apiServerTask
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7722|7728|cancel|method|org.spongepowered.api.scheduler.Task|cancel|()Z
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7512|7517|event|param|ru.allformine.afmcp.AFMCorePlugin|onServerStop|(Lorg/spongepowered/api/event/game/state/GameStoppingServerEvent;)V|event|0
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7450|7458|Listener|class|org.spongepowered.api.event.Listener
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7475|7487|onServerStop|method|ru.allformine.afmcp.AFMCorePlugin|onServerStop|(Lorg/spongepowered/api/event/game/state/GameStoppingServerEvent;)V
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7488|7511|GameStoppingServerEvent|class|org.spongepowered.api.event.game.state.GameStoppingServerEvent
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7617|7630|serverRestart|field|ru.allformine.afmcp.AFMCorePlugin|serverRestart
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7646|7653|Webhook|class|ru.allformine.afmcp.net.api.Webhook
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7654|7671|sendServerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendServerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypeServerMessage;[Ljava/lang/String;)V
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7672|7697|Webhook.TypeServerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7698|7715|SERVER_RESTARTING|field|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage|SERVER_RESTARTING
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7747|7754|Webhook|class|ru.allformine.afmcp.net.api.Webhook
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7755|7772|sendServerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendServerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypeServerMessage;[Ljava/lang/String;)V
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7773|7798|Webhook.TypeServerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7799|7813|SERVER_STOPPED|field|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage|SERVER_STOPPED
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7834|7847|apiServerTask|field|ru.allformine.afmcp.AFMCorePlugin|apiServerTask
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7848|7854|cancel|method|org.spongepowered.api.scheduler.Task|cancel|()Z
    Method End: onServerStop(Lorg/spongepowered/api/event/game/state/GameStoppingServerEvent;)V
    Method Start: configSetup()V
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7756|7767|configSetup|method|ru.allformine.afmcp.AFMCorePlugin|configSetup|()V
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7785|7790|Files|class|java.nio.file.Files
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7791|7797|exists|method|java.nio.file.Files|exists|(Ljava/nio/file/Path;[Ljava/nio/file/LinkOption;)Z
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7798|7807|configDir|field|ru.allformine.afmcp.AFMCorePlugin|configDir
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7846|7851|Files|class|java.nio.file.Files
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7852|7869|createDirectories|method|java.nio.file.Files|createDirectories|(Ljava/nio/file/Path;[Ljava/nio/file/attribute/FileAttribute;)Ljava/nio/file/Path;
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7870|7879|configDir|field|ru.allformine.afmcp.AFMCorePlugin|configDir
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7903|7914|IOException|class|java.io.IOException
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7940|7955|printStackTrace|method|java.lang.Throwable|printStackTrace|()V
-      @|ru\allformine\afmcp\AFMCorePlugin.java|7997|8002|Files|class|java.nio.file.Files
-      @|ru\allformine\afmcp\AFMCorePlugin.java|8003|8009|exists|method|java.nio.file.Files|exists|(Ljava/nio/file/Path;[Ljava/nio/file/LinkOption;)Z
-      @|ru\allformine\afmcp\AFMCorePlugin.java|8010|8020|configFile|field|ru.allformine.afmcp.AFMCorePlugin|configFile
-      @|ru\allformine\afmcp\AFMCorePlugin.java|8118|8124|Sponge|class|org.spongepowered.api.Sponge
-      @|ru\allformine\afmcp\AFMCorePlugin.java|8125|8140|getAssetManager|method|org.spongepowered.api.Sponge|getAssetManager|()Lorg/spongepowered/api/asset/AssetManager;
-      @|ru\allformine\afmcp\AFMCorePlugin.java|8143|8151|getAsset|method|org.spongepowered.api.asset.AssetManager|getAsset|(Ljava/lang/Object;Ljava/lang/String;)Ljava/util/Optional;
-      @|ru\allformine\afmcp\AFMCorePlugin.java|8173|8176|get|method|java.util.Optional|get|()Ljava/lang/Object;
-      @|ru\allformine\afmcp\AFMCorePlugin.java|8179|8189|copyToFile|method|org.spongepowered.api.asset.Asset|copyToFile|(Ljava/nio/file/Path;)V
-      @|ru\allformine\afmcp\AFMCorePlugin.java|8190|8200|configFile|field|ru.allformine.afmcp.AFMCorePlugin|configFile
-      @|ru\allformine\afmcp\AFMCorePlugin.java|8224|8235|IOException|class|java.io.IOException
-      @|ru\allformine\afmcp\AFMCorePlugin.java|8259|8274|printStackTrace|method|java.lang.Throwable|printStackTrace|()V
-      @|ru\allformine\afmcp\AFMCorePlugin.java|8311|8315|load|method|ru.allformine.afmcp.AFMCorePlugin|load|()V
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7882|7893|configSetup|method|ru.allformine.afmcp.AFMCorePlugin|configSetup|()V
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7911|7916|Files|class|java.nio.file.Files
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7917|7923|exists|method|java.nio.file.Files|exists|(Ljava/nio/file/Path;[Ljava/nio/file/LinkOption;)Z
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7924|7933|configDir|field|ru.allformine.afmcp.AFMCorePlugin|configDir
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7972|7977|Files|class|java.nio.file.Files
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7978|7995|createDirectories|method|java.nio.file.Files|createDirectories|(Ljava/nio/file/Path;[Ljava/nio/file/attribute/FileAttribute;)Ljava/nio/file/Path;
+      @|ru\allformine\afmcp\AFMCorePlugin.java|7996|8005|configDir|field|ru.allformine.afmcp.AFMCorePlugin|configDir
+      @|ru\allformine\afmcp\AFMCorePlugin.java|8029|8040|IOException|class|java.io.IOException
+      @|ru\allformine\afmcp\AFMCorePlugin.java|8066|8081|printStackTrace|method|java.lang.Throwable|printStackTrace|()V
+      @|ru\allformine\afmcp\AFMCorePlugin.java|8123|8128|Files|class|java.nio.file.Files
+      @|ru\allformine\afmcp\AFMCorePlugin.java|8129|8135|exists|method|java.nio.file.Files|exists|(Ljava/nio/file/Path;[Ljava/nio/file/LinkOption;)Z
+      @|ru\allformine\afmcp\AFMCorePlugin.java|8136|8146|configFile|field|ru.allformine.afmcp.AFMCorePlugin|configFile
+      @|ru\allformine\afmcp\AFMCorePlugin.java|8244|8250|Sponge|class|org.spongepowered.api.Sponge
+      @|ru\allformine\afmcp\AFMCorePlugin.java|8251|8266|getAssetManager|method|org.spongepowered.api.Sponge|getAssetManager|()Lorg/spongepowered/api/asset/AssetManager;
+      @|ru\allformine\afmcp\AFMCorePlugin.java|8269|8277|getAsset|method|org.spongepowered.api.asset.AssetManager|getAsset|(Ljava/lang/Object;Ljava/lang/String;)Ljava/util/Optional;
+      @|ru\allformine\afmcp\AFMCorePlugin.java|8299|8302|get|method|java.util.Optional|get|()Ljava/lang/Object;
+      @|ru\allformine\afmcp\AFMCorePlugin.java|8305|8315|copyToFile|method|org.spongepowered.api.asset.Asset|copyToFile|(Ljava/nio/file/Path;)V
+      @|ru\allformine\afmcp\AFMCorePlugin.java|8316|8326|configFile|field|ru.allformine.afmcp.AFMCorePlugin|configFile
+      @|ru\allformine\afmcp\AFMCorePlugin.java|8350|8361|IOException|class|java.io.IOException
+      @|ru\allformine\afmcp\AFMCorePlugin.java|8385|8400|printStackTrace|method|java.lang.Throwable|printStackTrace|()V
+      @|ru\allformine\afmcp\AFMCorePlugin.java|8437|8441|load|method|ru.allformine.afmcp.AFMCorePlugin|load|()V
    Method End: configSetup()V
    Method Start: load()V
-      @|ru\allformine\afmcp\AFMCorePlugin.java|8343|8347|load|method|ru.allformine.afmcp.AFMCorePlugin|load|()V
-      @|ru\allformine\afmcp\AFMCorePlugin.java|8378|8388|configNode|field|ru.allformine.afmcp.AFMCorePlugin|configNode
-      @|ru\allformine\afmcp\AFMCorePlugin.java|8391|8403|configLoader|field|ru.allformine.afmcp.AFMCorePlugin|configLoader
-      @|ru\allformine\afmcp\AFMCorePlugin.java|8404|8408|load|method|ninja.leaping.configurate.loader.ConfigurationLoader|load|()Lninja/leaping/configurate/ConfigurationNode;
-      @|ru\allformine\afmcp\AFMCorePlugin.java|8429|8440|IOException|class|java.io.IOException
-      @|ru\allformine\afmcp\AFMCorePlugin.java|8460|8475|printStackTrace|method|java.lang.Throwable|printStackTrace|()V
+      @|ru\allformine\afmcp\AFMCorePlugin.java|8469|8473|load|method|ru.allformine.afmcp.AFMCorePlugin|load|()V
+      @|ru\allformine\afmcp\AFMCorePlugin.java|8504|8514|configNode|field|ru.allformine.afmcp.AFMCorePlugin|configNode
+      @|ru\allformine\afmcp\AFMCorePlugin.java|8517|8529|configLoader|field|ru.allformine.afmcp.AFMCorePlugin|configLoader
+      @|ru\allformine\afmcp\AFMCorePlugin.java|8530|8534|load|method|ninja.leaping.configurate.loader.ConfigurationLoader|load|()Lninja/leaping/configurate/ConfigurationNode;
+      @|ru\allformine\afmcp\AFMCorePlugin.java|8555|8566|IOException|class|java.io.IOException
+      @|ru\allformine\afmcp\AFMCorePlugin.java|8586|8601|printStackTrace|method|java.lang.Throwable|printStackTrace|()V
    Method End: load()V
 Class End  : ru.allformine.afmcp.AFMCorePlugin
 endProcessing "ru\allformine\afmcp\AFMCorePlugin.java"
