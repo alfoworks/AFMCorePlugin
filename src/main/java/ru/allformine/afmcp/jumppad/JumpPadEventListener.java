@@ -49,7 +49,7 @@ public class JumpPadEventListener {
                 );
 
         if (block == JumpPadTypes.STRAIGHT_UP.getBlockState()) {
-            Vector3d jumpVel = new Vector3d(0, 1, 0).add(entityVel);
+            Vector3d jumpVel = new Vector3d(0, 1, 0);
             event.getTargetEntity().offer(Keys.VELOCITY, jumpVel);
 
             if (entity instanceof Player)
