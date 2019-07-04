@@ -165,8 +165,11 @@ public class AFMCorePlugin {
             endpointsField.setAccessible(true);
             List<ChannelFuture> endpoints = (List<ChannelFuture>) endpointsField.get(networkSystem);
             for (ChannelFuture channelFuture : endpoints) {
-                // channelFuture.channel().pipeline().addFirst("PacketHandler", new PacketHandler());
-                channelFuture.channel().pipeline().replace(channelFuture.channel().pipeline().first(), "PacketHandler", new PacketHandler());
+                channelFuture.channel().pipeline().addFirst("PacketHandlerXXX", new PacketHandler());
+
+                for (String name : channelFuture.channel().pipeline().names()) {
+                    logger.info(name);
+                }
             }
         } catch (Exception e) {
             logger.error("Can't attach PacketHandler!");

@@ -1,6 +1,6 @@
 Symbol range map extraction starting
 Processing 19 files
-startProcessing "ru\allformine\afmcp\AFMCorePlugin.java" md5: 2ea617f98cd01a109d491568a1b964ca
+startProcessing "ru\allformine\afmcp\AFMCorePlugin.java" md5: 10d2ca55e9ebaa30a3df20a42441263b
 endProcessing "ru\allformine\afmcp\AFMCorePlugin.java"
 
 startProcessing "ru\allformine\afmcp\VanishManager.java" md5: ced6e131bce5bf8cb0ae6495c067645c
@@ -35,8 +35,7 @@ startProcessing "ru\allformine\afmcp\handlers\VanishEventListener.java" md5: 2b5
 Cache Hit!
 endProcessing "ru\allformine\afmcp\handlers\VanishEventListener.java"
 
-startProcessing "ru\allformine\afmcp\jumppad\JumpPadEventListener.java" md5: c54e7883adb7c6e765f4f5b800febec8
-Cache Hit!
+startProcessing "ru\allformine\afmcp\jumppad\JumpPadEventListener.java" md5: 2bb9ff6d5549b99391c104f06fa30882
 endProcessing "ru\allformine\afmcp\jumppad\JumpPadEventListener.java"
 
 startProcessing "ru\allformine\afmcp\jumppad\JumpPadTypes.java" md5: 53678d0fa042d12a1b7f2cc8db0d065b
