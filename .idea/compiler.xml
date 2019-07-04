@@ -5,6 +5,7 @@
       <module name="AFMCorePlugin-sponge1.12_api" target="1.8" />
       <module name="AFMCorePlugin-sponge1.12_main" target="1.8" />
       <module name="AFMCorePlugin-sponge1.12_test" target="1.8" />
+      <module name="ru.allformine.afmcp-AFMCorePlugin-sponge1.12_api" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

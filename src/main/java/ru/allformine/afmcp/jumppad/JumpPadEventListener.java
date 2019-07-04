@@ -34,7 +34,7 @@ public class JumpPadEventListener {
     public void onEntityMove(MoveEntityEvent event) {
         Entity entity = event.getTargetEntity();
         Vector3d entityVel = entity.getVelocity();
-        if (entityVel.getY() != 0D) return;
+        // if (entityVel.getY() != 0D) return;
         if (entity instanceof Player) {
             if (Utils.isSneaking((Player) entity)) {
                 return;
@@ -48,6 +48,8 @@ public class JumpPadEventListener {
         if (block == JumpPadTypes.STRAIGHT_UP.getBlockState()) {
             Vector3d jumpVel = new Vector3d(0, 1, 0).add(entityVel);
             event.getTargetEntity().offer(Keys.VELOCITY, jumpVel);
+            if (entity instanceof Player)
+                System.out.println(String.format("%s: gold block jumppad event", ((Player) entity).getName()));
         } else if (block == JumpPadTypes.PLAYER_LOOK.getBlockState()) {
             double yaw = event.getTargetEntity().getRotation().getY() + 180;
             double velX = Math.sin(Math.toRadians(yaw)); // 180 * Math.PI);
