@@ -1,6 +1,7 @@
 Symbol range map extraction starting
 Processing 19 files
 startProcessing "ru\allformine\afmcp\AFMCorePlugin.java" md5: 10d2ca55e9ebaa30a3df20a42441263b
+Cache Hit!
 endProcessing "ru\allformine\afmcp\AFMCorePlugin.java"
 
 startProcessing "ru\allformine\afmcp\VanishManager.java" md5: ced6e131bce5bf8cb0ae6495c067645c
@@ -15,7 +16,7 @@ startProcessing "ru\allformine\afmcp\commands\RawBCCommand.java" md5: 3be77a6562
 Cache Hit!
 endProcessing "ru\allformine\afmcp\commands\RawBCCommand.java"
 
-startProcessing "ru\allformine\afmcp\commands\RestartCommand.java" md5: 3f5d002cae8376b79f47373894763bb7
+startProcessing "ru\allformine\afmcp\commands\RestartCommand.java" md5: e73568c2bfa10cf47b699fe2bf989cd2
 Cache Hit!
 endProcessing "ru\allformine\afmcp\commands\RestartCommand.java"
 
@@ -27,7 +28,7 @@ startProcessing "ru\allformine\afmcp\commands\VipCommand.java" md5: 61fa5211c92d
 Cache Hit!
 endProcessing "ru\allformine\afmcp\commands\VipCommand.java"
 
-startProcessing "ru\allformine\afmcp\handlers\DiscordWebhookListener.java" md5: 6f2724d4cf9038b1db22cda53fbfda56
+startProcessing "ru\allformine\afmcp\handlers\DiscordWebhookListener.java" md5: 5d0db38ba444ea681293b54e3223f3a2
 Cache Hit!
 endProcessing "ru\allformine\afmcp\handlers\DiscordWebhookListener.java"
 
@@ -35,7 +36,7 @@ startProcessing "ru\allformine\afmcp\handlers\VanishEventListener.java" md5: 2b5
 Cache Hit!
 endProcessing "ru\allformine\afmcp\handlers\VanishEventListener.java"
 
-startProcessing "ru\allformine\afmcp\jumppad\JumpPadEventListener.java" md5: 2bb9ff6d5549b99391c104f06fa30882
+startProcessing "ru\allformine\afmcp\jumppad\JumpPadEventListener.java" md5: 6113b71e394c2af927e9dfdf6a4db946
 endProcessing "ru\allformine\afmcp\jumppad\JumpPadEventListener.java"
 
 startProcessing "ru\allformine\afmcp\jumppad\JumpPadTypes.java" md5: 53678d0fa042d12a1b7f2cc8db0d065b
