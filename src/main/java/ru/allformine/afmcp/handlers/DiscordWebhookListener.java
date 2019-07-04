@@ -8,6 +8,7 @@ import org.spongepowered.api.event.command.SendCommandEvent;
 import org.spongepowered.api.event.entity.DestructEntityEvent;
 import org.spongepowered.api.event.filter.cause.First;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
+import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.net.api.Webhook;
 
 public class DiscordWebhookListener {
@@ -21,6 +22,8 @@ public class DiscordWebhookListener {
 
     @Listener
     public void onPlayerQuit(ClientConnectionEvent.Disconnect event) {
+        if (AFMCorePlugin.serverRestart)
+            return;
         Webhook.sendPlayerMessage(Webhook.TypePlayerMessage.LEFT_SERVER, event.getTargetEntity());
     }
 

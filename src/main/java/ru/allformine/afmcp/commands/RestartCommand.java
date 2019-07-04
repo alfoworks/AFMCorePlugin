@@ -13,15 +13,12 @@ import ru.allformine.afmcp.AFMCorePlugin;
 public class RestartCommand extends AFMCPCommand {
     @Override
     public CommandResult execute(CommandSource scr, CommandContext args) {
+        AFMCorePlugin.serverRestart = true;
         for (Player player : Sponge.getServer().getOnlinePlayers()) {
             player.kick(Text.builder("Сервер ушёл на рестарт! Увидимся через минуту <3").color(TextColors.LIGHT_PURPLE).build());
         }
-
-        AFMCorePlugin.serverRestart = true;
-        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "stop");
-
         reply(scr, Text.of("Сервер перезапускается!"));
-
+        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "stop");
         return CommandResult.success();
     }
 
