@@ -2,23 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d122824-c45f-4dc9-9772-e9cb0c4f4b11" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/fileContent/annotation-processors.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4.1/fileContent/annotation-processors.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4.1/fileContent/fileContent.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4.1/taskHistory/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4.1/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/AFMCorePlugin-sponge1.12_api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/AFMCorePlugin-sponge1.12_api.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/AFMCorePlugin-sponge1.12_main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/AFMCorePlugin-sponge1.12_main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/AFMCorePlugin-sponge1.12_test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/AFMCorePlugin-sponge1.12_test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/gradle.log" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/gradle.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/libs/AFMCorePlugin-sponge1.12-0.6-sources.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/AFMCorePlugin-sponge1.12-0.6-sources.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/libs/AFMCorePlugin-sponge1.12-0.6.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/AFMCorePlugin-sponge1.12-0.6.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/retromapping/replacedMain.rangemap" beforeDir="false" afterPath="$PROJECT_DIR$/build/retromapping/replacedMain.rangemap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/retromapping/retromappedReplacedMain.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/retromapping/retromappedReplacedMain.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/sources/main/java/ru/allformine/afmcp/jumppad/JumpPadEventListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/build/sources/main/java/ru/allformine/afmcp/jumppad/JumpPadEventListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/taskLogs/extractRangemapReplacedMain.log" beforeDir="false" afterPath="$PROJECT_DIR$/build/taskLogs/extractRangemapReplacedMain.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/sources/main/java/ru/allformine/afmcp/VanishManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/sources/main/java/ru/allformine/afmcp/commands/RawBCCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/build/sources/main/java/ru/allformine/afmcp/commands/RawBCCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/sources/main/java/ru/allformine/afmcp/commands/RestartCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/sources/main/java/ru/allformine/afmcp/commands/TokensCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/sources/main/java/ru/allformine/afmcp/commands/VipCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/sources/main/java/ru/allformine/afmcp/handlers/DiscordWebhookListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/sources/main/java/ru/allformine/afmcp/handlers/VanishEventListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/sources/main/java/ru/allformine/afmcp/jumppad/JumpPadEventListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/sources/main/java/ru/allformine/afmcp/jumppad/JumpPadTypes.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/sources/main/java/ru/allformine/afmcp/net/api/Eco.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/sources/main/java/ru/allformine/afmcp/net/api/Webhook.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/sources/main/java/ru/allformine/afmcp/net/http/Requests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/sources/main/java/ru/allformine/afmcp/net/http/Response.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/sources/main/java/ru/allformine/afmcp/serverapi/HTTPServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/sources/main/java/ru/allformine/afmcp/serverapi/ServerAPISender.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/sources/main/java/ru/allformine/afmcp/serverapi/ServerUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/sources/main/java/ru/allformine/afmcp/test/PacketHandler.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/jumppad/JumpPadEventListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/jumppad/JumpPadEventListener.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -43,8 +49,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/jumppad/JumpPadEventListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
-              <caret line="45" column="25" selection-start-line="45" selection-start-column="25" selection-end-line="45" selection-end-column="25" />
+            <state relative-caret-position="256">
+              <caret line="34" column="42" lean-forward="true" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -268,13 +274,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1555864005686</updated>
-    </task>
-    <task id="LOCAL-00001" summary="Вынес пермишн в константу">
-      <created>1555953011585</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1555953011585</updated>
     </task>
     <task id="LOCAL-00002" summary="Вынес пермишн в константу">
       <created>1555953170204</created>
@@ -612,7 +611,14 @@
       <option name="project" value="LOCAL" />
       <updated>1562253173169</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Новая формула ебать">
+      <created>1562254607630</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1562254607631</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TodoView">
@@ -644,7 +650,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4993573" weight="0.32974428" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49807197" weight="0.32822084" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.3270525" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3270525" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50192803" side_tool="true" weight="0.32974428" />
       <window_info anchor="bottom" id="Build" order="10" sideWeight="0.4993573" weight="0.32974428" />
       <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.4993573" weight="0.32822084" />
@@ -736,7 +742,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="BalanceApi в отдельном классе. Подготовка к ебле с дебагом" />
     <MESSAGE value="Пизже чутка" />
     <MESSAGE value="фикс ошибки" />
     <MESSAGE value="Переработан /tokens под новый класс" />
@@ -761,7 +766,8 @@
     <MESSAGE value="Ебля с коэффициентами часть 1 дубль 3" />
     <MESSAGE value="Ебля с коэффициентами часть 1 дубль 4 FINAL" />
     <MESSAGE value="Ебля с коэффициентами часть 1 дубль 4 FINAL 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ебля с коэффициентами часть 1 дубль 4 FINAL 2" />
+    <MESSAGE value="Новая формула ебать" />
+    <option name="LAST_COMMIT_MESSAGE" value="Новая формула ебать" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -1041,8 +1047,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/jumppad/JumpPadEventListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="45" column="25" selection-start-line="45" selection-start-column="25" selection-end-line="45" selection-end-column="25" />
+        <state relative-caret-position="256">
+          <caret line="34" column="42" lean-forward="true" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

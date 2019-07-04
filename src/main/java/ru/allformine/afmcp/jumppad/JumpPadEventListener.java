@@ -3,6 +3,7 @@ package ru.allformine.afmcp.jumppad;
 import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.cause.entity.damage.DamageTypes;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
@@ -29,29 +30,25 @@ public class JumpPadEventListener {
 
     @Listener
     public void onEntityMove(MoveEntityEvent event) {
-        Location<World> location = event.getTargetEntity()
-                .getLocation();
+        Entity entity = event.getTargetEntity();
+        Vector3d entityVel = entity.getVelocity();
+        if (entityVel.getY() != 0D) return;
+        Location<World> location = entity.getLocation();
         BlockState block = location.getExtent()
-                .getBlock(
-                        location.getBlockPosition()
-                                .sub(
-                                        0,
-                                        1,
-                                        0
-                                )
+                .getBlock(location.getBlockPosition()
+                        .sub(0, 1, 0)
                 );
         if (block == JumpPadTypes.STRAIGHT_UP.getBlockState()) {
-            event.getTargetEntity().offer(Keys.VELOCITY, new Vector3d(0, 1, 0));
+            Vector3d jumpVel = new Vector3d(0, 1, 0);
+            jumpVel.add(entityVel);
+            event.getTargetEntity().offer(Keys.VELOCITY, jumpVel);
         } else if (block == JumpPadTypes.PLAYER_LOOK.getBlockState()) {
-            double yaw = event.getTargetEntity().getRotation().getX() + 180;
-            double pitch = ((event.getTargetEntity().getRotation().getY()) * -1);
+            double yaw = event.getTargetEntity().getRotation().getY() + 180;
             double velX = Math.sin(Math.toRadians(yaw)); // 180 * Math.PI);
-            double velZ = Math.cos(Math.toRadians(yaw)); // 180 * Math.PI);
-            Vector3d vel = new Vector3d(velX, 1, velZ);
-            System.out.println(vel.toString());
-            System.out.println(yaw);
-
-            event.getTargetEntity().offer(Keys.VELOCITY, vel);
+            double velZ = -1 * Math.cos(Math.toRadians(yaw)); // 180 * Math.PI);
+            Vector3d jumpVel = new Vector3d(velX, 1, velZ);
+            jumpVel.add(entityVel);
+            event.getTargetEntity().offer(Keys.VELOCITY, jumpVel);
         }
     }
 }
