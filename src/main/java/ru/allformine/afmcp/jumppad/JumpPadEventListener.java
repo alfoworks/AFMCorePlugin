@@ -4,6 +4,7 @@ import com.flowpowered.math.vector.Vector3d;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.cause.entity.damage.DamageTypes;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
@@ -12,6 +13,7 @@ import org.spongepowered.api.event.entity.MoveEntityEvent;
 import org.spongepowered.api.event.filter.cause.Root;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
+import ru.allformine.afmcp.Utils;
 
 public class JumpPadEventListener {
     @Listener
@@ -33,6 +35,11 @@ public class JumpPadEventListener {
         Entity entity = event.getTargetEntity();
         Vector3d entityVel = entity.getVelocity();
         if (entityVel.getY() != 0D) return;
+        if (entity instanceof Player) {
+            if (Utils.isSneaking((Player) entity)) {
+                return;
+            }
+        }
         Location<World> location = entity.getLocation();
         BlockState block = location.getExtent()
                 .getBlock(location.getBlockPosition()

@@ -887,7 +887,7 @@ Class Start: ru.allformine.afmcp.handlers.VanishEventListener
 Class End  : ru.allformine.afmcp.handlers.VanishEventListener
 endProcessing "ru\allformine\afmcp\handlers\VanishEventListener.java"
 
-startProcessing "ru\allformine\afmcp\jumppad\JumpPadEventListener.java" md5: aefe0ad4213e47591a7e428b6a93a6e0
+startProcessing "ru\allformine\afmcp\jumppad\JumpPadEventListener.java" md5: 6e24e46dd6b7f2df94413cf04c60880f
 @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|8|35|ru.allformine.afmcp.jumppad|package|ru.allformine.afmcp.jumppad|(file)
 Class Start: ru.allformine.afmcp.jumppad.JumpPadEventListener
    @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|682|702|JumpPadEventListener|class|ru.allformine.afmcp.jumppad.JumpPadEventListener
