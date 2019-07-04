@@ -13,6 +13,7 @@ import org.spongepowered.api.event.entity.MoveEntityEvent;
 import org.spongepowered.api.event.filter.cause.Root;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
+import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.Utils;
 
 public class JumpPadEventListener {
@@ -34,26 +35,30 @@ public class JumpPadEventListener {
     public void onEntityMove(MoveEntityEvent event) {
         Entity entity = event.getTargetEntity();
         Vector3d entityVel = entity.getVelocity();
-        // if (entityVel.getY() != 0D) return;
+
         if (entity instanceof Player) {
             if (Utils.isSneaking((Player) entity)) {
                 return;
             }
         }
+
         Location<World> location = entity.getLocation();
         BlockState block = location.getExtent()
                 .getBlock(location.getBlockPosition()
                         .sub(0, 1, 0)
                 );
+
         if (block == JumpPadTypes.STRAIGHT_UP.getBlockState()) {
             Vector3d jumpVel = new Vector3d(0, 1, 0).add(entityVel);
             event.getTargetEntity().offer(Keys.VELOCITY, jumpVel);
+
             if (entity instanceof Player)
-                System.out.println(String.format("%s: gold block jumppad event", ((Player) entity).getName()));
+                AFMCorePlugin.logger.info("%s прагнул на JumpPad UP");
         } else if (block == JumpPadTypes.PLAYER_LOOK.getBlockState()) {
             double yaw = event.getTargetEntity().getRotation().getY() + 180;
-            double velX = Math.sin(Math.toRadians(yaw)); // 180 * Math.PI);
-            double velZ = -1 * Math.cos(Math.toRadians(yaw)); // 180 * Math.PI);
+            double velX = Math.sin(Math.toRadians(yaw));
+            double velZ = -1 * Math.cos(Math.toRadians(yaw));
+
             Vector3d jumpVel = new Vector3d(velX * 1.5, 1, velZ * 1.5).add(entityVel);
             event.getTargetEntity().offer(Keys.VELOCITY, jumpVel);
         }
