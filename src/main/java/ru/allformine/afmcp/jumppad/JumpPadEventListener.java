@@ -43,12 +43,13 @@ public class JumpPadEventListener {
         if (block == JumpPadTypes.STRAIGHT_UP.getBlockState()) {
             event.getTargetEntity().offer(Keys.VELOCITY, new Vector3d(0, 1, 0));
         } else if (block == JumpPadTypes.PLAYER_LOOK.getBlockState()) {
-            double yaw = ((event.getTargetEntity().getRotation().getX()) % 360);
+            double yaw = event.getTargetEntity().getRotation().getX() + 180;
             double pitch = ((event.getTargetEntity().getRotation().getY()) * -1);
-            double velX = -1 * Math.sin(Math.toRadians(yaw)); // 180 * Math.PI);
+            double velX = Math.sin(Math.toRadians(yaw)); // 180 * Math.PI);
             double velZ = Math.cos(Math.toRadians(yaw)); // 180 * Math.PI);
             Vector3d vel = new Vector3d(velX, 1, velZ);
             System.out.println(vel.toString());
+            System.out.println(yaw);
 
             event.getTargetEntity().offer(Keys.VELOCITY, vel);
         }
