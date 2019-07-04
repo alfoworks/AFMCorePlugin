@@ -45,7 +45,7 @@ public class JumpPadEventListener {
             double yaw = event.getTargetEntity().getRotation().getY() + 180;
             double velX = Math.sin(Math.toRadians(yaw)); // 180 * Math.PI);
             double velZ = -1 * Math.cos(Math.toRadians(yaw)); // 180 * Math.PI);
-            Vector3d jumpVel = new Vector3d(velX * 1.5, 2, velZ * 1.5).add(entityVel);
+            Vector3d jumpVel = new Vector3d(velX * 1.5, 1, velZ * 1.5).add(entityVel);
             event.getTargetEntity().offer(Keys.VELOCITY, jumpVel);
         }
     }
