@@ -9,6 +9,8 @@ import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.event.entity.MoveEntityEvent;
 import org.spongepowered.api.event.filter.cause.Root;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 public class JumpPadEventListener {
     @Listener
@@ -27,8 +29,17 @@ public class JumpPadEventListener {
 
     @Listener
     public void onEntityMove(MoveEntityEvent event) {
-        BlockState block = event.getTargetEntity().getLocation().getExtent().getBlock(event.getTargetEntity().getLocation().getBlockPosition().sub(0, 1, 0));
-
+        Location<World> location = event.getTargetEntity()
+                .getLocation();
+        BlockState block = location.getExtent()
+                .getBlock(
+                        location.getBlockPosition()
+                                .sub(
+                                        0,
+                                        1,
+                                        0
+                                )
+                );
         if (block == JumpPadTypes.STRAIGHT_UP.getBlockState()) {
             event.getTargetEntity().offer(Keys.VELOCITY, new Vector3d(0, 1, 0));
         } else if (block == JumpPadTypes.PLAYER_LOOK.getBlockState()) {

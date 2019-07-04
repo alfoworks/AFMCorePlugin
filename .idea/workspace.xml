@@ -2,22 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d122824-c45f-4dc9-9772-e9cb0c4f4b11" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4.1/taskHistory/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4.1/taskHistory/taskHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_io_commons_io_2_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_codehaus_plexus_plexus_utils_3_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/AFMCorePlugin-sponge1.12_api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/AFMCorePlugin-sponge1.12_api.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/AFMCorePlugin-sponge1.12_main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/AFMCorePlugin-sponge1.12_main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/AFMCorePlugin-sponge1.12_test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/AFMCorePlugin-sponge1.12_test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/extractAnnotationsJar/input8986421606850115745.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/reobfJar/reobf-default5458498963655992201.srg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/reobfJar/reobf-extraLines8390698898465971326.srg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/jumppad/JumpPadEventListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/jumppad/JumpPadEventListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -102,8 +87,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/jumppad/JumpPadEventListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="477">
-              <caret line="37" column="56" lean-forward="true" selection-start-line="37" selection-start-column="56" selection-end-line="37" selection-end-column="56" />
+            <state relative-caret-position="358">
+              <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -635,7 +620,14 @@
       <option name="project" value="LOCAL" />
       <updated>1562062265247</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="FIIIIIIIIIIIIIIIIIIIIIIIIIX">
+      <created>1562249860310</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1562249860310</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TodoView">
@@ -759,7 +751,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="ЕБУчАЯяяяя ГУбкааааааааа!!!!!!!!!!!!!" />
     <MESSAGE value="ЭТО БЕУБАС!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ГОВНОКОЖУ ДЛЯ ВАС" />
     <MESSAGE value="ненавижу" />
     <MESSAGE value="в пзиду" />
@@ -784,7 +775,8 @@
     <MESSAGE value="Нахуй не нужон ваш дебаг" />
     <MESSAGE value="Держите заказ, блядь. &lt;@337762030138163200&gt; с тебя фикс юникода" />
     <MESSAGE value="Держите заказ, блядь." />
-    <option name="LAST_COMMIT_MESSAGE" value="Держите заказ, блядь." />
+    <MESSAGE value="FIIIIIIIIIIIIIIIIIIIIIIIIIX" />
+    <option name="LAST_COMMIT_MESSAGE" value="FIIIIIIIIIIIIIIIIIIIIIIIIIX" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -1056,8 +1048,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/jumppad/JumpPadEventListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="37" column="56" lean-forward="true" selection-start-line="37" selection-start-column="56" selection-end-line="37" selection-end-column="56" />
+        <state relative-caret-position="358">
+          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
