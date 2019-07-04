@@ -24,9 +24,12 @@ public class Eco {
     private Response sendGet(String url) {
         Response response = Requests.sendGet(url);
         if (response != null && response.responseCode != 200) {
-            System.out.println("An error occurred while executing request " + url);
-            System.out.println(response.responseCode);
-            System.out.println(response.response);
+            AFMCorePlugin.logger.error(
+                    String.format("An error occurred while executing GET request %s\nResponse code: %s\nResponse body:%s",
+                            url,
+                            response.responseCode,
+                            response.response)
+            );
         }
         return response;
     }

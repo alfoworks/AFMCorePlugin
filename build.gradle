@@ -33,13 +33,6 @@ sponge.plugin.id = "afmcm"
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-jar {
-    manifest.attributes(
-            'FMLAT': 'afmcp_at.cfg',
-            'ForceLoadAsMod': true
-    )
-}
-
 minecraft {
     version = "1.12.2-14.23.5.2815"
     mappings = "snapshot_20171003"

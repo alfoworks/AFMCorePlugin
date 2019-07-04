@@ -37,9 +37,11 @@ import ru.allformine.afmcp.serverapi.HTTPServer;
 import ru.allformine.afmcp.test.PacketHandler;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static java.lang.Math.min;
@@ -157,9 +159,18 @@ public class AFMCorePlugin {
             }
         });
 
-        NetworkSystem networkSystem = ((MinecraftServer) Sponge.getServer()).getNetworkSystem();
-        for (ChannelFuture channelFuture : networkSystem.endpoints) {
-            channelFuture.channel().pipeline().addFirst(new PacketHandler());
+        try {
+            NetworkSystem networkSystem = ((MinecraftServer) Sponge.getServer()).getNetworkSystem();
+            Field endpointsField = networkSystem.getClass().getDeclaredField("field_151274_e");
+            endpointsField.setAccessible(true);
+            List<ChannelFuture> endpoints = (List<ChannelFuture>) endpointsField.get(networkSystem);
+            for (ChannelFuture channelFuture : endpoints) {
+                // channelFuture.channel().pipeline().addFirst("PacketHandler", new PacketHandler());
+                channelFuture.channel().pipeline().replace(channelFuture.channel().pipeline().first(), "PacketHandler", new PacketHandler());
+            }
+        } catch (Exception e) {
+            logger.error("Can't attach PacketHandler!");
+            e.printStackTrace();
         }
     }
 
