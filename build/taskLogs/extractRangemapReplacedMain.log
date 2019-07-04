@@ -36,7 +36,7 @@ startProcessing "ru\allformine\afmcp\handlers\VanishEventListener.java" md5: 2b5
 Cache Hit!
 endProcessing "ru\allformine\afmcp\handlers\VanishEventListener.java"
 
-startProcessing "ru\allformine\afmcp\jumppad\JumpPadEventListener.java" md5: 4a4031496c1950ae130305510bc513bc
+startProcessing "ru\allformine\afmcp\jumppad\JumpPadEventListener.java" md5: 57bb1e0b0f760bcebdc36ae6586ec69a
 endProcessing "ru\allformine\afmcp\jumppad\JumpPadEventListener.java"
 
 startProcessing "ru\allformine\afmcp\jumppad\JumpPadTypes.java" md5: 53678d0fa042d12a1b7f2cc8db0d065b

@@ -39,15 +39,13 @@ public class JumpPadEventListener {
                         .sub(0, 1, 0)
                 );
         if (block == JumpPadTypes.STRAIGHT_UP.getBlockState()) {
-            Vector3d jumpVel = new Vector3d(0, 1, 0);
-            jumpVel.add(entityVel);
+            Vector3d jumpVel = new Vector3d(0, 1, 0).add(entityVel);
             event.getTargetEntity().offer(Keys.VELOCITY, jumpVel);
         } else if (block == JumpPadTypes.PLAYER_LOOK.getBlockState()) {
             double yaw = event.getTargetEntity().getRotation().getY() + 180;
             double velX = Math.sin(Math.toRadians(yaw)); // 180 * Math.PI);
             double velZ = -1 * Math.cos(Math.toRadians(yaw)); // 180 * Math.PI);
-            Vector3d jumpVel = new Vector3d(velX, 1, velZ);
-            jumpVel.add(entityVel);
+            Vector3d jumpVel = new Vector3d(velX, 1, velZ).add(entityVel);
             event.getTargetEntity().offer(Keys.VELOCITY, jumpVel);
         }
     }
