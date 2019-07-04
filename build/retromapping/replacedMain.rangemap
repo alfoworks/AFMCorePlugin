@@ -887,7 +887,7 @@ Class Start: ru.allformine.afmcp.handlers.VanishEventListener
 Class End  : ru.allformine.afmcp.handlers.VanishEventListener
 endProcessing "ru\allformine\afmcp\handlers\VanishEventListener.java"
 
-startProcessing "ru\allformine\afmcp\jumppad\JumpPadEventListener.java" md5: 57bb1e0b0f760bcebdc36ae6586ec69a
+startProcessing "ru\allformine\afmcp\jumppad\JumpPadEventListener.java" md5: 6bd3737052ff20d2af4bdc119f90ed91
 @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|8|35|ru.allformine.afmcp.jumppad|package|ru.allformine.afmcp.jumppad|(file)
 Class Start: ru.allformine.afmcp.jumppad.JumpPadEventListener
    @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|682|702|JumpPadEventListener|class|ru.allformine.afmcp.jumppad.JumpPadEventListener
@@ -945,35 +945,35 @@ Class Start: ru.allformine.afmcp.jumppad.JumpPadEventListener
       @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|1727|1740|getBlockState|method|ru.allformine.afmcp.jumppad.JumpPadTypes|getBlockState|()Lorg/spongepowered/api/block/BlockState;
       @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|1758|1766|Vector3d|class|com.flowpowered.math.vector.Vector3d
       @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|1781|1789|Vector3d|class|com.flowpowered.math.vector.Vector3d
-      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|1820|1823|add|method|com.flowpowered.math.vector.Vector3d|add|(Lcom/flowpowered/math/vector/Vector3d;)Lcom/flowpowered/math/vector/Vector3d;
-      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|1848|1853|event|param|ru.allformine.afmcp.jumppad.JumpPadEventListener|onEntityMove|(Lorg/spongepowered/api/event/entity/MoveEntityEvent;)V|event|0
-      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|1854|1869|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
-      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|1872|1877|offer|method|org.spongepowered.api.data.value.mutable.CompositeValueStore|offer|(Lorg/spongepowered/api/data/key/Key;Ljava/lang/Object;)Lorg/spongepowered/api/data/DataTransactionResult;
-      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|1878|1882|Keys|class|org.spongepowered.api.data.key.Keys
-      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|1883|1891|VELOCITY|field|org.spongepowered.api.data.key.Keys|VELOCITY
-      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|1931|1943|JumpPadTypes|class|ru.allformine.afmcp.jumppad.JumpPadTypes
-      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|1944|1955|PLAYER_LOOK|field|ru.allformine.afmcp.jumppad.JumpPadTypes|PLAYER_LOOK
-      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|1956|1969|getBlockState|method|ru.allformine.afmcp.jumppad.JumpPadTypes|getBlockState|()Lorg/spongepowered/api/block/BlockState;
-      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2000|2005|event|param|ru.allformine.afmcp.jumppad.JumpPadEventListener|onEntityMove|(Lorg/spongepowered/api/event/entity/MoveEntityEvent;)V|event|0
-      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2006|2021|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
-      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2024|2035|getRotation|method|org.spongepowered.api.entity.Entity|getRotation|()Lcom/flowpowered/math/vector/Vector3d;
-      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2038|2042|getY|method|com.flowpowered.math.vector.Vector3d|getY|()D
-      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2078|2082|Math|class|java.lang.Math
-      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2083|2086|sin|method|java.lang.Math|sin|(D)D
-      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2087|2091|Math|class|java.lang.Math
-      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2092|2101|toRadians|method|java.lang.Math|toRadians|(D)D
-      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2159|2163|Math|class|java.lang.Math
-      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2164|2167|cos|method|java.lang.Math|cos|(D)D
-      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2168|2172|Math|class|java.lang.Math
-      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2173|2182|toRadians|method|java.lang.Math|toRadians|(D)D
-      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2221|2229|Vector3d|class|com.flowpowered.math.vector.Vector3d
-      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2244|2252|Vector3d|class|com.flowpowered.math.vector.Vector3d
-      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2289|2292|add|method|com.flowpowered.math.vector.Vector3d|add|(Lcom/flowpowered/math/vector/Vector3d;)Lcom/flowpowered/math/vector/Vector3d;
-      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2317|2322|event|param|ru.allformine.afmcp.jumppad.JumpPadEventListener|onEntityMove|(Lorg/spongepowered/api/event/entity/MoveEntityEvent;)V|event|0
-      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2323|2338|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
-      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2341|2346|offer|method|org.spongepowered.api.data.value.mutable.CompositeValueStore|offer|(Lorg/spongepowered/api/data/key/Key;Ljava/lang/Object;)Lorg/spongepowered/api/data/DataTransactionResult;
-      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2347|2351|Keys|class|org.spongepowered.api.data.key.Keys
-      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2352|2360|VELOCITY|field|org.spongepowered.api.data.key.Keys|VELOCITY
+      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|1799|1802|add|method|com.flowpowered.math.vector.Vector3d|add|(Lcom/flowpowered/math/vector/Vector3d;)Lcom/flowpowered/math/vector/Vector3d;
+      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|1827|1832|event|param|ru.allformine.afmcp.jumppad.JumpPadEventListener|onEntityMove|(Lorg/spongepowered/api/event/entity/MoveEntityEvent;)V|event|0
+      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|1833|1848|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
+      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|1851|1856|offer|method|org.spongepowered.api.data.value.mutable.CompositeValueStore|offer|(Lorg/spongepowered/api/data/key/Key;Ljava/lang/Object;)Lorg/spongepowered/api/data/DataTransactionResult;
+      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|1857|1861|Keys|class|org.spongepowered.api.data.key.Keys
+      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|1862|1870|VELOCITY|field|org.spongepowered.api.data.key.Keys|VELOCITY
+      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|1910|1922|JumpPadTypes|class|ru.allformine.afmcp.jumppad.JumpPadTypes
+      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|1923|1934|PLAYER_LOOK|field|ru.allformine.afmcp.jumppad.JumpPadTypes|PLAYER_LOOK
+      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|1935|1948|getBlockState|method|ru.allformine.afmcp.jumppad.JumpPadTypes|getBlockState|()Lorg/spongepowered/api/block/BlockState;
+      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|1979|1984|event|param|ru.allformine.afmcp.jumppad.JumpPadEventListener|onEntityMove|(Lorg/spongepowered/api/event/entity/MoveEntityEvent;)V|event|0
+      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|1985|2000|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
+      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2003|2014|getRotation|method|org.spongepowered.api.entity.Entity|getRotation|()Lcom/flowpowered/math/vector/Vector3d;
+      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2017|2021|getY|method|com.flowpowered.math.vector.Vector3d|getY|()D
+      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2057|2061|Math|class|java.lang.Math
+      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2062|2065|sin|method|java.lang.Math|sin|(D)D
+      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2066|2070|Math|class|java.lang.Math
+      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2071|2080|toRadians|method|java.lang.Math|toRadians|(D)D
+      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2138|2142|Math|class|java.lang.Math
+      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2143|2146|cos|method|java.lang.Math|cos|(D)D
+      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2147|2151|Math|class|java.lang.Math
+      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2152|2161|toRadians|method|java.lang.Math|toRadians|(D)D
+      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2200|2208|Vector3d|class|com.flowpowered.math.vector.Vector3d
+      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2223|2231|Vector3d|class|com.flowpowered.math.vector.Vector3d
+      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2247|2250|add|method|com.flowpowered.math.vector.Vector3d|add|(Lcom/flowpowered/math/vector/Vector3d;)Lcom/flowpowered/math/vector/Vector3d;
+      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2275|2280|event|param|ru.allformine.afmcp.jumppad.JumpPadEventListener|onEntityMove|(Lorg/spongepowered/api/event/entity/MoveEntityEvent;)V|event|0
+      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2281|2296|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
+      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2299|2304|offer|method|org.spongepowered.api.data.value.mutable.CompositeValueStore|offer|(Lorg/spongepowered/api/data/key/Key;Ljava/lang/Object;)Lorg/spongepowered/api/data/DataTransactionResult;
+      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2305|2309|Keys|class|org.spongepowered.api.data.key.Keys
+      @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|2310|2318|VELOCITY|field|org.spongepowered.api.data.key.Keys|VELOCITY
    Method End: onEntityMove(Lorg/spongepowered/api/event/entity/MoveEntityEvent;)V
 Class End  : ru.allformine.afmcp.jumppad.JumpPadEventListener
 endProcessing "ru\allformine\afmcp\jumppad\JumpPadEventListener.java"
