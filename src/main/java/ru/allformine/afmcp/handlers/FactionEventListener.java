@@ -50,9 +50,9 @@ public class FactionEventListener {
         String factionName = faction.isPresent() ? faction.get().getName() : "Wilderness";
         TextColor factionColor = TextColors.DARK_GREEN;
 
-        if (factionName.equals("SafeZone")) {
+        if (factionName.equals("SafeZone") || EagleFactions.getPlugin().getConfiguration().getConfigFields().getSafeZoneWorldNames().contains(player.getWorld().getName())) {
             factionColor = TextColors.LIGHT_PURPLE;
-        } else if (factionName.equals("WarZone")) {
+        } else if (factionName.equals("WarZone") || EagleFactions.getPlugin().getConfiguration().getConfigFields().getWarZoneWorldNames().contains(player.getWorld().getName())) {
             factionColor = TextColors.RED;
         } else if (!factionName.equals("Wilderness") && faction.get().containsPlayer(player.getUniqueId())) {
             factionColor = TextColors.GREEN;
@@ -60,6 +60,6 @@ public class FactionEventListener {
             factionColor = TextColors.GOLD;
         }
 
-        return Text.of(factionColor, factionName).toPlain();
+        return Text.builder().append(Text.of(factionName)).color(factionColor).toText().toPlain();
     }
 }
