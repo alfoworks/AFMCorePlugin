@@ -6,6 +6,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.scheduler.Task;
 import ru.allformine.afmcp.AFMCorePlugin;
+import ru.allformine.afmcp.PacketChannels;
 
 import java.io.*;
 import java.net.InetSocketAddress;
@@ -124,9 +125,7 @@ public class HTTPServer implements Runnable {
                                 e.printStackTrace();
                             }
 
-                            AFMCorePlugin.channel
-                                    .get("screenshot")
-                                    .sendTo(player, buf -> buf.writeByteArray(b.toByteArray()));
+                            PacketChannels.SCREENSHOT.sendTo(player, buf -> buf.writeByteArray(b.toByteArray()));
 
                             long startTime = System.currentTimeMillis();
                             while (!playerScreenshotConfirmation.get(player)) {
