@@ -50,6 +50,7 @@ public class FactionEventListener {
         String factionName = faction.isPresent() ? faction.get().getName() : "Wilderness";
         TextColor factionColor = TextColors.DARK_GREEN;
 
+        //TODO надо чтобы в мирах safe и war zone писалось, что игрок в них, сейчас это не работает :/
         if (factionName.equals("SafeZone") || EagleFactions.getPlugin().getConfiguration().getConfigFields().getSafeZoneWorldNames().contains(player.getWorld().getName())) {
             factionColor = TextColors.LIGHT_PURPLE;
         } else if (factionName.equals("WarZone") || EagleFactions.getPlugin().getConfiguration().getConfigFields().getWarZoneWorldNames().contains(player.getWorld().getName())) {
@@ -60,6 +61,7 @@ public class FactionEventListener {
             factionColor = TextColors.GOLD;
         }
 
+        //TODO текст не цветной на клиенте
         return Text.builder().append(Text.of(factionName)).color(factionColor).toText().toPlain();
     }
 }
