@@ -5,15 +5,16 @@ import io.github.aquerr.eaglefactions.EagleFactions;
 import io.github.aquerr.eaglefactions.entities.Faction;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
+import org.spongepowered.api.event.command.SendCommandEvent;
 import org.spongepowered.api.event.entity.MoveEntityEvent;
 import org.spongepowered.api.event.filter.cause.Root;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
 import ru.allformine.afmcp.PacketChannels;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 public class FactionEventListener {
-
     @Listener
     public void onPlayerMove(MoveEntityEvent event, @Root Player player) {
         Vector3i oldChunk = event.getFromTransform().getLocation().getChunkPosition();
@@ -39,6 +40,26 @@ public class FactionEventListener {
         sendToPlayer(event.getTargetEntity(), factionName);
     }
 
+    @Listener
+    public void onPlayerCommand(SendCommandEvent event) {
+        if (!(event.getSource() instanceof Player)) {
+            return;
+        }
+
+        String allCommand = event.getCommand() + " " + event.getArguments();
+        Player player = (Player) event.getSource();
+
+        if (isClaimUpdateCommand(allCommand)) {
+            Vector3i chunk = player.getLocation().getChunkPosition();
+            Optional<Faction> faction = EagleFactions.getPlugin().getFactionLogic().getFactionByChunk(player.getWorld().getUniqueId(), chunk);
+            String factionName = getFactionNameForPlayer(faction, player);
+
+            sendToPlayer(player, factionName);
+        }
+    }
+
+    // ============================== //
+
     private void sendToPlayer(Player player, String string) {
         PacketChannels.FACTIONS.sendTo(player, buf -> buf.writeString(string));
     }
@@ -62,5 +83,11 @@ public class FactionEventListener {
         }
 
         return factionColor + factionName;
+    }
+
+    private boolean isClaimUpdateCommand(String command) {
+        String[] commands = new String[]{"f claim", "f unclaim", "f unclaimall", "f disband", "f leave", "f join", "f rename", "f squareclaim"};
+
+        return Arrays.asList(commands).contains(command);
     }
 }

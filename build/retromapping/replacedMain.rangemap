@@ -1,6 +1,7 @@
 Symbol range map extraction starting
 Processing 23 files
 startProcessing "ru\allformine\afmcp\AFMCorePlugin.java" md5: 4ea7a3c28d497d9a397481e49e3479aa
+Cache Hit!
 @|ru\allformine\afmcp\AFMCorePlugin.java|8|27|ru.allformine.afmcp|package|ru.allformine.afmcp|(file)
 Class Start: ru.allformine.afmcp.AFMCorePlugin
    @|ru\allformine\afmcp\AFMCorePlugin.java|1854|1860|Plugin|class|org.spongepowered.api.plugin.Plugin
@@ -272,6 +273,7 @@ Class End  : ru.allformine.afmcp.AFMCorePlugin
 endProcessing "ru\allformine\afmcp\AFMCorePlugin.java"
 
 startProcessing "ru\allformine\afmcp\PacketChannels.java" md5: f7cd61b45066a38e882b1660c552dc54
+Cache Hit!
 @|ru\allformine\afmcp\PacketChannels.java|8|27|ru.allformine.afmcp|package|ru.allformine.afmcp|(file)
 Class Start: ru.allformine.afmcp.PacketChannels
    @|ru\allformine\afmcp\PacketChannels.java|97|111|PacketChannels|class|ru.allformine.afmcp.PacketChannels
@@ -855,28 +857,37 @@ Class Start: ru.allformine.afmcp.handlers.DiscordWebhookListener
 Class End  : ru.allformine.afmcp.handlers.DiscordWebhookListener
 endProcessing "ru\allformine\afmcp\handlers\DiscordWebhookListener.java"
 
-startProcessing "ru\allformine\afmcp\handlers\FactionEventListener.java" md5: 63689722f575f7f691794c85ff0bdecb
+startProcessing "ru\allformine\afmcp\handlers\FactionEventListener.java" md5: 4124259e29a68f975f65dbb9ecbe74a5
 @|ru\allformine\afmcp\handlers\FactionEventListener.java|8|36|ru.allformine.afmcp.handlers|package|ru.allformine.afmcp.handlers|(file)
 Class Start: ru.allformine.afmcp.handlers.FactionEventListener
-   @|ru\allformine\afmcp\handlers\FactionEventListener.java|705|725|FactionEventListener|class|ru.allformine.afmcp.handlers.FactionEventListener
+   @|ru\allformine\afmcp\handlers\FactionEventListener.java|560|580|FactionEventListener|class|ru.allformine.afmcp.handlers.FactionEventListener
    Method Start: onPlayerMove(Lorg/spongepowered/api/event/entity/MoveEntityEvent;Lorg/spongepowered/api/entity/living/player/Player;)V
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|643|648|event|param|ru.allformine.afmcp.handlers.FactionEventListener|onPlayerMove|(Lorg/spongepowered/api/event/entity/MoveEntityEvent;Lorg/spongepowered/api/entity/living/player/Player;)V|event|0
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|663|669|player|param|ru.allformine.afmcp.handlers.FactionEventListener|onPlayerMove|(Lorg/spongepowered/api/event/entity/MoveEntityEvent;Lorg/spongepowered/api/entity/living/player/Player;)V|player|1
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|589|597|Listener|class|org.spongepowered.api.event.Listener
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|614|626|onPlayerMove|method|ru.allformine.afmcp.handlers.FactionEventListener|onPlayerMove|(Lorg/spongepowered/api/event/entity/MoveEntityEvent;Lorg/spongepowered/api/entity/living/player/Player;)V
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|627|642|MoveEntityEvent|class|org.spongepowered.api.event.entity.MoveEntityEvent
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|651|655|Root|class|org.spongepowered.api.event.filter.cause.Root
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|656|662|Player|class|org.spongepowered.api.entity.living.player.Player
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|681|689|Vector3i|class|com.flowpowered.math.vector.Vector3i
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|701|706|event|param|ru.allformine.afmcp.handlers.FactionEventListener|onPlayerMove|(Lorg/spongepowered/api/event/entity/MoveEntityEvent;Lorg/spongepowered/api/entity/living/player/Player;)V|event|0
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|707|723|getFromTransform|method|org.spongepowered.api.event.entity.MoveEntityEvent|getFromTransform|()Lorg/spongepowered/api/entity/Transform;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|726|737|getLocation|method|org.spongepowered.api.entity.Transform|getLocation|()Lorg/spongepowered/api/world/Location;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|740|756|getChunkPosition|method|org.spongepowered.api.world.Location|getChunkPosition|()Lcom/flowpowered/math/vector/Vector3i;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|768|776|Vector3i|class|com.flowpowered.math.vector.Vector3i
       @|ru\allformine\afmcp\handlers\FactionEventListener.java|788|793|event|param|ru.allformine.afmcp.handlers.FactionEventListener|onPlayerMove|(Lorg/spongepowered/api/event/entity/MoveEntityEvent;Lorg/spongepowered/api/entity/living/player/Player;)V|event|0
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|808|814|player|param|ru.allformine.afmcp.handlers.FactionEventListener|onPlayerMove|(Lorg/spongepowered/api/event/entity/MoveEntityEvent;Lorg/spongepowered/api/entity/living/player/Player;)V|player|1
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|734|742|Listener|class|org.spongepowered.api.event.Listener
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|759|771|onPlayerMove|method|ru.allformine.afmcp.handlers.FactionEventListener|onPlayerMove|(Lorg/spongepowered/api/event/entity/MoveEntityEvent;Lorg/spongepowered/api/entity/living/player/Player;)V
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|772|787|MoveEntityEvent|class|org.spongepowered.api.event.entity.MoveEntityEvent
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|796|800|Root|class|org.spongepowered.api.event.filter.cause.Root
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|801|807|Player|class|org.spongepowered.api.entity.living.player.Player
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|826|834|Vector3i|class|com.flowpowered.math.vector.Vector3i
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|846|851|event|param|ru.allformine.afmcp.handlers.FactionEventListener|onPlayerMove|(Lorg/spongepowered/api/event/entity/MoveEntityEvent;Lorg/spongepowered/api/entity/living/player/Player;)V|event|0
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|852|868|getFromTransform|method|org.spongepowered.api.event.entity.MoveEntityEvent|getFromTransform|()Lorg/spongepowered/api/entity/Transform;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|871|882|getLocation|method|org.spongepowered.api.entity.Transform|getLocation|()Lorg/spongepowered/api/world/Location;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|885|901|getChunkPosition|method|org.spongepowered.api.world.Location|getChunkPosition|()Lcom/flowpowered/math/vector/Vector3i;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|913|921|Vector3i|class|com.flowpowered.math.vector.Vector3i
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|933|938|event|param|ru.allformine.afmcp.handlers.FactionEventListener|onPlayerMove|(Lorg/spongepowered/api/event/entity/MoveEntityEvent;Lorg/spongepowered/api/entity/living/player/Player;)V|event|0
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|939|953|getToTransform|method|org.spongepowered.api.event.entity.MoveEntityEvent|getToTransform|()Lorg/spongepowered/api/entity/Transform;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|956|967|getLocation|method|org.spongepowered.api.entity.Transform|getLocation|()Lorg/spongepowered/api/world/Location;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|970|986|getChunkPosition|method|org.spongepowered.api.world.Location|getChunkPosition|()Lcom/flowpowered/math/vector/Vector3i;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|794|808|getToTransform|method|org.spongepowered.api.event.entity.MoveEntityEvent|getToTransform|()Lorg/spongepowered/api/entity/Transform;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|811|822|getLocation|method|org.spongepowered.api.entity.Transform|getLocation|()Lorg/spongepowered/api/world/Location;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|825|841|getChunkPosition|method|org.spongepowered.api.world.Location|getChunkPosition|()Lcom/flowpowered/math/vector/Vector3i;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|854|862|Optional|class|java.util.Optional
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|863|870|Faction|class|io.github.aquerr.eaglefactions.entities.Faction
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|885|898|EagleFactions|class|io.github.aquerr.eaglefactions.EagleFactions
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|899|908|getPlugin|method|io.github.aquerr.eaglefactions.EagleFactions|getPlugin|()Lio/github/aquerr/eaglefactions/EagleFactions;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|911|926|getFactionLogic|method|io.github.aquerr.eaglefactions.EagleFactions|getFactionLogic|()Lio/github/aquerr/eaglefactions/logic/FactionLogic;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|929|946|getFactionByChunk|method|io.github.aquerr.eaglefactions.logic.FactionLogic|getFactionByChunk|(Ljava/util/UUID;Lcom/flowpowered/math/vector/Vector3i;)Ljava/util/Optional;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|947|953|player|param|ru.allformine.afmcp.handlers.FactionEventListener|onPlayerMove|(Lorg/spongepowered/api/event/entity/MoveEntityEvent;Lorg/spongepowered/api/entity/living/player/Player;)V|player|1
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|954|962|getWorld|method|org.spongepowered.api.world.Locatable|getWorld|()Lorg/spongepowered/api/world/World;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|965|976|getUniqueId|method|org.spongepowered.api.util.Identifiable|getUniqueId|()Ljava/util/UUID;
       @|ru\allformine\afmcp\handlers\FactionEventListener.java|999|1007|Optional|class|java.util.Optional
       @|ru\allformine\afmcp\handlers\FactionEventListener.java|1008|1015|Faction|class|io.github.aquerr.eaglefactions.entities.Faction
       @|ru\allformine\afmcp\handlers\FactionEventListener.java|1030|1043|EagleFactions|class|io.github.aquerr.eaglefactions.EagleFactions
@@ -886,111 +897,113 @@ Class Start: ru.allformine.afmcp.handlers.FactionEventListener
       @|ru\allformine\afmcp\handlers\FactionEventListener.java|1092|1098|player|param|ru.allformine.afmcp.handlers.FactionEventListener|onPlayerMove|(Lorg/spongepowered/api/event/entity/MoveEntityEvent;Lorg/spongepowered/api/entity/living/player/Player;)V|player|1
       @|ru\allformine\afmcp\handlers\FactionEventListener.java|1099|1107|getWorld|method|org.spongepowered.api.world.Locatable|getWorld|()Lorg/spongepowered/api/world/World;
       @|ru\allformine\afmcp\handlers\FactionEventListener.java|1110|1121|getUniqueId|method|org.spongepowered.api.util.Identifiable|getUniqueId|()Ljava/util/UUID;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1144|1152|Optional|class|java.util.Optional
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1153|1160|Faction|class|io.github.aquerr.eaglefactions.entities.Faction
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1175|1188|EagleFactions|class|io.github.aquerr.eaglefactions.EagleFactions
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1189|1198|getPlugin|method|io.github.aquerr.eaglefactions.EagleFactions|getPlugin|()Lio/github/aquerr/eaglefactions/EagleFactions;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1201|1216|getFactionLogic|method|io.github.aquerr.eaglefactions.EagleFactions|getFactionLogic|()Lio/github/aquerr/eaglefactions/logic/FactionLogic;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1219|1236|getFactionByChunk|method|io.github.aquerr.eaglefactions.logic.FactionLogic|getFactionByChunk|(Ljava/util/UUID;Lcom/flowpowered/math/vector/Vector3i;)Ljava/util/Optional;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1237|1243|player|param|ru.allformine.afmcp.handlers.FactionEventListener|onPlayerMove|(Lorg/spongepowered/api/event/entity/MoveEntityEvent;Lorg/spongepowered/api/entity/living/player/Player;)V|player|1
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1244|1252|getWorld|method|org.spongepowered.api.world.Locatable|getWorld|()Lorg/spongepowered/api/world/World;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1255|1266|getUniqueId|method|org.spongepowered.api.util.Identifiable|getUniqueId|()Ljava/util/UUID;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1305|1311|orElse|method|java.util.Optional|orElse|(Ljava/lang/Object;)Ljava/lang/Object;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1332|1338|orElse|method|java.util.Optional|orElse|(Ljava/lang/Object;)Ljava/lang/Object;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1363|1371|Optional|class|java.util.Optional
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1372|1379|Faction|class|io.github.aquerr.eaglefactions.entities.Faction
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1391|1404|EagleFactions|class|io.github.aquerr.eaglefactions.EagleFactions
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1405|1414|getPlugin|method|io.github.aquerr.eaglefactions.EagleFactions|getPlugin|()Lio/github/aquerr/eaglefactions/EagleFactions;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1417|1432|getFactionLogic|method|io.github.aquerr.eaglefactions.EagleFactions|getFactionLogic|()Lio/github/aquerr/eaglefactions/logic/FactionLogic;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1435|1452|getFactionByChunk|method|io.github.aquerr.eaglefactions.logic.FactionLogic|getFactionByChunk|(Ljava/util/UUID;Lcom/flowpowered/math/vector/Vector3i;)Ljava/util/Optional;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1453|1458|event|param|ru.allformine.afmcp.handlers.FactionEventListener|onPlayerMove|(Lorg/spongepowered/api/event/entity/MoveEntityEvent;Lorg/spongepowered/api/entity/living/player/Player;)V|event|0
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1459|1474|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1477|1485|getWorld|method|org.spongepowered.api.world.Locatable|getWorld|()Lorg/spongepowered/api/world/World;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1488|1499|getUniqueId|method|org.spongepowered.api.util.Identifiable|getUniqueId|()Ljava/util/UUID;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1522|1528|String|class|java.lang.String
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1543|1566|getFactionNameForPlayer|method|ru.allformine.afmcp.handlers.FactionEventListener|getFactionNameForPlayer|(Ljava/util/Optional;Lorg/spongepowered/api/entity/living/player/Player;)Ljava/lang/String;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1576|1582|player|param|ru.allformine.afmcp.handlers.FactionEventListener|onPlayerMove|(Lorg/spongepowered/api/event/entity/MoveEntityEvent;Lorg/spongepowered/api/entity/living/player/Player;)V|player|1
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1594|1606|sendToPlayer|method|ru.allformine.afmcp.handlers.FactionEventListener|sendToPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Ljava/lang/String;)V
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1607|1613|player|param|ru.allformine.afmcp.handlers.FactionEventListener|onPlayerMove|(Lorg/spongepowered/api/event/entity/MoveEntityEvent;Lorg/spongepowered/api/entity/living/player/Player;)V|player|1
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1160|1166|orElse|method|java.util.Optional|orElse|(Ljava/lang/Object;)Ljava/lang/Object;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1187|1193|orElse|method|java.util.Optional|orElse|(Ljava/lang/Object;)Ljava/lang/Object;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1218|1226|Optional|class|java.util.Optional
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1227|1234|Faction|class|io.github.aquerr.eaglefactions.entities.Faction
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1246|1259|EagleFactions|class|io.github.aquerr.eaglefactions.EagleFactions
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1260|1269|getPlugin|method|io.github.aquerr.eaglefactions.EagleFactions|getPlugin|()Lio/github/aquerr/eaglefactions/EagleFactions;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1272|1287|getFactionLogic|method|io.github.aquerr.eaglefactions.EagleFactions|getFactionLogic|()Lio/github/aquerr/eaglefactions/logic/FactionLogic;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1290|1307|getFactionByChunk|method|io.github.aquerr.eaglefactions.logic.FactionLogic|getFactionByChunk|(Ljava/util/UUID;Lcom/flowpowered/math/vector/Vector3i;)Ljava/util/Optional;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1308|1313|event|param|ru.allformine.afmcp.handlers.FactionEventListener|onPlayerMove|(Lorg/spongepowered/api/event/entity/MoveEntityEvent;Lorg/spongepowered/api/entity/living/player/Player;)V|event|0
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1314|1329|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1332|1340|getWorld|method|org.spongepowered.api.world.Locatable|getWorld|()Lorg/spongepowered/api/world/World;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1343|1354|getUniqueId|method|org.spongepowered.api.util.Identifiable|getUniqueId|()Ljava/util/UUID;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1377|1383|String|class|java.lang.String
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1398|1421|getFactionNameForPlayer|method|ru.allformine.afmcp.handlers.FactionEventListener|getFactionNameForPlayer|(Ljava/util/Optional;Lorg/spongepowered/api/entity/living/player/Player;)Ljava/lang/String;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1431|1437|player|param|ru.allformine.afmcp.handlers.FactionEventListener|onPlayerMove|(Lorg/spongepowered/api/event/entity/MoveEntityEvent;Lorg/spongepowered/api/entity/living/player/Player;)V|player|1
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1449|1461|sendToPlayer|method|ru.allformine.afmcp.handlers.FactionEventListener|sendToPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Ljava/lang/String;)V
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1462|1468|player|param|ru.allformine.afmcp.handlers.FactionEventListener|onPlayerMove|(Lorg/spongepowered/api/event/entity/MoveEntityEvent;Lorg/spongepowered/api/entity/living/player/Player;)V|player|1
    Method End: onPlayerMove(Lorg/spongepowered/api/event/entity/MoveEntityEvent;Lorg/spongepowered/api/entity/living/player/Player;)V
    Method Start: onPlayerJoin(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1706|1711|event|param|ru.allformine.afmcp.handlers.FactionEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1641|1649|Listener|class|org.spongepowered.api.event.Listener
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1666|1678|onPlayerJoin|method|ru.allformine.afmcp.handlers.FactionEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1679|1705|ClientConnectionEvent.Join|class|org.spongepowered.api.event.network.ClientConnectionEvent.Join
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1723|1731|Vector3i|class|com.flowpowered.math.vector.Vector3i
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1740|1745|event|param|ru.allformine.afmcp.handlers.FactionEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1746|1761|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1764|1775|getLocation|method|org.spongepowered.api.world.Locatable|getLocation|()Lorg/spongepowered/api/world/Location;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1778|1794|getChunkPosition|method|org.spongepowered.api.world.Location|getChunkPosition|()Lcom/flowpowered/math/vector/Vector3i;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1806|1814|Optional|class|java.util.Optional
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1815|1822|Faction|class|io.github.aquerr.eaglefactions.entities.Faction
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1834|1847|EagleFactions|class|io.github.aquerr.eaglefactions.EagleFactions
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1848|1857|getPlugin|method|io.github.aquerr.eaglefactions.EagleFactions|getPlugin|()Lio/github/aquerr/eaglefactions/EagleFactions;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1860|1875|getFactionLogic|method|io.github.aquerr.eaglefactions.EagleFactions|getFactionLogic|()Lio/github/aquerr/eaglefactions/logic/FactionLogic;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1878|1895|getFactionByChunk|method|io.github.aquerr.eaglefactions.logic.FactionLogic|getFactionByChunk|(Ljava/util/UUID;Lcom/flowpowered/math/vector/Vector3i;)Ljava/util/Optional;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1896|1901|event|param|ru.allformine.afmcp.handlers.FactionEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1902|1917|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1920|1928|getWorld|method|org.spongepowered.api.world.Locatable|getWorld|()Lorg/spongepowered/api/world/World;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1931|1942|getUniqueId|method|org.spongepowered.api.util.Identifiable|getUniqueId|()Ljava/util/UUID;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1962|1968|String|class|java.lang.String
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1983|2006|getFactionNameForPlayer|method|ru.allformine.afmcp.handlers.FactionEventListener|getFactionNameForPlayer|(Ljava/util/Optional;Lorg/spongepowered/api/entity/living/player/Player;)Ljava/lang/String;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2016|2021|event|param|ru.allformine.afmcp.handlers.FactionEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2022|2037|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2051|2063|sendToPlayer|method|ru.allformine.afmcp.handlers.FactionEventListener|sendToPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Ljava/lang/String;)V
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2064|2069|event|param|ru.allformine.afmcp.handlers.FactionEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2070|2085|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1561|1566|event|param|ru.allformine.afmcp.handlers.FactionEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1496|1504|Listener|class|org.spongepowered.api.event.Listener
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1521|1533|onPlayerJoin|method|ru.allformine.afmcp.handlers.FactionEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1534|1560|ClientConnectionEvent.Join|class|org.spongepowered.api.event.network.ClientConnectionEvent.Join
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1578|1586|Vector3i|class|com.flowpowered.math.vector.Vector3i
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1595|1600|event|param|ru.allformine.afmcp.handlers.FactionEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1601|1616|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1619|1630|getLocation|method|org.spongepowered.api.world.Locatable|getLocation|()Lorg/spongepowered/api/world/Location;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1633|1649|getChunkPosition|method|org.spongepowered.api.world.Location|getChunkPosition|()Lcom/flowpowered/math/vector/Vector3i;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1661|1669|Optional|class|java.util.Optional
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1670|1677|Faction|class|io.github.aquerr.eaglefactions.entities.Faction
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1689|1702|EagleFactions|class|io.github.aquerr.eaglefactions.EagleFactions
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1703|1712|getPlugin|method|io.github.aquerr.eaglefactions.EagleFactions|getPlugin|()Lio/github/aquerr/eaglefactions/EagleFactions;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1715|1730|getFactionLogic|method|io.github.aquerr.eaglefactions.EagleFactions|getFactionLogic|()Lio/github/aquerr/eaglefactions/logic/FactionLogic;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1733|1750|getFactionByChunk|method|io.github.aquerr.eaglefactions.logic.FactionLogic|getFactionByChunk|(Ljava/util/UUID;Lcom/flowpowered/math/vector/Vector3i;)Ljava/util/Optional;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1751|1756|event|param|ru.allformine.afmcp.handlers.FactionEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1757|1772|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1775|1783|getWorld|method|org.spongepowered.api.world.Locatable|getWorld|()Lorg/spongepowered/api/world/World;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1786|1797|getUniqueId|method|org.spongepowered.api.util.Identifiable|getUniqueId|()Ljava/util/UUID;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1817|1823|String|class|java.lang.String
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1838|1861|getFactionNameForPlayer|method|ru.allformine.afmcp.handlers.FactionEventListener|getFactionNameForPlayer|(Ljava/util/Optional;Lorg/spongepowered/api/entity/living/player/Player;)Ljava/lang/String;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1871|1876|event|param|ru.allformine.afmcp.handlers.FactionEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1877|1892|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1906|1918|sendToPlayer|method|ru.allformine.afmcp.handlers.FactionEventListener|sendToPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Ljava/lang/String;)V
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1919|1924|event|param|ru.allformine.afmcp.handlers.FactionEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1925|1940|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
    Method End: onPlayerJoin(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V
    Method Start: sendToPlayer(Lorg/spongepowered/api/entity/living/player/Player;Ljava/lang/String;)V
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2147|2153|player|param|ru.allformine.afmcp.handlers.FactionEventListener|sendToPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Ljava/lang/String;)V|player|0
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2162|2168|string|param|ru.allformine.afmcp.handlers.FactionEventListener|sendToPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Ljava/lang/String;)V|string|1
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2127|2139|sendToPlayer|method|ru.allformine.afmcp.handlers.FactionEventListener|sendToPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Ljava/lang/String;)V
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2140|2146|Player|class|org.spongepowered.api.entity.living.player.Player
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2155|2161|String|class|java.lang.String
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2180|2194|PacketChannels|class|ru.allformine.afmcp.PacketChannels
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2195|2203|FACTIONS|field|ru.allformine.afmcp.PacketChannels|FACTIONS
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2204|2210|sendTo|method|org.spongepowered.api.network.ChannelBinding.RawDataChannel|sendTo|(Lorg/spongepowered/api/entity/living/player/Player;Ljava/util/function/Consumer;)V
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2211|2217|player|param|ru.allformine.afmcp.handlers.FactionEventListener|sendToPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Ljava/lang/String;)V|player|0
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2226|2229|buf|param|java.util.function.Consumer<org.spongepowered.api.network.ChannelBuf>|accept|(Lorg/spongepowered/api/network/ChannelBuf;)V|buf|-1
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2230|2241|writeString|method|org.spongepowered.api.network.ChannelBuf|writeString|(Ljava/lang/String;)Lorg/spongepowered/api/network/ChannelBuf;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2242|2248|string|param|ru.allformine.afmcp.handlers.FactionEventListener|sendToPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Ljava/lang/String;)V|string|1
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2002|2008|player|param|ru.allformine.afmcp.handlers.FactionEventListener|sendToPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Ljava/lang/String;)V|player|0
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2017|2023|string|param|ru.allformine.afmcp.handlers.FactionEventListener|sendToPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Ljava/lang/String;)V|string|1
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1982|1994|sendToPlayer|method|ru.allformine.afmcp.handlers.FactionEventListener|sendToPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Ljava/lang/String;)V
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|1995|2001|Player|class|org.spongepowered.api.entity.living.player.Player
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2010|2016|String|class|java.lang.String
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2035|2049|PacketChannels|class|ru.allformine.afmcp.PacketChannels
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2050|2058|FACTIONS|field|ru.allformine.afmcp.PacketChannels|FACTIONS
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2059|2065|sendTo|method|org.spongepowered.api.network.ChannelBinding.RawDataChannel|sendTo|(Lorg/spongepowered/api/entity/living/player/Player;Ljava/util/function/Consumer;)V
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2066|2072|player|param|ru.allformine.afmcp.handlers.FactionEventListener|sendToPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Ljava/lang/String;)V|player|0
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2081|2084|buf|param|java.util.function.Consumer<org.spongepowered.api.network.ChannelBuf>|accept|(Lorg/spongepowered/api/network/ChannelBuf;)V|buf|-1
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2085|2096|writeString|method|org.spongepowered.api.network.ChannelBuf|writeString|(Ljava/lang/String;)Lorg/spongepowered/api/network/ChannelBuf;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2097|2103|string|param|ru.allformine.afmcp.handlers.FactionEventListener|sendToPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Ljava/lang/String;)V|string|1
    Method End: sendToPlayer(Lorg/spongepowered/api/entity/living/player/Player;Ljava/lang/String;)V
    Method Start: getFactionNameForPlayer(Ljava/util/Optional;Lorg/spongepowered/api/entity/living/player/Player;)Ljava/lang/String;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2320|2327|faction|param|ru.allformine.afmcp.handlers.FactionEventListener|getFactionNameForPlayer|(Ljava/util/Optional;Lorg/spongepowered/api/entity/living/player/Player;)Ljava/lang/String;|faction|0
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2336|2342|player|param|ru.allformine.afmcp.handlers.FactionEventListener|getFactionNameForPlayer|(Ljava/util/Optional;Lorg/spongepowered/api/entity/living/player/Player;)Ljava/lang/String;|player|1
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2271|2277|String|class|java.lang.String
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2278|2301|getFactionNameForPlayer|method|ru.allformine.afmcp.handlers.FactionEventListener|getFactionNameForPlayer|(Ljava/util/Optional;Lorg/spongepowered/api/entity/living/player/Player;)Ljava/lang/String;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2302|2310|Optional|class|java.util.Optional
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2311|2318|Faction|class|io.github.aquerr.eaglefactions.entities.Faction
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2329|2335|Player|class|org.spongepowered.api.entity.living.player.Player
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2354|2360|String|class|java.lang.String
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2375|2382|faction|param|ru.allformine.afmcp.handlers.FactionEventListener|getFactionNameForPlayer|(Ljava/util/Optional;Lorg/spongepowered/api/entity/living/player/Player;)Ljava/lang/String;|faction|0
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2383|2392|isPresent|method|java.util.Optional|isPresent|()Z
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2397|2404|faction|param|ru.allformine.afmcp.handlers.FactionEventListener|getFactionNameForPlayer|(Ljava/util/Optional;Lorg/spongepowered/api/entity/living/player/Player;)Ljava/lang/String;|faction|0
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2405|2408|get|method|java.util.Optional|get|()Ljava/lang/Object;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2411|2418|getName|method|io.github.aquerr.eaglefactions.entities.Faction|getName|()Ljava/lang/String;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2445|2454|TextColor|class|org.spongepowered.api.text.format.TextColor
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2470|2480|TextColors|class|org.spongepowered.api.text.format.TextColors
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2481|2491|DARK_GREEN|field|org.spongepowered.api.text.format.TextColors|DARK_GREEN
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2518|2524|equals|method|java.lang.String|equals|(Ljava/lang/Object;)Z
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2567|2577|TextColors|class|org.spongepowered.api.text.format.TextColors
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2578|2590|LIGHT_PURPLE|field|org.spongepowered.api.text.format.TextColors|LIGHT_PURPLE
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2623|2629|equals|method|java.lang.String|equals|(Ljava/lang/Object;)Z
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2671|2681|TextColors|class|org.spongepowered.api.text.format.TextColors
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2682|2685|RED|field|org.spongepowered.api.text.format.TextColors|RED
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2719|2725|equals|method|java.lang.String|equals|(Ljava/lang/Object;)Z
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2743|2750|faction|param|ru.allformine.afmcp.handlers.FactionEventListener|getFactionNameForPlayer|(Ljava/util/Optional;Lorg/spongepowered/api/entity/living/player/Player;)Ljava/lang/String;|faction|0
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2751|2754|get|method|java.util.Optional|get|()Ljava/lang/Object;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2757|2771|containsPlayer|method|io.github.aquerr.eaglefactions.entities.Faction|containsPlayer|(Ljava/util/UUID;)Z
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2772|2778|player|param|ru.allformine.afmcp.handlers.FactionEventListener|getFactionNameForPlayer|(Ljava/util/Optional;Lorg/spongepowered/api/entity/living/player/Player;)Ljava/lang/String;|player|1
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2779|2790|getUniqueId|method|org.spongepowered.api.util.Identifiable|getUniqueId|()Ljava/util/UUID;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2824|2834|TextColors|class|org.spongepowered.api.text.format.TextColors
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2835|2840|GREEN|field|org.spongepowered.api.text.format.TextColors|GREEN
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2886|2896|TextColors|class|org.spongepowered.api.text.format.TextColors
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2897|2901|GOLD|field|org.spongepowered.api.text.format.TextColors|GOLD
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2929|2933|Text|class|org.spongepowered.api.text.Text
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2934|2936|of|method|org.spongepowered.api.text.Text|of|([Ljava/lang/Object;)Lorg/spongepowered/api/text/Text;
-      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2964|2971|toPlain|method|org.spongepowered.api.text.Text|toPlain|()Ljava/lang/String;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2175|2182|faction|param|ru.allformine.afmcp.handlers.FactionEventListener|getFactionNameForPlayer|(Ljava/util/Optional;Lorg/spongepowered/api/entity/living/player/Player;)Ljava/lang/String;|faction|0
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2191|2197|player|param|ru.allformine.afmcp.handlers.FactionEventListener|getFactionNameForPlayer|(Ljava/util/Optional;Lorg/spongepowered/api/entity/living/player/Player;)Ljava/lang/String;|player|1
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2126|2132|String|class|java.lang.String
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2133|2156|getFactionNameForPlayer|method|ru.allformine.afmcp.handlers.FactionEventListener|getFactionNameForPlayer|(Ljava/util/Optional;Lorg/spongepowered/api/entity/living/player/Player;)Ljava/lang/String;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2157|2165|Optional|class|java.util.Optional
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2166|2173|Faction|class|io.github.aquerr.eaglefactions.entities.Faction
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2184|2190|Player|class|org.spongepowered.api.entity.living.player.Player
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2209|2215|String|class|java.lang.String
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2230|2237|faction|param|ru.allformine.afmcp.handlers.FactionEventListener|getFactionNameForPlayer|(Ljava/util/Optional;Lorg/spongepowered/api/entity/living/player/Player;)Ljava/lang/String;|faction|0
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2238|2247|isPresent|method|java.util.Optional|isPresent|()Z
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2252|2259|faction|param|ru.allformine.afmcp.handlers.FactionEventListener|getFactionNameForPlayer|(Ljava/util/Optional;Lorg/spongepowered/api/entity/living/player/Player;)Ljava/lang/String;|faction|0
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2260|2263|get|method|java.util.Optional|get|()Ljava/lang/Object;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2266|2273|getName|method|io.github.aquerr.eaglefactions.entities.Faction|getName|()Ljava/lang/String;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2295|2301|String|class|java.lang.String
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2341|2347|equals|method|java.lang.String|equals|(Ljava/lang/Object;)Z
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2363|2376|EagleFactions|class|io.github.aquerr.eaglefactions.EagleFactions
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2377|2386|getPlugin|method|io.github.aquerr.eaglefactions.EagleFactions|getPlugin|()Lio/github/aquerr/eaglefactions/EagleFactions;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2389|2405|getConfiguration|method|io.github.aquerr.eaglefactions.EagleFactions|getConfiguration|()Lio/github/aquerr/eaglefactions/config/IConfiguration;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2408|2423|getConfigFields|method|io.github.aquerr.eaglefactions.config.IConfiguration|getConfigFields|()Lio/github/aquerr/eaglefactions/config/ConfigFields;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2426|2447|getSafeZoneWorldNames|method|io.github.aquerr.eaglefactions.config.ConfigFields|getSafeZoneWorldNames|()Ljava/util/Set;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2450|2458|contains|method|java.util.Collection|contains|(Ljava/lang/Object;)Z
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2459|2465|player|param|ru.allformine.afmcp.handlers.FactionEventListener|getFactionNameForPlayer|(Ljava/util/Optional;Lorg/spongepowered/api/entity/living/player/Player;)Ljava/lang/String;|player|1
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2466|2474|getWorld|method|org.spongepowered.api.world.Locatable|getWorld|()Lorg/spongepowered/api/world/World;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2477|2484|getName|method|org.spongepowered.api.world.World|getName|()Ljava/lang/String;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2593|2599|equals|method|java.lang.String|equals|(Ljava/lang/Object;)Z
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2614|2627|EagleFactions|class|io.github.aquerr.eaglefactions.EagleFactions
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2628|2637|getPlugin|method|io.github.aquerr.eaglefactions.EagleFactions|getPlugin|()Lio/github/aquerr/eaglefactions/EagleFactions;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2640|2656|getConfiguration|method|io.github.aquerr.eaglefactions.EagleFactions|getConfiguration|()Lio/github/aquerr/eaglefactions/config/IConfiguration;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2659|2674|getConfigFields|method|io.github.aquerr.eaglefactions.config.IConfiguration|getConfigFields|()Lio/github/aquerr/eaglefactions/config/ConfigFields;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2677|2697|getWarZoneWorldNames|method|io.github.aquerr.eaglefactions.config.ConfigFields|getWarZoneWorldNames|()Ljava/util/Set;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2700|2708|contains|method|java.util.Collection|contains|(Ljava/lang/Object;)Z
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2709|2715|player|param|ru.allformine.afmcp.handlers.FactionEventListener|getFactionNameForPlayer|(Ljava/util/Optional;Lorg/spongepowered/api/entity/living/player/Player;)Ljava/lang/String;|player|1
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2716|2724|getWorld|method|org.spongepowered.api.world.Locatable|getWorld|()Lorg/spongepowered/api/world/World;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2727|2734|getName|method|org.spongepowered.api.world.World|getName|()Ljava/lang/String;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2843|2849|equals|method|java.lang.String|equals|(Ljava/lang/Object;)Z
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2862|2869|faction|param|ru.allformine.afmcp.handlers.FactionEventListener|getFactionNameForPlayer|(Ljava/util/Optional;Lorg/spongepowered/api/entity/living/player/Player;)Ljava/lang/String;|faction|0
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2870|2873|get|method|java.util.Optional|get|()Ljava/lang/Object;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2876|2890|containsPlayer|method|io.github.aquerr.eaglefactions.entities.Faction|containsPlayer|(Ljava/util/UUID;)Z
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2891|2897|player|param|ru.allformine.afmcp.handlers.FactionEventListener|getFactionNameForPlayer|(Ljava/util/Optional;Lorg/spongepowered/api/entity/living/player/Player;)Ljava/lang/String;|player|1
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2898|2909|getUniqueId|method|org.spongepowered.api.util.Identifiable|getUniqueId|()Ljava/util/UUID;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|2981|2987|equals|method|java.lang.String|equals|(Ljava/lang/Object;)Z
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|3001|3008|faction|param|ru.allformine.afmcp.handlers.FactionEventListener|getFactionNameForPlayer|(Ljava/util/Optional;Lorg/spongepowered/api/entity/living/player/Player;)Ljava/lang/String;|faction|0
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|3009|3012|get|method|java.util.Optional|get|()Ljava/lang/Object;
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|3015|3029|containsPlayer|method|io.github.aquerr.eaglefactions.entities.Faction|containsPlayer|(Ljava/util/UUID;)Z
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|3030|3036|player|param|ru.allformine.afmcp.handlers.FactionEventListener|getFactionNameForPlayer|(Ljava/util/Optional;Lorg/spongepowered/api/entity/living/player/Player;)Ljava/lang/String;|player|1
+      @|ru\allformine\afmcp\handlers\FactionEventListener.java|3037|3048|getUniqueId|method|org.spongepowered.api.util.Identifiable|getUniqueId|()Ljava/util/UUID;
    Method End: getFactionNameForPlayer(Ljava/util/Optional;Lorg/spongepowered/api/entity/living/player/Player;)Ljava/lang/String;
 Class End  : ru.allformine.afmcp.handlers.FactionEventListener
 endProcessing "ru\allformine\afmcp\handlers\FactionEventListener.java"
@@ -1032,6 +1045,7 @@ Class End  : ru.allformine.afmcp.handlers.VanishEventListener
 endProcessing "ru\allformine\afmcp\handlers\VanishEventListener.java"
 
 startProcessing "ru\allformine\afmcp\jumppad\JumpPadEventListener.java" md5: 6338634a5d74b5eaf79a8c1a90f04efa
+Cache Hit!
 @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|8|35|ru.allformine.afmcp.jumppad|package|ru.allformine.afmcp.jumppad|(file)
 Class Start: ru.allformine.afmcp.jumppad.JumpPadEventListener
    @|ru\allformine\afmcp\jumppad\JumpPadEventListener.java|774|794|JumpPadEventListener|class|ru.allformine.afmcp.jumppad.JumpPadEventListener
@@ -1579,6 +1593,7 @@ Class End  : ru.allformine.afmcp.net.http.Response
 endProcessing "ru\allformine\afmcp\net\http\Response.java"
 
 startProcessing "ru\allformine\afmcp\packetlisteners\ScreenshotListener.java" md5: e24dfaf66c1e172cea0a24ff98cb6230
+Cache Hit!
 @|ru\allformine\afmcp\packetlisteners\ScreenshotListener.java|8|43|ru.allformine.afmcp.packetlisteners|package|ru.allformine.afmcp.packetlisteners|(file)
 Class Start: ru.allformine.afmcp.packetlisteners.ScreenshotListener
    @|ru\allformine\afmcp\packetlisteners\ScreenshotListener.java|540|558|ScreenshotListener|class|ru.allformine.afmcp.packetlisteners.ScreenshotListener
@@ -1623,6 +1638,7 @@ Class End  : ru.allformine.afmcp.packetlisteners.ScreenshotListener
 endProcessing "ru\allformine\afmcp\packetlisteners\ScreenshotListener.java"
 
 startProcessing "ru\allformine\afmcp\serverapi\HTTPServer.java" md5: ac9864c9cca7b27c8948cd3861cc67b5
+Cache Hit!
 @|ru\allformine\afmcp\serverapi\HTTPServer.java|8|37|ru.allformine.afmcp.serverapi|package|ru.allformine.afmcp.serverapi|(file)
 Class Start: ru.allformine.afmcp.serverapi.HTTPServer
    @|ru\allformine\afmcp\serverapi\HTTPServer.java|415|425|HTTPServer|class|ru.allformine.afmcp.serverapi.HTTPServer

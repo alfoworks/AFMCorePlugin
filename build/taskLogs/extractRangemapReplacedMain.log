@@ -1,9 +1,11 @@
 Symbol range map extraction starting
 Processing 23 files
 startProcessing "ru\allformine\afmcp\AFMCorePlugin.java" md5: 4ea7a3c28d497d9a397481e49e3479aa
+Cache Hit!
 endProcessing "ru\allformine\afmcp\AFMCorePlugin.java"
 
 startProcessing "ru\allformine\afmcp\PacketChannels.java" md5: f7cd61b45066a38e882b1660c552dc54
+Cache Hit!
 endProcessing "ru\allformine\afmcp\PacketChannels.java"
 
 startProcessing "ru\allformine\afmcp\Utils.java" md5: b2a076a845f8444c87eaa1692857c959
@@ -38,7 +40,7 @@ startProcessing "ru\allformine\afmcp\handlers\DiscordWebhookListener.java" md5: 
 Cache Hit!
 endProcessing "ru\allformine\afmcp\handlers\DiscordWebhookListener.java"
 
-startProcessing "ru\allformine\afmcp\handlers\FactionEventListener.java" md5: 63689722f575f7f691794c85ff0bdecb
+startProcessing "ru\allformine\afmcp\handlers\FactionEventListener.java" md5: 4124259e29a68f975f65dbb9ecbe74a5
 endProcessing "ru\allformine\afmcp\handlers\FactionEventListener.java"
 
 startProcessing "ru\allformine\afmcp\handlers\VanishEventListener.java" md5: 2b5e042f71c2bbd191e55ca6980e075c
@@ -46,6 +48,7 @@ Cache Hit!
 endProcessing "ru\allformine\afmcp\handlers\VanishEventListener.java"
 
 startProcessing "ru\allformine\afmcp\jumppad\JumpPadEventListener.java" md5: 6338634a5d74b5eaf79a8c1a90f04efa
+Cache Hit!
 endProcessing "ru\allformine\afmcp\jumppad\JumpPadEventListener.java"
 
 startProcessing "ru\allformine\afmcp\jumppad\JumpPadTypes.java" md5: 53678d0fa042d12a1b7f2cc8db0d065b
@@ -69,9 +72,11 @@ Cache Hit!
 endProcessing "ru\allformine\afmcp\net\http\Response.java"
 
 startProcessing "ru\allformine\afmcp\packetlisteners\ScreenshotListener.java" md5: e24dfaf66c1e172cea0a24ff98cb6230
+Cache Hit!
 endProcessing "ru\allformine\afmcp\packetlisteners\ScreenshotListener.java"
 
 startProcessing "ru\allformine\afmcp\serverapi\HTTPServer.java" md5: ac9864c9cca7b27c8948cd3861cc67b5
+Cache Hit!
 endProcessing "ru\allformine\afmcp\serverapi\HTTPServer.java"
 
 startProcessing "ru\allformine\afmcp\serverapi\ServerAPISender.java" md5: da10fb7b5c3938caae388cf7cd9ac103
