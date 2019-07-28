@@ -8,9 +8,6 @@ import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.entity.MoveEntityEvent;
 import org.spongepowered.api.event.filter.cause.Root;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.format.TextColor;
-import org.spongepowered.api.text.format.TextColors;
 import ru.allformine.afmcp.PacketChannels;
 
 import java.util.Optional;
@@ -47,21 +44,23 @@ public class FactionEventListener {
     }
 
     private String getFactionNameForPlayer(Optional<Faction> faction, Player player) {
-        String factionName = faction.isPresent() ? faction.get().getName() : "Wilderness";
-        TextColor factionColor = TextColors.DARK_GREEN;
+        String factionName = faction.isPresent() ? faction.get().getName() : "Общая";
+        String factionColor;
 
-        //TODO надо чтобы в мирах safe и war zone писалось, что игрок в них, сейчас это не работает :/
         if (factionName.equals("SafeZone") || EagleFactions.getPlugin().getConfiguration().getConfigFields().getSafeZoneWorldNames().contains(player.getWorld().getName())) {
-            factionColor = TextColors.LIGHT_PURPLE;
+            factionColor = "§d";
+            factionName = "SafeZone";
         } else if (factionName.equals("WarZone") || EagleFactions.getPlugin().getConfiguration().getConfigFields().getWarZoneWorldNames().contains(player.getWorld().getName())) {
-            factionColor = TextColors.RED;
-        } else if (!factionName.equals("Wilderness") && faction.get().containsPlayer(player.getUniqueId())) {
-            factionColor = TextColors.GREEN;
+            factionColor = "§4";
+            factionName = "WarZone";
+        } else if (!factionName.equals("Общая") && faction.get().containsPlayer(player.getUniqueId())) {
+            factionColor = "§a";
+        } else if (!factionName.equals("Общая") && !faction.get().containsPlayer(player.getUniqueId())) {
+            factionColor = "§6";
         } else {
-            factionColor = TextColors.GOLD;
+            factionColor = "§2";
         }
 
-        //TODO текст не цветной на клиенте
-        return Text.builder().append(Text.of(factionName)).color(factionColor).toText().toPlain();
+        return factionColor + factionName;
     }
 }
