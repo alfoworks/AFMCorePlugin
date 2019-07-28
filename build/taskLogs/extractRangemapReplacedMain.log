@@ -40,7 +40,7 @@ startProcessing "ru\allformine\afmcp\handlers\DiscordWebhookListener.java" md5: 
 Cache Hit!
 endProcessing "ru\allformine\afmcp\handlers\DiscordWebhookListener.java"
 
-startProcessing "ru\allformine\afmcp\handlers\FactionEventListener.java" md5: 4124259e29a68f975f65dbb9ecbe74a5
+startProcessing "ru\allformine\afmcp\handlers\FactionEventListener.java" md5: 8d7c63a827de90f70df23dc0e9c46761
 endProcessing "ru\allformine\afmcp\handlers\FactionEventListener.java"
 
 startProcessing "ru\allformine\afmcp\handlers\VanishEventListener.java" md5: 2b5e042f71c2bbd191e55ca6980e075c

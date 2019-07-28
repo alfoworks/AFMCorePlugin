@@ -9,7 +9,6 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4.1/taskHistory/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4.1/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/libs/AFMCorePlugin-sponge1.12-0.6-sources.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/AFMCorePlugin-sponge1.12-0.6-sources.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/libs/AFMCorePlugin-sponge1.12-0.6.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/AFMCorePlugin-sponge1.12-0.6.jar" afterDir="false" />
@@ -17,7 +16,6 @@
       <change beforePath="$PROJECT_DIR$/build/retromapping/retromappedReplacedMain.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/retromapping/retromappedReplacedMain.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/taskLogs/extractRangemapReplacedMain.log" beforeDir="false" afterPath="$PROJECT_DIR$/build/taskLogs/extractRangemapReplacedMain.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/taskLogs/retromapReplacedMain.log" beforeDir="false" afterPath="$PROJECT_DIR$/build/taskLogs/retromapReplacedMain.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/generateMetadata/mcmod.info" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/generateMetadata/mcmod.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/handlers/FactionEventListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/handlers/FactionEventListener.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -56,8 +54,8 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="4" />
-          <entry key="JAVA" value="721" />
-          <entry key="PLAIN_TEXT" value="14" />
+          <entry key="JAVA" value="1178" />
+          <entry key="PLAIN_TEXT" value="25" />
         </counts>
       </usages-collector>
     </session>
@@ -67,8 +65,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/serverapi/HTTPServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2465">
-              <caret line="155" column="35" selection-start-line="155" selection-start-column="35" selection-end-line="155" selection-end-column="35" />
+            <state relative-caret-position="303">
+              <caret line="65" column="40" lean-forward="true" selection-start-line="65" selection-start-column="40" selection-end-line="65" selection-end-column="110" />
             </state>
           </provider>
         </entry>
@@ -118,13 +116,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/handlers/FactionEventListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="86" column="62" selection-start-line="86" selection-start-column="62" selection-end-line="86" selection-end-column="62" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#4065#4066#0" expanded="true" />
-                <element signature="e#4090#4091#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="238">
+              <caret line="14" column="41" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -1029,7 +1022,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1564353888207" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1564355767943" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -1057,13 +1050,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1555864005686</updated>
-    </task>
-    <task id="LOCAL-00012" summary="заменил == на equals">
-      <created>1556630545124</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1556630545124</updated>
     </task>
     <task id="LOCAL-00013" summary="Новый класс команд&#10;Фикс спама advancement&#10;Немного рефакторинга">
       <created>1558301292279</created>
@@ -1401,7 +1387,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564352839409</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="Еще кое-что">
+      <created>1564353994891</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1564353994891</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1415,7 +1408,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1448" y="172" width="1456" height="876" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30250895" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1514,7 +1506,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="Просранные жампады" />
     <MESSAGE value="Ну иди нахуй, а" />
     <MESSAGE value="Второй билд, мать вашу, забыл про эту хуйню блядь" />
     <MESSAGE value="Нахуй не нужон ваш дебаг" />
@@ -1539,7 +1530,8 @@
     <MESSAGE value="nahooy" />
     <MESSAGE value="Обнова по пакетной части + отправка имени фракций на клиент (спизжено с дримача)" />
     <MESSAGE value="Немного фиксов" />
-    <option name="LAST_COMMIT_MESSAGE" value="Немного фиксов" />
+    <MESSAGE value="Еще кое-что" />
+    <option name="LAST_COMMIT_MESSAGE" value="Еще кое-что" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -1765,13 +1757,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/serverapi/HTTPServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2465">
-          <caret line="155" column="35" selection-start-line="155" selection-start-column="35" selection-end-line="155" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/assets/afmcp/config.conf">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1837,15 +1822,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/serverapi/HTTPServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="65" column="40" lean-forward="true" selection-start-line="65" selection-start-column="40" selection-end-line="65" selection-end-column="110" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/handlers/FactionEventListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="86" column="62" selection-start-line="86" selection-start-column="62" selection-end-line="86" selection-end-column="62" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4065#4066#0" expanded="true" />
-            <element signature="e#4090#4091#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="238">
+          <caret line="14" column="41" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
         </state>
       </provider>
     </entry>

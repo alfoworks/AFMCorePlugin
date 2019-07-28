@@ -3,27 +3,30 @@ package ru.allformine.afmcp.handlers;
 import com.flowpowered.math.vector.Vector3i;
 import io.github.aquerr.eaglefactions.EagleFactions;
 import io.github.aquerr.eaglefactions.entities.Faction;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
+import org.spongepowered.api.event.Order;
 import org.spongepowered.api.event.command.SendCommandEvent;
 import org.spongepowered.api.event.entity.MoveEntityEvent;
 import org.spongepowered.api.event.filter.cause.Root;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
+import org.spongepowered.api.scheduler.Task;
+import org.spongepowered.api.world.World;
 import ru.allformine.afmcp.PacketChannels;
 
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 public class FactionEventListener {
     @Listener
     public void onPlayerMove(MoveEntityEvent event, @Root Player player) {
         Vector3i oldChunk = event.getFromTransform().getLocation().getChunkPosition();
         Vector3i newChunk = event.getToTransform().getLocation().getChunkPosition();
+        World world = event.getTargetEntity().getWorld();
 
-        Optional<Faction> oldFaction = EagleFactions.getPlugin().getFactionLogic().getFactionByChunk(player.getWorld().getUniqueId(), oldChunk);
-        Optional<Faction> newFaction = EagleFactions.getPlugin().getFactionLogic().getFactionByChunk(player.getWorld().getUniqueId(), newChunk);
-
-        if (newFaction.orElse(null) == oldFaction.orElse(null)) return;
+        if (world.getChunk(oldChunk).equals(world.getChunk(newChunk))) return;
 
         Optional<Faction> faction = EagleFactions.getPlugin().getFactionLogic().getFactionByChunk(event.getTargetEntity().getWorld().getUniqueId(), newChunk);
         String factionName = getFactionNameForPlayer(faction, player);
@@ -40,7 +43,7 @@ public class FactionEventListener {
         sendToPlayer(event.getTargetEntity(), factionName);
     }
 
-    @Listener
+    @Listener(order = Order.POST)
     public void onPlayerCommand(SendCommandEvent event) {
         if (!(event.getSource() instanceof Player)) {
             return;
@@ -50,11 +53,18 @@ public class FactionEventListener {
         Player player = (Player) event.getSource();
 
         if (isClaimUpdateCommand(allCommand)) {
-            Vector3i chunk = player.getLocation().getChunkPosition();
-            Optional<Faction> faction = EagleFactions.getPlugin().getFactionLogic().getFactionByChunk(player.getWorld().getUniqueId(), chunk);
-            String factionName = getFactionNameForPlayer(faction, player);
+            // Делаем это с задержкой, потому что даже на POST моменте выполнения команды приват еще существует.
 
-            sendToPlayer(player, factionName);
+            Task.builder().execute(() -> {
+                Vector3i chunk = player.getLocation().getChunkPosition();
+                Optional<Faction> faction = EagleFactions.getPlugin().getFactionLogic().getFactionByChunk(player.getWorld().getUniqueId(), chunk);
+                String factionName = getFactionNameForPlayer(faction, player);
+
+                sendToPlayer(player, factionName);
+            })
+                    .delay(1, TimeUnit.SECONDS)
+                    .name("FactionNameTask")
+                    .submit(Sponge.getPluginManager().getPlugin("afmcp").get().getInstance().get());
         }
     }
 
