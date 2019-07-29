@@ -44,6 +44,7 @@ import java.util.List;
         id = "afmcp",
         name = "AFMCorePlugin",
         description = "A plugin for a couple of random tasks.",
+        version = "0.7",
         url = "http://allformine.ru",
         authors = {
                 "Iterator, HeroBrine1st_Erq"

@@ -31,6 +31,7 @@ import ru.allformine.afmcp.jumppad.JumpPadEventListener;
 import ru.allformine.afmcp.net.api.Webhook;
 import ru.allformine.afmcp.packetlisteners.ScreenshotListener;
 import ru.allformine.afmcp.serverapi.HTTPServer;
+import ru.allformine.afmcp.tasks.AutoRebootTask;
 import ru.allformine.afmcp.test.PacketHandler;
 
 import java.io.IOException;
@@ -43,6 +44,7 @@ import java.util.List;
         id = "afmcp",
         name = "AFMCorePlugin",
         description = "A plugin for a couple of random tasks.",
+        version = "0.7",
         url = "http://allformine.ru",
         authors = {
                 "Iterator, HeroBrine1st_Erq"
@@ -163,6 +165,11 @@ public class AFMCorePlugin {
 
         apiServerTask = Task.builder().execute(apiServer)
                 .async().name("AFMCP APISERVER")
+                .submit(this);
+
+        Task.builder().execute(new AutoRebootTask())
+                .intervalTicks(20)
+                .name("AFM AutoReboot")
                 .submit(this);
     }
 

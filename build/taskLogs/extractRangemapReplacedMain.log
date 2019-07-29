@@ -1,6 +1,6 @@
 Symbol range map extraction starting
-Processing 23 files
-startProcessing "ru\allformine\afmcp\AFMCorePlugin.java" md5: 4ea7a3c28d497d9a397481e49e3479aa
+Processing 24 files
+startProcessing "ru\allformine\afmcp\AFMCorePlugin.java" md5: 3eb9c3360fca5682ef1d95191704d1f1
 Cache Hit!
 endProcessing "ru\allformine\afmcp\AFMCorePlugin.java"
 
@@ -8,7 +8,7 @@ startProcessing "ru\allformine\afmcp\PacketChannels.java" md5: f7cd61b45066a38e8
 Cache Hit!
 endProcessing "ru\allformine\afmcp\PacketChannels.java"
 
-startProcessing "ru\allformine\afmcp\Utils.java" md5: b2a076a845f8444c87eaa1692857c959
+startProcessing "ru\allformine\afmcp\Utils.java" md5: abd9b6a88c0b2fc6492f7da1bc027613
 Cache Hit!
 endProcessing "ru\allformine\afmcp\Utils.java"
 
@@ -24,7 +24,7 @@ startProcessing "ru\allformine\afmcp\commands\RawBCCommand.java" md5: 3be77a6562
 Cache Hit!
 endProcessing "ru\allformine\afmcp\commands\RawBCCommand.java"
 
-startProcessing "ru\allformine\afmcp\commands\RestartCommand.java" md5: e73568c2bfa10cf47b699fe2bf989cd2
+startProcessing "ru\allformine\afmcp\commands\RestartCommand.java" md5: cd3832c7b1b44abc8ba4a6a5095bf545
 Cache Hit!
 endProcessing "ru\allformine\afmcp\commands\RestartCommand.java"
 
@@ -41,6 +41,7 @@ Cache Hit!
 endProcessing "ru\allformine\afmcp\handlers\DiscordWebhookListener.java"
 
 startProcessing "ru\allformine\afmcp\handlers\FactionEventListener.java" md5: ec7cfcabd29ea4dea0e07e613da30d1c
+Cache Hit!
 endProcessing "ru\allformine\afmcp\handlers\FactionEventListener.java"
 
 startProcessing "ru\allformine\afmcp\handlers\VanishEventListener.java" md5: 2b5e042f71c2bbd191e55ca6980e075c
@@ -86,6 +87,10 @@ endProcessing "ru\allformine\afmcp\serverapi\ServerAPISender.java"
 startProcessing "ru\allformine\afmcp\serverapi\ServerUtils.java" md5: 4006529a8eded0583afd3fb0c7d54854
 Cache Hit!
 endProcessing "ru\allformine\afmcp\serverapi\ServerUtils.java"
+
+startProcessing "ru\allformine\afmcp\tasks\AutoRebootTask.java" md5: 5e3fb1423a9f187c70a4159e0d546b72
+Cache Hit!
+endProcessing "ru\allformine\afmcp\tasks\AutoRebootTask.java"
 
 startProcessing "ru\allformine\afmcp\test\PacketHandler.java" md5: 1add9950e95dda72ede5192e4a5428b3
 Cache Hit!
