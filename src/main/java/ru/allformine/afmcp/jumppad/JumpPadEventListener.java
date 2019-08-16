@@ -13,7 +13,6 @@ import org.spongepowered.api.event.entity.MoveEntityEvent;
 import org.spongepowered.api.event.filter.cause.Root;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
-import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.Utils;
 
 public class JumpPadEventListener {
@@ -49,11 +48,8 @@ public class JumpPadEventListener {
                 );
 
         if (block == JumpPadTypes.STRAIGHT_UP.getBlockState()) {
-            Vector3d jumpVel = new Vector3d(0, 1, 0).add(entityVel);
+            Vector3d jumpVel = new Vector3d(0, 1, 0);
             event.getTargetEntity().offer(Keys.VELOCITY, jumpVel);
-
-            if (entity instanceof Player)
-                AFMCorePlugin.logger.info("%s прагнул на JumpPad UP");
         } else if (block == JumpPadTypes.PLAYER_LOOK.getBlockState()) {
             double yaw = event.getTargetEntity().getRotation().getY() + 180;
             double velX = Math.sin(Math.toRadians(yaw));

@@ -1,8 +1,16 @@
 Symbol range map extraction starting
-Processing 19 files
-startProcessing "ru\allformine\afmcp\AFMCorePlugin.java" md5: 10d2ca55e9ebaa30a3df20a42441263b
+Processing 24 files
+startProcessing "ru\allformine\afmcp\AFMCorePlugin.java" md5: 3eb9c3360fca5682ef1d95191704d1f1
 Cache Hit!
 endProcessing "ru\allformine\afmcp\AFMCorePlugin.java"
+
+startProcessing "ru\allformine\afmcp\PacketChannels.java" md5: f7cd61b45066a38e882b1660c552dc54
+Cache Hit!
+endProcessing "ru\allformine\afmcp\PacketChannels.java"
+
+startProcessing "ru\allformine\afmcp\Utils.java" md5: abd9b6a88c0b2fc6492f7da1bc027613
+Cache Hit!
+endProcessing "ru\allformine\afmcp\Utils.java"
 
 startProcessing "ru\allformine\afmcp\VanishManager.java" md5: ced6e131bce5bf8cb0ae6495c067645c
 Cache Hit!
@@ -16,7 +24,7 @@ startProcessing "ru\allformine\afmcp\commands\RawBCCommand.java" md5: 3be77a6562
 Cache Hit!
 endProcessing "ru\allformine\afmcp\commands\RawBCCommand.java"
 
-startProcessing "ru\allformine\afmcp\commands\RestartCommand.java" md5: e73568c2bfa10cf47b699fe2bf989cd2
+startProcessing "ru\allformine\afmcp\commands\RestartCommand.java" md5: cd3832c7b1b44abc8ba4a6a5095bf545
 Cache Hit!
 endProcessing "ru\allformine\afmcp\commands\RestartCommand.java"
 
@@ -32,11 +40,16 @@ startProcessing "ru\allformine\afmcp\handlers\DiscordWebhookListener.java" md5: 
 Cache Hit!
 endProcessing "ru\allformine\afmcp\handlers\DiscordWebhookListener.java"
 
+startProcessing "ru\allformine\afmcp\handlers\FactionEventListener.java" md5: ec7cfcabd29ea4dea0e07e613da30d1c
+Cache Hit!
+endProcessing "ru\allformine\afmcp\handlers\FactionEventListener.java"
+
 startProcessing "ru\allformine\afmcp\handlers\VanishEventListener.java" md5: 2b5e042f71c2bbd191e55ca6980e075c
 Cache Hit!
 endProcessing "ru\allformine\afmcp\handlers\VanishEventListener.java"
 
-startProcessing "ru\allformine\afmcp\jumppad\JumpPadEventListener.java" md5: 6e24e46dd6b7f2df94413cf04c60880f
+startProcessing "ru\allformine\afmcp\jumppad\JumpPadEventListener.java" md5: 6338634a5d74b5eaf79a8c1a90f04efa
+Cache Hit!
 endProcessing "ru\allformine\afmcp\jumppad\JumpPadEventListener.java"
 
 startProcessing "ru\allformine\afmcp\jumppad\JumpPadTypes.java" md5: 53678d0fa042d12a1b7f2cc8db0d065b
@@ -59,7 +72,11 @@ startProcessing "ru\allformine\afmcp\net\http\Response.java" md5: 0b36875283f473
 Cache Hit!
 endProcessing "ru\allformine\afmcp\net\http\Response.java"
 
-startProcessing "ru\allformine\afmcp\serverapi\HTTPServer.java" md5: 9bf3dd432d3829911ac84b93911c5671
+startProcessing "ru\allformine\afmcp\packetlisteners\ScreenshotListener.java" md5: e24dfaf66c1e172cea0a24ff98cb6230
+Cache Hit!
+endProcessing "ru\allformine\afmcp\packetlisteners\ScreenshotListener.java"
+
+startProcessing "ru\allformine\afmcp\serverapi\HTTPServer.java" md5: ac9864c9cca7b27c8948cd3861cc67b5
 Cache Hit!
 endProcessing "ru\allformine\afmcp\serverapi\HTTPServer.java"
 
@@ -70,6 +87,10 @@ endProcessing "ru\allformine\afmcp\serverapi\ServerAPISender.java"
 startProcessing "ru\allformine\afmcp\serverapi\ServerUtils.java" md5: 4006529a8eded0583afd3fb0c7d54854
 Cache Hit!
 endProcessing "ru\allformine\afmcp\serverapi\ServerUtils.java"
+
+startProcessing "ru\allformine\afmcp\tasks\AutoRebootTask.java" md5: 5e3fb1423a9f187c70a4159e0d546b72
+Cache Hit!
+endProcessing "ru\allformine\afmcp\tasks\AutoRebootTask.java"
 
 startProcessing "ru\allformine\afmcp\test\PacketHandler.java" md5: 1add9950e95dda72ede5192e4a5428b3
 Cache Hit!
