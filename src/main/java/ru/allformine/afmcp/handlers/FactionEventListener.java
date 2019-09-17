@@ -1,8 +1,8 @@
 package ru.allformine.afmcp.handlers;
 
 import com.flowpowered.math.vector.Vector3i;
-import io.github.aquerr.eaglefactions.EagleFactions;
-import io.github.aquerr.eaglefactions.entities.Faction;
+import io.github.aquerr.eaglefactions.api.entities.Faction;
+import io.github.aquerr.eaglefactions.common.EagleFactionsPlugin;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
@@ -28,7 +28,7 @@ public class FactionEventListener {
 
         if (world.getChunk(oldChunk).equals(world.getChunk(newChunk))) return;
 
-        Optional<Faction> faction = EagleFactions.getPlugin().getFactionLogic().getFactionByChunk(event.getTargetEntity().getWorld().getUniqueId(), newChunk);
+        Optional<Faction> faction = EagleFactionsPlugin.getPlugin().getFactionLogic().getFactionByChunk(event.getTargetEntity().getWorld().getUniqueId(), newChunk);
         String factionName = getFactionNameForPlayer(faction, player);
 
         sendToPlayer(player, factionName);
@@ -37,7 +37,7 @@ public class FactionEventListener {
     @Listener
     public void onPlayerJoin(ClientConnectionEvent.Join event) {
         Vector3i chunk = event.getTargetEntity().getLocation().getChunkPosition();
-        Optional<Faction> faction = EagleFactions.getPlugin().getFactionLogic().getFactionByChunk(event.getTargetEntity().getWorld().getUniqueId(), chunk);
+        Optional<Faction> faction = EagleFactionsPlugin.getPlugin().getFactionLogic().getFactionByChunk(event.getTargetEntity().getWorld().getUniqueId(), chunk);
         String factionName = getFactionNameForPlayer(faction, event.getTargetEntity());
 
         sendToPlayer(event.getTargetEntity(), factionName);
@@ -57,7 +57,7 @@ public class FactionEventListener {
 
             Task.builder().execute(() -> {
                 Vector3i chunk = player.getLocation().getChunkPosition();
-                Optional<Faction> faction = EagleFactions.getPlugin().getFactionLogic().getFactionByChunk(player.getWorld().getUniqueId(), chunk);
+                Optional<Faction> faction = EagleFactionsPlugin.getPlugin().getFactionLogic().getFactionByChunk(player.getWorld().getUniqueId(), chunk);
                 String factionName = getFactionNameForPlayer(faction, player);
 
                 sendToPlayer(player, factionName);
@@ -78,10 +78,10 @@ public class FactionEventListener {
         String factionName = faction.isPresent() ? faction.get().getName() : "Общая";
         String factionColor;
 
-        if (factionName.equals("SafeZone") || EagleFactions.getPlugin().getConfiguration().getConfigFields().getSafeZoneWorldNames().contains(player.getWorld().getName())) {
+        if (factionName.equals("SafeZone") || EagleFactionsPlugin.getPlugin().getConfiguration().getConfigFields().getSafeZoneWorldNames().contains(player.getWorld().getName())) {
             factionColor = "§d";
             factionName = "SafeZone";
-        } else if (factionName.equals("WarZone") || EagleFactions.getPlugin().getConfiguration().getConfigFields().getWarZoneWorldNames().contains(player.getWorld().getName())) {
+        } else if (factionName.equals("WarZone") || EagleFactionsPlugin.getPlugin().getConfiguration().getConfigFields().getWarZoneWorldNames().contains(player.getWorld().getName())) {
             factionColor = "§4";
             factionName = "WarZone";
         } else if (!factionName.equals("Общая") && faction.get().containsPlayer(player.getUniqueId())) {
