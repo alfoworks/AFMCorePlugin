@@ -2,9 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d122824-c45f-4dc9-9772-e9cb0c4f4b11" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle___ef_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_io_commons_io_2_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_codehaus_plexus_plexus_utils_3_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/ef.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle___EagleFactions_1_12_2_v0_12_0_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__aopalliance_aopalliance_1_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__aopalliance_aopalliance_1_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_flowpowered_flow_math_1_0_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_flowpowered_flow_math_1_0_3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_flowpowered_flow_noise_1_0_1_SNAPSHOT.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_flowpowered_flow_noise_1_0_1_SNAPSHOT.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_inject_javax_inject_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_inject_javax_inject_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_spongepowered_plugin_meta_0_4_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_spongepowered_plugin_meta_0_4_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/AFMCorePlugin-sponge1.12_main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/AFMCorePlugin-sponge1.12_main.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/AFMCorePlugin-sponge1.12_test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/AFMCorePlugin-sponge1.12_test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/ru.allformine.afmcp-AFMCorePlugin-sponge1.12_api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/ru.allformine.afmcp-AFMCorePlugin-sponge1.12_api.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/AFMCorePlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/AFMCorePlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/EagleFactions-1.12.2-v0.12.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/handlers/FactionEventListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/handlers/FactionEventListener.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -23,37 +41,75 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="1570153986">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.20" value="1" />
+          <entry key="project.open.time.9" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Groovy" value="2" />
+          <entry key="JAVA" value="40" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/jumppad/JumpPadEventListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="57" column="44" selection-start-line="57" selection-start-column="44" selection-end-line="57" selection-end-column="44" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/commands/RestartCommand.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="37" selection-end-column="37" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/AFMCorePlugin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="178" column="5" lean-forward="true" selection-start-line="178" selection-start-column="5" selection-end-line="178" selection-end-column="5" />
+            <state relative-caret-position="187">
+              <caret line="56" column="9" selection-start-line="56" selection-start-column="9" selection-end-line="56" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gradle.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="544">
+              <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/net/http/Requests.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1156">
+              <caret line="76" column="24" selection-start-line="76" selection-start-column="24" selection-end-line="76" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/serverapi/HTTPServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="561">
+              <caret line="69" column="33" selection-start-line="69" selection-start-column="33" selection-end-line="74" selection-end-column="114" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -62,28 +118,31 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/packetlisteners/ScreenshotListener.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/handlers/FactionEventListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+            <state relative-caret-position="357">
+              <caret line="75" column="55" selection-start-line="75" selection-start-column="55" selection-end-line="75" selection-end-column="55" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/handlers/AutospawnEventListener.java">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/assets/afmcp/config.conf">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+            <state relative-caret-position="544">
+              <caret line="32" column="1" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/handlers/DiscordWebhookListener.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/commands/RestartCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="18" column="60" selection-start-line="18" selection-start-column="60" selection-end-line="18" selection-end-column="60" />
+            <state relative-caret-position="119">
+              <caret line="13" column="27" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -94,8 +153,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/Utils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
+            <state relative-caret-position="119">
+              <caret line="7" column="52" selection-start-line="7" selection-start-column="52" selection-end-line="7" selection-end-column="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/tasks/AutoRebootTask.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="6" column="49" selection-start-line="6" selection-start-column="49" selection-end-line="6" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -134,6 +202,678 @@
     <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GradleLocalSettings">
+    <option name="myGradleHomes">
+      <map>
+        <entry key="$PROJECT_DIR$" value="C:\Users\Rob\.gradle\wrapper\dists\gradle-4.4.1-all\2kpyt0ea6hyxavvt21uml23gd\gradle-4.4.1" />
+      </map>
+    </option>
+    <option name="myGradleVersions">
+      <map>
+        <entry key="$PROJECT_DIR$" value="4.4.1" />
+      </map>
+    </option>
+    <option name="availableProjects">
+      <map>
+        <entry>
+          <key>
+            <ExternalProjectPojo>
+              <option name="name" value="AFMCorePlugin-sponge1.12" />
+              <option name="path" value="$PROJECT_DIR$" />
+            </ExternalProjectPojo>
+          </key>
+          <value>
+            <list>
+              <ExternalProjectPojo>
+                <option name="name" value="AFMCorePlugin-sponge1.12" />
+                <option name="path" value="$PROJECT_DIR$" />
+              </ExternalProjectPojo>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="availableTasks">
+      <map>
+        <entry key="$PROJECT_DIR$">
+          <value>
+            <list>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="reobfJar" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the sub-projects of root project 'AFMCorePlugin-sponge1.12'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="projects" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Generates the Eclipse classpath file." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="eclipseClasspath" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs the Minecraft Server" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="runServer" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles a jar archive containing the main classes." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="jar" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the configuration model of root project 'AFMCorePlugin-sponge1.12'. [incubating]" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="model" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="extractMcpMappings" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Processes api resources." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="processApiResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Processes main resources." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="processResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the tasks runnable from root project 'AFMCorePlugin-sponge1.12'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="tasks" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="deobfCompileDummyTask" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Initializes a new Gradle build." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="init" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="extractRangemapReplacedTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="retromapTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="DevWorkspace + the deobfuscated Minecraft source linked as a source jar." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="setupDecompWorkspace" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="sourceApiJava" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="deobfMcSRG" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays all dependencies declared in root project 'AFMCorePlugin-sponge1.12'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="dependencies" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Compiles api Java source." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="compileApiJava" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Processes test resources." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="processTestResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Generates the Eclipse JDT settings file." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="eclipseJdt" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project and all projects it depends on." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="buildNeeded" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="extractAnnotationsJar" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="decompileMc" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="getAssetIndex" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the components produced by root project 'AFMCorePlugin-sponge1.12'. [incubating]" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="components" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="retromapMain" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="extractRangemapReplacedApi" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="retromapApi" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Cleans all Eclipse files." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="cleanEclipse" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="getVersionJson" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles test classes." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="testClasses" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Generates Javadoc API documentation for the main source code." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="javadoc" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Cleares the ForgeGradle cache. DONT RUN THIS unless you want a fresh start, or the dev tells you to." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="cleanCache" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="sourceTestJava" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="recompileMc" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="extractRangemapMain" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="getAssets" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="makeEclipseCleanRunServer" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the insight into a specific dependency in root project 'AFMCorePlugin-sponge1.12'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="dependencyInsight" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="applySourcePatches" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles the outputs of this project." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="assemble" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="downloadServer" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays a help message." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="help" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="extractRangemapTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="splitServerJar" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="sourceMainJava" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="deobfProvidedDummyTask" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Generates Gradle wrapper files." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="wrapper" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="retromapReplacedTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles api classes." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="apiClasses" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="generateMetadata" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="applyBinaryPatches" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="deobfMcMCP" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="extractUserdev" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs the unit tests." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="test" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Sets up the bare minimum to build a minecraft mod. Ideally for CI servers" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="setupCiWorkspace" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="makeEclipseCleanRunClient" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Compiles main Java source." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="compileJava" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs all checks." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="check" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="retromapReplacedMain" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="extractMcpData" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="extractNatives" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Generates all Eclipse files." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="eclipse" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="retromapReplacedApi" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="extractRangemapReplacedMain" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Generates the Eclipse project file." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="eclipseProject" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="remapMcSources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project and all projects that depend on it." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="buildDependents" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="cleanEclipseClasspath" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="sourceJar" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="makeStart" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles main classes." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="classes" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the dependent components of components in root project 'AFMCorePlugin-sponge1.12'. [incubating]" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="dependentComponents" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays all buildscript dependencies declared in root project 'AFMCorePlugin-sponge1.12'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="buildEnvironment" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="cleanEclipseProject" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="genSrgs" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="fixMcSources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="CIWorkspace + natives and assets to run and test Minecraft" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="setupDevWorkspace" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Generates the ForgeGradle run configurations for intellij Idea" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="genIntellijRuns" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="cleanEclipseJdt" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="downloadClient" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="mergeJars" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="extractDependencyATs" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Deletes the build directory." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="clean" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Compiles test Java source." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="compileTestJava" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="build" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="extractRangemapApi" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the properties of root project 'AFMCorePlugin-sponge1.12'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="properties" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs the Minecraft client" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="runClient" />
+              </ExternalTaskPojo>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="modificationStamps">
+      <map>
+        <entry key="$PROJECT_DIR$" value="6257849467499" />
+        <entry key="$PROJECT_DIR$/.gradle" value="0" />
+        <entry key="$PROJECT_DIR$/build.gradle" value="1617625637" />
+        <entry key="$PROJECT_DIR$/gradle.properties" value="161162382" />
+        <entry key="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" value="3362176064" />
+      </map>
+    </option>
+    <option name="projectBuildClasspath">
+      <map>
+        <entry key="$PROJECT_DIR$">
+          <value>
+            <ExternalProjectBuildClasspathPojo>
+              <option name="modulesBuildClasspath">
+                <map>
+                  <entry key="$PROJECT_DIR$">
+                    <value>
+                      <ExternalModuleBuildClasspathPojo>
+                        <option name="entries">
+                          <list>
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/gradle.plugin.org.spongepowered/spongegradle/0.9.0/9802ec33ff8e676cc9bd717df51b597fe66551a1/spongegradle-0.9.0-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/18.0/ad97fe8faaf01a3d3faacecd58e8fa6e78a973ca/guava-18.0-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.sf.opencsv/opencsv/2.3/235993117036d44d126f76db9ea2202ee4884682/opencsv-2.3-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cloudbees/diff4j/1.1/e01e5168c15a325a548be3a0d18af5eac6f6343f/diff4j-1.1-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.abrarsyed.jastyle/jAstyle/1.3/61707e2098d6ee76983a8c7c2915ac38c84115da/jAstyle-1.3-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.sf.trove4j/trove4j/2.1.0/3d51239e46537fc45dd18c639cc29bbc4e390326/trove4j-2.1.0-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jponge/lzma-java/1.3/c0f18880fb29c7bfc088a6e114c66fe30a5e8df2/lzma-java-1.3-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.nothome/javaxdelta/2.0.1/c99bfecfaa91279b8a3d7d25a99cbbda107c903d/javaxdelta-2.0.1-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.2.4/a6dc5db8a12928e583bd3f23e72d3ab611ecd58f/gson-2.2.4-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.tony19/named-regexp/0.2.3/74e99674da3dcbd04e30fc62e164073b4d95e8b9/named-regexp-0.2.3-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.5.3/4969730c661fff76fa7f9d4c7c61545817f5b033/httpclient-4.5.3-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpmime/4.5.3/1464bba4356346fbb8b71827a90b16c85b927542/httpmime-4.5.3-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/plugin-meta/0.4.1/7db7c6d2dcc7a9fdb74bee95c0ced94294cc00bd/plugin-meta-0.4.1-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/5.2/ed60d4287d18996bc940f26656c570532b20d863/asm-5.2-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jvnet.localizer/localizer/1.12/261a0e844fe30de1c30372135275fa0b299bdee4/localizer-1.12-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/1.4/48753e43ff29409fbbeadfb36186cbe27e41b179/commons-io-1.4-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.4.6/57cc0a7af46d66754e632bddc558a913b9e66ac3/httpcore-4.4.6-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.2/ecf26c7507d67782a3bbd148d170b31dfad001aa/commons-logging-1.2-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.9/3f15fff45d57656685abfee9e8302bf14580044c/commons-codec-1.9-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.minecraftforge.gradle/ForgeGradle/2.3-SNAPSHOT/d28c0ecad9897902b3ba3aa6fd0c5c2fefebfc9c/ForgeGradle-2.3-SNAPSHOT.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/gradle.plugin.org.spongepowered/spongegradle/0.9.0/55fbeb404da1a3e58d22c764cd15e75db08169e9/spongegradle-0.9.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/18.0/cce0823396aa693798f8882e64213b1772032b09/guava-18.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.sf.opencsv/opencsv/2.3/c23708cdb9e80a144db433e23344a788a1fd6599/opencsv-2.3.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cloudbees/diff4j/1.1/645329c0d4ebbea5f73758929c6e63bab9e77204/diff4j-1.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.abrarsyed.jastyle/jAstyle/1.3/42431e5834cfb184d60be4142e2806cf2d806ea/jAstyle-1.3.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.sf.trove4j/trove4j/2.1.0/c82f2749a460b95de4c9d2466b62f18c23c7c914/trove4j-2.1.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jponge/lzma-java/1.3/a25db9d4d385ccda4825ae1b47a7a61d86e595af/lzma-java-1.3.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.nothome/javaxdelta/2.0.1/d4f5d077f1b15c6f67595015d69572303ad3f66d/javaxdelta-2.0.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.2.4/a60a5e993c98c864010053cb901b7eab25306568/gson-2.2.4.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.tony19/named-regexp/0.2.3/370846bf3837952d981deb8f91e81da8c65b09e1/named-regexp-0.2.3.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.minecraftforge/forgeflower/1.0.342-SNAPSHOT/83b7d227aa011da5f140558240149ed26a0f5d76/forgeflower-1.0.342-SNAPSHOT.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.5.3/d1577ae15f01ef5438c5afc62162457c00a34713/httpclient-4.5.3.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpmime/4.5.3/889fd6d061bb63b99dd5c6aba35a555ae863de52/httpmime-4.5.3.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/plugin-meta/0.4.1/419e2f7cb6f7ccdb13cbba0c46021c3e2f0fefda/plugin-meta-0.4.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/5.2/4ce3ecdc7115bcbf9d4ff4e6ec638e60760819df/asm-5.2.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jvnet.localizer/localizer/1.12/6d456886a035b2c3f758059da1f91a823eaa4a62/localizer-1.12.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/1.4/a8762d07e76cfde2395257a5da47ba7c1dbd3dce/commons-io-1.4.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/trove/trove/1.0.2/112b40581ab9a4d3de4636d49985a7f686d181c8/trove-1.0.2.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.4.6/e3fd8ced1f52c7574af952e2e6da0df8df08eb82/httpcore-4.4.6.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.2/4bfc12adfe4842bf07b657f0369c4cb522955686/commons-logging-1.2.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.9/9ce04e34240f674bc72680f8b843b1457383161a/commons-codec-1.9.jar" />
+                          </list>
+                        </option>
+                        <option name="path" value="$PROJECT_DIR$" />
+                      </ExternalModuleBuildClasspathPojo>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="name" value="AFMCorePlugin-sponge1.12" />
+              <option name="projectBuildClasspath">
+                <list>
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/announce" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/antlr" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/base-services" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/base-services-groovy" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/build-cache" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/build-cache-http" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/build-comparison" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/build-init" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/build-option" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/cli" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/code-quality" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/composite-builds" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/core" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/core-api" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/dependency-management" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/diagnostics" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/ear" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/ide" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/ide-native" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/ide-play" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/installation-beacon" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/internal-android-performance-testing" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/internal-integ-testing" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/internal-performance-testing" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/internal-testing" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/ivy" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/jacoco" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/javascript" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/jvm-services" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/language-groovy" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/language-java" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/language-jvm" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/language-native" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/language-scala" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/launcher" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/logging" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/maven" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/messaging" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/model-core" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/model-groovy" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/native" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/osgi" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/persistent-cache" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/platform-base" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/platform-jvm" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/platform-native" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/platform-play" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/plugin-development" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/plugin-use" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/plugins" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/process-services" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/publish" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/reporting" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/resources" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/resources-gcs" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/resources-http" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/resources-s3" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/resources-sftp" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/scala" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/signing" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/test-kit" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/testing-base" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/testing-jvm" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/testing-native" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/tooling-api" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/tooling-api-builders" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/version-control" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/workers" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/src/wrapper" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/ant-1.9.9.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/ant-launcher-1.9.9.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/gradle-base-services-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/gradle-base-services-groovy-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/gradle-build-cache-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/gradle-build-option-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/gradle-cli-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/gradle-core-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/gradle-core-api-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/gradle-docs-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/gradle-installation-beacon-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/gradle-jvm-services-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/gradle-kotlin-dsl-0.13.2.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/gradle-kotlin-dsl-tooling-builders-0.13.2.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/gradle-kotlin-dsl-tooling-models-0.13.2.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/gradle-launcher-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/gradle-logging-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/gradle-messaging-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/gradle-model-core-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/gradle-model-groovy-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/gradle-native-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/gradle-persistent-cache-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/gradle-process-services-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/gradle-resources-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/gradle-runtime-api-info-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/gradle-tooling-api-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/gradle-wrapper-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/groovy-all-2.4.12.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-announce-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-antlr-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-build-cache-http-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-build-comparison-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-build-init-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-code-quality-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-composite-builds-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-dependency-management-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-diagnostics-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-ear-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-ide-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-ide-native-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-ide-play-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-ivy-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-jacoco-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-javascript-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-language-groovy-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-language-java-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-language-jvm-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-language-native-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-language-scala-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-maven-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-osgi-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-platform-base-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-platform-jvm-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-platform-native-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-platform-play-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-plugin-development-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-plugin-use-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-plugins-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-publish-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-reporting-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-resources-gcs-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-resources-http-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-resources-s3-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-resources-sftp-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-scala-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-signing-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-test-kit-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-testing-base-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-testing-jvm-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-testing-native-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-tooling-api-builders-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-version-control-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/gradle-workers-4.4.1.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.4.1-all/2kpyt0ea6hyxavvt21uml23gd/gradle-4.4.1/lib/plugins/ivy-2.2.0.jar" />
+                </list>
+              </option>
+            </ExternalProjectBuildClasspathPojo>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="projectSyncType">
+      <map>
+        <entry key="$PROJECT_DIR$" value="RE_IMPORT" />
+      </map>
+    </option>
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -143,7 +883,6 @@
         <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/VanishManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/net/discord/Discord.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/handlers/VanishEventListener.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/serverapi/HTTPServer.java" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/commands/RawBCCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/commands/AFMCPCommand.java" />
@@ -156,7 +895,6 @@
         <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/commands/VipCommand.java" />
         <option value="$PROJECT_DIR$/src/main/resources/META-INF/afmcp_at.cfg" />
         <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/test/PacketHandler.java" />
-        <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/net/api/Eco.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/net/http/Requests.java" />
         <option value="$PROJECT_DIR$/src/main/resources/assets/afmcp/config.conf" />
@@ -166,6 +904,9 @@
         <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/jumppad/JumpPadEventListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/handlers/AutospawnEventListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/AFMCorePlugin.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/serverapi/HTTPServer.java" />
+        <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/handlers/FactionEventListener.java" />
       </list>
     </option>
   </component>
@@ -176,7 +917,6 @@
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="false" id="Update" />
-    <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -195,7 +935,7 @@
             <path>
               <item name="AFMCorePlugin-sponge1.12" type="b2602c69:ProjectViewProjectNode" />
               <item name="AFMCorePlugin-sponge1.12" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="gradle" type="462c0819:PsiDirectoryNode" />
+              <item name="libs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="AFMCorePlugin-sponge1.12" type="b2602c69:ProjectViewProjectNode" />
@@ -293,6 +1033,33 @@
               <item name="AFMCorePlugin-sponge1.12" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="afmcp" type="462c0819:PsiDirectoryNode" />
+              <item name="serverapi" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AFMCorePlugin-sponge1.12" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AFMCorePlugin-sponge1.12" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="afmcp" type="462c0819:PsiDirectoryNode" />
+              <item name="tasks" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AFMCorePlugin-sponge1.12" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AFMCorePlugin-sponge1.12" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="afmcp" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AFMCorePlugin-sponge1.12" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AFMCorePlugin-sponge1.12" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -311,11 +1078,16 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562001500430" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1568756691750" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\CodeProjects\AllForMine\AFMCorePlugin-sponge1.12\libs" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -696,10 +1468,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3251928" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2947761" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -714,10 +1486,10 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4993573" weight="0.32974428" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49807197" weight="0.3270525" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49807197" weight="0.3264642" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3270525" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50192803" side_tool="true" weight="0.32974428" />
-      <window_info anchor="bottom" id="Build" order="10" sideWeight="0.4993573" weight="0.32974428" />
+      <window_info anchor="bottom" id="Build" order="10" sideWeight="0.4993573" weight="0.329718" />
       <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.4993573" weight="0.32822084" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -790,20 +1562,9 @@
         </entry>
       </map>
     </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list />
-          </value>
-        </entry>
-        <entry key="User">
-          <value>
-            <list />
-          </value>
-        </entry>
-      </map>
-    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
@@ -867,9 +1628,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="31" column="37" selection-start-line="31" selection-start-column="37" selection-end-line="31" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -878,16 +1636,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gradle.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
@@ -896,10 +1644,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="121" column="55" lean-forward="true" selection-start-line="121" selection-start-column="55" selection-end-line="121" selection-end-column="55" />
-          <folding>
-            <element signature="e#0#6419#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -907,10 +1651,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
           <caret line="92" column="7" selection-start-line="92" selection-start-column="7" selection-end-line="92" selection-end-column="7" />
-          <folding>
-            <element signature="e#2452#2453#0" expanded="true" />
-            <element signature="e#2481#2482#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -918,10 +1658,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2056">
           <caret line="38" column="9" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
-          <folding>
-            <element signature="e#1243#1244#0" expanded="true" />
-            <element signature="e#1292#1293#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -929,9 +1665,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-34">
           <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -939,9 +1672,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="446">
           <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -986,11 +1716,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="18" selection-start-line="18" selection-end-line="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#361#362#0" expanded="true" />
-            <element signature="e#429#430#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -998,16 +1723,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="20" column="33" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/assets/afmcp/config.conf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -1022,57 +1737,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/net/http/Requests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="76" column="24" selection-start-line="76" selection-start-column="24" selection-end-line="76" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/lang/StrictMath.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-199">
-          <caret line="88" column="51" lean-forward="true" selection-start-line="88" selection-start-column="51" selection-end-line="88" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/lang/StrictMath.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/commands/VipCommand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
           <caret line="47" column="55" selection-start-line="47" selection-start-column="55" selection-end-line="47" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3842#3843#0" expanded="true" />
-            <element signature="e#3873#3874#0" expanded="true" />
-            <element signature="e#3922#3923#0" expanded="true" />
-            <element signature="e#3968#3969#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/lang/Math.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="138" column="21" selection-start-line="138" selection-start-column="20" selection-end-line="138" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/lang/Math.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/jumppad/JumpPadEventListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="748">
           <caret line="57" column="44" selection-start-line="57" selection-start-column="44" selection-end-line="57" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1080,26 +1760,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="18" column="60" selection-start-line="18" selection-start-column="60" selection-end-line="18" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="40" column="1" selection-start-line="40" selection-start-column="1" selection-end-line="40" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -1110,37 +1770,95 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/serverapi/HTTPServer.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/packetlisteners/ScreenshotListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/commands/RestartCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="37" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="170">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/AFMCorePlugin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="178" column="5" lean-forward="true" selection-start-line="178" selection-start-column="5" selection-end-line="178" selection-end-column="5" />
+        <state relative-caret-position="187">
+          <caret line="56" column="9" selection-start-line="56" selection-start-column="9" selection-end-line="56" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/packetlisteners/ScreenshotListener.java">
+    <entry file="file://$PROJECT_DIR$/gradle.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        <state relative-caret-position="34">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/net/http/Requests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1156">
+          <caret line="76" column="24" selection-start-line="76" selection-start-column="24" selection-end-line="76" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/assets/afmcp/config.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="1" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/commands/RestartCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="13" column="27" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="52" selection-start-line="7" selection-start-column="52" selection-end-line="7" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/tasks/AutoRebootTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="49" selection-start-line="6" selection-start-column="49" selection-end-line="6" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/serverapi/HTTPServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="69" column="33" selection-start-line="69" selection-start-column="33" selection-end-line="74" selection-end-column="114" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/allformine/afmcp/handlers/FactionEventListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="75" column="55" selection-start-line="75" selection-start-column="55" selection-end-line="75" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

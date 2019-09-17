@@ -11,6 +11,20 @@
       </configuration>
     </facet>
   </component>
+  <component name="McpModuleSettings">
+    <option name="mappingFiles">
+      <set>
+        <option value="C:\Users\Rob\.gradle\caches\minecraft\de\oceanlabs\mcp\mcp_snapshot\20171003\1.12.2\srgs\mcp-notch.srg" />
+        <option value="C:\Users\Rob\.gradle\caches\minecraft\de\oceanlabs\mcp\mcp_snapshot\20171003\1.12.2\srgs\srg.exc" />
+        <option value="C:\Users\Rob\.gradle\caches\minecraft\de\oceanlabs\mcp\mcp_snapshot\20171003\1.12.2\srgs\mcp-srg.srg" />
+        <option value="C:\Users\Rob\.gradle\caches\minecraft\de\oceanlabs\mcp\mcp_snapshot\20171003\1.12.2\srgs\notch-mcp.srg" />
+        <option value="C:\Users\Rob\.gradle\caches\minecraft\de\oceanlabs\mcp\mcp_snapshot\20171003\1.12.2\srgs\mcp.exc" />
+        <option value="C:\Users\Rob\.gradle\caches\minecraft\de\oceanlabs\mcp\mcp_snapshot\20171003\1.12.2\srgs\notch-srg.srg" />
+      </set>
+    </option>
+    <option name="mcpVersion" value="snapshot_20171003" />
+    <option name="minecraftVersion" value="1.12.2" />
+  </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../src/api" />
@@ -25,29 +39,11 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="Gradle: :EagleFactions-1.12.2-v0.12.0:" level="project" />
+    <orderEntry type="library" name="Gradle: :ef:" level="project" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../libs/EagleFactions-1.12.2-v0.12.0.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MAVEN_REPOSITORY$/commons-io/commons-io/2.5/commons-io-2.5.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/plexus/plexus-utils/3.1.0/plexus-utils-3.1.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../libs/ef.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -118,6 +114,7 @@
     <orderEntry type="library" name="Gradle: net.sf.jopt-simple:jopt-simple:5.0.3" level="project" />
     <orderEntry type="library" name="Gradle: io.netty:netty-all:4.1.9.Final" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.maven:maven-artifact:3.5.3" level="project" />
+    <orderEntry type="library" name="Gradle: commons-io:commons-io:2.5" level="project" />
     <orderEntry type="library" name="Gradle: com.mojang:realms:1.10.22" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.httpcomponents:httpclient:4.3.3" level="project" />
     <orderEntry type="library" name="Gradle: commons-codec:commons-codec:1.10" level="project" />
@@ -153,6 +150,7 @@
     <orderEntry type="library" name="Gradle: com.paulscode:libraryjavasound:20101123" level="project" />
     <orderEntry type="library" name="Gradle: com.paulscode:soundsystem:20120107" level="project" />
     <orderEntry type="library" name="Gradle: java3d:vecmath:1.5.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.codehaus.plexus:plexus-utils:3.1.0" level="project" />
     <orderEntry type="library" name="Gradle: net.java.jinput:jinput-platform:natives-linux:2.0.5" level="project" />
     <orderEntry type="library" name="Gradle: net.java.jinput:jinput-platform:natives-windows:2.0.5" level="project" />
     <orderEntry type="library" name="Gradle: net.java.jinput:jinput-platform:natives-osx:2.0.5" level="project" />
