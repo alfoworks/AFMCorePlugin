@@ -1,7 +1,6 @@
 Symbol range map extraction starting
-Processing 24 files
-startProcessing "ru\allformine\afmcp\AFMCorePlugin.java" md5: 3eb9c3360fca5682ef1d95191704d1f1
-Cache Hit!
+Processing 25 files
+startProcessing "ru\allformine\afmcp\AFMCorePlugin.java" md5: 3cd8b1cae45286b98f22940eb07cdeb5
 endProcessing "ru\allformine\afmcp\AFMCorePlugin.java"
 
 startProcessing "ru\allformine\afmcp\PacketChannels.java" md5: f7cd61b45066a38e882b1660c552dc54
@@ -35,6 +34,9 @@ endProcessing "ru\allformine\afmcp\commands\TokensCommand.java"
 startProcessing "ru\allformine\afmcp\commands\VipCommand.java" md5: 61fa5211c92d8e68f108ba10786a5e05
 Cache Hit!
 endProcessing "ru\allformine\afmcp\commands\VipCommand.java"
+
+startProcessing "ru\allformine\afmcp\handlers\AutospawnEventListener.java" md5: 70117e8987e14511ef75b318bd4c6f99
+endProcessing "ru\allformine\afmcp\handlers\AutospawnEventListener.java"
 
 startProcessing "ru\allformine\afmcp\handlers\DiscordWebhookListener.java" md5: 5d0db38ba444ea681293b54e3223f3a2
 Cache Hit!
