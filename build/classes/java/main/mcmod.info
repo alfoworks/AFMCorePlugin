@@ -1,0 +1,22 @@
+[
+    {
+        "modid": "afmcp",
+        "name": "AFMCorePlugin",
+        "description": "A plugin for a couple of random tasks.",
+        "url": "http://allformine.ru",
+        "authorList": [
+            "Iterator, HeroBrine1st_Erq"
+        ],
+        "dependencies": [
+            "spongeapi@7.1.0"
+        ],
+        "requiredMods": [
+            "spongeapi@7.1.0"
+        ]
+    },
+    {
+        "modid": "afmcm",
+        "name": "AFMCorePlugin-sponge1.12",
+        "version": "0.7"
+    }
+]

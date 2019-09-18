@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Gradle: :uchat:">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/libs/uchat.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
