@@ -7,21 +7,16 @@ import net.minecraft.server.MinecraftServer;
 import ninja.leaping.configurate.commented.CommentedConfigurationNode;
 import ninja.leaping.configurate.hocon.HoconConfigurationLoader;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
-import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
-import org.spongepowered.api.Platform;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.args.GenericArguments;
 import org.spongepowered.api.command.spec.CommandSpec;
 import org.spongepowered.api.config.ConfigDir;
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.game.state.GameAboutToStartServerEvent;
 import org.spongepowered.api.event.game.state.GameInitializationEvent;
 import org.spongepowered.api.event.game.state.GamePreInitializationEvent;
 import org.spongepowered.api.event.game.state.GameStoppingServerEvent;
-import org.spongepowered.api.network.ChannelBinding;
-import org.spongepowered.api.network.PlayerConnection;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.scheduler.Task;
 import org.spongepowered.api.text.Text;
@@ -29,28 +24,27 @@ import ru.allformine.afmcp.commands.RawBCCommand;
 import ru.allformine.afmcp.commands.RestartCommand;
 import ru.allformine.afmcp.commands.TokensCommand;
 import ru.allformine.afmcp.commands.VipCommand;
-import ru.allformine.afmcp.handlers.AutospawnEventListener;
 import ru.allformine.afmcp.handlers.DiscordWebhookListener;
+import ru.allformine.afmcp.handlers.FactionEventListener;
 import ru.allformine.afmcp.handlers.VanishEventListener;
 import ru.allformine.afmcp.jumppad.JumpPadEventListener;
 import ru.allformine.afmcp.net.api.Webhook;
+import ru.allformine.afmcp.packetlisteners.ScreenshotListener;
 import ru.allformine.afmcp.serverapi.HTTPServer;
+import ru.allformine.afmcp.tasks.AutoRebootTask;
 import ru.allformine.afmcp.test.PacketHandler;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import static java.lang.Math.min;
 
 @Plugin(
         id = "afmcp",
         name = "AFMCorePlugin",
         description = "A plugin for a couple of random tasks.",
+        version = "0.7",
         url = "http://allformine.ru",
         authors = {
                 "Iterator, HeroBrine1st_Erq"
@@ -64,8 +58,6 @@ public class AFMCorePlugin {
 
     public static HTTPServer apiServer;
     private Task apiServerTask;
-
-    public static Map<String, ChannelBinding.RawDataChannel> channel = new HashMap<>();
 
     @Inject
     @ConfigDir(sharedRoot = false)
@@ -89,7 +81,8 @@ public class AFMCorePlugin {
         Sponge.getEventManager().registerListeners(this, new DiscordWebhookListener());
         Sponge.getEventManager().registerListeners(this, new VanishEventListener());
         Sponge.getEventManager().registerListeners(this, new JumpPadEventListener());
-        Sponge.getEventManager().registerListeners(this, new AutospawnEventListener());
+        Sponge.getEventManager().registerListeners(this, new FactionEventListener());
+
         configFile = configDir.resolve("config.conf");
         configLoader = HoconConfigurationLoader.builder().setPath(configFile).build();
 
@@ -133,32 +126,15 @@ public class AFMCorePlugin {
 
     @Listener
     public void init(GameInitializationEvent event) {
-        channel.put("screenshot", Sponge.getGame()
+        PacketChannels.SCREENSHOT = Sponge.getGame()
                 .getChannelRegistrar()
-                .createRawChannel(this, "AN3234234A"));
+                .createRawChannel(this, "AN3234234A");
 
-        channel.get("screenshot").addListener(Platform.Type.SERVER, (buf, con, side) -> {
-            if (!(con instanceof PlayerConnection)) {
-                return;
-            }
+        PacketChannels.FACTIONS = Sponge.getGame()
+                .getChannelRegistrar()
+                .createRawChannel(this, "factions");
 
-            Player player = ((PlayerConnection) con).getPlayer();
-
-            if (apiServer.playerScreenshotConfirmation.get(player) == null) {
-                return;
-            }
-
-            boolean isEnd = buf.readBoolean();
-
-            if (isEnd) {
-                apiServer.playerScreenshotConfirmation.replace(player, true);
-            } else {
-                byte[] chunkByteArray = buf.readBytes(min(10240, buf.available()));
-                byte[] prevArr = apiServer.playerScreenshotData.get(player);
-
-                apiServer.playerScreenshotData.replace(player, ArrayUtils.addAll(prevArr, chunkByteArray));
-            }
-        });
+        PacketChannels.SCREENSHOT.addListener(new ScreenshotListener());
 
         try {
             NetworkSystem networkSystem = ((MinecraftServer) Sponge.getServer()).getNetworkSystem();
@@ -189,6 +165,11 @@ public class AFMCorePlugin {
 
         apiServerTask = Task.builder().execute(apiServer)
                 .async().name("AFMCP APISERVER")
+                .submit(this);
+
+        Task.builder().execute(new AutoRebootTask())
+                .intervalTicks(20)
+                .name("AFM AutoReboot")
                 .submit(this);
     }
 

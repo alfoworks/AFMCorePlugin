@@ -2,6 +2,7 @@
     {
         "modid": "afmcp",
         "name": "AFMCorePlugin",
+        "version": "0.7",
         "description": "A plugin for a couple of random tasks.",
         "url": "http://allformine.ru",
         "authorList": [
