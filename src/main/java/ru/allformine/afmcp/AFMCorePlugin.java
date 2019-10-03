@@ -17,10 +17,7 @@ import org.spongepowered.api.event.game.state.GameStoppingServerEvent;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.scheduler.Task;
 import org.spongepowered.api.text.Text;
-import ru.allformine.afmcp.commands.RawBCCommand;
-import ru.allformine.afmcp.commands.RestartCommand;
-import ru.allformine.afmcp.commands.TokensCommand;
-import ru.allformine.afmcp.commands.VipCommand;
+import ru.allformine.afmcp.commands.*;
 import ru.allformine.afmcp.handlers.DiscordWebhookListener;
 import ru.allformine.afmcp.handlers.FactionEventListener;
 import ru.allformine.afmcp.handlers.VanishEventListener;
@@ -120,7 +117,7 @@ public class AFMCorePlugin {
         CommandSpec vanishSpec = CommandSpec.builder()
                 .description(Text.of("Vanish"))
                 .permission("afmcp.vanish")
-                .executor(new RawBCCommand())
+                .executor(new VanishCommand())
                 .arguments(
                         GenericArguments.optional(GenericArguments.string(Text.of("subcmd")))
                 )
