@@ -5,25 +5,26 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageChannel;
+import org.spongepowered.api.text.format.TextColors;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VanishManager {
-    public static final String vanishPermission = "afmcp.vanish.onjoin";
-    public static final String notifyPermission = "afmcp.vanish.notify";
+    public static final String vanishPermission = "afmcp.vanish.staff";
 
-    private static HashMap<Player, Boolean> vanishedPlayers = new HashMap<>();
+    public static List<Player> vanishedPlayers = new ArrayList<>();
 
     public static boolean isVanished(Player player) {
-        return vanishedPlayers.containsKey(player);
+        return vanishedPlayers.contains(player);
     }
 
     public static void vanishPlayer(Player player, boolean onJoin) {
         setVanish(player, true, onJoin);
 
-        vanishedPlayers.put(player, true);
+        vanishedPlayers.add(player);
 
-        vanishNotify(onJoin ? NotifyMessage.JOIN : NotifyMessage.VANISH_SWITCH_ON, player);
+        vanishNotify(String.format(onJoin ? "%s скрытно вошёл в игру" : "%s вошел в ваниш", player.getName()));
     }
 
     public static void unvanishPlayer(Player player, boolean onLeave) {
@@ -31,7 +32,15 @@ public class VanishManager {
 
         vanishedPlayers.remove(player);
 
-        vanishNotify(onLeave ? NotifyMessage.QUIT : NotifyMessage.VANISH_SWITCH_OFF, player);
+        vanishNotify(String.format(onLeave ? "%s вышел из игры (персонал)" : "%s вышел из ваниша", player.getName()));
+    }
+
+    public static void switchVanish(Player player) {
+        if (isVanished(player)) {
+            unvanishPlayer(player, false);
+        } else {
+            vanishPlayer(player, false);
+        }
     }
 
     public static int getPlayerCountExcludingVanished() { // Для AFMUF.
@@ -57,7 +66,7 @@ public class VanishManager {
         if (!silent) VanishEffects.applyVanishEffect(player);
     }
 
-    private static void vanishNotify(NotifyMessage message, Player targetPlayer) {
-        MessageChannel.permission(notifyPermission).send(Text.builder().append(Text.of(String.join(message.getMessage(), targetPlayer.getName()))).build());
+    private static void vanishNotify(String message) {
+        MessageChannel.permission(vanishPermission).send(Text.builder().append(Text.of(message)).color(TextColors.DARK_AQUA).build());
     }
 }

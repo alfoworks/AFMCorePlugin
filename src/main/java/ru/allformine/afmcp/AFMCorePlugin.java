@@ -116,6 +116,17 @@ public class AFMCorePlugin {
                 .build();
 
         Sponge.getCommandManager().register(this, rawBCspec, "rawbc");
+
+        CommandSpec vanishSpec = CommandSpec.builder()
+                .description(Text.of("Vanish"))
+                .permission("afmcp.vanish")
+                .executor(new RawBCCommand())
+                .arguments(
+                        GenericArguments.optional(GenericArguments.string(Text.of("subcmd")))
+                )
+                .build();
+
+        Sponge.getCommandManager().register(this, vanishSpec, "vanish", "v");
     }
 
     @Listener

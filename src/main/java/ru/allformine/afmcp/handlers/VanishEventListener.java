@@ -1,6 +1,5 @@
 package ru.allformine.afmcp.handlers;
 
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
 import ru.allformine.afmcp.vanish.VanishManager;
@@ -8,17 +7,23 @@ import ru.allformine.afmcp.vanish.VanishManager;
 public class VanishEventListener {
     @Listener
     public void onPlayerJoin(ClientConnectionEvent.Join event) {
-        Player player = event.getTargetEntity();
-        if (player.hasPermission(VanishManager.vanishPermission)) {
-            VanishManager.vanishPlayer(player, true);
+        if (!event.getTargetEntity().hasPermission(VanishManager.vanishPermission)) {
+            return;
+        }
+
+        if (event.getTargetEntity().hasPermission(VanishManager.vanishPermission)) {
+            VanishManager.vanishPlayer(event.getTargetEntity(), true);
         }
     }
 
     @Listener
     public void onPlayerQuit(ClientConnectionEvent.Disconnect event) {
-        Player player = event.getTargetEntity();
-        if (player.hasPermission(VanishManager.vanishPermission)) {
-            VanishManager.unvanishPlayer(player, true);
+        if (!event.getTargetEntity().hasPermission(VanishManager.vanishPermission)) {
+            return;
+        }
+
+        if (event.getTargetEntity().hasPermission(VanishManager.vanishPermission)) {
+            VanishManager.unvanishPlayer(event.getTargetEntity(), true);
         }
     }
 }

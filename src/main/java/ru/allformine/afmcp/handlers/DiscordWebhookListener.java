@@ -36,7 +36,7 @@ public class DiscordWebhookListener {
             String channelName = event.getChannel().getName();
             Player sender = (Player) event.getSender();
             String message = event.getMessage().toPlain();
-            if (channelName.equalsIgnoreCase("Local")) {
+            if (!channelName.equals("Global") && !channelName.equals("Trade")) {
                 int x = (int) sender.getLocation().getX();
                 int y = (int) sender.getLocation().getY();
                 int z = (int) sender.getLocation().getZ();
