@@ -1,9 +1,6 @@
 package ru.allformine.afmcp;
 
 import com.google.inject.Inject;
-import io.netty.channel.ChannelFuture;
-import net.minecraft.network.NetworkSystem;
-import net.minecraft.server.MinecraftServer;
 import ninja.leaping.configurate.commented.CommentedConfigurationNode;
 import ninja.leaping.configurate.hocon.HoconConfigurationLoader;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
@@ -20,10 +17,7 @@ import org.spongepowered.api.event.game.state.GameStoppingServerEvent;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.scheduler.Task;
 import org.spongepowered.api.text.Text;
-import ru.allformine.afmcp.commands.RawBCCommand;
-import ru.allformine.afmcp.commands.RestartCommand;
-import ru.allformine.afmcp.commands.TokensCommand;
-import ru.allformine.afmcp.commands.VipCommand;
+import ru.allformine.afmcp.commands.*;
 import ru.allformine.afmcp.handlers.DiscordWebhookListener;
 import ru.allformine.afmcp.handlers.FactionEventListener;
 import ru.allformine.afmcp.handlers.VanishEventListener;
@@ -32,13 +26,10 @@ import ru.allformine.afmcp.net.api.Webhook;
 import ru.allformine.afmcp.packetlisteners.ScreenshotListener;
 import ru.allformine.afmcp.serverapi.HTTPServer;
 import ru.allformine.afmcp.tasks.AutoRebootTask;
-import ru.allformine.afmcp.test.PacketHandler;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
 
 @Plugin(
         id = "afmcp",
@@ -122,6 +113,17 @@ public class AFMCorePlugin {
                 .build();
 
         Sponge.getCommandManager().register(this, rawBCspec, "rawbc");
+
+        CommandSpec vanishSpec = CommandSpec.builder()
+                .description(Text.of("Vanish"))
+                .permission("afmcp.vanish")
+                .executor(new VanishCommand())
+                .arguments(
+                        GenericArguments.optional(GenericArguments.string(Text.of("subcmd")))
+                )
+                .build();
+
+        Sponge.getCommandManager().register(this, vanishSpec, "vanish", "v");
     }
 
     @Listener
@@ -135,23 +137,6 @@ public class AFMCorePlugin {
                 .createRawChannel(this, "factions");
 
         PacketChannels.SCREENSHOT.addListener(new ScreenshotListener());
-
-        try {
-            NetworkSystem networkSystem = ((MinecraftServer) Sponge.getServer()).getNetworkSystem();
-            Field endpointsField = networkSystem.getClass().getDeclaredField("field_151274_e");
-            endpointsField.setAccessible(true);
-            List<ChannelFuture> endpoints = (List<ChannelFuture>) endpointsField.get(networkSystem);
-            for (ChannelFuture channelFuture : endpoints) {
-                channelFuture.channel().pipeline().addFirst("PacketHandlerXXX", new PacketHandler());
-
-                for (String name : channelFuture.channel().pipeline().names()) {
-                    logger.info(name);
-                }
-            }
-        } catch (Exception e) {
-            logger.error("Can't attach PacketHandler!");
-            e.printStackTrace();
-        }
     }
 
     @Listener

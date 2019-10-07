@@ -28,7 +28,7 @@ public class VanishManager {
     }
 
     public static void unvanishPlayer(Player player, boolean onLeave) {
-        setVanish(player, false, false);
+        setVanish(player, false, onLeave);
 
         vanishedPlayers.remove(player);
 

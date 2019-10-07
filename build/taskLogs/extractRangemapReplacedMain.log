@@ -1,8 +1,8 @@
 Unsupposrted library path: E:\CodeProjects\AllForMine\AFMCorePlugin-sponge1.12\build\classes\java\api
 Unsupposrted library path: E:\CodeProjects\AllForMine\AFMCorePlugin-sponge1.12\build\resources\api
 Symbol range map extraction starting
-Processing 25 files
-startProcessing "ru/allformine/afmcp/AFMCorePlugin.java" md5: 3eb9c3360fca5682ef1d95191704d1f1
+Processing 26 files
+startProcessing "ru/allformine/afmcp/AFMCorePlugin.java" md5: 6d6b4902070f89282044d76f4f5717ee
 endProcessing "ru/allformine/afmcp/AFMCorePlugin.java"
 
 startProcessing "ru/allformine/afmcp/PacketChannels.java" md5: f7cd61b45066a38e882b1660c552dc54
@@ -10,9 +10,6 @@ endProcessing "ru/allformine/afmcp/PacketChannels.java"
 
 startProcessing "ru/allformine/afmcp/Utils.java" md5: abd9b6a88c0b2fc6492f7da1bc027613
 endProcessing "ru/allformine/afmcp/Utils.java"
-
-startProcessing "ru/allformine/afmcp/VanishManager.java" md5: ced6e131bce5bf8cb0ae6495c067645c
-endProcessing "ru/allformine/afmcp/VanishManager.java"
 
 startProcessing "ru/allformine/afmcp/commands/AFMCPCommand.java" md5: e4e2b0637bde70dd3b8b92c0facf27ca
 endProcessing "ru/allformine/afmcp/commands/AFMCPCommand.java"
@@ -26,19 +23,22 @@ endProcessing "ru/allformine/afmcp/commands/RestartCommand.java"
 startProcessing "ru/allformine/afmcp/commands/TokensCommand.java" md5: 70a28c8313272c0bc7075a179af64708
 endProcessing "ru/allformine/afmcp/commands/TokensCommand.java"
 
+startProcessing "ru/allformine/afmcp/commands/VanishCommand.java" md5: e050f79f8c357d2a3b4a947b1d077c96
+endProcessing "ru/allformine/afmcp/commands/VanishCommand.java"
+
 startProcessing "ru/allformine/afmcp/commands/VipCommand.java" md5: 61fa5211c92d8e68f108ba10786a5e05
 endProcessing "ru/allformine/afmcp/commands/VipCommand.java"
 
 startProcessing "ru/allformine/afmcp/handlers/AutospawnEventListener.java" md5: 70117e8987e14511ef75b318bd4c6f99
 endProcessing "ru/allformine/afmcp/handlers/AutospawnEventListener.java"
 
-startProcessing "ru/allformine/afmcp/handlers/DiscordWebhookListener.java" md5: 5d0db38ba444ea681293b54e3223f3a2
+startProcessing "ru/allformine/afmcp/handlers/DiscordWebhookListener.java" md5: 65ff06a35dd656e51e52d33b174ec3bc
 endProcessing "ru/allformine/afmcp/handlers/DiscordWebhookListener.java"
 
 startProcessing "ru/allformine/afmcp/handlers/FactionEventListener.java" md5: 38b7cb3689d42d2a6a9f70fcb0f6309c
 endProcessing "ru/allformine/afmcp/handlers/FactionEventListener.java"
 
-startProcessing "ru/allformine/afmcp/handlers/VanishEventListener.java" md5: 2b5e042f71c2bbd191e55ca6980e075c
+startProcessing "ru/allformine/afmcp/handlers/VanishEventListener.java" md5: 7d12d6a2b1cddd76b0da43ccc390e226
 endProcessing "ru/allformine/afmcp/handlers/VanishEventListener.java"
 
 startProcessing "ru/allformine/afmcp/jumppad/JumpPadEventListener.java" md5: 6338634a5d74b5eaf79a8c1a90f04efa
@@ -74,6 +74,9 @@ endProcessing "ru/allformine/afmcp/serverapi/ServerUtils.java"
 startProcessing "ru/allformine/afmcp/tasks/AutoRebootTask.java" md5: 5e3fb1423a9f187c70a4159e0d546b72
 endProcessing "ru/allformine/afmcp/tasks/AutoRebootTask.java"
 
-startProcessing "ru/allformine/afmcp/test/PacketHandler.java" md5: 1add9950e95dda72ede5192e4a5428b3
-endProcessing "ru/allformine/afmcp/test/PacketHandler.java"
+startProcessing "ru/allformine/afmcp/vanish/VanishEffects.java" md5: 0e85ead25bb8f3a60b75c23c6aa9ab54
+endProcessing "ru/allformine/afmcp/vanish/VanishEffects.java"
+
+startProcessing "ru/allformine/afmcp/vanish/VanishManager.java" md5: 54bbfb576c0a8b050f4038b74b5313c0
+endProcessing "ru/allformine/afmcp/vanish/VanishManager.java"
 

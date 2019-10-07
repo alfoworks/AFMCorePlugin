@@ -1,13 +1,9 @@
-Processing 25 files
+Processing 26 files
 Start Processing: ru/allformine/afmcp/AFMCorePlugin.java
-Rename method net/minecraft/server/MinecraftServer/getNetworkSystem ()Lnet/minecraft/network/NetworkSystem;[5625,5641]::getNetworkSystem->func_147137_ag
 New Key: class ru/allformine/afmcp/net/api/Webhook
 New Key: class ru/allformine/afmcp/net/api/Webhook
 New Key: class ru/allformine/afmcp/net/api/Webhook
 Import: com.google.inject.Inject
-Import: io.netty.channel.ChannelFuture
-Import: net.minecraft.network.NetworkSystem
-Import: net.minecraft.server.MinecraftServer
 Import: ninja.leaping.configurate.commented.CommentedConfigurationNode
 Import: ninja.leaping.configurate.hocon.HoconConfigurationLoader
 Import: ninja.leaping.configurate.loader.ConfigurationLoader
@@ -24,10 +20,7 @@ Import: org.spongepowered.api.event.game.state.GameStoppingServerEvent
 Import: org.spongepowered.api.plugin.Plugin
 Import: org.spongepowered.api.scheduler.Task
 Import: org.spongepowered.api.text.Text
-Import: ru.allformine.afmcp.commands.RawBCCommand
-Import: ru.allformine.afmcp.commands.RestartCommand
-Import: ru.allformine.afmcp.commands.TokensCommand
-Import: ru.allformine.afmcp.commands.VipCommand
+Import: ru.allformine.afmcp.commands.*
 Import: ru.allformine.afmcp.handlers.DiscordWebhookListener
 Import: ru.allformine.afmcp.handlers.FactionEventListener
 Import: ru.allformine.afmcp.handlers.VanishEventListener
@@ -36,12 +29,10 @@ Import: ru.allformine.afmcp.net.api.Webhook
 Import: ru.allformine.afmcp.packetlisteners.ScreenshotListener
 Import: ru.allformine.afmcp.serverapi.HTTPServer
 Import: ru.allformine.afmcp.tasks.AutoRebootTask
-Import: ru.allformine.afmcp.test.PacketHandler
-Adding 4 imports
+Adding 3 imports
         java.io.IOException
         java.nio.file.Files
         java.nio.file.Path
-        java.util.List
 End  Processing: ru/allformine/afmcp/AFMCorePlugin.java
 
 Start Processing: ru/allformine/afmcp/PacketChannels.java
@@ -59,12 +50,6 @@ Import: org.spongepowered.api.text.Text
 Import: org.spongepowered.api.text.format.TextColors
 Import: org.spongepowered.api.text.title.Title
 End  Processing: ru/allformine/afmcp/Utils.java
-
-Start Processing: ru/allformine/afmcp/VanishManager.java
-Import: org.spongepowered.api.entity.living.player.Player
-Adding 1 imports
-        java.util.HashMap
-End  Processing: ru/allformine/afmcp/VanishManager.java
 
 Start Processing: ru/allformine/afmcp/commands/AFMCPCommand.java
 Import: org.spongepowered.api.command.CommandResult
@@ -111,6 +96,21 @@ Import: ru.allformine.afmcp.net.api.Eco
 Adding 1 imports
         java.util.OptionalInt
 End  Processing: ru/allformine/afmcp/commands/TokensCommand.java
+
+Start Processing: ru/allformine/afmcp/commands/VanishCommand.java
+Import: org.spongepowered.api.command.CommandResult
+Import: org.spongepowered.api.command.CommandSource
+Import: org.spongepowered.api.command.args.CommandContext
+Import: org.spongepowered.api.entity.living.player.Player
+Import: org.spongepowered.api.text.Text
+Import: org.spongepowered.api.text.format.TextColor
+Import: org.spongepowered.api.text.format.TextColors
+Import: ru.allformine.afmcp.vanish.VanishManager
+Adding 3 imports
+        java.util.List
+        java.util.Optional
+        java.util.stream.Collectors
+End  Processing: ru/allformine/afmcp/commands/VanishCommand.java
 
 Start Processing: ru/allformine/afmcp/commands/VipCommand.java
 New Key: class java/util/Map
@@ -162,6 +162,7 @@ Import: org.spongepowered.api.event.filter.cause.First
 Import: org.spongepowered.api.event.network.ClientConnectionEvent
 Import: ru.allformine.afmcp.AFMCorePlugin
 Import: ru.allformine.afmcp.net.api.Webhook
+Import: ru.allformine.afmcp.vanish.VanishManager
 End  Processing: ru/allformine/afmcp/handlers/DiscordWebhookListener.java
 
 Start Processing: ru/allformine/afmcp/handlers/FactionEventListener.java
@@ -189,10 +190,9 @@ End  Processing: ru/allformine/afmcp/handlers/FactionEventListener.java
 Start Processing: ru/allformine/afmcp/handlers/VanishEventListener.java
 New Key: class org/spongepowered/api/event/network/ClientConnectionEvent
 New Key: class org/spongepowered/api/event/network/ClientConnectionEvent
-Import: org.spongepowered.api.entity.living.player.Player
 Import: org.spongepowered.api.event.Listener
 Import: org.spongepowered.api.event.network.ClientConnectionEvent
-Import: ru.allformine.afmcp.VanishManager
+Import: ru.allformine.afmcp.vanish.VanishManager
 End  Processing: ru/allformine/afmcp/handlers/VanishEventListener.java
 
 Start Processing: ru/allformine/afmcp/jumppad/JumpPadEventListener.java
@@ -326,11 +326,20 @@ Adding 1 imports
         java.util.Calendar
 End  Processing: ru/allformine/afmcp/tasks/AutoRebootTask.java
 
-Start Processing: ru/allformine/afmcp/test/PacketHandler.java
-FOUND CONSTR method ru/allformine/afmcp/test/PacketHandler/PacketHandler ()V ru/allformine/afmcp/test/PacketHandler
-Import: io.netty.channel.ChannelDuplexHandler
-Import: io.netty.channel.ChannelHandlerContext
-Import: io.netty.channel.ChannelPromise
-Import: ru.allformine.afmcp.AFMCorePlugin
-End  Processing: ru/allformine/afmcp/test/PacketHandler.java
+Start Processing: ru/allformine/afmcp/vanish/VanishEffects.java
+Import: org.spongepowered.api.entity.EntityTypes
+Import: org.spongepowered.api.entity.living.player.Player
+End  Processing: ru/allformine/afmcp/vanish/VanishEffects.java
+
+Start Processing: ru/allformine/afmcp/vanish/VanishManager.java
+Import: org.spongepowered.api.Sponge
+Import: org.spongepowered.api.data.key.Keys
+Import: org.spongepowered.api.entity.living.player.Player
+Import: org.spongepowered.api.text.Text
+Import: org.spongepowered.api.text.channel.MessageChannel
+Import: org.spongepowered.api.text.format.TextColors
+Adding 2 imports
+        java.util.ArrayList
+        java.util.List
+End  Processing: ru/allformine/afmcp/vanish/VanishManager.java
 

@@ -1,282 +1,273 @@
 Unsupposrted library path: E:\CodeProjects\AllForMine\AFMCorePlugin-sponge1.12\build\classes\java\api
 Unsupposrted library path: E:\CodeProjects\AllForMine\AFMCorePlugin-sponge1.12\build\resources\api
 Symbol range map extraction starting
-Processing 25 files
-startProcessing "ru/allformine/afmcp/AFMCorePlugin.java" md5: 3eb9c3360fca5682ef1d95191704d1f1
+Processing 26 files
+startProcessing "ru/allformine/afmcp/AFMCorePlugin.java" md5: 6d6b4902070f89282044d76f4f5717ee
 @|ru/allformine/afmcp/AFMCorePlugin.java|8|27|ru.allformine.afmcp|package|ru.allformine.afmcp|(file)
 Class Start: ru.allformine.afmcp.AFMCorePlugin
-   @|ru/allformine/afmcp/AFMCorePlugin.java|1945|1951|Plugin|class|org.spongepowered.api.plugin.Plugin|false
-   @|ru/allformine/afmcp/AFMCorePlugin.java|1962|1964|id|method|org.spongepowered.api.plugin.Plugin|id|()Ljava/lang/String;
-   @|ru/allformine/afmcp/AFMCorePlugin.java|1985|1989|name|method|org.spongepowered.api.plugin.Plugin|name|()Ljava/lang/String;
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2018|2029|description|method|org.spongepowered.api.plugin.Plugin|description|()Ljava/lang/String;
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2083|2090|version|method|org.spongepowered.api.plugin.Plugin|version|()Ljava/lang/String;
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2109|2112|url|method|org.spongepowered.api.plugin.Plugin|url|()Ljava/lang/String;
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2148|2155|authors|method|org.spongepowered.api.plugin.Plugin|authors|()[Ljava/lang/String;
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2234|2247|AFMCorePlugin|class|ru.allformine.afmcp.AFMCorePlugin|false
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2277|2290|serverRestart|field|ru.allformine.afmcp.AFMCorePlugin|serverRestart|
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2332|2338|Logger|class|org.slf4j.Logger|false
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2306|2312|Inject|class|com.google.inject.Inject|false
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2332|2338|Logger|class|org.slf4j.Logger|false
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2339|2345|logger|field|ru.allformine.afmcp.AFMCorePlugin|logger|
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2367|2393|CommentedConfigurationNode|class|ninja.leaping.configurate.commented.CommentedConfigurationNode|false
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2367|2393|CommentedConfigurationNode|class|ninja.leaping.configurate.commented.CommentedConfigurationNode|false
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2394|2404|configNode|field|ru.allformine.afmcp.AFMCorePlugin|configNode|
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2427|2437|HTTPServer|class|ru.allformine.afmcp.serverapi.HTTPServer|false
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2427|2437|HTTPServer|class|ru.allformine.afmcp.serverapi.HTTPServer|false
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2438|2447|apiServer|field|ru.allformine.afmcp.AFMCorePlugin|apiServer|
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2462|2466|Task|class|org.spongepowered.api.scheduler.Task|false
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2462|2466|Task|class|org.spongepowered.api.scheduler.Task|false
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2467|2480|apiServerTask|field|ru.allformine.afmcp.AFMCorePlugin|apiServerTask|
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2546|2550|Path|class|java.nio.file.Path|false
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2490|2496|Inject|class|com.google.inject.Inject|false
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2503|2512|ConfigDir|class|org.spongepowered.api.config.ConfigDir|false
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2513|2523|sharedRoot|method|org.spongepowered.api.config.ConfigDir|sharedRoot|()Z
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2546|2550|Path|class|java.nio.file.Path|false
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2551|2560|configDir|field|ru.allformine.afmcp.AFMCorePlugin|configDir|
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2575|2579|Path|class|java.nio.file.Path|false
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2575|2579|Path|class|java.nio.file.Path|false
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2580|2590|configFile|field|ru.allformine.afmcp.AFMCorePlugin|configFile|
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2625|2651|CommentedConfigurationNode|class|ninja.leaping.configurate.commented.CommentedConfigurationNode|false
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2605|2624|ConfigurationLoader|class|ninja.leaping.configurate.loader.ConfigurationLoader|false
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2605|2624|ConfigurationLoader|class|ninja.leaping.configurate.loader.ConfigurationLoader|false
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2625|2651|CommentedConfigurationNode|class|ninja.leaping.configurate.commented.CommentedConfigurationNode|false
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2653|2665|configLoader|field|ru.allformine.afmcp.AFMCorePlugin|configLoader|
-   @|ru/allformine/afmcp/AFMCorePlugin.java|2693|2702|startTime|field|ru.allformine.afmcp.AFMCorePlugin|startTime|
+   @|ru/allformine/afmcp/AFMCorePlugin.java|1544|1550|Plugin|class|org.spongepowered.api.plugin.Plugin|false
+   @|ru/allformine/afmcp/AFMCorePlugin.java|1561|1563|id|method|org.spongepowered.api.plugin.Plugin|id|()Ljava/lang/String;
+   @|ru/allformine/afmcp/AFMCorePlugin.java|1584|1588|name|method|org.spongepowered.api.plugin.Plugin|name|()Ljava/lang/String;
+   @|ru/allformine/afmcp/AFMCorePlugin.java|1617|1628|description|method|org.spongepowered.api.plugin.Plugin|description|()Ljava/lang/String;
+   @|ru/allformine/afmcp/AFMCorePlugin.java|1682|1689|version|method|org.spongepowered.api.plugin.Plugin|version|()Ljava/lang/String;
+   @|ru/allformine/afmcp/AFMCorePlugin.java|1708|1711|url|method|org.spongepowered.api.plugin.Plugin|url|()Ljava/lang/String;
+   @|ru/allformine/afmcp/AFMCorePlugin.java|1747|1754|authors|method|org.spongepowered.api.plugin.Plugin|authors|()[Ljava/lang/String;
+   @|ru/allformine/afmcp/AFMCorePlugin.java|1833|1846|AFMCorePlugin|class|ru.allformine.afmcp.AFMCorePlugin|false
+   @|ru/allformine/afmcp/AFMCorePlugin.java|1876|1889|serverRestart|field|ru.allformine.afmcp.AFMCorePlugin|serverRestart|
+   @|ru/allformine/afmcp/AFMCorePlugin.java|1931|1937|Logger|class|org.slf4j.Logger|false
+   @|ru/allformine/afmcp/AFMCorePlugin.java|1905|1911|Inject|class|com.google.inject.Inject|false
+   @|ru/allformine/afmcp/AFMCorePlugin.java|1931|1937|Logger|class|org.slf4j.Logger|false
+   @|ru/allformine/afmcp/AFMCorePlugin.java|1938|1944|logger|field|ru.allformine.afmcp.AFMCorePlugin|logger|
+   @|ru/allformine/afmcp/AFMCorePlugin.java|1966|1992|CommentedConfigurationNode|class|ninja.leaping.configurate.commented.CommentedConfigurationNode|false
+   @|ru/allformine/afmcp/AFMCorePlugin.java|1966|1992|CommentedConfigurationNode|class|ninja.leaping.configurate.commented.CommentedConfigurationNode|false
+   @|ru/allformine/afmcp/AFMCorePlugin.java|1993|2003|configNode|field|ru.allformine.afmcp.AFMCorePlugin|configNode|
+   @|ru/allformine/afmcp/AFMCorePlugin.java|2026|2036|HTTPServer|class|ru.allformine.afmcp.serverapi.HTTPServer|false
+   @|ru/allformine/afmcp/AFMCorePlugin.java|2026|2036|HTTPServer|class|ru.allformine.afmcp.serverapi.HTTPServer|false
+   @|ru/allformine/afmcp/AFMCorePlugin.java|2037|2046|apiServer|field|ru.allformine.afmcp.AFMCorePlugin|apiServer|
+   @|ru/allformine/afmcp/AFMCorePlugin.java|2061|2065|Task|class|org.spongepowered.api.scheduler.Task|false
+   @|ru/allformine/afmcp/AFMCorePlugin.java|2061|2065|Task|class|org.spongepowered.api.scheduler.Task|false
+   @|ru/allformine/afmcp/AFMCorePlugin.java|2066|2079|apiServerTask|field|ru.allformine.afmcp.AFMCorePlugin|apiServerTask|
+   @|ru/allformine/afmcp/AFMCorePlugin.java|2145|2149|Path|class|java.nio.file.Path|false
+   @|ru/allformine/afmcp/AFMCorePlugin.java|2089|2095|Inject|class|com.google.inject.Inject|false
+   @|ru/allformine/afmcp/AFMCorePlugin.java|2102|2111|ConfigDir|class|org.spongepowered.api.config.ConfigDir|false
+   @|ru/allformine/afmcp/AFMCorePlugin.java|2112|2122|sharedRoot|method|org.spongepowered.api.config.ConfigDir|sharedRoot|()Z
+   @|ru/allformine/afmcp/AFMCorePlugin.java|2145|2149|Path|class|java.nio.file.Path|false
+   @|ru/allformine/afmcp/AFMCorePlugin.java|2150|2159|configDir|field|ru.allformine.afmcp.AFMCorePlugin|configDir|
+   @|ru/allformine/afmcp/AFMCorePlugin.java|2174|2178|Path|class|java.nio.file.Path|false
+   @|ru/allformine/afmcp/AFMCorePlugin.java|2174|2178|Path|class|java.nio.file.Path|false
+   @|ru/allformine/afmcp/AFMCorePlugin.java|2179|2189|configFile|field|ru.allformine.afmcp.AFMCorePlugin|configFile|
+   @|ru/allformine/afmcp/AFMCorePlugin.java|2224|2250|CommentedConfigurationNode|class|ninja.leaping.configurate.commented.CommentedConfigurationNode|false
+   @|ru/allformine/afmcp/AFMCorePlugin.java|2204|2223|ConfigurationLoader|class|ninja.leaping.configurate.loader.ConfigurationLoader|false
+   @|ru/allformine/afmcp/AFMCorePlugin.java|2204|2223|ConfigurationLoader|class|ninja.leaping.configurate.loader.ConfigurationLoader|false
+   @|ru/allformine/afmcp/AFMCorePlugin.java|2224|2250|CommentedConfigurationNode|class|ninja.leaping.configurate.commented.CommentedConfigurationNode|false
+   @|ru/allformine/afmcp/AFMCorePlugin.java|2252|2264|configLoader|field|ru.allformine.afmcp.AFMCorePlugin|configLoader|
+   @|ru/allformine/afmcp/AFMCorePlugin.java|2292|2301|startTime|field|ru.allformine.afmcp.AFMCorePlugin|startTime|
    Method Start: getConfig()Lninja/leaping/configurate/commented/CommentedConfigurationNode;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|2729|2755|CommentedConfigurationNode|class|ninja.leaping.configurate.commented.CommentedConfigurationNode|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|2756|2765|getConfig|method|ru.allformine.afmcp.AFMCorePlugin|getConfig|()Lninja/leaping/configurate/commented/CommentedConfigurationNode;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|2786|2796|configNode|field|ru.allformine.afmcp.AFMCorePlugin|configNode
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2328|2354|CommentedConfigurationNode|class|ninja.leaping.configurate.commented.CommentedConfigurationNode|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2355|2364|getConfig|method|ru.allformine.afmcp.AFMCorePlugin|getConfig|()Lninja/leaping/configurate/commented/CommentedConfigurationNode;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2385|2395|configNode|field|ru.allformine.afmcp.AFMCorePlugin|configNode
    Method End: getConfig()Lninja/leaping/configurate/commented/CommentedConfigurationNode;
    Method Start: setLogger(Lorg/slf4j/Logger;)V
-      @|ru/allformine/afmcp/AFMCorePlugin.java|2855|2861|logger|param|ru.allformine.afmcp.AFMCorePlugin|setLogger|(Lorg/slf4j/Logger;)V|logger|0
-      @|ru/allformine/afmcp/AFMCorePlugin.java|2813|2819|Inject|class|com.google.inject.Inject|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|2838|2847|setLogger|method|ru.allformine.afmcp.AFMCorePlugin|setLogger|(Lorg/slf4j/Logger;)V
-      @|ru/allformine/afmcp/AFMCorePlugin.java|2848|2854|Logger|class|org.slf4j.Logger|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|2874|2887|AFMCorePlugin|class|ru.allformine.afmcp.AFMCorePlugin|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|2888|2894|logger|field|ru.allformine.afmcp.AFMCorePlugin|logger
-      @|ru/allformine/afmcp/AFMCorePlugin.java|2897|2903|logger|param|ru.allformine.afmcp.AFMCorePlugin|setLogger|(Lorg/slf4j/Logger;)V|logger|0
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2454|2460|logger|param|ru.allformine.afmcp.AFMCorePlugin|setLogger|(Lorg/slf4j/Logger;)V|logger|0
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2412|2418|Inject|class|com.google.inject.Inject|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2437|2446|setLogger|method|ru.allformine.afmcp.AFMCorePlugin|setLogger|(Lorg/slf4j/Logger;)V
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2447|2453|Logger|class|org.slf4j.Logger|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2473|2486|AFMCorePlugin|class|ru.allformine.afmcp.AFMCorePlugin|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2487|2493|logger|field|ru.allformine.afmcp.AFMCorePlugin|logger
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2496|2502|logger|param|ru.allformine.afmcp.AFMCorePlugin|setLogger|(Lorg/slf4j/Logger;)V|logger|0
    Method End: setLogger(Lorg/slf4j/Logger;)V
    Method Start: preInit(Lorg/spongepowered/api/event/game/state/GamePreInitializationEvent;)V
-      @|ru/allformine/afmcp/AFMCorePlugin.java|2981|2986|event|param|ru.allformine.afmcp.AFMCorePlugin|preInit|(Lorg/spongepowered/api/event/game/state/GamePreInitializationEvent;)V|event|0
-      @|ru/allformine/afmcp/AFMCorePlugin.java|2920|2928|Listener|class|org.spongepowered.api.event.Listener|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|2946|2953|preInit|method|ru.allformine.afmcp.AFMCorePlugin|preInit|(Lorg/spongepowered/api/event/game/state/GamePreInitializationEvent;)V
-      @|ru/allformine/afmcp/AFMCorePlugin.java|2954|2980|GamePreInitializationEvent|class|org.spongepowered.api.event.game.state.GamePreInitializationEvent|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|2999|3005|Sponge|class|org.spongepowered.api.Sponge|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3006|3021|getEventManager|method|org.spongepowered.api.Sponge|getEventManager|()Lorg/spongepowered/api/event/EventManager;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3024|3041|registerListeners|method|org.spongepowered.api.event.EventManager|registerListeners|(Ljava/lang/Object;Ljava/lang/Object;)V
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3052|3074|DiscordWebhookListener|class|ru.allformine.afmcp.handlers.DiscordWebhookListener|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3088|3094|Sponge|class|org.spongepowered.api.Sponge|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3095|3110|getEventManager|method|org.spongepowered.api.Sponge|getEventManager|()Lorg/spongepowered/api/event/EventManager;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3113|3130|registerListeners|method|org.spongepowered.api.event.EventManager|registerListeners|(Ljava/lang/Object;Ljava/lang/Object;)V
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3141|3160|VanishEventListener|class|ru.allformine.afmcp.handlers.VanishEventListener|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3174|3180|Sponge|class|org.spongepowered.api.Sponge|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3181|3196|getEventManager|method|org.spongepowered.api.Sponge|getEventManager|()Lorg/spongepowered/api/event/EventManager;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3199|3216|registerListeners|method|org.spongepowered.api.event.EventManager|registerListeners|(Ljava/lang/Object;Ljava/lang/Object;)V
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3227|3247|JumpPadEventListener|class|ru.allformine.afmcp.jumppad.JumpPadEventListener|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3261|3267|Sponge|class|org.spongepowered.api.Sponge|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3268|3283|getEventManager|method|org.spongepowered.api.Sponge|getEventManager|()Lorg/spongepowered/api/event/EventManager;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3286|3303|registerListeners|method|org.spongepowered.api.event.EventManager|registerListeners|(Ljava/lang/Object;Ljava/lang/Object;)V
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3314|3334|FactionEventListener|class|ru.allformine.afmcp.handlers.FactionEventListener|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3350|3360|configFile|field|ru.allformine.afmcp.AFMCorePlugin|configFile
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3363|3372|configDir|field|ru.allformine.afmcp.AFMCorePlugin|configDir
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3373|3380|resolve|method|java.nio.file.Path|resolve|(Ljava/lang/String;)Ljava/nio/file/Path;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3406|3418|configLoader|field|ru.allformine.afmcp.AFMCorePlugin|configLoader
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3421|3445|HoconConfigurationLoader|class|ninja.leaping.configurate.hocon.HoconConfigurationLoader|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3446|3453|builder|method|ninja.leaping.configurate.hocon.HoconConfigurationLoader|builder|()Lninja/leaping/configurate/hocon/HoconConfigurationLoader$Builder;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3456|3463|setPath|method|ninja.leaping.configurate.loader.AbstractConfigurationLoader.Builder|setPath|(Ljava/nio/file/Path;)Lninja/leaping/configurate/loader/AbstractConfigurationLoader$Builder;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3464|3474|configFile|field|ru.allformine.afmcp.AFMCorePlugin|configFile
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3476|3481|build|method|ninja.leaping.configurate.loader.AbstractConfigurationLoader.Builder|build|()Lninja/leaping/configurate/loader/AbstractConfigurationLoader;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3496|3507|configSetup|method|ru.allformine.afmcp.AFMCorePlugin|configSetup|()V
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3522|3533|CommandSpec|class|org.spongepowered.api.command.spec.CommandSpec|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3555|3566|CommandSpec|class|org.spongepowered.api.command.spec.CommandSpec|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3567|3574|builder|method|org.spongepowered.api.command.spec.CommandSpec|builder|()Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3595|3606|description|method|org.spongepowered.api.command.spec.CommandSpec.Builder|description|(Lorg/spongepowered/api/text/Text;)Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3607|3611|Text|class|org.spongepowered.api.text.Text|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3612|3614|of|method|org.spongepowered.api.text.Text|of|(Ljava/lang/String;)Lorg/spongepowered/api/text/LiteralText;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3692|3702|permission|method|org.spongepowered.api.command.spec.CommandSpec.Builder|permission|(Ljava/lang/String;)Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3736|3744|executor|method|org.spongepowered.api.command.spec.CommandSpec.Builder|executor|(Lorg/spongepowered/api/command/spec/CommandExecutor;)Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3749|3763|RestartCommand|class|ru.allformine.afmcp.commands.RestartCommand|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3785|3790|build|method|org.spongepowered.api.command.spec.CommandSpec.Builder|build|()Lorg/spongepowered/api/command/spec/CommandSpec;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3805|3811|Sponge|class|org.spongepowered.api.Sponge|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3812|3829|getCommandManager|method|org.spongepowered.api.Sponge|getCommandManager|()Lorg/spongepowered/api/command/CommandManager;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3832|3840|register|method|org.spongepowered.api.command.CommandManager|register|(Ljava/lang/Object;Lorg/spongepowered/api/command/CommandCallable;[Ljava/lang/String;)Ljava/util/Optional;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3908|3919|CommandSpec|class|org.spongepowered.api.command.spec.CommandSpec|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3940|3951|CommandSpec|class|org.spongepowered.api.command.spec.CommandSpec|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3952|3959|builder|method|org.spongepowered.api.command.spec.CommandSpec|builder|()Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3980|3991|description|method|org.spongepowered.api.command.spec.CommandSpec.Builder|description|(Lorg/spongepowered/api/text/Text;)Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3992|3996|Text|class|org.spongepowered.api.text.Text|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|3997|3999|of|method|org.spongepowered.api.text.Text|of|(Ljava/lang/String;)Lorg/spongepowered/api/text/LiteralText;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4064|4072|executor|method|org.spongepowered.api.command.spec.CommandSpec.Builder|executor|(Lorg/spongepowered/api/command/spec/CommandExecutor;)Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4077|4090|TokensCommand|class|ru.allformine.afmcp.commands.TokensCommand|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4112|4117|build|method|org.spongepowered.api.command.spec.CommandSpec.Builder|build|()Lorg/spongepowered/api/command/spec/CommandSpec;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4132|4138|Sponge|class|org.spongepowered.api.Sponge|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4139|4156|getCommandManager|method|org.spongepowered.api.Sponge|getCommandManager|()Lorg/spongepowered/api/command/CommandManager;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4159|4167|register|method|org.spongepowered.api.command.CommandManager|register|(Ljava/lang/Object;Lorg/spongepowered/api/command/CommandCallable;[Ljava/lang/String;)Ljava/util/Optional;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4215|4226|CommandSpec|class|org.spongepowered.api.command.spec.CommandSpec|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4244|4255|CommandSpec|class|org.spongepowered.api.command.spec.CommandSpec|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4256|4263|builder|method|org.spongepowered.api.command.spec.CommandSpec|builder|()Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4284|4295|description|method|org.spongepowered.api.command.spec.CommandSpec.Builder|description|(Lorg/spongepowered/api/text/Text;)Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4296|4300|Text|class|org.spongepowered.api.text.Text|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4301|4303|of|method|org.spongepowered.api.text.Text|of|(Ljava/lang/String;)Lorg/spongepowered/api/text/LiteralText;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4358|4366|executor|method|org.spongepowered.api.command.spec.CommandSpec.Builder|executor|(Lorg/spongepowered/api/command/spec/CommandExecutor;)Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4371|4381|VipCommand|class|ru.allformine.afmcp.commands.VipCommand|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4403|4412|arguments|method|org.spongepowered.api.command.spec.CommandSpec.Builder|arguments|(Lorg/spongepowered/api/command/args/CommandElement;)Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4439|4455|GenericArguments|class|org.spongepowered.api.command.args.GenericArguments|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4456|4464|optional|method|org.spongepowered.api.command.args.GenericArguments|optional|(Lorg/spongepowered/api/command/args/CommandElement;)Lorg/spongepowered/api/command/args/CommandElement;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4465|4481|GenericArguments|class|org.spongepowered.api.command.args.GenericArguments|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4482|4488|string|method|org.spongepowered.api.command.args.GenericArguments|string|(Lorg/spongepowered/api/text/Text;)Lorg/spongepowered/api/command/args/CommandElement;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4489|4493|Text|class|org.spongepowered.api.text.Text|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4494|4496|of|method|org.spongepowered.api.text.Text|of|(Ljava/lang/String;)Lorg/spongepowered/api/text/LiteralText;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4551|4556|build|method|org.spongepowered.api.command.spec.CommandSpec.Builder|build|()Lorg/spongepowered/api/command/spec/CommandSpec;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4571|4577|Sponge|class|org.spongepowered.api.Sponge|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4578|4595|getCommandManager|method|org.spongepowered.api.Sponge|getCommandManager|()Lorg/spongepowered/api/command/CommandManager;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4598|4606|register|method|org.spongepowered.api.command.CommandManager|register|(Ljava/lang/Object;Lorg/spongepowered/api/command/CommandCallable;[Ljava/lang/String;)Ljava/util/Optional;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4648|4659|CommandSpec|class|org.spongepowered.api.command.spec.CommandSpec|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4672|4683|CommandSpec|class|org.spongepowered.api.command.spec.CommandSpec|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4684|4691|builder|method|org.spongepowered.api.command.spec.CommandSpec|builder|()Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4712|4723|description|method|org.spongepowered.api.command.spec.CommandSpec.Builder|description|(Lorg/spongepowered/api/text/Text;)Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4724|4728|Text|class|org.spongepowered.api.text.Text|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4729|4731|of|method|org.spongepowered.api.text.Text|of|(Ljava/lang/String;)Lorg/spongepowered/api/text/LiteralText;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4813|4821|executor|method|org.spongepowered.api.command.spec.CommandSpec.Builder|executor|(Lorg/spongepowered/api/command/spec/CommandExecutor;)Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4826|4838|RawBCCommand|class|ru.allformine.afmcp.commands.RawBCCommand|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4860|4869|arguments|method|org.spongepowered.api.command.spec.CommandSpec.Builder|arguments|(Lorg/spongepowered/api/command/args/CommandElement;)Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4896|4912|GenericArguments|class|org.spongepowered.api.command.args.GenericArguments|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4913|4935|remainingJoinedStrings|method|org.spongepowered.api.command.args.GenericArguments|remainingJoinedStrings|(Lorg/spongepowered/api/text/Text;)Lorg/spongepowered/api/command/args/CommandElement;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4936|4940|Text|class|org.spongepowered.api.text.Text|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4941|4943|of|method|org.spongepowered.api.text.Text|of|(Ljava/lang/String;)Lorg/spongepowered/api/text/LiteralText;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|4990|4995|build|method|org.spongepowered.api.command.spec.CommandSpec.Builder|build|()Lorg/spongepowered/api/command/spec/CommandSpec;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5010|5016|Sponge|class|org.spongepowered.api.Sponge|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5017|5034|getCommandManager|method|org.spongepowered.api.Sponge|getCommandManager|()Lorg/spongepowered/api/command/CommandManager;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5037|5045|register|method|org.spongepowered.api.command.CommandManager|register|(Ljava/lang/Object;Lorg/spongepowered/api/command/CommandCallable;[Ljava/lang/String;)Ljava/util/Optional;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2580|2585|event|param|ru.allformine.afmcp.AFMCorePlugin|preInit|(Lorg/spongepowered/api/event/game/state/GamePreInitializationEvent;)V|event|0
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2519|2527|Listener|class|org.spongepowered.api.event.Listener|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2545|2552|preInit|method|ru.allformine.afmcp.AFMCorePlugin|preInit|(Lorg/spongepowered/api/event/game/state/GamePreInitializationEvent;)V
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2553|2579|GamePreInitializationEvent|class|org.spongepowered.api.event.game.state.GamePreInitializationEvent|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2598|2604|Sponge|class|org.spongepowered.api.Sponge|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2605|2620|getEventManager|method|org.spongepowered.api.Sponge|getEventManager|()Lorg/spongepowered/api/event/EventManager;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2623|2640|registerListeners|method|org.spongepowered.api.event.EventManager|registerListeners|(Ljava/lang/Object;Ljava/lang/Object;)V
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2651|2673|DiscordWebhookListener|class|ru.allformine.afmcp.handlers.DiscordWebhookListener|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2687|2693|Sponge|class|org.spongepowered.api.Sponge|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2694|2709|getEventManager|method|org.spongepowered.api.Sponge|getEventManager|()Lorg/spongepowered/api/event/EventManager;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2712|2729|registerListeners|method|org.spongepowered.api.event.EventManager|registerListeners|(Ljava/lang/Object;Ljava/lang/Object;)V
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2740|2759|VanishEventListener|class|ru.allformine.afmcp.handlers.VanishEventListener|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2773|2779|Sponge|class|org.spongepowered.api.Sponge|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2780|2795|getEventManager|method|org.spongepowered.api.Sponge|getEventManager|()Lorg/spongepowered/api/event/EventManager;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2798|2815|registerListeners|method|org.spongepowered.api.event.EventManager|registerListeners|(Ljava/lang/Object;Ljava/lang/Object;)V
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2826|2846|JumpPadEventListener|class|ru.allformine.afmcp.jumppad.JumpPadEventListener|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2860|2866|Sponge|class|org.spongepowered.api.Sponge|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2867|2882|getEventManager|method|org.spongepowered.api.Sponge|getEventManager|()Lorg/spongepowered/api/event/EventManager;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2885|2902|registerListeners|method|org.spongepowered.api.event.EventManager|registerListeners|(Ljava/lang/Object;Ljava/lang/Object;)V
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2913|2933|FactionEventListener|class|ru.allformine.afmcp.handlers.FactionEventListener|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2949|2959|configFile|field|ru.allformine.afmcp.AFMCorePlugin|configFile
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2962|2971|configDir|field|ru.allformine.afmcp.AFMCorePlugin|configDir
+      @|ru/allformine/afmcp/AFMCorePlugin.java|2972|2979|resolve|method|java.nio.file.Path|resolve|(Ljava/lang/String;)Ljava/nio/file/Path;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3005|3017|configLoader|field|ru.allformine.afmcp.AFMCorePlugin|configLoader
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3020|3044|HoconConfigurationLoader|class|ninja.leaping.configurate.hocon.HoconConfigurationLoader|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3045|3052|builder|method|ninja.leaping.configurate.hocon.HoconConfigurationLoader|builder|()Lninja/leaping/configurate/hocon/HoconConfigurationLoader$Builder;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3055|3062|setPath|method|ninja.leaping.configurate.loader.AbstractConfigurationLoader.Builder|setPath|(Ljava/nio/file/Path;)Lninja/leaping/configurate/loader/AbstractConfigurationLoader$Builder;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3063|3073|configFile|field|ru.allformine.afmcp.AFMCorePlugin|configFile
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3075|3080|build|method|ninja.leaping.configurate.loader.AbstractConfigurationLoader.Builder|build|()Lninja/leaping/configurate/loader/AbstractConfigurationLoader;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3095|3106|configSetup|method|ru.allformine.afmcp.AFMCorePlugin|configSetup|()V
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3121|3132|CommandSpec|class|org.spongepowered.api.command.spec.CommandSpec|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3154|3165|CommandSpec|class|org.spongepowered.api.command.spec.CommandSpec|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3166|3173|builder|method|org.spongepowered.api.command.spec.CommandSpec|builder|()Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3194|3205|description|method|org.spongepowered.api.command.spec.CommandSpec.Builder|description|(Lorg/spongepowered/api/text/Text;)Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3206|3210|Text|class|org.spongepowered.api.text.Text|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3211|3213|of|method|org.spongepowered.api.text.Text|of|(Ljava/lang/String;)Lorg/spongepowered/api/text/LiteralText;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3291|3301|permission|method|org.spongepowered.api.command.spec.CommandSpec.Builder|permission|(Ljava/lang/String;)Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3335|3343|executor|method|org.spongepowered.api.command.spec.CommandSpec.Builder|executor|(Lorg/spongepowered/api/command/spec/CommandExecutor;)Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3348|3362|RestartCommand|class|ru.allformine.afmcp.commands.RestartCommand|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3384|3389|build|method|org.spongepowered.api.command.spec.CommandSpec.Builder|build|()Lorg/spongepowered/api/command/spec/CommandSpec;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3404|3410|Sponge|class|org.spongepowered.api.Sponge|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3411|3428|getCommandManager|method|org.spongepowered.api.Sponge|getCommandManager|()Lorg/spongepowered/api/command/CommandManager;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3431|3439|register|method|org.spongepowered.api.command.CommandManager|register|(Ljava/lang/Object;Lorg/spongepowered/api/command/CommandCallable;[Ljava/lang/String;)Ljava/util/Optional;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3507|3518|CommandSpec|class|org.spongepowered.api.command.spec.CommandSpec|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3539|3550|CommandSpec|class|org.spongepowered.api.command.spec.CommandSpec|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3551|3558|builder|method|org.spongepowered.api.command.spec.CommandSpec|builder|()Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3579|3590|description|method|org.spongepowered.api.command.spec.CommandSpec.Builder|description|(Lorg/spongepowered/api/text/Text;)Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3591|3595|Text|class|org.spongepowered.api.text.Text|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3596|3598|of|method|org.spongepowered.api.text.Text|of|(Ljava/lang/String;)Lorg/spongepowered/api/text/LiteralText;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3663|3671|executor|method|org.spongepowered.api.command.spec.CommandSpec.Builder|executor|(Lorg/spongepowered/api/command/spec/CommandExecutor;)Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3676|3689|TokensCommand|class|ru.allformine.afmcp.commands.TokensCommand|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3711|3716|build|method|org.spongepowered.api.command.spec.CommandSpec.Builder|build|()Lorg/spongepowered/api/command/spec/CommandSpec;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3731|3737|Sponge|class|org.spongepowered.api.Sponge|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3738|3755|getCommandManager|method|org.spongepowered.api.Sponge|getCommandManager|()Lorg/spongepowered/api/command/CommandManager;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3758|3766|register|method|org.spongepowered.api.command.CommandManager|register|(Ljava/lang/Object;Lorg/spongepowered/api/command/CommandCallable;[Ljava/lang/String;)Ljava/util/Optional;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3814|3825|CommandSpec|class|org.spongepowered.api.command.spec.CommandSpec|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3843|3854|CommandSpec|class|org.spongepowered.api.command.spec.CommandSpec|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3855|3862|builder|method|org.spongepowered.api.command.spec.CommandSpec|builder|()Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3883|3894|description|method|org.spongepowered.api.command.spec.CommandSpec.Builder|description|(Lorg/spongepowered/api/text/Text;)Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3895|3899|Text|class|org.spongepowered.api.text.Text|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3900|3902|of|method|org.spongepowered.api.text.Text|of|(Ljava/lang/String;)Lorg/spongepowered/api/text/LiteralText;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3957|3965|executor|method|org.spongepowered.api.command.spec.CommandSpec.Builder|executor|(Lorg/spongepowered/api/command/spec/CommandExecutor;)Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|3970|3980|VipCommand|class|ru.allformine.afmcp.commands.VipCommand|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4002|4011|arguments|method|org.spongepowered.api.command.spec.CommandSpec.Builder|arguments|(Lorg/spongepowered/api/command/args/CommandElement;)Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4038|4054|GenericArguments|class|org.spongepowered.api.command.args.GenericArguments|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4055|4063|optional|method|org.spongepowered.api.command.args.GenericArguments|optional|(Lorg/spongepowered/api/command/args/CommandElement;)Lorg/spongepowered/api/command/args/CommandElement;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4064|4080|GenericArguments|class|org.spongepowered.api.command.args.GenericArguments|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4081|4087|string|method|org.spongepowered.api.command.args.GenericArguments|string|(Lorg/spongepowered/api/text/Text;)Lorg/spongepowered/api/command/args/CommandElement;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4088|4092|Text|class|org.spongepowered.api.text.Text|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4093|4095|of|method|org.spongepowered.api.text.Text|of|(Ljava/lang/String;)Lorg/spongepowered/api/text/LiteralText;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4150|4155|build|method|org.spongepowered.api.command.spec.CommandSpec.Builder|build|()Lorg/spongepowered/api/command/spec/CommandSpec;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4170|4176|Sponge|class|org.spongepowered.api.Sponge|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4177|4194|getCommandManager|method|org.spongepowered.api.Sponge|getCommandManager|()Lorg/spongepowered/api/command/CommandManager;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4197|4205|register|method|org.spongepowered.api.command.CommandManager|register|(Ljava/lang/Object;Lorg/spongepowered/api/command/CommandCallable;[Ljava/lang/String;)Ljava/util/Optional;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4247|4258|CommandSpec|class|org.spongepowered.api.command.spec.CommandSpec|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4271|4282|CommandSpec|class|org.spongepowered.api.command.spec.CommandSpec|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4283|4290|builder|method|org.spongepowered.api.command.spec.CommandSpec|builder|()Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4311|4322|description|method|org.spongepowered.api.command.spec.CommandSpec.Builder|description|(Lorg/spongepowered/api/text/Text;)Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4323|4327|Text|class|org.spongepowered.api.text.Text|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4328|4330|of|method|org.spongepowered.api.text.Text|of|(Ljava/lang/String;)Lorg/spongepowered/api/text/LiteralText;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4412|4420|executor|method|org.spongepowered.api.command.spec.CommandSpec.Builder|executor|(Lorg/spongepowered/api/command/spec/CommandExecutor;)Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4425|4437|RawBCCommand|class|ru.allformine.afmcp.commands.RawBCCommand|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4459|4468|arguments|method|org.spongepowered.api.command.spec.CommandSpec.Builder|arguments|(Lorg/spongepowered/api/command/args/CommandElement;)Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4495|4511|GenericArguments|class|org.spongepowered.api.command.args.GenericArguments|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4512|4534|remainingJoinedStrings|method|org.spongepowered.api.command.args.GenericArguments|remainingJoinedStrings|(Lorg/spongepowered/api/text/Text;)Lorg/spongepowered/api/command/args/CommandElement;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4535|4539|Text|class|org.spongepowered.api.text.Text|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4540|4542|of|method|org.spongepowered.api.text.Text|of|(Ljava/lang/String;)Lorg/spongepowered/api/text/LiteralText;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4589|4594|build|method|org.spongepowered.api.command.spec.CommandSpec.Builder|build|()Lorg/spongepowered/api/command/spec/CommandSpec;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4609|4615|Sponge|class|org.spongepowered.api.Sponge|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4616|4633|getCommandManager|method|org.spongepowered.api.Sponge|getCommandManager|()Lorg/spongepowered/api/command/CommandManager;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4636|4644|register|method|org.spongepowered.api.command.CommandManager|register|(Ljava/lang/Object;Lorg/spongepowered/api/command/CommandCallable;[Ljava/lang/String;)Ljava/util/Optional;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4683|4694|CommandSpec|class|org.spongepowered.api.command.spec.CommandSpec|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4708|4719|CommandSpec|class|org.spongepowered.api.command.spec.CommandSpec|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4720|4727|builder|method|org.spongepowered.api.command.spec.CommandSpec|builder|()Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4748|4759|description|method|org.spongepowered.api.command.spec.CommandSpec.Builder|description|(Lorg/spongepowered/api/text/Text;)Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4760|4764|Text|class|org.spongepowered.api.text.Text|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4765|4767|of|method|org.spongepowered.api.text.Text|of|(Ljava/lang/String;)Lorg/spongepowered/api/text/LiteralText;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4797|4807|permission|method|org.spongepowered.api.command.spec.CommandSpec.Builder|permission|(Ljava/lang/String;)Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4842|4850|executor|method|org.spongepowered.api.command.spec.CommandSpec.Builder|executor|(Lorg/spongepowered/api/command/spec/CommandExecutor;)Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4855|4868|VanishCommand|class|ru.allformine.afmcp.commands.VanishCommand|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4890|4899|arguments|method|org.spongepowered.api.command.spec.CommandSpec.Builder|arguments|(Lorg/spongepowered/api/command/args/CommandElement;)Lorg/spongepowered/api/command/spec/CommandSpec$Builder;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4926|4942|GenericArguments|class|org.spongepowered.api.command.args.GenericArguments|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4943|4951|optional|method|org.spongepowered.api.command.args.GenericArguments|optional|(Lorg/spongepowered/api/command/args/CommandElement;)Lorg/spongepowered/api/command/args/CommandElement;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4952|4968|GenericArguments|class|org.spongepowered.api.command.args.GenericArguments|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4969|4975|string|method|org.spongepowered.api.command.args.GenericArguments|string|(Lorg/spongepowered/api/text/Text;)Lorg/spongepowered/api/command/args/CommandElement;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4976|4980|Text|class|org.spongepowered.api.text.Text|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|4981|4983|of|method|org.spongepowered.api.text.Text|of|(Ljava/lang/String;)Lorg/spongepowered/api/text/LiteralText;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5033|5038|build|method|org.spongepowered.api.command.spec.CommandSpec.Builder|build|()Lorg/spongepowered/api/command/spec/CommandSpec;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5053|5059|Sponge|class|org.spongepowered.api.Sponge|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5060|5077|getCommandManager|method|org.spongepowered.api.Sponge|getCommandManager|()Lorg/spongepowered/api/command/CommandManager;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5080|5088|register|method|org.spongepowered.api.command.CommandManager|register|(Ljava/lang/Object;Lorg/spongepowered/api/command/CommandCallable;[Ljava/lang/String;)Ljava/util/Optional;
    Method End: preInit(Lorg/spongepowered/api/event/game/state/GamePreInitializationEvent;)V
    Method Start: init(Lorg/spongepowered/api/event/game/state/GameInitializationEvent;)V
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5143|5148|event|param|ru.allformine.afmcp.AFMCorePlugin|init|(Lorg/spongepowered/api/event/game/state/GameInitializationEvent;)V|event|0
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5088|5096|Listener|class|org.spongepowered.api.event.Listener|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5114|5118|init|method|ru.allformine.afmcp.AFMCorePlugin|init|(Lorg/spongepowered/api/event/game/state/GameInitializationEvent;)V
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5119|5142|GameInitializationEvent|class|org.spongepowered.api.event.game.state.GameInitializationEvent|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5161|5175|PacketChannels|class|ru.allformine.afmcp.PacketChannels|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5176|5186|SCREENSHOT|field|ru.allformine.afmcp.PacketChannels|SCREENSHOT
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5189|5195|Sponge|class|org.spongepowered.api.Sponge|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5196|5203|getGame|method|org.spongepowered.api.Sponge|getGame|()Lorg/spongepowered/api/Game;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5224|5243|getChannelRegistrar|method|org.spongepowered.api.Game|getChannelRegistrar|()Lorg/spongepowered/api/network/ChannelRegistrar;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5264|5280|createRawChannel|method|org.spongepowered.api.network.ChannelRegistrar|createRawChannel|(Ljava/lang/Object;Ljava/lang/String;)Lorg/spongepowered/api/network/ChannelBinding$RawDataChannel;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5313|5327|PacketChannels|class|ru.allformine.afmcp.PacketChannels|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5328|5336|FACTIONS|field|ru.allformine.afmcp.PacketChannels|FACTIONS
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5339|5345|Sponge|class|org.spongepowered.api.Sponge|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5346|5353|getGame|method|org.spongepowered.api.Sponge|getGame|()Lorg/spongepowered/api/Game;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5374|5393|getChannelRegistrar|method|org.spongepowered.api.Game|getChannelRegistrar|()Lorg/spongepowered/api/network/ChannelRegistrar;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5414|5430|createRawChannel|method|org.spongepowered.api.network.ChannelRegistrar|createRawChannel|(Ljava/lang/Object;Ljava/lang/String;)Lorg/spongepowered/api/network/ChannelBinding$RawDataChannel;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5461|5475|PacketChannels|class|ru.allformine.afmcp.PacketChannels|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5476|5486|SCREENSHOT|field|ru.allformine.afmcp.PacketChannels|SCREENSHOT
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5487|5498|addListener|method|org.spongepowered.api.network.ChannelBinding.RawDataChannel|addListener|(Lorg/spongepowered/api/network/RawDataListener;)V
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5503|5521|ScreenshotListener|class|ru.allformine.afmcp.packetlisteners.ScreenshotListener|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5556|5569|NetworkSystem|class|net.minecraft.network.NetworkSystem|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5588|5603|MinecraftServer|class|net.minecraft.server.MinecraftServer|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5605|5611|Sponge|class|org.spongepowered.api.Sponge|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5612|5621|getServer|method|org.spongepowered.api.Sponge|getServer|()Lorg/spongepowered/api/Server;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5625|5641|getNetworkSystem|method|net.minecraft.server.MinecraftServer|getNetworkSystem|()Lnet/minecraft/network/NetworkSystem;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5658|5663|Field|class|java.lang.reflect.Field|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5695|5703|getClass|method|java.lang.Object|getClass|()Ljava/lang/Class;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5706|5722|getDeclaredField|method|java.lang.Class|getDeclaredField|(Ljava/lang/String;)Ljava/lang/reflect/Field;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5770|5783|setAccessible|method|java.lang.reflect.AccessibleObject|setAccessible|(Z)V
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5804|5808|List|class|java.util.List|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5809|5822|ChannelFuture|class|io.netty.channel.ChannelFuture|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5837|5841|List|class|java.util.List|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5842|5855|ChannelFuture|class|io.netty.channel.ChannelFuture|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5873|5876|get|method|java.lang.reflect.Field|get|(Ljava/lang/Object;)Ljava/lang/Object;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5911|5924|ChannelFuture|class|io.netty.channel.ChannelFuture|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5985|5992|channel|method|io.netty.channel.ChannelFuture|channel|()Lio/netty/channel/Channel;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|5995|6003|pipeline|method|io.netty.channel.Channel|pipeline|()Lio/netty/channel/ChannelPipeline;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6006|6014|addFirst|method|io.netty.channel.ChannelPipeline|addFirst|(Ljava/lang/String;Lio/netty/channel/ChannelHandler;)Lio/netty/channel/ChannelPipeline;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6039|6052|PacketHandler|class|ru.allformine.afmcp.test.PacketHandler|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6081|6087|String|class|java.lang.String|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6109|6116|channel|method|io.netty.channel.ChannelFuture|channel|()Lio/netty/channel/Channel;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6119|6127|pipeline|method|io.netty.channel.Channel|pipeline|()Lio/netty/channel/ChannelPipeline;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6130|6135|names|method|io.netty.channel.ChannelPipeline|names|()Ljava/util/List;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6162|6168|logger|field|ru.allformine.afmcp.AFMCorePlugin|logger
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6169|6173|info|method|org.slf4j.Logger|info|(Ljava/lang/String;)V
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6233|6242|Exception|class|java.lang.Exception|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6261|6267|logger|field|ru.allformine.afmcp.AFMCorePlugin|logger
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6268|6273|error|method|org.slf4j.Logger|error|(Ljava/lang/String;)V
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6321|6336|printStackTrace|method|java.lang.Throwable|printStackTrace|()V
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5193|5198|event|param|ru.allformine.afmcp.AFMCorePlugin|init|(Lorg/spongepowered/api/event/game/state/GameInitializationEvent;)V|event|0
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5138|5146|Listener|class|org.spongepowered.api.event.Listener|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5164|5168|init|method|ru.allformine.afmcp.AFMCorePlugin|init|(Lorg/spongepowered/api/event/game/state/GameInitializationEvent;)V
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5169|5192|GameInitializationEvent|class|org.spongepowered.api.event.game.state.GameInitializationEvent|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5211|5225|PacketChannels|class|ru.allformine.afmcp.PacketChannels|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5226|5236|SCREENSHOT|field|ru.allformine.afmcp.PacketChannels|SCREENSHOT
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5239|5245|Sponge|class|org.spongepowered.api.Sponge|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5246|5253|getGame|method|org.spongepowered.api.Sponge|getGame|()Lorg/spongepowered/api/Game;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5274|5293|getChannelRegistrar|method|org.spongepowered.api.Game|getChannelRegistrar|()Lorg/spongepowered/api/network/ChannelRegistrar;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5314|5330|createRawChannel|method|org.spongepowered.api.network.ChannelRegistrar|createRawChannel|(Ljava/lang/Object;Ljava/lang/String;)Lorg/spongepowered/api/network/ChannelBinding$RawDataChannel;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5363|5377|PacketChannels|class|ru.allformine.afmcp.PacketChannels|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5378|5386|FACTIONS|field|ru.allformine.afmcp.PacketChannels|FACTIONS
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5389|5395|Sponge|class|org.spongepowered.api.Sponge|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5396|5403|getGame|method|org.spongepowered.api.Sponge|getGame|()Lorg/spongepowered/api/Game;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5424|5443|getChannelRegistrar|method|org.spongepowered.api.Game|getChannelRegistrar|()Lorg/spongepowered/api/network/ChannelRegistrar;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5464|5480|createRawChannel|method|org.spongepowered.api.network.ChannelRegistrar|createRawChannel|(Ljava/lang/Object;Ljava/lang/String;)Lorg/spongepowered/api/network/ChannelBinding$RawDataChannel;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5511|5525|PacketChannels|class|ru.allformine.afmcp.PacketChannels|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5526|5536|SCREENSHOT|field|ru.allformine.afmcp.PacketChannels|SCREENSHOT
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5537|5548|addListener|method|org.spongepowered.api.network.ChannelBinding.RawDataChannel|addListener|(Lorg/spongepowered/api/network/RawDataListener;)V
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5553|5571|ScreenshotListener|class|ru.allformine.afmcp.packetlisteners.ScreenshotListener|false
    Method End: init(Lorg/spongepowered/api/event/game/state/GameInitializationEvent;)V
    Method Start: onServerStart(Lorg/spongepowered/api/event/game/state/GameAboutToStartServerEvent;)V
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6434|6439|event|param|ru.allformine.afmcp.AFMCorePlugin|onServerStart|(Lorg/spongepowered/api/event/game/state/GameAboutToStartServerEvent;)V|event|0
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6366|6374|Listener|class|org.spongepowered.api.event.Listener|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6392|6405|onServerStart|method|ru.allformine.afmcp.AFMCorePlugin|onServerStart|(Lorg/spongepowered/api/event/game/state/GameAboutToStartServerEvent;)V
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6406|6433|GameAboutToStartServerEvent|class|org.spongepowered.api.event.game.state.GameAboutToStartServerEvent|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6452|6461|startTime|field|ru.allformine.afmcp.AFMCorePlugin|startTime
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6464|6470|System|class|java.lang.System|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6471|6488|currentTimeMillis|method|java.lang.System|currentTimeMillis|()J
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6588|6595|Webhook|class|ru.allformine.afmcp.net.api.Webhook|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6596|6613|sendServerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendServerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypeServerMessage;[Ljava/lang/String;)V
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6614|6639|Webhook.TypeServerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6640|6654|SERVER_STARTED|field|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage|SERVER_STARTED
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6668|6677|apiServer|field|ru.allformine.afmcp.AFMCorePlugin|apiServer
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6684|6694|HTTPServer|class|ru.allformine.afmcp.serverapi.HTTPServer|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6709|6722|apiServerTask|field|ru.allformine.afmcp.AFMCorePlugin|apiServerTask
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6725|6729|Task|class|org.spongepowered.api.scheduler.Task|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6730|6737|builder|method|org.spongepowered.api.scheduler.Task|builder|()Lorg/spongepowered/api/scheduler/Task$Builder;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6740|6747|execute|method|org.spongepowered.api.scheduler.Task.Builder|execute|(Ljava/lang/Runnable;)Lorg/spongepowered/api/scheduler/Task$Builder;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6748|6757|apiServer|field|ru.allformine.afmcp.AFMCorePlugin|apiServer
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6777|6782|async|method|org.spongepowered.api.scheduler.Task.Builder|async|()Lorg/spongepowered/api/scheduler/Task$Builder;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6785|6789|name|method|org.spongepowered.api.scheduler.Task.Builder|name|(Ljava/lang/String;)Lorg/spongepowered/api/scheduler/Task$Builder;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6827|6833|submit|method|org.spongepowered.api.scheduler.Task.Builder|submit|(Ljava/lang/Object;)Lorg/spongepowered/api/scheduler/Task;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6852|6856|Task|class|org.spongepowered.api.scheduler.Task|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6857|6864|builder|method|org.spongepowered.api.scheduler.Task|builder|()Lorg/spongepowered/api/scheduler/Task$Builder;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6867|6874|execute|method|org.spongepowered.api.scheduler.Task.Builder|execute|(Ljava/lang/Runnable;)Lorg/spongepowered/api/scheduler/Task$Builder;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6879|6893|AutoRebootTask|class|ru.allformine.afmcp.tasks.AutoRebootTask|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6915|6928|intervalTicks|method|org.spongepowered.api.scheduler.Task.Builder|intervalTicks|(J)Lorg/spongepowered/api/scheduler/Task$Builder;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6951|6955|name|method|org.spongepowered.api.scheduler.Task.Builder|name|(Ljava/lang/String;)Lorg/spongepowered/api/scheduler/Task$Builder;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|6992|6998|submit|method|org.spongepowered.api.scheduler.Task.Builder|submit|(Ljava/lang/Object;)Lorg/spongepowered/api/scheduler/Task;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5659|5664|event|param|ru.allformine.afmcp.AFMCorePlugin|onServerStart|(Lorg/spongepowered/api/event/game/state/GameAboutToStartServerEvent;)V|event|0
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5591|5599|Listener|class|org.spongepowered.api.event.Listener|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5617|5630|onServerStart|method|ru.allformine.afmcp.AFMCorePlugin|onServerStart|(Lorg/spongepowered/api/event/game/state/GameAboutToStartServerEvent;)V
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5631|5658|GameAboutToStartServerEvent|class|org.spongepowered.api.event.game.state.GameAboutToStartServerEvent|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5677|5686|startTime|field|ru.allformine.afmcp.AFMCorePlugin|startTime
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5689|5695|System|class|java.lang.System|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5696|5713|currentTimeMillis|method|java.lang.System|currentTimeMillis|()J
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5813|5820|Webhook|class|ru.allformine.afmcp.net.api.Webhook|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5821|5838|sendServerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendServerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypeServerMessage;[Ljava/lang/String;)V
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5839|5864|Webhook.TypeServerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5865|5879|SERVER_STARTED|field|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage|SERVER_STARTED
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5893|5902|apiServer|field|ru.allformine.afmcp.AFMCorePlugin|apiServer
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5909|5919|HTTPServer|class|ru.allformine.afmcp.serverapi.HTTPServer|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5934|5947|apiServerTask|field|ru.allformine.afmcp.AFMCorePlugin|apiServerTask
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5950|5954|Task|class|org.spongepowered.api.scheduler.Task|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5955|5962|builder|method|org.spongepowered.api.scheduler.Task|builder|()Lorg/spongepowered/api/scheduler/Task$Builder;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5965|5972|execute|method|org.spongepowered.api.scheduler.Task.Builder|execute|(Ljava/lang/Runnable;)Lorg/spongepowered/api/scheduler/Task$Builder;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|5973|5982|apiServer|field|ru.allformine.afmcp.AFMCorePlugin|apiServer
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6002|6007|async|method|org.spongepowered.api.scheduler.Task.Builder|async|()Lorg/spongepowered/api/scheduler/Task$Builder;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6010|6014|name|method|org.spongepowered.api.scheduler.Task.Builder|name|(Ljava/lang/String;)Lorg/spongepowered/api/scheduler/Task$Builder;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6052|6058|submit|method|org.spongepowered.api.scheduler.Task.Builder|submit|(Ljava/lang/Object;)Lorg/spongepowered/api/scheduler/Task;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6077|6081|Task|class|org.spongepowered.api.scheduler.Task|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6082|6089|builder|method|org.spongepowered.api.scheduler.Task|builder|()Lorg/spongepowered/api/scheduler/Task$Builder;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6092|6099|execute|method|org.spongepowered.api.scheduler.Task.Builder|execute|(Ljava/lang/Runnable;)Lorg/spongepowered/api/scheduler/Task$Builder;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6104|6118|AutoRebootTask|class|ru.allformine.afmcp.tasks.AutoRebootTask|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6140|6153|intervalTicks|method|org.spongepowered.api.scheduler.Task.Builder|intervalTicks|(J)Lorg/spongepowered/api/scheduler/Task$Builder;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6176|6180|name|method|org.spongepowered.api.scheduler.Task.Builder|name|(Ljava/lang/String;)Lorg/spongepowered/api/scheduler/Task$Builder;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6217|6223|submit|method|org.spongepowered.api.scheduler.Task.Builder|submit|(Ljava/lang/Object;)Lorg/spongepowered/api/scheduler/Task;
    Method End: onServerStart(Lorg/spongepowered/api/event/game/state/GameAboutToStartServerEvent;)V
    Method Start: onServerStop(Lorg/spongepowered/api/event/game/state/GameStoppingServerEvent;)V
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7084|7089|event|param|ru.allformine.afmcp.AFMCorePlugin|onServerStop|(Lorg/spongepowered/api/event/game/state/GameStoppingServerEvent;)V|event|0
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7021|7029|Listener|class|org.spongepowered.api.event.Listener|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7047|7059|onServerStop|method|ru.allformine.afmcp.AFMCorePlugin|onServerStop|(Lorg/spongepowered/api/event/game/state/GameStoppingServerEvent;)V
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7060|7083|GameStoppingServerEvent|class|org.spongepowered.api.event.game.state.GameStoppingServerEvent|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7191|7204|serverRestart|field|ru.allformine.afmcp.AFMCorePlugin|serverRestart
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7221|7228|Webhook|class|ru.allformine.afmcp.net.api.Webhook|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7229|7246|sendServerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendServerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypeServerMessage;[Ljava/lang/String;)V
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7247|7272|Webhook.TypeServerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7273|7290|SERVER_RESTARTING|field|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage|SERVER_RESTARTING
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7324|7331|Webhook|class|ru.allformine.afmcp.net.api.Webhook|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7332|7349|sendServerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendServerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypeServerMessage;[Ljava/lang/String;)V
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7350|7375|Webhook.TypeServerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7376|7390|SERVER_STOPPED|field|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage|SERVER_STOPPED
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7413|7426|apiServerTask|field|ru.allformine.afmcp.AFMCorePlugin|apiServerTask
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7427|7433|cancel|method|org.spongepowered.api.scheduler.Task|cancel|()Z
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6309|6314|event|param|ru.allformine.afmcp.AFMCorePlugin|onServerStop|(Lorg/spongepowered/api/event/game/state/GameStoppingServerEvent;)V|event|0
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6246|6254|Listener|class|org.spongepowered.api.event.Listener|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6272|6284|onServerStop|method|ru.allformine.afmcp.AFMCorePlugin|onServerStop|(Lorg/spongepowered/api/event/game/state/GameStoppingServerEvent;)V
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6285|6308|GameStoppingServerEvent|class|org.spongepowered.api.event.game.state.GameStoppingServerEvent|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6416|6429|serverRestart|field|ru.allformine.afmcp.AFMCorePlugin|serverRestart
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6446|6453|Webhook|class|ru.allformine.afmcp.net.api.Webhook|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6454|6471|sendServerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendServerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypeServerMessage;[Ljava/lang/String;)V
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6472|6497|Webhook.TypeServerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6498|6515|SERVER_RESTARTING|field|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage|SERVER_RESTARTING
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6549|6556|Webhook|class|ru.allformine.afmcp.net.api.Webhook|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6557|6574|sendServerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendServerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypeServerMessage;[Ljava/lang/String;)V
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6575|6600|Webhook.TypeServerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6601|6615|SERVER_STOPPED|field|ru.allformine.afmcp.net.api.Webhook.TypeServerMessage|SERVER_STOPPED
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6638|6651|apiServerTask|field|ru.allformine.afmcp.AFMCorePlugin|apiServerTask
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6652|6658|cancel|method|org.spongepowered.api.scheduler.Task|cancel|()Z
    Method End: onServerStop(Lorg/spongepowered/api/event/game/state/GameStoppingServerEvent;)V
    Method Start: configSetup()V
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7464|7475|configSetup|method|ru.allformine.afmcp.AFMCorePlugin|configSetup|()V
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7494|7499|Files|class|java.nio.file.Files|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7500|7506|exists|method|java.nio.file.Files|exists|(Ljava/nio/file/Path;[Ljava/nio/file/LinkOption;)Z
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7507|7516|configDir|field|ru.allformine.afmcp.AFMCorePlugin|configDir
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7557|7562|Files|class|java.nio.file.Files|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7563|7580|createDirectories|method|java.nio.file.Files|createDirectories|(Ljava/nio/file/Path;[Ljava/nio/file/attribute/FileAttribute;)Ljava/nio/file/Path;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7581|7590|configDir|field|ru.allformine.afmcp.AFMCorePlugin|configDir
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7615|7626|IOException|class|java.io.IOException|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7653|7668|printStackTrace|method|java.lang.Throwable|printStackTrace|()V
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7714|7719|Files|class|java.nio.file.Files|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7720|7726|exists|method|java.nio.file.Files|exists|(Ljava/nio/file/Path;[Ljava/nio/file/LinkOption;)Z
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7727|7737|configFile|field|ru.allformine.afmcp.AFMCorePlugin|configFile
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7838|7844|Sponge|class|org.spongepowered.api.Sponge|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7845|7860|getAssetManager|method|org.spongepowered.api.Sponge|getAssetManager|()Lorg/spongepowered/api/asset/AssetManager;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7863|7871|getAsset|method|org.spongepowered.api.asset.AssetManager|getAsset|(Ljava/lang/Object;Ljava/lang/String;)Ljava/util/Optional;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7893|7896|get|method|java.util.Optional|get|()Ljava/lang/Object;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7899|7909|copyToFile|method|org.spongepowered.api.asset.Asset|copyToFile|(Ljava/nio/file/Path;)V
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7910|7920|configFile|field|ru.allformine.afmcp.AFMCorePlugin|configFile
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7945|7956|IOException|class|java.io.IOException|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|7981|7996|printStackTrace|method|java.lang.Throwable|printStackTrace|()V
-      @|ru/allformine/afmcp/AFMCorePlugin.java|8037|8041|load|method|ru.allformine.afmcp.AFMCorePlugin|load|()V
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6689|6700|configSetup|method|ru.allformine.afmcp.AFMCorePlugin|configSetup|()V
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6719|6724|Files|class|java.nio.file.Files|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6725|6731|exists|method|java.nio.file.Files|exists|(Ljava/nio/file/Path;[Ljava/nio/file/LinkOption;)Z
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6732|6741|configDir|field|ru.allformine.afmcp.AFMCorePlugin|configDir
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6782|6787|Files|class|java.nio.file.Files|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6788|6805|createDirectories|method|java.nio.file.Files|createDirectories|(Ljava/nio/file/Path;[Ljava/nio/file/attribute/FileAttribute;)Ljava/nio/file/Path;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6806|6815|configDir|field|ru.allformine.afmcp.AFMCorePlugin|configDir
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6840|6851|IOException|class|java.io.IOException|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6878|6893|printStackTrace|method|java.lang.Throwable|printStackTrace|()V
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6939|6944|Files|class|java.nio.file.Files|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6945|6951|exists|method|java.nio.file.Files|exists|(Ljava/nio/file/Path;[Ljava/nio/file/LinkOption;)Z
+      @|ru/allformine/afmcp/AFMCorePlugin.java|6952|6962|configFile|field|ru.allformine.afmcp.AFMCorePlugin|configFile
+      @|ru/allformine/afmcp/AFMCorePlugin.java|7063|7069|Sponge|class|org.spongepowered.api.Sponge|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|7070|7085|getAssetManager|method|org.spongepowered.api.Sponge|getAssetManager|()Lorg/spongepowered/api/asset/AssetManager;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|7088|7096|getAsset|method|org.spongepowered.api.asset.AssetManager|getAsset|(Ljava/lang/Object;Ljava/lang/String;)Ljava/util/Optional;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|7118|7121|get|method|java.util.Optional|get|()Ljava/lang/Object;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|7124|7134|copyToFile|method|org.spongepowered.api.asset.Asset|copyToFile|(Ljava/nio/file/Path;)V
+      @|ru/allformine/afmcp/AFMCorePlugin.java|7135|7145|configFile|field|ru.allformine.afmcp.AFMCorePlugin|configFile
+      @|ru/allformine/afmcp/AFMCorePlugin.java|7170|7181|IOException|class|java.io.IOException|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|7206|7221|printStackTrace|method|java.lang.Throwable|printStackTrace|()V
+      @|ru/allformine/afmcp/AFMCorePlugin.java|7262|7266|load|method|ru.allformine.afmcp.AFMCorePlugin|load|()V
    Method End: configSetup()V
    Method Start: load()V
-      @|ru/allformine/afmcp/AFMCorePlugin.java|8072|8076|load|method|ru.allformine.afmcp.AFMCorePlugin|load|()V
-      @|ru/allformine/afmcp/AFMCorePlugin.java|8109|8119|configNode|field|ru.allformine.afmcp.AFMCorePlugin|configNode
-      @|ru/allformine/afmcp/AFMCorePlugin.java|8122|8134|configLoader|field|ru.allformine.afmcp.AFMCorePlugin|configLoader
-      @|ru/allformine/afmcp/AFMCorePlugin.java|8135|8139|load|method|ninja.leaping.configurate.loader.ConfigurationLoader|load|()Lninja/leaping/configurate/ConfigurationNode;
-      @|ru/allformine/afmcp/AFMCorePlugin.java|8161|8172|IOException|class|java.io.IOException|false
-      @|ru/allformine/afmcp/AFMCorePlugin.java|8193|8208|printStackTrace|method|java.lang.Throwable|printStackTrace|()V
+      @|ru/allformine/afmcp/AFMCorePlugin.java|7297|7301|load|method|ru.allformine.afmcp.AFMCorePlugin|load|()V
+      @|ru/allformine/afmcp/AFMCorePlugin.java|7334|7344|configNode|field|ru.allformine.afmcp.AFMCorePlugin|configNode
+      @|ru/allformine/afmcp/AFMCorePlugin.java|7347|7359|configLoader|field|ru.allformine.afmcp.AFMCorePlugin|configLoader
+      @|ru/allformine/afmcp/AFMCorePlugin.java|7360|7364|load|method|ninja.leaping.configurate.loader.ConfigurationLoader|load|()Lninja/leaping/configurate/ConfigurationNode;
+      @|ru/allformine/afmcp/AFMCorePlugin.java|7386|7397|IOException|class|java.io.IOException|false
+      @|ru/allformine/afmcp/AFMCorePlugin.java|7418|7433|printStackTrace|method|java.lang.Throwable|printStackTrace|()V
    Method End: load()V
 Class End  : ru.allformine.afmcp.AFMCorePlugin
 endProcessing "ru/allformine/afmcp/AFMCorePlugin.java"
@@ -360,48 +351,6 @@ Class Start: ru.allformine.afmcp.Utils
    Method End: afmRestart()V
 Class End  : ru.allformine.afmcp.Utils
 endProcessing "ru/allformine/afmcp/Utils.java"
-
-startProcessing "ru/allformine/afmcp/VanishManager.java" md5: ced6e131bce5bf8cb0ae6495c067645c
-@|ru/allformine/afmcp/VanishManager.java|8|27|ru.allformine.afmcp|package|ru.allformine.afmcp|(file)
-Class Start: ru.allformine.afmcp.VanishManager
-   @|ru/allformine/afmcp/VanishManager.java|135|148|VanishManager|class|ru.allformine.afmcp.VanishManager|false
-   @|ru/allformine/afmcp/VanishManager.java|176|182|String|class|java.lang.String|false
-   @|ru/allformine/afmcp/VanishManager.java|176|182|String|class|java.lang.String|false
-   @|ru/allformine/afmcp/VanishManager.java|183|199|vanishPermission|field|ru.allformine.afmcp.VanishManager|vanishPermission|
-   @|ru/allformine/afmcp/VanishManager.java|253|259|Player|class|org.spongepowered.api.entity.living.player.Player|false
-   @|ru/allformine/afmcp/VanishManager.java|261|268|Boolean|class|java.lang.Boolean|false
-   @|ru/allformine/afmcp/VanishManager.java|245|252|HashMap|class|java.util.HashMap|false
-   @|ru/allformine/afmcp/VanishManager.java|245|252|HashMap|class|java.util.HashMap|false
-   @|ru/allformine/afmcp/VanishManager.java|253|259|Player|class|org.spongepowered.api.entity.living.player.Player|false
-   @|ru/allformine/afmcp/VanishManager.java|261|268|Boolean|class|java.lang.Boolean|false
-   @|ru/allformine/afmcp/VanishManager.java|270|285|vanishedPlayers|field|ru.allformine.afmcp.VanishManager|vanishedPlayers|
-   @|ru/allformine/afmcp/VanishManager.java|292|299|HashMap|class|java.util.HashMap|false
-   Method Start: isVanished(Lorg/spongepowered/api/entity/living/player/Player;)Z
-      @|ru/allformine/afmcp/VanishManager.java|352|358|player|param|ru.allformine.afmcp.VanishManager|isVanished|(Lorg/spongepowered/api/entity/living/player/Player;)Z|player|0
-      @|ru/allformine/afmcp/VanishManager.java|334|344|isVanished|method|ru.allformine.afmcp.VanishManager|isVanished|(Lorg/spongepowered/api/entity/living/player/Player;)Z
-      @|ru/allformine/afmcp/VanishManager.java|345|351|Player|class|org.spongepowered.api.entity.living.player.Player|false
-      @|ru/allformine/afmcp/VanishManager.java|378|393|vanishedPlayers|field|ru.allformine.afmcp.VanishManager|vanishedPlayers
-      @|ru/allformine/afmcp/VanishManager.java|394|405|containsKey|method|java.util.Map|containsKey|(Ljava/lang/Object;)Z
-      @|ru/allformine/afmcp/VanishManager.java|406|412|player|param|ru.allformine.afmcp.VanishManager|isVanished|(Lorg/spongepowered/api/entity/living/player/Player;)Z|player|0
-   Method End: isVanished(Lorg/spongepowered/api/entity/living/player/Player;)Z
-   Method Start: vanishPlayer(Lorg/spongepowered/api/entity/living/player/Player;)V
-      @|ru/allformine/afmcp/VanishManager.java|468|474|player|param|ru.allformine.afmcp.VanishManager|vanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;)V|player|0
-      @|ru/allformine/afmcp/VanishManager.java|448|460|vanishPlayer|method|ru.allformine.afmcp.VanishManager|vanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;)V
-      @|ru/allformine/afmcp/VanishManager.java|461|467|Player|class|org.spongepowered.api.entity.living.player.Player|false
-      @|ru/allformine/afmcp/VanishManager.java|487|502|vanishedPlayers|field|ru.allformine.afmcp.VanishManager|vanishedPlayers
-      @|ru/allformine/afmcp/VanishManager.java|503|506|put|method|java.util.Map|put|(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-      @|ru/allformine/afmcp/VanishManager.java|507|513|player|param|ru.allformine.afmcp.VanishManager|vanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;)V|player|0
-   Method End: vanishPlayer(Lorg/spongepowered/api/entity/living/player/Player;)V
-   Method Start: unvanishPlayer(Lorg/spongepowered/api/entity/living/player/Player;)V
-      @|ru/allformine/afmcp/VanishManager.java|577|583|player|param|ru.allformine.afmcp.VanishManager|unvanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;)V|player|0
-      @|ru/allformine/afmcp/VanishManager.java|555|569|unvanishPlayer|method|ru.allformine.afmcp.VanishManager|unvanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;)V
-      @|ru/allformine/afmcp/VanishManager.java|570|576|Player|class|org.spongepowered.api.entity.living.player.Player|false
-      @|ru/allformine/afmcp/VanishManager.java|596|611|vanishedPlayers|field|ru.allformine.afmcp.VanishManager|vanishedPlayers
-      @|ru/allformine/afmcp/VanishManager.java|612|618|remove|method|java.util.Map|remove|(Ljava/lang/Object;)Ljava/lang/Object;
-      @|ru/allformine/afmcp/VanishManager.java|619|625|player|param|ru.allformine.afmcp.VanishManager|unvanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;)V|player|0
-   Method End: unvanishPlayer(Lorg/spongepowered/api/entity/living/player/Player;)V
-Class End  : ru.allformine.afmcp.VanishManager
-endProcessing "ru/allformine/afmcp/VanishManager.java"
 
 startProcessing "ru/allformine/afmcp/commands/AFMCPCommand.java" md5: e4e2b0637bde70dd3b8b92c0facf27ca
 @|ru/allformine/afmcp/commands/AFMCPCommand.java|8|36|ru.allformine.afmcp.commands|package|ru.allformine.afmcp.commands|(file)
@@ -599,6 +548,100 @@ Class Start: ru.allformine.afmcp.commands.TokensCommand
 Class End  : ru.allformine.afmcp.commands.TokensCommand
 endProcessing "ru/allformine/afmcp/commands/TokensCommand.java"
 
+startProcessing "ru/allformine/afmcp/commands/VanishCommand.java" md5: e050f79f8c357d2a3b4a947b1d077c96
+@|ru/allformine/afmcp/commands/VanishCommand.java|8|36|ru.allformine.afmcp.commands|package|ru.allformine.afmcp.commands|(file)
+Class Start: ru.allformine.afmcp.commands.VanishCommand
+   @|ru/allformine/afmcp/commands/VanishCommand.java|569|582|VanishCommand|class|ru.allformine.afmcp.commands.VanishCommand|false
+   @|ru/allformine/afmcp/commands/VanishCommand.java|591|603|AFMCPCommand|class|ru.allformine.afmcp.commands.AFMCPCommand|false
+   Method Start: execute(Lorg/spongepowered/api/command/CommandSource;Lorg/spongepowered/api/command/args/CommandContext;)Lorg/spongepowered/api/command/CommandResult;
+      @|ru/allformine/afmcp/commands/VanishCommand.java|669|672|src|param|ru.allformine.afmcp.commands.VanishCommand|execute|(Lorg/spongepowered/api/command/CommandSource;Lorg/spongepowered/api/command/args/CommandContext;)Lorg/spongepowered/api/command/CommandResult;|src|0
+      @|ru/allformine/afmcp/commands/VanishCommand.java|689|693|args|param|ru.allformine.afmcp.commands.VanishCommand|execute|(Lorg/spongepowered/api/command/CommandSource;Lorg/spongepowered/api/command/args/CommandContext;)Lorg/spongepowered/api/command/CommandResult;|args|1
+      @|ru/allformine/afmcp/commands/VanishCommand.java|612|620|Override|class|java.lang.Override|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|633|646|CommandResult|class|org.spongepowered.api.command.CommandResult|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|647|654|execute|method|org.spongepowered.api.command.spec.CommandExecutor|execute|(Lorg/spongepowered/api/command/CommandSource;Lorg/spongepowered/api/command/args/CommandContext;)Lorg/spongepowered/api/command/CommandResult;
+      @|ru/allformine/afmcp/commands/VanishCommand.java|655|668|CommandSource|class|org.spongepowered.api.command.CommandSource|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|674|688|CommandContext|class|org.spongepowered.api.command.args.CommandContext|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|706|714|Optional|class|java.util.Optional|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|715|721|String|class|java.lang.String|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|736|740|args|param|ru.allformine.afmcp.commands.VanishCommand|execute|(Lorg/spongepowered/api/command/CommandSource;Lorg/spongepowered/api/command/args/CommandContext;)Lorg/spongepowered/api/command/CommandResult;|args|1
+      @|ru/allformine/afmcp/commands/VanishCommand.java|741|747|getOne|method|org.spongepowered.api.command.args.CommandContext|getOne|(Lorg/spongepowered/api/text/Text;)Ljava/util/Optional;
+      @|ru/allformine/afmcp/commands/VanishCommand.java|748|752|Text|class|org.spongepowered.api.text.Text|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|753|755|of|method|org.spongepowered.api.text.Text|of|(Ljava/lang/String;)Lorg/spongepowered/api/text/LiteralText;
+      @|ru/allformine/afmcp/commands/VanishCommand.java|794|803|isPresent|method|java.util.Optional|isPresent|()Z
+      @|ru/allformine/afmcp/commands/VanishCommand.java|820|823|get|method|java.util.Optional|get|()Ljava/lang/Object;
+      @|ru/allformine/afmcp/commands/VanishCommand.java|826|832|equals|method|java.lang.String|equals|(Ljava/lang/Object;)Z
+      @|ru/allformine/afmcp/commands/VanishCommand.java|857|861|List|class|java.util.List|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|862|868|String|class|java.lang.String|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|881|894|VanishManager|class|ru.allformine.afmcp.vanish.VanishManager|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|895|910|vanishedPlayers|field|ru.allformine.afmcp.vanish.VanishManager|vanishedPlayers
+      @|ru/allformine/afmcp/commands/VanishCommand.java|911|917|stream|method|java.util.Collection|stream|()Ljava/util/stream/Stream;
+      @|ru/allformine/afmcp/commands/VanishCommand.java|920|923|map|method|java.util.stream.Stream|map|(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+      @|ru/allformine/afmcp/commands/VanishCommand.java|924|930|Player|class|org.spongepowered.api.entity.living.player.Player|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|932|939|getName|method|org.spongepowered.api.entity.Tamer|getName|()Ljava/lang/String;
+      @|ru/allformine/afmcp/commands/VanishCommand.java|941|948|collect|method|java.util.stream.Stream|collect|(Ljava/util/stream/Collector;)Ljava/lang/Object;
+      @|ru/allformine/afmcp/commands/VanishCommand.java|949|959|Collectors|class|java.util.stream.Collectors|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|960|966|toList|method|java.util.stream.Collectors|toList|()Ljava/util/stream/Collector;
+      @|ru/allformine/afmcp/commands/VanishCommand.java|999|1003|size|method|java.util.Collection|size|()I
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1030|1035|reply|method|ru.allformine.afmcp.commands.AFMCPCommand|reply|(Lorg/spongepowered/api/command/CommandSource;Lorg/spongepowered/api/text/Text;)V
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1036|1039|src|param|ru.allformine.afmcp.commands.VanishCommand|execute|(Lorg/spongepowered/api/command/CommandSource;Lorg/spongepowered/api/command/args/CommandContext;)Lorg/spongepowered/api/command/CommandResult;|src|0
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1041|1045|Text|class|org.spongepowered.api.text.Text|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1046|1048|of|method|org.spongepowered.api.text.Text|of|(Ljava/lang/String;)Lorg/spongepowered/api/text/LiteralText;
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1129|1142|CommandResult|class|org.spongepowered.api.command.CommandResult|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1143|1150|success|method|org.spongepowered.api.command.CommandResult|success|()Lorg/spongepowered/api/command/CommandResult;
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1184|1189|reply|method|ru.allformine.afmcp.commands.AFMCPCommand|reply|(Lorg/spongepowered/api/command/CommandSource;Lorg/spongepowered/api/text/Text;)V
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1190|1193|src|param|ru.allformine.afmcp.commands.VanishCommand|execute|(Lorg/spongepowered/api/command/CommandSource;Lorg/spongepowered/api/command/args/CommandContext;)Lorg/spongepowered/api/command/CommandResult;|src|0
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1195|1199|Text|class|org.spongepowered.api.text.Text|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1200|1202|of|method|org.spongepowered.api.text.Text|of|(Ljava/lang/String;)Lorg/spongepowered/api/text/LiteralText;
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1203|1209|String|class|java.lang.String|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1210|1216|format|method|java.lang.String|format|(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1249|1255|String|class|java.lang.String|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1256|1260|join|method|java.lang.String|join|(Ljava/lang/CharSequence;Ljava/lang/Iterable;)Ljava/lang/String;
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1302|1315|CommandResult|class|org.spongepowered.api.command.CommandResult|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1316|1323|success|method|org.spongepowered.api.command.CommandResult|success|()Lorg/spongepowered/api/command/CommandResult;
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1358|1367|isPresent|method|java.util.Optional|isPresent|()Z
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1386|1391|reply|method|ru.allformine.afmcp.commands.AFMCPCommand|reply|(Lorg/spongepowered/api/command/CommandSource;Lorg/spongepowered/api/text/Text;)V
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1392|1395|src|param|ru.allformine.afmcp.commands.VanishCommand|execute|(Lorg/spongepowered/api/command/CommandSource;Lorg/spongepowered/api/command/args/CommandContext;)Lorg/spongepowered/api/command/CommandResult;|src|0
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1397|1401|Text|class|org.spongepowered.api.text.Text|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1402|1404|of|method|org.spongepowered.api.text.Text|of|(Ljava/lang/String;)Lorg/spongepowered/api/text/LiteralText;
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1456|1469|CommandResult|class|org.spongepowered.api.command.CommandResult|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1470|1477|success|method|org.spongepowered.api.command.CommandResult|success|()Lorg/spongepowered/api/command/CommandResult;
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1583|1586|src|param|ru.allformine.afmcp.commands.VanishCommand|execute|(Lorg/spongepowered/api/command/CommandSource;Lorg/spongepowered/api/command/args/CommandContext;)Lorg/spongepowered/api/command/CommandResult;|src|0
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1598|1604|Player|class|org.spongepowered.api.entity.living.player.Player|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1622|1627|reply|method|ru.allformine.afmcp.commands.AFMCPCommand|reply|(Lorg/spongepowered/api/command/CommandSource;Lorg/spongepowered/api/text/Text;)V
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1628|1631|src|param|ru.allformine.afmcp.commands.VanishCommand|execute|(Lorg/spongepowered/api/command/CommandSource;Lorg/spongepowered/api/command/args/CommandContext;)Lorg/spongepowered/api/command/CommandResult;|src|0
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1633|1637|Text|class|org.spongepowered.api.text.Text|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1638|1640|of|method|org.spongepowered.api.text.Text|of|(Ljava/lang/String;)Lorg/spongepowered/api/text/LiteralText;
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1707|1720|CommandResult|class|org.spongepowered.api.command.CommandResult|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1721|1728|success|method|org.spongepowered.api.command.CommandResult|success|()Lorg/spongepowered/api/command/CommandResult;
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1754|1760|Player|class|org.spongepowered.api.entity.living.player.Player|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1771|1777|Player|class|org.spongepowered.api.entity.living.player.Player|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1779|1782|src|param|ru.allformine.afmcp.commands.VanishCommand|execute|(Lorg/spongepowered/api/command/CommandSource;Lorg/spongepowered/api/command/args/CommandContext;)Lorg/spongepowered/api/command/CommandResult;|src|0
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1795|1808|VanishManager|class|ru.allformine.afmcp.vanish.VanishManager|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1809|1821|switchVanish|method|ru.allformine.afmcp.vanish.VanishManager|switchVanish|(Lorg/spongepowered/api/entity/living/player/Player;)V
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1840|1845|reply|method|ru.allformine.afmcp.commands.AFMCPCommand|reply|(Lorg/spongepowered/api/command/CommandSource;Lorg/spongepowered/api/text/Text;)V
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1846|1849|src|param|ru.allformine.afmcp.commands.VanishCommand|execute|(Lorg/spongepowered/api/command/CommandSource;Lorg/spongepowered/api/command/args/CommandContext;)Lorg/spongepowered/api/command/CommandResult;|src|0
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1851|1855|Text|class|org.spongepowered.api.text.Text|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1856|1858|of|method|org.spongepowered.api.text.Text|of|(Ljava/lang/String;)Lorg/spongepowered/api/text/LiteralText;
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1859|1872|VanishManager|class|ru.allformine.afmcp.vanish.VanishManager|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1873|1883|isVanished|method|ru.allformine.afmcp.vanish.VanishManager|isVanished|(Lorg/spongepowered/api/entity/living/player/Player;)Z
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1961|1974|CommandResult|class|org.spongepowered.api.command.CommandResult|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|1975|1982|success|method|org.spongepowered.api.command.CommandResult|success|()Lorg/spongepowered/api/command/CommandResult;
+   Method End: execute(Lorg/spongepowered/api/command/CommandSource;Lorg/spongepowered/api/command/args/CommandContext;)Lorg/spongepowered/api/command/CommandResult;
+   Method Start: getName()Ljava/lang/String;
+      @|ru/allformine/afmcp/commands/VanishCommand.java|2001|2009|Override|class|java.lang.Override|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|2022|2028|String|class|java.lang.String|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|2029|2036|getName|method|ru.allformine.afmcp.commands.AFMCPCommand|getName|()Ljava/lang/String;
+   Method End: getName()Ljava/lang/String;
+   Method Start: getColor()Lorg/spongepowered/api/text/format/TextColor;
+      @|ru/allformine/afmcp/commands/VanishCommand.java|2082|2090|Override|class|java.lang.Override|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|2103|2112|TextColor|class|org.spongepowered.api.text.format.TextColor|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|2113|2121|getColor|method|ru.allformine.afmcp.commands.AFMCPCommand|getColor|()Lorg/spongepowered/api/text/format/TextColor;
+      @|ru/allformine/afmcp/commands/VanishCommand.java|2142|2152|TextColors|class|org.spongepowered.api.text.format.TextColors|false
+      @|ru/allformine/afmcp/commands/VanishCommand.java|2153|2162|DARK_AQUA|field|org.spongepowered.api.text.format.TextColors|DARK_AQUA
+   Method End: getColor()Lorg/spongepowered/api/text/format/TextColor;
+Class End  : ru.allformine.afmcp.commands.VanishCommand
+endProcessing "ru/allformine/afmcp/commands/VanishCommand.java"
+
 startProcessing "ru/allformine/afmcp/commands/VipCommand.java" md5: 61fa5211c92d8e68f108ba10786a5e05
 @|ru/allformine/afmcp/commands/VipCommand.java|8|36|ru.allformine.afmcp.commands|package|ru.allformine.afmcp.commands|(file)
 Class Start: ru.allformine.afmcp.commands.VipCommand
@@ -782,135 +825,146 @@ Class Start: ru.allformine.afmcp.handlers.AutospawnEventListener
 Class End  : ru.allformine.afmcp.handlers.AutospawnEventListener
 endProcessing "ru/allformine/afmcp/handlers/AutospawnEventListener.java"
 
-startProcessing "ru/allformine/afmcp/handlers/DiscordWebhookListener.java" md5: 5d0db38ba444ea681293b54e3223f3a2
+startProcessing "ru/allformine/afmcp/handlers/DiscordWebhookListener.java" md5: 65ff06a35dd656e51e52d33b174ec3bc
 @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|8|36|ru.allformine.afmcp.handlers|package|ru.allformine.afmcp.handlers|(file)
 Class Start: ru.allformine.afmcp.handlers.DiscordWebhookListener
-   @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|641|663|DiscordWebhookListener|class|ru.allformine.afmcp.handlers.DiscordWebhookListener|false
+   @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|691|713|DiscordWebhookListener|class|ru.allformine.afmcp.handlers.DiscordWebhookListener|false
    Method Start: onPlayerJoin(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|738|743|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|672|680|Listener|class|org.spongepowered.api.event.Listener|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|698|710|onPlayerJoin|method|ru.allformine.afmcp.handlers.DiscordWebhookListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|711|737|ClientConnectionEvent.Join|class|org.spongepowered.api.event.network.ClientConnectionEvent.Join|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|756|781|Webhook.TypePlayerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|789|794|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|795|810|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|813|828|hasPlayedBefore|method|org.spongepowered.api.entity.living.player.Player|hasPlayedBefore|()Z
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|850|875|Webhook.TypePlayerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|876|889|JOINED_SERVER|field|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|JOINED_SERVER
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|909|934|Webhook.TypePlayerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|935|952|JOINED_FIRST_TIME|field|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|JOINED_FIRST_TIME
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|963|970|Webhook|class|ru.allformine.afmcp.net.api.Webhook|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|971|988|sendPlayerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendPlayerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypePlayerMessage;Lorg/spongepowered/api/entity/living/player/Player;[Ljava/lang/String;)V
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|995|1000|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1001|1016|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|788|793|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|722|730|Listener|class|org.spongepowered.api.event.Listener|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|748|760|onPlayerJoin|method|ru.allformine.afmcp.handlers.DiscordWebhookListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|761|787|ClientConnectionEvent.Join|class|org.spongepowered.api.event.network.ClientConnectionEvent.Join|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|810|815|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|816|831|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|834|847|hasPermission|method|org.spongepowered.api.service.permission.Subject|hasPermission|(Ljava/lang/String;)Z
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|848|861|VanishManager|class|ru.allformine.afmcp.vanish.VanishManager|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|862|878|vanishPermission|field|ru.allformine.afmcp.vanish.VanishManager|vanishPermission
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|900|925|Webhook.TypePlayerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|933|938|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|939|954|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|957|972|hasPlayedBefore|method|org.spongepowered.api.entity.living.player.Player|hasPlayedBefore|()Z
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|994|1019|Webhook.TypePlayerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1020|1033|JOINED_SERVER|field|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|JOINED_SERVER
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1053|1078|Webhook.TypePlayerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1079|1096|JOINED_FIRST_TIME|field|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|JOINED_FIRST_TIME
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1107|1114|Webhook|class|ru.allformine.afmcp.net.api.Webhook|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1115|1132|sendPlayerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendPlayerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypePlayerMessage;Lorg/spongepowered/api/entity/living/player/Player;[Ljava/lang/String;)V
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1139|1144|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1145|1160|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
    Method End: onPlayerJoin(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V
    Method Start: onPlayerQuit(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1108|1113|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onPlayerQuit|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V|event|0
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1036|1044|Listener|class|org.spongepowered.api.event.Listener|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1062|1074|onPlayerQuit|method|ru.allformine.afmcp.handlers.DiscordWebhookListener|onPlayerQuit|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1075|1107|ClientConnectionEvent.Disconnect|class|org.spongepowered.api.event.network.ClientConnectionEvent.Disconnect|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1130|1143|AFMCorePlugin|class|ru.allformine.afmcp.AFMCorePlugin|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1144|1157|serverRestart|field|ru.allformine.afmcp.AFMCorePlugin|serverRestart
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1189|1196|Webhook|class|ru.allformine.afmcp.net.api.Webhook|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1197|1214|sendPlayerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendPlayerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypePlayerMessage;Lorg/spongepowered/api/entity/living/player/Player;[Ljava/lang/String;)V
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1215|1240|Webhook.TypePlayerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1241|1252|LEFT_SERVER|field|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|LEFT_SERVER
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1254|1259|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onPlayerQuit|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V|event|0
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1260|1275|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1252|1257|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onPlayerQuit|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V|event|0
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1180|1188|Listener|class|org.spongepowered.api.event.Listener|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1206|1218|onPlayerQuit|method|ru.allformine.afmcp.handlers.DiscordWebhookListener|onPlayerQuit|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1219|1251|ClientConnectionEvent.Disconnect|class|org.spongepowered.api.event.network.ClientConnectionEvent.Disconnect|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1274|1287|AFMCorePlugin|class|ru.allformine.afmcp.AFMCorePlugin|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1288|1301|serverRestart|field|ru.allformine.afmcp.AFMCorePlugin|serverRestart
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1305|1310|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onPlayerQuit|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V|event|0
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1311|1326|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1329|1342|hasPermission|method|org.spongepowered.api.service.permission.Subject|hasPermission|(Ljava/lang/String;)Z
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1343|1356|VanishManager|class|ru.allformine.afmcp.vanish.VanishManager|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1357|1373|vanishPermission|field|ru.allformine.afmcp.vanish.VanishManager|vanishPermission
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1406|1413|Webhook|class|ru.allformine.afmcp.net.api.Webhook|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1414|1431|sendPlayerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendPlayerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypePlayerMessage;Lorg/spongepowered/api/entity/living/player/Player;[Ljava/lang/String;)V
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1432|1457|Webhook.TypePlayerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1458|1469|LEFT_SERVER|field|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|LEFT_SERVER
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1471|1476|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onPlayerQuit|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V|event|0
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1477|1492|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
    Method End: onPlayerQuit(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V
    Method Start: onSendChannelMessageEvent(Lbr/net/fabiozumbi12/UltimateChat/Sponge/API/SendChannelMessageEvent;)V
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1371|1376|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onSendChannelMessageEvent|(Lbr/net/fabiozumbi12/UltimateChat/Sponge/API/SendChannelMessageEvent;)V|event|0
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1295|1303|Listener|class|org.spongepowered.api.event.Listener|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1321|1346|onSendChannelMessageEvent|method|ru.allformine.afmcp.handlers.DiscordWebhookListener|onSendChannelMessageEvent|(Lbr/net/fabiozumbi12/UltimateChat/Sponge/API/SendChannelMessageEvent;)V
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1347|1370|SendChannelMessageEvent|class|br.net.fabiozumbi12.UltimateChat.Sponge.API.SendChannelMessageEvent|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1393|1398|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onSendChannelMessageEvent|(Lbr/net/fabiozumbi12/UltimateChat/Sponge/API/SendChannelMessageEvent;)V|event|0
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1399|1408|getSender|method|br.net.fabiozumbi12.UltimateChat.Sponge.API.SendChannelMessageEvent|getSender|()Lorg/spongepowered/api/command/CommandSource;
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1422|1428|Player|class|org.spongepowered.api.entity.living.player.Player|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1445|1451|String|class|java.lang.String|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1466|1471|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onSendChannelMessageEvent|(Lbr/net/fabiozumbi12/UltimateChat/Sponge/API/SendChannelMessageEvent;)V|event|0
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1472|1482|getChannel|method|br.net.fabiozumbi12.UltimateChat.Sponge.API.SendChannelMessageEvent|getChannel|()Lbr/net/fabiozumbi12/UltimateChat/Sponge/UCChannel;
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1485|1492|getName|method|br.net.fabiozumbi12.UltimateChat.Sponge.UCChannel|getName|()Ljava/lang/String;
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1509|1515|Player|class|org.spongepowered.api.entity.living.player.Player|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1526|1532|Player|class|org.spongepowered.api.entity.living.player.Player|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1534|1539|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onSendChannelMessageEvent|(Lbr/net/fabiozumbi12/UltimateChat/Sponge/API/SendChannelMessageEvent;)V|event|0
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1540|1549|getSender|method|br.net.fabiozumbi12.UltimateChat.Sponge.API.SendChannelMessageEvent|getSender|()Lorg/spongepowered/api/command/CommandSource;
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1566|1572|String|class|java.lang.String|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1583|1588|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onSendChannelMessageEvent|(Lbr/net/fabiozumbi12/UltimateChat/Sponge/API/SendChannelMessageEvent;)V|event|0
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1589|1599|getMessage|method|br.net.fabiozumbi12.UltimateChat.Sponge.API.SendChannelMessageEvent|getMessage|()Lorg/spongepowered/api/text/Text;
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1602|1609|toPlain|method|org.spongepowered.api.text.Text|toPlain|()Ljava/lang/String;
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1642|1658|equalsIgnoreCase|method|java.lang.String|equalsIgnoreCase|(Ljava/lang/String;)Z
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1709|1720|getLocation|method|org.spongepowered.api.world.Locatable|getLocation|()Lorg/spongepowered/api/world/Location;
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1723|1727|getX|method|org.spongepowered.api.world.Location|getX|()D
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1769|1780|getLocation|method|org.spongepowered.api.world.Locatable|getLocation|()Lorg/spongepowered/api/world/Location;
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1783|1787|getY|method|org.spongepowered.api.world.Location|getY|()D
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1829|1840|getLocation|method|org.spongepowered.api.world.Locatable|getLocation|()Lorg/spongepowered/api/world/Location;
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1843|1847|getZ|method|org.spongepowered.api.world.Location|getZ|()D
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1868|1875|Webhook|class|ru.allformine.afmcp.net.api.Webhook|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1876|1893|sendPlayerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendPlayerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypePlayerMessage;Lorg/spongepowered/api/entity/living/player/Player;[Ljava/lang/String;)V
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1894|1919|Webhook.TypePlayerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1920|1937|LVL2_CHAT_MESSAGE|field|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|LVL2_CHAT_MESSAGE
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1997|2003|String|class|java.lang.String|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2004|2010|format|method|java.lang.String|format|(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2174|2181|Webhook|class|ru.allformine.afmcp.net.api.Webhook|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2182|2199|sendPlayerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendPlayerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypePlayerMessage;Lorg/spongepowered/api/entity/living/player/Player;[Ljava/lang/String;)V
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2200|2225|Webhook.TypePlayerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2226|2238|CHAT_MESSAGE|field|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|CHAT_MESSAGE
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1588|1593|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onSendChannelMessageEvent|(Lbr/net/fabiozumbi12/UltimateChat/Sponge/API/SendChannelMessageEvent;)V|event|0
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1512|1520|Listener|class|org.spongepowered.api.event.Listener|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1538|1563|onSendChannelMessageEvent|method|ru.allformine.afmcp.handlers.DiscordWebhookListener|onSendChannelMessageEvent|(Lbr/net/fabiozumbi12/UltimateChat/Sponge/API/SendChannelMessageEvent;)V
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1564|1587|SendChannelMessageEvent|class|br.net.fabiozumbi12.UltimateChat.Sponge.API.SendChannelMessageEvent|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1610|1615|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onSendChannelMessageEvent|(Lbr/net/fabiozumbi12/UltimateChat/Sponge/API/SendChannelMessageEvent;)V|event|0
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1616|1625|getSender|method|br.net.fabiozumbi12.UltimateChat.Sponge.API.SendChannelMessageEvent|getSender|()Lorg/spongepowered/api/command/CommandSource;
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1639|1645|Player|class|org.spongepowered.api.entity.living.player.Player|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1662|1668|String|class|java.lang.String|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1683|1688|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onSendChannelMessageEvent|(Lbr/net/fabiozumbi12/UltimateChat/Sponge/API/SendChannelMessageEvent;)V|event|0
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1689|1699|getChannel|method|br.net.fabiozumbi12.UltimateChat.Sponge.API.SendChannelMessageEvent|getChannel|()Lbr/net/fabiozumbi12/UltimateChat/Sponge/UCChannel;
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1702|1709|getName|method|br.net.fabiozumbi12.UltimateChat.Sponge.UCChannel|getName|()Ljava/lang/String;
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1726|1732|Player|class|org.spongepowered.api.entity.living.player.Player|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1743|1749|Player|class|org.spongepowered.api.entity.living.player.Player|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1751|1756|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onSendChannelMessageEvent|(Lbr/net/fabiozumbi12/UltimateChat/Sponge/API/SendChannelMessageEvent;)V|event|0
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1757|1766|getSender|method|br.net.fabiozumbi12.UltimateChat.Sponge.API.SendChannelMessageEvent|getSender|()Lorg/spongepowered/api/command/CommandSource;
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1783|1789|String|class|java.lang.String|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1800|1805|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onSendChannelMessageEvent|(Lbr/net/fabiozumbi12/UltimateChat/Sponge/API/SendChannelMessageEvent;)V|event|0
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1806|1816|getMessage|method|br.net.fabiozumbi12.UltimateChat.Sponge.API.SendChannelMessageEvent|getMessage|()Lorg/spongepowered/api/text/Text;
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1819|1826|toPlain|method|org.spongepowered.api.text.Text|toPlain|()Ljava/lang/String;
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1860|1866|equals|method|java.lang.String|equals|(Ljava/lang/Object;)Z
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1893|1899|equals|method|java.lang.String|equals|(Ljava/lang/Object;)Z
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1950|1961|getLocation|method|org.spongepowered.api.world.Locatable|getLocation|()Lorg/spongepowered/api/world/Location;
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|1964|1968|getX|method|org.spongepowered.api.world.Location|getX|()D
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2010|2021|getLocation|method|org.spongepowered.api.world.Locatable|getLocation|()Lorg/spongepowered/api/world/Location;
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2024|2028|getY|method|org.spongepowered.api.world.Location|getY|()D
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2070|2081|getLocation|method|org.spongepowered.api.world.Locatable|getLocation|()Lorg/spongepowered/api/world/Location;
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2084|2088|getZ|method|org.spongepowered.api.world.Location|getZ|()D
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2109|2116|Webhook|class|ru.allformine.afmcp.net.api.Webhook|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2117|2134|sendPlayerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendPlayerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypePlayerMessage;Lorg/spongepowered/api/entity/living/player/Player;[Ljava/lang/String;)V
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2135|2160|Webhook.TypePlayerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2161|2178|LVL2_CHAT_MESSAGE|field|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|LVL2_CHAT_MESSAGE
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2238|2244|String|class|java.lang.String|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2245|2251|format|method|java.lang.String|format|(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2415|2422|Webhook|class|ru.allformine.afmcp.net.api.Webhook|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2423|2440|sendPlayerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendPlayerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypePlayerMessage;Lorg/spongepowered/api/entity/living/player/Player;[Ljava/lang/String;)V
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2441|2466|Webhook.TypePlayerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2467|2479|CHAT_MESSAGE|field|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|CHAT_MESSAGE
    Method End: onSendChannelMessageEvent(Lbr/net/fabiozumbi12/UltimateChat/Sponge/API/SendChannelMessageEvent;)V
    Method Start: onCommandSend(Lorg/spongepowered/api/event/command/SendCommandEvent;Lorg/spongepowered/api/entity/living/player/Player;)V
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2369|2374|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onCommandSend|(Lorg/spongepowered/api/event/command/SendCommandEvent;Lorg/spongepowered/api/entity/living/player/Player;)V|event|0
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2390|2396|player|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onCommandSend|(Lorg/spongepowered/api/event/command/SendCommandEvent;Lorg/spongepowered/api/entity/living/player/Player;)V|player|1
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2312|2320|Listener|class|org.spongepowered.api.event.Listener|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2338|2351|onCommandSend|method|ru.allformine.afmcp.handlers.DiscordWebhookListener|onCommandSend|(Lorg/spongepowered/api/event/command/SendCommandEvent;Lorg/spongepowered/api/entity/living/player/Player;)V
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2352|2368|SendCommandEvent|class|org.spongepowered.api.event.command.SendCommandEvent|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2377|2382|First|class|org.spongepowered.api.event.filter.cause.First|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2383|2389|Player|class|org.spongepowered.api.entity.living.player.Player|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2409|2416|Webhook|class|ru.allformine.afmcp.net.api.Webhook|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2417|2434|sendPlayerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendPlayerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypePlayerMessage;Lorg/spongepowered/api/entity/living/player/Player;[Ljava/lang/String;)V
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2435|2460|Webhook.TypePlayerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2461|2468|COMMAND|field|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|COMMAND
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2470|2476|player|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onCommandSend|(Lorg/spongepowered/api/event/command/SendCommandEvent;Lorg/spongepowered/api/entity/living/player/Player;)V|player|1
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2478|2483|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onCommandSend|(Lorg/spongepowered/api/event/command/SendCommandEvent;Lorg/spongepowered/api/entity/living/player/Player;)V|event|0
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2484|2494|getCommand|method|org.spongepowered.api.event.command.SendCommandEvent|getCommand|()Ljava/lang/String;
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2505|2510|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onCommandSend|(Lorg/spongepowered/api/event/command/SendCommandEvent;Lorg/spongepowered/api/entity/living/player/Player;)V|event|0
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2511|2523|getArguments|method|org.spongepowered.api.event.command.SendCommandEvent|getArguments|()Ljava/lang/String;
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2610|2615|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onCommandSend|(Lorg/spongepowered/api/event/command/SendCommandEvent;Lorg/spongepowered/api/entity/living/player/Player;)V|event|0
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2631|2637|player|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onCommandSend|(Lorg/spongepowered/api/event/command/SendCommandEvent;Lorg/spongepowered/api/entity/living/player/Player;)V|player|1
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2553|2561|Listener|class|org.spongepowered.api.event.Listener|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2579|2592|onCommandSend|method|ru.allformine.afmcp.handlers.DiscordWebhookListener|onCommandSend|(Lorg/spongepowered/api/event/command/SendCommandEvent;Lorg/spongepowered/api/entity/living/player/Player;)V
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2593|2609|SendCommandEvent|class|org.spongepowered.api.event.command.SendCommandEvent|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2618|2623|First|class|org.spongepowered.api.event.filter.cause.First|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2624|2630|Player|class|org.spongepowered.api.entity.living.player.Player|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2650|2657|Webhook|class|ru.allformine.afmcp.net.api.Webhook|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2658|2675|sendPlayerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendPlayerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypePlayerMessage;Lorg/spongepowered/api/entity/living/player/Player;[Ljava/lang/String;)V
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2676|2701|Webhook.TypePlayerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2702|2709|COMMAND|field|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|COMMAND
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2711|2717|player|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onCommandSend|(Lorg/spongepowered/api/event/command/SendCommandEvent;Lorg/spongepowered/api/entity/living/player/Player;)V|player|1
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2719|2724|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onCommandSend|(Lorg/spongepowered/api/event/command/SendCommandEvent;Lorg/spongepowered/api/entity/living/player/Player;)V|event|0
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2725|2735|getCommand|method|org.spongepowered.api.event.command.SendCommandEvent|getCommand|()Ljava/lang/String;
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2746|2751|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onCommandSend|(Lorg/spongepowered/api/event/command/SendCommandEvent;Lorg/spongepowered/api/entity/living/player/Player;)V|event|0
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2752|2764|getArguments|method|org.spongepowered.api.event.command.SendCommandEvent|getArguments|()Ljava/lang/String;
    Method End: onCommandSend(Lorg/spongepowered/api/event/command/SendCommandEvent;Lorg/spongepowered/api/entity/living/player/Player;)V
    Method Start: onAdvancement(Lorg/spongepowered/api/event/advancement/AdvancementEvent$Grant;)V
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2606|2611|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onAdvancement|(Lorg/spongepowered/api/event/advancement/AdvancementEvent$Grant;)V|event|0
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2543|2551|Listener|class|org.spongepowered.api.event.Listener|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2569|2582|onAdvancement|method|ru.allformine.afmcp.handlers.DiscordWebhookListener|onAdvancement|(Lorg/spongepowered/api/event/advancement/AdvancementEvent$Grant;)V
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2583|2605|AdvancementEvent.Grant|class|org.spongepowered.api.event.advancement.AdvancementEvent.Grant|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2629|2634|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onAdvancement|(Lorg/spongepowered/api/event/advancement/AdvancementEvent$Grant;)V|event|0
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2635|2649|getAdvancement|method|org.spongepowered.api.event.advancement.AdvancementEvent|getAdvancement|()Lorg/spongepowered/api/advancement/Advancement;
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2652|2659|getName|method|org.spongepowered.api.CatalogType|getName|()Ljava/lang/String;
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2662|2672|startsWith|method|java.lang.String|startsWith|(Ljava/lang/String;)Z
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2701|2708|Webhook|class|ru.allformine.afmcp.net.api.Webhook|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2709|2726|sendPlayerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendPlayerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypePlayerMessage;Lorg/spongepowered/api/entity/living/player/Player;[Ljava/lang/String;)V
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2727|2752|Webhook.TypePlayerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2753|2771|EARNED_ADVANCEMENT|field|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|EARNED_ADVANCEMENT
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2794|2799|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onAdvancement|(Lorg/spongepowered/api/event/advancement/AdvancementEvent$Grant;)V|event|0
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2800|2815|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2840|2845|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onAdvancement|(Lorg/spongepowered/api/event/advancement/AdvancementEvent$Grant;)V|event|0
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2846|2860|getAdvancement|method|org.spongepowered.api.event.advancement.AdvancementEvent|getAdvancement|()Lorg/spongepowered/api/advancement/Advancement;
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2863|2870|getName|method|org.spongepowered.api.CatalogType|getName|()Ljava/lang/String;
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2847|2852|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onAdvancement|(Lorg/spongepowered/api/event/advancement/AdvancementEvent$Grant;)V|event|0
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2784|2792|Listener|class|org.spongepowered.api.event.Listener|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2810|2823|onAdvancement|method|ru.allformine.afmcp.handlers.DiscordWebhookListener|onAdvancement|(Lorg/spongepowered/api/event/advancement/AdvancementEvent$Grant;)V
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2824|2846|AdvancementEvent.Grant|class|org.spongepowered.api.event.advancement.AdvancementEvent.Grant|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2870|2875|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onAdvancement|(Lorg/spongepowered/api/event/advancement/AdvancementEvent$Grant;)V|event|0
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2876|2890|getAdvancement|method|org.spongepowered.api.event.advancement.AdvancementEvent|getAdvancement|()Lorg/spongepowered/api/advancement/Advancement;
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2893|2900|getName|method|org.spongepowered.api.CatalogType|getName|()Ljava/lang/String;
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2903|2913|startsWith|method|java.lang.String|startsWith|(Ljava/lang/String;)Z
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2942|2949|Webhook|class|ru.allformine.afmcp.net.api.Webhook|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2950|2967|sendPlayerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendPlayerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypePlayerMessage;Lorg/spongepowered/api/entity/living/player/Player;[Ljava/lang/String;)V
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2968|2993|Webhook.TypePlayerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2994|3012|EARNED_ADVANCEMENT|field|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|EARNED_ADVANCEMENT
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3035|3040|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onAdvancement|(Lorg/spongepowered/api/event/advancement/AdvancementEvent$Grant;)V|event|0
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3041|3056|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3081|3086|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onAdvancement|(Lorg/spongepowered/api/event/advancement/AdvancementEvent$Grant;)V|event|0
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3087|3101|getAdvancement|method|org.spongepowered.api.event.advancement.AdvancementEvent|getAdvancement|()Lorg/spongepowered/api/advancement/Advancement;
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3104|3111|getName|method|org.spongepowered.api.CatalogType|getName|()Ljava/lang/String;
    Method End: onAdvancement(Lorg/spongepowered/api/event/advancement/AdvancementEvent$Grant;)V
    Method Start: onDeath(Lorg/spongepowered/api/event/entity/DestructEntityEvent$Death;)V
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2975|2980|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onDeath|(Lorg/spongepowered/api/event/entity/DestructEntityEvent$Death;)V|event|0
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2915|2923|Listener|class|org.spongepowered.api.event.Listener|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2941|2948|onDeath|method|ru.allformine.afmcp.handlers.DiscordWebhookListener|onDeath|(Lorg/spongepowered/api/event/entity/DestructEntityEvent$Death;)V
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2949|2974|DestructEntityEvent.Death|class|org.spongepowered.api.event.entity.DestructEntityEvent.Death|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|2997|3002|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onDeath|(Lorg/spongepowered/api/event/entity/DestructEntityEvent$Death;)V|event|0
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3003|3018|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3032|3038|Player|class|org.spongepowered.api.entity.living.player.Player|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3055|3062|Webhook|class|ru.allformine.afmcp.net.api.Webhook|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3063|3080|sendPlayerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendPlayerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypePlayerMessage;Lorg/spongepowered/api/entity/living/player/Player;[Ljava/lang/String;)V
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3081|3106|Webhook.TypePlayerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3107|3111|DIED|field|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|DIED
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3135|3141|Player|class|org.spongepowered.api.entity.living.player.Player|false
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3143|3148|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onDeath|(Lorg/spongepowered/api/event/entity/DestructEntityEvent$Death;)V|event|0
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3149|3164|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3189|3194|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onDeath|(Lorg/spongepowered/api/event/entity/DestructEntityEvent$Death;)V|event|0
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3195|3205|getMessage|method|org.spongepowered.api.event.message.MessageEvent|getMessage|()Lorg/spongepowered/api/text/Text;
-      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3208|3215|toPlain|method|org.spongepowered.api.text.Text|toPlain|()Ljava/lang/String;
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3216|3221|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onDeath|(Lorg/spongepowered/api/event/entity/DestructEntityEvent$Death;)V|event|0
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3156|3164|Listener|class|org.spongepowered.api.event.Listener|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3182|3189|onDeath|method|ru.allformine.afmcp.handlers.DiscordWebhookListener|onDeath|(Lorg/spongepowered/api/event/entity/DestructEntityEvent$Death;)V
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3190|3215|DestructEntityEvent.Death|class|org.spongepowered.api.event.entity.DestructEntityEvent.Death|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3238|3243|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onDeath|(Lorg/spongepowered/api/event/entity/DestructEntityEvent$Death;)V|event|0
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3244|3259|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3273|3279|Player|class|org.spongepowered.api.entity.living.player.Player|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3296|3303|Webhook|class|ru.allformine.afmcp.net.api.Webhook|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3304|3321|sendPlayerMessage|method|ru.allformine.afmcp.net.api.Webhook|sendPlayerMessage|(Lru/allformine/afmcp/net/api/Webhook$TypePlayerMessage;Lorg/spongepowered/api/entity/living/player/Player;[Ljava/lang/String;)V
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3322|3347|Webhook.TypePlayerMessage|class|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3348|3352|DIED|field|ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage|DIED
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3376|3382|Player|class|org.spongepowered.api.entity.living.player.Player|false
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3384|3389|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onDeath|(Lorg/spongepowered/api/event/entity/DestructEntityEvent$Death;)V|event|0
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3390|3405|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3430|3435|event|param|ru.allformine.afmcp.handlers.DiscordWebhookListener|onDeath|(Lorg/spongepowered/api/event/entity/DestructEntityEvent$Death;)V|event|0
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3436|3446|getMessage|method|org.spongepowered.api.event.message.MessageEvent|getMessage|()Lorg/spongepowered/api/text/Text;
+      @|ru/allformine/afmcp/handlers/DiscordWebhookListener.java|3449|3456|toPlain|method|org.spongepowered.api.text.Text|toPlain|()Ljava/lang/String;
    Method End: onDeath(Lorg/spongepowered/api/event/entity/DestructEntityEvent$Death;)V
 Class End  : ru.allformine.afmcp.handlers.DiscordWebhookListener
 endProcessing "ru/allformine/afmcp/handlers/DiscordWebhookListener.java"
@@ -1114,37 +1168,53 @@ Class Start: ru.allformine.afmcp.handlers.FactionEventListener
 Class End  : ru.allformine.afmcp.handlers.FactionEventListener
 endProcessing "ru/allformine/afmcp/handlers/FactionEventListener.java"
 
-startProcessing "ru/allformine/afmcp/handlers/VanishEventListener.java" md5: 2b5e042f71c2bbd191e55ca6980e075c
+startProcessing "ru/allformine/afmcp/handlers/VanishEventListener.java" md5: 7d12d6a2b1cddd76b0da43ccc390e226
 @|ru/allformine/afmcp/handlers/VanishEventListener.java|8|36|ru.allformine.afmcp.handlers|package|ru.allformine.afmcp.handlers|(file)
 Class Start: ru.allformine.afmcp.handlers.VanishEventListener
-   @|ru/allformine/afmcp/handlers/VanishEventListener.java|271|290|VanishEventListener|class|ru.allformine.afmcp.handlers.VanishEventListener|false
+   @|ru/allformine/afmcp/handlers/VanishEventListener.java|219|238|VanishEventListener|class|ru.allformine.afmcp.handlers.VanishEventListener|false
    Method Start: onPlayerJoin(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|365|370|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|299|307|Listener|class|org.spongepowered.api.event.Listener|false
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|325|337|onPlayerJoin|method|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|338|364|ClientConnectionEvent.Join|class|org.spongepowered.api.event.network.ClientConnectionEvent.Join|false
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|383|389|Player|class|org.spongepowered.api.entity.living.player.Player|false
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|399|404|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|405|420|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|444|457|hasPermission|method|org.spongepowered.api.service.permission.Subject|hasPermission|(Ljava/lang/String;)Z
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|458|471|VanishManager|class|ru.allformine.afmcp.VanishManager|false
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|472|488|vanishPermission|field|ru.allformine.afmcp.VanishManager|vanishPermission
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|506|519|VanishManager|class|ru.allformine.afmcp.VanishManager|false
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|520|532|vanishPlayer|method|ru.allformine.afmcp.VanishManager|vanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;)V
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|313|318|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|247|255|Listener|class|org.spongepowered.api.event.Listener|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|273|285|onPlayerJoin|method|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|286|312|ClientConnectionEvent.Join|class|org.spongepowered.api.event.network.ClientConnectionEvent.Join|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|336|341|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|342|357|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|360|373|hasPermission|method|org.spongepowered.api.service.permission.Subject|hasPermission|(Ljava/lang/String;)Z
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|374|387|VanishManager|class|ru.allformine.afmcp.vanish.VanishManager|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|388|404|vanishPermission|field|ru.allformine.afmcp.vanish.VanishManager|vanishPermission
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|456|461|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|462|477|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|480|493|hasPermission|method|org.spongepowered.api.service.permission.Subject|hasPermission|(Ljava/lang/String;)Z
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|494|507|VanishManager|class|ru.allformine.afmcp.vanish.VanishManager|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|508|524|vanishPermission|field|ru.allformine.afmcp.vanish.VanishManager|vanishPermission
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|542|555|VanishManager|class|ru.allformine.afmcp.vanish.VanishManager|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|556|568|vanishPlayer|method|ru.allformine.afmcp.vanish.VanishManager|vanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Z)V
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|569|574|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|575|590|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|623|628|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|629|641|clearMessage|method|org.spongepowered.api.event.message.MessageEvent|clearMessage|()Lorg/spongepowered/api/event/message/MessageEvent$MessageFormatter;
    Method End: onPlayerJoin(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V
    Method Start: onPlayerQuit(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|640|645|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerQuit|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V|event|0
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|568|576|Listener|class|org.spongepowered.api.event.Listener|false
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|594|606|onPlayerQuit|method|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerQuit|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|607|639|ClientConnectionEvent.Disconnect|class|org.spongepowered.api.event.network.ClientConnectionEvent.Disconnect|false
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|658|664|Player|class|org.spongepowered.api.entity.living.player.Player|false
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|674|679|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerQuit|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V|event|0
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|680|695|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|719|732|hasPermission|method|org.spongepowered.api.service.permission.Subject|hasPermission|(Ljava/lang/String;)Z
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|733|746|VanishManager|class|ru.allformine.afmcp.VanishManager|false
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|747|763|vanishPermission|field|ru.allformine.afmcp.VanishManager|vanishPermission
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|781|794|VanishManager|class|ru.allformine.afmcp.VanishManager|false
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|795|809|unvanishPlayer|method|ru.allformine.afmcp.VanishManager|unvanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;)V
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|732|737|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerQuit|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V|event|0
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|660|668|Listener|class|org.spongepowered.api.event.Listener|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|686|698|onPlayerQuit|method|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerQuit|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|699|731|ClientConnectionEvent.Disconnect|class|org.spongepowered.api.event.network.ClientConnectionEvent.Disconnect|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|755|760|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerQuit|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V|event|0
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|761|776|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|779|792|hasPermission|method|org.spongepowered.api.service.permission.Subject|hasPermission|(Ljava/lang/String;)Z
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|793|806|VanishManager|class|ru.allformine.afmcp.vanish.VanishManager|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|807|823|vanishPermission|field|ru.allformine.afmcp.vanish.VanishManager|vanishPermission
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|875|880|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerQuit|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V|event|0
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|881|896|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|899|912|hasPermission|method|org.spongepowered.api.service.permission.Subject|hasPermission|(Ljava/lang/String;)Z
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|913|926|VanishManager|class|ru.allformine.afmcp.vanish.VanishManager|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|927|943|vanishPermission|field|ru.allformine.afmcp.vanish.VanishManager|vanishPermission
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|961|974|VanishManager|class|ru.allformine.afmcp.vanish.VanishManager|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|975|989|unvanishPlayer|method|ru.allformine.afmcp.vanish.VanishManager|unvanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Z)V
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|990|995|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerQuit|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V|event|0
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|996|1011|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1044|1049|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerQuit|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V|event|0
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1050|1062|clearMessage|method|org.spongepowered.api.event.message.MessageEvent|clearMessage|()Lorg/spongepowered/api/event/message/MessageEvent$MessageFormatter;
    Method End: onPlayerQuit(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V
 Class End  : ru.allformine.afmcp.handlers.VanishEventListener
 endProcessing "ru/allformine/afmcp/handlers/VanishEventListener.java"
@@ -2232,56 +2302,154 @@ Class Start: ru.allformine.afmcp.tasks.AutoRebootTask
 Class End  : ru.allformine.afmcp.tasks.AutoRebootTask
 endProcessing "ru/allformine/afmcp/tasks/AutoRebootTask.java"
 
-startProcessing "ru/allformine/afmcp/test/PacketHandler.java" md5: 1add9950e95dda72ede5192e4a5428b3
-@|ru/allformine/afmcp/test/PacketHandler.java|8|32|ru.allformine.afmcp.test|package|ru.allformine.afmcp.test|(file)
-Class Start: ru.allformine.afmcp.test.PacketHandler
-   @|ru/allformine/afmcp/test/PacketHandler.java|231|244|PacketHandler|class|ru.allformine.afmcp.test.PacketHandler|false
-   @|ru/allformine/afmcp/test/PacketHandler.java|253|273|ChannelDuplexHandler|class|io.netty.channel.ChannelDuplexHandler|false
-   Method Start: PacketHandler()V
-      @|ru/allformine/afmcp/test/PacketHandler.java|288|301|PacketHandler|method|ru.allformine.afmcp.test.PacketHandler|PacketHandler|()V
-      @|ru/allformine/afmcp/test/PacketHandler.java|315|328|AFMCorePlugin|class|ru.allformine.afmcp.AFMCorePlugin|false
-      @|ru/allformine/afmcp/test/PacketHandler.java|329|335|logger|field|ru.allformine.afmcp.AFMCorePlugin|logger
-      @|ru/allformine/afmcp/test/PacketHandler.java|336|340|info|method|org.slf4j.Logger|info|(Ljava/lang/String;)V
-   Method End: PacketHandler()V
-   Method Start: channelRead(Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;)V
-      @|ru/allformine/afmcp/test/PacketHandler.java|444|447|ctx|param|ru.allformine.afmcp.test.PacketHandler|channelRead|(Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;)V|ctx|0
-      @|ru/allformine/afmcp/test/PacketHandler.java|456|459|msg|param|ru.allformine.afmcp.test.PacketHandler|channelRead|(Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;)V|msg|1
-      @|ru/allformine/afmcp/test/PacketHandler.java|384|392|Override|class|java.lang.Override|false
-      @|ru/allformine/afmcp/test/PacketHandler.java|410|421|channelRead|method|io.netty.channel.ChannelInboundHandler|channelRead|(Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;)V
-      @|ru/allformine/afmcp/test/PacketHandler.java|422|443|ChannelHandlerContext|class|io.netty.channel.ChannelHandlerContext|false
-      @|ru/allformine/afmcp/test/PacketHandler.java|449|455|Object|class|java.lang.Object|false
-      @|ru/allformine/afmcp/test/PacketHandler.java|468|477|Exception|class|java.lang.Exception|false
-      @|ru/allformine/afmcp/test/PacketHandler.java|489|502|AFMCorePlugin|class|ru.allformine.afmcp.AFMCorePlugin|false
-      @|ru/allformine/afmcp/test/PacketHandler.java|503|509|logger|field|ru.allformine.afmcp.AFMCorePlugin|logger
-      @|ru/allformine/afmcp/test/PacketHandler.java|510|514|info|method|org.slf4j.Logger|info|(Ljava/lang/String;)V
-      @|ru/allformine/afmcp/test/PacketHandler.java|525|528|msg|param|ru.allformine.afmcp.test.PacketHandler|channelRead|(Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;)V|msg|1
-      @|ru/allformine/afmcp/test/PacketHandler.java|529|537|getClass|method|java.lang.Object|getClass|()Ljava/lang/Class;
-      @|ru/allformine/afmcp/test/PacketHandler.java|540|547|getName|method|java.lang.Class|getName|()Ljava/lang/String;
-      @|ru/allformine/afmcp/test/PacketHandler.java|567|578|channelRead|method|io.netty.channel.ChannelInboundHandler|channelRead|(Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;)V
-      @|ru/allformine/afmcp/test/PacketHandler.java|579|582|ctx|param|ru.allformine.afmcp.test.PacketHandler|channelRead|(Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;)V|ctx|0
-      @|ru/allformine/afmcp/test/PacketHandler.java|584|587|msg|param|ru.allformine.afmcp.test.PacketHandler|channelRead|(Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;)V|msg|1
-   Method End: channelRead(Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;)V
-   Method Start: write(Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;Lio/netty/channel/ChannelPromise;)V
-      @|ru/allformine/afmcp/test/PacketHandler.java|659|662|ctx|param|ru.allformine.afmcp.test.PacketHandler|write|(Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;Lio/netty/channel/ChannelPromise;)V|ctx|0
-      @|ru/allformine/afmcp/test/PacketHandler.java|671|674|msg|param|ru.allformine.afmcp.test.PacketHandler|write|(Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;Lio/netty/channel/ChannelPromise;)V|msg|1
-      @|ru/allformine/afmcp/test/PacketHandler.java|691|698|promise|param|ru.allformine.afmcp.test.PacketHandler|write|(Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;Lio/netty/channel/ChannelPromise;)V|promise|2
-      @|ru/allformine/afmcp/test/PacketHandler.java|605|613|Override|class|java.lang.Override|false
-      @|ru/allformine/afmcp/test/PacketHandler.java|631|636|write|method|io.netty.channel.ChannelOutboundHandler|write|(Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;Lio/netty/channel/ChannelPromise;)V
-      @|ru/allformine/afmcp/test/PacketHandler.java|637|658|ChannelHandlerContext|class|io.netty.channel.ChannelHandlerContext|false
-      @|ru/allformine/afmcp/test/PacketHandler.java|664|670|Object|class|java.lang.Object|false
-      @|ru/allformine/afmcp/test/PacketHandler.java|676|690|ChannelPromise|class|io.netty.channel.ChannelPromise|false
-      @|ru/allformine/afmcp/test/PacketHandler.java|707|716|Exception|class|java.lang.Exception|false
-      @|ru/allformine/afmcp/test/PacketHandler.java|728|741|AFMCorePlugin|class|ru.allformine.afmcp.AFMCorePlugin|false
-      @|ru/allformine/afmcp/test/PacketHandler.java|742|748|logger|field|ru.allformine.afmcp.AFMCorePlugin|logger
-      @|ru/allformine/afmcp/test/PacketHandler.java|749|753|info|method|org.slf4j.Logger|info|(Ljava/lang/String;)V
-      @|ru/allformine/afmcp/test/PacketHandler.java|765|768|msg|param|ru.allformine.afmcp.test.PacketHandler|write|(Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;Lio/netty/channel/ChannelPromise;)V|msg|1
-      @|ru/allformine/afmcp/test/PacketHandler.java|769|777|getClass|method|java.lang.Object|getClass|()Ljava/lang/Class;
-      @|ru/allformine/afmcp/test/PacketHandler.java|780|787|getName|method|java.lang.Class|getName|()Ljava/lang/String;
-      @|ru/allformine/afmcp/test/PacketHandler.java|807|812|write|method|io.netty.channel.ChannelOutboundHandler|write|(Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;Lio/netty/channel/ChannelPromise;)V
-      @|ru/allformine/afmcp/test/PacketHandler.java|813|816|ctx|param|ru.allformine.afmcp.test.PacketHandler|write|(Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;Lio/netty/channel/ChannelPromise;)V|ctx|0
-      @|ru/allformine/afmcp/test/PacketHandler.java|818|821|msg|param|ru.allformine.afmcp.test.PacketHandler|write|(Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;Lio/netty/channel/ChannelPromise;)V|msg|1
-      @|ru/allformine/afmcp/test/PacketHandler.java|823|830|promise|param|ru.allformine.afmcp.test.PacketHandler|write|(Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;Lio/netty/channel/ChannelPromise;)V|promise|2
-   Method End: write(Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;Lio/netty/channel/ChannelPromise;)V
-Class End  : ru.allformine.afmcp.test.PacketHandler
-endProcessing "ru/allformine/afmcp/test/PacketHandler.java"
+startProcessing "ru/allformine/afmcp/vanish/VanishEffects.java" md5: 0e85ead25bb8f3a60b75c23c6aa9ab54
+@|ru/allformine/afmcp/vanish/VanishEffects.java|8|34|ru.allformine.afmcp.vanish|package|ru.allformine.afmcp.vanish|(file)
+Class Start: ru.allformine.afmcp.vanish.VanishEffects
+   @|ru/allformine/afmcp/vanish/VanishEffects.java|156|169|VanishEffects|class|ru.allformine.afmcp.vanish.VanishEffects|false
+   Method Start: applyVanishEffect(Lorg/spongepowered/api/entity/living/player/Player;)V
+      @|ru/allformine/afmcp/vanish/VanishEffects.java|214|220|player|param|ru.allformine.afmcp.vanish.VanishEffects|applyVanishEffect|(Lorg/spongepowered/api/entity/living/player/Player;)V|player|0
+      @|ru/allformine/afmcp/vanish/VanishEffects.java|189|206|applyVanishEffect|method|ru.allformine.afmcp.vanish.VanishEffects|applyVanishEffect|(Lorg/spongepowered/api/entity/living/player/Player;)V
+      @|ru/allformine/afmcp/vanish/VanishEffects.java|207|213|Player|class|org.spongepowered.api.entity.living.player.Player|false
+      @|ru/allformine/afmcp/vanish/VanishEffects.java|233|239|player|param|ru.allformine.afmcp.vanish.VanishEffects|applyVanishEffect|(Lorg/spongepowered/api/entity/living/player/Player;)V|player|0
+      @|ru/allformine/afmcp/vanish/VanishEffects.java|240|248|getWorld|method|org.spongepowered.api.world.Locatable|getWorld|()Lorg/spongepowered/api/world/World;
+      @|ru/allformine/afmcp/vanish/VanishEffects.java|251|262|spawnEntity|method|org.spongepowered.api.world.extent.EntityUniverse|spawnEntity|(Lorg/spongepowered/api/entity/Entity;)Z
+      @|ru/allformine/afmcp/vanish/VanishEffects.java|263|269|player|param|ru.allformine.afmcp.vanish.VanishEffects|applyVanishEffect|(Lorg/spongepowered/api/entity/living/player/Player;)V|player|0
+      @|ru/allformine/afmcp/vanish/VanishEffects.java|270|278|getWorld|method|org.spongepowered.api.world.Locatable|getWorld|()Lorg/spongepowered/api/world/World;
+      @|ru/allformine/afmcp/vanish/VanishEffects.java|281|293|createEntity|method|org.spongepowered.api.world.extent.EntityUniverse|createEntity|(Lorg/spongepowered/api/entity/EntityType;Lcom/flowpowered/math/vector/Vector3d;)Lorg/spongepowered/api/entity/Entity;
+      @|ru/allformine/afmcp/vanish/VanishEffects.java|294|305|EntityTypes|class|org.spongepowered.api.entity.EntityTypes|false
+      @|ru/allformine/afmcp/vanish/VanishEffects.java|306|315|LIGHTNING|field|org.spongepowered.api.entity.EntityTypes|LIGHTNING
+      @|ru/allformine/afmcp/vanish/VanishEffects.java|317|323|player|param|ru.allformine.afmcp.vanish.VanishEffects|applyVanishEffect|(Lorg/spongepowered/api/entity/living/player/Player;)V|player|0
+      @|ru/allformine/afmcp/vanish/VanishEffects.java|324|335|getPosition|method|org.spongepowered.api.entity.living.player.User|getPosition|()Lcom/flowpowered/math/vector/Vector3d;
+   Method End: applyVanishEffect(Lorg/spongepowered/api/entity/living/player/Player;)V
+Class End  : ru.allformine.afmcp.vanish.VanishEffects
+endProcessing "ru/allformine/afmcp/vanish/VanishEffects.java"
+
+startProcessing "ru/allformine/afmcp/vanish/VanishManager.java" md5: 54bbfb576c0a8b050f4038b74b5313c0
+@|ru/allformine/afmcp/vanish/VanishManager.java|8|34|ru.allformine.afmcp.vanish|package|ru.allformine.afmcp.vanish|(file)
+Class Start: ru.allformine.afmcp.vanish.VanishManager
+   @|ru/allformine/afmcp/vanish/VanishManager.java|405|418|VanishManager|class|ru.allformine.afmcp.vanish.VanishManager|false
+   @|ru/allformine/afmcp/vanish/VanishManager.java|446|452|String|class|java.lang.String|false
+   @|ru/allformine/afmcp/vanish/VanishManager.java|446|452|String|class|java.lang.String|false
+   @|ru/allformine/afmcp/vanish/VanishManager.java|453|469|vanishPermission|field|ru.allformine.afmcp.vanish.VanishManager|vanishPermission|
+   @|ru/allformine/afmcp/vanish/VanishManager.java|520|526|Player|class|org.spongepowered.api.entity.living.player.Player|false
+   @|ru/allformine/afmcp/vanish/VanishManager.java|515|519|List|class|java.util.List|false
+   @|ru/allformine/afmcp/vanish/VanishManager.java|515|519|List|class|java.util.List|false
+   @|ru/allformine/afmcp/vanish/VanishManager.java|520|526|Player|class|org.spongepowered.api.entity.living.player.Player|false
+   @|ru/allformine/afmcp/vanish/VanishManager.java|528|543|vanishedPlayers|field|ru.allformine.afmcp.vanish.VanishManager|vanishedPlayers|
+   @|ru/allformine/afmcp/vanish/VanishManager.java|550|559|ArrayList|class|java.util.ArrayList|false
+   Method Start: isVanished(Lorg/spongepowered/api/entity/living/player/Player;)Z
+      @|ru/allformine/afmcp/vanish/VanishManager.java|612|618|player|param|ru.allformine.afmcp.vanish.VanishManager|isVanished|(Lorg/spongepowered/api/entity/living/player/Player;)Z|player|0
+      @|ru/allformine/afmcp/vanish/VanishManager.java|594|604|isVanished|method|ru.allformine.afmcp.vanish.VanishManager|isVanished|(Lorg/spongepowered/api/entity/living/player/Player;)Z
+      @|ru/allformine/afmcp/vanish/VanishManager.java|605|611|Player|class|org.spongepowered.api.entity.living.player.Player|false
+      @|ru/allformine/afmcp/vanish/VanishManager.java|638|653|vanishedPlayers|field|ru.allformine.afmcp.vanish.VanishManager|vanishedPlayers
+      @|ru/allformine/afmcp/vanish/VanishManager.java|654|662|contains|method|java.util.Collection|contains|(Ljava/lang/Object;)Z
+      @|ru/allformine/afmcp/vanish/VanishManager.java|663|669|player|param|ru.allformine.afmcp.vanish.VanishManager|isVanished|(Lorg/spongepowered/api/entity/living/player/Player;)Z|player|0
+   Method End: isVanished(Lorg/spongepowered/api/entity/living/player/Player;)Z
+   Method Start: vanishPlayer(Lorg/spongepowered/api/entity/living/player/Player;Z)V
+      @|ru/allformine/afmcp/vanish/VanishManager.java|725|731|player|param|ru.allformine.afmcp.vanish.VanishManager|vanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Z)V|player|0
+      @|ru/allformine/afmcp/vanish/VanishManager.java|741|747|onJoin|param|ru.allformine.afmcp.vanish.VanishManager|vanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Z)V|onJoin|1
+      @|ru/allformine/afmcp/vanish/VanishManager.java|705|717|vanishPlayer|method|ru.allformine.afmcp.vanish.VanishManager|vanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Z)V
+      @|ru/allformine/afmcp/vanish/VanishManager.java|718|724|Player|class|org.spongepowered.api.entity.living.player.Player|false
+      @|ru/allformine/afmcp/vanish/VanishManager.java|760|769|setVanish|method|ru.allformine.afmcp.vanish.VanishManager|setVanish|(Lorg/spongepowered/api/entity/living/player/Player;ZZ)V
+      @|ru/allformine/afmcp/vanish/VanishManager.java|770|776|player|param|ru.allformine.afmcp.vanish.VanishManager|vanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Z)V|player|0
+      @|ru/allformine/afmcp/vanish/VanishManager.java|784|790|onJoin|param|ru.allformine.afmcp.vanish.VanishManager|vanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Z)V|onJoin|1
+      @|ru/allformine/afmcp/vanish/VanishManager.java|804|819|vanishedPlayers|field|ru.allformine.afmcp.vanish.VanishManager|vanishedPlayers
+      @|ru/allformine/afmcp/vanish/VanishManager.java|820|823|add|method|java.util.Collection|add|(Ljava/lang/Object;)Z
+      @|ru/allformine/afmcp/vanish/VanishManager.java|824|830|player|param|ru.allformine.afmcp.vanish.VanishManager|vanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Z)V|player|0
+      @|ru/allformine/afmcp/vanish/VanishManager.java|844|856|vanishNotify|method|ru.allformine.afmcp.vanish.VanishManager|vanishNotify|(Ljava/lang/String;)V
+      @|ru/allformine/afmcp/vanish/VanishManager.java|857|863|String|class|java.lang.String|false
+      @|ru/allformine/afmcp/vanish/VanishManager.java|864|870|format|method|java.lang.String|format|(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      @|ru/allformine/afmcp/vanish/VanishManager.java|871|877|onJoin|param|ru.allformine.afmcp.vanish.VanishManager|vanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Z)V|onJoin|1
+      @|ru/allformine/afmcp/vanish/VanishManager.java|928|934|player|param|ru.allformine.afmcp.vanish.VanishManager|vanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Z)V|player|0
+      @|ru/allformine/afmcp/vanish/VanishManager.java|935|942|getName|method|org.spongepowered.api.entity.Tamer|getName|()Ljava/lang/String;
+   Method End: vanishPlayer(Lorg/spongepowered/api/entity/living/player/Player;Z)V
+   Method Start: unvanishPlayer(Lorg/spongepowered/api/entity/living/player/Player;Z)V
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1003|1009|player|param|ru.allformine.afmcp.vanish.VanishManager|unvanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Z)V|player|0
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1019|1026|onLeave|param|ru.allformine.afmcp.vanish.VanishManager|unvanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Z)V|onLeave|1
+      @|ru/allformine/afmcp/vanish/VanishManager.java|981|995|unvanishPlayer|method|ru.allformine.afmcp.vanish.VanishManager|unvanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Z)V
+      @|ru/allformine/afmcp/vanish/VanishManager.java|996|1002|Player|class|org.spongepowered.api.entity.living.player.Player|false
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1039|1048|setVanish|method|ru.allformine.afmcp.vanish.VanishManager|setVanish|(Lorg/spongepowered/api/entity/living/player/Player;ZZ)V
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1049|1055|player|param|ru.allformine.afmcp.vanish.VanishManager|unvanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Z)V|player|0
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1064|1071|onLeave|param|ru.allformine.afmcp.vanish.VanishManager|unvanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Z)V|onLeave|1
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1085|1100|vanishedPlayers|field|ru.allformine.afmcp.vanish.VanishManager|vanishedPlayers
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1101|1107|remove|method|java.util.Collection|remove|(Ljava/lang/Object;)Z
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1108|1114|player|param|ru.allformine.afmcp.vanish.VanishManager|unvanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Z)V|player|0
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1128|1140|vanishNotify|method|ru.allformine.afmcp.vanish.VanishManager|vanishNotify|(Ljava/lang/String;)V
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1141|1147|String|class|java.lang.String|false
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1148|1154|format|method|java.lang.String|format|(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1155|1162|onLeave|param|ru.allformine.afmcp.vanish.VanishManager|unvanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Z)V|onLeave|1
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1219|1225|player|param|ru.allformine.afmcp.vanish.VanishManager|unvanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Z)V|player|0
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1226|1233|getName|method|org.spongepowered.api.entity.Tamer|getName|()Ljava/lang/String;
+   Method End: unvanishPlayer(Lorg/spongepowered/api/entity/living/player/Player;Z)V
+   Method Start: switchVanish(Lorg/spongepowered/api/entity/living/player/Player;)V
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1292|1298|player|param|ru.allformine.afmcp.vanish.VanishManager|switchVanish|(Lorg/spongepowered/api/entity/living/player/Player;)V|player|0
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1272|1284|switchVanish|method|ru.allformine.afmcp.vanish.VanishManager|switchVanish|(Lorg/spongepowered/api/entity/living/player/Player;)V
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1285|1291|Player|class|org.spongepowered.api.entity.living.player.Player|false
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1315|1325|isVanished|method|ru.allformine.afmcp.vanish.VanishManager|isVanished|(Lorg/spongepowered/api/entity/living/player/Player;)Z
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1326|1332|player|param|ru.allformine.afmcp.vanish.VanishManager|switchVanish|(Lorg/spongepowered/api/entity/living/player/Player;)V|player|0
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1350|1364|unvanishPlayer|method|ru.allformine.afmcp.vanish.VanishManager|unvanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Z)V
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1365|1371|player|param|ru.allformine.afmcp.vanish.VanishManager|switchVanish|(Lorg/spongepowered/api/entity/living/player/Player;)V|player|0
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1412|1424|vanishPlayer|method|ru.allformine.afmcp.vanish.VanishManager|vanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Z)V
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1425|1431|player|param|ru.allformine.afmcp.vanish.VanishManager|switchVanish|(Lorg/spongepowered/api/entity/living/player/Player;)V|player|0
+   Method End: switchVanish(Lorg/spongepowered/api/entity/living/player/Player;)V
+   Method Start: getPlayerCountExcludingVanished()I
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1484|1515|getPlayerCountExcludingVanished|method|ru.allformine.afmcp.vanish.VanishManager|getPlayerCountExcludingVanished|()I
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1574|1580|Player|class|org.spongepowered.api.entity.living.player.Player|false
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1590|1596|Sponge|class|org.spongepowered.api.Sponge|false
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1597|1606|getServer|method|org.spongepowered.api.Sponge|getServer|()Lorg/spongepowered/api/Server;
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1609|1625|getOnlinePlayers|method|org.spongepowered.api.Server|getOnlinePlayers|()Ljava/util/Collection;
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1649|1659|isVanished|method|ru.allformine.afmcp.vanish.VanishManager|isVanished|(Lorg/spongepowered/api/entity/living/player/Player;)Z
+   Method End: getPlayerCountExcludingVanished()I
+   Method Start: setVanish(Lorg/spongepowered/api/entity/living/player/Player;ZZ)V
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1844|1850|player|param|ru.allformine.afmcp.vanish.VanishManager|setVanish|(Lorg/spongepowered/api/entity/living/player/Player;ZZ)V|player|0
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1860|1866|enable|param|ru.allformine.afmcp.vanish.VanishManager|setVanish|(Lorg/spongepowered/api/entity/living/player/Player;ZZ)V|enable|1
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1876|1882|silent|param|ru.allformine.afmcp.vanish.VanishManager|setVanish|(Lorg/spongepowered/api/entity/living/player/Player;ZZ)V|silent|2
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1827|1836|setVanish|method|ru.allformine.afmcp.vanish.VanishManager|setVanish|(Lorg/spongepowered/api/entity/living/player/Player;ZZ)V
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1837|1843|Player|class|org.spongepowered.api.entity.living.player.Player|false
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1895|1901|player|param|ru.allformine.afmcp.vanish.VanishManager|setVanish|(Lorg/spongepowered/api/entity/living/player/Player;ZZ)V|player|0
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1902|1907|offer|method|org.spongepowered.api.data.value.mutable.CompositeValueStore|offer|(Lorg/spongepowered/api/data/key/Key;Ljava/lang/Object;)Lorg/spongepowered/api/data/DataTransactionResult;
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1908|1912|Keys|class|org.spongepowered.api.data.key.Keys|false
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1913|1922|INVISIBLE|field|org.spongepowered.api.data.key.Keys|INVISIBLE
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1924|1930|enable|param|ru.allformine.afmcp.vanish.VanishManager|setVanish|(Lorg/spongepowered/api/entity/living/player/Player;ZZ)V|enable|1
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1942|1948|player|param|ru.allformine.afmcp.vanish.VanishManager|setVanish|(Lorg/spongepowered/api/entity/living/player/Player;ZZ)V|player|0
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1949|1954|offer|method|org.spongepowered.api.data.value.mutable.CompositeValueStore|offer|(Lorg/spongepowered/api/data/key/Key;Ljava/lang/Object;)Lorg/spongepowered/api/data/DataTransactionResult;
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1955|1959|Keys|class|org.spongepowered.api.data.key.Keys|false
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1960|1966|VANISH|field|org.spongepowered.api.data.key.Keys|VANISH
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1968|1974|enable|param|ru.allformine.afmcp.vanish.VanishManager|setVanish|(Lorg/spongepowered/api/entity/living/player/Player;ZZ)V|enable|1
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1986|1992|player|param|ru.allformine.afmcp.vanish.VanishManager|setVanish|(Lorg/spongepowered/api/entity/living/player/Player;ZZ)V|player|0
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1993|1998|offer|method|org.spongepowered.api.data.value.mutable.CompositeValueStore|offer|(Lorg/spongepowered/api/data/key/Key;Ljava/lang/Object;)Lorg/spongepowered/api/data/DataTransactionResult;
+      @|ru/allformine/afmcp/vanish/VanishManager.java|1999|2003|Keys|class|org.spongepowered.api.data.key.Keys|false
+      @|ru/allformine/afmcp/vanish/VanishManager.java|2004|2028|VANISH_IGNORES_COLLISION|field|org.spongepowered.api.data.key.Keys|VANISH_IGNORES_COLLISION
+      @|ru/allformine/afmcp/vanish/VanishManager.java|2030|2036|enable|param|ru.allformine.afmcp.vanish.VanishManager|setVanish|(Lorg/spongepowered/api/entity/living/player/Player;ZZ)V|enable|1
+      @|ru/allformine/afmcp/vanish/VanishManager.java|2048|2054|player|param|ru.allformine.afmcp.vanish.VanishManager|setVanish|(Lorg/spongepowered/api/entity/living/player/Player;ZZ)V|player|0
+      @|ru/allformine/afmcp/vanish/VanishManager.java|2055|2060|offer|method|org.spongepowered.api.data.value.mutable.CompositeValueStore|offer|(Lorg/spongepowered/api/data/key/Key;Ljava/lang/Object;)Lorg/spongepowered/api/data/DataTransactionResult;
+      @|ru/allformine/afmcp/vanish/VanishManager.java|2061|2065|Keys|class|org.spongepowered.api.data.key.Keys|false
+      @|ru/allformine/afmcp/vanish/VanishManager.java|2066|2091|VANISH_PREVENTS_TARGETING|field|org.spongepowered.api.data.key.Keys|VANISH_PREVENTS_TARGETING
+      @|ru/allformine/afmcp/vanish/VanishManager.java|2093|2099|enable|param|ru.allformine.afmcp.vanish.VanishManager|setVanish|(Lorg/spongepowered/api/entity/living/player/Player;ZZ)V|enable|1
+      @|ru/allformine/afmcp/vanish/VanishManager.java|2118|2124|silent|param|ru.allformine.afmcp.vanish.VanishManager|setVanish|(Lorg/spongepowered/api/entity/living/player/Player;ZZ)V|silent|2
+      @|ru/allformine/afmcp/vanish/VanishManager.java|2126|2139|VanishEffects|class|ru.allformine.afmcp.vanish.VanishEffects|false
+      @|ru/allformine/afmcp/vanish/VanishManager.java|2140|2157|applyVanishEffect|method|ru.allformine.afmcp.vanish.VanishEffects|applyVanishEffect|(Lorg/spongepowered/api/entity/living/player/Player;)V
+      @|ru/allformine/afmcp/vanish/VanishManager.java|2158|2164|player|param|ru.allformine.afmcp.vanish.VanishManager|setVanish|(Lorg/spongepowered/api/entity/living/player/Player;ZZ)V|player|0
+   Method End: setVanish(Lorg/spongepowered/api/entity/living/player/Player;ZZ)V
+   Method Start: vanishNotify(Ljava/lang/String;)V
+      @|ru/allformine/afmcp/vanish/VanishManager.java|2221|2228|message|param|ru.allformine.afmcp.vanish.VanishManager|vanishNotify|(Ljava/lang/String;)V|message|0
+      @|ru/allformine/afmcp/vanish/VanishManager.java|2201|2213|vanishNotify|method|ru.allformine.afmcp.vanish.VanishManager|vanishNotify|(Ljava/lang/String;)V
+      @|ru/allformine/afmcp/vanish/VanishManager.java|2214|2220|String|class|java.lang.String|false
+      @|ru/allformine/afmcp/vanish/VanishManager.java|2241|2255|MessageChannel|class|org.spongepowered.api.text.channel.MessageChannel|false
+      @|ru/allformine/afmcp/vanish/VanishManager.java|2256|2266|permission|method|org.spongepowered.api.text.channel.MessageChannel|permission|(Ljava/lang/String;)Lorg/spongepowered/api/text/channel/MessageChannel;
+      @|ru/allformine/afmcp/vanish/VanishManager.java|2267|2283|vanishPermission|field|ru.allformine.afmcp.vanish.VanishManager|vanishPermission
+      @|ru/allformine/afmcp/vanish/VanishManager.java|2285|2289|send|method|org.spongepowered.api.text.channel.MessageChannel|send|(Lorg/spongepowered/api/text/Text;)V
+      @|ru/allformine/afmcp/vanish/VanishManager.java|2290|2294|Text|class|org.spongepowered.api.text.Text|false
+      @|ru/allformine/afmcp/vanish/VanishManager.java|2295|2302|builder|method|org.spongepowered.api.text.Text|builder|()Lorg/spongepowered/api/text/Text$Builder;
+      @|ru/allformine/afmcp/vanish/VanishManager.java|2305|2311|append|method|org.spongepowered.api.text.Text.Builder|append|([Lorg/spongepowered/api/text/Text;)Lorg/spongepowered/api/text/Text$Builder;
+      @|ru/allformine/afmcp/vanish/VanishManager.java|2312|2316|Text|class|org.spongepowered.api.text.Text|false
+      @|ru/allformine/afmcp/vanish/VanishManager.java|2317|2319|of|method|org.spongepowered.api.text.Text|of|(Ljava/lang/String;)Lorg/spongepowered/api/text/LiteralText;
+      @|ru/allformine/afmcp/vanish/VanishManager.java|2320|2327|message|param|ru.allformine.afmcp.vanish.VanishManager|vanishNotify|(Ljava/lang/String;)V|message|0
+      @|ru/allformine/afmcp/vanish/VanishManager.java|2330|2335|color|method|org.spongepowered.api.text.Text.Builder|color|(Lorg/spongepowered/api/text/format/TextColor;)Lorg/spongepowered/api/text/Text$Builder;
+      @|ru/allformine/afmcp/vanish/VanishManager.java|2336|2346|TextColors|class|org.spongepowered.api.text.format.TextColors|false
+      @|ru/allformine/afmcp/vanish/VanishManager.java|2347|2356|DARK_AQUA|field|org.spongepowered.api.text.format.TextColors|DARK_AQUA
+      @|ru/allformine/afmcp/vanish/VanishManager.java|2358|2363|build|method|org.spongepowered.api.text.Text.Builder|build|()Lorg/spongepowered/api/text/Text;
+   Method End: vanishNotify(Ljava/lang/String;)V
+Class End  : ru.allformine.afmcp.vanish.VanishManager
+endProcessing "ru/allformine/afmcp/vanish/VanishManager.java"
 

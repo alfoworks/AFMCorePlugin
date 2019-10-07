@@ -10,10 +10,13 @@ import org.spongepowered.api.event.filter.cause.First;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
 import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.net.api.Webhook;
+import ru.allformine.afmcp.vanish.VanishManager;
 
 public class DiscordWebhookListener {
     @Listener
     public void onPlayerJoin(ClientConnectionEvent.Join event) {
+        if (event.getTargetEntity().hasPermission(VanishManager.vanishPermission)) return;
+
         Webhook.TypePlayerMessage type = event.getTargetEntity().hasPlayedBefore() ?
                 Webhook.TypePlayerMessage.JOINED_SERVER :
                 Webhook.TypePlayerMessage.JOINED_FIRST_TIME;
@@ -22,7 +25,7 @@ public class DiscordWebhookListener {
 
     @Listener
     public void onPlayerQuit(ClientConnectionEvent.Disconnect event) {
-        if (AFMCorePlugin.serverRestart)
+        if (AFMCorePlugin.serverRestart || event.getTargetEntity().hasPermission(VanishManager.vanishPermission))
             return;
         Webhook.sendPlayerMessage(Webhook.TypePlayerMessage.LEFT_SERVER, event.getTargetEntity());
     }
@@ -33,7 +36,7 @@ public class DiscordWebhookListener {
             String channelName = event.getChannel().getName();
             Player sender = (Player) event.getSender();
             String message = event.getMessage().toPlain();
-            if (channelName.equalsIgnoreCase("Local")) {
+            if (!channelName.equals("Global") && !channelName.equals("Trade")) {
                 int x = (int) sender.getLocation().getX();
                 int y = (int) sender.getLocation().getY();
                 int z = (int) sender.getLocation().getZ();
