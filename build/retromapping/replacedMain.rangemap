@@ -1168,54 +1168,96 @@ Class Start: ru.allformine.afmcp.handlers.FactionEventListener
 Class End  : ru.allformine.afmcp.handlers.FactionEventListener
 endProcessing "ru/allformine/afmcp/handlers/FactionEventListener.java"
 
-startProcessing "ru/allformine/afmcp/handlers/VanishEventListener.java" md5: 7d12d6a2b1cddd76b0da43ccc390e226
+startProcessing "ru/allformine/afmcp/handlers/VanishEventListener.java" md5: 359ae28c077c27b16cc2afe0272c6d1b
 @|ru/allformine/afmcp/handlers/VanishEventListener.java|8|36|ru.allformine.afmcp.handlers|package|ru.allformine.afmcp.handlers|(file)
 Class Start: ru.allformine.afmcp.handlers.VanishEventListener
-   @|ru/allformine/afmcp/handlers/VanishEventListener.java|219|238|VanishEventListener|class|ru.allformine.afmcp.handlers.VanishEventListener|false
+   @|ru/allformine/afmcp/handlers/VanishEventListener.java|585|604|VanishEventListener|class|ru.allformine.afmcp.handlers.VanishEventListener|false
    Method Start: onPlayerJoin(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|313|318|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|247|255|Listener|class|org.spongepowered.api.event.Listener|false
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|273|285|onPlayerJoin|method|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|286|312|ClientConnectionEvent.Join|class|org.spongepowered.api.event.network.ClientConnectionEvent.Join|false
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|336|341|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|342|357|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|360|373|hasPermission|method|org.spongepowered.api.service.permission.Subject|hasPermission|(Ljava/lang/String;)Z
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|374|387|VanishManager|class|ru.allformine.afmcp.vanish.VanishManager|false
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|388|404|vanishPermission|field|ru.allformine.afmcp.vanish.VanishManager|vanishPermission
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|456|461|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|462|477|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|480|493|hasPermission|method|org.spongepowered.api.service.permission.Subject|hasPermission|(Ljava/lang/String;)Z
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|494|507|VanishManager|class|ru.allformine.afmcp.vanish.VanishManager|false
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|508|524|vanishPermission|field|ru.allformine.afmcp.vanish.VanishManager|vanishPermission
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|542|555|VanishManager|class|ru.allformine.afmcp.vanish.VanishManager|false
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|556|568|vanishPlayer|method|ru.allformine.afmcp.vanish.VanishManager|vanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Z)V
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|569|574|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|575|590|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|623|628|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|629|641|clearMessage|method|org.spongepowered.api.event.message.MessageEvent|clearMessage|()Lorg/spongepowered/api/event/message/MessageEvent$MessageFormatter;
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|679|684|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|613|621|Listener|class|org.spongepowered.api.event.Listener|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|639|651|onPlayerJoin|method|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|652|678|ClientConnectionEvent.Join|class|org.spongepowered.api.event.network.ClientConnectionEvent.Join|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|702|707|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|708|723|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|726|739|hasPermission|method|org.spongepowered.api.service.permission.Subject|hasPermission|(Ljava/lang/String;)Z
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|740|753|VanishManager|class|ru.allformine.afmcp.vanish.VanishManager|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|754|770|vanishPermission|field|ru.allformine.afmcp.vanish.VanishManager|vanishPermission
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|822|827|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|828|843|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|846|859|hasPermission|method|org.spongepowered.api.service.permission.Subject|hasPermission|(Ljava/lang/String;)Z
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|860|873|VanishManager|class|ru.allformine.afmcp.vanish.VanishManager|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|874|890|vanishPermission|field|ru.allformine.afmcp.vanish.VanishManager|vanishPermission
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|908|921|VanishManager|class|ru.allformine.afmcp.vanish.VanishManager|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|922|934|vanishPlayer|method|ru.allformine.afmcp.vanish.VanishManager|vanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Z)V
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|935|940|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|941|956|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|989|994|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerJoin|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V|event|0
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|995|1007|clearMessage|method|org.spongepowered.api.event.message.MessageEvent|clearMessage|()Lorg/spongepowered/api/event/message/MessageEvent$MessageFormatter;
    Method End: onPlayerJoin(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Join;)V
    Method Start: onPlayerQuit(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|732|737|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerQuit|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V|event|0
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|660|668|Listener|class|org.spongepowered.api.event.Listener|false
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|686|698|onPlayerQuit|method|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerQuit|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|699|731|ClientConnectionEvent.Disconnect|class|org.spongepowered.api.event.network.ClientConnectionEvent.Disconnect|false
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|755|760|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerQuit|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V|event|0
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|761|776|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|779|792|hasPermission|method|org.spongepowered.api.service.permission.Subject|hasPermission|(Ljava/lang/String;)Z
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|793|806|VanishManager|class|ru.allformine.afmcp.vanish.VanishManager|false
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|807|823|vanishPermission|field|ru.allformine.afmcp.vanish.VanishManager|vanishPermission
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|875|880|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerQuit|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V|event|0
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|881|896|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|899|912|hasPermission|method|org.spongepowered.api.service.permission.Subject|hasPermission|(Ljava/lang/String;)Z
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|913|926|VanishManager|class|ru.allformine.afmcp.vanish.VanishManager|false
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|927|943|vanishPermission|field|ru.allformine.afmcp.vanish.VanishManager|vanishPermission
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|961|974|VanishManager|class|ru.allformine.afmcp.vanish.VanishManager|false
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|975|989|unvanishPlayer|method|ru.allformine.afmcp.vanish.VanishManager|unvanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Z)V
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|990|995|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerQuit|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V|event|0
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|996|1011|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1044|1049|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerQuit|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V|event|0
-      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1050|1062|clearMessage|method|org.spongepowered.api.event.message.MessageEvent|clearMessage|()Lorg/spongepowered/api/event/message/MessageEvent$MessageFormatter;
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1098|1103|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerQuit|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V|event|0
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1026|1034|Listener|class|org.spongepowered.api.event.Listener|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1052|1064|onPlayerQuit|method|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerQuit|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1065|1097|ClientConnectionEvent.Disconnect|class|org.spongepowered.api.event.network.ClientConnectionEvent.Disconnect|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1121|1126|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerQuit|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V|event|0
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1127|1142|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1145|1158|hasPermission|method|org.spongepowered.api.service.permission.Subject|hasPermission|(Ljava/lang/String;)Z
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1159|1172|VanishManager|class|ru.allformine.afmcp.vanish.VanishManager|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1173|1189|vanishPermission|field|ru.allformine.afmcp.vanish.VanishManager|vanishPermission
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1241|1246|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerQuit|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V|event|0
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1247|1262|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1265|1278|hasPermission|method|org.spongepowered.api.service.permission.Subject|hasPermission|(Ljava/lang/String;)Z
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1279|1292|VanishManager|class|ru.allformine.afmcp.vanish.VanishManager|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1293|1309|vanishPermission|field|ru.allformine.afmcp.vanish.VanishManager|vanishPermission
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1327|1340|VanishManager|class|ru.allformine.afmcp.vanish.VanishManager|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1341|1355|unvanishPlayer|method|ru.allformine.afmcp.vanish.VanishManager|unvanishPlayer|(Lorg/spongepowered/api/entity/living/player/Player;Z)V
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1356|1361|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerQuit|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V|event|0
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1362|1377|getTargetEntity|method|org.spongepowered.api.event.entity.TargetEntityEvent|getTargetEntity|()Lorg/spongepowered/api/entity/Entity;
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1410|1415|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerQuit|(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V|event|0
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1416|1428|clearMessage|method|org.spongepowered.api.event.message.MessageEvent|clearMessage|()Lorg/spongepowered/api/event/message/MessageEvent$MessageFormatter;
    Method End: onPlayerQuit(Lorg/spongepowered/api/event/network/ClientConnectionEvent$Disconnect;)V
+   Method Start: onInteract(Lorg/spongepowered/api/event/action/InteractEvent;Lorg/spongepowered/api/entity/living/player/Player;)V
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1554|1559|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onInteract|(Lorg/spongepowered/api/event/action/InteractEvent;Lorg/spongepowered/api/entity/living/player/Player;)V|event|0
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1574|1580|player|param|ru.allformine.afmcp.handlers.VanishEventListener|onInteract|(Lorg/spongepowered/api/event/action/InteractEvent;Lorg/spongepowered/api/entity/living/player/Player;)V|player|1
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1503|1511|Listener|class|org.spongepowered.api.event.Listener|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1529|1539|onInteract|method|ru.allformine.afmcp.handlers.VanishEventListener|onInteract|(Lorg/spongepowered/api/event/action/InteractEvent;Lorg/spongepowered/api/entity/living/player/Player;)V
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1540|1553|InteractEvent|class|org.spongepowered.api.event.action.InteractEvent|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1562|1566|Root|class|org.spongepowered.api.event.filter.cause.Root|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1567|1573|Player|class|org.spongepowered.api.entity.living.player.Player|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1598|1611|VanishManager|class|ru.allformine.afmcp.vanish.VanishManager|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1612|1622|isVanished|method|ru.allformine.afmcp.vanish.VanishManager|isVanished|(Lorg/spongepowered/api/entity/living/player/Player;)Z
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1623|1629|player|param|ru.allformine.afmcp.handlers.VanishEventListener|onInteract|(Lorg/spongepowered/api/event/action/InteractEvent;Lorg/spongepowered/api/entity/living/player/Player;)V|player|1
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1651|1656|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onInteract|(Lorg/spongepowered/api/event/action/InteractEvent;Lorg/spongepowered/api/entity/living/player/Player;)V|event|0
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1657|1669|setCancelled|method|org.spongepowered.api.event.Cancellable|setCancelled|(Z)V
+   Method End: onInteract(Lorg/spongepowered/api/event/action/InteractEvent;Lorg/spongepowered/api/entity/living/player/Player;)V
+   Method Start: onPlayerChat(Lorg/spongepowered/api/event/message/MessageChannelEvent$Chat;Lorg/spongepowered/api/entity/living/player/Player;)V
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1756|1761|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerChat|(Lorg/spongepowered/api/event/message/MessageChannelEvent$Chat;Lorg/spongepowered/api/entity/living/player/Player;)V|event|0
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1777|1783|player|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerChat|(Lorg/spongepowered/api/event/message/MessageChannelEvent$Chat;Lorg/spongepowered/api/entity/living/player/Player;)V|player|1
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1692|1700|Listener|class|org.spongepowered.api.event.Listener|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1718|1730|onPlayerChat|method|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerChat|(Lorg/spongepowered/api/event/message/MessageChannelEvent$Chat;Lorg/spongepowered/api/entity/living/player/Player;)V
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1731|1755|MessageChannelEvent.Chat|class|org.spongepowered.api.event.message.MessageChannelEvent.Chat|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1764|1769|First|class|org.spongepowered.api.event.filter.cause.First|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1770|1776|Player|class|org.spongepowered.api.entity.living.player.Player|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1801|1814|VanishManager|class|ru.allformine.afmcp.vanish.VanishManager|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1815|1825|isVanished|method|ru.allformine.afmcp.vanish.VanishManager|isVanished|(Lorg/spongepowered/api/entity/living/player/Player;)Z
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1826|1832|player|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerChat|(Lorg/spongepowered/api/event/message/MessageChannelEvent$Chat;Lorg/spongepowered/api/entity/living/player/Player;)V|player|1
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1854|1859|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPlayerChat|(Lorg/spongepowered/api/event/message/MessageChannelEvent$Chat;Lorg/spongepowered/api/entity/living/player/Player;)V|event|0
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1860|1872|setCancelled|method|org.spongepowered.api.event.Cancellable|setCancelled|(Z)V
+   Method End: onPlayerChat(Lorg/spongepowered/api/event/message/MessageChannelEvent$Chat;Lorg/spongepowered/api/entity/living/player/Player;)V
+   Method Start: onPickup(Lorg/spongepowered/api/event/item/inventory/ChangeInventoryEvent$Pickup;Lorg/spongepowered/api/entity/living/player/Player;)V
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1958|1963|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPickup|(Lorg/spongepowered/api/event/item/inventory/ChangeInventoryEvent$Pickup;Lorg/spongepowered/api/entity/living/player/Player;)V|event|0
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1978|1984|player|param|ru.allformine.afmcp.handlers.VanishEventListener|onPickup|(Lorg/spongepowered/api/event/item/inventory/ChangeInventoryEvent$Pickup;Lorg/spongepowered/api/entity/living/player/Player;)V|player|1
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1895|1903|Listener|class|org.spongepowered.api.event.Listener|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1921|1929|onPickup|method|ru.allformine.afmcp.handlers.VanishEventListener|onPickup|(Lorg/spongepowered/api/event/item/inventory/ChangeInventoryEvent$Pickup;Lorg/spongepowered/api/entity/living/player/Player;)V
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1930|1957|ChangeInventoryEvent.Pickup|class|org.spongepowered.api.event.item.inventory.ChangeInventoryEvent.Pickup|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1966|1970|Root|class|org.spongepowered.api.event.filter.cause.Root|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|1971|1977|Player|class|org.spongepowered.api.entity.living.player.Player|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|2002|2015|VanishManager|class|ru.allformine.afmcp.vanish.VanishManager|false
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|2016|2026|isVanished|method|ru.allformine.afmcp.vanish.VanishManager|isVanished|(Lorg/spongepowered/api/entity/living/player/Player;)Z
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|2027|2033|player|param|ru.allformine.afmcp.handlers.VanishEventListener|onPickup|(Lorg/spongepowered/api/event/item/inventory/ChangeInventoryEvent$Pickup;Lorg/spongepowered/api/entity/living/player/Player;)V|player|1
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|2055|2060|event|param|ru.allformine.afmcp.handlers.VanishEventListener|onPickup|(Lorg/spongepowered/api/event/item/inventory/ChangeInventoryEvent$Pickup;Lorg/spongepowered/api/entity/living/player/Player;)V|event|0
+      @|ru/allformine/afmcp/handlers/VanishEventListener.java|2061|2073|setCancelled|method|org.spongepowered.api.event.Cancellable|setCancelled|(Z)V
+   Method End: onPickup(Lorg/spongepowered/api/event/item/inventory/ChangeInventoryEvent$Pickup;Lorg/spongepowered/api/entity/living/player/Player;)V
 Class End  : ru.allformine.afmcp.handlers.VanishEventListener
 endProcessing "ru/allformine/afmcp/handlers/VanishEventListener.java"
 

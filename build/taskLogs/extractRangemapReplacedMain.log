@@ -38,7 +38,7 @@ endProcessing "ru/allformine/afmcp/handlers/DiscordWebhookListener.java"
 startProcessing "ru/allformine/afmcp/handlers/FactionEventListener.java" md5: 38b7cb3689d42d2a6a9f70fcb0f6309c
 endProcessing "ru/allformine/afmcp/handlers/FactionEventListener.java"
 
-startProcessing "ru/allformine/afmcp/handlers/VanishEventListener.java" md5: 7d12d6a2b1cddd76b0da43ccc390e226
+startProcessing "ru/allformine/afmcp/handlers/VanishEventListener.java" md5: 359ae28c077c27b16cc2afe0272c6d1b
 endProcessing "ru/allformine/afmcp/handlers/VanishEventListener.java"
 
 startProcessing "ru/allformine/afmcp/jumppad/JumpPadEventListener.java" md5: 6338634a5d74b5eaf79a8c1a90f04efa
