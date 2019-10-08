@@ -12,7 +12,6 @@ import org.spongepowered.api.text.format.TextColors;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class VanishManager {
     public static final String vanishPermission = "afmcp.vanish.staff";
@@ -83,9 +82,7 @@ public class VanishManager {
             for (TabListEntry entry : tabList.getEntries()) {
                 Optional<Text> nick = entry.getDisplayName();
 
-                if (nick.isPresent() && vanishedPlayers.stream().map(Player::getName).collect(Collectors.toList()).contains(nick.get().toPlain())) {
-                    tabList.removeEntry(entry.getProfile().getUniqueId());
-                }
+                tabList.removeEntry(entry.getProfile().getUniqueId());
             }
         }
     }

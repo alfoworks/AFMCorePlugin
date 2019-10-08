@@ -77,6 +77,6 @@ endProcessing "ru/allformine/afmcp/tasks/AutoRebootTask.java"
 startProcessing "ru/allformine/afmcp/vanish/VanishEffects.java" md5: 0e85ead25bb8f3a60b75c23c6aa9ab54
 endProcessing "ru/allformine/afmcp/vanish/VanishEffects.java"
 
-startProcessing "ru/allformine/afmcp/vanish/VanishManager.java" md5: 54bbfb576c0a8b050f4038b74b5313c0
+startProcessing "ru/allformine/afmcp/vanish/VanishManager.java" md5: effc78c60f8084e751788043f022e605
 endProcessing "ru/allformine/afmcp/vanish/VanishManager.java"
 

@@ -343,11 +343,15 @@ Start Processing: ru/allformine/afmcp/vanish/VanishManager.java
 Import: org.spongepowered.api.Sponge
 Import: org.spongepowered.api.data.key.Keys
 Import: org.spongepowered.api.entity.living.player.Player
+Import: org.spongepowered.api.entity.living.player.tab.TabList
+Import: org.spongepowered.api.entity.living.player.tab.TabListEntry
 Import: org.spongepowered.api.text.Text
 Import: org.spongepowered.api.text.channel.MessageChannel
 Import: org.spongepowered.api.text.format.TextColors
-Adding 2 imports
+Adding 4 imports
         java.util.ArrayList
         java.util.List
+        java.util.Optional
+        java.util.stream.Collectors
 End  Processing: ru/allformine/afmcp/vanish/VanishManager.java
 
