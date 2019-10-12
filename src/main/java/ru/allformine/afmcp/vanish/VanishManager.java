@@ -3,15 +3,12 @@ package ru.allformine.afmcp.vanish;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.entity.living.player.tab.TabList;
-import org.spongepowered.api.entity.living.player.tab.TabListEntry;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.text.format.TextColors;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class VanishManager {
     public static final String vanishPermission = "afmcp.vanish.staff";
@@ -67,23 +64,9 @@ public class VanishManager {
         player.offer(Keys.VANISH_PREVENTS_TARGETING, enable);
 
         if (!silent) VanishEffects.applyVanishEffect(player);
-
-        onVanishUpdate();
     }
 
     private static void vanishNotify(String message) {
         MessageChannel.permission(vanishPermission).send(Text.builder().append(Text.of(message)).color(TextColors.DARK_AQUA).build());
-    }
-
-    private static void onVanishUpdate() {
-        for (Player player : Sponge.getServer().getOnlinePlayers()) {
-            TabList tabList = player.getTabList();
-
-            for (TabListEntry entry : tabList.getEntries()) {
-                Optional<Text> nick = entry.getDisplayName();
-
-                tabList.removeEntry(entry.getProfile().getUniqueId());
-            }
-        }
     }
 }

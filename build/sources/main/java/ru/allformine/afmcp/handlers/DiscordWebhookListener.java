@@ -15,19 +15,16 @@ import ru.allformine.afmcp.vanish.VanishManager;
 public class DiscordWebhookListener {
     @Listener
     public void onPlayerJoin(ClientConnectionEvent.Join event) {
-        if (event.getTargetEntity().hasPermission(VanishManager.vanishPermission)) return;
-
-        Webhook.TypePlayerMessage type = event.getTargetEntity().hasPlayedBefore() ?
+        Webhook.TypePlayerMessage type = event.getTargetEntity().hasPermission(VanishManager.vanishPermission) ? (event.getTargetEntity().hasPlayedBefore() ?
                 Webhook.TypePlayerMessage.JOINED_SERVER :
-                Webhook.TypePlayerMessage.JOINED_FIRST_TIME;
+                Webhook.TypePlayerMessage.JOINED_FIRST_TIME) : Webhook.TypePlayerMessage.STAFF_JOINED_SERVER;
         Webhook.sendPlayerMessage(type, event.getTargetEntity());
     }
 
     @Listener
     public void onPlayerQuit(ClientConnectionEvent.Disconnect event) {
-        if (AFMCorePlugin.serverRestart || event.getTargetEntity().hasPermission(VanishManager.vanishPermission))
-            return;
-        Webhook.sendPlayerMessage(Webhook.TypePlayerMessage.LEFT_SERVER, event.getTargetEntity());
+        if (AFMCorePlugin.serverRestart) return;
+        Webhook.sendPlayerMessage(event.getTargetEntity().hasPermission(VanishManager.vanishPermission) ? Webhook.TypePlayerMessage.LEFT_SERVER : Webhook.TypePlayerMessage.STAFF_LEFT_SERVER, event.getTargetEntity());
     }
 
     @Listener
@@ -37,12 +34,9 @@ public class DiscordWebhookListener {
             Player sender = (Player) event.getSender();
             String message = event.getMessage().toPlain();
             if (!channelName.equals("Global") && !channelName.equals("Trade")) {
-                int x = (int) sender.getLocation().getX();
-                int y = (int) sender.getLocation().getY();
-                int z = (int) sender.getLocation().getZ();
                 Webhook.sendPlayerMessage(Webhook.TypePlayerMessage.LVL2_CHAT_MESSAGE,
                         sender,
-                        String.format("X: %s, Y: %s, Z: %s", x, y, z),
+                        sender.getLocation().toString(),
                         channelName,
                         message
                 );

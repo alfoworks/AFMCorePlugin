@@ -32,7 +32,7 @@ endProcessing "ru/allformine/afmcp/commands/VipCommand.java"
 startProcessing "ru/allformine/afmcp/handlers/AutospawnEventListener.java" md5: 70117e8987e14511ef75b318bd4c6f99
 endProcessing "ru/allformine/afmcp/handlers/AutospawnEventListener.java"
 
-startProcessing "ru/allformine/afmcp/handlers/DiscordWebhookListener.java" md5: 65ff06a35dd656e51e52d33b174ec3bc
+startProcessing "ru/allformine/afmcp/handlers/DiscordWebhookListener.java" md5: fb8fec34b2c7f91d23dd67424a276988
 endProcessing "ru/allformine/afmcp/handlers/DiscordWebhookListener.java"
 
 startProcessing "ru/allformine/afmcp/handlers/FactionEventListener.java" md5: 38b7cb3689d42d2a6a9f70fcb0f6309c
@@ -77,6 +77,6 @@ endProcessing "ru/allformine/afmcp/tasks/AutoRebootTask.java"
 startProcessing "ru/allformine/afmcp/vanish/VanishEffects.java" md5: 0e85ead25bb8f3a60b75c23c6aa9ab54
 endProcessing "ru/allformine/afmcp/vanish/VanishEffects.java"
 
-startProcessing "ru/allformine/afmcp/vanish/VanishManager.java" md5: effc78c60f8084e751788043f022e605
+startProcessing "ru/allformine/afmcp/vanish/VanishManager.java" md5: 35570abd62d40dde6d725ba0fc1217b8
 endProcessing "ru/allformine/afmcp/vanish/VanishManager.java"
 

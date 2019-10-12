@@ -143,7 +143,9 @@ New Key: class org/spongepowered/api/event/network/ClientConnectionEvent
 New Key: class ru/allformine/afmcp/net/api/Webhook
 New Key: class ru/allformine/afmcp/net/api/Webhook
 New Key: class ru/allformine/afmcp/net/api/Webhook
+New Key: class ru/allformine/afmcp/net/api/Webhook
 New Key: class org/spongepowered/api/event/network/ClientConnectionEvent
+New Key: class ru/allformine/afmcp/net/api/Webhook
 New Key: class ru/allformine/afmcp/net/api/Webhook
 New Key: class ru/allformine/afmcp/net/api/Webhook
 New Key: class ru/allformine/afmcp/net/api/Webhook
@@ -348,10 +350,9 @@ Import: org.spongepowered.api.entity.living.player.tab.TabListEntry
 Import: org.spongepowered.api.text.Text
 Import: org.spongepowered.api.text.channel.MessageChannel
 Import: org.spongepowered.api.text.format.TextColors
-Adding 4 imports
+Adding 3 imports
         java.util.ArrayList
         java.util.List
         java.util.Optional
-        java.util.stream.Collectors
 End  Processing: ru/allformine/afmcp/vanish/VanishManager.java
 

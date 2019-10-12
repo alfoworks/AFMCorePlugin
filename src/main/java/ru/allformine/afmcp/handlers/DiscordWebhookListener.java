@@ -15,7 +15,7 @@ import ru.allformine.afmcp.vanish.VanishManager;
 public class DiscordWebhookListener {
     @Listener
     public void onPlayerJoin(ClientConnectionEvent.Join event) {
-        Webhook.TypePlayerMessage type = event.getTargetEntity().hasPermission(VanishManager.vanishPermission) ? (event.getTargetEntity().hasPlayedBefore() ?
+        Webhook.TypePlayerMessage type = !event.getTargetEntity().hasPermission(VanishManager.vanishPermission) ? (event.getTargetEntity().hasPlayedBefore() ?
                 Webhook.TypePlayerMessage.JOINED_SERVER :
                 Webhook.TypePlayerMessage.JOINED_FIRST_TIME) : Webhook.TypePlayerMessage.STAFF_JOINED_SERVER;
         Webhook.sendPlayerMessage(type, event.getTargetEntity());
@@ -24,7 +24,7 @@ public class DiscordWebhookListener {
     @Listener
     public void onPlayerQuit(ClientConnectionEvent.Disconnect event) {
         if (AFMCorePlugin.serverRestart) return;
-        Webhook.sendPlayerMessage(event.getTargetEntity().hasPermission(VanishManager.vanishPermission) ? Webhook.TypePlayerMessage.LEFT_SERVER : Webhook.TypePlayerMessage.STAFF_LEFT_SERVER, event.getTargetEntity());
+        Webhook.sendPlayerMessage(!event.getTargetEntity().hasPermission(VanishManager.vanishPermission) ? Webhook.TypePlayerMessage.LEFT_SERVER : Webhook.TypePlayerMessage.STAFF_LEFT_SERVER, event.getTargetEntity());
     }
 
     @Listener
