@@ -1,4 +1,4 @@
-package ru.allformine.afmcp.handlers;
+package ru.allformine.afmcp.listeners;
 
 import br.net.fabiozumbi12.UltimateChat.Sponge.API.SendChannelMessageEvent;
 import org.spongepowered.api.entity.living.player.Player;

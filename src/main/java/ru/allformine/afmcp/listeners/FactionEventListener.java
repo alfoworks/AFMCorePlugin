@@ -1,4 +1,4 @@
-package ru.allformine.afmcp.handlers;
+package ru.allformine.afmcp.listeners;
 
 import com.flowpowered.math.vector.Vector3i;
 import io.github.aquerr.eaglefactions.api.entities.Faction;

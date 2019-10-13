@@ -1,5 +1,6 @@
-package ru.allformine.afmcp.handlers;
+package ru.allformine.afmcp.listeners;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.action.InteractEvent;
@@ -8,6 +9,7 @@ import org.spongepowered.api.event.filter.cause.Root;
 import org.spongepowered.api.event.item.inventory.ChangeInventoryEvent;
 import org.spongepowered.api.event.message.MessageChannelEvent;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
+import org.spongepowered.api.event.server.ClientPingServerEvent;
 import ru.allformine.afmcp.vanish.VanishManager;
 
 public class VanishEventListener {
@@ -21,7 +23,7 @@ public class VanishEventListener {
             VanishManager.vanishPlayer(event.getTargetEntity(), true);
         }
 
-        event.clearMessage();
+        event.setMessageCancelled(true);
     }
 
     @Listener
@@ -34,7 +36,7 @@ public class VanishEventListener {
             VanishManager.unvanishPlayer(event.getTargetEntity(), true);
         }
 
-        event.clearMessage();
+        event.setMessageCancelled(true);
     }
 
     // ========================================== //
@@ -58,6 +60,18 @@ public class VanishEventListener {
         if (!VanishManager.isVanished(player)) return;
 
         event.setCancelled(true);
+    }
+
+    // ========================================== //
+
+    @Listener
+    public void onClientPingServerEvent(ClientPingServerEvent event) {
+        if (!event.getResponse().getPlayers().isPresent()) return;
+
+        ClientPingServerEvent.Response.Players players = event.getResponse().getPlayers().get();
+        players.setOnline(VanishManager.getPlayerCountExcludingVanished());
+
+        players.getProfiles().removeIf(gameProfile -> VanishManager.isVanished(Sponge.getServer().getPlayer(gameProfile.getUniqueId()).get()));
     }
 
     // ========================================== //

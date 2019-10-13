@@ -1,4 +1,4 @@
-package ru.allformine.afmcp.handlers;
+package ru.allformine.afmcp.listeners;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.Listener;

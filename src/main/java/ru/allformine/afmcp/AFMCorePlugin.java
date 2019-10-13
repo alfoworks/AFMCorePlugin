@@ -1,6 +1,9 @@
 package ru.allformine.afmcp;
 
 import com.google.inject.Inject;
+import eu.crushedpixel.sponge.packetgate.api.listener.PacketListener;
+import eu.crushedpixel.sponge.packetgate.api.registry.PacketGate;
+import net.minecraft.network.play.server.SPacketPlayerListItem;
 import ninja.leaping.configurate.commented.CommentedConfigurationNode;
 import ninja.leaping.configurate.hocon.HoconConfigurationLoader;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
@@ -18,10 +21,10 @@ import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.scheduler.Task;
 import org.spongepowered.api.text.Text;
 import ru.allformine.afmcp.commands.*;
-import ru.allformine.afmcp.handlers.DiscordWebhookListener;
-import ru.allformine.afmcp.handlers.FactionEventListener;
-import ru.allformine.afmcp.handlers.VanishEventListener;
 import ru.allformine.afmcp.jumppad.JumpPadEventListener;
+import ru.allformine.afmcp.listeners.DiscordWebhookListener;
+import ru.allformine.afmcp.listeners.FactionEventListener;
+import ru.allformine.afmcp.listeners.VanishEventListener;
 import ru.allformine.afmcp.net.api.Webhook;
 import ru.allformine.afmcp.packetlisteners.ScreenshotListener;
 import ru.allformine.afmcp.serverapi.HTTPServer;
@@ -29,6 +32,7 @@ import ru.allformine.afmcp.serverapi.HTTPServer;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Optional;
 
 @Plugin(
         id = "afmcp",
@@ -150,6 +154,9 @@ public class AFMCorePlugin {
         apiServerTask = Task.builder().execute(apiServer)
                 .async().name("AFMCP APISERVER")
                 .submit(this);
+
+        Optional<PacketGate> optional = Sponge.getServiceManager().provide(PacketGate.class);
+        optional.ifPresent(packetGate -> packetGate.registerListener(new VanishPacketListener(), PacketListener.ListenerPriority.FIRST, SPacketPlayerListItem.class));
     }
 
     @Listener
