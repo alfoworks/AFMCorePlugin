@@ -35,7 +35,7 @@ dependencies {
     compile name: 'packetgate'
 }
 
-sponge.plugin.id = "afmcm"
+sponge.plugin.id = "afmcp"
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
