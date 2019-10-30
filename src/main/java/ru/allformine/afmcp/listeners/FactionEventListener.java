@@ -1,8 +1,8 @@
 package ru.allformine.afmcp.listeners;
 
 import io.github.aquerr.eaglefactions.api.entities.Faction;
-import io.github.aquerr.eaglefactions.api.events.FactionAreaEnterEvent;
 import io.github.aquerr.eaglefactions.common.EagleFactionsPlugin;
+import io.github.aquerr.eaglefactions.common.events.FactionAreaEnterEventImpl;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
 import ru.allformine.afmcp.PacketChannels;
@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class FactionEventListener {
     @Listener
-    public void onFactionAreaChange(FactionAreaEnterEvent event) {
+    public void onFactionAreaChange(FactionAreaEnterEventImpl event) {
         sendToPlayer(event.getCreator(), getFactionNameForPlayer(event.getEnteredFaction(), event.getCreator()));
     }
 
