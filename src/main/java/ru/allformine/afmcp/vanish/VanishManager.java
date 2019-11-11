@@ -2,6 +2,7 @@ package ru.allformine.afmcp.vanish;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageChannel;
@@ -9,6 +10,7 @@ import org.spongepowered.api.text.format.TextColors;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class VanishManager {
     public static final String vanishPermission = "afmcp.vanish.staff";
@@ -26,6 +28,12 @@ public class VanishManager {
         vanishedPlayers.add(player);
 
         vanishNotify(String.format(onJoin ? "%s скрытно вошёл в игру" : "%s вошел в ваниш", player.getName()));
+        Optional<List<PotionEffect>> effects = player.get(Keys.POTION_EFFECTS);//.get();
+        if(effects.isPresent()) {
+            effects.get().clear();
+            player.offer(Keys.POTION_EFFECTS, effects.get());
+        }
+
     }
 
     public static void unvanishPlayer(Player player, boolean onLeave) {
