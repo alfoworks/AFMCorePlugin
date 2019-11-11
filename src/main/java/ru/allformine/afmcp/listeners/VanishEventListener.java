@@ -7,6 +7,7 @@ import org.spongepowered.api.event.action.InteractEvent;
 import org.spongepowered.api.event.filter.cause.First;
 import org.spongepowered.api.event.filter.cause.Root;
 import org.spongepowered.api.event.item.inventory.ChangeInventoryEvent;
+import org.spongepowered.api.event.item.inventory.ClickInventoryEvent;
 import org.spongepowered.api.event.message.MessageChannelEvent;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
 import org.spongepowered.api.event.server.ClientPingServerEvent;
@@ -64,6 +65,13 @@ public class VanishEventListener {
     public void onPickup(ChangeInventoryEvent.Pickup event, @Root Player player) {
         if (!VanishManager.isVanished(player)) return;
 
+        event.setCancelled(true);
+    }
+
+    @Listener
+    public void onClickInventory(ClickInventoryEvent event, @Root Player player) {
+        if (!VanishManager.isVanished(player)) return;
+        if (event instanceof ClickInventoryEvent.NumberPress) return;
         event.setCancelled(true);
     }
 
