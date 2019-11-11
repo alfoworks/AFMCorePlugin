@@ -13,6 +13,7 @@ import java.util.List;
 public class VanishManager {
     public static final String vanishPermission = "afmcp.vanish.staff";
 
+    public static List<String> playersToRemove = new ArrayList<>();
     public static List<Player> vanishedPlayers = new ArrayList<>();
 
     public static boolean isVanished(Player player) {

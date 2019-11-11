@@ -12,6 +12,7 @@ import java.util.Optional;
 public class FactionEventListener {
     @Listener
     public void onFactionAreaChange(FactionAreaEnterEventImpl event) {
+        System.out.println("Test");
         sendToPlayer(event.getCreator(), getFactionNameForPlayer(event.getEnteredFaction(), event.getCreator()));
     }
 

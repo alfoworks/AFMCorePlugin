@@ -14,6 +14,11 @@ import ru.allformine.afmcp.vanish.VanishManager;
 
 public class VanishEventListener {
     @Listener
+    public void onPlayerLogin(ClientConnectionEvent.Login event) {
+        VanishManager.playersToRemove.add(event.getProfile().getName().get());
+    }
+
+    @Listener
     public void onPlayerJoin(ClientConnectionEvent.Join event) {
         if (!event.getTargetEntity().hasPermission(VanishManager.vanishPermission)) {
             return;
