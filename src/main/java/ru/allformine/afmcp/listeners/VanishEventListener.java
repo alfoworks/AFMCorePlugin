@@ -3,6 +3,7 @@ package ru.allformine.afmcp.listeners;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
+import org.spongepowered.api.event.Order;
 import org.spongepowered.api.event.action.InteractEvent;
 import org.spongepowered.api.event.filter.cause.First;
 import org.spongepowered.api.event.filter.cause.Root;
@@ -14,7 +15,7 @@ import org.spongepowered.api.event.server.ClientPingServerEvent;
 import ru.allformine.afmcp.vanish.VanishManager;
 
 public class VanishEventListener {
-    @Listener
+    @Listener(order = Order.PRE)
     public void onPlayerLogin(ClientConnectionEvent.Login event) {
         VanishManager.playersToRemove.add(event.getProfile().getName().get());
     }

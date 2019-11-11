@@ -25,6 +25,8 @@ public class VanishPacketListener extends PacketListenerAdapter {
                         if (VanishManager.playersToRemove.contains(entry.getProfile().getName())) {
                             event.setCancelled(true);
                             VanishManager.playersToRemove.remove(entry.getProfile().getName());
+                        } else {
+                            System.out.println("Does not contain");
                         }
                     });
                 }
