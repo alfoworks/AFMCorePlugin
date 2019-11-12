@@ -26,12 +26,11 @@ public class VanishEventListener {
             return;
         }
 
+        VanishManager.playersToRemove.remove(event.getTargetEntity().getName());
+
         if (event.getTargetEntity().hasPermission(VanishManager.vanishPermission)) {
             VanishManager.vanishPlayer(event.getTargetEntity(), true);
         }
-
-        VanishManager.playersToRemove.remove(event.getTargetEntity().getName());
-        VanishManager.updateTabLists();
 
         event.setMessageCancelled(true);
     }
