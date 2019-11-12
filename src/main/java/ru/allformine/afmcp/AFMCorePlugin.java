@@ -13,9 +13,9 @@ import org.spongepowered.api.command.args.GenericArguments;
 import org.spongepowered.api.command.spec.CommandSpec;
 import org.spongepowered.api.config.ConfigDir;
 import org.spongepowered.api.event.Listener;
-import org.spongepowered.api.event.game.state.GameAboutToStartServerEvent;
 import org.spongepowered.api.event.game.state.GameInitializationEvent;
 import org.spongepowered.api.event.game.state.GamePreInitializationEvent;
+import org.spongepowered.api.event.game.state.GameStartedServerEvent;
 import org.spongepowered.api.event.game.state.GameStoppingServerEvent;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.scheduler.Task;
@@ -28,6 +28,7 @@ import ru.allformine.afmcp.listeners.VanishEventListener;
 import ru.allformine.afmcp.net.api.Webhook;
 import ru.allformine.afmcp.packetlisteners.ScreenshotListener;
 import ru.allformine.afmcp.serverapi.HTTPServer;
+import ru.allformine.afmcp.vanish.VanishPacketListener;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -143,7 +144,7 @@ public class AFMCorePlugin {
     }
 
     @Listener
-    public void onServerStart(GameAboutToStartServerEvent event) {
+    public void onServerStart(GameStartedServerEvent event) {
         startTime = System.currentTimeMillis();
 
         //Discord.sendMessageServer(Discord.MessageTypeServer.TYPE_SERVER_STARTED);

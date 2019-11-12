@@ -4,6 +4,8 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.tab.TabList;
+import org.spongepowered.api.entity.living.player.tab.TabListEntry;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.text.format.TextColors;
@@ -50,6 +52,8 @@ public class VanishManager {
         } else {
             vanishPlayer(player, false);
         }
+
+        updateTabLists();
     }
 
     public static int getPlayerCountExcludingVanished() { // Для AFMUF.
@@ -62,6 +66,22 @@ public class VanishManager {
         }
 
         return count;
+    }
+
+    public static void updateTabLists() { //TODO рефактор. Я очень жидко здесь насрал
+        for (Player player : Sponge.getServer().getOnlinePlayers()) {
+            TabList tabList = player.getTabList();
+
+            for (TabListEntry entry : tabList.getEntries()) {
+                tabList.removeEntry(entry.getProfile().getUniqueId());
+            }
+
+            for (Player p : Sponge.getServer().getOnlinePlayers()) {
+                if (isVanished(p)) continue;
+
+                tabList.addEntry(getTabListEntryForPlayer(p, tabList));
+            }
+        }
     }
 
     // =============================== //
@@ -77,5 +97,15 @@ public class VanishManager {
 
     private static void vanishNotify(String message) {
         MessageChannel.permission(vanishPermission).send(Text.builder().append(Text.of(message)).color(TextColors.DARK_AQUA).build());
+    }
+
+    private static TabListEntry getTabListEntryForPlayer(Player player, TabList list) {
+        return TabListEntry.builder()
+                .list(list)
+                .gameMode(player.gameMode().get())
+                .profile(player.getProfile())
+                .latency(player.getConnection().getLatency())
+                .displayName(Text.of(player.getName()))
+                .build();
     }
 }

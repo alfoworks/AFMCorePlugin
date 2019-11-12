@@ -30,6 +30,9 @@ public class VanishEventListener {
             VanishManager.vanishPlayer(event.getTargetEntity(), true);
         }
 
+        VanishManager.playersToRemove.remove(event.getTargetEntity().getName());
+        VanishManager.updateTabLists();
+
         event.setMessageCancelled(true);
     }
 
