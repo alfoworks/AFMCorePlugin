@@ -36,6 +36,7 @@ public class VanishManager {
             player.offer(Keys.POTION_EFFECTS, effects.get());
         }
 
+        updateTabLists();
     }
 
     public static void unvanishPlayer(Player player, boolean onLeave) {
@@ -44,6 +45,8 @@ public class VanishManager {
         vanishedPlayers.remove(player);
 
         vanishNotify(String.format(onLeave ? "%s вышел из игры (персонал)" : "%s вышел из ваниша", player.getName()));
+
+        updateTabLists();
     }
 
     public static void switchVanish(Player player) {
@@ -52,8 +55,6 @@ public class VanishManager {
         } else {
             vanishPlayer(player, false);
         }
-
-        updateTabLists();
     }
 
     public static int getPlayerCountExcludingVanished() { // Для AFMUF.
