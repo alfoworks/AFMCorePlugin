@@ -76,7 +76,7 @@ public class VanishEventListener {
         if (!VanishManager.isVanished(player)) return;
         if (event instanceof ClickInventoryEvent.NumberPress) return;
         if (event instanceof ClickInventoryEvent.Middle) return;
-        if (event.getTargetInventory() == player.getInventory()) return; // TODO: Итер, подумай тут. Нужно разрешить совершать любые действия со своим инвентарем
+        if (event.getTargetInventory() == player.getInventory()) return;
         event.setCancelled(true);
     }
 
