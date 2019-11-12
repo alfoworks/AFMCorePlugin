@@ -6,6 +6,7 @@ import org.spongepowered.api.effect.particle.ParticleTypes;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityTypes;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.weather.Lightning;
 import org.spongepowered.api.scheduler.Task;
 
 import java.util.ArrayList;
@@ -15,7 +16,9 @@ class VanishEffects {
     static void applyVanishEffect(Player player) {
         // Lightning
 
-        player.getWorld().spawnEntity(player.getWorld().createEntity(EntityTypes.LIGHTNING, player.getPosition())); //TODO убрать дамаг молнии
+        Lightning lightning = (Lightning) player.getWorld().createEntity(EntityTypes.LIGHTNING, player.getPosition());
+        lightning.setEffect(true);
+        player.getWorld().spawnEntity(lightning);
 
         // Bats
 
