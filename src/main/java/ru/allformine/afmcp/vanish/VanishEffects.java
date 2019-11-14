@@ -12,13 +12,16 @@ import org.spongepowered.api.scheduler.Task;
 import java.util.ArrayList;
 import java.util.List;
 
-class VanishEffects {
+public class VanishEffects {
+    public static List<Entity> lightnings = new ArrayList<>();
+
     static void applyVanishEffect(Player player) {
         // Lightning
 
         Lightning lightning = (Lightning) player.getWorld().createEntity(EntityTypes.LIGHTNING, player.getPosition());
         lightning.setEffect(true);
         player.getWorld().spawnEntity(lightning);
+        lightnings.add(lightning);
 
         // Bats
 
