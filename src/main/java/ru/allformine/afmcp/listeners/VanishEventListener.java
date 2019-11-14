@@ -5,7 +5,6 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.Order;
 import org.spongepowered.api.event.action.InteractEvent;
-import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.event.filter.cause.First;
 import org.spongepowered.api.event.filter.cause.Root;
 import org.spongepowered.api.event.item.inventory.ChangeInventoryEvent;
@@ -58,11 +57,6 @@ public class VanishEventListener {
         event.setCancelled(true);
     }
 
-    @Listener public void onChangeBlockEvent(ChangeBlockEvent event, @Root Player player ){
-        if (!VanishManager.isVanished(player)) return;
-        event.setCancelled(true);
-    }
-
     @Listener
     public void onPlayerChat(MessageChannelEvent.Chat event, @First Player player) {
         if (!VanishManager.isVanished(player)) return;
@@ -82,7 +76,7 @@ public class VanishEventListener {
         if (!VanishManager.isVanished(player)) return;
         if (event instanceof ClickInventoryEvent.NumberPress) return;
         if (event instanceof ClickInventoryEvent.Middle) return;
-        if (event.getTargetInventory() == player.getInventory()) return; // TODO: Итер, подумай тут. Нужно разрешить совершать любые действия со своим инвентарем
+        if (event.getTargetInventory().getArchetype() == InventoryArchetypes.PLAYER) return;
         event.setCancelled(true);
     }
 

@@ -3,7 +3,7 @@ package ru.allformine.afmcp;
 import com.google.inject.Inject;
 import eu.crushedpixel.sponge.packetgate.api.listener.PacketListener;
 import eu.crushedpixel.sponge.packetgate.api.registry.PacketGate;
-import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.SPacketPlayerListItem;
 import ninja.leaping.configurate.commented.CommentedConfigurationNode;
 import ninja.leaping.configurate.hocon.HoconConfigurationLoader;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
@@ -157,7 +157,7 @@ public class AFMCorePlugin {
                 .submit(this);
 
         Optional<PacketGate> optional = Sponge.getServiceManager().provide(PacketGate.class);
-        optional.ifPresent(packetGate -> packetGate.registerListener(new VanishPacketListener(), PacketListener.ListenerPriority.FIRST, Packet.class));
+        optional.ifPresent(packetGate -> packetGate.registerListener(new VanishPacketListener(), PacketListener.ListenerPriority.FIRST, SPacketPlayerListItem.class));
     }
 
     @Listener

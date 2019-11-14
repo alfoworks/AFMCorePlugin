@@ -20,7 +20,6 @@ public class VanishManager {
     public static List<String> playersToRemove = new ArrayList<>();
     public static List<Player> vanishedPlayers = new ArrayList<>();
 
-
     public static boolean isVanished(Player player) {
         return vanishedPlayers.contains(player);
     }
