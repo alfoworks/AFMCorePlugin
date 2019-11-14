@@ -5,6 +5,7 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.Order;
 import org.spongepowered.api.event.action.InteractEvent;
+import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.event.filter.cause.First;
 import org.spongepowered.api.event.filter.cause.Root;
 import org.spongepowered.api.event.item.inventory.ChangeInventoryEvent;
@@ -54,6 +55,11 @@ public class VanishEventListener {
     public void onInteract(InteractEvent event, @Root Player player) {
         if (!VanishManager.isVanished(player)) return;
 
+        event.setCancelled(true);
+    }
+
+    @Listener public void onChangeBlockEvent(ChangeBlockEvent event, @Root Player player ){
+        if (!VanishManager.isVanished(player)) return;
         event.setCancelled(true);
     }
 
