@@ -8,6 +8,7 @@ import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.Order;
 import org.spongepowered.api.event.action.InteractEvent;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
+import org.spongepowered.api.event.command.TabCompleteEvent;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.event.filter.cause.First;
 import org.spongepowered.api.event.filter.cause.Root;
@@ -19,6 +20,8 @@ import org.spongepowered.api.event.server.ClientPingServerEvent;
 import org.spongepowered.api.item.inventory.InventoryArchetypes;
 import ru.allformine.afmcp.vanish.VanishEffects;
 import ru.allformine.afmcp.vanish.VanishManager;
+
+import java.util.ArrayList;
 
 public class VanishEventListener {
     @Listener(order = Order.PRE)
@@ -56,6 +59,17 @@ public class VanishEventListener {
         }
 
         event.setMessageCancelled(true);
+    }
+
+    @Listener
+    public void onTabComplete(TabCompleteEvent event) {
+        for (String text : new ArrayList<>(event.getTabCompletions())) {
+            Sponge.getServer().getPlayer(text).ifPresent(player -> {
+                if (VanishManager.isVanished(player)) {
+                    event.getTabCompletions().remove(text);
+                }
+            });
+        }
     }
 
     // ========================================== //
