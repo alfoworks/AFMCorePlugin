@@ -10,16 +10,14 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.text.format.TextColors;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class VanishManager {
     public static final String vanishPermission = "afmcp.vanish.staff";
 
     public static List<String> playersToRemove = new ArrayList<>();
     public static List<Player> vanishedPlayers = new ArrayList<>();
-    private static List<Player> canInteract_1 = new ArrayList<>(); //TODO RENAME
+    private static Set<Player> playerInteractAbilities = new HashSet<>(); //TODO RENAME
 
     public static boolean isVanished(Player player) {
         return vanishedPlayers.contains(player);
@@ -28,17 +26,17 @@ public class VanishManager {
 
     // TODO RENAME
     public static boolean canInteract(Player player) {
-        return canInteract_1.contains(player);
+        return playerInteractAbilities.contains(player);
     }
 
     // TODO RENAME
     public static void makeCanInteract(Player player){
-        canInteract_1.add(player);
+        playerInteractAbilities.add(player);
     }
 
     // TODO RENAME
     public static void makeCantInteract(Player player){
-        canInteract_1.remove(player);
+        playerInteractAbilities.remove(player);
     }
 
     public static boolean switchCanInteract(Player player){
@@ -70,7 +68,7 @@ public class VanishManager {
         setVanish(player, false, onLeave);
 
         vanishedPlayers.remove(player);
-        canInteract_1.remove(player); // TODO может кинуть ошибку, не проверял
+        playerInteractAbilities.remove(player);
         vanishNotify(String.format(onLeave ? "%s вышел из игры (персонал)" : "%s вышел из ваниша", player.getName()));
 
         updateTabLists();
