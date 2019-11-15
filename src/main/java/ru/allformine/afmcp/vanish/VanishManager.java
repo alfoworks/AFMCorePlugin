@@ -17,7 +17,7 @@ public class VanishManager {
 
     public static List<String> playersToRemove = new ArrayList<>();
     public static List<Player> vanishedPlayers = new ArrayList<>();
-    private static Set<Player> playerInteractAbilities = new HashSet<>(); //TODO RENAME
+    private static Set<Player> playerInteractAbilities = new HashSet<>();
 
     public static boolean isVanished(Player player) {
         return vanishedPlayers.contains(player);
