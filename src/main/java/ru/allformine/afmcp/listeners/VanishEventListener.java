@@ -45,7 +45,9 @@ public class VanishEventListener {
 
     @Listener
     public void onPlayerQuit(ClientConnectionEvent.Disconnect event) {
-        if (!event.getTargetEntity().hasPermission(VanishManager.vanishPermission)) {
+        if (!event.getTargetEntity().hasPermission(VanishManager.vanishPermission) || !VanishManager.isVanished(event.getTargetEntity())) {
+            VanishManager.tabList.removeTabListPlayer(event.getTargetEntity().getName());
+
             return;
         }
 
