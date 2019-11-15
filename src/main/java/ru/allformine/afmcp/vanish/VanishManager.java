@@ -41,6 +41,16 @@ public class VanishManager {
         canInteract_1.remove(player);
     }
 
+    public static boolean switchCanInteract(Player player){
+        if(canInteract(player)){
+            makeCantInteract(player);
+            return false;
+        }else{
+            makeCanInteract(player);
+            return true;
+        }
+    }
+
     public static void vanishPlayer(Player player, boolean onJoin) {
         setVanish(player, true, onJoin);
 
@@ -60,7 +70,7 @@ public class VanishManager {
         setVanish(player, false, onLeave);
 
         vanishedPlayers.remove(player);
-
+        canInteract_1.remove(player); // TODO может кинуть ошибку, не проверял
         vanishNotify(String.format(onLeave ? "%s вышел из игры (персонал)" : "%s вышел из ваниша", player.getName()));
 
         updateTabLists();
