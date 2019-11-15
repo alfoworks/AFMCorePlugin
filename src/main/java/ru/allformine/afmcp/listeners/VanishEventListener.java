@@ -12,7 +12,6 @@ import org.spongepowered.api.event.item.inventory.ClickInventoryEvent;
 import org.spongepowered.api.event.message.MessageChannelEvent;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
 import org.spongepowered.api.event.server.ClientPingServerEvent;
-import org.spongepowered.api.item.inventory.InventoryArchetypes;
 import ru.allformine.afmcp.vanish.VanishManager;
 
 public class VanishEventListener {
@@ -54,14 +53,13 @@ public class VanishEventListener {
     @Listener
     public void onInteract(InteractEvent event, @Root Player player) {
         if (!VanishManager.isVanished(player)) return;
-        if (VanishManager.canInteract(player)) return;
+
         event.setCancelled(true);
     }
 
     @Listener
     public void onPlayerChat(MessageChannelEvent.Chat event, @First Player player) {
         if (!VanishManager.isVanished(player)) return;
-        if (VanishManager.canInteract(player)) return;
 
         event.setCancelled(true);
     }
@@ -69,7 +67,6 @@ public class VanishEventListener {
     @Listener
     public void onPickup(ChangeInventoryEvent.Pickup event, @Root Player player) {
         if (!VanishManager.isVanished(player)) return;
-        if (VanishManager.canInteract(player)) return;
 
         event.setCancelled(true);
     }
@@ -77,7 +74,6 @@ public class VanishEventListener {
     @Listener
     public void onClickInventory(ClickInventoryEvent event, @Root Player player) {
         if (!VanishManager.isVanished(player)) return;
-        if (VanishManager.canInteract(player)) return;
         if (event instanceof ClickInventoryEvent.NumberPress) return;
         if (event instanceof ClickInventoryEvent.Middle) return;
         if (event.getTargetInventory().getArchetype() == InventoryArchetypes.PLAYER) return;
