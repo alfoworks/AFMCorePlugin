@@ -86,6 +86,7 @@ public class VanishManager {
         return count;
     }
 
+    @SuppressWarnings("WeakerAccess")
     public static void updateTabLists() { //TODO рефактор. Я очень жидко здесь насрал
         for (Player player : Sponge.getServer().getOnlinePlayers()) {
             TabList tabList = player.getTabList();
