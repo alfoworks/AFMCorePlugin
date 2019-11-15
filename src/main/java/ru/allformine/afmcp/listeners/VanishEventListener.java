@@ -1,10 +1,14 @@
 package ru.allformine.afmcp.listeners;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.weather.Lightning;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.Order;
 import org.spongepowered.api.event.action.InteractEvent;
+import org.spongepowered.api.event.block.ChangeBlockEvent;
+import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.event.filter.cause.First;
 import org.spongepowered.api.event.filter.cause.Root;
 import org.spongepowered.api.event.item.inventory.ChangeInventoryEvent;
@@ -12,6 +16,8 @@ import org.spongepowered.api.event.item.inventory.ClickInventoryEvent;
 import org.spongepowered.api.event.message.MessageChannelEvent;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
 import org.spongepowered.api.event.server.ClientPingServerEvent;
+import org.spongepowered.api.item.inventory.InventoryArchetypes;
+import ru.allformine.afmcp.vanish.VanishEffects;
 import ru.allformine.afmcp.vanish.VanishManager;
 
 public class VanishEventListener {
@@ -23,14 +29,16 @@ public class VanishEventListener {
     @Listener
     public void onPlayerJoin(ClientConnectionEvent.Join event) {
         if (!event.getTargetEntity().hasPermission(VanishManager.vanishPermission)) {
+            VanishManager.tabList.addTabListPlayer(event.getTargetEntity().getName());
+
             return;
         }
-
-        VanishManager.playersToRemove.remove(event.getTargetEntity().getName());
 
         if (event.getTargetEntity().hasPermission(VanishManager.vanishPermission)) {
             VanishManager.vanishPlayer(event.getTargetEntity(), true);
         }
+
+        VanishManager.playersToRemove.remove(event.getTargetEntity().getName());
 
         event.setMessageCancelled(true);
     }
@@ -74,6 +82,7 @@ public class VanishEventListener {
     @Listener
     public void onClickInventory(ClickInventoryEvent event, @Root Player player) {
         if (!VanishManager.isVanished(player)) return;
+
         if (event instanceof ClickInventoryEvent.NumberPress) return;
         if (event instanceof ClickInventoryEvent.Middle) return;
         if (event.getTargetInventory().getArchetype() == InventoryArchetypes.PLAYER) return;
@@ -92,5 +101,22 @@ public class VanishEventListener {
         players.getProfiles().removeIf(gameProfile -> VanishManager.isVanished(Sponge.getServer().getPlayer(gameProfile.getUniqueId()).get()));
     }
 
-    // ========================================== //
+    // =Отмена дамага от молнии (эффект переключения ваниша)= //
+
+    @Listener
+    public void onEntityDamage(DamageEntityEvent event) {
+        for (Entity entity : event.getCause().allOf(Entity.class)) {
+            if (entity instanceof Lightning && VanishEffects.lightnings.contains(entity)) event.setCancelled(true);
+        }
+    }
+
+    @Listener
+    public void onBlockPlace(ChangeBlockEvent event) {
+        for (Entity entity : event.getCause().allOf(Entity.class)) {
+            if (entity instanceof Lightning && VanishEffects.lightnings.contains(entity)) event.setCancelled(true);
+        }
+    }
+
+
+    // ====================================================== //
 }

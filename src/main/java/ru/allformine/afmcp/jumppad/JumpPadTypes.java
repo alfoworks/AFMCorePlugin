@@ -13,7 +13,7 @@ enum JumpPadTypes {
         return this.block;
     }
 
-    private JumpPadTypes(BlockState block) {
+    JumpPadTypes(BlockState block) {
         this.block = block;
     }
 }
