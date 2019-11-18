@@ -76,29 +76,32 @@ public class VanishEventListener {
 
     @Listener
     public void onInteract(InteractEvent event, @Root Player player) {
-        if (!VanishManager.isVanished(player)) return;
+        // if (!VanishManager.isVanished(player)) return;
+        if (VanishManager.canInteract(player)) return;
 
         event.setCancelled(true);
     }
 
     @Listener
     public void onPlayerChat(MessageChannelEvent.Chat event, @First Player player) {
-        if (!VanishManager.isVanished(player)) return;
+        // if (!VanishManager.isVanished(player)) return;
+        if (VanishManager.canInteract(player)) return;
 
         event.setCancelled(true);
     }
 
     @Listener
     public void onPickup(ChangeInventoryEvent.Pickup event, @Root Player player) {
-        if (!VanishManager.isVanished(player)) return;
+        // if (!VanishManager.isVanished(player)) return;
+        if (VanishManager.canInteract(player)) return;
 
         event.setCancelled(true);
     }
 
     @Listener
     public void onClickInventory(ClickInventoryEvent event, @Root Player player) {
-        if (!VanishManager.isVanished(player)) return;
-
+        // if (!VanishManager.isVanished(player)) return;
+        if (VanishManager.canInteract(player)) return;
         if (event instanceof ClickInventoryEvent.NumberPress) return;
         if (event instanceof ClickInventoryEvent.Middle) return;
         if (event.getTargetInventory().getArchetype() == InventoryArchetypes.PLAYER) return;
