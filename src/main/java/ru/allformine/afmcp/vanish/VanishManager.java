@@ -15,7 +15,7 @@ public class VanishManager {
 
     public static List<String> playersToRemove = new ArrayList<>();
     public static List<Player> vanishedPlayers = new ArrayList<>();
-    private static List<Player> canInteract_1 = new ArrayList<>(); //TODO RENAME
+    private static List<Player> couldInteract = new ArrayList<>();
 
     public static VanishTabList tabList = new VanishTabList();
 
@@ -23,20 +23,16 @@ public class VanishManager {
         return vanishedPlayers.contains(player);
     }
 
-
-    // TODO RENAME
     public static boolean canInteract(Player player) {
-        return canInteract_1.contains(player);
+        return couldInteract.contains(player);
     }
 
-    // TODO RENAME
     public static void makeCanInteract(Player player){
-        canInteract_1.add(player);
+        couldInteract.add(player);
     }
 
-    // TODO RENAME
     public static void makeCantInteract(Player player){
-        canInteract_1.remove(player);
+        couldInteract.remove(player);
     }
 
     public static void vanishPlayer(Player player, boolean onJoin) {
