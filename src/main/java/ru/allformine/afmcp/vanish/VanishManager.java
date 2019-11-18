@@ -27,12 +27,23 @@ public class VanishManager {
         return couldInteract.contains(player);
     }
 
+    @SuppressWarnings("WeakerAccess")
     public static void makeCanInteract(Player player){
         couldInteract.add(player);
     }
 
+    @SuppressWarnings("WeakerAccess")
     public static void makeCantInteract(Player player){
         couldInteract.remove(player);
+    }
+
+    public static boolean switchCanInteract(Player player){
+        if(canInteract(player)){
+            makeCantInteract(player);
+            return false;
+        }
+        makeCanInteract(player);
+        return true;
     }
 
     public static void vanishPlayer(Player player, boolean onJoin) {
