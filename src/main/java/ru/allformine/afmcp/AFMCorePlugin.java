@@ -128,6 +128,14 @@ public class AFMCorePlugin {
                 .build();
 
         Sponge.getCommandManager().register(this, vanishSpec, "vanish", "v");
+
+        CommandSpec vanishNoInteractSpec = CommandSpec.builder()
+                .description(Text.of("No interact"))
+                .permission("afmcp.vanish")
+                .executor(new VanishNoInteractCommand())
+                .build();
+
+        Sponge.getCommandManager().register(this, vanishNoInteractSpec, "ni");
     }
 
     @Listener
