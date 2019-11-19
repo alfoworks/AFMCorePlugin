@@ -14,20 +14,17 @@ public class VanishNoInteractCommand extends AFMCPCommand {
     public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
         if(src instanceof Player){
             if(!VanishManager.isVanished((Player) src)){
-                throw new CommandException(Text.of("You must be vanished"));
+                reply(src, Text.of("You must be vanished"));
             }
             boolean state = VanishManager.switchCanInteract((Player) src);
             Text.Builder text = Text.builder();
-            text.append(Text.of("Now you "));
-            if(!state){
-                text.append(Text.builder().append(Text.of("can't")).color(TextColors.RED).build());
-            }else{
-                text.append(Text.of("can"));
-            }
-            text.append(Text.of(" interact."));
+            text.append(Text.of("Теперь вы "));
+            if (state) text.append(Text.of("можете"));
+            else text.append(Text.builder().append(Text.of("не можете")).color(TextColors.RED).build());
+            text.append(Text.of(" взаимодействовать с миром."));
             reply(src, text.build());
         }else{
-            reply(src, Text.of("Invalid command source"));
+            reply(src, Text.of("Еблан, от консоли нельзя"));
         }
         return CommandResult.success();
     }

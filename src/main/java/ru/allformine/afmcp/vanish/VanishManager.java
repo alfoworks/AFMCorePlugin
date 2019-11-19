@@ -34,7 +34,7 @@ public class VanishManager {
 
     @SuppressWarnings("WeakerAccess")
     public static void makeCantInteract(Player player){
-        couldInteract.remove(player);
+
     }
 
     public static boolean switchCanInteract(Player player){
@@ -60,6 +60,7 @@ public class VanishManager {
         setVanish(player, false, onLeave);
 
         vanishedPlayers.remove(player);
+        makeCantInteract(player);
 
         vanishNotify(String.format(onLeave ? "%s вышел из игры (персонал)" : "%s вышел из ваниша", player.getName()));
 
