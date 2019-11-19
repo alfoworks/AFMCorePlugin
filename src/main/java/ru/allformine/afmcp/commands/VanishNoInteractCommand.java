@@ -25,14 +25,15 @@ public class VanishNoInteractCommand extends AFMCPCommand {
                 text.append(Text.of("can"));
             }
             text.append(Text.of(" interact."));
+            reply(src, text.build());
         }else{
-            throw new CommandException(Text.of("Invalid command source"));
+            reply(src, Text.of("Invalid command source"));
         }
         return CommandResult.success();
     }
 
     @Override
     public String getName() {
-        return "VanishNoInteract";
+        return "Vanish";
     }
 }
