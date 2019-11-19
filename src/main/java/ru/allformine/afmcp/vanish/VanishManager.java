@@ -52,7 +52,7 @@ public class VanishManager {
         tabList.removeTabListPlayer(player.getName());
 
         vanishedPlayers.add(player);
-        makeCanInteract(player);
+        makeCantInteract(player);
 
         vanishNotify(String.format(onJoin ? "%s скрытно вошёл в игру" : "%s вошел в ваниш", player.getName()));
     }
