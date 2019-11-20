@@ -1,9 +1,6 @@
 package ru.allformine.afmcp;
 
 import com.google.inject.Inject;
-import eu.crushedpixel.sponge.packetgate.api.listener.PacketListener;
-import eu.crushedpixel.sponge.packetgate.api.registry.PacketGate;
-import net.minecraft.network.play.server.SPacketPlayerListItem;
 import ninja.leaping.configurate.commented.CommentedConfigurationNode;
 import ninja.leaping.configurate.hocon.HoconConfigurationLoader;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
@@ -20,20 +17,20 @@ import org.spongepowered.api.event.game.state.GameStoppingServerEvent;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.scheduler.Task;
 import org.spongepowered.api.text.Text;
-import ru.allformine.afmcp.commands.*;
+import ru.allformine.afmcp.commands.RawBCCommand;
+import ru.allformine.afmcp.commands.RestartCommand;
+import ru.allformine.afmcp.commands.TokensCommand;
+import ru.allformine.afmcp.commands.VipCommand;
 import ru.allformine.afmcp.jumppad.JumpPadEventListener;
 import ru.allformine.afmcp.listeners.DiscordWebhookListener;
 import ru.allformine.afmcp.listeners.FactionEventListener;
-import ru.allformine.afmcp.listeners.VanishEventListener;
 import ru.allformine.afmcp.net.api.Webhook;
 import ru.allformine.afmcp.packetlisteners.ScreenshotListener;
 import ru.allformine.afmcp.serverapi.HTTPServer;
-import ru.allformine.afmcp.vanish.VanishPacketListener;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Optional;
 
 @Plugin(
         id = "afmcp",
@@ -74,7 +71,6 @@ public class AFMCorePlugin {
     @Listener
     public void preInit(GamePreInitializationEvent event) {
         Sponge.getEventManager().registerListeners(this, new DiscordWebhookListener());
-        Sponge.getEventManager().registerListeners(this, new VanishEventListener());
         Sponge.getEventManager().registerListeners(this, new JumpPadEventListener());
         Sponge.getEventManager().registerListeners(this, new FactionEventListener());
 
@@ -117,25 +113,6 @@ public class AFMCorePlugin {
                 .build();
 
         Sponge.getCommandManager().register(this, rawBCspec, "rawbc");
-
-        CommandSpec vanishSpec = CommandSpec.builder()
-                .description(Text.of("Vanish"))
-                .permission("afmcp.vanish")
-                .executor(new VanishCommand())
-                .arguments(
-                        GenericArguments.optional(GenericArguments.string(Text.of("subcmd")))
-                )
-                .build();
-
-        Sponge.getCommandManager().register(this, vanishSpec, "vanish", "v");
-
-        CommandSpec vanishNoInteractSpec = CommandSpec.builder()
-                .description(Text.of("No interact"))
-                .permission("afmcp.vanish")
-                .executor(new VanishNoInteractCommand())
-                .build();
-
-        Sponge.getCommandManager().register(this, vanishNoInteractSpec, "ni");
     }
 
     @Listener
@@ -163,9 +140,6 @@ public class AFMCorePlugin {
         apiServerTask = Task.builder().execute(apiServer)
                 .async().name("AFMCP APISERVER")
                 .submit(this);
-
-        Optional<PacketGate> optional = Sponge.getServiceManager().provide(PacketGate.class);
-        optional.ifPresent(packetGate -> packetGate.registerListener(new VanishPacketListener(), PacketListener.ListenerPriority.FIRST, SPacketPlayerListItem.class));
     }
 
     @Listener
