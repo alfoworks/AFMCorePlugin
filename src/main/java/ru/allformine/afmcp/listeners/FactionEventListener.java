@@ -5,14 +5,22 @@ import io.github.aquerr.eaglefactions.common.EagleFactionsPlugin;
 import io.github.aquerr.eaglefactions.common.events.FactionAreaEnterEventImpl;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
+import org.spongepowered.api.event.network.ClientConnectionEvent;
 import ru.allformine.afmcp.PacketChannels;
 
 import java.util.Optional;
 
 public class FactionEventListener {
     @Listener
+    public void onPlayerJoin(ClientConnectionEvent.Join event) {
+        Player player = event.getTargetEntity();
+
+        Optional<Faction> faction = EagleFactionsPlugin.getPlugin().getFactionLogic().getFactionByChunk(player.getWorld().getUniqueId(), player.getLocation().getChunkPosition());
+        sendToPlayer(player, getFactionNameForPlayer(faction, player));
+    }
+
+    @Listener
     public void onFactionAreaChange(FactionAreaEnterEventImpl event) {
-        System.out.println("Test");
         sendToPlayer(event.getCreator(), getFactionNameForPlayer(event.getEnteredFaction(), event.getCreator()));
     }
 
