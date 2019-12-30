@@ -34,10 +34,10 @@ public class FactionEventListener {
         String factionName = faction.isPresent() ? faction.get().getName() : "Общая";
         String factionColor;
 
-        if (factionName.equals("SafeZone") || EagleFactionsPlugin.getPlugin().getConfiguration().getConfigFields().getSafeZoneWorldNames().contains(player.getWorld().getName())) {
+        if (factionName.equals("SafeZone") || EagleFactionsPlugin.getPlugin().getConfiguration().getProtectionConfig().getSafeZoneWorldNames().contains(player.getWorld().getName())) {
             factionColor = "§d";
             factionName = "SafeZone";
-        } else if (factionName.equals("WarZone") || EagleFactionsPlugin.getPlugin().getConfiguration().getConfigFields().getWarZoneWorldNames().contains(player.getWorld().getName())) {
+        } else if (factionName.equals("WarZone") || EagleFactionsPlugin.getPlugin().getConfiguration().getProtectionConfig().getWarZoneWorldNames().contains(player.getWorld().getName())) {
             factionColor = "§4";
             factionName = "WarZone";
         } else if (!factionName.equals("Общая") && faction.get().containsPlayer(player.getUniqueId())) {

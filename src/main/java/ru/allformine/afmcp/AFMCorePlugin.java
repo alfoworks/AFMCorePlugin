@@ -17,13 +17,11 @@ import org.spongepowered.api.event.game.state.GameStoppingServerEvent;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.scheduler.Task;
 import org.spongepowered.api.text.Text;
-import ru.allformine.afmcp.commands.RawBCCommand;
-import ru.allformine.afmcp.commands.RestartCommand;
-import ru.allformine.afmcp.commands.TokensCommand;
-import ru.allformine.afmcp.commands.VipCommand;
+import ru.allformine.afmcp.commands.*;
 import ru.allformine.afmcp.jumppad.JumpPadEventListener;
 import ru.allformine.afmcp.listeners.DiscordWebhookListener;
 import ru.allformine.afmcp.listeners.FactionEventListener;
+import ru.allformine.afmcp.listeners.TestEventListener;
 import ru.allformine.afmcp.net.api.Webhook;
 import ru.allformine.afmcp.packetlisteners.ScreenshotListener;
 import ru.allformine.afmcp.serverapi.HTTPServer;
@@ -47,6 +45,8 @@ public class AFMCorePlugin {
     @Inject
     public static Logger logger;
     private static CommentedConfigurationNode configNode;
+
+    public static boolean debugSwitch = false;
 
     public static HTTPServer apiServer;
     private Task apiServerTask;
@@ -73,6 +73,7 @@ public class AFMCorePlugin {
         Sponge.getEventManager().registerListeners(this, new DiscordWebhookListener());
         Sponge.getEventManager().registerListeners(this, new JumpPadEventListener());
         Sponge.getEventManager().registerListeners(this, new FactionEventListener());
+        Sponge.getEventManager().registerListeners(this, new TestEventListener());
 
         configFile = configDir.resolve("config.conf");
         configLoader = HoconConfigurationLoader.builder().setPath(configFile).build();
@@ -113,6 +114,13 @@ public class AFMCorePlugin {
                 .build();
 
         Sponge.getCommandManager().register(this, rawBCspec, "rawbc");
+
+        CommandSpec debugSpec = CommandSpec.builder()
+                .description(Text.of("Debug switch"))
+                .executor(new DebugCommand())
+                .build();
+
+        Sponge.getCommandManager().register(this, debugSpec, "debugswitch");
     }
 
     @Listener
