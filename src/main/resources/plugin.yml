@@ -14,6 +14,6 @@ commands:
   unsetchest:
     description: Удалить шаблон с сундука.
     usage: /unsetchest
-  soicp:
-    description: Информация/перезагрузка/дебаг SOICP Native
+  afmcp:
+    description: Информация/перезагрузка/дебаг AFMCP Native
     usage: /afmcp [reload/debug]
