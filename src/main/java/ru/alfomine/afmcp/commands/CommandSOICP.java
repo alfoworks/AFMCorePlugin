@@ -1,13 +1,13 @@
-package ru.iterator.afmcp.commands;
+package ru.alfomine.afmcp.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import ru.iterator.afmcp.PluginStatics;
-import ru.iterator.afmcp.AFMCorePlugin;
-import ru.iterator.afmcp.tablist.WrappedTabListEntry;
+import ru.alfomine.afmcp.AFMCorePlugin;
+import ru.alfomine.afmcp.PluginStatics;
+import ru.alfomine.afmcp.tablist.WrappedTabListEntry;
 
 import java.util.ArrayList;
 

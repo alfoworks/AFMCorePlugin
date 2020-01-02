@@ -1,4 +1,4 @@
-package ru.iterator.afmcp.commands;
+package ru.alfomine.afmcp.commands;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

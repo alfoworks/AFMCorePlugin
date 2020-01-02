@@ -1,4 +1,4 @@
-package ru.iterator.afmcp;
+package ru.alfomine.afmcp;
 
 import java.net.InetSocketAddress;
 import java.util.HashMap;
@@ -9,4 +9,6 @@ public class PluginConfig {
     public static int autoLoginHours;
     public static HashMap<String, Long> playerLastLoginTimestamps = new HashMap<>();
     public static HashMap<String, InetSocketAddress> playerLastLoginIps = new HashMap<>();
+
+    public static int serverApiPort = 0;
 }

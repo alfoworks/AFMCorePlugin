@@ -1,7 +1,8 @@
-package ru.iterator.afmcp;
+package ru.alfomine.afmcp;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+
 import java.util.ArrayList;
 import java.util.List;
 

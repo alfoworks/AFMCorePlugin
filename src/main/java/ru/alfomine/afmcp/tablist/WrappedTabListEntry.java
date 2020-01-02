@@ -1,4 +1,4 @@
-package ru.iterator.afmcp.tablist;
+package ru.alfomine.afmcp.tablist;
 
 import net.minecraft.server.v1_12_R1.EntityPlayer;
 import org.bukkit.GameMode;

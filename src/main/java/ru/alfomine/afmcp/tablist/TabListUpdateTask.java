@@ -1,4 +1,4 @@
-package ru.iterator.afmcp.tablist;
+package ru.alfomine.afmcp.tablist;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

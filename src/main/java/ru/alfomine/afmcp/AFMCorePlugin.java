@@ -1,4 +1,4 @@
-package ru.iterator.afmcp;
+package ru.alfomine.afmcp;
 
 import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
@@ -6,11 +6,11 @@ import org.bukkit.block.Chest;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-import ru.iterator.afmcp.commands.*;
-import ru.iterator.afmcp.listeners.CrapEventListener;
-import ru.iterator.afmcp.listeners.MainEventListener;
-import ru.iterator.afmcp.listeners.TabListEventListener;
-import ru.iterator.afmcp.tablist.WrappedTabList;
+import ru.alfomine.afmcp.commands.*;
+import ru.alfomine.afmcp.listeners.CrapEventListener;
+import ru.alfomine.afmcp.listeners.MainEventListener;
+import ru.alfomine.afmcp.listeners.TabListEventListener;
+import ru.alfomine.afmcp.tablist.WrappedTabList;
 
 public final class AFMCorePlugin extends JavaPlugin {
     private static AFMCorePlugin plugin;
@@ -57,11 +57,13 @@ public final class AFMCorePlugin extends JavaPlugin {
         }, 0, 216000); //216000
 
         tabList = new WrappedTabList();
+        PluginStatics.startTime = System.currentTimeMillis();
     }
 
     // TODO Улучшить обработку конфигов. Почистить от старого говна (ChestRefill) и добавить ООП ко всему этому ужасу.
     public void configReload() {
         PluginConfig.tabSortGroups = config.getStringList("tabSortGroups").toArray(new String[]{});
+        PluginConfig.serverApiPort = config.getInt("server_api.port");
     }
 
     public void configSave() {

@@ -1,11 +1,12 @@
-package ru.iterator.afmcp.tablist;
+package ru.alfomine.afmcp.tablist;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import ru.iterator.afmcp.PluginConfig;
-import ru.iterator.afmcp.AFMCorePlugin;
+import ru.alfomine.afmcp.AFMCorePlugin;
+import ru.alfomine.afmcp.PluginConfig;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 
 public class WrappedTabList {
     private LinkedHashSet<WrappedTabListEntry> entries; //Linked потому, что требуется сортировка.

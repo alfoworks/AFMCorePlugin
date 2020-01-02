@@ -1,4 +1,4 @@
-package ru.iterator.afmcp.listeners;
+package ru.alfomine.afmcp.listeners;
 
 import org.bukkit.Particle;
 import org.bukkit.event.EventHandler;
@@ -6,7 +6,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.util.Vector;
-import ru.iterator.afmcp.PluginStatics;
+import ru.alfomine.afmcp.PluginStatics;
 
 public class CrapEventListener implements Listener {
     @EventHandler

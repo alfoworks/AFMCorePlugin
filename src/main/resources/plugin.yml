@@ -1,6 +1,6 @@
 name: AFMCorePlugin
 version: ${project.version}
-main: ru.iterator.afmcp.AFMCorePlugin
+main: AFMCorePlugin
 commands:
   createpreset:
     description: Создать ашблон сундука

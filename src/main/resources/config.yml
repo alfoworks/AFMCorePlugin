@@ -3,6 +3,9 @@ chests:
 playerLastLoginTimestamps:
 playerLastLoginIps:
 
+server_api:
+  port: 4320
+
 playerChatMessageShowDuration: 5 # длительность показа сообщения над головой игрока, сек. (deprecated, abandoned)
 autoLoginHours: 5 # кол-во времени, которое должно пройти чтобы НЕ логинить игрока с того же IP.
 tabSortGroups: # имена групп (как в конфиге PEX) для сортировки в табе. Сортировка будет производиться в том порядке, в котором группы указаны здесь.

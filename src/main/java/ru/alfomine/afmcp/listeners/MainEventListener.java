@@ -1,4 +1,4 @@
-package ru.iterator.afmcp.listeners;
+package ru.alfomine.afmcp.listeners;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -8,9 +8,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
-import ru.iterator.afmcp.AFMCorePlugin;
-import ru.iterator.afmcp.LocationUtil;
-import ru.iterator.afmcp.PluginStatics;
+import ru.alfomine.afmcp.AFMCorePlugin;
+import ru.alfomine.afmcp.LocationUtil;
+import ru.alfomine.afmcp.PluginStatics;
 
 public class MainEventListener implements Listener {
     @EventHandler

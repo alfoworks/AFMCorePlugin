@@ -1,27 +1,23 @@
-package ru.iterator.afmcp.commands;
+package ru.alfomine.afmcp.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import ru.iterator.afmcp.AFMCorePlugin;
-import ru.iterator.afmcp.PluginStatics;
+import ru.alfomine.afmcp.AFMCorePlugin;
+import ru.alfomine.afmcp.PluginStatics;
 
 import java.util.ArrayList;
 
-public class CommandSetChest extends CustomCommand {
+public class CommandUnsetChest extends CustomCommand {
     @Override
     public boolean onExecute(CommandSender sender, Command command, String label, ArrayList<String> args) {
-        if (args.size() < 1) {
-            sendMessage(sender, "Укажите имя шаблона БЕЗ пробелов.");
-            return true;
-        }
-
         Player player = (Player) sender;
 
         PluginStatics.playerChestPreset.remove(player);
         PluginStatics.playerChestSet.put(player, args.get(0));
+        PluginStatics.playerDel.add(player);
 
         Bukkit.getScheduler().runTaskLater(AFMCorePlugin.getPlugin(), () -> PluginStatics.playerChestSet.remove(player), 600);
 

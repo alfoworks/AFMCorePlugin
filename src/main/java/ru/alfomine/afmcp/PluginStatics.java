@@ -1,4 +1,4 @@
-package ru.iterator.afmcp;
+package ru.alfomine.afmcp;
 
 import org.bukkit.entity.Player;
 
@@ -13,4 +13,5 @@ public class PluginStatics {
     public static Set<Player> debugFlightParticlesPlayers = new HashSet<>();
     public static Set<Player> debugRtxPlayers = new HashSet<>();
     public static HashMap<Player, Integer> debugRtxTasks = new HashMap<>();
+    public static long startTime = 0;
 }
