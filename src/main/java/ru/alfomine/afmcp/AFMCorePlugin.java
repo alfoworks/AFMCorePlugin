@@ -5,6 +5,8 @@ import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.event.player.PlayerChatEvent;
+import org.bukkit.plugin.RegisteredListener;
 import org.bukkit.plugin.java.JavaPlugin;
 import ru.alfomine.afmcp.commands.*;
 import ru.alfomine.afmcp.listeners.CrapEventListener;
@@ -14,6 +16,8 @@ import ru.alfomine.afmcp.serverapi.APIServer;
 import ru.alfomine.afmcp.tablist.WrappedTabList;
 
 public final class AFMCorePlugin extends JavaPlugin {
+    private CancellationDetector<PlayerChatEvent> detector = new CancellationDetector<PlayerChatEvent>(PlayerChatEvent.class);
+
     private static AFMCorePlugin plugin;
     public static FileConfiguration config;
     public static WrappedTabList tabList;
@@ -61,6 +65,14 @@ public final class AFMCorePlugin extends JavaPlugin {
         PluginStatics.startTime = System.currentTimeMillis();
 
         Bukkit.getServer().getScheduler().runTaskAsynchronously(this, new APIServer());
+
+        for (RegisteredListener listener : CancellationDetector.getHandlerList(PlayerChatEvent.class).getRegisteredListeners()) {
+            System.out.println(listener.getPlugin().getName());
+        }
+
+        detector.addListener((plugin, event) -> {
+            System.out.println("Plugin " + plugin.getName() + " cancelled chat event!");
+        });
     }
 
     // TODO Улучшить обработку конфигов. Почистить от старого говна (ChestRefill) и добавить ООП ко всему этому ужасу.
