@@ -10,6 +10,7 @@ import ru.alfomine.afmcp.commands.*;
 import ru.alfomine.afmcp.listeners.CrapEventListener;
 import ru.alfomine.afmcp.listeners.MainEventListener;
 import ru.alfomine.afmcp.listeners.TabListEventListener;
+import ru.alfomine.afmcp.serverapi.APIServer;
 import ru.alfomine.afmcp.tablist.WrappedTabList;
 
 public final class AFMCorePlugin extends JavaPlugin {
@@ -58,6 +59,8 @@ public final class AFMCorePlugin extends JavaPlugin {
 
         tabList = new WrappedTabList();
         PluginStatics.startTime = System.currentTimeMillis();
+
+        Bukkit.getServer().getScheduler().runTaskAsynchronously(this, new APIServer());
     }
 
     // TODO Улучшить обработку конфигов. Почистить от старого говна (ChestRefill) и добавить ООП ко всему этому ужасу.
