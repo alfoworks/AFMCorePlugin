@@ -1,43 +1,17 @@
-webhook:
-  server_id: "su"
-  token: "eCSB$u,Xg|8a/J@DKDi4%8~t/v,}CG"
-  apiURL: "https://allformine.ru/webhook_api/"
-tps:
-  alarm_if_less: 14 # Если TPS ниже, чем данное число, то в дискорд отправится сообщение.
-vips: # VIP-привелегии.
-  alpha: # PEX-группа привелегии, которая будет выдана игроку при покупке через плагин VipZero
-    cost: 1990 # цена в токенах
-  beta:
-    cost: 4990
-  gamma:
-    cost: 7990
-balanceapi:
-  url: "https://allformine.ru/balanceapi"
-protocol: # Все, что связано с ServerListPing и LegacyPing
-  motd: # Плагин меняет MOTD сервера.
-    firstLine: "Здесь могла бы быть ваша реклама"
-    secondLine: "Но её не будет, иди нахуй"
-  hide_vanished: # Скрывать игроков в ванише из..
-    serverListPing: true
-    legacyPing: true
-loader_groups: # чтобы настроить игроку или группе прогрузку чанков, надо выдать ему permission
-  alpha:       # типа afmcp.loader.<группа>
-    count: 1 # лимит прогрузчиков
-    loadAfterLogoutTime: -1 # сколько нужно грузить чанк после выхода игрока из игры в секундах.
-  beta:                     # если не нужно грузить после выхода, необходимо поставить -1
-    count: 2
-    loadAfterLogoutTime: 3600
-  gamma:
-    count: 3
-    loadAfterLogoutTime: 10800
-server_maintenance:
-  enabled: false
-  kickMessage: "&cВ данным момент сервер на технических работах.\n&fВы можете узнать о них больше в группе ВК, Discord или сайте сервера."
-server_api: # API для бота Discord - HTTP сервер.
-  enabled: true # Включить/выключить HTTP сервер.
-  port: 4049
-playerdata: # НЕ МЕНЯТЬ. Внутренняя инфа плагина
-loaders: # Здесь записаны прогрузчики.
-ambient_data:
-rgname_data:
-litebans_crack: false
+presets:
+chests:
+playerLastLoginTimestamps:
+playerLastLoginIps:
+
+playerChatMessageShowDuration: 5 # длительность показа сообщения над головой игрока, сек. (deprecated, abandoned)
+autoLoginHours: 5 # кол-во времени, которое должно пройти чтобы НЕ логинить игрока с того же IP.
+tabSortGroups: # имена групп (как в конфиге PEX) для сортировки в табе. Сортировка будет производиться в том порядке, в котором группы указаны здесь.
+# АЛЯРМ: если в этом списке не будет группы, которая будет главной у игрока, то он не будет добавлен в таб. Сюда нужно добавлять ВСЕ существующие группы желательно.
+- "knight"
+- "guard"
+- "pal"
+- "keeper"
+- "hero"
+- "builder"
+- "player"
+- "default"
