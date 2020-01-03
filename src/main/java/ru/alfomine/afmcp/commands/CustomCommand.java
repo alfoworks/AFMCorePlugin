@@ -29,7 +29,7 @@ public class CustomCommand implements CommandExecutor {
         }
     }
 
-    public boolean onExecute(CommandSender sender, Command command, String label, ArrayList<String> args) {
+    public boolean onExecute(CommandSender sender, Command command, String label, ArrayList<String> args) throws Exception {
         return false;
     }
 

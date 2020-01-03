@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class CommandSOICP extends CustomCommand {
     @Override
-    public boolean onExecute(CommandSender sender, Command command, String label, ArrayList<String> args) {
+    public boolean onExecute(CommandSender sender, Command command, String label, ArrayList<String> args) throws Exception {
         if (args.size() < 1) {
             sendMessage(sender, String.format("%sSOICorePlugin%s, %sv0.1%s, by %sIterator%s. (C) %sALFO:WorkS%s.", getColor(),
                     ChatColor.WHITE,
@@ -76,6 +76,8 @@ public class CommandSOICP extends CustomCommand {
                 }
 
                 sendMessage(sender, String.format("Переключено: %s", PluginStatics.debugRtxPlayers.contains(player)));
+            } else if (args.get(1).equalsIgnoreCase("exceptiontest")) {
+                throw new Exception("Text exception from debug command");
             } else {
                 sendMessage(sender, "Неизвестная подкоманда. Да и вообще, вылези из дебага. Это не тебе сделано)");
 

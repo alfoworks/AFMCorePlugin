@@ -17,3 +17,6 @@ commands:
   afmcp:
     description: Информация/перезагрузка/дебаг AFMCP Native
     usage: /afmcp [reload/debug]
+  rawbc:
+    description: Отправить сообщение всем игрокам в том виде, в котором вы его напишете.
+    usage: /rawbc <msg>
