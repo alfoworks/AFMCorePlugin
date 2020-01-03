@@ -9,6 +9,7 @@ server_api:
 webhook_api:
   serverId: "so"
   url: "https://allformine.ru/webhook_api/"
+  hiddenCommands: ["login", "log", "changepassowrd", "changepass"]
 
 playerChatMessageShowDuration: 5 # длительность показа сообщения над головой игрока, сек. (deprecated, abandoned)
 autoLoginHours: 5 # кол-во времени, которое должно пройти чтобы НЕ логинить игрока с того же IP.

@@ -52,6 +52,7 @@ public final class AFMCorePlugin extends JavaPlugin {
         this.getCommand("unsetchest").setExecutor(new CommandUnsetChest());
         this.getCommand("afmcp").setExecutor(new CommandSOICP());
         this.getCommand("rawbc").setExecutor(new CommandRawBC());
+        this.getCommand("afmrestart").setExecutor(new CommandAFMRestart());
 
         Bukkit.getScheduler().runTaskTimer(this, () -> {
             ConfigurationSection section = config.getConfigurationSection("chests");
@@ -85,6 +86,7 @@ public final class AFMCorePlugin extends JavaPlugin {
 
         PluginConfig.serverId = config.getString("webhook_api.serverId");
         PluginConfig.webhookApiUrl = config.getString("webhook_api.url");
+        PluginConfig.hiddenCommandsList = config.getStringList("webhook_api.hiddenCommands");
     }
 
     public void configSave() {
@@ -93,6 +95,6 @@ public final class AFMCorePlugin extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        WebhookApi.sendServerMessage(PluginStatics.isServerRebooting ? MessageTypeServer.SERVER_STOPPED : MessageTypeServer.SERVER_RESTARTING);
+        WebhookApi.sendServerMessage(!PluginStatics.isServerRebooting ? MessageTypeServer.SERVER_STOPPED : MessageTypeServer.SERVER_RESTARTING);
     }
 }

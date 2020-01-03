@@ -2,6 +2,7 @@ package ru.alfomine.afmcp.listeners;
 
 import com.dthielke.herochat.Channel;
 import com.dthielke.herochat.ChannelChatEvent;
+import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -10,6 +11,7 @@ import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import ru.alfomine.afmcp.PluginConfig;
 import ru.alfomine.afmcp.webhookapi.MessageTypePlayer;
 import ru.alfomine.afmcp.webhookapi.WebhookApi;
 
@@ -26,14 +28,15 @@ public class WebhookApiListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onChat(ChannelChatEvent event) {
-        System.out.println(event.getChannel().getName());
-
         if (isChannelLocal(event.getChannel())) {
+            String coordsString = locationToString(event.getSender().getPlayer().getLocation());
+
             if (isDM(event.getChannel())) {
-                WebhookApi.sendPlayerMessage(MessageTypePlayer.LVL2_CHAT_MESSAGE, event.getSender().getPlayer().getDisplayName(), "ЛС", "ЛС пока что не поддерживается, хуй.");
+                WebhookApi.sendPlayerMessage(MessageTypePlayer.LVL2_CHAT_MESSAGE, event.getSender().getPlayer().getDisplayName(), coordsString, "ЛС", "ЛС пока что не поддерживается, хуй.");
             } else {
-                WebhookApi.sendPlayerMessage(MessageTypePlayer.LVL2_CHAT_MESSAGE, event.getSender().getPlayer().getDisplayName(), event.getChannel().getName(), event.getMessage());
+                WebhookApi.sendPlayerMessage(MessageTypePlayer.LVL2_CHAT_MESSAGE, event.getSender().getPlayer().getDisplayName(), coordsString, event.getChannel().getName(), event.getMessage());
             }
+        } else {
             WebhookApi.sendPlayerMessage(MessageTypePlayer.CHAT_MESSAGE, event.getSender().getPlayer().getDisplayName(), event.getChannel().getName(), event.getMessage());
         }
     }
@@ -42,8 +45,11 @@ public class WebhookApiListener implements Listener {
     public void onCommand(PlayerCommandPreprocessEvent event) {
         String text = event.getMessage();
 
-        if (text.startsWith("/login")) {
-            text = "/login ILoveGayPorn";
+        for (String cmd : PluginConfig.hiddenCommandsList) {
+            if (text.startsWith("/" + cmd)) {
+                text = "Команда скрыта!";
+                break;
+            }
         }
 
         WebhookApi.sendPlayerMessage(MessageTypePlayer.COMMAND, event.getPlayer().getDisplayName(), text);
@@ -61,15 +67,16 @@ public class WebhookApiListener implements Listener {
 
     // ================================ //
     private boolean isChannelLocal(Channel channel) {
-        System.out.println(channel.isCrossWorld());
-        System.out.println(channel.getDistance());
-
-        return channel.isCrossWorld() && channel.getDistance() == 0;
+        return !channel.isCrossWorld() && channel.getDistance() != 0 || channel.getName().startsWith("convo");
     }
 
     private boolean isDM(Channel channel) {
-        System.out.println(channel.getName());
-
         return channel.getName().startsWith("convo");
+    }
+
+    private String locationToString(Location location) {
+        String locationStrings[] = {String.valueOf(Math.round(location.getX())), String.valueOf(Math.round(location.getY())), String.valueOf(Math.round(location.getZ()))};
+
+        return String.join(", ", locationStrings);
     }
 }
