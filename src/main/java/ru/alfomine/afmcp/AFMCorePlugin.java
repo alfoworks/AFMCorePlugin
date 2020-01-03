@@ -10,13 +10,22 @@ import ru.alfomine.afmcp.commands.*;
 import ru.alfomine.afmcp.listeners.CrapEventListener;
 import ru.alfomine.afmcp.listeners.MainEventListener;
 import ru.alfomine.afmcp.listeners.TabListEventListener;
+import ru.alfomine.afmcp.listeners.WebhookApiListener;
 import ru.alfomine.afmcp.serverapi.APIServer;
 import ru.alfomine.afmcp.tablist.WrappedTabList;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public final class AFMCorePlugin extends JavaPlugin {
     private static AFMCorePlugin plugin;
     public static FileConfiguration config;
     public static WrappedTabList tabList;
+    private static Logger logger = Bukkit.getLogger();
+
+    public static void log(String message, Level level) {
+        logger.log(level, String.format("AFMCP [%s]: %s", level.getName(), message));
+    }
 
     public static AFMCorePlugin getPlugin() {
         return plugin;
@@ -27,6 +36,7 @@ public final class AFMCorePlugin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new MainEventListener(), this);
         getServer().getPluginManager().registerEvents(new TabListEventListener(), this);
         getServer().getPluginManager().registerEvents(new CrapEventListener(), this);
+        getServer().getPluginManager().registerEvents(new WebhookApiListener(), this);
 
         plugin = this;
 
@@ -67,6 +77,9 @@ public final class AFMCorePlugin extends JavaPlugin {
     public void configReload() {
         PluginConfig.tabSortGroups = config.getStringList("tabSortGroups").toArray(new String[]{});
         PluginConfig.serverApiPort = config.getInt("server_api.port");
+
+        PluginConfig.serverId = config.getString("webhook_api.serverId");
+        PluginConfig.webhookApiUrl = config.getString("webhook_api.url");
     }
 
     public void configSave() {

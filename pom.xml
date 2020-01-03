@@ -80,6 +80,14 @@
         </dependency>
 
         <dependency>
+            <groupId>com.dthielke.herochat</groupId>
+            <artifactId>HeroChat</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/herochat.jar</systemPath>
+        </dependency>
+
+        <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>craftbukkit</artifactId>
             <version>1.12-R0.1-SNAPSHOT</version>

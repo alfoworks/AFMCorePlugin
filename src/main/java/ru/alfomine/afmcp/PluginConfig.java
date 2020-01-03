@@ -11,4 +11,7 @@ public class PluginConfig {
     public static HashMap<String, InetSocketAddress> playerLastLoginIps = new HashMap<>();
 
     public static int serverApiPort = 0;
+
+    public static String serverId = "";
+    public static String webhookApiUrl = "";
 }
