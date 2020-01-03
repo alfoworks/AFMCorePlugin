@@ -13,6 +13,8 @@ import ru.alfomine.afmcp.listeners.TabListEventListener;
 import ru.alfomine.afmcp.listeners.WebhookApiListener;
 import ru.alfomine.afmcp.serverapi.APIServer;
 import ru.alfomine.afmcp.tablist.WrappedTabList;
+import ru.alfomine.afmcp.webhookapi.MessageTypeServer;
+import ru.alfomine.afmcp.webhookapi.WebhookApi;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,6 +51,7 @@ public final class AFMCorePlugin extends JavaPlugin {
         this.getCommand("deletepreset").setExecutor(new CommandDeletePreset());
         this.getCommand("unsetchest").setExecutor(new CommandUnsetChest());
         this.getCommand("afmcp").setExecutor(new CommandSOICP());
+        this.getCommand("rawbc").setExecutor(new CommandRawBC());
 
         Bukkit.getScheduler().runTaskTimer(this, () -> {
             ConfigurationSection section = config.getConfigurationSection("chests");
@@ -71,6 +74,8 @@ public final class AFMCorePlugin extends JavaPlugin {
         PluginStatics.startTime = System.currentTimeMillis();
 
         Bukkit.getServer().getScheduler().runTaskAsynchronously(this, new APIServer());
+
+        WebhookApi.sendServerMessage(MessageTypeServer.SERVER_STARTED);
     }
 
     // TODO Улучшить обработку конфигов. Почистить от старого говна (ChestRefill) и добавить ООП ко всему этому ужасу.
@@ -88,6 +93,6 @@ public final class AFMCorePlugin extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        WebhookApi.sendServerMessage(MessageTypeServer.SERVER_STOPPED);
     }
 }
