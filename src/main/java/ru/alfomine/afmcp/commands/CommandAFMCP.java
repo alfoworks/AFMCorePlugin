@@ -5,13 +5,14 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 import ru.alfomine.afmcp.AFMCorePlugin;
 import ru.alfomine.afmcp.PluginStatics;
 import ru.alfomine.afmcp.tablist.WrappedTabListEntry;
 
 import java.util.ArrayList;
 
-public class CommandSOICP extends CustomCommand {
+public class CommandAFMCP extends CustomCommand {
     @Override
     public boolean onExecute(CommandSender sender, Command command, String label, ArrayList<String> args) throws Exception {
         if (args.size() < 1) {
@@ -78,6 +79,23 @@ public class CommandSOICP extends CustomCommand {
                 sendMessage(sender, String.format("Переключено: %s", PluginStatics.debugRtxPlayers.contains(player)));
             } else if (args.get(1).equalsIgnoreCase("exceptiontest")) {
                 throw new Exception("Text exception from debug command");
+            } else if (args.get(1).equalsIgnoreCase("ondisable")) {
+                for (Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
+                    plugin.onDisable();
+                }
+
+                sendMessage(sender, "Все \"выключено\"");
+            } else if (args.get(1).equalsIgnoreCase("newyear")) {
+                for (Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
+                    Bukkit.getPluginManager().disablePlugin(plugin);
+                }
+
+                for (Player player : Bukkit.getOnlinePlayers()) {
+                    player.sendMessage(ChatColor.YELLOW + "AllForMine" + ChatColor.WHITE + " > С Новым Годом!!!");
+                    player.getWorld().strikeLightning(player.getLocation());
+                }
+
+                sendMessage(sender, "Все выключено");
             } else {
                 sendMessage(sender, "Неизвестная подкоманда. Да и вообще, вылези из дебага. Это не тебе сделано)");
 

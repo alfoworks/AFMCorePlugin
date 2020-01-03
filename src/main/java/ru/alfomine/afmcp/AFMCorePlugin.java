@@ -50,7 +50,7 @@ public final class AFMCorePlugin extends JavaPlugin {
         this.getCommand("setchest").setExecutor(new CommandSetChest());
         this.getCommand("deletepreset").setExecutor(new CommandDeletePreset());
         this.getCommand("unsetchest").setExecutor(new CommandUnsetChest());
-        this.getCommand("afmcp").setExecutor(new CommandSOICP());
+        this.getCommand("afmcp").setExecutor(new CommandAFMCP());
         this.getCommand("rawbc").setExecutor(new CommandRawBC());
         this.getCommand("afmrestart").setExecutor(new CommandAFMRestart());
 
