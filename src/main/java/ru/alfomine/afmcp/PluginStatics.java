@@ -14,4 +14,6 @@ public class PluginStatics {
     public static Set<Player> debugRtxPlayers = new HashSet<>();
     public static HashMap<Player, Integer> debugRtxTasks = new HashMap<>();
     public static long startTime = 0;
+
+    public static boolean isServerRebooting = false;
 }

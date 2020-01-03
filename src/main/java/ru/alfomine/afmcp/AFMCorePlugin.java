@@ -93,6 +93,6 @@ public final class AFMCorePlugin extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        WebhookApi.sendServerMessage(MessageTypeServer.SERVER_STOPPED);
+        WebhookApi.sendServerMessage(PluginStatics.isServerRebooting ? MessageTypeServer.SERVER_STOPPED : MessageTypeServer.SERVER_RESTARTING);
     }
 }

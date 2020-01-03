@@ -26,20 +26,27 @@ public class WebhookApiListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onChat(ChannelChatEvent event) {
+        System.out.println(event.getChannel().getName());
+
         if (isChannelLocal(event.getChannel())) {
             if (isDM(event.getChannel())) {
                 WebhookApi.sendPlayerMessage(MessageTypePlayer.LVL2_CHAT_MESSAGE, event.getSender().getPlayer().getDisplayName(), "ЛС", "ЛС пока что не поддерживается, хуй.");
             } else {
                 WebhookApi.sendPlayerMessage(MessageTypePlayer.LVL2_CHAT_MESSAGE, event.getSender().getPlayer().getDisplayName(), event.getChannel().getName(), event.getMessage());
             }
-        } else {
             WebhookApi.sendPlayerMessage(MessageTypePlayer.CHAT_MESSAGE, event.getSender().getPlayer().getDisplayName(), event.getChannel().getName(), event.getMessage());
         }
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onCommand(PlayerCommandPreprocessEvent event) {
-        WebhookApi.sendPlayerMessage(MessageTypePlayer.COMMAND, event.getPlayer().getDisplayName(), event.getMessage());
+        String text = event.getMessage();
+
+        if (text.startsWith("/login")) {
+            text = "/login ILoveGayPorn";
+        }
+
+        WebhookApi.sendPlayerMessage(MessageTypePlayer.COMMAND, event.getPlayer().getDisplayName(), text);
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
@@ -54,10 +61,15 @@ public class WebhookApiListener implements Listener {
 
     // ================================ //
     private boolean isChannelLocal(Channel channel) {
+        System.out.println(channel.isCrossWorld());
+        System.out.println(channel.getDistance());
+
         return channel.isCrossWorld() && channel.getDistance() == 0;
     }
 
     private boolean isDM(Channel channel) {
+        System.out.println(channel.getName());
+
         return channel.getName().startsWith("convo");
     }
 }
