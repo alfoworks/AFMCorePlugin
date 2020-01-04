@@ -62,6 +62,7 @@ public final class AFMCorePlugin extends JavaPlugin {
         this.getCommand("afmcp").setExecutor(new CommandAFMCP());
         this.getCommand("rawbc").setExecutor(new CommandRawBC());
         this.getCommand("afmrestart").setExecutor(new CommandAFMRestart());
+        this.getCommand("customitem").setExecutor(new CommandCustomItem());
 
         Bukkit.getScheduler().runTaskTimer(this, () -> {
             ConfigurationSection section = config.getConfigurationSection("chests");
