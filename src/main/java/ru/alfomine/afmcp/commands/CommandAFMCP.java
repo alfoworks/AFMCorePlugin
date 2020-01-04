@@ -110,7 +110,7 @@ public class CommandAFMCP extends CustomCommand {
 
     @Override
     public String getName() {
-        return "SOICP";
+        return "AFMCP";
     }
 
     @Override

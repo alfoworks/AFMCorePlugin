@@ -24,3 +24,6 @@ commands:
     description: Единственно верная команда для перезагрузи сервера/
     usage: /afmrestart
     aliases: ["restart", "res"]
+  customitem:
+    description: Выдать кастомный предмет
+    usage: /customitem <id>

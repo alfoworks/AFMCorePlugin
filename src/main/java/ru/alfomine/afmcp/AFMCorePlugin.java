@@ -7,6 +7,9 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import ru.alfomine.afmcp.commands.*;
+import ru.alfomine.afmcp.customitem.CustomItem;
+import ru.alfomine.afmcp.customitem.CustomItemManager;
+import ru.alfomine.afmcp.customitem.CustomItemVelocitySnowball;
 import ru.alfomine.afmcp.listeners.CrapEventListener;
 import ru.alfomine.afmcp.listeners.MainEventListener;
 import ru.alfomine.afmcp.listeners.TabListEventListener;
@@ -35,10 +38,16 @@ public final class AFMCorePlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        CustomItemManager.addCustomItem(new CustomItemVelocitySnowball());
+
         getServer().getPluginManager().registerEvents(new MainEventListener(), this);
         getServer().getPluginManager().registerEvents(new TabListEventListener(), this);
         getServer().getPluginManager().registerEvents(new CrapEventListener(), this);
         getServer().getPluginManager().registerEvents(new WebhookApiListener(), this);
+
+        for (CustomItem item : CustomItemManager.items) {
+            getServer().getPluginManager().registerEvents(item, this);
+        }
 
         plugin = this;
 
