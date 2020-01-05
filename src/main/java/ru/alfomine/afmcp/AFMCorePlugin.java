@@ -79,7 +79,7 @@ public final class AFMCorePlugin extends JavaPlugin {
                     ((Chest) chestBlock.getState()).getBlockInventory().setContents(((Chest) presetBlock.getState()).getBlockInventory().getContents());
                 }
             }
-        }, 0, 216000); //216000
+        }, 0, 400); //216000
 
         tabList = new WrappedTabList();
         PluginStatics.startTime = System.currentTimeMillis();

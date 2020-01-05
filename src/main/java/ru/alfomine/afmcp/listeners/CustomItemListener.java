@@ -25,11 +25,11 @@ public class CustomItemListener implements Listener {
             return;
         }
 
-        String tagString = tag.getString("afmcm_ci_id");
-
-        if (tagString == null) {
+        if (!tag.hasKey("afmcm_ci_id")) {
             return;
         }
+
+        String tagString = tag.getString("afmcm_ci_id");
 
         for (CustomItem customItem : CustomItemManager.items) {
             if (customItem.getId().equals(tagString)) {

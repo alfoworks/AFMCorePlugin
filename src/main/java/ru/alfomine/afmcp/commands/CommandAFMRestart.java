@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import ru.alfomine.afmcp.AFMCorePlugin;
 import ru.alfomine.afmcp.PluginStatics;
 import ru.alfomine.afmcp.RebootTask;
@@ -15,7 +16,9 @@ public class CommandAFMRestart extends CustomCommand {
     public boolean onExecute(CommandSender sender, Command command, String label, ArrayList<String> args) {
         PluginStatics.isServerRebooting = true;
 
-        sendMessage(sender, "Сервер будет перезапущен через 10 сек!");
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            sendMessage(player, "Сервер будет перезапущен через 10 сек!");
+        }
 
         Bukkit.getServer().getScheduler().runTaskTimer(AFMCorePlugin.getPlugin(), new RebootTask(), 20L, 20L);
 
