@@ -62,6 +62,7 @@ public final class AFMCorePlugin extends JavaPlugin {
         this.getCommand("rawbc").setExecutor(new CommandRawBC());
         this.getCommand("afmrestart").setExecutor(new CommandAFMRestart());
         this.getCommand("customitem").setExecutor(new CommandCustomItem());
+        this.getCommand("ds").setExecutor(new CommandDS());
 
         Bukkit.getScheduler().runTaskTimer(this, () -> {
             ConfigurationSection section = config.getConfigurationSection("chests");
@@ -84,6 +85,7 @@ public final class AFMCorePlugin extends JavaPlugin {
         PluginStatics.startTime = System.currentTimeMillis();
 
         Bukkit.getServer().getScheduler().runTaskAsynchronously(this, new APIServer());
+        Bukkit.getServer().getScheduler().runTaskTimer(this, new DiscordNotifyTask(), 0L, 200);
 
         WebhookApi.sendServerMessage(MessageTypeServer.SERVER_STARTED);
     }

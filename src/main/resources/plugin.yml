@@ -27,3 +27,6 @@ commands:
   customitem:
     description: Выдать кастомный предмет
     usage: /customitem <id>
+  ds:
+    description: Записать ваш аккаунт Discord
+    usage: /ds <НИК> или <NONE> если ваш ник уже указан или вы не в персонаде.

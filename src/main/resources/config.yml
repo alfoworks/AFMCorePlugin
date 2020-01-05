@@ -1,7 +1,6 @@
 presets:
 chests:
-playerLastLoginTimestamps:
-playerLastLoginIps:
+playerDiscordConfirmations:
 
 server_api:
   port: 4320
