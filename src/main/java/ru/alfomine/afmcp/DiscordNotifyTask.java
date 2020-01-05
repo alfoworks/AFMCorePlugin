@@ -11,7 +11,7 @@ public class DiscordNotifyTask implements Runnable {
     public void run() {
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (AFMCorePlugin.config.getString("playerDiscordConfirmations." + player.getName()) != null) {
-                break;
+                continue;
             }
 
             player.sendMessage(String.format("%sALFO:MINE %s> Вам нужно указать свой аккаунт в Discord (т.к. его никто не читает и никто не отписывается)", ChatColor.YELLOW, ChatColor.AQUA));
