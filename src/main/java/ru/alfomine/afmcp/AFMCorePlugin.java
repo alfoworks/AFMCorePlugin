@@ -10,14 +10,11 @@ import ru.alfomine.afmcp.commands.*;
 import ru.alfomine.afmcp.customitem.CustomItem;
 import ru.alfomine.afmcp.customitem.CustomItemManager;
 import ru.alfomine.afmcp.customitem.CustomItemVelocitySnowball;
-import ru.alfomine.afmcp.listeners.CrapEventListener;
-import ru.alfomine.afmcp.listeners.MainEventListener;
-import ru.alfomine.afmcp.listeners.TabListEventListener;
-import ru.alfomine.afmcp.listeners.WebhookApiListener;
+import ru.alfomine.afmcp.listeners.*;
+import ru.alfomine.afmcp.net.webhookapi.MessageTypeServer;
+import ru.alfomine.afmcp.net.webhookapi.WebhookApi;
 import ru.alfomine.afmcp.serverapi.APIServer;
 import ru.alfomine.afmcp.tablist.WrappedTabList;
-import ru.alfomine.afmcp.webhookapi.MessageTypeServer;
-import ru.alfomine.afmcp.webhookapi.WebhookApi;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,6 +41,8 @@ public final class AFMCorePlugin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new TabListEventListener(), this);
         getServer().getPluginManager().registerEvents(new CrapEventListener(), this);
         getServer().getPluginManager().registerEvents(new WebhookApiListener(), this);
+        getServer().getPluginManager().registerEvents(new CustomItemListener(), this);
+        getServer().getPluginManager().registerEvents(new ShitEvenListener(), this);
 
         for (CustomItem item : CustomItemManager.items) {
             getServer().getPluginManager().registerEvents(item, this);

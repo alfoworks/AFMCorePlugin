@@ -21,17 +21,19 @@ public class CustomItemManager {
             if (item.getId().equals(id)) {
                 ItemStack stack = new ItemStack(item.getMaterial(), 1);
 
-                ItemMeta m = stack.getItemMeta();
-                m.setDisplayName(ChatColor.AQUA + item.getName());
-                stack.setItemMeta(m);
-
                 net.minecraft.server.v1_12_R1.ItemStack nmsStack = CraftItemStack.asNMSCopy(stack);
 
                 NBTTagCompound tag = new NBTTagCompound();
                 tag.setString("afmcm_ci_id", item.getId());
                 nmsStack.setTag(tag);
 
-                return CraftItemStack.asBukkitCopy(nmsStack);
+                stack = CraftItemStack.asBukkitCopy(nmsStack);
+
+                ItemMeta m = stack.getItemMeta();
+                m.setDisplayName(ChatColor.AQUA + item.getName());
+                stack.setItemMeta(m);
+
+                return stack;
             }
         }
 

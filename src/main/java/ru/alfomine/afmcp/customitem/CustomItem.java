@@ -6,11 +6,11 @@ import org.bukkit.event.Listener;
 
 public class CustomItem implements Listener {
     public String getId() {
-        return "";
+        return "123";
     }
 
     public String getName() {
-        return "";
+        return "123";
     }
 
     public Material getMaterial() {

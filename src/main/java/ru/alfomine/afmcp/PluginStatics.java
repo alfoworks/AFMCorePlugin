@@ -13,6 +13,9 @@ public class PluginStatics {
     public static Set<Player> debugFlightParticlesPlayers = new HashSet<>();
     public static Set<Player> debugRtxPlayers = new HashSet<>();
     public static HashMap<Player, Integer> debugRtxTasks = new HashMap<>();
+    public static boolean debugRetranslateEnabled = false;
+    public static String debugTranslatorKey = "trnsl.1.1.20180726T195057Z.f4e79197dd962469.1d406b138d18b3bda24f8cab2ecb69da10f6cfb2";
+
     public static long startTime = 0;
 
     public static boolean isServerRebooting = false;

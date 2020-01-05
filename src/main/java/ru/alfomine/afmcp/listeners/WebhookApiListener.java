@@ -12,8 +12,8 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import ru.alfomine.afmcp.PluginConfig;
-import ru.alfomine.afmcp.webhookapi.MessageTypePlayer;
-import ru.alfomine.afmcp.webhookapi.WebhookApi;
+import ru.alfomine.afmcp.net.webhookapi.MessageTypePlayer;
+import ru.alfomine.afmcp.net.webhookapi.WebhookApi;
 
 public class WebhookApiListener implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)

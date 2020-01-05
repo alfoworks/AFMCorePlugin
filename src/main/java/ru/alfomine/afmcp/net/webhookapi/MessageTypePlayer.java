@@ -1,4 +1,4 @@
-package ru.alfomine.afmcp.webhookapi;
+package ru.alfomine.afmcp.net.webhookapi;
 
 public enum MessageTypePlayer {
     CHAT_MESSAGE,

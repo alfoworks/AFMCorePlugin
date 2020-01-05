@@ -1,9 +1,10 @@
-package ru.alfomine.afmcp.webhookapi;
+package ru.alfomine.afmcp.net.webhookapi;
 
 import com.google.gson.Gson;
 import org.bukkit.Bukkit;
 import ru.alfomine.afmcp.AFMCorePlugin;
 import ru.alfomine.afmcp.PluginConfig;
+import ru.alfomine.afmcp.net.Request;
 
 import java.util.HashMap;
 

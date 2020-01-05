@@ -1,8 +1,11 @@
 package ru.alfomine.afmcp.listeners;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Particle;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.util.Vector;
@@ -18,6 +21,11 @@ public class CrapEventListener implements Listener {
         if (PluginStatics.debugRtxPlayers.contains(event.getPlayer()) && event.getFrom().getPitch() != event.getTo().getPitch() && event.getFrom().getYaw() == event.getTo().getYaw()) {
             debugCrapRtx(event);
         }
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onDeath(PlayerDeathEvent event) {
+        Bukkit.broadcastMessage(event.getDeathMessage());
     }
 
     private void debugCrapElytra(PlayerMoveEvent event) {

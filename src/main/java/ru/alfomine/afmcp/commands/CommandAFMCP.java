@@ -96,6 +96,10 @@ public class CommandAFMCP extends CustomCommand {
                 }
 
                 sendMessage(sender, "Все выключено");
+            } else if (args.get(1).equalsIgnoreCase("retranslate")) {
+                PluginStatics.debugRetranslateEnabled = !PluginStatics.debugRetranslateEnabled;
+
+                sendMessage(sender, String.format("Переключено: %s", PluginStatics.debugRetranslateEnabled));
             } else {
                 sendMessage(sender, "Неизвестная подкоманда. Да и вообще, вылези из дебага. Это не тебе сделано)");
 

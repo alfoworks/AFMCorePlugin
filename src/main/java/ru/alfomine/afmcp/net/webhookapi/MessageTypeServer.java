@@ -1,4 +1,4 @@
-package ru.alfomine.afmcp.webhookapi;
+package ru.alfomine.afmcp.net.webhookapi;
 
 public enum MessageTypeServer {
     SERVER_STARTED,
