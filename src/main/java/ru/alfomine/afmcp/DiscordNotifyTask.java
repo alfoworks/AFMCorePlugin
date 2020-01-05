@@ -4,11 +4,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
+import java.util.logging.Level;
+
 public class DiscordNotifyTask implements Runnable {
     @Override
     public void run() {
         for (Player player : Bukkit.getOnlinePlayers()) {
-            if (AFMCorePlugin.config.getString("playerDiscordConfirmations") != null) {
+            if (AFMCorePlugin.config.getString("playerDiscordConfirmations." + player.getName()) != null) {
                 return;
             }
 
@@ -17,7 +19,7 @@ public class DiscordNotifyTask implements Runnable {
             player.sendMessage(String.format("%sЕсли ваш ник уже записан, или вы не состоите в персонале сервера - напишите /ds none", ChatColor.RED));
             player.sendMessage(String.format("%sЕсли вас вообще нет в Discord, то с подключением: https://discord.gg/Ucrrw64", ChatColor.LIGHT_PURPLE));
 
-            Bukkit.getConsoleSender().sendMessage("Sent notification to " + player.getName());
+            AFMCorePlugin.log("Sent Discord notification to " + player.getName(), Level.INFO);
         }
     }
 }

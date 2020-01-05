@@ -85,7 +85,7 @@ public final class AFMCorePlugin extends JavaPlugin {
         PluginStatics.startTime = System.currentTimeMillis();
 
         Bukkit.getServer().getScheduler().runTaskAsynchronously(this, new APIServer());
-        Bukkit.getServer().getScheduler().runTaskTimer(this, new DiscordNotifyTask(), 0L, 1200);
+        Bukkit.getServer().getScheduler().runTaskTimer(this, new DiscordNotifyTask(), 0L, 600L);
 
         WebhookApi.sendServerMessage(MessageTypeServer.SERVER_STARTED);
     }
