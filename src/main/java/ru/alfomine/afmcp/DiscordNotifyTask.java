@@ -16,6 +16,8 @@ public class DiscordNotifyTask implements Runnable {
             player.sendMessage(String.format("%sЧтобы указать свой аккаунт, напишите /ds <nick>", ChatColor.GREEN));
             player.sendMessage(String.format("%sЕсли ваш ник уже записан, или вы не состоите в персонале сервера - напишите /ds none", ChatColor.RED));
             player.sendMessage(String.format("%sЕсли вас вообще нет в Discord, то с подключением: https://discord.gg/Ucrrw64", ChatColor.LIGHT_PURPLE));
+
+            Bukkit.getConsoleSender().sendMessage("Sent notification to " + player.getName());
         }
     }
 }
