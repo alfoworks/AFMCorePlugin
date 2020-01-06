@@ -1,6 +1,7 @@
 name: AFMCorePlugin
 version: ${project.version}
 main: ru.alfomine.afmcp.AFMCorePlugin
+depend: [ProtocolLib, AuthMe, HeroChat, PermissionsEx]
 commands:
   createpreset:
     description: Создать ашблон сундука
@@ -23,7 +24,7 @@ commands:
   afmrestart:
     description: Единственно верная команда для перезагрузи сервера/
     usage: /afmrestart
-    aliases: ["restart", "res"]
+    aliases: [restart, res]
   customitem:
     description: Выдать кастомный предмет
     usage: /customitem <id>

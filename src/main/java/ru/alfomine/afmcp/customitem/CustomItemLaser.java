@@ -1,7 +1,10 @@
 package ru.alfomine.afmcp.customitem;
 
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 import ru.alfomine.afmcp.math.RayTrace;
@@ -40,6 +43,12 @@ public class CustomItemLaser extends CustomItem {
         for (Vector pos : positions) {
             if (!player.getWorld().getBlockAt(pos.getBlockX(), pos.getBlockY(), pos.getBlockZ()).getType().isTransparent()) {
                 break;
+            } else {
+                for (Entity entity : player.getWorld().getEntities()) {
+                    if (entity.getLocation().distance(new Location(player.getWorld(), pos.getX(), pos.getY(), pos.getZ())) <= 1 && entity instanceof LivingEntity) {
+                        ((LivingEntity) entity).damage(5);
+                    }
+                }
             }
 
             player.getWorld().spawnParticle(Particle.REDSTONE, pos.getX(), pos.getY(), pos.getZ(), 0, 1, 0, 0, 1);

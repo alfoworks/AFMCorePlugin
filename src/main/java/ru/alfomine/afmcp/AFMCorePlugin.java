@@ -1,5 +1,8 @@
 package ru.alfomine.afmcp;
 
+import com.comphenix.protocol.PacketType;
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.ProtocolManager;
 import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
@@ -14,6 +17,7 @@ import ru.alfomine.afmcp.customitem.CustomItemVelocitySnowball;
 import ru.alfomine.afmcp.listeners.*;
 import ru.alfomine.afmcp.net.webhookapi.MessageTypeServer;
 import ru.alfomine.afmcp.net.webhookapi.WebhookApi;
+import ru.alfomine.afmcp.packetlisteners.TranslatePacketListener;
 import ru.alfomine.afmcp.serverapi.APIServer;
 import ru.alfomine.afmcp.tablist.WrappedTabList;
 import ru.alfomine.afmcp.util.LocationUtil;
@@ -26,6 +30,7 @@ public final class AFMCorePlugin extends JavaPlugin {
     public static FileConfiguration config;
     public static WrappedTabList tabList;
     private static Logger logger = Bukkit.getLogger();
+    ProtocolManager protocolManager;
 
     public static void log(String message, Level level) {
         logger.log(level, String.format("AFMCP [%s]: %s", level.getName(), message));
@@ -37,6 +42,9 @@ public final class AFMCorePlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        protocolManager = ProtocolLibrary.getProtocolManager();
+        protocolManager.addPacketListener(new TranslatePacketListener(this, PacketType.Play.Server.CHAT));
+
         CustomItemManager.addCustomItem(new CustomItemVelocitySnowball());
         CustomItemManager.addCustomItem(new CustomItemLaser());
 
