@@ -7,8 +7,11 @@ import org.bukkit.util.Vector;
 import ru.alfomine.afmcp.math.RayTrace;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class CustomItemLaser extends CustomItem {
+    HashMap<Player, Long> cooldowns = new HashMap<>();
+
     @Override
     public String getId() {
         return "laser";
@@ -26,14 +29,22 @@ public class CustomItemLaser extends CustomItem {
 
     @Override
     public void onUse(Player player) {
-        RayTrace rayTrace = new RayTrace(player.getEyeLocation().toVector().subtract(new Vector(0, 2, 0)), player.getEyeLocation().getDirection());
+        if (cooldowns.containsKey(player) && System.currentTimeMillis() < cooldowns.get(player) + 5000) {
+            player.sendMessage("Кулдаун! Подождите 2 секунды перед новым использованием.");
+
+            return;
+        }
+
+        RayTrace rayTrace = new RayTrace(player.getEyeLocation().toVector(), player.getEyeLocation().getDirection());
         ArrayList<Vector> positions = rayTrace.traverse(50, 0.01);
         for (Vector pos : positions) {
             if (!player.getWorld().getBlockAt(pos.getBlockX(), pos.getBlockY(), pos.getBlockZ()).getType().isTransparent()) {
                 break;
             }
 
-            player.getWorld().spawnParticle(Particle.REDSTONE, pos.getX(), pos.getY(), pos.getZ(), 0, 255, 255, 255, 1);
+            player.getWorld().spawnParticle(Particle.REDSTONE, pos.getX(), pos.getY(), pos.getZ(), 0, 1, 0, 0, 1);
         }
+
+        cooldowns.put(player, System.currentTimeMillis());
     }
 }
