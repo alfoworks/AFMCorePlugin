@@ -32,7 +32,7 @@ public class CustomItemLaser extends CustomItem {
         RayTrace rayTrace = new RayTrace(player.getEyeLocation().toVector(), player.getEyeLocation().getDirection());
         ArrayList<Vector> positions = rayTrace.traverse(10, 0.01);
         for (Vector pos : positions) {
-            player.getWorld().spawnParticle(Particle.REDSTONE, pos.getBlockX(), pos.getBlockY(), pos.getBlockZ(), 10);
+            player.getWorld().spawnParticle(Particle.REDSTONE, pos.getX(), pos.getY(), pos.getZ(), 1, 1);
         }
     }
 }
