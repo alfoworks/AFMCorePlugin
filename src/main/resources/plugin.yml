@@ -1,7 +1,7 @@
 name: AFMCorePlugin
 version: ${project.version}
 main: ru.alfomine.afmcp.AFMCorePlugin
-depend: [ProtocolLib, AuthMe, HeroChat, PermissionsEx]
+depend: [ProtocolLib]
 commands:
   createpreset:
     description: Создать ашблон сундука
