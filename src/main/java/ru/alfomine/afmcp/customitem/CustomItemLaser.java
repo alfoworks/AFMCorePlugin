@@ -7,11 +7,8 @@ import org.bukkit.util.Vector;
 import ru.alfomine.afmcp.math.RayTrace;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class CustomItemLaser extends CustomItem {
-    private HashMap<Player, Integer> velocityPlayers = new HashMap<>();
-
     @Override
     public String getId() {
         return "laser";
@@ -29,10 +26,14 @@ public class CustomItemLaser extends CustomItem {
 
     @Override
     public void onUse(Player player) {
-        RayTrace rayTrace = new RayTrace(player.getEyeLocation().toVector(), player.getEyeLocation().getDirection());
-        ArrayList<Vector> positions = rayTrace.traverse(10, 0.01);
+        RayTrace rayTrace = new RayTrace(player.getEyeLocation().toVector().subtract(new Vector(0, 2, 0)), player.getEyeLocation().getDirection());
+        ArrayList<Vector> positions = rayTrace.traverse(50, 0.01);
         for (Vector pos : positions) {
-            player.getWorld().spawnParticle(Particle.REDSTONE, pos.getX(), pos.getY(), pos.getZ(), 1, 1);
+            if (!player.getWorld().getBlockAt(pos.getBlockX(), pos.getBlockY(), pos.getBlockZ()).getType().isTransparent()) {
+                break;
+            }
+
+            player.getWorld().spawnParticle(Particle.REDSTONE, pos.getX(), pos.getY(), pos.getZ(), 0, 255, 255, 255, 1);
         }
     }
 }
