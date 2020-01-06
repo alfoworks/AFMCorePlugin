@@ -29,7 +29,7 @@ public class CustomItemLaser extends CustomItem {
 
     @Override
     public void onUse(Player player) {
-        if (cooldowns.containsKey(player) && System.currentTimeMillis() < cooldowns.get(player) + 5000) {
+        if (cooldowns.containsKey(player) && System.currentTimeMillis() < cooldowns.get(player) + 2000) {
             player.sendMessage("Кулдаун! Подождите 2 секунды перед новым использованием.");
 
             return;
