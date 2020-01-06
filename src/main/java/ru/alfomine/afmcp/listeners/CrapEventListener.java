@@ -17,10 +17,6 @@ public class CrapEventListener implements Listener {
         if (PluginStatics.debugFlightParticlesPlayers.contains(event.getPlayer()) && event.getPlayer().isGliding()) {
             debugCrapElytra(event);
         }
-
-        if (PluginStatics.debugRtxPlayers.contains(event.getPlayer()) && event.getFrom().getPitch() != event.getTo().getPitch() && event.getFrom().getYaw() == event.getTo().getYaw()) {
-            debugCrapRtx(event);
-        }
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -35,13 +31,8 @@ public class CrapEventListener implements Listener {
         event.getPlayer().getWorld().spawnParticle(Particle.CLOUD, event.getPlayer().getLocation(), particleCount, vector.getX(), vector.getY(), vector.getZ(), 0.1);
     }
 
-    private void debugCrapRtx(PlayerMoveEvent event) {
-
-    }
-
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
         PluginStatics.debugFlightParticlesPlayers.remove(event.getPlayer());
-        PluginStatics.debugRtxPlayers.remove(event.getPlayer());
     }
 }
