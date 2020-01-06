@@ -8,6 +8,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import ru.alfomine.afmcp.commands.*;
 import ru.alfomine.afmcp.customitem.CustomItem;
+import ru.alfomine.afmcp.customitem.CustomItemLaser;
 import ru.alfomine.afmcp.customitem.CustomItemManager;
 import ru.alfomine.afmcp.customitem.CustomItemVelocitySnowball;
 import ru.alfomine.afmcp.listeners.*;
@@ -15,6 +16,7 @@ import ru.alfomine.afmcp.net.webhookapi.MessageTypeServer;
 import ru.alfomine.afmcp.net.webhookapi.WebhookApi;
 import ru.alfomine.afmcp.serverapi.APIServer;
 import ru.alfomine.afmcp.tablist.WrappedTabList;
+import ru.alfomine.afmcp.util.LocationUtil;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,6 +38,7 @@ public final class AFMCorePlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         CustomItemManager.addCustomItem(new CustomItemVelocitySnowball());
+        CustomItemManager.addCustomItem(new CustomItemLaser());
 
         getServer().getPluginManager().registerEvents(new MainEventListener(), this);
         getServer().getPluginManager().registerEvents(new TabListEventListener(), this);

@@ -1,4 +1,4 @@
-package ru.alfomine.afmcp;
+package ru.alfomine.afmcp.util;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;

@@ -1,5 +1,6 @@
 package ru.alfomine.afmcp.customitem;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -34,6 +35,10 @@ public class CustomItemVelocitySnowball extends CustomItem {
 
         player.setVelocity(player.getVelocity().add(new Vector(0, 150, 0)));
         velocityPlayers.put(player, player.getLocation().getBlockY());
+
+        if (player.getInventory().getChestplate().getType() != Material.ELYTRA) {
+            player.sendMessage(ChatColor.RED + "Press F! У тебя нет элитр.");
+        }
     }
 
     @EventHandler

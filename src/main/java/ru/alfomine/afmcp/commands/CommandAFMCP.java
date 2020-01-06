@@ -64,19 +64,6 @@ public class CommandAFMCP extends CustomCommand {
                 }
 
                 sendMessage(sender, String.format("Переключено: %s", PluginStatics.debugFlightParticlesPlayers.contains(player)));
-            } else if (args.get(1).equalsIgnoreCase("rtx")) {
-                if (!(sender instanceof Player)) {
-                    sendErrorMessage(sender, "Эта команда не может быть выполнена от консоли.");
-                    return true;
-                }
-
-                Player player = (Player) sender;
-
-                if (!PluginStatics.debugRtxPlayers.remove(player)) {
-                    PluginStatics.debugRtxPlayers.add(player);
-                }
-
-                sendMessage(sender, String.format("Переключено: %s", PluginStatics.debugRtxPlayers.contains(player)));
             } else if (args.get(1).equalsIgnoreCase("exceptiontest")) {
                 throw new Exception("Text exception from debug command");
             } else if (args.get(1).equalsIgnoreCase("ondisable")) {

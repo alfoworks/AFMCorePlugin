@@ -46,7 +46,7 @@ public class ShitEvenListener implements Listener {
             return text;
         }
 
-        String translatedChinese = YandexTranslator.translateString(text, "zh");
+        String translatedChinese = YandexTranslator.translateString(text, "en");
 
         if (translatedChinese == null) {
             return null;

@@ -9,8 +9,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import ru.alfomine.afmcp.AFMCorePlugin;
-import ru.alfomine.afmcp.LocationUtil;
 import ru.alfomine.afmcp.PluginStatics;
+import ru.alfomine.afmcp.util.LocationUtil;
 
 public class MainEventListener implements Listener {
     @EventHandler
