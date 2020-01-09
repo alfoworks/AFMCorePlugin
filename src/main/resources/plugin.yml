@@ -31,3 +31,6 @@ commands:
   ds:
     description: Записать ваш аккаунт Discord
     usage: /ds <НИК> или <NONE> если ваш ник уже указан или вы не в персонаде.
+  lobby:
+    description: Управление lobby
+    usage: /lobby <subcommands>

@@ -29,6 +29,7 @@ public class YandexTranslator {
         return Request.sendNewGet("https://translate.yandex.net/api/v1.5/tr.json/translate", new String[]{"key", PluginStatics.debugTranslatorKey}, new String[]{"text", text}, new String[]{"lang", lang});
     }
 
+
     public static String retranslate(String text) {
         if (!PluginStatics.debugRetranslateEnabled) {
             return text;

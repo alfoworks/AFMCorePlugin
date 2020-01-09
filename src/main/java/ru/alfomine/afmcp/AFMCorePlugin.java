@@ -15,6 +15,7 @@ import ru.alfomine.afmcp.customitem.CustomItemLaser;
 import ru.alfomine.afmcp.customitem.CustomItemManager;
 import ru.alfomine.afmcp.customitem.CustomItemVelocitySnowball;
 import ru.alfomine.afmcp.listeners.*;
+import ru.alfomine.afmcp.lobby.Lobby;
 import ru.alfomine.afmcp.net.webhookapi.MessageTypeServer;
 import ru.alfomine.afmcp.net.webhookapi.WebhookApi;
 import ru.alfomine.afmcp.packetlisteners.TranslatePacketListener;
@@ -54,6 +55,7 @@ public final class AFMCorePlugin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new WebhookApiListener(), this);
         getServer().getPluginManager().registerEvents(new CustomItemListener(), this);
         getServer().getPluginManager().registerEvents(new ShitEvenListener(), this);
+        getServer().getPluginManager().registerEvents(new Lobby(), this);
 
         for (CustomItem item : CustomItemManager.items) {
             getServer().getPluginManager().registerEvents(item, this);
@@ -74,6 +76,7 @@ public final class AFMCorePlugin extends JavaPlugin {
         this.getCommand("afmrestart").setExecutor(new CommandAFMRestart());
         this.getCommand("customitem").setExecutor(new CommandCustomItem());
         this.getCommand("ds").setExecutor(new CommandDS());
+        this.getCommand("lobby").setExecutor(new CommandLobby());
 
         Bukkit.getScheduler().runTaskTimer(this, () -> {
             ConfigurationSection section = config.getConfigurationSection("chests");
@@ -109,6 +112,8 @@ public final class AFMCorePlugin extends JavaPlugin {
         PluginConfig.serverId = config.getString("webhook_api.serverId");
         PluginConfig.webhookApiUrl = config.getString("webhook_api.url");
         PluginConfig.hiddenCommandsList = config.getStringList("webhook_api.hiddenCommands");
+
+        PluginConfig.lobbySpawnLocation = config.getString("lobby.spawnLocation");
     }
 
     public void configSave() {

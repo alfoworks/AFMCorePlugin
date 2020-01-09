@@ -18,4 +18,6 @@ public class PluginConfig {
     public static String webhookApiUrl = "";
 
     public static List<String> hiddenCommandsList = new ArrayList<>();
+
+    public static String lobbySpawnLocation = "";
 }
