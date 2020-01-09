@@ -32,6 +32,7 @@ public final class AFMCorePlugin extends JavaPlugin {
     public static WrappedTabList tabList;
     private static Logger logger = Bukkit.getLogger();
     ProtocolManager protocolManager;
+    public Lobby lobby;
 
     public static void log(String message, Level level) {
         logger.log(level, String.format("AFMCP [%s]: %s", level.getName(), message));
@@ -49,13 +50,15 @@ public final class AFMCorePlugin extends JavaPlugin {
         CustomItemManager.addCustomItem(new CustomItemVelocitySnowball());
         CustomItemManager.addCustomItem(new CustomItemLaser());
 
+        lobby = new Lobby();
+
         getServer().getPluginManager().registerEvents(new MainEventListener(), this);
         getServer().getPluginManager().registerEvents(new TabListEventListener(), this);
         getServer().getPluginManager().registerEvents(new CrapEventListener(), this);
         getServer().getPluginManager().registerEvents(new WebhookApiListener(), this);
         getServer().getPluginManager().registerEvents(new CustomItemListener(), this);
         getServer().getPluginManager().registerEvents(new ShitEvenListener(), this);
-        getServer().getPluginManager().registerEvents(new Lobby(), this);
+        getServer().getPluginManager().registerEvents(lobby, this);
 
         for (CustomItem item : CustomItemManager.items) {
             getServer().getPluginManager().registerEvents(item, this);
@@ -117,6 +120,8 @@ public final class AFMCorePlugin extends JavaPlugin {
     }
 
     public void configSave() {
+        config.set("lobby.spawnLocation", PluginConfig.lobbySpawnLocation);
+
         saveConfig();
     }
 
