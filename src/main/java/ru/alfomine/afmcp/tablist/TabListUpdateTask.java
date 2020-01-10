@@ -15,7 +15,7 @@ public class TabListUpdateTask implements Runnable {
         this.tabList.clearEntries();
 
         for (Player player : Bukkit.getOnlinePlayers()) {
-            this.tabList.addEntry(player, false);
+            this.tabList.addEntry(player);
         }
 
         this.tabList.sortEntries();

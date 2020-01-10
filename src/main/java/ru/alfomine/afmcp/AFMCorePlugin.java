@@ -53,7 +53,6 @@ public final class AFMCorePlugin extends JavaPlugin {
         lobby = new Lobby();
 
         getServer().getPluginManager().registerEvents(new MainEventListener(), this);
-        getServer().getPluginManager().registerEvents(new TabListEventListener(), this);
         getServer().getPluginManager().registerEvents(new CrapEventListener(), this);
         getServer().getPluginManager().registerEvents(new WebhookApiListener(), this);
         getServer().getPluginManager().registerEvents(new CustomItemListener(), this);

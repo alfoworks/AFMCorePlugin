@@ -1,12 +1,19 @@
 package ru.alfomine.afmcp.tablist;
 
+import com.comphenix.packetwrapper.WrapperPlayServerPlayerInfo;
+import com.comphenix.packetwrapper.WrapperPlayServerPlayerListHeaderFooter;
+import com.comphenix.protocol.wrappers.EnumWrappers;
+import com.comphenix.protocol.wrappers.PlayerInfoData;
+import com.comphenix.protocol.wrappers.WrappedChatComponent;
+import com.comphenix.protocol.wrappers.WrappedGameProfile;
+import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.chat.ComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import ru.alfomine.afmcp.AFMCorePlugin;
 import ru.alfomine.afmcp.PluginConfig;
 
-import java.util.HashSet;
-import java.util.LinkedHashSet;
+import java.util.*;
 
 public class WrappedTabList {
     private LinkedHashSet<WrappedTabListEntry> entries; //Linked потому, что требуется сортировка.
@@ -16,16 +23,11 @@ public class WrappedTabList {
         Bukkit.getScheduler().runTaskTimer(AFMCorePlugin.getPlugin(), new TabListUpdateTask(this), 0, 100);
     }
 
-    // boolean sort - сортировать только в случае добавления игроков из ивента.
-    // В таске игроки добавляются последовательно, а значит что лишняя сортировка создаст лишнюю нагрузку.
-
-    public void addEntry(Player player, boolean sort) {
+    public void addEntry(Player player) {
         this.entries.add(new WrappedTabListEntry(player));
-
-        if (sort) sortEntries();
     }
 
-    public void removeEntry(Player player, boolean sort) {
+    public void removeEntry(Player player) {
         WrappedTabListEntry entryToRemove = null;
 
         for (WrappedTabListEntry entry : this.entries) {
@@ -38,12 +40,40 @@ public class WrappedTabList {
         if (entryToRemove != null) {
             this.entries.remove(entryToRemove);
         }
-
-        if (sort) sortEntries();
     }
 
     public LinkedHashSet<WrappedTabListEntry> getEntries() { // Дает Immutable лист (неизменяемый)
         return this.entries;
+    }
+
+    public void testSendPacket() {
+        // Хедер и футер
+        // Отправляет пакет, который добавляет таблисту хедер "BeuBass" и футер "Anal"
+
+        WrapperPlayServerPlayerListHeaderFooter packetHeaderFooter = new WrapperPlayServerPlayerListHeaderFooter();
+        packetHeaderFooter.setFooter(getStringAsWrappedChatComponent("BeuBass"));
+        packetHeaderFooter.setHeader(getStringAsWrappedChatComponent("Anal"));
+        packetHeaderFooter.broadcastPacket();
+
+        // Сам список игроков
+        // Добавляет в список игроков игрока с ником "Danbonus"
+
+        WrapperPlayServerPlayerInfo packetInfo = new WrapperPlayServerPlayerInfo();
+        List<PlayerInfoData> players = new ArrayList<>();
+
+        players.add(new PlayerInfoData(new WrappedGameProfile(UUID.randomUUID(), "Danbonus"), -1, EnumWrappers.NativeGameMode.SURVIVAL, getStringAsWrappedChatComponent("Danbonus")));
+
+        packetInfo.setAction(EnumWrappers.PlayerInfoAction.ADD_PLAYER);
+        packetInfo.setData(players);
+        packetInfo.broadcastPacket();
+
+        /*
+        P.S. для отправки конкретному игроку юзать packet.sendPacket(Player player).
+         */
+    }
+
+    private WrappedChatComponent getStringAsWrappedChatComponent(String text) {
+        return WrappedChatComponent.fromJson(ComponentSerializer.toString(new TextComponent(text)));
     }
 
     // ================== Для таска ================= //
