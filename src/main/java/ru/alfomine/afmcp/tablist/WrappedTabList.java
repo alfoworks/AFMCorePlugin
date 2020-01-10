@@ -47,7 +47,12 @@ public class WrappedTabList {
     }
 
     public void sendPlayerInfo(){
-
+        for(WrappedTabListEntry entry: this.entries){
+            WrapperPlayServerPlayerListHeaderFooter packet = new WrapperPlayServerPlayerListHeaderFooter();
+            packet.setFooter(getStringAsWrappedChatComponent(entry.footer));
+            packet.setHeader(getStringAsWrappedChatComponent(entry.header));
+            packet.sendPacket(entry.player);
+        }
     }
 
     public void testSendPacket() {

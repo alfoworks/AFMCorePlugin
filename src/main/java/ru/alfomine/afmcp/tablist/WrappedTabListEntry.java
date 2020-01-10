@@ -15,14 +15,15 @@ public class WrappedTabListEntry {
     public UUID uuid;
     public GameMode gameMode;
     public PermissionUser permissionUser;
+    public Player player;
 
-    private String header;
-    private String footer;
+    String header;
+    String footer;
 
     public WrappedTabListEntry(Player player) {
         this.permissionUser = PermissionsEx.getUser(player.getName());
         this.name = String.format("%s %s", this.permissionUser.getPrefix(), this.permissionUser.getName());
-
+        this.player = player;
         EntityPlayer nmsPlayer = ((CraftPlayer) player).getHandle();
 
         this.latency = nmsPlayer.ping;
