@@ -61,6 +61,11 @@ public class WrappedTabList {
 
         // players.add(new PlayerInfoData(new WrappedGameProfile(UUID.randomUUID(), "Danbonus"), -1, EnumWrappers.NativeGameMode.SURVIVAL, getStringAsWrappedChatComponent("Danbonus")));
 
+        Collection<? extends Player> onlinePlayers = Bukkit.getOnlinePlayers();
+        for(Player player: onlinePlayers){
+            players.add(new PlayerInfoData(new WrappedGameProfile(player.getUniqueId(), player.getDisplayName()), -1,
+                    EnumWrappers.NativeGameMode.NOT_SET, WrappedChatComponent.fromText("")));
+        }
 
         packetInfo.setAction(EnumWrappers.PlayerInfoAction.REMOVE_PLAYER);
         packetInfo.setData(players);
@@ -116,7 +121,8 @@ public class WrappedTabList {
 
                 if (entry.permissionUser.inGroup(group, false)) {
                     out.add(entry);
-                } else if (entry.permissionUser.getAllGroups().size() < 1) {
+                } else //noinspection deprecation заебало
+                    if (entry.permissionUser.getAllGroups().size() < 1) {
                     ungroupped.add(entry);
                 }
             }
