@@ -1,6 +1,5 @@
 package ru.alfomine.afmcp.tablist;
 
-import com.comphenix.packetwrapper.WrapperPlayServerPlayerListHeaderFooter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -13,6 +12,7 @@ public class TabListUpdateTask implements Runnable {
 
     @Override
     public void run() {
+        this.tabList.clearClientside();
         this.tabList.clearEntries();
 
         for (Player player : Bukkit.getOnlinePlayers()) {
@@ -20,8 +20,7 @@ public class TabListUpdateTask implements Runnable {
         }
 
         this.tabList.sortEntries();
+        this.tabList.flush();
         this.tabList.sendPlayerInfo();
-        this.tabList.clearClientTablists();
-
     }
 }

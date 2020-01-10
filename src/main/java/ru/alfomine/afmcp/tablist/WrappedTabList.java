@@ -55,22 +55,30 @@ public class WrappedTabList {
         }
     }
 
-    public void clearClientTablists(){
-        WrapperPlayServerPlayerInfo packetInfo = new WrapperPlayServerPlayerInfo();
+    public void clearClientside(){
+        WrapperPlayServerPlayerInfo packet = new WrapperPlayServerPlayerInfo();
         List<PlayerInfoData> players = new ArrayList<>();
-
-        // players.add(new PlayerInfoData(new WrappedGameProfile(UUID.randomUUID(), "Danbonus"), -1, EnumWrappers.NativeGameMode.SURVIVAL, getStringAsWrappedChatComponent("Danbonus")));
-
         Collection<? extends Player> onlinePlayers = Bukkit.getOnlinePlayers();
         for(Player player: onlinePlayers){
             players.add(new PlayerInfoData(new WrappedGameProfile(player.getUniqueId(), player.getDisplayName()), -1,
                     EnumWrappers.NativeGameMode.NOT_SET, WrappedChatComponent.fromText("")));
         }
 
-        packetInfo.setAction(EnumWrappers.PlayerInfoAction.REMOVE_PLAYER);
-        packetInfo.setData(players);
-        packetInfo.broadcastPacket();
-        this.clearEntries();
+        packet.setAction(EnumWrappers.PlayerInfoAction.REMOVE_PLAYER);
+        packet.setData(players);
+        packet.broadcastPacket();
+    }
+
+    public void flush() {
+        WrapperPlayServerPlayerInfo packet = new WrapperPlayServerPlayerInfo();
+        List<PlayerInfoData> players = new ArrayList<>();
+        for (WrappedTabListEntry entry : this.entries) {
+            players.add(new PlayerInfoData(new WrappedGameProfile(entry.uuid, "user"), entry.latency,
+                    EnumWrappers.NativeGameMode.fromBukkit(entry.gameMode), WrappedChatComponent.fromText(entry.name)));
+        }
+        packet.setAction(EnumWrappers.PlayerInfoAction.ADD_PLAYER);
+        packet.setData(players);
+        packet.broadcastPacket();
     }
 
     public void testSendPacket() {
