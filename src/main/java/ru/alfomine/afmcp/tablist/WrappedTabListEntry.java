@@ -1,6 +1,7 @@
 package ru.alfomine.afmcp.tablist;
 
 import net.minecraft.server.v1_12_R1.EntityPlayer;
+import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
@@ -21,7 +22,7 @@ public class WrappedTabListEntry {
 
     public WrappedTabListEntry(Player player) {
         this.permissionUser = PermissionsEx.getUser(player.getName());
-        this.name = String.format("%s %s", this.permissionUser.getPrefix(), this.permissionUser.getName());
+        this.name = String.format("%s %s", ChatColor.translateAlternateColorCodes('&', this.permissionUser.getPrefix()), this.permissionUser.getName());
         EntityPlayer nmsPlayer = ((CraftPlayer) player).getHandle();
 
         this.latency = nmsPlayer.ping;

@@ -87,12 +87,6 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>org.bukkit</groupId>
-      <artifactId>craftbukkit</artifactId>
-      <version>1.12-R0.1-SNAPSHOT</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
       <groupId>ru.tehkode.permissions</groupId>
       <artifactId>PermissionsEx</artifactId>
       <version>1.0</version>
@@ -106,6 +100,13 @@
       <scope>system</scope>
       <systemPath>${basedir}/lib/herochat.jar</systemPath>
     </dependency>
+      <dependency>
+          <groupId>org.bukkit</groupId>
+          <artifactId>craftbukkit</artifactId>
+          <version>1.12-R0.1-SNAPSHOT</version>
+          <scope>system</scope>
+          <systemPath>${basedir}/lib/craftbukkit-1.12.jar</systemPath>
+      </dependency>
   </dependencies>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
