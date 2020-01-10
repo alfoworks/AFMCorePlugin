@@ -51,7 +51,7 @@ public class WrappedTabList {
             WrapperPlayServerPlayerListHeaderFooter packet = new WrapperPlayServerPlayerListHeaderFooter();
             packet.setFooter(getStringAsWrappedChatComponent(entry.footer));
             packet.setHeader(getStringAsWrappedChatComponent(entry.header));
-            packet.sendPacket(entry.player);
+            packet.sendPacket(Bukkit.getPlayer(entry.uuid));
         }
     }
 
