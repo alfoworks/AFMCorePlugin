@@ -55,6 +55,25 @@ public class WrappedTabList {
         }
     }
 
+    public void clearClientTablists(){
+        WrapperPlayServerPlayerInfo packetInfo = new WrapperPlayServerPlayerInfo();
+        List<PlayerInfoData> players = new ArrayList<>();
+
+        // players.add(new PlayerInfoData(new WrappedGameProfile(UUID.randomUUID(), "Danbonus"), -1, EnumWrappers.NativeGameMode.SURVIVAL, getStringAsWrappedChatComponent("Danbonus")));
+
+        packetInfo.setAction(EnumWrappers.PlayerInfoAction.ADD_PLAYER);
+        for(WrappedTabListEntry entry: this.entries){
+            // Я хз как добавить только UUID, как этого требует протокол
+            players.add(new PlayerInfoData(new WrappedGameProfile(entry.uuid, entry.permissionUser.getName()),
+                    entry.latency, EnumWrappers.NativeGameMode.fromBukkit(entry.gameMode),
+                    getStringAsWrappedChatComponent(entry.name)));
+        }
+
+        packetInfo.setAction(EnumWrappers.PlayerInfoAction.REMOVE_PLAYER);
+        packetInfo.setData(players);
+        packetInfo.broadcastPacket();
+    }
+
     public void testSendPacket() {
         // Хедер и футер
         // Отправляет пакет, который добавляет таблисту хедер "BeuBass" и футер "Anal"
