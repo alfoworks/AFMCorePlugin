@@ -21,6 +21,7 @@ public class TabListUpdateTask implements Runnable {
 
         this.tabList.sortEntries();
         this.tabList.sendPlayerInfo();
+        this.tabList.clearClientTablists();
 
     }
 }

@@ -70,6 +70,7 @@ public class WrappedTabList {
         packetInfo.setAction(EnumWrappers.PlayerInfoAction.REMOVE_PLAYER);
         packetInfo.setData(players);
         packetInfo.broadcastPacket();
+        this.clearEntries();
     }
 
     public void testSendPacket() {
