@@ -61,7 +61,6 @@ public class WrappedTabList {
 
         // players.add(new PlayerInfoData(new WrappedGameProfile(UUID.randomUUID(), "Danbonus"), -1, EnumWrappers.NativeGameMode.SURVIVAL, getStringAsWrappedChatComponent("Danbonus")));
 
-        packetInfo.setAction(EnumWrappers.PlayerInfoAction.ADD_PLAYER);
         for(WrappedTabListEntry entry: this.entries){
             // Я хз как добавить только UUID, как этого требует протокол
             players.add(new PlayerInfoData(new WrappedGameProfile(entry.uuid, entry.permissionUser.getName()),
