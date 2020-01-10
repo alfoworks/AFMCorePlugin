@@ -46,6 +46,10 @@ public class WrappedTabList {
         return this.entries;
     }
 
+    public void sendPlayerInfo(){
+
+    }
+
     public void testSendPacket() {
         // Хедер и футер
         // Отправляет пакет, который добавляет таблисту хедер "BeuBass" и футер "Anal"

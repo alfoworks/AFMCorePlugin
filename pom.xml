@@ -95,7 +95,8 @@
             <groupId>org.bukkit</groupId>
             <artifactId>craftbukkit</artifactId>
             <version>1.12-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/craftbukkit-1.12.jar</systemPath>
         </dependency>
 
         <dependency>
