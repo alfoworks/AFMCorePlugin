@@ -19,7 +19,7 @@ public class TabListUpdateTask implements Runnable {
             this.tabList.addEntry(player);
         }
 
-        this.tabList.sortEntries();
+        this.tabList.sortEntries(2);
         this.tabList.flush();
         this.tabList.sendPlayerInfo();
     }
