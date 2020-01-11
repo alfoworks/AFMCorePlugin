@@ -8,6 +8,7 @@ import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import com.comphenix.protocol.wrappers.WrappedGameProfile;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.yaml.snakeyaml.reader.StreamReader;
 import ru.alfomine.afmcp.AFMCorePlugin;
 import ru.alfomine.afmcp.PluginConfig;
 
@@ -120,12 +121,27 @@ public class WrappedTabList {
     }
 
     void sortEntries() {
-        this.entries.sort((a, b) -> {
-
-            String aName = a.permissionUser.getIdentifier();
-            String bName = b.permissionUser.getIdentifier();
-            List<String> priority = Arrays.asList(PluginConfig.tabSortGroups);
-            return Integer.compare(priority.indexOf(aName), priority.indexOf(bName));
-        });
+        // Экспериментальный способ coming soon
+//        this.entries.sort((a, b) -> {
+//
+//            String aName = a.permissionUser.getIdentifier();
+//            String bName = b.permissionUser.getIdentifier();
+//            List<String> priority = Arrays.asList(PluginConfig.tabSortGroups);
+//            return Integer.compare(priority.indexOf(aName), priority.indexOf(bName));
+//        });
+        // TODO Сложность алгоритма квадратична, нужно оптимизировать. Занимает много памяти.
+        ArrayList<WrappedTabListEntry> newEntries = new ArrayList<>();
+        ArrayList<WrappedTabListEntry> queue = new ArrayList<>(this.entries);
+        queue.sort(Comparator.comparing(a -> a.permissionUser.getName()));
+        for (String group: PluginConfig.tabSortGroups){
+            for(WrappedTabListEntry entry: queue){
+                if(entry.permissionUser.inGroup(group, false)){
+                    queue.remove(entry);
+                    newEntries.add(entry);
+                }
+            }
+        }
+        newEntries.addAll(queue);
+        this.entries = newEntries;
     }
 }
