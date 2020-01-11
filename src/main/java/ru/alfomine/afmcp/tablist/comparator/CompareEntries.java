@@ -12,8 +12,8 @@ public class CompareEntries implements Comparator<WrappedTabListEntry> {
     @Override
     public int compare(WrappedTabListEntry a, WrappedTabListEntry b) {
         // TODO
-        String aName = a.permissionUser.getGroup().getName();
-        String bName = b.permissionUser.getGroup().getName();
+        String aName = a.permissionUser.getIdentifier();
+        String bName = b.permissionUser.getIdentifier();
         List<String> priority = Arrays.asList(PluginConfig.tabSortGroups);
         return Integer.compare(priority.indexOf(aName), priority.indexOf(bName));
 
