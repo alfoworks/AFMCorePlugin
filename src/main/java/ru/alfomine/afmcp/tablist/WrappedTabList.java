@@ -22,7 +22,9 @@ public class WrappedTabList {
     }
 
     public void addEntry(Player player) {
-        this.entries.add(new WrappedTabListEntry(player));
+        WrappedTabListEntry entry = new WrappedTabListEntry(player);
+        if(this.entries.contains(entry)) return;
+        this.entries.add(entry);
     }
 
     public void removeEntry(Player player) {
@@ -119,6 +121,7 @@ public class WrappedTabList {
 
     void sortEntries() {
         this.entries.sort((a, b) -> {
+
             String aName = a.permissionUser.getIdentifier();
             String bName = b.permissionUser.getIdentifier();
             List<String> priority = Arrays.asList(PluginConfig.tabSortGroups);

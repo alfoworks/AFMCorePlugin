@@ -32,4 +32,13 @@ public class WrappedTabListEntry {
         this.header = "Заглушка 1";
         this.footer = "Заглушка 2";
     }
+
+    @Override
+    public boolean equals(Object b){
+        if(b instanceof WrappedTabListEntry){
+            return this.uuid == ((WrappedTabListEntry) b).uuid;
+        }else{
+            return false;
+        }
+    }
 }
