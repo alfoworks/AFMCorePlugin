@@ -34,10 +34,10 @@ public class WrappedTabListEntry {
     }
 
     @Override
-    public boolean equals(Object b){
-        if(b instanceof WrappedTabListEntry){
+    public boolean equals(Object b) {
+        if (b instanceof WrappedTabListEntry) {
             return this.uuid == ((WrappedTabListEntry) b).uuid;
-        }else{
+        } else {
             return false;
         }
     }
