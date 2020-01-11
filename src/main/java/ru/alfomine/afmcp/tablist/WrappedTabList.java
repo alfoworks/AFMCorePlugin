@@ -108,7 +108,7 @@ public class WrappedTabList {
     }
 
     private WrappedChatComponent getStringAsWrappedChatComponent(String text) {
-        //return WrappedChatComponent.fromJson(ComponentSerializer.toString(new TextComponent(text)));
+        // return WrappedChatComponent.fromJson(ComponentSerializer.toString(new TextComponent(text)));
         return WrappedChatComponent.fromText(text);
     }
 
