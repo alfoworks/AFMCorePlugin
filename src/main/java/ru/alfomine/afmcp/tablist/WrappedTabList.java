@@ -120,28 +120,38 @@ public class WrappedTabList {
         this.entries.clear();
     }
 
-    void sortEntries() {
-        // Экспериментальный способ coming soon
-//        this.entries.sort((a, b) -> {
-//
-//            String aName = a.permissionUser.getIdentifier();
-//            String bName = b.permissionUser.getIdentifier();
-//            List<String> priority = Arrays.asList(PluginConfig.tabSortGroups);
-//            return Integer.compare(priority.indexOf(aName), priority.indexOf(bName));
-//        });
-        // TODO Сложность алгоритма квадратична, нужно оптимизировать. Занимает много памяти.
-        ArrayList<WrappedTabListEntry> newEntries = new ArrayList<>();
-        ArrayList<WrappedTabListEntry> queue = new ArrayList<>(this.entries);
-        queue.sort(Comparator.comparing(a -> a.permissionUser.getName()));
-        for (String group: PluginConfig.tabSortGroups){
-            for(WrappedTabListEntry entry: queue){
-                if(entry.permissionUser.inGroup(group, false)){
-                    queue.remove(entry);
-                    newEntries.add(entry);
+    void sortEntries(@SuppressWarnings("SameParameterValue") int mode) {
+        if(mode == 2) { // Экспериментальный способ 2
+            this.entries.sort((a, b) -> {
+                String aName = a.permissionUser.getIdentifier();
+                String bName = b.permissionUser.getIdentifier();
+                List<String> priority = Arrays.asList(PluginConfig.tabSortGroups);
+                return Integer.compare(priority.indexOf(aName), priority.indexOf(bName));
+            });
+        }else if(mode == 1) {// Экспериментальный способ 1
+            this.entries.sort((a, b) -> {
+                String aName = a.permissionUser.getParentIdentifiers(null)
+                        .get(0); // .get(a.permissionUser.getParentIdentifiers(null).size()-1);
+                String bName = b.permissionUser.getParentIdentifiers(null)
+                        .get(0); // .get(b.permissionUser.getParentIdentifiers(null).size()-1);
+                List<String> priority = Arrays.asList(PluginConfig.tabSortGroups);
+                return Integer.compare(priority.indexOf(aName), priority.indexOf(bName));
+            });
+        }else { // Нормальный способ
+            // TODO Сложность алгоритма квадратична, нужно оптимизировать. Занимает много памяти.
+            ArrayList<WrappedTabListEntry> newEntries = new ArrayList<>();
+            ArrayList<WrappedTabListEntry> queue = new ArrayList<>(this.entries);
+            queue.sort(Comparator.comparing(a -> a.permissionUser.getName()));
+            for (String group: PluginConfig.tabSortGroups){
+                for(WrappedTabListEntry entry: queue){
+                    if(entry.permissionUser.inGroup(group, false)){
+                        queue.remove(entry);
+                        newEntries.add(entry);
+                    }
                 }
             }
+            newEntries.addAll(queue);
+            this.entries = newEntries;
         }
-        newEntries.addAll(queue);
-        this.entries = newEntries;
     }
 }
