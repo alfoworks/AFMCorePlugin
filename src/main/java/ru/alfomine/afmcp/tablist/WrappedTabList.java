@@ -9,12 +9,9 @@ import com.comphenix.protocol.wrappers.WrappedGameProfile;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import ru.alfomine.afmcp.AFMCorePlugin;
-import ru.alfomine.afmcp.tablist.comparator.CompareEntries;
+import ru.alfomine.afmcp.PluginConfig;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class WrappedTabList {
     private List<WrappedTabListEntry> entries;
@@ -121,6 +118,11 @@ public class WrappedTabList {
     }
 
     void sortEntries() {
-        this.entries.sort(new CompareEntries());
+        this.entries.sort((a, b) -> {
+            String aName = a.permissionUser.getIdentifier();
+            String bName = b.permissionUser.getIdentifier();
+            List<String> priority = Arrays.asList(PluginConfig.tabSortGroups);
+            return Integer.compare(priority.indexOf(aName), priority.indexOf(bName));
+        });
     }
 }
