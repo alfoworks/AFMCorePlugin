@@ -101,7 +101,7 @@ public class MainEventListener implements Listener {
         PluginStatics.playerChestSet.remove(player);
         PluginStatics.playerDel.remove(player);
 
-        for(Object entry : config.getConfigurationSection("chests").getValues(false).values()) {
+        for (Object entry : config.getConfigurationSection("chests").getValues(false).values()) {
             String value = (String) entry;
 
             if (value.equals(LocationUtil.toString(block.getLocation()))) {

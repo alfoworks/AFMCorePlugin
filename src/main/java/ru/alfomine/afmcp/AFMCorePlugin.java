@@ -87,7 +87,7 @@ public final class AFMCorePlugin extends JavaPlugin {
                 return;
             }
 
-            for(String key : section.getKeys(false)) {
+            for (String key : section.getKeys(false)) {
                 Block chestBlock = LocationUtil.fromString(config.getString("chests." + key)).getBlock();
                 Block presetBlock = LocationUtil.fromString(config.getString("presets." + key)).getBlock();
 
