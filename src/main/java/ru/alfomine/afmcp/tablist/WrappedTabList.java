@@ -12,6 +12,7 @@ import ru.alfomine.afmcp.AFMCorePlugin;
 import ru.alfomine.afmcp.PluginConfig;
 
 import java.util.*;
+import java.util.logging.Level;
 
 public class WrappedTabList {
     private List<WrappedTabListEntry> entries;
@@ -27,6 +28,7 @@ public class WrappedTabList {
         this.entries.add(entry);
     }
 
+    @SuppressWarnings("unused")
     public void removeEntry(Player player) {
         WrappedTabListEntry entryToRemove = null;
 
@@ -125,6 +127,7 @@ public class WrappedTabList {
                 String aName = a.permissionUser.getIdentifier();
                 String bName = b.permissionUser.getIdentifier();
                 List<String> priority = Arrays.asList(PluginConfig.tabSortGroups);
+                AFMCorePlugin.log("a " + aName + "; b " + bName, Level.INFO);
                 return Integer.compare(priority.indexOf(aName), priority.indexOf(bName));
             });
         } else if (mode == 1) {// Экспериментальный способ 1

@@ -75,7 +75,7 @@ public class WebhookApiListener implements Listener {
     }
 
     private String locationToString(Location location) {
-        String locationStrings[] = {String.valueOf(Math.round(location.getX())), String.valueOf(Math.round(location.getY())), String.valueOf(Math.round(location.getZ()))};
+        String[] locationStrings = {String.valueOf(Math.round(location.getX())), String.valueOf(Math.round(location.getY())), String.valueOf(Math.round(location.getZ()))};
 
         return String.join(", ", locationStrings);
     }
