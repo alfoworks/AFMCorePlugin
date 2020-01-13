@@ -42,59 +42,65 @@ public class CommandAFMCP extends CustomCommand {
 
                 return true;
             }
+            switch (args.get(1).toLowerCase()) {
+                case "gettablist":
+                    sender.sendMessage("===============TabList===============");
 
-            if (args.get(1).equalsIgnoreCase("gettablist")) {
-                sender.sendMessage("===============TabList===============");
+                    for (WrappedTabListEntry entry : AFMCorePlugin.tabList.getEntries()) {
+                        sender.sendMessage(String.format("%s, gm: %s, latency: %s", entry.name, entry.gameMode.name(), String.valueOf(entry.latency)));
+                    }
 
-                for (WrappedTabListEntry entry : AFMCorePlugin.tabList.getEntries()) {
-                    sender.sendMessage(String.format("%s, gm: %s, latency: %s", entry.name, entry.gameMode.name(), String.valueOf(entry.latency)));
-                }
+                    sender.sendMessage("=====================================");
+                    break;
+                case "fparticles":
+                    if (!(sender instanceof Player)) {
+                        sendErrorMessage(sender, "Эта команда не может быть выполнена от консоли.");
+                        return true;
+                    }
 
-                sender.sendMessage("=====================================");
-            } else if (args.get(1).equalsIgnoreCase("fparticles")) {
-                if (!(sender instanceof Player)) {
-                    sendErrorMessage(sender, "Эта команда не может быть выполнена от консоли.");
+                    Player player = (Player) sender;
+
+                    if (!PluginStatics.debugFlightParticlesPlayers.remove(player)) {
+                        PluginStatics.debugFlightParticlesPlayers.add(player);
+                    }
+
+                    sendMessage(sender, String.format("Переключено: %s", PluginStatics.debugFlightParticlesPlayers.contains(player)));
+                    break;
+                case "exceptiontest":
+                    throw new Exception("Text exception from debug command");
+                case "ondisable":
+                    for (Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
+                        plugin.onDisable();
+                    }
+
+                    sendMessage(sender, "Все \"выключено\"");
+                    break;
+                case "newyear":
+                    for (Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
+                        Bukkit.getPluginManager().disablePlugin(plugin);
+                    }
+
+                    Bukkit.getOnlinePlayers().forEach(player1 -> {
+                        player1.sendMessage(ChatColor.YELLOW + "AllForMine" + ChatColor.WHITE + " > С Новым Годом!!!");
+                        player1.getWorld().strikeLightning(player1.getLocation());
+                    });
+
+                    sendMessage(sender, "Все выключено");
+                    break;
+                case "retranslate":
+                    PluginStatics.debugRetranslateEnabled = !PluginStatics.debugRetranslateEnabled;
+
+                    sendMessage(sender, String.format("Переключено: %s", PluginStatics.debugRetranslateEnabled));
+                    break;
+                case "tablist":
+                    AFMCorePlugin.tabList.testSendPacket();
+
+                    sendMessage(sender, "Пакеты отправлены!");
+                    break;
+                default:
+                    sendMessage(sender, "Неизвестная подкоманда. Да и вообще, вылези из дебага. Это не тебе сделано)");
+
                     return true;
-                }
-
-                Player player = (Player) sender;
-
-                if (!PluginStatics.debugFlightParticlesPlayers.remove(player)) {
-                    PluginStatics.debugFlightParticlesPlayers.add(player);
-                }
-
-                sendMessage(sender, String.format("Переключено: %s", PluginStatics.debugFlightParticlesPlayers.contains(player)));
-            } else if (args.get(1).equalsIgnoreCase("exceptiontest")) {
-                throw new Exception("Text exception from debug command");
-            } else if (args.get(1).equalsIgnoreCase("ondisable")) {
-                for (Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
-                    plugin.onDisable();
-                }
-
-                sendMessage(sender, "Все \"выключено\"");
-            } else if (args.get(1).equalsIgnoreCase("newyear")) {
-                for (Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
-                    Bukkit.getPluginManager().disablePlugin(plugin);
-                }
-
-                for (Player player : Bukkit.getOnlinePlayers()) {
-                    player.sendMessage(ChatColor.YELLOW + "AllForMine" + ChatColor.WHITE + " > С Новым Годом!!!");
-                    player.getWorld().strikeLightning(player.getLocation());
-                }
-
-                sendMessage(sender, "Все выключено");
-            } else if (args.get(1).equalsIgnoreCase("retranslate")) {
-                PluginStatics.debugRetranslateEnabled = !PluginStatics.debugRetranslateEnabled;
-
-                sendMessage(sender, String.format("Переключено: %s", PluginStatics.debugRetranslateEnabled));
-            } else if (args.get(1).equalsIgnoreCase("tablist")) {
-                AFMCorePlugin.tabList.testSendPacket();
-
-                sendMessage(sender, "Пакеты отправлены!");
-            } else {
-                sendMessage(sender, "Неизвестная подкоманда. Да и вообще, вылези из дебага. Это не тебе сделано)");
-
-                return true;
             }
         } else {
             return false;
