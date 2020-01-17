@@ -125,7 +125,6 @@ public class WrappedTabList {
     public void sortEntries() {
         // Экспериментальный способ 1 ревизия 1 РАБОТАЕТ
         this.entries.sort((a, b) -> {
-
             String aName = Iterables.getLast(a.permissionUser.getParentIdentifiers(null), "player");
             String bName = Iterables.getLast(b.permissionUser.getParentIdentifiers(null), "player");
             List<String> priority = Arrays.asList(PluginConfig.tabSortGroups);
