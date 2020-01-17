@@ -122,7 +122,7 @@ public class WrappedTabList {
     }
 
     public void sortEntries(@SuppressWarnings("SameParameterValue") int mode) {
-        if (mode == 3) { // Экспериментальный способ 2
+        if (mode == 3) { // Экспериментальный способ 2 НЕ РАБОТАЕТ
             this.entries.sort((a, b) -> {
                 String aName = a.permissionUser.getIdentifier();
                 String bName = b.permissionUser.getIdentifier();
@@ -130,7 +130,7 @@ public class WrappedTabList {
                 AFMCorePlugin.log("a " + aName + "; b " + bName, Level.INFO);
                 return Integer.compare(priority.indexOf(aName), priority.indexOf(bName));
             });
-        } else if (mode == 2) {// Экспериментальный способ 1 ревизия 1
+        } else if (mode == 2) {// Экспериментальный способ 1 ревизия 1 РАБОТАЕТ
             this.entries.sort((a, b) -> {
                 String aName = a.permissionUser.getParentIdentifiers(null)
                         .get(a.permissionUser.getParentIdentifiers(null).size()-1);
@@ -140,7 +140,7 @@ public class WrappedTabList {
                 AFMCorePlugin.log("a " + aName + "; b " + bName, Level.INFO);
                 return Integer.compare(priority.indexOf(aName), priority.indexOf(bName));
             });
-        } else if (mode == 1) {// Экспериментальный способ 1 ревизия 0
+        } else if (mode == 1) {// Экспериментальный способ 1 ревизия 0 ВЕРОЯТНО НЕ РАБОТАЕТ
             this.entries.sort((a, b) -> {
                 String aName = a.permissionUser.getParentIdentifiers(null)
                         .get(0); // .get(a.permissionUser.getParentIdentifiers(null).size()-1);

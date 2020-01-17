@@ -4,7 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 public class TabListUpdateTask implements Runnable {
-    public static int mode = 3;
+    public static int mode = 2;
     private WrappedTabList tabList;
 
     public TabListUpdateTask(WrappedTabList tabList) {
