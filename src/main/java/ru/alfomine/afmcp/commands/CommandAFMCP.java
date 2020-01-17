@@ -94,35 +94,6 @@ public class CommandAFMCP extends CustomCommand {
 
                     sendMessage(sender, String.format("Переключено: %s", PluginStatics.debugRetranslateEnabled));
                     break;
-                case "tablist":
-                    if(args.size() < 3) {
-                        AFMCorePlugin.tabList.testSendPacket();
-
-                        sendMessage(sender, "Пакеты отправлены!");
-                    }else{
-                        String mode = args.get(2);
-                        switch (mode){
-                            case "flush":
-                                WrappedTabList tabList = AFMCorePlugin.tabList;
-                                tabList.clearClientside();
-                                tabList.clearEntries();
-
-                                for (Player player2 : Bukkit.getOnlinePlayers()) {
-                                    tabList.addEntry(player2);
-                                }
-
-                                tabList.sortEntries(TabListUpdateTask.mode);
-                                tabList.flush();
-                                tabList.sendPlayerInfo();
-                                break;
-                            case "3": TabListUpdateTask.mode = 3; break;
-                            case "2": TabListUpdateTask.mode = 2; break;
-                            case "1": TabListUpdateTask.mode = 1; break;
-                            default: TabListUpdateTask.mode = 0; break;
-                        }
-                        sendMessage(sender, "Режим: " + TabListUpdateTask.mode);
-                    }
-                    break;
                 default:
                     sendMessage(sender, "Неизвестная подкоманда. Да и вообще, вылези из дебага. Это не тебе сделано)");
 

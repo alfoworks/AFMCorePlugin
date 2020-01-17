@@ -121,50 +121,16 @@ public class WrappedTabList {
         this.entries.clear();
     }
 
-    public void sortEntries(@SuppressWarnings("SameParameterValue") int mode) {
-        if (mode == 3) { // Экспериментальный способ 2 НЕ РАБОТАЕТ
-            this.entries.sort((a, b) -> {
-                String aName = a.permissionUser.getIdentifier();
-                String bName = b.permissionUser.getIdentifier();
-                List<String> priority = Arrays.asList(PluginConfig.tabSortGroups);
-                AFMCorePlugin.log("a " + aName + "; b " + bName, Level.INFO);
-                return Integer.compare(priority.indexOf(aName), priority.indexOf(bName));
-            });
-        } else if (mode == 2) {// Экспериментальный способ 1 ревизия 1 РАБОТАЕТ
-            this.entries.sort((a, b) -> {
-                String aName = a.permissionUser.getParentIdentifiers(null)
-                        .get(a.permissionUser.getParentIdentifiers(null).size()-1);
-                String bName = b.permissionUser.getParentIdentifiers(null)
-                        .get(b.permissionUser.getParentIdentifiers(null).size()-1);
-                List<String> priority = Arrays.asList(PluginConfig.tabSortGroups);
-                AFMCorePlugin.log("a " + aName + "; b " + bName, Level.INFO);
-                return Integer.compare(priority.indexOf(aName), priority.indexOf(bName));
-            });
-        } else if (mode == 1) {// Экспериментальный способ 1 ревизия 0 ВЕРОЯТНО НЕ РАБОТАЕТ
-            this.entries.sort((a, b) -> {
-                String aName = a.permissionUser.getParentIdentifiers(null)
-                        .get(0); // .get(a.permissionUser.getParentIdentifiers(null).size()-1);
-                String bName = b.permissionUser.getParentIdentifiers(null)
-                        .get(0); // .get(b.permissionUser.getParentIdentifiers(null).size()-1);
-                List<String> priority = Arrays.asList(PluginConfig.tabSortGroups);
-                AFMCorePlugin.log("a " + aName + "; b " + bName, Level.INFO);
-                return Integer.compare(priority.indexOf(aName), priority.indexOf(bName));
-            });
-        } else { // Нормальный способ
-            // TODO Сложность алгоритма квадратична, нужно оптимизировать. Занимает много памяти.
-            ArrayList<WrappedTabListEntry> newEntries = new ArrayList<>();
-            ArrayList<WrappedTabListEntry> queue = new ArrayList<>(this.entries);
-            queue.sort(Comparator.comparing(a -> a.permissionUser.getName()));
-            for (String group : PluginConfig.tabSortGroups) {
-                for (WrappedTabListEntry entry : queue) {
-                    if (entry.permissionUser.inGroup(group, false)) {
-                        queue.remove(entry);
-                        newEntries.add(entry);
-                    }
-                }
-            }
-            newEntries.addAll(queue);
-            this.entries = newEntries;
-        }
+    public void sortEntries() {
+        // Экспериментальный способ 1 ревизия 1 РАБОТАЕТ
+        this.entries.sort((a, b) -> {
+            String aName = a.permissionUser.getParentIdentifiers(null)
+                    .get(a.permissionUser.getParentIdentifiers(null).size()-1);
+            String bName = b.permissionUser.getParentIdentifiers(null)
+                    .get(b.permissionUser.getParentIdentifiers(null).size()-1);
+            List<String> priority = Arrays.asList(PluginConfig.tabSortGroups);
+            AFMCorePlugin.log("a " + aName + "; b " + bName, Level.INFO);
+            return Integer.compare(priority.indexOf(aName), priority.indexOf(bName));
+        });
     }
 }

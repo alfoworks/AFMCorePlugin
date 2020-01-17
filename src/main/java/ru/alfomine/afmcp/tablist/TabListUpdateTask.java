@@ -4,7 +4,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 public class TabListUpdateTask implements Runnable {
-    public static int mode = 2;
     private WrappedTabList tabList;
 
     public TabListUpdateTask(WrappedTabList tabList) {
@@ -20,7 +19,7 @@ public class TabListUpdateTask implements Runnable {
             this.tabList.addEntry(player);
         }
 
-        this.tabList.sortEntries(mode);
+        this.tabList.sortEntries();
         this.tabList.flush();
         this.tabList.sendPlayerInfo();
     }
