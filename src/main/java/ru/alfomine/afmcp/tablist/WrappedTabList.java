@@ -118,11 +118,11 @@ public class WrappedTabList {
 
     // ================== Для таска ================= //
 
-    public void clearEntries() {
+    void clearEntries() {
         this.entries.clear();
     }
 
-    public void sortEntries() {
+    void sortEntries() {
         // Экспериментальный способ 1 ревизия 1 РАБОТАЕТ
         this.entries.sort((a, b) -> {
             String aName = Iterables.getLast(a.permissionUser.getParentIdentifiers(null), "player");
