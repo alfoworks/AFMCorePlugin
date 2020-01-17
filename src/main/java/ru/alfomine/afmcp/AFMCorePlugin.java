@@ -108,7 +108,7 @@ public final class AFMCorePlugin extends JavaPlugin {
 
     // TODO Улучшить обработку конфигов. Почистить от старого говна (ChestRefill) и добавить ООП ко всему этому ужасу.
     public void configReload() {
-        PluginConfig.tabSortGroups = config.getStringList("tabSortGroups").toArray(new String[]{});
+        PluginConfig.tabSortGroups = config.getStringList("tabSortGroups");
         PluginConfig.serverApiPort = config.getInt("server_api.port");
 
         PluginConfig.serverId = config.getString("webhook_api.serverId");

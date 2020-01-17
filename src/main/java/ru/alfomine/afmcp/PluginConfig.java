@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class PluginConfig {
-    public static String[] tabSortGroups = new String[]{};
+    public static List<String> tabSortGroups = new ArrayList<>();
 
     public static int autoLoginHours;
     public static HashMap<String, Long> playerLastLoginTimestamps = new HashMap<>();

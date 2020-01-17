@@ -127,9 +127,8 @@ public class WrappedTabList {
         this.entries.sort((a, b) -> {
             String aName = Iterables.getLast(a.permissionUser.getParentIdentifiers(null), "player");
             String bName = Iterables.getLast(b.permissionUser.getParentIdentifiers(null), "player");
-            List<String> priority = Arrays.asList(PluginConfig.tabSortGroups);
             AFMCorePlugin.log("a " + aName + "; b " + bName, Level.INFO);
-            return Integer.compare(priority.indexOf(aName), priority.indexOf(bName));
+            return Integer.compare(PluginConfig.tabSortGroups.indexOf(aName), PluginConfig.tabSortGroups.indexOf(bName));
         });
     }
 }
