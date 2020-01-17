@@ -9,6 +9,7 @@ import org.bukkit.plugin.Plugin;
 import ru.alfomine.afmcp.AFMCorePlugin;
 import ru.alfomine.afmcp.PluginStatics;
 import ru.alfomine.afmcp.tablist.TabListUpdateTask;
+import ru.alfomine.afmcp.tablist.WrappedTabList;
 import ru.alfomine.afmcp.tablist.WrappedTabListEntry;
 
 import java.util.ArrayList;
@@ -101,6 +102,19 @@ public class CommandAFMCP extends CustomCommand {
                     }else{
                         String mode = args.get(2);
                         switch (mode){
+                            case "flush":
+                                WrappedTabList tabList = AFMCorePlugin.tabList;
+                                tabList.clearClientside();
+                                tabList.clearEntries();
+
+                                for (Player player2 : Bukkit.getOnlinePlayers()) {
+                                    tabList.addEntry(player2);
+                                }
+
+                                tabList.sortEntries(TabListUpdateTask.mode);
+                                tabList.flush();
+                                tabList.sendPlayerInfo();
+                                break;
                             case "3": TabListUpdateTask.mode = 3; break;
                             case "2": TabListUpdateTask.mode = 2; break;
                             case "1": TabListUpdateTask.mode = 1; break;

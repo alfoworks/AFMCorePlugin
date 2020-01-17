@@ -22,7 +22,7 @@ public class RebootTask extends BukkitRunnable {
             Bukkit.broadcastMessage(String.format("%sСервер перезапускается через %s%s %sсекунд.", ChatColor.RED, ChatColor.WHITE, passedSecs, ChatColor.RED));
         }
 
-        if (passedSecs == 1) {
+        if (passedSecs == 0) {
             for (Player player : Bukkit.getServer().getOnlinePlayers()) {
                 player.kickPlayer(ChatColor.LIGHT_PURPLE + "Сервер ушёл на рестарт! Увидимся через минуту <3");
             }

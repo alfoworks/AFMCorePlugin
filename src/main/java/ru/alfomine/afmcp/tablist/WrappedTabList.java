@@ -117,11 +117,11 @@ public class WrappedTabList {
 
     // ================== Для таска ================= //
 
-    void clearEntries() {
+    public void clearEntries() {
         this.entries.clear();
     }
 
-    void sortEntries(@SuppressWarnings("SameParameterValue") int mode) {
+    public void sortEntries(@SuppressWarnings("SameParameterValue") int mode) {
         if (mode == 3) { // Экспериментальный способ 2
             this.entries.sort((a, b) -> {
                 String aName = a.permissionUser.getIdentifier();

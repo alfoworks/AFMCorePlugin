@@ -7,7 +7,7 @@ public class TabListUpdateTask implements Runnable {
     public static int mode = 3;
     private WrappedTabList tabList;
 
-    TabListUpdateTask(WrappedTabList tabList) {
+    public TabListUpdateTask(WrappedTabList tabList) {
         this.tabList = tabList;
     }
 
