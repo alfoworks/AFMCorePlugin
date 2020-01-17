@@ -6,6 +6,7 @@ import com.comphenix.protocol.wrappers.EnumWrappers;
 import com.comphenix.protocol.wrappers.PlayerInfoData;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import com.comphenix.protocol.wrappers.WrappedGameProfile;
+import com.google.common.collect.Iterables;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import ru.alfomine.afmcp.AFMCorePlugin;
@@ -124,10 +125,9 @@ public class WrappedTabList {
     public void sortEntries() {
         // Экспериментальный способ 1 ревизия 1 РАБОТАЕТ
         this.entries.sort((a, b) -> {
-            String aName = a.permissionUser.getParentIdentifiers(null)
-                    .get(a.permissionUser.getParentIdentifiers(null).size()-1);
-            String bName = b.permissionUser.getParentIdentifiers(null)
-                    .get(b.permissionUser.getParentIdentifiers(null).size()-1);
+
+            String aName = Iterables.getLast(a.permissionUser.getParentIdentifiers(null), "player");
+            String bName = Iterables.getLast(b.permissionUser.getParentIdentifiers(null), "player");
             List<String> priority = Arrays.asList(PluginConfig.tabSortGroups);
             AFMCorePlugin.log("a " + aName + "; b " + bName, Level.INFO);
             return Integer.compare(priority.indexOf(aName), priority.indexOf(bName));
