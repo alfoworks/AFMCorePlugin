@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import ru.alfomine.afmcp.AFMCorePlugin;
 import ru.alfomine.afmcp.PluginStatics;
+import ru.alfomine.afmcp.tablist.TabListUpdateTask;
 import ru.alfomine.afmcp.tablist.WrappedTabListEntry;
 
 import java.util.ArrayList;
@@ -93,9 +94,20 @@ public class CommandAFMCP extends CustomCommand {
                     sendMessage(sender, String.format("Переключено: %s", PluginStatics.debugRetranslateEnabled));
                     break;
                 case "tablist":
-                    AFMCorePlugin.tabList.testSendPacket();
+                    if(args.size() < 3) {
+                        AFMCorePlugin.tabList.testSendPacket();
 
-                    sendMessage(sender, "Пакеты отправлены!");
+                        sendMessage(sender, "Пакеты отправлены!");
+                    }else{
+                        String mode = args.get(2);
+                        switch (mode){
+                            case "3": TabListUpdateTask.mode = 3; break;
+                            case "2": TabListUpdateTask.mode = 2; break;
+                            case "1": TabListUpdateTask.mode = 1; break;
+                            default: TabListUpdateTask.mode = 0; break;
+                        }
+                        sendMessage(sender, "Режим: " + TabListUpdateTask.mode);
+                    }
                     break;
                 default:
                     sendMessage(sender, "Неизвестная подкоманда. Да и вообще, вылези из дебага. Это не тебе сделано)");
