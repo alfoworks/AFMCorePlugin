@@ -9,6 +9,15 @@ lobby:
   spawnLocation: ""
   playerCities:
 
+tabList: # \n - перенос строки
+  headerText: "&aShard Of Islands"
+  footerText: "&eДобро пожаловать :)"
+
+  # %s - текст, который вставляется в строку (координата или онлайн, например). Не убирать!
+
+  onlineCountText: "\n\n&7Онлайн: &a%s&7/&a%s"
+  coordinatesText: "\n\n&7X: &a%s &7Y: &a%s &7Z: &a%s"
+
 webhook_api:
   serverId: "so"
   url: "https://allformine.ru/webhook_api/"

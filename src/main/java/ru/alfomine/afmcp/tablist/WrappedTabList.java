@@ -21,7 +21,7 @@ public class WrappedTabList {
 
     public WrappedTabList() {
         this.entries = new ArrayList<>();
-        Bukkit.getScheduler().runTaskTimer(AFMCorePlugin.getPlugin(), new TabListUpdateTask(this), 0, 100);
+        Bukkit.getScheduler().runTaskTimer(AFMCorePlugin.getPlugin(), new TabListUpdateTask(this), 0, 20);
     }
 
     public void addEntry(Player player) {

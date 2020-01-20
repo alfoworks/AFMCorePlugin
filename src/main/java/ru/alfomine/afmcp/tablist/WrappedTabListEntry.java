@@ -9,8 +9,10 @@ import net.minecraft.server.v1_12_R1.EntityPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
+import ru.alfomine.afmcp.PluginConfig;
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
@@ -35,10 +37,12 @@ public class WrappedTabListEntry {
         this.uuid = player.getUniqueId();
         this.gameMode = player.getGameMode();
 
-        this.header = "Хедер строка 1\nстрока2\nстрока3";
-        this.footer = "Футер строка 1\nстрока2\nстрока3";
+        this.header = ChatColor.translateAlternateColorCodes('&', PluginConfig.tabListHeader);
+        this.footer = ChatColor.translateAlternateColorCodes('&', PluginConfig.tabListFooter);
+
+        generateDynamicStuff(player);
     }
-    
+
     public PlayerInfoData getAsPlayerInfoData() {
         return new PlayerInfoData(
                 new WrappedGameProfile(this.uuid, this.permissionUser.getName()), this.latency,
@@ -60,5 +64,12 @@ public class WrappedTabListEntry {
         } else {
             return false;
         }
+    }
+
+    private void generateDynamicStuff(Player player) {
+        Location playerLocation = player.getLocation();
+
+        this.header += ChatColor.translateAlternateColorCodes('&', String.format(PluginConfig.tabListOnlineCount, Bukkit.getOnlinePlayers().size(), Bukkit.getMaxPlayers()));
+        this.footer += ChatColor.translateAlternateColorCodes('&', String.format(PluginConfig.tabListCoordinates, playerLocation.getBlockX(), playerLocation.getBlockY(), playerLocation.getBlockZ()));
     }
 }
