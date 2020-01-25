@@ -1,7 +1,6 @@
 package ru.alfomine.afmcp.tablist;
 
 import com.comphenix.packetwrapper.WrapperPlayServerPlayerInfo;
-import com.comphenix.packetwrapper.WrapperPlayServerPlayerListHeaderFooter;
 import com.comphenix.protocol.wrappers.EnumWrappers;
 import com.comphenix.protocol.wrappers.PlayerInfoData;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
@@ -12,7 +11,9 @@ import org.bukkit.entity.Player;
 import ru.alfomine.afmcp.AFMCorePlugin;
 import ru.alfomine.afmcp.PluginConfig;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.logging.Level;
 
 public class WrappedTabList {
@@ -20,7 +21,7 @@ public class WrappedTabList {
 
     public WrappedTabList() {
         this.entries = new ArrayList<>();
-        Bukkit.getScheduler().runTaskTimer(AFMCorePlugin.getPlugin(), new TabListUpdateTask(this), 0, 100);
+        Bukkit.getScheduler().runTaskTimer(AFMCorePlugin.getPlugin(), new TabListUpdateTask(this), 0, 20);
     }
 
     public void addEntry(Player player) {
@@ -49,15 +50,6 @@ public class WrappedTabList {
         return this.entries;
     }
 
-    public void sendPlayerInfo() {
-        for (WrappedTabListEntry entry : this.entries) {
-            WrapperPlayServerPlayerListHeaderFooter packet = new WrapperPlayServerPlayerListHeaderFooter();
-            packet.setFooter(getStringAsWrappedChatComponent(entry.footer));
-            packet.setHeader(getStringAsWrappedChatComponent(entry.header));
-            packet.sendPacket(Bukkit.getPlayer(entry.uuid));
-        }
-    }
-
     public void clearClientside() {
         WrapperPlayServerPlayerInfo packet = new WrapperPlayServerPlayerInfo();
         List<PlayerInfoData> players = new ArrayList<>();
@@ -72,48 +64,19 @@ public class WrappedTabList {
         packet.broadcastPacket();
     }
 
-    public void flush() {
-        WrapperPlayServerPlayerInfo packet = new WrapperPlayServerPlayerInfo();
+    public void sendTabList() {
+        WrapperPlayServerPlayerInfo packetServerInfo = new WrapperPlayServerPlayerInfo();
         List<PlayerInfoData> players = new ArrayList<>();
+
         for (WrappedTabListEntry entry : this.entries) {
-            players.add(new PlayerInfoData(
-                    new WrappedGameProfile(entry.uuid, entry.permissionUser.getName()), entry.latency,
-                    EnumWrappers.NativeGameMode.fromBukkit(entry.gameMode), WrappedChatComponent.fromText(entry.name)));
+            players.add(entry.getAsPlayerInfoData());
+
+            entry.sendHeaderFooterPacket();
         }
-        packet.setAction(EnumWrappers.PlayerInfoAction.ADD_PLAYER);
-        packet.setData(players);
-        packet.broadcastPacket();
-    }
 
-    public void testSendPacket() {
-        // Хедер и футер
-        // Отправляет пакет, который добавляет таблисту хедер "BeuBass" и футер "Anal"
-
-        WrapperPlayServerPlayerListHeaderFooter packetHeaderFooter = new WrapperPlayServerPlayerListHeaderFooter();
-        packetHeaderFooter.setFooter(getStringAsWrappedChatComponent("BeuBass"));
-        packetHeaderFooter.setHeader(getStringAsWrappedChatComponent("Anal"));
-        packetHeaderFooter.broadcastPacket();
-
-        // Сам список игроков
-        // Добавляет в список игроков игрока с ником "Danbonus"
-
-        WrapperPlayServerPlayerInfo packetInfo = new WrapperPlayServerPlayerInfo();
-        List<PlayerInfoData> players = new ArrayList<>();
-
-        players.add(new PlayerInfoData(new WrappedGameProfile(UUID.randomUUID(), "Danbonus"), -1, EnumWrappers.NativeGameMode.SURVIVAL, getStringAsWrappedChatComponent("Danbonus")));
-
-        packetInfo.setAction(EnumWrappers.PlayerInfoAction.ADD_PLAYER);
-        packetInfo.setData(players);
-        packetInfo.broadcastPacket();
-
-        /*
-        P.S. для отправки конкретному игроку юзать packet.sendPacket(Player player).
-         */
-    }
-
-    private WrappedChatComponent getStringAsWrappedChatComponent(String text) {
-        // return WrappedChatComponent.fromJson(ComponentSerializer.toString(new TextComponent(text)));
-        return WrappedChatComponent.fromText(text);
+        packetServerInfo.setAction(EnumWrappers.PlayerInfoAction.ADD_PLAYER);
+        packetServerInfo.setData(players);
+        packetServerInfo.broadcastPacket();
     }
 
     // ================== Для таска ================= //
@@ -123,7 +86,6 @@ public class WrappedTabList {
     }
 
     void sortEntries() {
-        // Экспериментальный способ 1 ревизия 1 РАБОТАЕТ
         this.entries.sort((a, b) -> {
             String aName = Iterables.getLast(a.permissionUser.getParentIdentifiers(null), "player");
             String bName = Iterables.getLast(b.permissionUser.getParentIdentifiers(null), "player");

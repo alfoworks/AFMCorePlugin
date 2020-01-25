@@ -116,6 +116,11 @@ public final class AFMCorePlugin extends JavaPlugin {
         PluginConfig.hiddenCommandsList = config.getStringList("webhook_api.hiddenCommands");
 
         PluginConfig.lobbySpawnLocation = config.getString("lobby.spawnLocation");
+
+        PluginConfig.tabListHeader = config.getString("tabList.headerText");
+        PluginConfig.tabListFooter = config.getString("tabList.footerText");
+        PluginConfig.tabListOnlineCount = config.getString("tabList.onlineCountText");
+        PluginConfig.tabListCoordinates = config.getString("tabList.coordinatesText");
     }
 
     public void configSave() {

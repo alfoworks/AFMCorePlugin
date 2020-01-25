@@ -20,4 +20,9 @@ public class PluginConfig {
     public static List<String> hiddenCommandsList = new ArrayList<>();
 
     public static String lobbySpawnLocation = "";
+
+    public static String tabListHeader = "";
+    public static String tabListFooter = "";
+    public static String tabListOnlineCount = "";
+    public static String tabListCoordinates = "";
 }
