@@ -20,6 +20,7 @@ import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 import ru.alfomine.afmcp.AFMCorePlugin;
 import ru.alfomine.afmcp.PluginConfig;
+import ru.alfomine.afmcp.util.LocationUtil;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -41,59 +42,71 @@ public class Lobby implements Listener {
         return false;
     }
 
+    public boolean addPlayerToLobby(Player player) {
+        if (lobbyPlayers.contains(player)) {
+            return false;
+        }
+
+        if (PluginConfig.lobbySpawnLocation.equals("")) {
+            Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "Алярм! Позиция спавна лобби не установлена. Лобби не работает!!!");
+
+            return false;
+        }
+
+        player.teleport(LocationUtil.fromString(PluginConfig.lobbySpawnLocation));
+
+        lobbyPlayers.add(player);
+        sendStyledMessage(player, "Добро пожаловать в лобби!");
+
+        if (player.hasPermission("afmcp.lobby.exit")) {
+            sendStyledMessage(player, "Пропишите /lobby exit, чтобы выйти из лобби.");
+        }
+
+        //На всякий случай очищаем инвентарь, мало ли, говно какое-нибудь будет
+
+        player.getInventory().clear();
+
+        // Добавляем кнопки
+        LobbyPlayerInventory inventory = new LobbyPlayerInventory(player);
+
+        inventory.addItem(new LobbyItem(ChatColor.AQUA + "Выбрать королевство", Material.NETHER_STAR, 0, (Player clickPlayer) -> {
+            clickPlayer.sendMessage("Beu beu");
+        }), 0);
+
+        inventory.addItem(new LobbyItem(ChatColor.GOLD + "Эффекты", Material.BLAZE_POWDER, 1, (Player clickPlayer) -> {
+            clickPlayer.sendMessage("Beu beu");
+        }), 1);
+
+        inventory.addItem(new LobbyItem(ChatColor.GREEN + "Магазин", Material.EMERALD, 2, (Player clickPlayer) -> {
+            clickPlayer.sendMessage("Beu beu");
+        }), 2);
+
+        inventory.addItem(new LobbyItem(ChatColor.BLUE + "Мой профиль", Material.SKULL_ITEM, 3, player.getUniqueId(), (Player clickPlayer) -> {
+            clickPlayer.sendMessage("Beu beu");
+        }), 4);
+
+        inventory.addItem(new LobbyItem(ChatColor.GREEN + "Видимость игроков: включена", Material.INK_SACK, 4, (short) 10, (Player clickPlayer) -> {
+            clickPlayer.sendMessage("Beu beu");
+        }), 7);
+
+        inventory.addItem(new LobbyItem(ChatColor.DARK_AQUA + "Информация", Material.BOOK, 4, (Player clickPlayer) -> {
+            clickPlayer.sendMessage("Beu beu");
+        }), 8);
+
+        lobbyPlayerInventories.put(player, inventory);
+
+        player.setGameMode(GameMode.SURVIVAL);
+
+        return true;
+    }
+
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         if (AFMCorePlugin.config.get("lobby.playerCities." + event.getPlayer().getName()) != null || event.getPlayer().hasPermission("afmcp.lobby.ignore")) {
             return; // Игрок уже зарегистрирован в каком-то из городов или у него стоит игнор лобби
         }
 
-        if (PluginConfig.lobbySpawnLocation.equals("")) {
-            Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "Алярм! Позиция спавна лобби не установлена. Лобби не работает!!!");
-
-            return;
-        }
-
-        lobbyPlayers.add(event.getPlayer());
-        sendStyledMessage(event.getPlayer(), "Добро пожаловать в лобби!");
-
-        if (event.getPlayer().hasPermission("afmcp.lobby.exit")) {
-            sendStyledMessage(event.getPlayer(), "Пропишите /lobby exit, чтобы выйти из лобби.");
-        }
-
-        //На всякий случай очищаем инвентарь, мало ли, говно какое-нибудь будет
-
-        event.getPlayer().getInventory().clear();
-
-        // Добавляем кнопки
-        LobbyPlayerInventory inventory = new LobbyPlayerInventory(event.getPlayer());
-
-        inventory.addItem(new LobbyItem(ChatColor.AQUA + "Выбрать королевство", Material.NETHER_STAR, 0, (Player player) -> {
-            player.sendMessage("Beu beu");
-        }), 0);
-
-        inventory.addItem(new LobbyItem(ChatColor.GOLD + "Эффекты", Material.BLAZE_POWDER, 1, (Player player) -> {
-            player.sendMessage("Beu beu");
-        }), 1);
-
-        inventory.addItem(new LobbyItem(ChatColor.GREEN + "Магазин", Material.EMERALD, 2, (Player player) -> {
-            player.sendMessage("Beu beu");
-        }), 2);
-
-        inventory.addItem(new LobbyItem(ChatColor.BLUE + "Мой профиль", Material.SKULL_ITEM, 3, event.getPlayer().getUniqueId(), (Player player) -> {
-            player.sendMessage("Beu beu");
-        }), 4);
-
-        inventory.addItem(new LobbyItem(ChatColor.GREEN + "Видимость игроков: включена", Material.INK_SACK, 4, (short) 10, (Player player) -> {
-            player.sendMessage("Beu beu");
-        }), 7);
-
-        inventory.addItem(new LobbyItem(ChatColor.DARK_AQUA + "Информация", Material.BOOK, 4, (Player player) -> {
-            player.sendMessage("Beu beu");
-        }), 8);
-
-        lobbyPlayerInventories.put(event.getPlayer(), inventory);
-
-        event.getPlayer().setGameMode(GameMode.SURVIVAL);
+        addPlayerToLobby(event.getPlayer());
     }
 
     @EventHandler

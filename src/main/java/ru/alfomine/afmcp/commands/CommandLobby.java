@@ -35,6 +35,10 @@ public class CommandLobby extends CustomCommand {
             } else {
                 sendMessage(sender, "Вы не находитесь в лобби.");
             }
+        } else if (subCommand.equalsIgnoreCase("join")) {
+            if (!AFMCorePlugin.getPlugin().lobby.addPlayerToLobby((Player) sender)) {
+                sendMessage(sender, "Вы уже находитесь в лобби!");
+            }
         }
 
         return true;
