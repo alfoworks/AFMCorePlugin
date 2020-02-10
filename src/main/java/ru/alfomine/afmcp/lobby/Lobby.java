@@ -14,6 +14,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
+import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.*;
@@ -29,12 +30,17 @@ import java.util.Set;
 public class Lobby implements Listener {
     private Set<Player> lobbyPlayers = new HashSet<>();
     private HashMap<Player, LobbyPlayerInventory> lobbyPlayerInventories = new HashMap<>();
+    private HashMap<Player, PlayerState> previousStates = new HashMap<>();
 
     public boolean removePlayerFromLobby(Player player) {
         if (lobbyPlayers.remove(player)) {
             lobbyPlayerInventories.remove(player);
 
             player.getInventory().clear();
+
+            if (previousStates.containsKey(player)) {
+                previousStates.get(player).applyTo(player);
+            }
 
             return true;
         }
@@ -53,6 +59,8 @@ public class Lobby implements Listener {
             return false;
         }
 
+        previousStates.put(player, new PlayerState(player));
+
         player.teleport(LocationUtil.fromString(PluginConfig.lobbySpawnLocation));
 
         lobbyPlayers.add(player);
@@ -62,9 +70,14 @@ public class Lobby implements Listener {
             sendStyledMessage(player, "Пропишите /lobby exit, чтобы выйти из лобби.");
         }
 
-        //На всякий случай очищаем инвентарь, мало ли, говно какое-нибудь будет
+        // На всякий случай очищаем инвентарь, мало ли, говно какое-нибудь будет
 
         player.getInventory().clear();
+
+        // Хп/уровень/опыт на дефолт
+        player.setHealth(20D);
+        player.setFoodLevel(20);
+        player.setExp(0);
 
         // Добавляем кнопки
         LobbyPlayerInventory inventory = new LobbyPlayerInventory(player);
@@ -95,7 +108,7 @@ public class Lobby implements Listener {
 
         lobbyPlayerInventories.put(player, inventory);
 
-        player.setGameMode(GameMode.SURVIVAL);
+        player.setGameMode(GameMode.ADVENTURE);
 
         return true;
     }
@@ -112,6 +125,7 @@ public class Lobby implements Listener {
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
         if (lobbyPlayers.remove(event.getPlayer())) lobbyPlayerInventories.remove(event.getPlayer());
+        previousStates.remove(event.getPlayer());
     }
 
     // ======== Классы для взаимодействия в лобби ======== //
@@ -190,6 +204,11 @@ public class Lobby implements Listener {
     @EventHandler
     public void onItemDrop(PlayerDropItemEvent event) {
         event.setCancelled(lobbyPlayers.contains(event.getPlayer()));
+    }
+
+    @EventHandler
+    public void onFoodLevelChange(FoodLevelChangeEvent event) {
+        event.setCancelled(lobbyPlayers.contains((Player) event.getEntity()));
     }
 
     // ========================== //
