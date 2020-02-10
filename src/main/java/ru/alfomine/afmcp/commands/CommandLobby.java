@@ -18,6 +18,7 @@ public class CommandLobby extends CustomCommand {
 
             sender.sendMessage(String.format("%s%s %s- %s%s", ChatColor.GOLD, "setspawn", ChatColor.WHITE, ChatColor.LIGHT_PURPLE, "установить место спавна"));
             sender.sendMessage(String.format("%s%s %s- %s%s", ChatColor.GOLD, "exit", ChatColor.WHITE, ChatColor.LIGHT_PURPLE, "выйти из лобби"));
+            sender.sendMessage(String.format("%s%s %s- %s%s", ChatColor.GOLD, "join", ChatColor.WHITE, ChatColor.LIGHT_PURPLE, "войти в лобби"));
 
             return true;
         }
@@ -39,6 +40,8 @@ public class CommandLobby extends CustomCommand {
             if (!AFMCorePlugin.getPlugin().lobby.addPlayerToLobby((Player) sender)) {
                 sendMessage(sender, "Вы уже находитесь в лобби!");
             }
+        } else {
+            sendMessage(sender, "Незивестная подкоманда!");
         }
 
         return true;
