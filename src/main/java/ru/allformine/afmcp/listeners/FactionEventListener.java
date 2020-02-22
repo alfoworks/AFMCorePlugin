@@ -16,12 +16,12 @@ public class FactionEventListener {
         Player player = event.getTargetEntity();
 
         Optional<Faction> faction = EagleFactionsPlugin.getPlugin().getFactionLogic().getFactionByChunk(player.getWorld().getUniqueId(), player.getLocation().getChunkPosition());
-        sendToPlayer(player, getFactionNameForPlayer(faction, player));
+        sendToPlayer(player, getFactionNameForPlayer(faction.orElse(null), player));
     }
 
     @Listener
     public void onFactionAreaChange(FactionAreaEnterEventImpl event) {
-        sendToPlayer(event.getCreator(), getFactionNameForPlayer(event.getEnteredFaction(), event.getCreator()));
+        sendToPlayer(event.getCreator(), getFactionNameForPlayer(event.getEnteredFaction().orElse(null), event.getCreator()));
     }
 
     // ============================== //
@@ -30,8 +30,8 @@ public class FactionEventListener {
         PacketChannels.FACTIONS.sendTo(player, buf -> buf.writeString(string));
     }
 
-    private String getFactionNameForPlayer(Optional<Faction> faction, Player player) {
-        String factionName = faction.isPresent() ? faction.get().getName() : "Общая";
+    private String getFactionNameForPlayer(Faction faction, Player player) {
+        String factionName = faction == null ? "Общая" : faction.getName();
         String factionColor;
 
         if (factionName.equals("SafeZone") || EagleFactionsPlugin.getPlugin().getConfiguration().getProtectionConfig().getSafeZoneWorldNames().contains(player.getWorld().getName())) {
@@ -40,12 +40,14 @@ public class FactionEventListener {
         } else if (factionName.equals("WarZone") || EagleFactionsPlugin.getPlugin().getConfiguration().getProtectionConfig().getWarZoneWorldNames().contains(player.getWorld().getName())) {
             factionColor = "§4";
             factionName = "WarZone";
-        } else if (!factionName.equals("Общая") && faction.get().containsPlayer(player.getUniqueId())) {
-            factionColor = "§a";
-        } else if (!factionName.equals("Общая") && !faction.get().containsPlayer(player.getUniqueId())) {
-            factionColor = "§6";
-        } else {
+        } else if (faction == null) {
             factionColor = "§2";
+        } else {
+            if(faction.containsPlayer(player.getUniqueId())) {
+                factionColor = "§a";
+            }else{
+                factionColor = "§6";
+            }
         }
 
         return factionColor + factionName;

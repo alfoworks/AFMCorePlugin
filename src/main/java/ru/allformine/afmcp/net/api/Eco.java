@@ -8,6 +8,7 @@ import ru.allformine.afmcp.net.http.Response;
 
 import java.util.OptionalInt;
 
+@SuppressWarnings("unused")
 public class Eco {
     private static ConfigurationNode configNode = AFMCorePlugin.getConfig().getNode("eco");
     private static String key = configNode.getNode("key").getString();

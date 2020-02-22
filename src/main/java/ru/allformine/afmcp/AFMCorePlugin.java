@@ -51,8 +51,6 @@ public class AFMCorePlugin {
     private Path configFile;
     private ConfigurationLoader<CommentedConfigurationNode> configLoader;
 
-    public static long startTime = 0;
-
     public static CommentedConfigurationNode getConfig() {
         return configNode;
     }
@@ -126,7 +124,6 @@ public class AFMCorePlugin {
 
     @Listener
     public void onServerStart(GameStartedServerEvent event) {
-        startTime = System.currentTimeMillis();
         Webhook.sendServerMessage(Webhook.TypeServerMessage.SERVER_STARTED);
     }
 

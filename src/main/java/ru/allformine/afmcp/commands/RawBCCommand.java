@@ -14,7 +14,7 @@ public class RawBCCommand extends AFMCPCommand {
     @Override
     public CommandResult execute(CommandSource scr, CommandContext args) {
         for (Player player : Sponge.getServer().getOnlinePlayers()) {
-            player.sendMessage(TextSerializers.FORMATTING_CODE.deserialize(Text.of(args.<String>getOne("text").get()).toPlain()));
+            player.sendMessage(TextSerializers.FORMATTING_CODE.deserialize(Text.of(args.<String>getOne("text").orElse("")).toPlain()));
         }
 
         reply(scr, Text.of("Сообщение успешно отправлено!"));
