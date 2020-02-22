@@ -11,7 +11,7 @@ import org.spongepowered.api.text.format.TextColors;
 
 public class AFMCPCommand implements CommandExecutor {
     @Override
-    public CommandResult execute(CommandSource scr, CommandContext args) throws CommandException {
+    public CommandResult execute(CommandSource scr, CommandContext args) {
         return CommandResult.success();
     }
 

@@ -15,7 +15,6 @@ import org.spongepowered.api.event.game.state.GamePreInitializationEvent;
 import org.spongepowered.api.event.game.state.GameStartedServerEvent;
 import org.spongepowered.api.event.game.state.GameStoppingServerEvent;
 import org.spongepowered.api.plugin.Plugin;
-import org.spongepowered.api.scheduler.Task;
 import org.spongepowered.api.text.Text;
 import ru.allformine.afmcp.commands.*;
 import ru.allformine.afmcp.jumppad.JumpPadEventListener;
@@ -23,8 +22,6 @@ import ru.allformine.afmcp.listeners.DiscordWebhookListener;
 import ru.allformine.afmcp.listeners.FactionEventListener;
 import ru.allformine.afmcp.listeners.TestEventListener;
 import ru.allformine.afmcp.net.api.Webhook;
-import ru.allformine.afmcp.packetlisteners.ScreenshotListener;
-import ru.allformine.afmcp.serverapi.HTTPServer;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -47,8 +44,6 @@ public class AFMCorePlugin {
     private static CommentedConfigurationNode configNode;
 
     public static boolean debugSwitch = false;
-
-    public static HTTPServer apiServer;
 
     @Inject
     @ConfigDir(sharedRoot = false)
@@ -124,41 +119,24 @@ public class AFMCorePlugin {
 
     @Listener
     public void init(GameInitializationEvent event) {
-        PacketChannels.SCREENSHOT = Sponge.getGame()
-                .getChannelRegistrar()
-                .createRawChannel(this, "AN3234234A");
-
         PacketChannels.FACTIONS = Sponge.getGame()
                 .getChannelRegistrar()
                 .createRawChannel(this, "factions");
-
-        PacketChannels.SCREENSHOT.addListener(new ScreenshotListener());
     }
 
     @Listener
     public void onServerStart(GameStartedServerEvent event) {
         startTime = System.currentTimeMillis();
-
-        //Discord.sendMessageServer(Discord.MessageTypeServer.TYPE_SERVER_STARTED);
         Webhook.sendServerMessage(Webhook.TypeServerMessage.SERVER_STARTED);
-
-        /*
-        apiServer = new HTTPServer();
-
-        apiServerTask = Task.builder().execute(apiServer)
-                .async().name("AFMCP APISERVER")
-                .submit(this);*/
     }
 
     @Listener
     public void onServerStop(GameStoppingServerEvent event) {
-        //Discord.sendMessageServer(Discord.MessageTypeServer.TYPE_SERVER_STOPPED);
         if (serverRestart) {
             Webhook.sendServerMessage(Webhook.TypeServerMessage.SERVER_RESTARTING);
         } else {
             Webhook.sendServerMessage(Webhook.TypeServerMessage.SERVER_STOPPED);
         }
-        // apiServerTask.cancel();
     }
 
     private void configSetup() {
