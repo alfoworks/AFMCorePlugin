@@ -49,7 +49,6 @@ public class AFMCorePlugin {
     public static boolean debugSwitch = false;
 
     public static HTTPServer apiServer;
-    private Task apiServerTask;
 
     @Inject
     @ConfigDir(sharedRoot = false)
@@ -143,11 +142,12 @@ public class AFMCorePlugin {
         //Discord.sendMessageServer(Discord.MessageTypeServer.TYPE_SERVER_STARTED);
         Webhook.sendServerMessage(Webhook.TypeServerMessage.SERVER_STARTED);
 
+        /*
         apiServer = new HTTPServer();
 
         apiServerTask = Task.builder().execute(apiServer)
                 .async().name("AFMCP APISERVER")
-                .submit(this);
+                .submit(this);*/
     }
 
     @Listener
@@ -158,7 +158,7 @@ public class AFMCorePlugin {
         } else {
             Webhook.sendServerMessage(Webhook.TypeServerMessage.SERVER_STOPPED);
         }
-        apiServerTask.cancel();
+        // apiServerTask.cancel();
     }
 
     private void configSetup() {
