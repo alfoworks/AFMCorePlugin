@@ -35,6 +35,22 @@ dependencies {
     compile name: 'packetgate'
 }
 
+jar {
+    archiveName "afmcp.jar"
+    baseName = 'afmcp'
+    version =  version
+}
+
+task copyForShared(type: Copy){
+    from jar
+    into 'build/libs/'
+    rename { String fileName ->
+        // a simple way is to remove the "-$version" from the jar filename
+        // but you can customize the filename replacement rule as you wish.
+        fileName.replace("-$project.version", "")
+    }
+}
+
 sponge.plugin.id = "afmcp"
 
 apply plugin: 'net.minecraftforge.gradle.forge'
