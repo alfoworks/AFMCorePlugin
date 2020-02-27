@@ -1,21 +1,24 @@
 package ru.allformine.afmcp.lobby;
 
-import com.sun.media.jfxmedia.events.PlayerStateEvent;
-import net.minecraft.nbt.NBTTagCompound;
+import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.entity.living.player.gamemode.GameMode;
+import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.action.InteractEvent;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
+import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.format.TextColors;
 import ru.allformine.afmcp.AFMCorePlugin;
+import ru.allformine.afmcp.PluginConfig;
+import ru.allformine.afmcp.dataitem.DataItem;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Lobby implements Listener {
+public class Lobby {
     private Set<Player> lobbyPlayers = new HashSet<>();
     private HashMap<Player, LobbyPlayerInventory> lobbyPlayerInventories = new HashMap<>();
     private HashMap<Player, PlayerState> previousStates = new HashMap<>();
@@ -37,22 +40,25 @@ public class Lobby implements Listener {
     }
 
     public boolean addPlayerToLobby(Player player) {
+        if (!PluginConfig.lobbyEnabled) {
+            return false;
+        }
+
         if (lobbyPlayers.contains(player)) {
             return false;
         }
 
-        //noinspection ConstantConditions
-        if(true){//if (PluginConfig.lobbySpawnLocation.equals("")) {
-            Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "Алярм! Позиция спавна лобби не установлена. Лобби не работает!!!");
+        if (PluginConfig.lobbySpawn == null) {
+            AFMCorePlugin.logger.error("Lobby spawn location is not set. Lobby is not working.");
 
             return false;
         }
 
-        previousStates.put(player, new PlayerStateEvent.PlayerState(player));
-
-        // player.setLocation(Локацию сюда);
-
+        previousStates.put(player, new PlayerState(player));
         lobbyPlayers.add(player);
+
+        player.setLocation(PluginConfig.lobbySpawn);
+
         player.sendMessage(Text.of("Добро пожаловать в лобби!"));
 
         if (player.hasPermission("afmcp.lobby.exit")) {
@@ -63,48 +69,48 @@ public class Lobby implements Listener {
 
         player.getInventory().clear();
 
-        // Хп/уровень/~~опыт~~ на дефолт TODO ОПыт
+        // Хп/жрачка/опыт на дефолт
         player.health().set(20D);
         player.foodLevel().set(20);
+        player.offer(Keys.TOTAL_EXPERIENCE, 0);
+
+        player.gameMode().set(GameModes.ADVENTURE);
 
         // Добавляем кнопки
         LobbyPlayerInventory inventory = new LobbyPlayerInventory(player);
 
-        inventory.addItem(new LobbyItem(ChatColor.AQUA + "Выбрать королевство", Material.NETHER_STAR, 0, (Player clickPlayer) -> {
-            clickPlayer.sendMessage("Beu beu");
+        inventory.addItem(new LobbyItem("Выбрать королевство", TextColors.AQUA, ItemTypes.NETHER_STAR, 0, (Player clickPlayer) -> {
+            clickPlayer.sendMessage(Text.of("Beu beu"));
         }), 0);
 
-        inventory.addItem(new LobbyItem(ChatColor.GOLD + "Эффекты", Material.BLAZE_POWDER, 1, (Player clickPlayer) -> {
-            clickPlayer.sendMessage("Beu beu");
+        inventory.addItem(new LobbyItem("Эффекты", TextColors.GOLD, ItemTypes.BLAZE_POWDER, 1, (Player clickPlayer) -> {
+            clickPlayer.sendMessage(Text.of("Beu beu"));
         }), 1);
 
-        inventory.addItem(new LobbyItem(ChatColor.GREEN + "Магазин", Material.EMERALD, 2, (Player clickPlayer) -> {
-            clickPlayer.sendMessage("Beu beu");
+        inventory.addItem(new LobbyItem("Магазин", TextColors.GREEN, ItemTypes.EMERALD, 2, (Player clickPlayer) -> {
+            clickPlayer.sendMessage(Text.of("Beu beu"));
         }), 2);
 
-        inventory.addItem(new LobbyItem(ChatColor.BLUE + "Мой профиль", Material.SKULL_ITEM, 3, player.getUniqueId(), (Player clickPlayer) -> {
-            clickPlayer.sendMessage("Beu beu");
+        inventory.addItem(new LobbyItem("Мой профиль", TextColors.BLUE, ItemTypes.SKULL, 3, player.getUniqueId(), (Player clickPlayer) -> {
+            clickPlayer.sendMessage(Text.of("Beu beu"));
         }), 4);
 
-        inventory.addItem(new LobbyItem(ChatColor.GREEN + "Видимость игроков: включена", Material.INK_SACK, 4, (short) 10, (Player clickPlayer) -> {
-            clickPlayer.sendMessage("Beu beu");
+        inventory.addItem(new LobbyItem("Видимость игроков: включена", TextColors.GREEN, ItemTypes.DYE, 4, (short) 10, (Player clickPlayer) -> {
+            clickPlayer.sendMessage(Text.of("Beu beu"));
         }), 7);
 
-        inventory.addItem(new LobbyItem(ChatColor.DARK_AQUA + "Информация", Material.BOOK, 4, (Player clickPlayer) -> {
-            clickPlayer.sendMessage("Beu beu");
+        inventory.addItem(new LobbyItem("Информация", TextColors.DARK_AQUA, ItemTypes.BOOK, 4, (Player clickPlayer) -> {
+            clickPlayer.sendMessage(Text.of("Beu beu"));
         }), 8);
 
         lobbyPlayerInventories.put(player, inventory);
-
-        player.gameMode().set(GameMode.ADVENTURE);
 
         return true;
     }
 
     @Listener
     public void onPlayerJoin(ClientConnectionEvent.Join event){
-        if (AFMCorePlugin.config.get("lobby.playerCities." + event.getTargetEntity().getName()) != null
-                || event.getTargetEntity().hasPermission("afmcp.lobby.ignore")) {
+        if (event.getTargetEntity().hasPermission("afmcp.lobby.ignore")) {
             return; // Игрок уже зарегистрирован в каком-то из городов или у него стоит игнор лобби
         }
 
@@ -126,18 +132,13 @@ public class Lobby implements Listener {
             return;
         }
 
-        net.minecraft.server.v1_12_R1.ItemStack itemNms = CraftItemStack.asNMSCopy(item);
-        NBTTagCompound tag = itemNms.getTag();
+        DataItem dataItem = DataItem.fromItemStack(item);
 
-        if (!itemNms.hasTag() || tag == null) {
+        if (dataItem.get("afmcp_lobby_item_id") == null) {
             return;
         }
 
-        if (!tag.hasKey("afmcp_lobby_id")) {
-            return;
-        }
-
-        int id = tag.getInt("afmcp_lobby_id");
+        int id = (Integer) dataItem.get("afmcp_lobby_item_id");
 
         for (LobbyItem lobbyItem : lobbyPlayerInventories.get(event.getPlayer()).items) {
             if (lobbyItem.id == id) {

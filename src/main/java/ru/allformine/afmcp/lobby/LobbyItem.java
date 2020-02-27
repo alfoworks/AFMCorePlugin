@@ -1,34 +1,37 @@
 package ru.allformine.afmcp.lobby;
 
-import net.minecraft.nbt.NBTTagCompound;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.format.TextColor;
+import ru.allformine.afmcp.dataitem.DataItem;
 
 import java.util.UUID;
 
 public class LobbyItem {
-    public String name;
-    public Material material; // TODO Что это блять??
+    public Text name;
+    public ItemType itemType;
     public int id;
     public int slutIndex;
     private LobbyItemClick click;
     private short damage = 0;
     private UUID skullUuid;
 
-    public LobbyItem(String name, Material material, int id, LobbyItemClick click) {
-        this.name = name;
-        this.material = material;
+    public LobbyItem(String name, TextColor color, ItemType itemType, int id, LobbyItemClick click) {
+        this.name = Text.builder().append(Text.of(name)).color(color).build();
+        this.itemType = itemType;
         this.id = id;
         this.click = click;
     }
 
-    public LobbyItem(String name, Material material, int id, short damage, LobbyItemClick click) {
-        this(name, material, id, click);
+    public LobbyItem(String name, TextColor color, ItemType itemType, int id, short damage, LobbyItemClick click) {
+        this(name, color, itemType, id, click);
         this.damage = damage;
     }
 
-    public LobbyItem(String name, Material material, int id, UUID skullUuid, LobbyItemClick click) {
-        this(name, material, id, click);
+    public LobbyItem(String name, TextColor color, ItemType itemType, int id, UUID skullUuid, LobbyItemClick click) {
+        this(name, color, itemType, id, click);
         this.skullUuid = skullUuid;
     }
 
@@ -37,33 +40,12 @@ public class LobbyItem {
     }
 
     public ItemStack getAsItemStack() {
-        ItemStack stack = new ItemStack(this.material);
+        ItemStack stack = ItemStack.of(itemType);
+        DataItem dataItem = DataItem.fromItemStack(stack);
 
-        net.minecraft.server.v1_12_R1.ItemStack nmsStack = CraftItemStack.asNMSCopy(stack);
+        dataItem.set("afmcp_lobby_item_id", id);
 
-        NBTTagCompound tag = new NBTTagCompound();
-        tag.setInt("afmcp_lobby_id", this.id);
-        nmsStack.setTag(tag);
-
-        stack = CraftItemStack.asBukkitCopy(nmsStack);
-
-        if (skullUuid != null) {
-            SkullMeta meta = (SkullMeta) stack.getItemMeta();
-
-            meta.setOwningPlayer(Bukkit.getOfflinePlayer(skullUuid));
-            meta.setDisplayName(ChatColor.RESET + this.name);
-
-            stack.setItemMeta(meta);
-            stack.setDurability((short) 3);
-        } else {
-            ItemMeta m = stack.getItemMeta();
-            m.setDisplayName(ChatColor.RESET + this.name);
-
-            stack.setItemMeta(m);
-            stack.setDurability(this.damage);
-        }
-
-        return stack;
+        return dataItem.toItemStack();
     }
 
     public interface LobbyItemClick {
