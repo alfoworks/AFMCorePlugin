@@ -5,6 +5,10 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.action.InteractEvent;
+import org.spongepowered.api.event.block.ChangeBlockEvent;
+import org.spongepowered.api.event.entity.DamageEntityEvent;
+import org.spongepowered.api.event.filter.cause.Root;
+import org.spongepowered.api.event.item.inventory.ChangeInventoryEvent;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -18,7 +22,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Lobby {
+public class LobbyCommon {
     private Set<Player> lobbyPlayers = new HashSet<>();
     private HashMap<Player, LobbyPlayerInventory> lobbyPlayerInventories = new HashMap<>();
     private HashMap<Player, PlayerState> previousStates = new HashMap<>();
@@ -118,21 +122,20 @@ public class Lobby {
     }
 
     @Listener
-    public void onPlayerQuit(ClientConnectionEvent.Disconnect event){
+    public void onPlayerQuit(ClientConnectionEvent.Disconnect event) {
         if (lobbyPlayers.remove(event.getTargetEntity())) lobbyPlayerInventories.remove(event.getTargetEntity());
         previousStates.remove(event.getTargetEntity());
     }
     // ======== Классы для взаимодействия в лобби ======== //
 
-    @Listener // TODO
-    public void onInteract(InteractEvent event){
-        ItemStack item = event.getItem();
-
-        if (item == null) {
+    @Listener
+    public void onInteract(InteractEvent event, @Root ItemStack item) {
+        if (!(event.getSource() instanceof Player)) {
             return;
         }
 
         DataItem dataItem = DataItem.fromItemStack(item);
+        Player player = (Player) event.getSource();
 
         if (dataItem.get("afmcp_lobby_item_id") == null) {
             return;
@@ -140,63 +143,31 @@ public class Lobby {
 
         int id = (Integer) dataItem.get("afmcp_lobby_item_id");
 
-        for (LobbyItem lobbyItem : lobbyPlayerInventories.get(event.getPlayer()).items) {
+        for (LobbyItem lobbyItem : lobbyPlayerInventories.get(player).items) {
             if (lobbyItem.id == id) {
-                lobbyItem.onClick(event.getPlayer());
+                lobbyItem.onClick(player);
                 return;
             }
         }
     }
 
-    @EventHandler // TODO
-    public void onSpamwHandItems(PlayerSwapHandItemsEvent event) {
-        event.setCancelled(lobbyPlayers.contains(event.getPlayer()));
+    @Listener
+    public void onInventoryChange(ChangeInventoryEvent event) {
+        event.setCancelled(lobbyPlayers.contains(event.getSource()));
     }
 
-    @EventHandler // TODO
-    public void onBlockPlace(BlockPlaceEvent event) {
-        event.setCancelled(lobbyPlayers.contains(event.getPlayer()));
+    @Listener
+    public void onBlockPlace(ChangeBlockEvent.Break event, @Root Player player) {
+        event.setCancelled(lobbyPlayers.contains(player));
     }
 
-    @EventHandler // TODO
-    public void onBlockBreal(BlockBreakEvent event) {
-        event.setCancelled(lobbyPlayers.contains(event.getPlayer()));
+    @Listener
+    public void onBlockBreak(ChangeBlockEvent.Place event, @Root Player player) {
+        event.setCancelled(lobbyPlayers.contains(player));
     }
 
-    @EventHandler // TODO
-    public void onDamage(EntityDamageEvent event) {
-        event.setCancelled(event.getEntity() instanceof Player && lobbyPlayers.contains((Player) event.getEntity()));
-    }
-
-    // Пиздец сколько ивентов (это все запрет на изменение инвентаря, чтобы кнопки оставались на своих местах)
-
-    @EventHandler // TODO
-    public void onInventoryDrag(InventoryDragEvent event) {
-        event.setCancelled(event.getWhoClicked() instanceof Player && lobbyPlayers.contains((Player) event.getWhoClicked()));
-    }
-
-    @EventHandler // TODO
-    public void onInventoryClick(InventoryClickEvent event) {
-        event.setCancelled(event.getWhoClicked() instanceof Player && lobbyPlayers.contains((Player) event.getWhoClicked()));
-    }
-
-    @EventHandler // TODO
-    public void onInventoryPickupItem(EntityPickupItemEvent event) {
-        event.setCancelled(event.getEntity() instanceof Player && lobbyPlayers.contains((Player) event.getEntity()));
-    }
-
-    @EventHandler // TODO
-    public void onItemConsume(PlayerItemConsumeEvent event) {
-        event.setCancelled(lobbyPlayers.contains(event.getPlayer()));
-    }
-
-    @EventHandler // TODO
-    public void onItemDrop(PlayerDropItemEvent event) {
-        event.setCancelled(lobbyPlayers.contains(event.getPlayer()));
-    }
-
-    @EventHandler // TODO
-    public void onFoodLevelChange(FoodLevelChangeEvent event) {
-        event.setCancelled(lobbyPlayers.contains((Player) event.getEntity()));
+    @Listener
+    public void onDamage(DamageEntityEvent event) {
+        event.setCancelled(event.getTargetEntity() instanceof Player && lobbyPlayers.contains(event.getTargetEntity()));
     }
 }

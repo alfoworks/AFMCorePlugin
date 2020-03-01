@@ -11,15 +11,15 @@ import org.spongepowered.api.text.format.TextColors;
 import ru.allformine.afmcp.AFMCorePlugin;
 
 public class CommandLobby extends AFMCPCommand {
-    @SuppressWarnings("FieldCanBeLocal")
-    private static Boolean cancer_on_the_mountain_whistled = false;
-
     @Override
     public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
-        if(!(src instanceof Player)){
-           throw new CommandException(Text.of("Эта команда может вызываться только игроком!"))
+        if (!(src instanceof Player)) {
+            throw new CommandException(Text.of("Эта команда может вызываться только игроком!"));
         }
-        if (cancer_on_the_mountain_whistled) {
+
+        String subCommand = args.<String>getOne("subcommand").orElse(null);
+
+        if (subCommand == null) {
             src.sendMessage(Text.of("Список подкоманд:"));
 
             src.sendMessage(Text.of(String.format("%s%s %s- %s%s", "", "setspawn", "", "", "установить место спавна")));
@@ -29,8 +29,6 @@ public class CommandLobby extends AFMCPCommand {
             return CommandResult.success();
         }
 
-        String subCommand = args.<String>getOne("subcommand").orElse("");
-
         if (subCommand.equalsIgnoreCase("setspawn")) {
             // TODO: Доделать
             // PluginConfig.lobbySpawnLocation = LocationUtil.toString(((Player) src).getLocation(),
@@ -39,20 +37,20 @@ public class CommandLobby extends AFMCPCommand {
 
             replyString(src, "Позиция спавна успешно установлена.");
         } else if (subCommand.equalsIgnoreCase("exit")) {
-            if (AFMCorePlugin.lobby.removePlayerFromLobby((Player) src)) {
-                replyString(src,"Вы больше не в лобби.");
+            if (AFMCorePlugin.lobbyCommon.removePlayerFromLobby((Player) src)) {
+                replyString(src, "Вы больше не в лобби.");
             } else {
                 throw new CommandException(Text.of("Вы не находитесь в лобби."));
             }
         } else if (subCommand.equalsIgnoreCase("join")) {
-            if (!AFMCorePlugin.lobby.addPlayerToLobby((Player) sender)) {
+            if (!AFMCorePlugin.lobbyCommon.addPlayerToLobby((Player) src)) {
                 throw new CommandException(Text.of("Вы уже находитесь в лобби!"));
             }
         } else {
-            throw new CommandException(Text.of("Неизвестная подкоманда!"))
+            throw new CommandException(Text.of("Неизвестная подкоманда!"));
         }
 
-        return true;
+        return CommandResult.success();
     }
 
     @Override

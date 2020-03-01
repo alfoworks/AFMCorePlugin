@@ -21,7 +21,7 @@ import ru.allformine.afmcp.jumppad.JumpPadEventListener;
 import ru.allformine.afmcp.listeners.DiscordWebhookListener;
 import ru.allformine.afmcp.listeners.FactionEventListener;
 import ru.allformine.afmcp.listeners.TestEventListener;
-import ru.allformine.afmcp.lobby.Lobby;
+import ru.allformine.afmcp.lobby.LobbyCommon;
 import ru.allformine.afmcp.net.api.Webhook;
 
 import java.io.IOException;
@@ -43,7 +43,7 @@ public class AFMCorePlugin {
     @Inject
     public static Logger logger;
     private static CommentedConfigurationNode configNode;
-    public Lobby lobby;
+    public static LobbyCommon lobbyCommon;
     public static boolean debugSwitch = false;
 
     @Inject
@@ -163,6 +163,9 @@ public class AFMCorePlugin {
         }
 
         load();
+
+        PluginConfig.lobbyEnabled = configNode.getNode("lobby.enabled").getBoolean();
+        PluginConfig.lobbySpawn = null;
     }
 
     private void load() {

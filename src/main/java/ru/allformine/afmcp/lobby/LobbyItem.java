@@ -1,5 +1,6 @@
 package ru.allformine.afmcp.lobby;
 
+import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -16,7 +17,6 @@ public class LobbyItem {
     public int slutIndex;
     private LobbyItemClick click;
     private short damage = 0;
-    private UUID skullUuid;
 
     public LobbyItem(String name, TextColor color, ItemType itemType, int id, LobbyItemClick click) {
         this.name = Text.builder().append(Text.of(name)).color(color).build();
@@ -32,7 +32,6 @@ public class LobbyItem {
 
     public LobbyItem(String name, TextColor color, ItemType itemType, int id, UUID skullUuid, LobbyItemClick click) {
         this(name, color, itemType, id, click);
-        this.skullUuid = skullUuid;
     }
 
     public void onClick(Player player) {
@@ -40,7 +39,10 @@ public class LobbyItem {
     }
 
     public ItemStack getAsItemStack() {
-        ItemStack stack = ItemStack.of(itemType);
+        ItemStack stack = ItemStack.builder()
+                .fromContainer(ItemStack.of(itemType).toContainer().set(DataQuery.of("UnsafeDamage"), damage))
+                .build();
+
         DataItem dataItem = DataItem.fromItemStack(stack);
 
         dataItem.set("afmcp_lobby_item_id", id);
