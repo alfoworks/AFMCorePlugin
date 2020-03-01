@@ -35,11 +35,8 @@ dependencies {
     compile name: 'packetgate'
 }
 
-jar {
-    archiveName "afmcp.jar"
-    baseName = 'afmcp'
-    version =  version
-}
+jar.archiveName("afmcp.jar")
+jar.baseName("afmcp")
 
 task copyForShared(type: Copy){
     from jar
