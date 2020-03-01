@@ -21,6 +21,6 @@ public class DataItem {
     }
 
     public Object get(String key) {
-        return new Object();
+        return null;
     }
 }
