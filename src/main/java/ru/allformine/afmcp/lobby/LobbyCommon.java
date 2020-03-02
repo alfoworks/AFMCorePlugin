@@ -63,7 +63,7 @@ public class LobbyCommon {
         previousStates.put(player, new PlayerState(player));
         lobbyPlayers.add(player);
 
-        //player.setLocation(PluginConfig.lobbySpawn);
+        player.setLocation(PluginConfig.lobbySpawn);
 
         player.sendMessage(Text.of("Добро пожаловать в лобби!"));
 
