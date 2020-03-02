@@ -1,26 +1,33 @@
 package ru.allformine.afmcp.dataitem;
 
-import org.spongepowered.api.item.ItemTypes;
+import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.item.inventory.ItemStack;
 
+import java.util.Optional;
+
 public class DataItem {
-    public DataItem() {
+    ItemStack stack;
 
-    }
-
-    public static DataItem fromItemStack(ItemStack stack) {
-        return new DataItem();
+    public DataItem(ItemStack stack) {
+        this.stack = stack;
     }
 
     public ItemStack toItemStack() {
-        return ItemStack.of(ItemTypes.ITEM_FRAME);
+        return stack;
     }
 
     public void set(String key, Object value) {
+        DataContainer container = stack.toContainer();
 
+        container.set(DataQuery.of("UnsafeData", key), value);
+
+        stack = ItemStack.builder().fromContainer(container).build();
     }
 
-    public Object get(String key) {
-        return null;
+    public Optional<Object> get(String key) {
+        DataContainer container = stack.toContainer();
+
+        return container.get(DataQuery.of("UnsafeData", key));
     }
 }

@@ -4,16 +4,14 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.api.event.Listener;
-import org.spongepowered.api.event.action.InteractEvent;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.event.filter.cause.Root;
 import org.spongepowered.api.event.item.inventory.ChangeInventoryEvent;
+import org.spongepowered.api.event.item.inventory.InteractItemEvent;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
-import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.format.TextColors;
 import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.PluginConfig;
 import ru.allformine.afmcp.dataitem.DataItem;
@@ -24,8 +22,12 @@ import java.util.Set;
 
 public class LobbyCommon {
     private Set<Player> lobbyPlayers = new HashSet<>();
-    private HashMap<Player, LobbyPlayerInventory> lobbyPlayerInventories = new HashMap<>();
-    private HashMap<Player, PlayerState> previousStates = new HashMap<>();
+    HashMap<Player, LobbyPlayerInventory> lobbyPlayerInventories = new HashMap<>();
+    HashMap<Player, PlayerState> previousStates = new HashMap<>();
+
+    public String getLobbyId() {
+        return "";
+    }
 
     public boolean removePlayerFromLobby(Player player) {
         if (lobbyPlayers.remove(player)) {
@@ -61,7 +63,7 @@ public class LobbyCommon {
         previousStates.put(player, new PlayerState(player));
         lobbyPlayers.add(player);
 
-        player.setLocation(PluginConfig.lobbySpawn);
+        //player.setLocation(PluginConfig.lobbySpawn);
 
         player.sendMessage(Text.of("Добро пожаловать в лобби!"));
 
@@ -77,37 +79,7 @@ public class LobbyCommon {
         player.health().set(20D);
         player.foodLevel().set(20);
         player.offer(Keys.TOTAL_EXPERIENCE, 0);
-
         player.gameMode().set(GameModes.ADVENTURE);
-
-        // Добавляем кнопки
-        LobbyPlayerInventory inventory = new LobbyPlayerInventory(player);
-
-        inventory.addItem(new LobbyItem("Выбрать королевство", TextColors.AQUA, ItemTypes.NETHER_STAR, 0, (Player clickPlayer) -> {
-            clickPlayer.sendMessage(Text.of("Beu beu"));
-        }), 0);
-
-        inventory.addItem(new LobbyItem("Эффекты", TextColors.GOLD, ItemTypes.BLAZE_POWDER, 1, (Player clickPlayer) -> {
-            clickPlayer.sendMessage(Text.of("Beu beu"));
-        }), 1);
-
-        inventory.addItem(new LobbyItem("Магазин", TextColors.GREEN, ItemTypes.EMERALD, 2, (Player clickPlayer) -> {
-            clickPlayer.sendMessage(Text.of("Beu beu"));
-        }), 2);
-
-        inventory.addItem(new LobbyItem("Мой профиль", TextColors.BLUE, ItemTypes.SKULL, 3, player.getUniqueId(), (Player clickPlayer) -> {
-            clickPlayer.sendMessage(Text.of("Beu beu"));
-        }), 4);
-
-        inventory.addItem(new LobbyItem("Видимость игроков: включена", TextColors.GREEN, ItemTypes.DYE, 4, (short) 10, (Player clickPlayer) -> {
-            clickPlayer.sendMessage(Text.of("Beu beu"));
-        }), 7);
-
-        inventory.addItem(new LobbyItem("Информация", TextColors.DARK_AQUA, ItemTypes.BOOK, 4, (Player clickPlayer) -> {
-            clickPlayer.sendMessage(Text.of("Beu beu"));
-        }), 8);
-
-        lobbyPlayerInventories.put(player, inventory);
 
         return true;
     }
@@ -129,19 +101,21 @@ public class LobbyCommon {
     // ======== Классы для взаимодействия в лобби ======== //
 
     @Listener
-    public void onInteract(InteractEvent event, @Root ItemStack item) {
+    public void onInteract(InteractItemEvent event) {
         if (!(event.getSource() instanceof Player)) {
             return;
         }
 
-        DataItem dataItem = DataItem.fromItemStack(item);
+        ItemStack item = event.getItemStack().createStack();
+
+        DataItem dataItem = new DataItem(item);
         Player player = (Player) event.getSource();
 
-        if (dataItem.get("afmcp_lobby_item_id") == null) {
+        if (!dataItem.get("afmcp_lobby_item_id").isPresent()) {
             return;
         }
 
-        int id = (Integer) dataItem.get("afmcp_lobby_item_id");
+        int id = (Integer) dataItem.get("afmcp_lobby_item_id").get();
 
         for (LobbyItem lobbyItem : lobbyPlayerInventories.get(player).items) {
             if (lobbyItem.id == id) {
@@ -153,7 +127,7 @@ public class LobbyCommon {
 
     @Listener
     public void onInventoryChange(ChangeInventoryEvent event) {
-        event.setCancelled(lobbyPlayers.contains(event.getSource()));
+        event.setCancelled(lobbyPlayers.contains(event.getSource()) && !(event instanceof ChangeInventoryEvent.Held));
     }
 
     @Listener
