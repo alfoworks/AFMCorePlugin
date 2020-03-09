@@ -73,11 +73,15 @@ public class RestartCommand extends AFMCPCommand {
         @Override
         public void run() {
             if (minutes > 0) {
-                sendRestartMessage(String.format("Сервер будет перезапущен через %s %s", minutes, pluralize(minutes, "минута", "минуты", "минут")));
-            } else {
+                sendRestartMessage(String.format("Сервер будет перезапущен через %s %s", minutes, pluralize(minutes, "минуту", "минуты", "минут")));
+
+                minutes--;
+            }
+
+            if (minutes == 0) {
                 Task.builder().execute(() -> {
-                    if (seconds == 30 || (seconds < 10 && seconds > 0)) {
-                        sendRestartMessage(String.format("Сервер будет перезапущен через %s %s", minutes, pluralize(seconds, "секунда", "секунды", "секунд")));
+                    if (seconds == 30 || (seconds <= 10 && seconds > 0)) {
+                        sendRestartMessage(String.format("Сервер будет перезапущен через %s %s", seconds, pluralize(seconds, "секунду", "секунды", "секунд")));
                     } else if (seconds == 0) {
                         sendRestartMessage("Сервер перезапускается!");
 
@@ -87,8 +91,6 @@ public class RestartCommand extends AFMCPCommand {
                     seconds--;
                 }).interval(1, TimeUnit.SECONDS).submit(AFMCorePlugin.instance);
             }
-
-            minutes--;
         }
 
         private void sendRestartMessage(String message) {
