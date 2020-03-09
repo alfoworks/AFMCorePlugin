@@ -5,6 +5,7 @@ import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.entity.MoveEntityEvent;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.scheduler.Task;
+import org.spongepowered.api.text.BookView;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColors;
 import ru.allformine.afmcp.AFMCorePlugin;
@@ -23,9 +24,19 @@ public class LobbyVanilla extends LobbyCommon {
         if (super.addPlayerToLobby(player)) {
             LobbyPlayerInventory inventory = new LobbyPlayerInventory(player);
 
-            inventory.addItem(new LobbyItem("Выбрать королевство", TextColors.AQUA, ItemTypes.NETHER_STAR, 0, (Player clickPlayer) -> {
-                clickPlayer.sendMessage(Text.of("Beu beu"));
+            inventory.addItem(new LobbyItem("Выход из лобби", TextColors.AQUA, ItemTypes.COMPASS, 0, (Player clickPlayer) -> {
+                sendLobbyMessage(clickPlayer, "Beubass!");
             }), 0);
+
+            inventory.addItem(new LobbyItem("Информация", TextColors.YELLOW, ItemTypes.BOOK, 1, (Player clickPlayer) -> {
+                BookView bookView = BookView.builder()
+                        .title(Text.of("Информация"))
+                        .author(Text.of("Твоя мать"))
+                        .addPage(Text.of("Добро пожаловать на ALFO:MINE Vanilla!"))
+                        .build();
+
+                clickPlayer.sendBookView(bookView);
+            }), 8);
 
             lobbyPlayerInventories.put(player, inventory);
 

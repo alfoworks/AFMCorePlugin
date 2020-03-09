@@ -12,6 +12,7 @@ import org.spongepowered.api.event.item.inventory.InteractItemEvent;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.format.TextColors;
 import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.PluginConfig;
 import ru.allformine.afmcp.dataitem.DataItem;
@@ -27,6 +28,10 @@ public class LobbyCommon {
 
     public String getLobbyId() {
         return "";
+    }
+
+    public boolean isPlayerInLobby(Player player) {
+        return lobbyPlayers.contains(player);
     }
 
     public boolean removePlayerFromLobby(Player player) {
@@ -60,19 +65,16 @@ public class LobbyCommon {
             return false;
         }
 
+        if (player.get(Keys.VANISH).get()) {
+            sendLobbyMessage(player, "Выйдите из ваниша для того, чтобы попасть в лобби!");
+
+            return false;
+        }
+
         previousStates.put(player, new PlayerState(player));
         lobbyPlayers.add(player);
 
-        player.setLocation(PluginConfig.lobbySpawn);
-
-        player.sendMessage(Text.of("Добро пожаловать в лобби!"));
-
-        if (player.hasPermission("afmcp.lobby.exit")) {
-            player.sendMessage(Text.of("Пропишите /lobby exit, чтобы выйти из лобби."));
-        }
-
         // На всякий случай очищаем инвентарь, мало ли, говно какое-нибудь будет
-
         player.getInventory().clear();
 
         // Хп/жрачка/опыт на дефолт
@@ -81,6 +83,17 @@ public class LobbyCommon {
         player.offer(Keys.TOTAL_EXPERIENCE, 0);
         player.gameMode().set(GameModes.ADVENTURE);
 
+        // Телепортим в лобби
+        player.setLocation(PluginConfig.lobbySpawn);
+
+        // Отправляем сообщения
+
+        sendLobbyMessage(player, "Добро пожаловать в лобби!");
+
+        if (player.hasPermission("afmcp.lobby.exit")) {
+            sendLobbyMessage(player, "Вы можете прописать /lobby exit для выхода из лобби.");
+        }
+
         return true;
     }
 
@@ -88,6 +101,10 @@ public class LobbyCommon {
     public void onPlayerJoin(ClientConnectionEvent.Join event){
         if (event.getTargetEntity().hasPermission("afmcp.lobby.ignore")) {
             return; // Игрок уже зарегистрирован в каком-то из городов или у него стоит игнор лобби
+        } else if (event.getTargetEntity().get(Keys.VANISH).get()) {
+            sendLobbyMessage(event.getTargetEntity(), "Выйдите из ваниша для того, чтобы попасть в лобби!");
+
+            return;
         }
 
         addPlayerToLobby(event.getTargetEntity());
@@ -143,5 +160,13 @@ public class LobbyCommon {
     @Listener
     public void onDamage(DamageEntityEvent event) {
         event.setCancelled(event.getTargetEntity() instanceof Player && lobbyPlayers.contains(event.getTargetEntity()));
+    }
+
+    void sendLobbyMessage(Player player, String message) {
+        player.sendMessage(Text.builder()
+                .append(Text.builder().append(Text.of("Lobby")).color(TextColors.GREEN).build())
+                .append(Text.builder().append(Text.of(" > ")).color(TextColors.RESET).build())
+                .append(Text.of(message))
+                .build());
     }
 }
