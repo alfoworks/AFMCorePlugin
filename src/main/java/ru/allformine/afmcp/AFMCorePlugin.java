@@ -100,10 +100,11 @@ public class AFMCorePlugin {
         CommandSpec restartCommandSpec = CommandSpec.builder()
                 .description(Text.of("Команда для перезагрузки сервера, единственная верная."))
                 .permission("afmcp.admin")
+                .arguments(GenericArguments.optional(GenericArguments.integer(Text.of("minutes"))))
                 .executor(new RestartCommand())
                 .build();
 
-        Sponge.getCommandManager().register(this, restartCommandSpec, "afmrestart", "servrestart");
+        Sponge.getCommandManager().register(this, restartCommandSpec, "afmrestart", "servrestart", "restart");
 
         CommandSpec tokensCommandSpec = CommandSpec.builder()
                 .description(Text.of("Команда для получения количества токенов."))
