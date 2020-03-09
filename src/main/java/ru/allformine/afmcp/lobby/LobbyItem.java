@@ -1,35 +1,40 @@
 package ru.allformine.afmcp.lobby;
 
-import net.minecraft.nbt.NBTTagCompound;
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
-
-import java.util.UUID;
+import org.spongepowered.api.profile.GameProfile;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.format.TextColor;
+import ru.allformine.afmcp.dataitem.DataItem;
 
 public class LobbyItem {
-    public String name;
-    public Material material; // TODO Что это блять??
+    public Text name;
+    public ItemType itemType;
     public int id;
     public int slutIndex;
     private LobbyItemClick click;
-    private short damage = 0;
-    private UUID skullUuid;
+    private DyeColor dyeColor;
+    private GameProfile profile;
 
-    public LobbyItem(String name, Material material, int id, LobbyItemClick click) {
-        this.name = name;
-        this.material = material;
+    public LobbyItem(String name, TextColor color, ItemType itemType, int id, LobbyItemClick click) {
+        this.name = Text.builder().append(Text.of(name)).color(color).build();
+        this.itemType = itemType;
         this.id = id;
         this.click = click;
     }
 
-    public LobbyItem(String name, Material material, int id, short damage, LobbyItemClick click) {
-        this(name, material, id, click);
-        this.damage = damage;
+    public LobbyItem(String name, TextColor color, int id, GameProfile profile, LobbyItemClick click) {
+        this(name, color, ItemTypes.SKULL, id, click);
+        this.profile = profile;
     }
 
-    public LobbyItem(String name, Material material, int id, UUID skullUuid, LobbyItemClick click) {
-        this(name, material, id, click);
-        this.skullUuid = skullUuid;
+    public LobbyItem(String name, TextColor color, ItemType itemType, int id, DyeColor dyeColor, LobbyItemClick click) {
+        this(name, color, itemType, id, click);
+        this.dyeColor = dyeColor;
     }
 
     public void onClick(Player player) {
@@ -37,33 +42,22 @@ public class LobbyItem {
     }
 
     public ItemStack getAsItemStack() {
-        ItemStack stack = new ItemStack(this.material);
+        ItemStack stack = /* ItemStack.builder().fromContainer(ItemStack.of(itemType).toContainer().set(DataQuery.of("UnsafeDamage"), damage)).build(); */ ItemStack.of(itemType);
+        stack.offer(Keys.DISPLAY_NAME, name);
 
-        net.minecraft.server.v1_12_R1.ItemStack nmsStack = CraftItemStack.asNMSCopy(stack);
-
-        NBTTagCompound tag = new NBTTagCompound();
-        tag.setInt("afmcp_lobby_id", this.id);
-        nmsStack.setTag(tag);
-
-        stack = CraftItemStack.asBukkitCopy(nmsStack);
-
-        if (skullUuid != null) {
-            SkullMeta meta = (SkullMeta) stack.getItemMeta();
-
-            meta.setOwningPlayer(Bukkit.getOfflinePlayer(skullUuid));
-            meta.setDisplayName(ChatColor.RESET + this.name);
-
-            stack.setItemMeta(meta);
-            stack.setDurability((short) 3);
-        } else {
-            ItemMeta m = stack.getItemMeta();
-            m.setDisplayName(ChatColor.RESET + this.name);
-
-            stack.setItemMeta(m);
-            stack.setDurability(this.damage);
+        if (dyeColor != null) {
+            stack.offer(Keys.DYE_COLOR, dyeColor);
         }
 
-        return stack;
+        if (profile != null) {
+            stack.offer(Keys.REPRESENTED_PLAYER, profile);
+        }
+
+        DataItem dataItem = new DataItem(stack);
+
+        dataItem.set("afmcp_lobby_item_id", id);
+
+        return dataItem.toItemStack();
     }
 
     public interface LobbyItemClick {

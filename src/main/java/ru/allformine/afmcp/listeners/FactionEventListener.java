@@ -6,6 +6,7 @@ import io.github.aquerr.eaglefactions.common.events.FactionAreaEnterEventImpl;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
+import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.PacketChannels;
 
 import java.util.Optional;
@@ -34,7 +35,10 @@ public class FactionEventListener {
         String factionName = faction == null ? "Общая" : faction.getName();
         String factionColor;
 
-        if (factionName.equals("SafeZone") || EagleFactionsPlugin.getPlugin().getConfiguration().getProtectionConfig().getSafeZoneWorldNames().contains(player.getWorld().getName())) {
+        if (AFMCorePlugin.currentLobby.isPlayerInLobby(player)) {
+            factionColor = "§9";
+            factionName = "Лобби";
+        } else if (factionName.equals("SafeZone") || EagleFactionsPlugin.getPlugin().getConfiguration().getProtectionConfig().getSafeZoneWorldNames().contains(player.getWorld().getName())) {
             factionColor = "§d";
             factionName = "SafeZone";
         } else if (factionName.equals("WarZone") || EagleFactionsPlugin.getPlugin().getConfiguration().getProtectionConfig().getWarZoneWorldNames().contains(player.getWorld().getName())) {
@@ -43,9 +47,9 @@ public class FactionEventListener {
         } else if (faction == null) {
             factionColor = "§2";
         } else {
-            if(faction.containsPlayer(player.getUniqueId())) {
+            if (faction.containsPlayer(player.getUniqueId())) {
                 factionColor = "§a";
-            }else{
+            } else {
                 factionColor = "§6";
             }
         }

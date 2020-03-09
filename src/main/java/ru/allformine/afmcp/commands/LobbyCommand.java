@@ -8,18 +8,26 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextColors;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 import ru.allformine.afmcp.AFMCorePlugin;
+import ru.allformine.afmcp.LocationSerializer;
+import ru.allformine.afmcp.PluginConfig;
 
-public class CommandLobby extends AFMCPCommand {
-    @SuppressWarnings("FieldCanBeLocal")
-    private static Boolean cancer_on_the_mountain_whistled = false;
-
+public class LobbyCommand extends AFMCPCommand {
     @Override
     public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
-        if(!(src instanceof Player)){
-           throw new CommandException(Text.of("Эта команда может вызываться только игроком!"))
+        if (!(src instanceof Player)) {
+            throw new CommandException(Text.of("Эта команда может вызываться только игроком!"));
         }
-        if (cancer_on_the_mountain_whistled) {
+
+        if (!PluginConfig.lobbyEnabled) {
+            throw new CommandException(Text.of("Лобби выключено на этом сервере!"));
+        }
+
+        String subCommand = args.<String>getOne("subcommand").orElse(null);
+
+        if (subCommand == null) {
             src.sendMessage(Text.of("Список подкоманд:"));
 
             src.sendMessage(Text.of(String.format("%s%s %s- %s%s", "", "setspawn", "", "", "установить место спавна")));
@@ -29,30 +37,30 @@ public class CommandLobby extends AFMCPCommand {
             return CommandResult.success();
         }
 
-        String subCommand = args.<String>getOne("subcommand").orElse("");
-
         if (subCommand.equalsIgnoreCase("setspawn")) {
-            // TODO: Доделать
-            // PluginConfig.lobbySpawnLocation = LocationUtil.toString(((Player) src).getLocation(),
-             //       ((Player) src).getWorld());
-            //AFMCorePlugin.
+            Location<World> location = ((Player) src).getLocation();
+
+            PluginConfig.lobbySpawn = location;
+            new LocationSerializer().serialize(location, AFMCorePlugin.getConfig().getNode("lobby").getNode("location"));
+
+            AFMCorePlugin.saveConfig();
 
             replyString(src, "Позиция спавна успешно установлена.");
         } else if (subCommand.equalsIgnoreCase("exit")) {
-            if (AFMCorePlugin.lobby.removePlayerFromLobby((Player) src)) {
-                replyString(src,"Вы больше не в лобби.");
+            if (AFMCorePlugin.currentLobby.removePlayerFromLobby((Player) src)) {
+                replyString(src, "Вы больше не в лобби.");
             } else {
                 throw new CommandException(Text.of("Вы не находитесь в лобби."));
             }
         } else if (subCommand.equalsIgnoreCase("join")) {
-            if (!AFMCorePlugin.lobby.addPlayerToLobby((Player) sender)) {
+            if (!AFMCorePlugin.currentLobby.addPlayerToLobby((Player) src)) {
                 throw new CommandException(Text.of("Вы уже находитесь в лобби!"));
             }
         } else {
-            throw new CommandException(Text.of("Неизвестная подкоманда!"))
+            throw new CommandException(Text.of("Неизвестная подкоманда!"));
         }
 
-        return true;
+        return CommandResult.success();
     }
 
     @Override

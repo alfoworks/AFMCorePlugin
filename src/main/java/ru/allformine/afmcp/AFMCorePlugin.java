@@ -15,18 +15,22 @@ import org.spongepowered.api.event.game.state.GamePreInitializationEvent;
 import org.spongepowered.api.event.game.state.GameStartedServerEvent;
 import org.spongepowered.api.event.game.state.GameStoppingServerEvent;
 import org.spongepowered.api.plugin.Plugin;
+import org.spongepowered.api.scheduler.Task;
 import org.spongepowered.api.text.Text;
 import ru.allformine.afmcp.commands.*;
 import ru.allformine.afmcp.jumppad.JumpPadEventListener;
 import ru.allformine.afmcp.listeners.DiscordWebhookListener;
 import ru.allformine.afmcp.listeners.FactionEventListener;
 import ru.allformine.afmcp.listeners.TestEventListener;
-import ru.allformine.afmcp.lobby.Lobby;
+import ru.allformine.afmcp.lobby.LobbyCommon;
+import ru.allformine.afmcp.lobby.LobbySOI;
+import ru.allformine.afmcp.lobby.LobbyVanilla;
 import ru.allformine.afmcp.net.api.Webhook;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Objects;
 
 @Plugin(
         id = "afmcp",
@@ -43,14 +47,17 @@ public class AFMCorePlugin {
     @Inject
     public static Logger logger;
     private static CommentedConfigurationNode configNode;
-    public Lobby lobby;
+    public static LobbyCommon[] lobbies = new LobbyCommon[]{new LobbySOI(), new LobbyVanilla()};
+    public static LobbyCommon currentLobby;
     public static boolean debugSwitch = false;
+    public static AFMCorePlugin instance;
+    public static Task lagTask;
 
     @Inject
     @ConfigDir(sharedRoot = false)
     private Path configDir;
     private Path configFile;
-    private ConfigurationLoader<CommentedConfigurationNode> configLoader;
+    private static ConfigurationLoader<CommentedConfigurationNode> configLoader;
 
     public static CommentedConfigurationNode getConfig() {
         return configNode;
@@ -61,8 +68,25 @@ public class AFMCorePlugin {
         AFMCorePlugin.logger = logger;
     }
 
+    public static void saveConfig() {
+        try {
+            configLoader.save(configNode);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Listener
+    public void init(GameInitializationEvent event) {
+        PacketChannels.FACTIONS = Sponge.getGame()
+                .getChannelRegistrar()
+                .createRawChannel(this, "factions");
+    }
+
     @Listener
     public void preInit(GamePreInitializationEvent event) {
+        instance = this;
+
         Sponge.getEventManager().registerListeners(this, new DiscordWebhookListener());
         Sponge.getEventManager().registerListeners(this, new JumpPadEventListener());
         Sponge.getEventManager().registerListeners(this, new FactionEventListener());
@@ -117,22 +141,28 @@ public class AFMCorePlugin {
 
         CommandSpec lobbySpec = CommandSpec.builder()
                 .description(Text.of("Лобби"))
-                .executor(new CommandLobby())
+                .executor(new LobbyCommand())
+                .arguments(GenericArguments.onlyOne(GenericArguments.string(Text.of("subcommand"))))
                 .build();
 
         Sponge.getCommandManager().register(this, lobbySpec, "lobby");
-    }
 
-    @Listener
-    public void init(GameInitializationEvent event) {
-        PacketChannels.FACTIONS = Sponge.getGame()
-                .getChannelRegistrar()
-                .createRawChannel(this, "factions");
-    }
+        CommandSpec tickIntervalSpec = CommandSpec.builder()
+                .description(Text.of("Fuck"))
+                .executor(new TickIntervalCommand())
+                .arguments(GenericArguments.onlyOne(GenericArguments.integer(Text.of("interval"))))
+                .build();
 
-    @Listener
-    public void onServerStart(GameStartedServerEvent event) {
-        Webhook.sendServerMessage(Webhook.TypeServerMessage.SERVER_STARTED);
+        Sponge.getCommandManager().register(this, tickIntervalSpec, "tickinterval", "ti");
+
+        if (PluginConfig.lobbyId != null) {
+            for (LobbyCommon lobby : lobbies) {
+                if (lobby.getLobbyId().equals(PluginConfig.lobbyId)) {
+                    Sponge.getEventManager().registerListeners(this, lobby);
+                    currentLobby = lobby;
+                }
+            }
+        }
     }
 
     @Listener
@@ -142,6 +172,22 @@ public class AFMCorePlugin {
         } else {
             Webhook.sendServerMessage(Webhook.TypeServerMessage.SERVER_STOPPED);
         }
+    }
+
+    @Listener
+    public void onServerStart(GameStartedServerEvent event) {
+        Webhook.sendServerMessage(Webhook.TypeServerMessage.SERVER_STARTED);
+
+        if (!PluginConfig.lobbyEnabled) {
+            return;
+        }
+
+        if (Objects.equals(PluginConfig.lobbyId, "")) {
+            logger.error("Lobby id is empty!");
+            PluginConfig.lobbyId = null;
+        }
+
+        PluginConfig.lobbySpawn = new LocationSerializer().deserialize(configNode.getNode("lobby").getNode("location"));
     }
 
     private void configSetup() {
@@ -163,6 +209,9 @@ public class AFMCorePlugin {
         }
 
         load();
+
+        PluginConfig.lobbyEnabled = configNode.getNode("lobby").getNode("enabled").getBoolean();
+        PluginConfig.lobbyId = configNode.getNode("lobby").getNode("id").getString();
     }
 
     private void load() {
