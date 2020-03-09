@@ -1,0 +1,36 @@
+name: AFMCorePlugin
+version: 2.0
+main: ru.alfomine.afmcp.AFMCorePlugin
+depend: [ProtocolLib]
+commands:
+  createpreset:
+    description: Создать ашблон сундука
+    usage: /createpreset <имя БЕЗ пробелов>
+  setchest:
+    description: Установить сундуку шаблон
+    usage: /setchest <имя шаблона БЕЗ пробелов>
+  deletepreset:
+    description: Удалить ашблон сундука
+    usage: /deletepreset <имя БЕЗ пробелов>
+  unsetchest:
+    description: Удалить шаблон с сундука.
+    usage: /unsetchest
+  afmcp:
+    description: Информация/перезагрузка/дебаг AFMCP Native
+    usage: /afmcp [reload/debug]
+  rawbc:
+    description: Отправить сообщение всем игрокам в том виде, в котором вы его напишете.
+    usage: /rawbc <msg>
+  afmrestart:
+    description: Единственно верная команда для перезагрузи сервера/
+    usage: /afmrestart
+    aliases: [restart, res]
+  customitem:
+    description: Выдать кастомный предмет
+    usage: /customitem <id>
+  ds:
+    description: Записать ваш аккаунт Discord
+    usage: /ds <НИК> или <NONE> если ваш ник уже указан или вы не в персонаде.
+  lobby:
+    description: Управление lobby
+    usage: /lobby <subcommands>

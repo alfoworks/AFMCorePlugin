@@ -1,0 +1,38 @@
+presets:
+chests:
+playerDiscordConfirmations:
+
+server_api:
+  port: 4320
+
+lobby:
+  spawnLocation: ""
+  playerCities:
+
+tabList: # \n - перенос строки
+  headerText: "&aShard Of Islands"
+  footerText: "&eДобро пожаловать :)"
+
+  # %s - текст, который вставляется в строку (координата или онлайн, например). Не убирать!
+
+  onlineCountText: "\n\n&7Онлайн: &a%s&7/&a%s"
+  coordinatesText: "\n\n&7X: &a%s &7Y: &a%s &7Z: &a%s"
+
+webhook_api:
+  serverId: "so"
+  url: "https://allformine.ru/webhook_api/"
+  hiddenCommands: ["login", "log", "changepassowrd", "changepass"]
+
+playerChatMessageShowDuration: 5 # длительность показа сообщения над головой игрока, сек. (deprecated, abandoned)
+autoLoginHours: 5 # кол-во времени, которое должно пройти чтобы НЕ логинить игрока с того же IP.
+tabSortGroups: # имена групп (как в конфиге PEX) для сортировки в табе. Сортировка будет производиться в том порядке, в котором группы указаны здесь.
+  # АЛЯРМ: если в этом списке не будет группы, которая будет главной у игрока, то он не будет добавлен в таб. Сюда нужно добавлять ВСЕ существующие группы желательно.
+  - "admin"
+  - "knight"
+  - "guard"
+  - "pal"
+  - "keeper"
+  - "hero"
+  - "builder"
+  - "player"
+  - "default"
