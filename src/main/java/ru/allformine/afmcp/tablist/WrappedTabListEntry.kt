@@ -9,8 +9,9 @@ import java.util.*
 
 
 class WrappedTabListEntry(player: Player) {
-    val lpUser = AFMCorePlugin.instance.api.userManager.getUser(player.uniqueId)
-    val name = Text.of("123")
+    private val lpUser = AFMCorePlugin.luckPerms.userManager.getUser(player.uniqueId)
+    val priority = lpUser?.primaryGroup?.get(0)?.toByte()?.toInt() ?: 0
+    val name = Text.of("1234")
     var latency = player.connection.latency
     val uuid: UUID = player.uniqueId
     val gameMode: Value<GameMode> = player.gameMode()

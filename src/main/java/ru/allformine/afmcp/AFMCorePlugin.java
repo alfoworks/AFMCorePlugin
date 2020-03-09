@@ -61,7 +61,7 @@ public class AFMCorePlugin {
     private Path configDir;
     private Path configFile;
     private static ConfigurationLoader<CommentedConfigurationNode> configLoader;
-    public LuckPerms api;
+    public static LuckPerms luckPerms;
 
     public static CommentedConfigurationNode getConfig() {
         return configNode;
@@ -86,7 +86,7 @@ public class AFMCorePlugin {
                 .getChannelRegistrar()
                 .createRawChannel(this, "factions");
         Optional<ProviderRegistration<LuckPerms>> provider = Sponge.getServiceManager().getRegistration(LuckPerms.class);
-        provider.ifPresent(luckPermsProviderRegistration -> this.api = luckPermsProviderRegistration.getProvider());
+        provider.ifPresent(luckPermsProviderRegistration -> this.luckPerms = luckPermsProviderRegistration.getProvider());
     }
 
     @Listener
