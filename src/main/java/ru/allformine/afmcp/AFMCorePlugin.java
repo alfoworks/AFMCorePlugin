@@ -1,6 +1,7 @@
 package ru.allformine.afmcp;
 
 import com.google.inject.Inject;
+import net.luckperms.api.LuckPerms;
 import ninja.leaping.configurate.commented.CommentedConfigurationNode;
 import ninja.leaping.configurate.hocon.HoconConfigurationLoader;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
@@ -16,6 +17,7 @@ import org.spongepowered.api.event.game.state.GameStartedServerEvent;
 import org.spongepowered.api.event.game.state.GameStoppingServerEvent;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.scheduler.Task;
+import org.spongepowered.api.service.ProviderRegistration;
 import org.spongepowered.api.text.Text;
 import ru.allformine.afmcp.commands.*;
 import ru.allformine.afmcp.jumppad.JumpPadEventListener;
@@ -31,6 +33,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Objects;
+import java.util.Optional;
 
 @Plugin(
         id = "afmcp",
@@ -58,6 +61,7 @@ public class AFMCorePlugin {
     private Path configDir;
     private Path configFile;
     private static ConfigurationLoader<CommentedConfigurationNode> configLoader;
+    public LuckPerms api;
 
     public static CommentedConfigurationNode getConfig() {
         return configNode;
@@ -81,6 +85,8 @@ public class AFMCorePlugin {
         PacketChannels.FACTIONS = Sponge.getGame()
                 .getChannelRegistrar()
                 .createRawChannel(this, "factions");
+        Optional<ProviderRegistration<LuckPerms>> provider = Sponge.getServiceManager().getRegistration(LuckPerms.class);
+        provider.ifPresent(luckPermsProviderRegistration -> this.api = luckPermsProviderRegistration.getProvider());
     }
 
     @Listener
