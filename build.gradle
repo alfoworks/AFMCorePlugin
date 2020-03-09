@@ -33,9 +33,9 @@ version = "0.7"
 
 dependencies {
     compile 'org.spongepowered:spongeapi:7.1.0'
+    compile 'net.luckperms:api:5.0'
     compile name: 'uchat'
     compile name: "ef"
-
     compile name: 'packetgate'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 }
