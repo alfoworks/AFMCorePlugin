@@ -30,7 +30,7 @@ public class RestartCommand extends AFMCPCommand {
 
         reply(scr, Text.of("Сервер будет перезапущен."));
 
-        Task.builder().execute(new RestartRunnable(minutes, minutes == 0 ? 10 : 60)).interval(minutes, TimeUnit.MINUTES).submit(AFMCorePlugin.instance);
+        Task.builder().execute(new RestartRunnable(minutes, minutes == 0 ? 10 : 60)).interval(1, TimeUnit.MINUTES).submit(AFMCorePlugin.instance);
 
         return CommandResult.success();
     }
