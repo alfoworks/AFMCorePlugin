@@ -19,6 +19,7 @@ import org.spongepowered.api.scheduler.Task;
 import org.spongepowered.api.text.Text;
 import ru.allformine.afmcp.commands.*;
 import ru.allformine.afmcp.jumppad.JumpPadEventListener;
+import ru.allformine.afmcp.listeners.ChatEventListener;
 import ru.allformine.afmcp.listeners.DiscordWebhookListener;
 import ru.allformine.afmcp.listeners.FactionEventListener;
 import ru.allformine.afmcp.listeners.TestEventListener;
@@ -96,6 +97,7 @@ public class AFMCorePlugin {
         Sponge.getEventManager().registerListeners(this, new JumpPadEventListener());
         Sponge.getEventManager().registerListeners(this, new FactionEventListener());
         Sponge.getEventManager().registerListeners(this, new TestEventListener());
+        Sponge.getEventManager().registerListeners(this, new ChatEventListener());
 
         configFile = configDir.resolve("config.conf");
         configLoader = HoconConfigurationLoader.builder().setPath(configFile).build();
