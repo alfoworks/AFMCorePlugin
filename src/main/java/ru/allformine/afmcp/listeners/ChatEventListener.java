@@ -8,6 +8,7 @@ import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.Order;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColors;
+import org.spongepowered.api.text.serializer.TextSerializers;
 
 import java.util.Optional;
 
@@ -18,12 +19,13 @@ public class ChatEventListener {
             return;
         }
 
-        String[] messageSplit = event.getMessage().toString().split(" ");
+        String[] messageSplit = TextSerializers.FORMATTING_CODE.serialize(event.getMessage()).split(" ");
         Text.Builder newMessage = Text.builder();
 
         for (String message : messageSplit) {
             if (message.startsWith("@")) {
                 Optional<Player> protoPlayer = Sponge.getServer().getPlayer(message.substring(1));
+                System.out.println(message.substring(1));
 
                 if (protoPlayer.isPresent()) {
                     newMessage.append(Text.builder().append(Text.of(String.format("@%s", protoPlayer.get().getName()))).color(TextColors.YELLOW).build());
