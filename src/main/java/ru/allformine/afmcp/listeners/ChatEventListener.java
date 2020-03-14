@@ -7,7 +7,6 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.Order;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.serializer.TextSerializers;
 
 import java.util.Optional;
@@ -15,31 +14,41 @@ import java.util.Optional;
 public class ChatEventListener {
     @Listener(order = Order.EARLY)
     public void onChannelMessage(SendChannelMessageEvent event) {
-        if (!(event.getSender() instanceof Player)) {
-            return;
-        }
+        Text message = event.getMessage();
 
-        String[] messageSplit = TextSerializers.FORMATTING_CODE.serialize(event.getMessage()).split(" ");
-        Text.Builder newMessage = Text.builder();
+        message = Text.of(message.toPlain());
+        message = processMentions(processCommand(message));
 
-        for (String message : messageSplit) {
-            if (message.startsWith("@")) {
-                Optional<Player> protoPlayer = Sponge.getServer().getPlayer(message.substring(1));
-                System.out.println(message.substring(1));
+        event.setMessage(processMentions(processCommand(message)));
+    }
 
-                if (protoPlayer.isPresent()) {
-                    newMessage.append(Text.builder().append(Text.of(String.format("@%s", protoPlayer.get().getName()))).color(TextColors.YELLOW).build());
+    private Text processMentions(Text message) {
+        String messageString = TextSerializers.FORMATTING_CODE.serialize(message);
+        String[] messagesSplit = messageString.split(" ");
+        StringBuilder newMessage = new StringBuilder();
 
-                    protoPlayer.get().playSound(SoundTypes.ENTITY_EXPERIENCE_ORB_PICKUP, protoPlayer.get().getPosition(), 1);
-                    protoPlayer.get().playSound(SoundTypes.ENTITY_ARROW_HIT, protoPlayer.get().getPosition(), 1);
+        for (String word : messagesSplit) {
+            if (word.startsWith("@")) {
+                Optional<Player> player = Sponge.getServer().getPlayer(word.substring(1));
 
-                    break;
+                if (player.isPresent()) {
+                    word = String.format("&e&l@%s", player.get().getName());
+
+                    player.get().playSound(SoundTypes.ENTITY_EXPERIENCE_ORB_PICKUP, player.get().getPosition(), 2);
+                    player.get().playSound(SoundTypes.ENTITY_ARROW_HIT, player.get().getPosition(), 2, 0);
                 }
             }
 
-            newMessage.append(Text.of(message));
+            newMessage.append(word);
+            newMessage.append(" ");
         }
 
-        event.setMessage(newMessage.build());
+        return TextSerializers.FORMATTING_CODE.deserialize(newMessage.toString());
+    }
+
+    private Text processCommand(Text message) {
+        String msgString = TextSerializers.FORMATTING_CODE.serialize(message);
+
+        return msgString.startsWith("./") ? Text.of(msgString.substring(1)) : message;
     }
 }

@@ -19,10 +19,7 @@ import org.spongepowered.api.scheduler.Task;
 import org.spongepowered.api.text.Text;
 import ru.allformine.afmcp.commands.*;
 import ru.allformine.afmcp.jumppad.JumpPadEventListener;
-import ru.allformine.afmcp.listeners.ChatEventListener;
-import ru.allformine.afmcp.listeners.DiscordWebhookListener;
-import ru.allformine.afmcp.listeners.FactionEventListener;
-import ru.allformine.afmcp.listeners.TestEventListener;
+import ru.allformine.afmcp.listeners.*;
 import ru.allformine.afmcp.lobby.LobbyCommon;
 import ru.allformine.afmcp.lobby.LobbySOI;
 import ru.allformine.afmcp.lobby.LobbyVanilla;
@@ -98,6 +95,7 @@ public class AFMCorePlugin {
         Sponge.getEventManager().registerListeners(this, new FactionEventListener());
         Sponge.getEventManager().registerListeners(this, new TestEventListener());
         Sponge.getEventManager().registerListeners(this, new ChatEventListener());
+        Sponge.getEventManager().registerListeners(this, new MOTDEventListener());
 
         configFile = configDir.resolve("config.conf");
         configLoader = HoconConfigurationLoader.builder().setPath(configFile).build();
@@ -220,6 +218,7 @@ public class AFMCorePlugin {
 
         PluginConfig.lobbyEnabled = configNode.getNode("lobby").getNode("enabled").getBoolean();
         PluginConfig.lobbyId = configNode.getNode("lobby").getNode("id").getString();
+        PluginConfig.motdDescription = configNode.getNode("motd").getNode("description").getString();
     }
 
     private void load() {
