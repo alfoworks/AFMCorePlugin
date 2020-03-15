@@ -26,6 +26,7 @@ object WrappedTabList {
                     .latency(it.latency)
                     .profile(it.player.profile)
                     .build())
+            it.setHeaderAndFooter()
         }
 
         for(player in Sponge.getServer().onlinePlayers) {
