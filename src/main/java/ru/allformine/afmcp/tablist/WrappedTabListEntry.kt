@@ -14,7 +14,7 @@ class WrappedTabListEntry(player: Player) {
     val name = Text.of("1234")
     var latency = player.connection.latency
     val uuid: UUID = player.uniqueId
-    val gameMode: Value<GameMode> = player.gameMode()
+    val gameMode: GameMode = player.gameMode().get()
     lateinit var header: String
     lateinit var footer: String
 
