@@ -1,6 +1,6 @@
 package ru.allformine.afmcp;
 
-import org.spongepowered.api.text.LiteralText;
+import ninja.leaping.configurate.ConfigurationNode;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
@@ -11,4 +11,5 @@ public class PluginConfig {
 
     public static String motdDescription;
 
+    public static ConfigurationNode tablistSorting;
 }

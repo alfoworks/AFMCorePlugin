@@ -247,6 +247,7 @@ public class AFMCorePlugin {
         PluginConfig.lobbyEnabled = configNode.getNode("lobby").getNode("enabled").getBoolean();
         PluginConfig.lobbyId = configNode.getNode("lobby").getNode("id").getString();
         PluginConfig.motdDescription = configNode.getNode("motd").getNode("description").getString();
+        PluginConfig.tablistSorting = configNode.getNode("tablist").getNode("sorting");
     }
 
     private void load() {

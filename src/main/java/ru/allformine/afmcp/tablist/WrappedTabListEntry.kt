@@ -5,6 +5,7 @@ import org.spongepowered.api.entity.living.player.Player
 import org.spongepowered.api.entity.living.player.gamemode.GameMode
 import org.spongepowered.api.text.LiteralText
 import org.spongepowered.api.text.Text
+import ru.allformine.afmcp.PluginConfig
 import java.util.*
 
 
@@ -16,7 +17,9 @@ class WrappedTabListEntry(val player: Player) {
     var header: LiteralText = Text.of("Header")
     var footer: LiteralText = Text.of("Footer")
 
-    val priority = 0 //lpUser?.primaryGroup?.get(0)?.toByte()?.toInt() ?: 0
+    val priority: Int = PluginConfig.tablistSorting.childrenList
+            .find { player.hasPermission("group.{}".format(it.string)) }
+            ?.let { PluginConfig.tablistSorting.childrenList.indexOf(it) } ?: 2147483647
     val name: LiteralText = Text.of(player.name)
     val latency = player.connection.latency
     val uuid: UUID = player.uniqueId
