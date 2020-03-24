@@ -86,6 +86,9 @@ public class AFMCorePlugin {
         PacketChannels.FACTIONS = Sponge.getGame()
                 .getChannelRegistrar()
                 .createRawChannel(this, "factions");
+        PacketChannels.MESSAGING = Sponge.getGame()
+                .getChannelRegistrar()
+                .createRawChannel(this, "afmmessaging");
     }
 
     @Listener

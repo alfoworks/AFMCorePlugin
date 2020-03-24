@@ -1,15 +1,14 @@
 package ru.allformine.afmcp.listeners;
 
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
+import ru.allformine.afmcp.Messaging;
 
-public class AutospawnEventListener {
+public class FirstSexEventListener {
     @Listener
     public void onPlayerJoin(ClientConnectionEvent.Join event) {
         if (!event.getTargetEntity().hasPlayedBefore()) {
-            Sponge.getCommandManager().process(Sponge.getServer().getConsole(),
-                    "spawn other " + event.getTargetEntity().getName());
+            Messaging.sendMessage(event.getTargetEntity(), "Привет! Добро пожаловать на ALFO:MINE. Мы рады тебя видеть.\nсосни хуй", Messaging.MessageType.WINDOWED);
         }
     }
 }
