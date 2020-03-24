@@ -31,12 +31,8 @@ object WrappedTabList {
 
         for(player in Sponge.getServer().onlinePlayers) {
             val tablist = player.tabList
-            tablist.entries.forEach {
-                tablist.removeEntry(it.profile.uniqueId)
-            }
-            nativeEntries.forEach {
-                tablist.addEntry(it)
-            }
+            tablist.entries.forEach { tablist.removeEntry(it.profile.uniqueId) }
+            nativeEntries.forEach { tablist.addEntry(it) }
         }
     }
 

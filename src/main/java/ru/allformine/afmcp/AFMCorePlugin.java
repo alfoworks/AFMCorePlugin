@@ -202,12 +202,11 @@ public class AFMCorePlugin {
     @Listener
     public void onServerStart(GameStartedServerEvent event) {
         Webhook.sendServerMessage(Webhook.TypeServerMessage.SERVER_STARTED);
-        /*Task tablistTask =
         Task.builder()
                 .execute(new UpdateTask())
                 .intervalTicks(20)
                 .name("TabList Update Task")
-                .submit(this); */
+                .submit(this);
 
 
 
