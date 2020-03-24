@@ -10,14 +10,14 @@ import java.util.*
 
 
 class WrappedTabListEntry(val player: Player) {
-    private val lpUser = AFMCorePlugin.luckPerms.userManager.getUser(player.uniqueId)
+    // private val lpUser = AFMCorePlugin.luckPerms.userManager.getUser(player.uniqueId)
     private val tablist = player.tabList
     // private val location = player.location
 
     var header: LiteralText = Text.of("Header")
     var footer: LiteralText = Text.of("Footer")
 
-    val priority = lpUser?.primaryGroup?.get(0)?.toByte()?.toInt() ?: 0
+    val priority = 0 //lpUser?.primaryGroup?.get(0)?.toByte()?.toInt() ?: 0
     val name: LiteralText = Text.of(player.name)
     val latency = player.connection.latency
     val uuid: UUID = player.uniqueId
