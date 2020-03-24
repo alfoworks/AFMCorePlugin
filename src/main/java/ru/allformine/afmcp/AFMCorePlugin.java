@@ -194,6 +194,7 @@ public class AFMCorePlugin {
         Task.builder()
                 .execute(new UpdateTask())
                 .intervalTicks(20)
+                .name("TabList Update Task")
                 .submit(this);
 
 
