@@ -5,7 +5,6 @@ import org.spongepowered.api.entity.living.player.Player
 import org.spongepowered.api.entity.living.player.gamemode.GameMode
 import org.spongepowered.api.text.LiteralText
 import org.spongepowered.api.text.Text
-import ru.allformine.afmcp.AFMCorePlugin
 import java.util.*
 
 
