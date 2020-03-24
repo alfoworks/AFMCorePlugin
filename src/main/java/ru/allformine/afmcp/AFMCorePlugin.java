@@ -160,6 +160,26 @@ public class AFMCorePlugin {
 
         Sponge.getCommandManager().register(this, tickIntervalSpec, "tickinterval", "ti");
 
+        CommandSpec messageSpec = CommandSpec.builder()
+                .description(Text.of("(MessagingAPI) отправить собщение всем"))
+                .executor(new MessageCommand())
+                .arguments(GenericArguments.onlyOne(GenericArguments.string(Text.of("type"))),
+                        GenericArguments.onlyOne(GenericArguments.remainingJoinedStrings(Text.of("message"))))
+                .build();
+
+        Sponge.getCommandManager().register(this, messageSpec, "message", "msg");
+
+        CommandSpec messagePlayerSpec = CommandSpec.builder()
+                .description(Text.of("(MessagingAPI) отправить собщение игроку"))
+                .executor(new MessageCommand())
+                .arguments(
+                        GenericArguments.onlyOne(GenericArguments.player(Text.of("player"))),
+                        GenericArguments.onlyOne(GenericArguments.string(Text.of("type"))),
+                        GenericArguments.onlyOne(GenericArguments.remainingJoinedStrings(Text.of("message"))))
+                .build();
+
+        Sponge.getCommandManager().register(this, messageSpec, "messageplayer", "msgplayer");
+
         if (PluginConfig.lobbyId != null) {
             for (LobbyCommon lobby : lobbies) {
                 if (lobby.getLobbyId().equals(PluginConfig.lobbyId)) {
