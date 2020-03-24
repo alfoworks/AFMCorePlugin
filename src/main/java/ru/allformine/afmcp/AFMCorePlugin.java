@@ -34,8 +34,6 @@ import java.nio.file.Path;
 import java.util.Objects;
 import java.util.Optional;
 
-//import net.luckperms.api.LuckPerms;
-
 @Plugin(
         id = "afmcp",
         name = "AFMCorePlugin",
