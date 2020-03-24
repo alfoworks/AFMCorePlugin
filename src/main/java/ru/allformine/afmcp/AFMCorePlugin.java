@@ -14,6 +14,7 @@ import org.spongepowered.api.event.game.state.GameInitializationEvent;
 import org.spongepowered.api.event.game.state.GamePreInitializationEvent;
 import org.spongepowered.api.event.game.state.GameStartedServerEvent;
 import org.spongepowered.api.event.game.state.GameStoppingServerEvent;
+import org.spongepowered.api.plugin.Dependency;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.scheduler.Task;
 import org.spongepowered.api.text.Text;
@@ -39,7 +40,8 @@ import java.util.Objects;
         url = "http://allformine.ru",
         authors = {
                 "Iterator, HeroBrine1st_Erq"
-        }
+        },
+        dependencies = {@Dependency(id = "spotlin", version = "0.2.0")}
 )
 public class AFMCorePlugin {
     public static boolean serverRestart = false;
