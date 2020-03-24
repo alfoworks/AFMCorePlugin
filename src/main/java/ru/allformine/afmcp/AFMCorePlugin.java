@@ -103,6 +103,12 @@ public class AFMCorePlugin {
 
         configSetup();
 
+        CommandSpec kotlinTestSpec = CommandSpec.builder()
+                .executor(new KotlinTestCommand())
+                .build();
+
+        Sponge.getCommandManager().register(this, kotlinTestSpec, "kotlintest");
+
         CommandSpec restartCommandSpec = CommandSpec.builder()
                 .description(Text.of("Команда для перезагрузки сервера, единственная верная."))
                 .permission("afmcp.admin")

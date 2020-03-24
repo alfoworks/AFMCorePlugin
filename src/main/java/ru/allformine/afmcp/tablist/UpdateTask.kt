@@ -1,7 +1,6 @@
 package ru.allformine.afmcp.tablist
 
 import org.spongepowered.api.Sponge
-import ru.allformine.afmcp.AFMCorePlugin
 import ru.allformine.afmcp.tablist.WrappedTabList.addEntry
 import ru.allformine.afmcp.tablist.WrappedTabList.clearEntries
 import ru.allformine.afmcp.tablist.WrappedTabList.sortEntries
@@ -15,6 +14,5 @@ class UpdateTask : Runnable {
         }
         sortEntries()
         writeAll()
-        AFMCorePlugin.logger.debug("Kotlin working!")
     }
 }
