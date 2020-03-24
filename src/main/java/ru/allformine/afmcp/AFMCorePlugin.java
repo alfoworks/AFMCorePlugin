@@ -26,6 +26,7 @@ import ru.allformine.afmcp.lobby.LobbyCommon;
 import ru.allformine.afmcp.lobby.LobbySOI;
 import ru.allformine.afmcp.lobby.LobbyVanilla;
 import ru.allformine.afmcp.net.api.Webhook;
+import ru.allformine.afmcp.tablist.UpdateTask;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -197,6 +198,12 @@ public class AFMCorePlugin {
         PluginConfig.lobbySpawn = new LocationSerializer().deserialize(configNode.getNode("lobby").getNode("location"));
         Optional<ProviderRegistration<LuckPerms>> provider = Sponge.getServiceManager().getRegistration(LuckPerms.class);
         provider.ifPresent(luckPermsProviderRegistration -> luckPerms = luckPermsProviderRegistration.getProvider());
+        /*Task tablistTask = */
+        Task.builder()
+                .execute(new UpdateTask())
+                .intervalTicks(20)
+                .submit(this);
+
     }
 
     private void configSetup() {
