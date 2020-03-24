@@ -185,6 +185,15 @@ public class AFMCorePlugin {
     @Listener
     public void onServerStart(GameStartedServerEvent event) {
         Webhook.sendServerMessage(Webhook.TypeServerMessage.SERVER_STARTED);
+        Optional<ProviderRegistration<LuckPerms>> provider = Sponge.getServiceManager().getRegistration(LuckPerms.class);
+        provider.ifPresent(luckPermsProviderRegistration -> luckPerms = luckPermsProviderRegistration.getProvider());
+        /*Task tablistTask = */
+        Task.builder()
+                .execute(new UpdateTask())
+                .intervalTicks(20)
+                .submit(this);
+
+
 
         if (!PluginConfig.lobbyEnabled) {
             return;
@@ -196,13 +205,6 @@ public class AFMCorePlugin {
         }
 
         PluginConfig.lobbySpawn = new LocationSerializer().deserialize(configNode.getNode("lobby").getNode("location"));
-        Optional<ProviderRegistration<LuckPerms>> provider = Sponge.getServiceManager().getRegistration(LuckPerms.class);
-        provider.ifPresent(luckPermsProviderRegistration -> luckPerms = luckPermsProviderRegistration.getProvider());
-        /*Task tablistTask = */
-        Task.builder()
-                .execute(new UpdateTask())
-                .intervalTicks(20)
-                .submit(this);
 
     }
 
