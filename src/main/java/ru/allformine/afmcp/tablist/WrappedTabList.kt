@@ -18,21 +18,19 @@ object WrappedTabList {
     }
 
     fun writeAll() {
-        val nativeEntries = ArrayList<TabListEntry>()
-        entries.forEach {
-            nativeEntries.add(TabListEntry.builder()
-                    .displayName(it.name)
-                    .gameMode(it.gameMode.get())
-                    .latency(it.latency)
-                    .profile(it.player.profile)
-                    .build())
-            it.setHeaderAndFooter()
-        }
-
         for(player in Sponge.getServer().onlinePlayers) {
             val tablist = player.tabList
             tablist.entries.forEach { tablist.removeEntry(it.profile.uniqueId) }
-            nativeEntries.forEach { tablist.addEntry(it) }
+        }
+        entries.forEach { entry ->
+            val nativeEntry = TabListEntry.builder()
+                    .displayName(entry.name)
+                    .gameMode(entry.gameMode.get())
+                    .latency(entry.latency)
+                    .profile(entry.player.profile)
+                    .build()
+            entry.setHeaderAndFooter()
+            Sponge.getServer().onlinePlayers.forEach { it.tabList.addEntry(nativeEntry) }
         }
     }
 
