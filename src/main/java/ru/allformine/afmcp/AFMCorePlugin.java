@@ -175,7 +175,7 @@ public class AFMCorePlugin {
                         GenericArguments.onlyOne(GenericArguments.remainingJoinedStrings(Text.of("message"))))
                 .build();
 
-        Sponge.getCommandManager().register(this, messageSpec, "message", "msg");
+        Sponge.getCommandManager().register(this, messageSpec, "message", "amsg");
 
         CommandSpec messagePlayerSpec = CommandSpec.builder()
                 .description(Text.of("(MessagingAPI) отправить собщение игроку"))
@@ -186,7 +186,7 @@ public class AFMCorePlugin {
                         GenericArguments.onlyOne(GenericArguments.remainingJoinedStrings(Text.of("message"))))
                 .build();
 
-        Sponge.getCommandManager().register(this, messageSpec, "messageplayer", "msgplayer");
+        Sponge.getCommandManager().register(this, messagePlayerSpec, "messageplayer", "mplayer");
 
         if (PluginConfig.lobbyId != null) {
             for (LobbyCommon lobby : lobbies) {

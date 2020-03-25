@@ -37,6 +37,8 @@ public class MessagePlayerCommand extends AFMCPCommand {
 
         Messaging.sendMessage(player, message, type);
 
+        reply(scr, Text.of(String.format("Сообщение было отправлено игроку %s.", player.getName())));
+
         return CommandResult.success();
     }
 
