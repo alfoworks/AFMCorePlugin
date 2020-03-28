@@ -18,7 +18,7 @@ class WrappedTabListEntry(val player: Player) {
     var footer: LiteralText = Text.of("Footer")
 
     val priority: Int = PluginConfig.tablistSorting.childrenList
-            .find { player.hasPermission("group.{}".format(it.string)) }
+            .find { player.hasPermission("group.%s".format(it.string)) }
             ?.let { PluginConfig.tablistSorting.childrenList.indexOf(it) } ?: 2147483647
     val name: LiteralText = Text.of(player.name)
     val latency = player.connection.latency
@@ -30,7 +30,7 @@ class WrappedTabListEntry(val player: Player) {
     }
 
     override fun toString(): String {
-        return "%s@mine.alfo.ws/?priority=%s".format(name.toString(), priority)
+        return "%s@mine.alfo.ws/?priority=%s".format(player.name, priority)
     }
 
     /* private fun generateDynamicStuff(player: Player) {
