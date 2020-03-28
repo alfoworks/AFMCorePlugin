@@ -95,25 +95,16 @@ class RestartCommand : AFMCPCommand() {
 
         companion object {
             private fun pluralize(number: Int, nomSing: String, genSing: String, genPl: String): String {
-                val numberString = number.toString()
-                val lastDigit = numberString.substring(numberString.length - 1).toInt()
-                val lastTwoDigits = if (numberString.length > 1) numberString.substring(numberString.length - 2).toInt() else lastDigit
+                 // val numberString = number.toString()
+                // val lastDigit = numberString.substring(numberString.length - 1).toInt()
+                // val lastTwoDigits = if (numberString.length > 1) numberString.substring(numberString.length - 2).toInt() else lastDigit
+                val lastDigit = number % 10
+                val lastTwoDigits = number % 100
                 return when {
-                    lastTwoDigits in 11..19 -> {
-                        genPl
-                    }
-
-                    lastDigit == 1 -> {
-                        nomSing
-                    }
-
-                    lastDigit in 2..4 -> {
-                        genSing
-                    }
-
-                    else -> {
-                        genPl
-                    }
+                    lastTwoDigits in 11..19 -> genPl
+                    lastDigit == 1 -> nomSing
+                    lastDigit in 2..4 -> genSing
+                    else -> genPl
                 }
             }
         }
