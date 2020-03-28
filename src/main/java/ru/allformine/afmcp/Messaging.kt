@@ -8,7 +8,8 @@ object Messaging {
     @JvmStatic
     fun sendMessage(player: Player?, message: String, type: MessageType) {
         val buffer = Consumer { channelBuf: ChannelBuf ->
-            channelBuf.writeString(message)
+            channelBuf.writeUTF(message)
+            channelBuf.writeInteger(type.typeInt)
         }
 
         if (player == null) {
