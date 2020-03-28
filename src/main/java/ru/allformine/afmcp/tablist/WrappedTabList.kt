@@ -26,9 +26,7 @@ object WrappedTabList {
 
     fun writeAll() {
         for (player in Sponge.getServer().onlinePlayers) {
-            val tablist = player.tabList
-            tablist.entries.clear()
-            // tablist.entries.forEach { tablist.removeEntry(it.profile.uniqueId) }
+            player.tabList.entries.clear()
         }
         for (entry in entries) {
             entry.setHeaderAndFooter()
