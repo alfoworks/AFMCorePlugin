@@ -23,7 +23,7 @@ class RestartCommand : AFMCPCommand() {
 
                 sendRestartMessage("Перезапуск сервера был отменён.")
 
-                task!!.cancel()
+                task?.cancel()
                 task = null
             } else {
                 reply(src, Text.of("Рестарт уже запланирован. Используйте флаг -с для отмены рестарта."))
@@ -81,7 +81,7 @@ class RestartCommand : AFMCPCommand() {
 
             if (minutes == 0) {
                 task = Task.builder().execute(Runnable {
-                    if (seconds == 30 || seconds <= 10 && seconds > 0) {
+                    if (seconds == 30 || seconds in 1..10) {
                         sendRestartMessage(String.format("Сервер будет перезапущен через %s %s", seconds, pluralize(seconds, "секунду", "секунды", "секунд")))
                     } else if (seconds == 0) {
                         sendRestartMessage("Сервер перезапускается!")
