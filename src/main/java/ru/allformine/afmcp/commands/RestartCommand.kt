@@ -70,8 +70,8 @@ class RestartCommand : AFMCPCommand() {
         return TextColors.RED
     }
 
-    class RestartRunnable constructor(private var minutes: Int, seconds: Int) : Runnable {
-        private var seconds = 60
+    class RestartRunnable(private var minutes: Int, private var seconds: Int = 60) : Runnable {
+        // private var seconds = 60
 
         override fun run() {
             if (minutes > 0) {
@@ -109,8 +109,8 @@ class RestartCommand : AFMCPCommand() {
             }
         }
 
-        init {
-            this.seconds = seconds
-        }
+//        init {
+//            this.seconds = seconds
+//        }
     }
 }
