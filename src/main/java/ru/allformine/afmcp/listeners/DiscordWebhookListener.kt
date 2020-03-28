@@ -1,73 +1,82 @@
-package ru.allformine.afmcp.listeners;
+package ru.allformine.afmcp.listeners
 
-import br.net.fabiozumbi12.UltimateChat.Sponge.API.SendChannelMessageEvent;
-import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.event.Listener;
-import org.spongepowered.api.event.Order;
-import org.spongepowered.api.event.advancement.AdvancementEvent;
-import org.spongepowered.api.event.command.SendCommandEvent;
-import org.spongepowered.api.event.entity.DestructEntityEvent;
-import org.spongepowered.api.event.filter.cause.First;
-import org.spongepowered.api.event.network.ClientConnectionEvent;
-import ru.allformine.afmcp.AFMCorePlugin;
-import ru.allformine.afmcp.net.api.Webhook;
+import br.net.fabiozumbi12.UltimateChat.Sponge.API.SendChannelMessageEvent
+import org.spongepowered.api.entity.living.player.Player
+import org.spongepowered.api.event.Listener
+import org.spongepowered.api.event.Order
+import org.spongepowered.api.event.advancement.AdvancementEvent
+import org.spongepowered.api.event.command.SendCommandEvent
+import org.spongepowered.api.event.entity.DestructEntityEvent.Death
+import org.spongepowered.api.event.filter.cause.First
+import org.spongepowered.api.event.network.ClientConnectionEvent
+import org.spongepowered.api.event.network.ClientConnectionEvent.Join
+import ru.allformine.afmcp.AFMCorePlugin
+import ru.allformine.afmcp.net.api.Webhook
+import ru.allformine.afmcp.net.api.Webhook.TypePlayerMessage
 
-public class DiscordWebhookListener {
+class DiscordWebhookListener {
+    private var publicChannels = listOf("Global", "Trade")
+
     @Listener(order = Order.POST)
-    public void onPlayerJoin(ClientConnectionEvent.Join event) {
-        Webhook.TypePlayerMessage type = !event.isMessageCancelled() ? (event.getTargetEntity().hasPlayedBefore() ?
-                Webhook.TypePlayerMessage.JOINED_SERVER :
-                Webhook.TypePlayerMessage.JOINED_FIRST_TIME) : Webhook.TypePlayerMessage.STAFF_JOINED_SERVER;
-        Webhook.sendPlayerMessage(type, event.getTargetEntity());
+    fun onPlayerJoin(event: Join) {
+        val type = if (!event.isMessageCancelled) if (event.targetEntity.hasPlayedBefore()) TypePlayerMessage.JOINED_SERVER else TypePlayerMessage.JOINED_FIRST_TIME else TypePlayerMessage.STAFF_JOINED_SERVER
+
+        Webhook.sendPlayerMessage(type, event.targetEntity)
     }
 
     @Listener(order = Order.POST)
-    public void onPlayerQuit(ClientConnectionEvent.Disconnect event) {
-        if (AFMCorePlugin.serverRestart) return;
-        Webhook.sendPlayerMessage(!event.isMessageCancelled() ? Webhook.TypePlayerMessage.LEFT_SERVER : Webhook.TypePlayerMessage.STAFF_LEFT_SERVER, event.getTargetEntity());
+    fun onPlayerQuit(event: ClientConnectionEvent.Disconnect) {
+        if (AFMCorePlugin.serverRestart) return
+
+        Webhook.sendPlayerMessage(if (!event.isMessageCancelled) TypePlayerMessage.LEFT_SERVER else TypePlayerMessage.STAFF_LEFT_SERVER, event.targetEntity)
     }
 
     @Listener(order = Order.POST)
-    public void onSendChannelMessageEvent(SendChannelMessageEvent event) {
-        if (event.getSender() instanceof Player) {
-            String channelName = event.getChannel().getName();
-            Player sender = (Player) event.getSender();
-            String message = event.getMessage().toPlain();
-            if (!channelName.equals("Global") && !channelName.equals("Trade")) {
-                Webhook.sendPlayerMessage(Webhook.TypePlayerMessage.LVL2_CHAT_MESSAGE,
-                        sender,
-                        sender.getLocation().toString(),
-                        channelName,
-                        message
-                );
+    fun onSendChannelMessageEvent(event: SendChannelMessageEvent) {
+        val channelName = event.channel.name
+        val sender = event.sender
+        val message = event.message.toPlain()
+
+        if (!publicChannels.contains(channelName)) {
+            val location: String = if (sender is Player) {
+                String.format("X: %s, Y: %s, Z: %s", sender.location.blockX, sender.location.blockY, sender.location.blockZ)
             } else {
-                Webhook.sendPlayerMessage(Webhook.TypePlayerMessage.CHAT_MESSAGE, sender, channelName, message);
+                "No location"
             }
+
+            Webhook.sendPlayerMessage(TypePlayerMessage.LVL2_CHAT_MESSAGE,
+                    sender,
+                    location,
+                    channelName,
+                    message
+            )
+        } else {
+            Webhook.sendPlayerMessage(TypePlayerMessage.CHAT_MESSAGE, sender, channelName, message)
         }
     }
 
     @Listener(order = Order.POST)
-    public void onCommandSend(SendCommandEvent event, @First Player player) {
-        Webhook.sendPlayerMessage(Webhook.TypePlayerMessage.COMMAND, player, event.getCommand() + " " + event.getArguments());
+    fun onCommandSend(event: SendCommandEvent, @First player: Player?) {
+        Webhook.sendPlayerMessage(TypePlayerMessage.COMMAND, player, event.command + " " + event.arguments)
     }
 
     @Listener(order = Order.POST)
-    public void onAdvancement(AdvancementEvent.Grant event) {
-        if (!event.getAdvancement().getName().startsWith("recipes_")) {
-            Webhook.sendPlayerMessage(Webhook.TypePlayerMessage.EARNED_ADVANCEMENT,
-                    event.getTargetEntity(),
-                    event.getAdvancement().getName()
-            );
+    fun onAdvancement(event: AdvancementEvent.Grant) {
+        if (!event.advancement.name.startsWith("recipes_") && !event.isMessageCancelled) {
+            Webhook.sendPlayerMessage(TypePlayerMessage.EARNED_ADVANCEMENT,
+                    event.targetEntity,
+                    event.advancement.name
+            )
         }
     }
 
     @Listener(order = Order.POST)
-    public void onDeath(DestructEntityEvent.Death event) {
-        if (event.getTargetEntity() instanceof Player) {
-            Webhook.sendPlayerMessage(Webhook.TypePlayerMessage.DIED,
-                    (Player) event.getTargetEntity(),
-                    event.getMessage().toPlain()
-            );
+    fun onDeath(event: Death) {
+        if (event.targetEntity is Player && !event.isMessageCancelled) {
+            Webhook.sendPlayerMessage(TypePlayerMessage.DIED,
+                    event.targetEntity as Player,
+                    event.message.toPlain()
+            )
         }
     }
 }

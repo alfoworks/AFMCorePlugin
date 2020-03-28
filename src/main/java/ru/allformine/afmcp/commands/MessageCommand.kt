@@ -1,52 +1,57 @@
-package ru.allformine.afmcp.commands;
+package ru.allformine.afmcp.commands
 
-import org.spongepowered.api.command.CommandException;
-import org.spongepowered.api.command.CommandResult;
-import org.spongepowered.api.command.CommandSource;
-import org.spongepowered.api.command.args.CommandContext;
-import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.format.TextColor;
-import org.spongepowered.api.text.format.TextColors;
-import ru.allformine.afmcp.Messaging;
+import org.spongepowered.api.command.CommandException
+import org.spongepowered.api.command.CommandResult
+import org.spongepowered.api.command.CommandSource
+import org.spongepowered.api.command.args.CommandContext
+import org.spongepowered.api.entity.living.player.Player
+import org.spongepowered.api.text.Text
+import org.spongepowered.api.text.format.TextColor
+import org.spongepowered.api.text.format.TextColors
+import ru.allformine.afmcp.Messaging
 
-import java.util.Arrays;
-
-public class MessageCommand extends AFMCPCommand {
-    @Override
-    public CommandResult execute(CommandSource scr, CommandContext args) throws CommandException {
-        if (!args.<String>getOne("type").isPresent() || !args.<String>getOne("message").isPresent()) {
-            throw new CommandException(Text.of("Недостаточно аргументов!"));
+class MessageCommand : AFMCPCommand() {
+    @Throws(CommandException::class)
+    override fun execute(src: CommandSource, args: CommandContext): CommandResult {
+        if (!args.getOne<String>("type").isPresent || !args.getOne<String>("message").isPresent) {
+            throw CommandException(Text.of("Недостаточно аргументов!"))
         }
 
-        String message = args.<String>getOne("message").get();
-        Messaging.MessageType type;
+        val message = args.getOne<String>("message").get()
 
-        try {
-            type = Messaging.MessageType.valueOf(args.<String>getOne("type").get().toUpperCase());
-        } catch (IllegalArgumentException ignored) {
-            reply(scr, Text.of("Неверный тип сообщения! Правильные типы:"));
+        if (message.length > 40) {
+            reply(src, Text.of("Максимальная длина сообщения - 40 символов."))
 
-            for (String messageType : Arrays.stream(Messaging.MessageType.values()).map(Enum::name).toArray(String[]::new)) {
-                scr.sendMessage(Text.of(messageType));
+            return CommandResult.success()
+        }
+
+        val type: Messaging.MessageType
+
+        type = try {
+            Messaging.MessageType.valueOf(args.getOne<String>("type").get().toUpperCase())
+        } catch (ignored: IllegalArgumentException) {
+            reply(src, Text.of("Неверный тип сообщения! Правильные типы:"))
+
+            for (messageType in Messaging.MessageType.values()) {
+                src.sendMessage(Text.of(messageType))
             }
 
-            return CommandResult.success();
+            return CommandResult.success()
         }
 
-        Messaging.sendMessage(null, message, type);
+        val player = args.getOne<Player>("player").orElse(null);
 
-        reply(scr, Text.of("Сообщение было отправлено всем игрокам."));
+        Messaging.sendMessage(player, message, type)
+        reply(src, Text.of("Сообщение было отправлено всем игрокам."))
 
-        return CommandResult.success();
+        return CommandResult.success()
     }
 
-    @Override
-    public String getName() {
-        return "Messaging";
+    override fun getName(): String {
+        return "Messaging"
     }
 
-    @Override
-    public TextColor getColor() {
-        return TextColors.DARK_BLUE;
+    override fun getColor(): TextColor {
+        return TextColors.DARK_BLUE
     }
 }

@@ -12,12 +12,12 @@ import org.spongepowered.api.text.serializer.TextSerializers;
 
 public class RawBCCommand extends AFMCPCommand {
     @Override
-    public CommandResult execute(CommandSource scr, CommandContext args) {
+    public CommandResult execute(CommandSource src, CommandContext args) {
         for (Player player : Sponge.getServer().getOnlinePlayers()) {
             player.sendMessage(TextSerializers.FORMATTING_CODE.deserialize(Text.of(args.<String>getOne("text").orElse("")).toPlain()));
         }
 
-        reply(scr, Text.of("Сообщение успешно отправлено!"));
+        reply(src, Text.of("Сообщение успешно отправлено!"));
 
         return CommandResult.success();
     }

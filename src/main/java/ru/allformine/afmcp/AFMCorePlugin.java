@@ -112,7 +112,8 @@ public class AFMCorePlugin {
         CommandSpec restartCommandSpec = CommandSpec.builder()
                 .description(Text.of("Команда для перезагрузки сервера, единственная верная."))
                 .permission("afmcp.admin")
-                .arguments(GenericArguments.optional(GenericArguments.integer(Text.of("minutes"))))
+                .arguments(GenericArguments.flags().flag("c").buildWith(GenericArguments.seq(
+                        GenericArguments.optional(GenericArguments.integer(Text.of("minutes"))))))
                 .executor(new RestartCommand())
                 .build();
 
@@ -169,24 +170,15 @@ public class AFMCorePlugin {
         Sponge.getCommandManager().register(this, tickIntervalSpec, "tickinterval", "ti");
 
         CommandSpec messageSpec = CommandSpec.builder()
-                .description(Text.of("(MessagingAPI) отправить собщение всем"))
+                .description(Text.of("(MessagingAPI) отправить собщение всем или игроку"))
                 .executor(new MessageCommand())
-                .arguments(GenericArguments.onlyOne(GenericArguments.string(Text.of("type"))),
-                        GenericArguments.onlyOne(GenericArguments.remainingJoinedStrings(Text.of("message"))))
+                .arguments(GenericArguments.flags().valueFlag(GenericArguments
+                        .player(Text.of("player")), "p").buildWith(GenericArguments.seq(
+                        GenericArguments.onlyOne(GenericArguments.string(Text.of("type"))),
+                        GenericArguments.onlyOne(GenericArguments.remainingJoinedStrings(Text.of("message"))))))
                 .build();
 
         Sponge.getCommandManager().register(this, messageSpec, "message", "amsg");
-
-        CommandSpec messagePlayerSpec = CommandSpec.builder()
-                .description(Text.of("(MessagingAPI) отправить собщение игроку"))
-                .executor(new MessageCommand())
-                .arguments(
-                        GenericArguments.onlyOne(GenericArguments.player(Text.of("player"))),
-                        GenericArguments.onlyOne(GenericArguments.string(Text.of("type"))),
-                        GenericArguments.onlyOne(GenericArguments.remainingJoinedStrings(Text.of("message"))))
-                .build();
-
-        Sponge.getCommandManager().register(this, messagePlayerSpec, "messageplayer", "mplayer");
 
         if (PluginConfig.lobbyId != null) {
             for (LobbyCommon lobby : lobbies) {
@@ -215,7 +207,6 @@ public class AFMCorePlugin {
                 .intervalTicks(20)
                 .name("TabList Update Task")
                 .submit(this);
-
 
 
         if (!PluginConfig.lobbyEnabled) {

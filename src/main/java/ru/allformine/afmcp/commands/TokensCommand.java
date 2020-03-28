@@ -13,7 +13,6 @@ import ru.allformine.afmcp.net.api.Eco;
 import java.util.OptionalInt;
 
 public class TokensCommand extends AFMCPCommand {
-
     public CommandResult execute(CommandSource source, CommandContext args) {
         if (source instanceof Player) {
             Eco eco = new Eco((Player) source);

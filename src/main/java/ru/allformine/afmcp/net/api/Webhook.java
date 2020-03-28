@@ -3,6 +3,7 @@ package ru.allformine.afmcp.net.api;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import ninja.leaping.configurate.ConfigurationNode;
+import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.entity.living.player.Player;
 import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.net.http.Requests;
@@ -68,7 +69,7 @@ public class Webhook {
         sendApiRequest(new JsonObject(), type.name(), "server", extra);
     }
 
-    public static void sendPlayerMessage(TypePlayerMessage type, Player player, String... extra) {
+    public static void sendPlayerMessage(TypePlayerMessage type, CommandSource player, String... extra) {
         String typeName = type.name();
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("username", player.getName());
