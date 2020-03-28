@@ -9,7 +9,7 @@ object Messaging {
     fun sendMessage(player: Player?, message: String, type: MessageType) {
         val buffer = Consumer { channelBuf: ChannelBuf ->
             channelBuf.writeInteger(type.typeInt)
-            channelBuf.writeString(message)
+            channelBuf.writeUTF(message)
         }
 
         if (player == null) {

@@ -42,7 +42,7 @@ class MessageCommand : AFMCPCommand() {
         val player = args.getOne<Player>("player").orElse(null);
 
         Messaging.sendMessage(player, message, type)
-        reply(src, Text.of("Сообщение было отправлено всем игрокам."))
+        reply(src, Text.of(String.format("Сообщение было отправлено %s.", if (player != null) "игроку " + player.name else "всем игрокам")))
 
         return CommandResult.success()
     }
