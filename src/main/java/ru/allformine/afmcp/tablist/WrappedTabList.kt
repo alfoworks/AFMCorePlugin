@@ -31,7 +31,7 @@ object WrappedTabList {
         }
         for (entry in entries) {
             entry.setHeaderAndFooter()
-            Sponge.getServer().onlinePlayers.forEach {
+            Sponge.getServer().onlinePlayers.iterator().forEach {
                 val nativeEntry = TabListEntry.builder()
                         .list(it.tabList)
                         .displayName(entry.name)
