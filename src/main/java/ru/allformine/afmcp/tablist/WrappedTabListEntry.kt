@@ -20,7 +20,8 @@ class WrappedTabListEntry(val player: Player) {
     val priority: Int = PluginConfig.tablistSorting.childrenList
             .find { player.hasPermission("group.%s".format(it.string)) }
             ?.let { PluginConfig.tablistSorting.childrenList.indexOf(it) } ?: 2147483647
-    val name: LiteralText = Text.of(player.name)
+    private val prefix = player.getOption("prefix").orElse("")!!
+    val name: LiteralText = Text.of(prefix + " " + player.name)
     val latency = player.connection.latency
     val uuid: UUID = player.uniqueId
     val gameMode: Value<GameMode> = player.gameMode()
