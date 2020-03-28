@@ -29,11 +29,11 @@ class RestartCommand : AFMCPCommand() {
                 reply(src, Text.of("Рестарт уже запланирован. Используйте флаг -с для отмены рестарта."))
             }
 
-            return CommandResult.success();
+            return CommandResult.success()
         } else if (args.hasAny("c")) {
             reply(src, Text.of("Не удалось отменить рестарт: нет запланированных рестартов."))
 
-            return CommandResult.success();
+            return CommandResult.success()
         }
 
         var minutes = 0
@@ -55,7 +55,7 @@ class RestartCommand : AFMCPCommand() {
     }
 
     companion object {
-        var task: Task? = null;
+        var task: Task? = null
 
         fun sendRestartMessage(message: String) {
             Sponge.getServer().broadcastChannel.send(TextSerializers.FORMATTING_CODE.deserialize("&7-&2G &cРестарт&f: $message"))
