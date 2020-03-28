@@ -3,6 +3,8 @@ package ru.allformine.afmcp.tablist
 import org.spongepowered.api.Sponge
 import org.spongepowered.api.entity.living.player.Player
 import org.spongepowered.api.entity.living.player.tab.TabListEntry
+import java.util.*
+
 
 object WrappedTabList {
     private val entries = ArrayList<WrappedTabListEntry>()
@@ -27,6 +29,9 @@ object WrappedTabList {
     fun writeAll() {
         for (player in Sponge.getServer().onlinePlayers) {
             player.tabList.entries.clear()
+            ArrayList(player.tabList.entries).forEach {
+                player.tabList.removeEntry(it.profile.uniqueId)
+            }
         }
         for (entry in entries) {
             entry.setHeaderAndFooter()
