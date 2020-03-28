@@ -4,7 +4,6 @@ import org.spongepowered.api.Sponge
 import org.spongepowered.api.entity.living.player.Player
 import org.spongepowered.api.entity.living.player.tab.TabListEntry
 
-
 object WrappedTabList {
     private val entries = ArrayList<WrappedTabListEntry>()
 
@@ -22,15 +21,18 @@ object WrappedTabList {
             val tablist = player.tabList
             tablist.entries.forEach { tablist.removeEntry(it.profile.uniqueId) }
         }
-        entries.forEach { entry ->
-            val nativeEntry = TabListEntry.builder()
-                    .displayName(entry.name)
-                    .gameMode(entry.gameMode.get())
-                    .latency(entry.latency)
-                    .profile(entry.player.profile)
-                    .build()
+        for (entry in entries) {
             entry.setHeaderAndFooter()
-            Sponge.getServer().onlinePlayers.forEach { it.tabList.addEntry(nativeEntry) }
+            Sponge.getServer().onlinePlayers.forEach {
+                val nativeEntry = TabListEntry.builder()
+                        .list(it.tabList)
+                        .displayName(entry.name)
+                        .gameMode(entry.gameMode.get())
+                        .latency(entry.latency)
+                        .profile(entry.player.profile)
+                        .build()
+                it.tabList.addEntry(nativeEntry)
+            }
         }
     }
 
