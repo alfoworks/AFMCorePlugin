@@ -14,6 +14,6 @@ class TabListCommand: AFMCPCommand() {
     }
 
     override fun getName(): String? {
-        return "TabListDebug"
+        return "TabListDebug" // Тест
     }
 }
