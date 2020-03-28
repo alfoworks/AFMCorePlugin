@@ -25,14 +25,10 @@ class RestartCommand : AFMCPCommand() {
 
                 task?.cancel()
                 task = null
-            } else {
-                reply(src, Text.of("Рестарт уже запланирован. Используйте флаг -с для отмены рестарта."))
-            }
-
+            } else reply(src, Text.of("Рестарт уже запланирован. Используйте флаг -с для отмены рестарта."))
             return CommandResult.success()
         } else if (args.hasAny("c")) {
             reply(src, Text.of("Не удалось отменить рестарт: нет запланированных рестартов."))
-
             return CommandResult.success()
         }
 
