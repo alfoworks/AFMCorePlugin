@@ -28,7 +28,6 @@ object WrappedTabList {
 
     fun writeAll() {
         for (player in Sponge.getServer().onlinePlayers) {
-            player.tabList.entries.clear()
             ArrayList(player.tabList.entries).forEach {
                 player.tabList.removeEntry(it.profile.uniqueId)
             }
