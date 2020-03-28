@@ -104,7 +104,7 @@ public class AFMCorePlugin {
         configSetup();
 
         CommandSpec tablistDebugSpec = CommandSpec.builder()
-                .executor(new KotlinTestCommand())
+                .executor(new TabListCommand())
                 .build();
 
         Sponge.getCommandManager().register(this, tablistDebugSpec, "tablist");
