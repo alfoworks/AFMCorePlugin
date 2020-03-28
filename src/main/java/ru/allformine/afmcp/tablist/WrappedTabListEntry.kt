@@ -27,7 +27,6 @@ class WrappedTabListEntry(val player: Player) {
 
     fun setHeaderAndFooter() {
         tablist.setHeaderAndFooter(header, footer)
-
     }
 
     /* private fun generateDynamicStuff(player: Player) {
