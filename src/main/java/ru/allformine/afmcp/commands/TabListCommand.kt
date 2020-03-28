@@ -1,6 +1,5 @@
 package ru.allformine.afmcp.commands
 
-import org.spongepowered.api.command.CommandException
 import org.spongepowered.api.command.CommandResult
 import org.spongepowered.api.command.CommandSource
 import org.spongepowered.api.command.args.CommandContext
@@ -15,6 +14,6 @@ class TabListCommand: AFMCPCommand() {
     }
 
     override fun getName(): String? {
-        return "TabListDebug"
+        return "TabListDebug" // Тест
     }
 }
