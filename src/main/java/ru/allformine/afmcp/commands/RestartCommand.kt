@@ -80,6 +80,8 @@ class RestartCommand : AFMCPCommand() {
             }
 
             if (minutes == 0) {
+                task?.cancel()
+
                 task = Task.builder().execute(Runnable {
                     if (seconds == 30 || seconds in 1..10) {
                         sendRestartMessage(String.format("Сервер будет перезапущен через %s %s", seconds, pluralize(seconds, "секунду", "секунды", "секунд")))
