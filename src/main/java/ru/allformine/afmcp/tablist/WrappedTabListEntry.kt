@@ -29,6 +29,10 @@ class WrappedTabListEntry(val player: Player) {
         tablist.setHeaderAndFooter(header, footer)
     }
 
+    override fun toString(): String {
+        return "%s@mine.alfo.ws/?priority=%s".format(name.toString(), priority)
+    }
+
     /* private fun generateDynamicStuff(player: Player) {
         val playerLocation: Location = player.location
         header += ChatColor.translateAlternateColorCodes('&', String.format(PluginConfig.tabListOnlineCount, Bukkit.getOnlinePlayers().size(), Bukkit.getMaxPlayers()))
