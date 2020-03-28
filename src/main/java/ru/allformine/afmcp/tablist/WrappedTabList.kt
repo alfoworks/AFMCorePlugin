@@ -7,7 +7,7 @@ import java.util.*
 
 
 object WrappedTabList {
-    private val entries = ArrayList<WrappedTabListEntry>()
+    val entries = ArrayList<WrappedTabListEntry>()
 
     fun removeEntry(player: Player) {
         entries.removeIf { it.uuid == player.uniqueId }
