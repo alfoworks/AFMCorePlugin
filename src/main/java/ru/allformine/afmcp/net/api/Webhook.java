@@ -9,7 +9,7 @@ import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.net.http.Requests;
 
 public class Webhook {
-    private static ConfigurationNode configNode = AFMCorePlugin.getConfig().getNode("webhook");
+    private static ConfigurationNode configNode = AFMCorePlugin.Companion.getConfig().getNode("webhook");
     private static String server_id = configNode.getNode("server_id").getString();
     private static String token = configNode.getNode("token").getString();
     private static String apiUrl = configNode.getNode("apiURL").getString();

@@ -10,7 +10,7 @@ import java.util.OptionalInt;
 
 @SuppressWarnings("unused")
 public class Eco {
-    private static ConfigurationNode configNode = AFMCorePlugin.getConfig().getNode("eco");
+    private static ConfigurationNode configNode = AFMCorePlugin.Companion.getConfig().getNode("eco");
     private static String key = configNode.getNode("key").getString();
     private static String apiUrl = configNode.getNode("balanceApiUrl").getString() + "&key=" + key;
     private String nickname;

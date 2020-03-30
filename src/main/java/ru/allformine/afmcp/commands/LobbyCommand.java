@@ -41,7 +41,7 @@ public class LobbyCommand extends AFMCPCommand {
             Location<World> location = ((Player) src).getLocation();
 
             PluginConfig.lobbySpawn = location;
-            new LocationSerializer().serialize(location, AFMCorePlugin.getConfig().getNode("lobby").getNode("location"));
+            new LocationSerializer().serialize(location, AFMCorePlugin.Companion.getConfig().getNode("lobby").getNode("location"));
 
             AFMCorePlugin.saveConfig();
 

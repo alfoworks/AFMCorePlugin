@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.OptionalInt;
 
 public class VipCommand extends AFMCPCommand {
-    private ConfigurationNode configNode = AFMCorePlugin.getConfig();
+    private ConfigurationNode configNode = AFMCorePlugin.Companion.getConfig();
     private Map<Object, ? extends ConfigurationNode> vips = configNode.getNode("vips").getChildrenMap();
 
     public CommandResult execute(CommandSource source, CommandContext args) {
