@@ -93,14 +93,18 @@ public class AFMCorePlugin {
         Sponge.getEventManager().registerListeners(this, new DiscordWebhookListener());
         Sponge.getEventManager().registerListeners(this, new JumpPadEventListener());
         Sponge.getEventManager().registerListeners(this, new TestEventListener());
-        Sponge.getEventManager().registerListeners(this, new ChatEventListener());
         Sponge.getEventManager().registerListeners(this, new MOTDEventListener());
 
         if (Sponge.getPluginManager().isLoaded("eaglefactions")) {
             Sponge.getEventManager().registerListeners(this, new FactionEventListener());
         }
 
-        Sponge.getEventManager().registerListeners(this, Sponge.getPluginManager().isLoaded("ultimatechat") ? new UltimateChatEventListener() : new DefaultChatEventListener());
+        if (Sponge.getPluginManager().isLoaded("ultimatechat")) {
+            Sponge.getEventManager().registerListeners(this, new ChatEventListener());
+            Sponge.getEventManager().registerListeners(this, new UltimateChatEventListener());
+        } else {
+            Sponge.getEventManager().registerListeners(this, new DefaultChatEventListener());
+        }
 
         configFile = configDir.resolve("config.conf");
         configLoader = HoconConfigurationLoader.builder().setPath(configFile).build();
