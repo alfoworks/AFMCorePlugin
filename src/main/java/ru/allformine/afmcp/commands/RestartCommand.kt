@@ -15,7 +15,6 @@ import ru.allformine.afmcp.Utils
 import java.util.concurrent.TimeUnit
 
 class RestartCommand : AFMCPCommand() {
-
     override fun execute(src: CommandSource, args: CommandContext): CommandResult {
         if (task != null) {
             if (args.hasAny("c")) {

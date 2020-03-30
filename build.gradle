@@ -35,7 +35,6 @@ dependencies {
     compile 'org.spongepowered:spongeapi:7.1.0'
     compile name: 'uchat'
     compile name: "ef"
-    compile name: 'packetgate'
     compile name: 'spotlin'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
