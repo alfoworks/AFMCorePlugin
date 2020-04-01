@@ -35,7 +35,7 @@ public class FactionEventListener {
         String factionName = faction == null ? "Общая" : faction.getName();
         String factionColor;
 
-        if (AFMCorePlugin.currentLobby.isPlayerInLobby(player)) {
+        if (AFMCorePlugin.currentLobby != null && AFMCorePlugin.currentLobby.isPlayerInLobby(player)) {
             factionColor = "§9";
             factionName = "Лобби";
         } else if (factionName.equals("SafeZone") || EagleFactionsPlugin.getPlugin().getConfiguration().getProtectionConfig().getSafeZoneWorldNames().contains(player.getWorld().getName())) {
