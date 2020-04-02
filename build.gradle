@@ -32,7 +32,7 @@ group = "ru.allformine.afmcp"
 version = "0.7"
 
 dependencies {
-    compile 'org.spongepowered:spongeapi:7.1.0'
+    compile 'org.spongepowered:spongeapi:7.2.0'
     compile name: 'uchat'
     compile name: "ef"
     compile name: 'spotlin'
@@ -49,6 +49,9 @@ jar {
 task copyForShared(type: Copy){
     from jar
     into 'build/libs/'
+
+    logger.lifecycle("Changing compiled JAR filename")
+
     rename { String fileName ->
         // a simple way is to remove the "-$version" from the jar filename
         // but you can customize the filename replacement rule as you wish.
