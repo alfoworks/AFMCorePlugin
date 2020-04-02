@@ -194,6 +194,13 @@ public class AFMCorePlugin {
 
         Sponge.getCommandManager().register(this, messageSpec, "message", "amsg");
 
+        CommandSpec regenSpec = CommandSpec.builder()
+                .description(Text.of("Отрегенерировать чанк"))
+                .executor(new RegenCommand())
+                .build();
+
+        Sponge.getCommandManager().register(this, regenSpec, "regen");
+
         if (PluginConfig.lobbyId != null) {
             for (LobbyCommon lobby : lobbies) {
                 if (lobby.getLobbyId().equals(PluginConfig.lobbyId)) {
