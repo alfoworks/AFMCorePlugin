@@ -24,6 +24,7 @@ import ru.allformine.afmcp.listeners.*;
 import ru.allformine.afmcp.lobby.LobbyCommon;
 import ru.allformine.afmcp.lobby.LobbySOI;
 import ru.allformine.afmcp.lobby.LobbyVanilla;
+import ru.allformine.afmcp.net.api.Broadcast;
 import ru.allformine.afmcp.net.api.Webhook;
 import ru.allformine.afmcp.tablist.UpdateTask;
 
@@ -31,6 +32,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 @Plugin(
         id = "afmcp",
@@ -229,6 +231,12 @@ public class AFMCorePlugin {
                 .name("TabList Update Task")
                 .submit(this);
 
+        if (PluginConfig.broadcastEnabled)
+            Task.builder()
+                    .execute(new BroadcastTask(Broadcast.getBroadcasts()))
+                    .interval(2, TimeUnit.MINUTES)
+                    .name("Broadcast Task (AFMCP)")
+                    .submit(this);
 
         if (!PluginConfig.lobbyEnabled) {
             return;
@@ -240,7 +248,6 @@ public class AFMCorePlugin {
         }
 
         PluginConfig.lobbySpawn = new LocationSerializer().deserialize(configNode.getNode("lobby").getNode("location"));
-
     }
 
     private void configSetup() {
@@ -267,6 +274,8 @@ public class AFMCorePlugin {
         PluginConfig.lobbyId = configNode.getNode("lobby").getNode("id").getString();
         PluginConfig.motdDescription = configNode.getNode("motd").getNode("description").getString();
         PluginConfig.tablistSorting = configNode.getNode("tablist").getNode("sorting");
+        PluginConfig.serverId = configNode.getNode("broadcast").getNode("serverId").getString();
+        PluginConfig.broadcastEnabled = configNode.getNode("broadcast").getNode("enabled").getBoolean();
     }
 
     private void load() {

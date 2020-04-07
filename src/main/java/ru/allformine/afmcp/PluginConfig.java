@@ -12,4 +12,7 @@ public class PluginConfig {
     public static String motdDescription;
 
     public static ConfigurationNode tablistSorting;
+
+    public static String serverId;
+    public static boolean broadcastEnabled;
 }
