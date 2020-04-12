@@ -11,7 +11,7 @@ import org.spongepowered.api.text.serializer.TextSerializers;
 
 import java.util.Optional;
 
-public class ChatEventListener {
+public class ChatCorrectionListener {
     @Listener(order = Order.EARLY)
     public void onChannelMessage(SendChannelMessageEvent event) {
         Text message = event.getMessage();
