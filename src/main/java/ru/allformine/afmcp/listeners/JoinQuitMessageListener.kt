@@ -13,7 +13,7 @@ class JoinQuitMessageListener {
         if (!event.targetEntity.hasPlayedBefore()) {
             sendMessage(event.targetEntity, "Привет! Добро пожаловать на ALFO:MINE. Мы рады видеть новых игроков. Если у тебя появятся вопросы, задай их нам на http://mine.alfo.ws/support/", Messaging.MessageType.WINDOWED)
         } else {
-            sendMessage(event.targetEntity, "Добро пожаловать на ALFO:MINE Litefactor (если заебут эти сообщения при каждом входе - скажитею", Messaging.MessageType.WINDOWED)
+            sendMessage(event.targetEntity, "Добро пожаловать на ALFO:MINE Litefactor (если заебут эти сообщения при каждом входе - скажите)", Messaging.MessageType.WINDOWED)
         }
 
         event.setMessage(TextSerializers.FORMATTING_CODE.deserialize(String.format("&7-&2G &7%s &aвошёл в игру!", event.targetEntity.name)))
