@@ -29,6 +29,7 @@ class WrappedTabListEntry(val player: Player) {
     val gameMode: Value<GameMode> = player.gameMode()
 
     fun setHeaderAndFooter() {
+        generateDynamicStuff(player)
         tablist.setHeaderAndFooter(header, footer)
     }
 
