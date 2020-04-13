@@ -1,6 +1,7 @@
 package ru.allformine.afmcp;
 
 import com.google.inject.Inject;
+import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.commented.CommentedConfigurationNode;
 import ninja.leaping.configurate.hocon.HoconConfigurationLoader;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
@@ -259,7 +260,13 @@ public class AFMCorePlugin {
         PluginConfig.lobbyEnabled = configNode.getNode("lobby").getNode("enabled").getBoolean();
         PluginConfig.lobbyId = configNode.getNode("lobby").getNode("id").getString();
         PluginConfig.motdDescription = configNode.getNode("motd").getNode("description").getString();
-        PluginConfig.tablistSorting = configNode.getNode("tablist").getNode("sorting");
+        ConfigurationNode tablistOptions = configNode.getNode("tablist");
+        PluginConfig.tablistSorting = tablistOptions.getNode("sorting");
+        PluginConfig.tabListFooter = tablistOptions.getNode("footer").getString("");
+        PluginConfig.tabListHeader = tablistOptions.getNode("header").getString("");
+        PluginConfig.tabListCoordinates = tablistOptions.getNode("coordinates").getString("");
+        PluginConfig.tabListOnlineCount = tablistOptions.getNode("onlineCount").getString("");
+
     }
 
     private void load() {

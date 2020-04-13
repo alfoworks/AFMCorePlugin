@@ -12,4 +12,9 @@ public class PluginConfig {
     public static String motdDescription;
 
     public static ConfigurationNode tablistSorting;
+
+    public static String tabListHeader = "";
+    public static String tabListFooter = "";
+    public static String tabListOnlineCount = "";
+    public static String tabListCoordinates = "";
 }
