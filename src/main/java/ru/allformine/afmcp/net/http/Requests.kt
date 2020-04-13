@@ -1,83 +1,86 @@
-package ru.allformine.afmcp.net.http;
+package ru.allformine.afmcp.net.http
 
-import ru.allformine.afmcp.AFMCorePlugin;
+import ru.allformine.afmcp.AFMCorePlugin
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.net.URL
+import java.nio.charset.StandardCharsets
+import javax.net.ssl.HttpsURLConnection
 
-import javax.net.ssl.HttpsURLConnection;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.URL;
-import java.net.URLConnection;
-import java.nio.charset.StandardCharsets;
-
-public class Requests {
-    public static void sendPostJSON(String JSON, String urlString) {
+object Requests {
+    fun sendPostJSON(JSON: String, urlString: String?) {
         try {
-            URL url = new URL(urlString);
-            URLConnection con = url.openConnection();
-            HttpsURLConnection connection = (HttpsURLConnection) con;
-            connection.setRequestMethod("POST");
-            connection.setDoOutput(true);
+            val url = URL(urlString)
+            val con = url.openConnection()
+            val connection = con as HttpsURLConnection
 
-            byte[] out = JSON.getBytes(StandardCharsets.UTF_8);
-            int length = out.length;
+            connection.requestMethod = "POST"
+            connection.doOutput = true
 
-            connection.setFixedLengthStreamingMode(length);
-            connection.addRequestProperty("Content-Type", "application/json; charset=UTF-8");
-            connection.addRequestProperty("User-Agent", "Mozilla 5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.0.11) ");
-            connection.connect();
+            val out = JSON.toByteArray(StandardCharsets.UTF_8)
+            val length = out.size
 
-            try (OutputStream os = connection.getOutputStream()) {
-                os.write(out);
-            }
+            connection.setFixedLengthStreamingMode(length)
+            connection.addRequestProperty("Content-Type", "application/json; charset=UTF-8")
+            connection.addRequestProperty("User-Agent", "Mozilla 5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.0.11) ")
+            connection.connect()
+            connection.outputStream.use { os -> os.write(out) }
 
-            if (connection.getErrorStream() != null) {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
-                StringBuilder result = new StringBuilder();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    result.append("\n").append(line);
+            if (connection.errorStream != null) {
+                val reader = BufferedReader(InputStreamReader(connection.errorStream))
+                val result = StringBuilder()
+                var line: String?
+
+                while (reader.readLine().also { line = it } != null) {
+                    result.append("\n").append(line)
                 }
 
-                AFMCorePlugin.logger.error("Can't send JSON to url " + urlString + ".");
-                AFMCorePlugin.logger.error("JSON: " + JSON);
-                AFMCorePlugin.logger.error("Response: " + result.toString());
+                AFMCorePlugin.logger.error("Can't send JSON to url $urlString.")
+                AFMCorePlugin.logger.error("JSON: $JSON")
+                AFMCorePlugin.logger.error("Response: $result")
             }
-        } catch (Exception e) {
-            AFMCorePlugin.logger.error("Can't send JSON to url " + urlString + ".");
-            AFMCorePlugin.logger.error("JSON: " + JSON);
-
-            e.printStackTrace();
+        } catch (e: Exception) {
+            AFMCorePlugin.logger.error("Can't send JSON to url $urlString.")
+            AFMCorePlugin.logger.error("JSON: $JSON")
+            e.printStackTrace()
         }
     }
 
-    public static Response sendGet(String url) {
-        try {
-            URL obj = new URL(url);
-            HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
-            int code = con.getResponseCode();
-            if (code >= 200 && code < 300) {
-                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-                String inputLine;
-                StringBuilder response = new StringBuilder();
-                while ((inputLine = in.readLine()) != null) {
-                    response.append(inputLine);
+    @JvmStatic
+    fun sendGet(url: String?): Response? {
+        return try {
+            val obj = URL(url)
+            val con = obj.openConnection() as HttpsURLConnection
+            val code = con.responseCode
+
+            if (code in 200..299) {
+                val input = BufferedReader(InputStreamReader(con.inputStream))
+
+                var inputLine: String?
+                val response = StringBuilder()
+                while (input.readLine().also { inputLine = it } != null) {
+                    response.append(inputLine)
                 }
-                in.close();
-                return new Response(response.toString(), code);
-            } else if (con.getErrorStream() != null) {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(con.getErrorStream()));
-                StringBuilder result = new StringBuilder();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    result.append("\n").append(line);
+
+                input.close()
+
+                return Response(response.toString(), code)
+            } else if (con.errorStream != null) {
+                val reader = BufferedReader(InputStreamReader(con.errorStream))
+                val result = StringBuilder()
+                var line: String?
+
+                while (reader.readLine().also { line = it } != null) {
+                    result.append("\n").append(line)
                 }
-                return new Response(result.toString(), code);
+
+                return Response(result.toString(), code)
             }
-            return null;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+
+            null
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
         }
     }
 }

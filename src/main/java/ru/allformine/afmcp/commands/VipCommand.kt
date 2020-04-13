@@ -65,6 +65,7 @@ class VipCommand : AFMCPCommand() {
 
                     return CommandResult.success()
                 }
+
                 Sponge.getCommandManager().process(Sponge.getServer().console, String.format("setvip %s %s %s",
                         source.getName(),
                         vipToBuy.toLowerCase(),
@@ -73,9 +74,10 @@ class VipCommand : AFMCPCommand() {
 
                 reply(source, Text.of("Привилегия успешно приобретена."))
 
-                Webhook.sendPlayerMessage(Webhook.TypePlayerMessage.BOUGHT_VIP, source, vipToBuy);
+                Webhook.sendPlayerMessage(Webhook.TypePlayerMessage.BOUGHT_VIP, source, source.name, vipNode.getNode("fullName").string
+                        ?: "Nothing")
             } else {
-                reply(source, Text.of("Данная привилегия не найдена, введите команду /vip list для списка привилегий."))
+                reply(source, Text.of("Данная привилегия не найдена, введите команду /vip для списка привилегий."))
             }
 
             return CommandResult.success()
