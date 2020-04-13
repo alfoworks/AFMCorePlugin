@@ -29,7 +29,7 @@ class DiscordWebhookListener {
     }
 
     @Listener(order = Order.POST)
-    fun onCommandSend(event: SendCommandEvent, @First player: Player?) {
+    fun onCommandSend(event: SendCommandEvent, @First player: Player) {
         Webhook.sendPlayerMessage(TypePlayerMessage.COMMAND, player, event.command + " " + event.arguments)
     }
 

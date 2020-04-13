@@ -1,21 +1,69 @@
-package ru.allformine.afmcp.net.api;
+package ru.allformine.afmcp.net.api
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import ninja.leaping.configurate.ConfigurationNode;
-import org.spongepowered.api.command.CommandSource;
-import org.spongepowered.api.entity.living.player.Player;
-import ru.allformine.afmcp.AFMCorePlugin;
-import ru.allformine.afmcp.net.http.Requests;
+import com.google.gson.JsonArray
+import com.google.gson.JsonObject
+import ninja.leaping.configurate.ConfigurationNode
+import org.spongepowered.api.command.CommandSource
+import org.spongepowered.api.entity.living.player.Player
+import org.spongepowered.api.scheduler.Task
+import ru.allformine.afmcp.AFMCorePlugin
+import ru.allformine.afmcp.net.http.Requests
 
-public class Webhook {
-    private static ConfigurationNode configNode = AFMCorePlugin.getConfig().getNode("webhook");
-    private static String server_id = configNode.getNode("server_id").getString();
-    private static String token = configNode.getNode("token").getString();
-    private static String apiUrl = configNode.getNode("apiURL").getString();
+object Webhook {
+    private val configNode: ConfigurationNode = AFMCorePlugin.getConfig().getNode("webhook")
+    private val server_id = configNode.getNode("server_id").string
+    private val token = configNode.getNode("token").string
+    private val apiUrl = configNode.getNode("apiURL").string
 
+    private fun sendApiRequest(jsonObject: JsonObject, type: String, group: String, extra: Array<out String>) {
+        jsonObject.addProperty("token", token)
+        jsonObject.addProperty("server_id", server_id)
+        jsonObject.addProperty("type", type)
+        jsonObject.addProperty("group", group)
+        jsonObject.add("arguments", arrayToJson(extra))
 
-    public enum TypeServerMessage {
+        val json = jsonObject.toString()
+
+        Requests.sendPostJSON(json, apiUrl)
+    }
+
+    private fun arrayToJson(array: Array<out String>): JsonArray { // TODO: Дикий костыль
+        val jsonArray = JsonArray()
+
+        for (s in array) {
+            jsonArray.add(s)
+        }
+
+        return jsonArray
+    }
+
+    fun sendSecureAlert(type: TypeSecureAlert, player: Player, vararg extra: String) {
+        val jsonObject = JsonObject()
+        jsonObject.addProperty("username", player.name)
+
+        sendApiRequest(jsonObject, type.name, "secalert", extra)
+    }
+
+    @JvmStatic
+    fun sendServerMessage(type: TypeServerMessage, vararg extra: String) {
+        sendApiRequest(JsonObject(), type.name, "server", extra)
+    }
+
+    fun sendPlayerMessage(type: TypePlayerMessage, player: CommandSource, vararg extra: String) {
+        val typeName = type.name
+        val jsonObject = JsonObject()
+        jsonObject.addProperty("username", player.name)
+
+        // Оптимизация (отправка запроса на каждый чих не будем проебывать тики)
+        Task.builder()
+                .execute(Runnable {
+                    sendApiRequest(jsonObject, typeName, "player", extra)
+                })
+                .async()
+                .submit(AFMCorePlugin.instance)
+    }
+
+    enum class TypeServerMessage {
         SERVER_STARTED,
         SERVER_STOPPED,
         SERVER_RESTARTING,
@@ -23,7 +71,7 @@ public class Webhook {
         SERVER_MAINTENANCE
     }
 
-    public enum TypePlayerMessage {
+    enum class TypePlayerMessage {
         CHAT_MESSAGE,
         LVL2_CHAT_MESSAGE,
         COMMAND,
@@ -34,45 +82,10 @@ public class Webhook {
         JOINED_FIRST_TIME,
         EARNED_ADVANCEMENT,
         DIED,
-        BOUGHT_VIP,
+        BOUGHT_VIP
     }
 
-    public enum TypeSecureAlert {
-        PACKETHACK_USAGE_DETECTED,
-    }
-
-    private static void sendApiRequest(JsonObject object, String type, String group, String[] extra) {
-        object.addProperty("token", token);
-        object.addProperty("server_id", server_id);
-        object.addProperty("type", type);
-        object.addProperty("group", group);
-        object.add("arguments", arrayToJson(extra));
-        final String json = object.toString();
-        Requests.sendPostJSON(json, apiUrl);
-    }
-
-    private static JsonArray arrayToJson(String[] array) { // TODO: Дикий костыль
-        JsonArray jsonArray = new JsonArray();
-        for (String s : array) {
-            jsonArray.add(s);
-        }
-        return jsonArray;
-    }
-
-    public static void sendSecureAlert(TypeSecureAlert type, Player player, String... extra) {
-        JsonObject object = new JsonObject();
-        object.addProperty("username", player.getName());
-        sendApiRequest(object, type.name(), "secalert", extra);
-    }
-
-    public static void sendServerMessage(TypeServerMessage type, String... extra) {
-        sendApiRequest(new JsonObject(), type.name(), "server", extra);
-    }
-
-    public static void sendPlayerMessage(TypePlayerMessage type, CommandSource player, String... extra) {
-        String typeName = type.name();
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("username", player.getName());
-        sendApiRequest(jsonObject, typeName, "player", extra);
+    enum class TypeSecureAlert {
+        PACKETHACK_USAGE_DETECTED
     }
 }
