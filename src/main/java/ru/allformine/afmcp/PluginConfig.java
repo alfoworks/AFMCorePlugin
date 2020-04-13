@@ -17,4 +17,7 @@ public class PluginConfig {
     public static String tabListFooter = "";
     public static String tabListOnlineCount = "";
     public static String tabListCoordinates = "";
+
+    public static String serverId;
+    public static boolean broadcastEnabled;
 }

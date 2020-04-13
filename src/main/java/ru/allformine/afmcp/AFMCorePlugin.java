@@ -25,6 +25,7 @@ import ru.allformine.afmcp.listeners.*;
 import ru.allformine.afmcp.lobby.LobbyCommon;
 import ru.allformine.afmcp.lobby.LobbySOI;
 import ru.allformine.afmcp.lobby.LobbyVanilla;
+import ru.allformine.afmcp.net.api.Broadcast;
 import ru.allformine.afmcp.net.api.Webhook;
 import ru.allformine.afmcp.tablist.UpdateTask;
 
@@ -32,6 +33,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 @Plugin(
         id = "afmcp",
@@ -95,13 +97,14 @@ public class AFMCorePlugin {
         Sponge.getEventManager().registerListeners(this, new JumpPadEventListener());
         Sponge.getEventManager().registerListeners(this, new TestEventListener());
         Sponge.getEventManager().registerListeners(this, new MOTDEventListener());
+        Sponge.getEventManager().registerListeners(this, new JoinQuitMessageListener());
 
         if (Sponge.getPluginManager().isLoaded("eaglefactions")) {
             Sponge.getEventManager().registerListeners(this, new FactionEventListener());
         }
 
         if (Sponge.getPluginManager().isLoaded("ultimatechat")) {
-            Sponge.getEventManager().registerListeners(this, new ChatEventListener());
+            Sponge.getEventManager().registerListeners(this, new ChatCorrectionListener());
             Sponge.getEventManager().registerListeners(this, new UltimateChatEventListener());
         } else {
             Sponge.getEventManager().registerListeners(this, new DefaultChatEventListener());
@@ -195,6 +198,13 @@ public class AFMCorePlugin {
 
         Sponge.getCommandManager().register(this, messageSpec, "message", "amsg");
 
+        CommandSpec regenSpec = CommandSpec.builder()
+                .description(Text.of("Отрегенерировать чанк"))
+                .executor(new RegenCommand())
+                .build();
+
+        Sponge.getCommandManager().register(this, regenSpec, "regen");
+
         if (PluginConfig.lobbyId != null) {
             for (LobbyCommon lobby : lobbies) {
                 if (lobby.getLobbyId().equals(PluginConfig.lobbyId)) {
@@ -223,6 +233,12 @@ public class AFMCorePlugin {
                 .name("TabList Update Task")
                 .submit(this);
 
+        if (PluginConfig.broadcastEnabled)
+            Task.builder()
+                    .execute(new BroadcastTask(Broadcast.getBroadcasts()))
+                    .interval(2, TimeUnit.MINUTES)
+                    .name("Broadcast Task (AFMCP)")
+                    .submit(this);
 
         if (!PluginConfig.lobbyEnabled) {
             return;
@@ -234,7 +250,6 @@ public class AFMCorePlugin {
         }
 
         PluginConfig.lobbySpawn = new LocationSerializer().deserialize(configNode.getNode("lobby").getNode("location"));
-
     }
 
     private void configSetup() {
@@ -257,6 +272,11 @@ public class AFMCorePlugin {
 
         load();
 
+        PluginConfig.lobbyEnabled = configNode.getNode("lobby").getNode("enabled").getBoolean(false);
+        PluginConfig.lobbyId = configNode.getNode("lobby").getNode("id").getString("va");
+        PluginConfig.motdDescription = configNode.getNode("motd").getNode("description").getString("No description set.\nBeu?");
+        PluginConfig.serverId = configNode.getNode("broadcast").getNode("serverId").getString("va");
+        PluginConfig.broadcastEnabled = configNode.getNode("broadcast").getNode("enabled").getBoolean(false);
         PluginConfig.lobbyEnabled = configNode.getNode("lobby").getNode("enabled").getBoolean();
         PluginConfig.lobbyId = configNode.getNode("lobby").getNode("id").getString();
         PluginConfig.motdDescription = configNode.getNode("motd").getNode("description").getString();
