@@ -35,21 +35,21 @@ class WrappedTabListEntry(val player: Player) {
     }
 
     override fun toString(): String {
-        return "%s@mine.alfo.ws/?priority=%s".format(player.name, priority)
+        return "%s@%s".format(player.name, priority)
     }
 
     private fun generateDynamicStuff(player: Player) {
         val playerLocation = player.location
 
         header = TextSerializers.FORMATTING_CODE.deserialize(PluginConfig.tabListHeader +
-                if(PluginConfig.tabListOnlineCount.isBlank()) "" else
-                    "\n" + String.format(PluginConfig.tabListOnlineCount,
-                        Sponge.getServer().onlinePlayers.filter { !it.keys.contains(Keys.VANISH) }.size,
-                        Sponge.getServer().maxPlayers))
+                if(PluginConfig.tabListOnlineCount.isBlank()) "" else "\n" +
+                        String.format(PluginConfig.tabListOnlineCount,
+                                Sponge.getServer().onlinePlayers.filter { !it.keys.contains(Keys.VANISH) }.size,
+                                Sponge.getServer().maxPlayers))
         footer = TextSerializers.FORMATTING_CODE.deserialize(PluginConfig.tabListFooter +
-                if(PluginConfig.tabListCoordinates.isBlank()) "" else
-                "\n" +
-                String.format(PluginConfig.tabListCoordinates, playerLocation.blockX, playerLocation.blockY, playerLocation.blockZ))
+                if(PluginConfig.tabListCoordinates.isBlank()) "" else "\n" +
+                        String.format(PluginConfig.tabListCoordinates, playerLocation.blockX,
+                                playerLocation.blockY, playerLocation.blockZ))
 
     }
 }
