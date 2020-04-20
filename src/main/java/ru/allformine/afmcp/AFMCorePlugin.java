@@ -27,11 +27,14 @@ import ru.allformine.afmcp.lobby.LobbySOI;
 import ru.allformine.afmcp.lobby.LobbyVanilla;
 import ru.allformine.afmcp.net.api.Broadcast;
 import ru.allformine.afmcp.net.api.Webhook;
+import ru.allformine.afmcp.quests.QuestDataManager;
 import ru.allformine.afmcp.tablist.UpdateTask;
+import sun.security.ssl.Debug;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -42,7 +45,7 @@ import java.util.concurrent.TimeUnit;
         version = "0.7",
         url = "http://allformine.ru",
         authors = {
-                "Iterator, HeroBrine1st_Erq"
+                "Iterator, HeroBrine1st_Erq, ReDestroyDeR"
         },
         dependencies = {@Dependency(id = "spotlin", version = "0.2.0")}
 )
@@ -55,12 +58,15 @@ public class AFMCorePlugin {
     public static boolean debugSwitch = false;
     public static AFMCorePlugin instance;
     public static Task lagTask;
+    public static QuestDataManager questDataManager;
     private static CommentedConfigurationNode configNode;
     private static ConfigurationLoader<CommentedConfigurationNode> configLoader;
     @Inject
     @ConfigDir(sharedRoot = false)
     private Path configDir;
     private Path configFile;
+    private Path questsFile;
+    private Path factionListFile;
 
     public static CommentedConfigurationNode getConfig() {
         return configNode;
@@ -115,6 +121,11 @@ public class AFMCorePlugin {
 
         configSetup();
 
+        questsFile = configDir.resolve("fractionDifficulties.json");
+        factionListFile = configDir.resolve("factionList.json");
+        questDataManager = new QuestDataManager(questsFile, factionListFile);
+
+
         CommandSpec tablistDebugSpec = CommandSpec.builder()
                 .executor(new TabListCommand())
                 .build();
@@ -143,6 +154,13 @@ public class AFMCorePlugin {
                 .build();
 
         Sponge.getCommandManager().register(this, tokensCommandSpec, "tokens");
+
+        CommandSpec debugChestCommandSpec = CommandSpec.builder()
+                .description(Text.of("Иди нахуй быдло."))
+                .executor(new DebugChestCommand())
+                .build();
+
+        Sponge.getCommandManager().register(this, debugChestCommandSpec, "debugchest");
 
         CommandSpec vipCommandSpec = CommandSpec.builder()
                 .description(Text.of("Команда для покупки привелегий."))

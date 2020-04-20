@@ -1,0 +1,46 @@
+[
+  {
+    "level1": [
+      {
+        "type": "item",
+        "target": "iron_ingot",
+        "count": 64,
+        "priority": 5
+      },
+      {
+        "type": "entity",
+        "target": "skeleton",
+        "count": 10,
+        "priority": 7
+      },
+      {
+        "type": "item",
+        "target": "gold_ingot",
+        "count": 16,
+        "priority": 6
+      }
+    ]
+  },
+  {
+    "level2": [
+      {
+        "type": "item",
+        "target": "diamond",
+        "count": 16,
+        "priority": 7
+      },
+      {
+        "type": "entity",
+        "target": "blitz",
+        "count": 13,
+        "priority": 10
+      },
+      {
+        "type": "item",
+        "target": "iron_block",
+        "count": 32,
+        "priority": 3
+      }
+    ]
+  }
+]

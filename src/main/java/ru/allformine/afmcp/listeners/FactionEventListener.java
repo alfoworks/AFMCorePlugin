@@ -1,13 +1,19 @@
 package ru.allformine.afmcp.listeners;
 
 import io.github.aquerr.eaglefactions.api.entities.Faction;
+import io.github.aquerr.eaglefactions.api.events.FactionCreateEvent;
+import io.github.aquerr.eaglefactions.api.events.FactionDisbandEvent;
 import io.github.aquerr.eaglefactions.common.EagleFactionsPlugin;
 import io.github.aquerr.eaglefactions.common.events.FactionAreaEnterEventImpl;
+import io.github.aquerr.eaglefactions.common.events.FactionJoinEventImpl;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
+import org.spongepowered.api.event.command.SendCommandEvent;
+import org.spongepowered.api.event.filter.cause.Root;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
 import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.PacketChannels;
+import ru.allformine.afmcp.quests.PlayerContribution;
 
 import java.util.Optional;
 
@@ -55,5 +61,39 @@ public class FactionEventListener {
         }
 
         return factionColor + factionName;
+    }
+
+    // ============================== //
+
+    @Listener
+    public void factionJoinEventImpl(FactionJoinEventImpl event) {
+        PlayerContribution p = new PlayerContribution(event.getCreator(), event.getFaction());
+        AFMCorePlugin.questDataManager.updateContribution(p, "a");
+    }
+
+    @Listener
+    public void factionLeaveEventImpl(FactionJoinEventImpl event) {
+        PlayerContribution p = AFMCorePlugin.questDataManager.getContribution(event.getCreator().getUniqueId());
+        AFMCorePlugin.questDataManager.updateContribution(p, "u");
+    }
+
+    @Listener
+    public void factionCreateEvent(FactionCreateEvent event) {
+        PlayerContribution p = new PlayerContribution(event.getCreator(), event.getFaction());
+        AFMCorePlugin.questDataManager.updateContribution(p, "c");
+    }
+
+    @Listener
+    public void factionDisbandEvent(FactionDisbandEvent event) {
+        PlayerContribution p = AFMCorePlugin.questDataManager.getContribution(event.getCreator().getUniqueId());
+        AFMCorePlugin.questDataManager.updateContribution(p, "d");
+    }
+
+    @Listener
+    public void onCommandSend(SendCommandEvent event, @Root Player player) {
+        if (event.getCommand().equals("f rename")) {
+            PlayerContribution p = AFMCorePlugin.questDataManager.getContribution(player.getUniqueId());
+            AFMCorePlugin.questDataManager.updateContribution(p, String.format("r%s", event.getArguments()));
+        }
     }
 }
