@@ -224,11 +224,12 @@ public class AFMCorePlugin {
         }
 
         configNode.getNode("webhook", "shutdownTime").setValue(String.valueOf(System.currentTimeMillis() / 1000));
+        saveConfig();
     }
 
     @Listener
     public void onServerStart(GameStartedServerEvent event) {
-        Webhook.sendServerMessage(Webhook.TypeServerMessage.SERVER_STARTED, configNode.getNode("webhook", "shutdownTime").getString(""));
+        Webhook.sendServerMessage(Webhook.TypeServerMessage.SERVER_STARTED, configNode.getNode("webhook", "shutdownTime").getString("1"));
 
         Task.builder()
                 .execute(new UpdateTask())
