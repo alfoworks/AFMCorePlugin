@@ -4,13 +4,14 @@ package ru.allformine.afmcp.quests;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import io.github.aquerr.eaglefactions.common.EagleFactionsPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
-import sun.plugin2.main.server.Plugin;
 
 
+import javax.sound.midi.SysexMessage;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
@@ -42,7 +43,7 @@ public class QuestDataManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Gson gson = new GsonBuilder().create();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
         // Represent Json as Map
         Type type = new TypeToken<Map<String, PlayerContribution[]>>() {
@@ -50,7 +51,7 @@ public class QuestDataManager {
         try {
             return gson.fromJson(jsonData, type);
         }
-        catch (StackOverflowError e) {
+        catch (NullPointerException e) {
             //// TODO: REMOVE HARDCODED PLUG!!!
             String name = "@dummyFaction";
             Player player = Sponge.getServer().getPlayer("ReDestroyDeR").orElse(null);
@@ -60,7 +61,9 @@ public class QuestDataManager {
                             .getFactionByPlayerUUID(player.getUniqueId()).orElse(null));
 
             try {
-                Files.write(factionPath, Arrays.toString(playerContributions).getBytes());
+                Map<String, PlayerContribution[]> map = new HashMap<>();
+                map.put(name, playerContributions);
+                Files.write(factionPath, gson.toJson(map).getBytes());
                 jsonData = new String(Files.readAllBytes(factionPath));
             } catch (IOException ioException) {
                 ioException.printStackTrace();
@@ -97,10 +100,10 @@ public class QuestDataManager {
         return null;
     }
 
-    private void updateFactionListFile(byte[] bytes) {
+    private void updateFactionListFile(String s) {
         try {
             Files.write(factionPath, "".getBytes());
-            Files.write(factionPath, bytes);
+            Files.write(factionPath, s.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -115,7 +118,7 @@ public class QuestDataManager {
         Map<String, PlayerContribution[]> map = getJsonMap();
         for (Map.Entry<String, PlayerContribution[]> e: map.entrySet()) {
             for (PlayerContribution p: e.getValue()) {
-                if (p.getPlayer().getUniqueId().equals(playerUUID) && p.isPresent()) {
+                if (p.getPlayer().equals(playerUUID) && p.isPresent()) {
                     return p;
                 }
             }
@@ -126,12 +129,15 @@ public class QuestDataManager {
     // Using player name but not an entity because player is maybe offline
     public void updateContribution(PlayerContribution contribution, String mode) {
         Map<String, PlayerContribution[]> map = getJsonMap();
-        String factionName = contribution.getFaction().getName();
+        String factionName = contribution.getFactionName();
         PlayerContribution[] contributions = getFactionContributions(map, factionName);
 
         assert contributions != null;
+        assert contribution.getPlayer() != null;
+
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
+                .registerTypeAdapter(PlayerContribution.class, new FactionSerializer())
                 .create();
 
         String newFn = (mode.charAt(0) == 'r') ? mode.substring(1) : null;
@@ -139,23 +145,23 @@ public class QuestDataManager {
         switch (mode) {
             case "u":
                 for (int i = 0; i < contributions.length-1; i++) {
-                    if (contribution.getPlayer().getName().equals(
-                            contributions[i].getPlayer().getName())) {
+                    if (contribution.getPlayer().equals(
+                            contributions[i].getPlayer())) {
                         contributions[i] = contribution;
                         break;
                     }
                 }
 
                 map.replace(factionName, contributions);
-                updateFactionListFile(gson.toJson(map).getBytes());
+                updateFactionListFile(gson.toJson(map));
                 break;
 
             case "a":
                 for (PlayerContribution playerContribution : contributions) {
-                    if (contribution.getPlayer().getName().equals(
-                            playerContribution.getPlayer().getName())) {
+                    if (contribution.getPlayer().equals(
+                            playerContribution.getPlayer())) {
                         throw new AssertionError(String.format("Player %s already presents in faction",
-                                contribution.getPlayer().getName()));
+                                contribution.getPlayer()));
                     }
                 }
 
@@ -166,7 +172,7 @@ public class QuestDataManager {
                 playerContributions[playerContributions.length-1] = contribution;
 
                 map.replace(factionName, playerContributions);
-                updateFactionListFile(gson.toJson(map).getBytes());
+                updateFactionListFile(gson.toJson(map));
                 break;
 
             case "c":
@@ -174,7 +180,7 @@ public class QuestDataManager {
                     PlayerContribution[] pc = new PlayerContribution[1];
                     pc[0] = contribution;
                     map.put(factionName, pc);
-                    updateFactionListFile(gson.toJson(map).getBytes());
+                    updateFactionListFile(gson.toJson(map));
                 } else {
                     throw new AssertionError(String.format("Faction %s with this name has already been registered",
                             factionName));
@@ -186,7 +192,7 @@ public class QuestDataManager {
                     PlayerContribution[] contributionsR = getFactionContributions(map, factionName);
                     map.remove(factionName);
                     map.put(newFn, contributionsR);
-                    updateFactionListFile(gson.toJson(map).getBytes());
+                    updateFactionListFile(gson.toJson(map));
                 } else {
                     throw new AssertionError(String.format("Faction %s with this name has already been registered",
                             factionName));
@@ -196,7 +202,7 @@ public class QuestDataManager {
             case "d":
                 if (map.containsKey(factionName)) {
                     map.remove(factionName);
-                    updateFactionListFile(gson.toJson(map).getBytes());
+                    updateFactionListFile(gson.toJson(map));
                 } else {
                     throw new AssertionError(String.format("Faction %s does not exist",
                             factionName));

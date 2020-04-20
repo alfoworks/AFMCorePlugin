@@ -291,9 +291,9 @@ public class AFMCorePlugin {
         load();
 
         PluginConfig.lobbyEnabled = configNode.getNode("lobby").getNode("enabled").getBoolean(false);
-        PluginConfig.lobbyId = configNode.getNode("lobby").getNode("id").getString("va");
+        PluginConfig.lobbyId = configNode.getNode("lobby").getNode("id").getString("");
         PluginConfig.motdDescription = configNode.getNode("motd").getNode("description").getString("No description set.\nBeu?");
-        PluginConfig.serverId = configNode.getNode("broadcast").getNode("serverId").getString("va");
+        PluginConfig.serverId = configNode.getNode("broadcast").getNode("serverId").getString("");
         PluginConfig.broadcastEnabled = configNode.getNode("broadcast").getNode("enabled").getBoolean(false);
         PluginConfig.lobbyEnabled = configNode.getNode("lobby").getNode("enabled").getBoolean();
         PluginConfig.lobbyId = configNode.getNode("lobby").getNode("id").getString();
