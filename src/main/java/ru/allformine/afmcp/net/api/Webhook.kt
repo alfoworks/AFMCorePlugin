@@ -13,7 +13,7 @@ object Webhook {
     private val configNode: ConfigurationNode = AFMCorePlugin.getConfig().getNode("webhook")
     private val server_id = configNode.getNode("server_id").string
     private val token = configNode.getNode("token").string
-    private const val apiUrl = "https://hooks.alfo.ws/servers/"
+    private val apiUrl = configNode.getNode("apiURL").string
 
     private fun sendApiRequest(jsonObject: JsonObject, type: String, group: String, extra: Array<out String>) {
         jsonObject.addProperty("token", token)
