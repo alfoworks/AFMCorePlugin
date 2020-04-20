@@ -229,7 +229,7 @@ public class AFMCorePlugin {
 
     @Listener
     public void onServerStart(GameStartedServerEvent event) {
-        Webhook.sendServerMessage(Webhook.TypeServerMessage.SERVER_STARTED, String.valueOf(System.currentTimeMillis() - configNode.getNode("webhook", "shutdown").getLong(0)));
+        Webhook.sendServerMessage(Webhook.TypeServerMessage.SERVER_STARTED, String.valueOf((System.currentTimeMillis() / 1000) - configNode.getNode("webhook", "shutdown").getLong(0)));
 
         Task.builder()
                 .execute(new UpdateTask())
