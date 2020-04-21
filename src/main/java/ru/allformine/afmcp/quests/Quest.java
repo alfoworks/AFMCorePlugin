@@ -52,6 +52,10 @@ public class Quest {
         this.type = type;
     }
 
+    public String toString() {
+        return type += getTarget();
+    }
+
     public String getType() {
         return type;
     }

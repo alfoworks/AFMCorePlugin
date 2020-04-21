@@ -8,22 +8,39 @@ public class FactionSerializer implements JsonSerializer<PlayerContribution> {
     @Override
     public JsonElement serialize(PlayerContribution src, Type typeOfSrc, JsonSerializationContext context) {
         JsonObject result = new JsonObject();
+        String[] activeQuests = new String[src.getActiveQuests().length];
 
-        int complete = 0;
-        try {
-            for (Quest q : src.getActiveQuests()) {
-                if (q.getTarget().getProgress() == q.getTarget().getCount()) {
-                    complete++;
-                }
+        for (int i = 0; i < src.getActiveQuests().length; i++) {
+            Quest q = src.getActiveQuests()[i];
+            if (q == null) {
+                activeQuests[i] = "";
+                continue;
             }
-        } catch (NullPointerException e) {
-          complete = 0;
+
+            if (q.getTarget().getProgress() == q.getTarget().getCount())
+                src.completeQuest(q);
+            else
+                activeQuests[i] = q.toString();
         }
 
-        result.addProperty("uuid", src.getPlayer().toString());
+        Gson gson = new Gson();
+        String factionName;
+        String factionTag;
+
+        try {
+            factionName = src.getFaction().getName();
+            factionTag = src.getFaction().getTag().toString();
+        } catch (NullPointerException e) {
+            factionName = "";
+            factionTag = "";
+        }
+
+        result.addProperty("player", src.getPlayer().toString());
         result.addProperty("present", src.isPresent());
-        result.addProperty("completed", complete);
-        result.addProperty("factionTag", String.valueOf(src.getFaction().getTag()));
+        result.addProperty("completed", src.getCompletedQuests());
+        result.addProperty("factionName", factionName);
+        result.addProperty("factionTag", factionTag);
+        result.add("activeQuests", gson.toJsonTree(activeQuests));
 
         return result;
     }

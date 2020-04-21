@@ -12,6 +12,7 @@ public class QuestTarget {
     private int progress;
 
     public QuestTarget(Object target, int count, int priority) {
+        this.progress = 0;
         this.target = target;
         this.count = count;
         this.priority = priority;
@@ -31,6 +32,10 @@ public class QuestTarget {
 
     public int getCount() {
         return this.count;
+    }
+
+    public String toString() {
+        return String.format("/%s/%s/%s", progress, count, priority);
     }
 
     // Be aware of NullPointerException!

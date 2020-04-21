@@ -4,16 +4,10 @@ package ru.allformine.afmcp.quests;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
 import com.sun.media.jfxmedia.logging.Logger;
-import io.github.aquerr.eaglefactions.common.EagleFactionsPlugin;
 import org.jetbrains.annotations.NotNull;
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.living.player.Player;
 
 
-import javax.sound.midi.SysexMessage;
-import java.awt.*;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
@@ -46,18 +40,25 @@ public class QuestDataManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Type type = new TypeToken<Map<String, PlayerContribution[]>>() {
+            }.getType();
+
+        Gson gson = new GsonBuilder()
+                .setPrettyPrinting()
+                .registerTypeAdapter(type, new FactionDeserializer())
+                .create();
 
         // Represent Json as Map
-        Type type = new TypeToken<Map<String, PlayerContribution[]>>() {
-        }.getType();
+
         try {
-            return gson.fromJson(jsonData, type);
+            Map<String, PlayerContribution[]> temp = gson.fromJson(jsonData, type);
+            if (temp == null) throw new NullPointerException();
+            else return temp;
         }
         catch (NullPointerException e) {
             try {
                 Map<String, PlayerContribution[]> map = new HashMap<>();
-                map.put(null, null);
+                map.put("", null);
                 Files.write(factionPath, gson.toJson(map).getBytes());
                 jsonData = new String(Files.readAllBytes(factionPath));
             } catch (IOException ioException) {
@@ -198,15 +199,11 @@ public class QuestDataManager {
     }
 
     private void deleteFaction(@NotNull Map<String, PlayerContribution[]> map, String factionName, Gson gson) {
-        if (map.containsKey(factionName)) {
-            map.remove(factionName);
-            updateFactionListFile(gson.toJson(map));
-            Logger.logMsg(com.sun.media.jfxmedia.logging.Logger.DEBUG,
-                    "Finished quest FACTION DISBAND");
-        } else {
-            throw new AssertionError(String.format("Faction %s does not exist",
-                    factionName));
-        }
+        map.entrySet().removeIf(e -> e.getKey().equals(factionName));
+        map.keySet().remove(factionName);
+        updateFactionListFile(gson.toJson(map));
+        Logger.logMsg(com.sun.media.jfxmedia.logging.Logger.DEBUG,
+                "Finished quest FACTION DISBAND");
     }
 
     //--//
@@ -231,9 +228,14 @@ public class QuestDataManager {
             assert contributions != null;
             assert contribution.getPlayer() != null;
         } else {
+            System.err.println(String.format("Splitting %s", mode));
             factionName = mode.substring(1);
-            mode = mode.substring(0, 0);
+            mode = mode.substring(0, 1);
+            System.err.println(String.format("Got %s & %s", factionName, mode));
         }
+
+        System.err.println(String.format("Going into quest switch DataManager %s", mode));
+        System.err.println(map);
 
         switch (mode) {
             case "u":

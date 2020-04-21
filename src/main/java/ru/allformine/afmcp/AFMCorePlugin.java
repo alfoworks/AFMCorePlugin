@@ -13,10 +13,7 @@ import org.spongepowered.api.command.args.GenericArguments;
 import org.spongepowered.api.command.spec.CommandSpec;
 import org.spongepowered.api.config.ConfigDir;
 import org.spongepowered.api.event.Listener;
-import org.spongepowered.api.event.game.state.GameInitializationEvent;
-import org.spongepowered.api.event.game.state.GamePreInitializationEvent;
-import org.spongepowered.api.event.game.state.GameStartedServerEvent;
-import org.spongepowered.api.event.game.state.GameStoppingServerEvent;
+import org.spongepowered.api.event.game.state.*;
 import org.spongepowered.api.plugin.Dependency;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.scheduler.Task;
@@ -36,10 +33,10 @@ import sun.security.ssl.Debug;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 @Plugin(
@@ -111,7 +108,6 @@ public class AFMCorePlugin {
 
         if (Sponge.getPluginManager().isLoaded("eaglefactions")) {
             Sponge.getEventManager().registerListeners(this, new FactionEventListener());
-            cleanQuestFactions();
         }
 
         if (Sponge.getPluginManager().isLoaded("ultimatechat")) {
@@ -126,8 +122,18 @@ public class AFMCorePlugin {
 
         configSetup();
 
+
+
         questsFile = configDir.resolve("fractionDifficulties.json");
         factionListFile = configDir.resolve("factionList.json");
+        if (!Files.exists(factionListFile)) {
+            try {
+                Files.createFile(Paths.get(configDir.toString() + "/factionList.json"));
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        }
+
         questDataManager = new QuestDataManager(questsFile, factionListFile);
 
 
@@ -275,12 +281,28 @@ public class AFMCorePlugin {
         PluginConfig.lobbySpawn = new LocationSerializer().deserialize(configNode.getNode("lobby").getNode("location"));
     }
 
-    private void cleanQuestFactions() {
+    @Listener
+    public void postInit(GamePostInitializationEvent event) {
+        cleanQuestFactions();
+    }
+
+    public static void cleanQuestFactions() {
         Map<String, Faction> map = EagleFactionsPlugin.getPlugin().getFactionLogic().getFactions();
-        for (Map.Entry<String, Faction> e: map.entrySet()) {
-            if (questDataManager.getContribution(e.getKey()) == null) {
-                questDataManager.updateContribution(null, String.format("m%s", e.getKey()));
+        List<Faction> queue = new ArrayList<>();
+        for (Map.Entry<String, Faction> e : map.entrySet()) {
+            if (questDataManager.getContribution(e.getKey()) == null
+                    && !e.getKey().toLowerCase().equals("safezone") && !e.getKey().toLowerCase().equals("warzone")) {
+                try {
+                    questDataManager.updateContribution(null, String.format("d%s", e.getValue().getName()));
+                } catch (AssertionError assertionError) {
+                    queue.add(e.getValue());
+                    System.err.println(String.format("Disbanding %s", e.getValue().getName()));
+                }
             }
+        }
+
+        for (Faction f: queue) {
+            EagleFactionsPlugin.getPlugin().getFactionLogic().disbandFaction(f.getName());
         }
     }
 

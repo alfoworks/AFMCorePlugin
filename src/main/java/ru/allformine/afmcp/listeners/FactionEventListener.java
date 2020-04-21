@@ -13,6 +13,9 @@ import io.github.aquerr.eaglefactions.common.events.FactionLeaveEventImpl;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
+import org.spongepowered.api.event.cause.Cause;
+import org.spongepowered.api.event.cause.EventContext;
+import org.spongepowered.api.event.cause.EventContextKeys;
 import org.spongepowered.api.event.command.SendCommandEvent;
 import org.spongepowered.api.event.filter.cause.Root;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
@@ -154,10 +157,15 @@ public class FactionEventListener {
 
         @Override
         public void accept(Task task) {
-            if (EagleFactionsPlugin.getPlugin().getFactionLogic().getFactionByName(event.getFaction().getName()) != null) {
-                Logger.logMsg(Logger.DEBUG, "Triggered quest FACTION CREATE");
-                PlayerContribution p = new PlayerContribution(event.getCreator(), event.getFaction());
-                AFMCorePlugin.questDataManager.updateContribution(p, "c");
+            try {
+                if (EagleFactionsPlugin.getPlugin().getFactionLogic().getFactionByName(event.getFaction().getName()) != null) {
+                    Logger.logMsg(Logger.DEBUG, "Triggered quest FACTION CREATE");
+                    PlayerContribution p = new PlayerContribution(event.getCreator(), event.getFaction());
+                    AFMCorePlugin.questDataManager.updateContribution(p, "c");
+                    task.cancel();
+                }
+            } catch (AssertionError e) {
+                Logger.logMsg(Logger.WARNING, e.getMessage());
                 task.cancel();
             }
         }
@@ -182,7 +190,9 @@ public class FactionEventListener {
 
         @Override
         public void accept(Task task) {
+            System.err.println("supbich");
             if (EagleFactionsPlugin.getPlugin().getFactionLogic().getFactionByName(event.getFaction().getName()) == null) {
+                System.err.println("supbich");
                 Logger.logMsg(Logger.DEBUG, "Triggered quest FACTION DISBAND");
                 PlayerContribution p = AFMCorePlugin.questDataManager.getContribution(event.getCreator().getUniqueId());
                 AFMCorePlugin.questDataManager.updateContribution(p, "d");
@@ -195,14 +205,49 @@ public class FactionEventListener {
     public void onCommandSend(SendCommandEvent event, @Root Player player) {
         Faction prev = EagleFactionsPlugin.getPlugin().getFactionLogic().
                 getFactionByPlayerUUID(player.getUniqueId()).orElse(null);
-        if (event.getCommand().equals("f") && event.getArguments().split(" ")[0].equals("rename") && prev != null)
+        if (event.getCommand().equals("f"))
         {
-            if (player.getUniqueId().equals(prev.getLeader())) {
-                Task task = Task.builder().execute(new SendCommandDelayTask(event, player, prev.getName()))
-                        .interval(500, TimeUnit.MILLISECONDS)
-                        .async()
-                        .name("Self-Cancelling FRename Timer Task").submit(
-                                Objects.requireNonNull(Sponge.getPluginManager().getPlugin("afmcp").orElse(null)));
+            if (prev != null) {
+                if (player.getUniqueId().equals(prev.getLeader())
+                        && event.getArguments().split(" ")[0].equals("rename") ) {
+                    Task task = Task.builder().execute(new SendCommandDelayTask(event, player, prev.getName()))
+                            .interval(500, TimeUnit.MILLISECONDS)
+                            .async()
+                            .name("Self-Cancelling FRename Timer Task").submit(
+                                    Objects.requireNonNull(Sponge.getPluginManager().getPlugin("afmcp").orElse(null)));
+                }
+                if (event.getArguments().equals("disband")) {
+                    EventContext eventContext = EventContext.builder().add(EventContextKeys.OWNER, player)
+                            .add(EventContextKeys.PLAYER, player).add(EventContextKeys.CREATOR, player).build();
+                    Cause eventCause = Cause.of(eventContext, player, prev);
+                    Sponge.getEventManager().post(new FactionDisbandEvent() {
+
+                        @Override
+                        public Cause getCause() {
+                            return eventCause;
+                        }
+
+                        @Override
+                        public boolean isCancelled() {
+                            return false;
+                        }
+
+                        @Override
+                        public void setCancelled(boolean cancel) {
+                            // It actually is not cancellable in my case lmao
+                        }
+
+                        @Override
+                        public Player getCreator() {
+                            return player;
+                        }
+
+                        @Override
+                        public Faction getFaction() {
+                            return prev;
+                        }
+                    });
+                }
             }
         }
     }

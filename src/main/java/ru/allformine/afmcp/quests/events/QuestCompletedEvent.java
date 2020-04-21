@@ -17,7 +17,7 @@ public interface QuestCompletedEvent extends Event, Cancellable {
 
     void setCancelled(boolean cancel);
 
-    Object getType(String type);
+    Object getType();
 
     Quest getQuest();
 }
