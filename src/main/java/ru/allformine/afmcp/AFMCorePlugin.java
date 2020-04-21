@@ -1,6 +1,8 @@
 package ru.allformine.afmcp;
 
 import com.google.inject.Inject;
+import io.github.aquerr.eaglefactions.api.entities.Faction;
+import io.github.aquerr.eaglefactions.common.EagleFactionsPlugin;
 import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.commented.CommentedConfigurationNode;
 import ninja.leaping.configurate.hocon.HoconConfigurationLoader;
@@ -27,6 +29,7 @@ import ru.allformine.afmcp.lobby.LobbySOI;
 import ru.allformine.afmcp.lobby.LobbyVanilla;
 import ru.allformine.afmcp.net.api.Broadcast;
 import ru.allformine.afmcp.net.api.Webhook;
+import ru.allformine.afmcp.quests.PlayerContribution;
 import ru.allformine.afmcp.quests.QuestDataManager;
 import ru.allformine.afmcp.tablist.UpdateTask;
 import sun.security.ssl.Debug;
@@ -35,6 +38,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -107,6 +111,7 @@ public class AFMCorePlugin {
 
         if (Sponge.getPluginManager().isLoaded("eaglefactions")) {
             Sponge.getEventManager().registerListeners(this, new FactionEventListener());
+            cleanQuestFactions();
         }
 
         if (Sponge.getPluginManager().isLoaded("ultimatechat")) {
@@ -268,6 +273,15 @@ public class AFMCorePlugin {
         }
 
         PluginConfig.lobbySpawn = new LocationSerializer().deserialize(configNode.getNode("lobby").getNode("location"));
+    }
+
+    private void cleanQuestFactions() {
+        Map<String, Faction> map = EagleFactionsPlugin.getPlugin().getFactionLogic().getFactions();
+        for (Map.Entry<String, Faction> e: map.entrySet()) {
+            if (questDataManager.getContribution(e.getKey()) == null) {
+                questDataManager.updateContribution(null, String.format("m%s", e.getKey()));
+            }
+        }
     }
 
     private void configSetup() {

@@ -9,26 +9,21 @@ public class FactionSerializer implements JsonSerializer<PlayerContribution> {
     public JsonElement serialize(PlayerContribution src, Type typeOfSrc, JsonSerializationContext context) {
         JsonObject result = new JsonObject();
 
-        int active = 0;
         int complete = 0;
         try {
             for (Quest q : src.getActiveQuests()) {
-                if (q.getTarget().getProgress() < q.getTarget().getCount()) {
-                    active++;
-                } else {
+                if (q.getTarget().getProgress() == q.getTarget().getCount()) {
                     complete++;
                 }
             }
         } catch (NullPointerException e) {
-          active = 0;
           complete = 0;
         }
 
         result.addProperty("uuid", src.getPlayer().toString());
         result.addProperty("present", src.isPresent());
-        result.addProperty("activeQuests", active);
-        result.addProperty("completedQuests", complete);
-        result.addProperty("factionName", src.getFaction().getName());
+        result.addProperty("completed", complete);
+        result.addProperty("factionTag", String.valueOf(src.getFaction().getTag()));
 
         return result;
     }
