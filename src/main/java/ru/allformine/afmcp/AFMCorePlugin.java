@@ -250,11 +250,19 @@ public class AFMCorePlugin {
         } else {
             Webhook.sendServerMessage(Webhook.TypeServerMessage.SERVER_STOPPED);
         }
+
+        configNode.getNode("webhook", "shutdown").setValue(System.currentTimeMillis() / 1000);
+        saveConfig();
     }
 
     @Listener
     public void onServerStart(GameStartedServerEvent event) {
-        Webhook.sendServerMessage(Webhook.TypeServerMessage.SERVER_STARTED);
+        long time = configNode.getNode("webhook", "shutdown").getLong(0);
+        if (time == 0) logger.error("No last shutdown time.");
+        long loadingTime = System.currentTimeMillis() / 1000 - time;
+
+        Webhook.sendServerMessage(Webhook.TypeServerMessage.SERVER_STARTED, String.valueOf(loadingTime));
+
         Task.builder()
                 .execute(new UpdateTask())
                 .intervalTicks(20)
