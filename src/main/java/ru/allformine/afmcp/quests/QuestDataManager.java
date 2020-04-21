@@ -4,8 +4,9 @@ package ru.allformine.afmcp.quests;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.sun.media.jfxmedia.logging.Logger;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import ru.allformine.afmcp.AFMCorePlugin;
 
 
 import java.io.IOException;
@@ -16,6 +17,8 @@ import java.util.*;
 import java.util.List;
 
 public class QuestDataManager {
+    private Logger logger = AFMCorePlugin.logger;
+
     private List<QuestLevel> questDifficulties;
     private Object factionContributions;
     private final Path factionPath;
@@ -25,7 +28,7 @@ public class QuestDataManager {
         this.factionPath = factionsPath;
         List<QuestLevel> qll = new ArrayList<>();
         Map<String, Quest[]> levels = getJsonMap(questsPath);
-        for (Map.Entry<String, Quest[]> e: levels.entrySet()) {
+        for (Map.Entry<String, Quest[]> e : levels.entrySet()) {
             QuestLevel ql = new QuestLevel();
             ql.setQuests(e.getValue());
             qll.add(ql);
@@ -41,7 +44,7 @@ public class QuestDataManager {
             e.printStackTrace();
         }
         Type type = new TypeToken<Map<String, PlayerContribution[]>>() {
-            }.getType();
+        }.getType();
 
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
@@ -54,8 +57,7 @@ public class QuestDataManager {
             Map<String, PlayerContribution[]> temp = gson.fromJson(jsonData, type);
             if (temp == null) throw new NullPointerException();
             else return temp;
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             try {
                 Map<String, PlayerContribution[]> map = new HashMap<>();
                 map.put("", null);
@@ -94,10 +96,9 @@ public class QuestDataManager {
                     return entry.getValue();
                 }
             }
-        }
-        catch (NullPointerException e) {
-            Logger.logMsg(Logger.WARNING, "Couldn't find faction.\n" +
-                                                                "Maybe it hasn't been registered");
+        } catch (NullPointerException e) {
+            logger.warn("Couldn't find faction.\n" +
+                    "Maybe it hasn't been registered");
         }
         return null;
     }
@@ -118,8 +119,8 @@ public class QuestDataManager {
 
     public PlayerContribution getContribution(UUID playerUUID) {
         Map<String, PlayerContribution[]> map = getJsonMap();
-        for (Map.Entry<String, PlayerContribution[]> e: map.entrySet()) {
-            for (PlayerContribution p: e.getValue()) {
+        for (Map.Entry<String, PlayerContribution[]> e : map.entrySet()) {
+            for (PlayerContribution p : e.getValue()) {
                 if (p.getPlayer().equals(playerUUID) && p.isPresent()) {
                     return p;
                 }
@@ -132,7 +133,7 @@ public class QuestDataManager {
 
     private void updateFaction(@NotNull PlayerContribution[] contributions, PlayerContribution contribution,
                                Map<String, PlayerContribution[]> map, String factionName, Gson gson) {
-        for (int i = 0; i < contributions.length-1; i++) {
+        for (int i = 0; i < contributions.length - 1; i++) {
             if (contribution.getPlayer().equals(
                     contributions[i].getPlayer())) {
                 contributions[i] = contribution;
@@ -142,8 +143,7 @@ public class QuestDataManager {
 
         map.replace(factionName, contributions);
         updateFactionListFile(gson.toJson(map));
-        Logger.logMsg(com.sun.media.jfxmedia.logging.Logger.DEBUG,
-                "Finished quest FACTION UPDATE");
+        logger.debug("Finished quest FACTION UPDATE");
     }
 
     private void appendFaction(@NotNull PlayerContribution[] contributions, PlayerContribution contribution,
@@ -157,15 +157,14 @@ public class QuestDataManager {
         }
 
         // Append 1 element to array
-        PlayerContribution[] playerContributions = new PlayerContribution[contributions.length+1];
+        PlayerContribution[] playerContributions = new PlayerContribution[contributions.length + 1];
         if (playerContributions.length - 2 >= 0)
             System.arraycopy(contributions, 0, playerContributions, 0, playerContributions.length - 2);
-        playerContributions[playerContributions.length-1] = contribution;
+        playerContributions[playerContributions.length - 1] = contribution;
 
         map.replace(factionName, playerContributions);
         updateFactionListFile(gson.toJson(map));
-        Logger.logMsg(com.sun.media.jfxmedia.logging.Logger.DEBUG,
-                "Finished quest FACTION APPEND");
+        logger.debug("Finished quest FACTION APPEND");
     }
 
     private void createFaction(@NotNull Map<String, PlayerContribution[]> map, String factionName, Gson gson,
@@ -175,8 +174,7 @@ public class QuestDataManager {
             pc[0] = contribution;
             map.put(factionName, pc);
             updateFactionListFile(gson.toJson(map));
-            Logger.logMsg(com.sun.media.jfxmedia.logging.Logger.DEBUG,
-                    "Finished quest FACTION CREATE");
+            logger.debug("Finished quest FACTION CREATE");
         } else {
             throw new AssertionError(String.format("Faction %s with this name has already been registered",
                     factionName));
@@ -190,8 +188,7 @@ public class QuestDataManager {
             map.remove(factionName);
             map.put(newFn, contributionsR);
             updateFactionListFile(gson.toJson(map));
-            Logger.logMsg(com.sun.media.jfxmedia.logging.Logger.DEBUG,
-                    "Finished quest FACTION RENAME");
+            logger.debug("Finished quest FACTION RENAME");
         } else {
             throw new AssertionError(String.format("Faction %s with this name has already been registered",
                     factionName));
@@ -202,8 +199,7 @@ public class QuestDataManager {
         map.entrySet().removeIf(e -> e.getKey().equals(factionName));
         map.keySet().remove(factionName);
         updateFactionListFile(gson.toJson(map));
-        Logger.logMsg(com.sun.media.jfxmedia.logging.Logger.DEBUG,
-                "Finished quest FACTION DISBAND");
+        logger.debug("Finished quest FACTION DISBAND");
     }
 
     //--//
@@ -228,14 +224,14 @@ public class QuestDataManager {
             assert contributions != null;
             assert contribution.getPlayer() != null;
         } else {
-            System.err.println(String.format("Splitting %s", mode));
+            logger.debug(String.format("Splitting %s", mode));
             factionName = mode.substring(1);
             mode = mode.substring(0, 1);
-            System.err.println(String.format("Got %s & %s", factionName, mode));
+            logger.debug(String.format("Got %s & %s", factionName, mode));
         }
 
-        System.err.println(String.format("Going into quest switch DataManager %s", mode));
-        System.err.println(map);
+        logger.debug(String.format("Going into quest switch DataManager %s", mode));
+        logger.debug(map.toString());
 
         switch (mode) {
             case "u":

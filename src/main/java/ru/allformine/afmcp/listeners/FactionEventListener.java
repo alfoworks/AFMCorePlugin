@@ -1,6 +1,5 @@
 package ru.allformine.afmcp.listeners;
 
-import com.sun.media.jfxmedia.logging.Logger;
 import com.typesafe.config.ConfigException;
 import io.github.aquerr.eaglefactions.api.entities.Faction;
 import io.github.aquerr.eaglefactions.api.events.FactionCreateEvent;
@@ -10,6 +9,7 @@ import io.github.aquerr.eaglefactions.common.EagleFactionsPlugin;
 import io.github.aquerr.eaglefactions.common.events.FactionAreaEnterEventImpl;
 import io.github.aquerr.eaglefactions.common.events.FactionJoinEventImpl;
 import io.github.aquerr.eaglefactions.common.events.FactionLeaveEventImpl;
+import org.slf4j.Logger;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
@@ -24,13 +24,14 @@ import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.PacketChannels;
 import ru.allformine.afmcp.quests.PlayerContribution;
 
-import javax.sound.midi.SysexMessage;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
 public class FactionEventListener {
+    private static Logger logger = AFMCorePlugin.logger;
+
     @Listener
     public void onPlayerJoin(ClientConnectionEvent.Join event) {
         Player player = event.getTargetEntity();
@@ -92,7 +93,7 @@ public class FactionEventListener {
                         Objects.requireNonNull(Sponge.getPluginManager().getPlugin("afmcp").orElse(null)));
     }
 
-    private class FactionJoinDelayTask implements Consumer<Task> {
+    private static class FactionJoinDelayTask implements Consumer<Task> {
         private final FactionJoinEventImpl event;
 
         public FactionJoinDelayTask(FactionJoinEventImpl event) {
@@ -105,7 +106,8 @@ public class FactionEventListener {
                 PlayerContribution p = new PlayerContribution(event.getCreator(), event.getFaction());
                 AFMCorePlugin.questDataManager.updateContribution(p, "a");
                 task.cancel();
-            } catch (NullPointerException e) {}
+            } catch (NullPointerException ignored) {
+            }
         }
     }
 
@@ -118,7 +120,7 @@ public class FactionEventListener {
                         Objects.requireNonNull(Sponge.getPluginManager().getPlugin("afmcp").orElse(null)));
     }
 
-    private class FactionLeaveDelayTask implements Consumer<Task> {
+    private static class FactionLeaveDelayTask implements Consumer<Task> {
         private final FactionLeaveEventImpl event;
 
         public FactionLeaveDelayTask(FactionLeaveEventImpl event) {
@@ -131,10 +133,7 @@ public class FactionEventListener {
                 PlayerContribution p = AFMCorePlugin.questDataManager.getContribution(event.getCreator().getUniqueId());
                 AFMCorePlugin.questDataManager.updateContribution(p, "u");
                 task.cancel();
-            } catch (NullPointerException e) {
-                PlayerContribution p = AFMCorePlugin.questDataManager.getContribution(event.getCreator().getUniqueId());
-                AFMCorePlugin.questDataManager.updateContribution(p, "u");
-                task.cancel();
+            } catch (NullPointerException ignored) {
             }
         }
     }
@@ -148,7 +147,7 @@ public class FactionEventListener {
                         Objects.requireNonNull(Sponge.getPluginManager().getPlugin("afmcp").orElse(null)));
     }
 
-    private class FactionCreateDelayTask implements Consumer<Task> {
+    private static class FactionCreateDelayTask implements Consumer<Task> {
         private final FactionCreateEvent event;
 
         public FactionCreateDelayTask(FactionCreateEvent event) {
@@ -159,13 +158,13 @@ public class FactionEventListener {
         public void accept(Task task) {
             try {
                 if (EagleFactionsPlugin.getPlugin().getFactionLogic().getFactionByName(event.getFaction().getName()) != null) {
-                    Logger.logMsg(Logger.DEBUG, "Triggered quest FACTION CREATE");
+                    logger.debug("Triggered quest FACTION CREATE");
                     PlayerContribution p = new PlayerContribution(event.getCreator(), event.getFaction());
                     AFMCorePlugin.questDataManager.updateContribution(p, "c");
                     task.cancel();
                 }
             } catch (AssertionError e) {
-                Logger.logMsg(Logger.WARNING, e.getMessage());
+                logger.warn(e.getMessage());
                 task.cancel();
             }
         }
@@ -181,7 +180,7 @@ public class FactionEventListener {
 
     }
 
-    private class FactionDisbandDelayTask implements Consumer<Task> {
+    private static class FactionDisbandDelayTask implements Consumer<Task> {
         private final FactionDisbandEvent event;
 
         public FactionDisbandDelayTask(FactionDisbandEvent event) {
@@ -190,10 +189,8 @@ public class FactionEventListener {
 
         @Override
         public void accept(Task task) {
-            System.err.println("supbich");
             if (EagleFactionsPlugin.getPlugin().getFactionLogic().getFactionByName(event.getFaction().getName()) == null) {
-                System.err.println("supbich");
-                Logger.logMsg(Logger.DEBUG, "Triggered quest FACTION DISBAND");
+                logger.debug("Triggered quest FACTION DISBAND");
                 PlayerContribution p = AFMCorePlugin.questDataManager.getContribution(event.getCreator().getUniqueId());
                 AFMCorePlugin.questDataManager.updateContribution(p, "d");
                 task.cancel();
@@ -205,11 +202,10 @@ public class FactionEventListener {
     public void onCommandSend(SendCommandEvent event, @Root Player player) {
         Faction prev = EagleFactionsPlugin.getPlugin().getFactionLogic().
                 getFactionByPlayerUUID(player.getUniqueId()).orElse(null);
-        if (event.getCommand().equals("f"))
-        {
+        if (event.getCommand().equals("f")) {
             if (prev != null) {
                 if (player.getUniqueId().equals(prev.getLeader())
-                        && event.getArguments().split(" ")[0].equals("rename") ) {
+                        && event.getArguments().split(" ")[0].equals("rename")) {
                     Task task = Task.builder().execute(new SendCommandDelayTask(event, player, prev.getName()))
                             .interval(500, TimeUnit.MILLISECONDS)
                             .async()
@@ -252,7 +248,7 @@ public class FactionEventListener {
         }
     }
 
-    private class SendCommandDelayTask implements Consumer<Task> {
+    private static class SendCommandDelayTask implements Consumer<Task> {
         private final SendCommandEvent event;
         private final Player player;
         private final String temp;
@@ -268,10 +264,9 @@ public class FactionEventListener {
             if (EagleFactionsPlugin.getPlugin().getFactionLogic().getFactionByName(temp) == null) {
                 try {
                     String temp = EagleFactionsPlugin.getPlugin().getFactionLogic().
-                                    getFactionByPlayerUUID(player.getUniqueId()).orElse(null).getName();
-                }
-                catch (NullPointerException e) {
-                    Logger.logMsg(Logger.WARNING, "Rename won't work because player coulnd't be found using UUID");
+                            getFactionByPlayerUUID(player.getUniqueId()).orElse(null).getName();
+                } catch (NullPointerException e) {
+                    logger.warn("Rename won't work because player couldn't be found using UUID");
                     event.setCancelled(true);
                 }
             }

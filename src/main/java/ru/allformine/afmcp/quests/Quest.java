@@ -14,8 +14,7 @@ public class Quest {
 
     private void setQTarget() {
         // Getting actual target type from Strings
-        try
-        {
+        try {
             // Raises RuntimeException if creation has been failed
             EntityType entity = (getType().equals("entity"))
                     ? DummyObjectProvider.createFor(EntityType.class, target) : null;
@@ -28,9 +27,7 @@ public class Quest {
             } else {
                 this.qTarget = new QuestTarget(item, count, priority);
             }
-        }
-        catch (RuntimeException e)
-        {
+        } catch (RuntimeException e) {
             throw new AssertionError("Quests JSON is corrupted. Contact plugin developer to fix");
         }
     }

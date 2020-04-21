@@ -14,11 +14,11 @@ public class FactionDeserializer implements JsonDeserializer<Map<String, PlayerC
     public Map<String, PlayerContribution[]> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         JsonObject factions = json.getAsJsonObject();
         Map<String, PlayerContribution[]> result = new HashMap<>();
-        for (Map.Entry<String, JsonElement> e: factions.entrySet()) {
+        for (Map.Entry<String, JsonElement> e : factions.entrySet()) {
             JsonArray contributionsJson = e.getValue().getAsJsonArray();
             List<PlayerContribution> playerContributions = new ArrayList<>();
 
-            for (JsonElement je: contributionsJson) {
+            for (JsonElement je : contributionsJson) {
                 JsonObject playerContribution = je.getAsJsonObject();
                 PlayerContribution realContribution =
                         new PlayerContribution(

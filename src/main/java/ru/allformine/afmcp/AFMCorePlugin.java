@@ -123,7 +123,6 @@ public class AFMCorePlugin {
         configSetup();
 
 
-
         questsFile = configDir.resolve("fractionDifficulties.json");
         factionListFile = configDir.resolve("factionList.json");
         if (!Files.exists(factionListFile)) {
@@ -296,12 +295,12 @@ public class AFMCorePlugin {
                     questDataManager.updateContribution(null, String.format("d%s", e.getValue().getName()));
                 } catch (AssertionError assertionError) {
                     queue.add(e.getValue());
-                    System.err.println(String.format("Disbanding %s", e.getValue().getName()));
+                    logger.debug(String.format("Disbanding %s", e.getValue().getName()));
                 }
             }
         }
 
-        for (Faction f: queue) {
+        for (Faction f : queue) {
             EagleFactionsPlugin.getPlugin().getFactionLogic().disbandFaction(f.getName());
         }
     }
