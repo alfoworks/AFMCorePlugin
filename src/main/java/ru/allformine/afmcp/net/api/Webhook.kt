@@ -16,15 +16,7 @@ object Webhook {
     private const val apiUrl = "https://hooks.alfo.ws/servers/"
 
     private fun sendApiRequest(jsonObject: JsonObject, type: String, group: String, extra: Array<out String>) {
-        jsonObject.addProperty("token", token)
-        jsonObject.addProperty("server_id", server_id)
-        jsonObject.addProperty("type", type)
-        jsonObject.addProperty("group", group)
-        jsonObject.add("arguments", arrayToJson(extra))
 
-        val json = jsonObject.toString()
-
-        Requests.sendPostJSON(json, apiUrl)
     }
 
     private fun arrayToJson(array: Array<out String>): JsonArray { // TODO: Дикий костыль
