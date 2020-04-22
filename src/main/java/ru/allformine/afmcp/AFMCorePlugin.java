@@ -105,6 +105,7 @@ public class AFMCorePlugin {
         Sponge.getEventManager().registerListeners(this, new TestEventListener());
         Sponge.getEventManager().registerListeners(this, new MOTDEventListener());
         Sponge.getEventManager().registerListeners(this, new JoinQuitMessageListener());
+        Sponge.getEventManager().registerListeners(this, new QuestEventListener());
 
         if (Sponge.getPluginManager().isLoaded("eaglefactions")) {
             Sponge.getEventManager().registerListeners(this, new FactionEventListener());
@@ -165,12 +166,12 @@ public class AFMCorePlugin {
 
         Sponge.getCommandManager().register(this, tokensCommandSpec, "tokens");
 
-        CommandSpec debugChestCommandSpec = CommandSpec.builder()
+        CommandSpec questGUICommandSpec = CommandSpec.builder()
                 .description(Text.of("Иди нахуй быдло."))
-                .executor(new DebugChestCommand())
+                .executor(new QuestGUICommand())
                 .build();
 
-        Sponge.getCommandManager().register(this, debugChestCommandSpec, "debugchest");
+        Sponge.getCommandManager().register(this, questGUICommandSpec, "questgui");
 
         CommandSpec vipCommandSpec = CommandSpec.builder()
                 .description(Text.of("Команда для покупки привелегий."))

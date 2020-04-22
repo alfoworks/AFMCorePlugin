@@ -6,6 +6,7 @@ import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 // This is dataclass which represents quest
 public class Quest {
+    private String name;
     private String type;
     private String target;
     private int count;
@@ -33,28 +34,24 @@ public class Quest {
     }
 
     // These setters are for GSON parser to work
-    public void setCount(int count) {
+    public Quest(String name, String type, String target, int count, int priority) {
+        this.name = name;
+        this.type = type;
+        this.target = target;
         this.count = count;
-    }
-
-    public void setPriority(int priority) {
         this.priority = priority;
     }
 
-    public void setTarget(String target) {
-        this.target = target;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public String toString() {
-        return type += getTarget();
+        return type += getTarget() + name;
     }
 
     public String getType() {
         return type;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public QuestTarget getTarget() {

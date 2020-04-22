@@ -2,18 +2,21 @@
   {
     "level1": [
       {
+        "name": "Starting a stronghold",
         "type": "item",
         "target": "iron_ingot",
         "count": 64,
         "priority": 5
       },
       {
+        "name": "First clean-up",
         "type": "entity",
         "target": "skeleton",
         "count": 10,
         "priority": 7
       },
       {
+        "name": "Taste of richness",
         "type": "item",
         "target": "gold_ingot",
         "count": 16,
@@ -24,18 +27,21 @@
   {
     "level2": [
       {
+        "name": "The true king",
         "type": "item",
         "target": "diamond",
         "count": 16,
         "priority": 7
       },
       {
+        "name": "Power of Flame",
         "type": "entity",
         "target": "blitz",
         "count": 13,
         "priority": 10
       },
       {
+        "name": "Starting a stronghold 2",
         "type": "item",
         "target": "iron_block",
         "count": 32,

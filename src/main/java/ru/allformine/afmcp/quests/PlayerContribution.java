@@ -12,11 +12,10 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 // DataClass which represents Player Contribution to a certain faction
-//// TODO: AutoSave data on any set call to this DataClass
 public class PlayerContribution {
     private final String factionName;
     private final Text factionTag;
-    private int completedQuests;
+    private Quest[] completedQuests;
     private Quest[] activeQuests;
     private boolean present;
     private final UUID player;
@@ -28,6 +27,7 @@ public class PlayerContribution {
         this.factionTag = faction.getTag();
         this.present = true;
         this.activeQuests = new Quest[config.getNode("quests", "activeLimit").getInt()];
+        this.completedQuests = new Quest[0];
     }
 
     public PlayerContribution(String player, String factionName, String factionTag) {
@@ -54,10 +54,15 @@ public class PlayerContribution {
             for (int i = 0; i < activeQuests.length; i++) {
                 if (activeQuests[i] == quest) {
                     activeQuests[i] = null;
-                    completedQuests++;
+                    completedQuests[i] = quest;
                 }
             }
         }
+    }
+
+    // ONLY FOR DESERIALIZER!!!
+    public void resetCompletedQuests(Quest[] quests) {
+        this.completedQuests = quests;
     }
 
     public Faction getFaction() {
@@ -72,7 +77,7 @@ public class PlayerContribution {
         return factionTag;
     }
 
-    public int getCompletedQuests() {
+    public Quest[] getCompletedQuests() {
         return completedQuests;
     }
 

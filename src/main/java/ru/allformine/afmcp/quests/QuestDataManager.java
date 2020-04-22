@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
+import org.spongepowered.api.entity.living.player.Player;
 import ru.allformine.afmcp.AFMCorePlugin;
 
 
@@ -22,10 +23,12 @@ public class QuestDataManager {
     private List<QuestLevel> questDifficulties;
     private Object factionContributions;
     private final Path factionPath;
+    private final QuestGUI gui;
 
     // Constructs both data files
     public QuestDataManager(Path questsPath, Path factionsPath) {
         this.factionPath = factionsPath;
+        this.gui = new QuestGUI();
         List<QuestLevel> qll = new ArrayList<>();
         Map<String, Quest[]> levels = getJsonMap(questsPath);
         for (Map.Entry<String, Quest[]> e : levels.entrySet()) {
@@ -84,6 +87,7 @@ public class QuestDataManager {
         Type type = new TypeToken<Map<String, Quest[]>>() {
         }.getType();
 
+        logger.error(jsonData);
         return gson.fromJson(jsonData, type);
     }
 
@@ -257,6 +261,10 @@ public class QuestDataManager {
             default:
                 throw new IllegalArgumentException("Wrong mode argument");
         }
+    }
+
+    public void openGUI(Player player) {
+        gui.showToPlayer(getContribution(player.getUniqueId()), player, -1);
     }
 
     public Quest getQuest(int questLevel, int questId) {

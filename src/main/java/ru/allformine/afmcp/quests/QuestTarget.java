@@ -1,7 +1,6 @@
 package ru.allformine.afmcp.quests;
 
 import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.item.ItemType;
 
 // Dataclass which represents target of a quest
 // Entity / Item
@@ -35,7 +34,13 @@ public class QuestTarget {
     }
 
     public String toString() {
-        return String.format("/%s/%s/%s", progress, count, priority);
+        String targetString;
+        if (target instanceof EntityType)
+            targetString = "entity";
+        else
+            targetString = "item";
+
+        return String.format("/%s/%s/%s/%s/", progress, count, priority, targetString);
     }
 
     // Be aware of NullPointerException!

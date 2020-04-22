@@ -9,6 +9,7 @@ public class FactionSerializer implements JsonSerializer<PlayerContribution> {
     public JsonElement serialize(PlayerContribution src, Type typeOfSrc, JsonSerializationContext context) {
         JsonObject result = new JsonObject();
         String[] activeQuests = new String[src.getActiveQuests().length];
+        String[] completedQuests = new String[src.getCompletedQuests().length];
 
         for (int i = 0; i < src.getActiveQuests().length; i++) {
             Quest q = src.getActiveQuests()[i];
@@ -21,6 +22,16 @@ public class FactionSerializer implements JsonSerializer<PlayerContribution> {
                 src.completeQuest(q);
             else
                 activeQuests[i] = q.toString();
+        }
+
+        for (int i = 0; i < src.getCompletedQuests().length; i++) {
+            Quest q = src.getCompletedQuests()[i];
+            if (q == null) {
+                completedQuests[i] = "";
+                continue;
+            }
+
+            completedQuests[i] = q.toString();
         }
 
         Gson gson = new Gson();
@@ -37,9 +48,9 @@ public class FactionSerializer implements JsonSerializer<PlayerContribution> {
 
         result.addProperty("player", src.getPlayer().toString());
         result.addProperty("present", src.isPresent());
-        result.addProperty("completed", src.getCompletedQuests());
         result.addProperty("factionName", factionName);
         result.addProperty("factionTag", factionTag);
+        result.add("completedQuests", gson.toJsonTree(completedQuests));
         result.add("activeQuests", gson.toJsonTree(activeQuests));
 
         return result;
