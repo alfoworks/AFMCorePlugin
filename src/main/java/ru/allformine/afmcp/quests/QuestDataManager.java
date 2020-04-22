@@ -162,9 +162,35 @@ public class QuestDataManager {
 
         // Append 1 element to array
         PlayerContribution[] playerContributions = new PlayerContribution[contributions.length + 1];
-        if (playerContributions.length - 2 >= 0)
-            System.arraycopy(contributions, 0, playerContributions, 0, playerContributions.length - 2);
+        System.arraycopy(contributions, 0, playerContributions, 0, contributions.length);
+        playerContributions[contributions.length] = contribution;
+
         playerContributions[playerContributions.length - 1] = contribution;
+        map.replace(factionName, playerContributions);
+        updateFactionListFile(gson.toJson(map));
+        logger.debug("Finished quest FACTION APPEND");
+    }
+
+    private void popFaction(@NotNull PlayerContribution[] contributions, PlayerContribution contribution,
+                               Map<String, PlayerContribution[]> map, String factionName, Gson gson) {
+        boolean test = false;
+        for (PlayerContribution playerContribution : contributions) {
+            if (contribution.getPlayer().equals(playerContribution.getPlayer())) {
+                    test = true;
+                    break;
+            }
+        }
+        if (!test)
+            throw new AssertionError(String.format("Player %s is not in faction",
+                    contribution.getPlayer()));
+
+        // Popping 1 element from array
+        PlayerContribution[] playerContributions = new PlayerContribution[contributions.length - 1];
+        for (int i = 0; i < contributions.length; i++) {
+            if (!contributions[i].getPlayer().equals(contribution.getPlayer())) {
+                playerContributions[i] = contributions[i];
+            }
+        }
 
         map.replace(factionName, playerContributions);
         updateFactionListFile(gson.toJson(map));
@@ -240,6 +266,10 @@ public class QuestDataManager {
         switch (mode) {
             case "u":
                 updateFaction(contributions, contribution, map, factionName, gson);
+                break;
+
+            case "p":
+                popFaction(contributions, contribution, map, factionName, gson);
                 break;
 
             case "a":

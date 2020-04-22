@@ -131,7 +131,7 @@ public class FactionEventListener {
         public void accept(Task task) {
             try {
                 PlayerContribution p = AFMCorePlugin.questDataManager.getContribution(event.getCreator().getUniqueId());
-                AFMCorePlugin.questDataManager.updateContribution(p, "u");
+                AFMCorePlugin.questDataManager.updateContribution(p, "p");
                 task.cancel();
             } catch (NullPointerException ignored) {
             }
