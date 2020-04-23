@@ -8,6 +8,7 @@ import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.Slot;
+import org.spongepowered.api.item.inventory.property.InventoryTitle;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColor;
@@ -15,13 +16,21 @@ import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.format.TextStyles;
 import ru.allformine.afmcp.AFMCorePlugin;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Objects;
+import java.util.List;
 import java.util.Optional;
 
 public class QuestGUI {
     private Inventory bakeGui(PlayerContribution data, int id) {
-        Inventory inventory = Inventory.builder().build(Objects.requireNonNull(Sponge.getPluginManager().getPlugin("afmcp").orElse(null)));
+        Inventory inventory = Inventory.builder()
+                .property("inventorytitle", new InventoryTitle(
+                        (id == -1) ?
+                                Text.of(TextColors.YELLOW, "Quest Menu") :
+                                Text.of(TextColors.DARK_GREEN, "Begin Quest?")))
+                .build(Objects.requireNonNull(Sponge.getPluginManager().getPlugin("afmcp").orElse(null)));
 
         ItemStack LVL;
         ItemStack[] QeS;
@@ -63,7 +72,7 @@ public class QuestGUI {
         }
 
         try {
-            data.getActiveQuests();
+            data.getActiveQuests()[0].getName();
         } catch (NullPointerException e) {
             ignore1 = true;
         }
@@ -160,8 +169,7 @@ public class QuestGUI {
         }
 
         QeS = new ItemStack[questMax];
-        for (int x = 0; x < questMax-1; x++) {
-            System.err.println(x);
+        for (int x = 0; x < questMax; x++) {
             Quest quest = AFMCorePlugin.questDataManager.getQuest(questLvl, x);
             QuestTarget target = quest.getTarget();
             String questName = quest.getName();
@@ -197,26 +205,36 @@ public class QuestGUI {
                 }
             }
 
+            List<Text> lore = new ArrayList<>();
+            lore.add(progressText);
+
             ItemStack result = ItemStack.builder()
                     .itemType(status)
                     .build();
-            result.offer(Keys.DISPLAY_NAME, progressText);
+            result.offer(Keys.DISPLAY_NAME, Text.of(questName));
+            result.offer(Keys.ITEM_LORE, lore);
             QeS[x] = result;
         }
 
-        Iterator<Inventory> iterator = inventory.slots().iterator();
+        Iterable<Inventory> slots = inventory.slots();
         int slotN = 0;
 
-        while (iterator.hasNext()) {
+        for (Inventory slot: slots) {
+            AFMCorePlugin.logger.debug("Iteration Start");
             if (id == -1)
-                if (slotN == 0 || slotN == 9*3-1)
-                    inventory.set(LVL);
-                else
-                    inventory.set(QeS[slotN-1]);
+                if (slotN == 0 || slotN == 9*3-1) {
+                    slot.set(LVL);
+                    AFMCorePlugin.logger.debug("Adding LVL");
+                }
+                else {
+                    slot.set(QeS[slotN-1]);
+                    AFMCorePlugin.logger.debug("Adding QeS");
+                }
 
+            AFMCorePlugin.logger.debug("Iteration End");
             slotN++;
-            iterator.next();
         }
+
         return inventory;
     }
 

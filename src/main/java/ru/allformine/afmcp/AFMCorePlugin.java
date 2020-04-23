@@ -298,7 +298,7 @@ public class AFMCorePlugin {
         Map<String, Faction> map = EagleFactionsPlugin.getPlugin().getFactionLogic().getFactions();
         List<Faction> queue = new ArrayList<>();
         for (Map.Entry<String, Faction> e : map.entrySet()) {
-            if (questDataManager.getContribution(e.getKey()) == null
+            if (Arrays.equals(questDataManager.getContribution(e.getKey()), new PlayerContribution[0])
                     && !e.getKey().toLowerCase().equals("safezone") && !e.getKey().toLowerCase().equals("warzone")) {
                 try {
                     questDataManager.updateContribution(null, String.format("d%s", e.getValue().getName()));

@@ -298,6 +298,6 @@ public class QuestDataManager {
     }
 
     public Quest getQuest(int questLevel, int questId) {
-        return questDifficulties.get(questLevel).getQuests()[questId];
+        return questDifficulties.get(questLevel-1).getQuests()[questId];
     }
 }
