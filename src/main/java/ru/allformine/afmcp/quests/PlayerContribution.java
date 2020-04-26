@@ -95,7 +95,7 @@ public class PlayerContribution {
 
     public String toString() {
         return String.format("%s - %s\n%s - %s/%s", getPlayer(), isPresent(),
-                getFaction(), activeQuests.length, completedQuests);
+                getFaction(), activeQuests.length, completedQuests.length);
     }
 
     public void setPresent(boolean present) {

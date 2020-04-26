@@ -17,7 +17,7 @@ public class QuestGUICommand extends AFMCPCommand {
             throw new CommandException(Text.of("Эта команда может вызываться только игроком!"));
         }
 
-        AFMCorePlugin.questDataManager.openGUI((Player) src);
+        AFMCorePlugin.questDataManager.openGUI((Player) src, -1);
         return CommandResult.success();
     }
 

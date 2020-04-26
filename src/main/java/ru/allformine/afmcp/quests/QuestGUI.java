@@ -207,6 +207,7 @@ public class QuestGUI {
 
             List<Text> lore = new ArrayList<>();
             lore.add(progressText);
+            lore.add(Text.of(TextColors.BLACK, x));
 
             ItemStack result = ItemStack.builder()
                     .itemType(status)
@@ -219,17 +220,58 @@ public class QuestGUI {
         Iterable<Inventory> slots = inventory.slots();
         int slotN = 0;
 
+        YES = ItemStack.builder()
+                .itemType(applyButton)
+                .add(Keys.DISPLAY_NAME, Text.of(TextColors.GREEN, "Apply"))
+                .build();
+
+        NOO = ItemStack.builder()
+                .itemType(denyButton)
+                .add(Keys.DISPLAY_NAME, Text.of(TextColors.RED, "Deny"))
+                .build();
+
+        if (id != -1) {
+            //// TODO: Quest Lore implementation
+            List<Text> lore = new ArrayList<>();
+            lore.add(Text.of(TextColors.YELLOW, "Work. ", TextColors.BLACK, "In. ", TextColors.YELLOW, "Progress."));
+
+            LOR = ItemStack.builder()
+                    .itemType(loreData)
+                    .add(Keys.DISPLAY_NAME, Text.of(TextColors.GRAY, "Description"))
+                    .add(Keys.ITEM_LORE, lore)
+                    .build();
+        } else {
+            LOR = null;
+        }
+
         for (Inventory slot: slots) {
             AFMCorePlugin.logger.debug("Iteration Start");
-            if (id == -1)
-                if (slotN == 0 || slotN == 9*3-1) {
+            if (id == -1) {
+                if (slotN == 0 || slotN == 9 * 3 - 1) {
                     slot.set(LVL);
                     AFMCorePlugin.logger.debug("Adding LVL");
-                }
-                else {
-                    slot.set(QeS[slotN-1]);
+                } else {
+                    slot.set(QeS[slotN - 1]);
                     AFMCorePlugin.logger.debug("Adding QeS");
                 }
+            } else {
+                if (slotN == 8 || slotN == 0 || slotN == 18 || slotN == 26) {
+                    slot.set(LVL);
+                    AFMCorePlugin.logger.debug("Adding LVL");
+                } else if (slotN == 4) {
+                    slot.set(QeS[id-1]);
+                    AFMCorePlugin.logger.debug("Adding QeS");
+                } else if (slotN == 11) {
+                    slot.set(YES);
+                    AFMCorePlugin.logger.debug("Adding YES");
+                } else if (slotN == 13) {
+                    slot.set(LOR);
+                    AFMCorePlugin.logger.debug("Adding LOR");
+                } else if (slotN == 15) {
+                    slot.set(NOO);
+                    AFMCorePlugin.logger.debug("Adding NOO");
+                }
+            }
 
             AFMCorePlugin.logger.debug("Iteration End");
             slotN++;

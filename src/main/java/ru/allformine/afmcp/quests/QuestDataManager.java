@@ -293,8 +293,8 @@ public class QuestDataManager {
         }
     }
 
-    public void openGUI(Player player) {
-        gui.showToPlayer(getContribution(player.getUniqueId()), player, -1);
+    public void openGUI(Player player, int id) {
+        gui.showToPlayer(getContribution(player.getUniqueId()), player, id);
     }
 
     public Quest getQuest(int questLevel, int questId) {
