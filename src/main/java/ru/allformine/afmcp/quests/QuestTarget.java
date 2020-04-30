@@ -21,6 +21,10 @@ public class QuestTarget {
         this.progress = progress;
     }
 
+    public void appendProgress(int appendix) {
+        this.progress += appendix;
+    }
+
     public int getProgress() {
         return this.progress;
     }

@@ -7,10 +7,12 @@ import org.spongepowered.api.event.Event;
 import ru.allformine.afmcp.quests.PlayerContribution;
 import ru.allformine.afmcp.quests.Quest;
 
+import java.util.UUID;
+
 // Thrown when a quest complete
 public interface QuestCompletedEvent extends Event, Cancellable {
 
-    Player getPlayer();
+    UUID getPlayer();
 
     PlayerContribution getContribution();
 
@@ -19,8 +21,6 @@ public interface QuestCompletedEvent extends Event, Cancellable {
     boolean isCancelled();
 
     void setCancelled(boolean cancel);
-
-    Object getType();
 
     Quest getQuest();
 }

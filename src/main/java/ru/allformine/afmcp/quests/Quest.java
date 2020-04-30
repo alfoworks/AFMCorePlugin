@@ -54,6 +54,10 @@ public class Quest {
         return name;
     }
 
+    public void setRawTarget(QuestTarget questTarget) {
+        this.qTarget = questTarget;
+    }
+
     public QuestTarget getTarget() {
         if (this.qTarget == null) {
             setQTarget();

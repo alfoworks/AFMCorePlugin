@@ -4,6 +4,7 @@ import io.github.aquerr.eaglefactions.api.entities.Faction;
 import org.slf4j.Logger;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.Order;
@@ -11,6 +12,7 @@ import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.EventContext;
 import org.spongepowered.api.event.cause.EventContextKey;
 import org.spongepowered.api.event.cause.EventContextKeys;
+import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.event.item.inventory.ChangeInventoryEvent;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.Inventory;
@@ -26,14 +28,14 @@ import org.spongepowered.api.text.format.TextColors;
 import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.quests.PlayerContribution;
 import ru.allformine.afmcp.quests.Quest;
+import ru.allformine.afmcp.quests.QuestTarget;
 import ru.allformine.afmcp.quests.events.*;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 public class QuestEventListener {
     private final Logger logger = AFMCorePlugin.logger;
+    private Map<UUID, Quest> questTracker = new HashMap<>();
 
     @Listener
     public void ChangeInventoryEvent(ChangeInventoryEvent event) {
@@ -97,10 +99,36 @@ public class QuestEventListener {
         }
     }
 
+    // Quest Tracker
+
+    // Entity Kill quest
+    @Listener
+    public void DamageEntityEvent(DamageEntityEvent event) {
+        if (event.willCauseDeath()) {
+            if (event.getSource() instanceof Entity) {
+                UUID uuid = ((Entity) event.getSource()).getUniqueId();
+                if (questTracker.containsKey(uuid)) {
+                    Quest quest = questTracker.get(uuid);
+                    QuestTarget questTarget = quest.getTarget();
+                    if (questTarget.getProgress() < questTarget.getCount()) {
+                        questTarget.appendProgress(1);
+                        quest.setRawTarget(questTarget);
+
+                        questTracker.replace(uuid, quest);
+                    } else {
+                        //// TODO: Quest Complete Event
+                    }
+                }
+            }
+        }
+    }
+
+    //// TODO: Item Gather quest
 
     // Update JSON data with event provided information
     @Listener
     public void QuestAssignedEvent(QuestAssignedEvent event) {
+        questTracker.put(event.getPlayer(), event.getQuest());
         AFMCorePlugin.questDataManager.updateContribution(event.getContribution(), "u");
     }
 
