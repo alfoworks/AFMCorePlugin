@@ -1,59 +1,79 @@
-package ru.allformine.afmcp.listeners;
+package ru.allformine.afmcp.listeners
 
-import io.github.aquerr.eaglefactions.api.entities.Faction;
-import io.github.aquerr.eaglefactions.common.EagleFactionsPlugin;
-import io.github.aquerr.eaglefactions.common.events.FactionAreaEnterEventImpl;
-import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.event.Listener;
-import org.spongepowered.api.event.network.ClientConnectionEvent;
-import ru.allformine.afmcp.AFMCorePlugin;
-import ru.allformine.afmcp.PacketChannels;
+import com.flowpowered.math.vector.Vector3i
+import io.github.aquerr.eaglefactions.api.entities.Faction
+import io.github.aquerr.eaglefactions.common.EagleFactionsPlugin
+import io.github.aquerr.eaglefactions.common.events.FactionAreaEnterEventImpl
+import io.github.aquerr.eaglefactions.common.events.FactionClaimEventImpl
+import io.github.aquerr.eaglefactions.common.events.FactionUnclaimEventImpl
+import org.spongepowered.api.Sponge
+import org.spongepowered.api.entity.living.player.Player
+import org.spongepowered.api.event.Listener
+import org.spongepowered.api.event.network.ClientConnectionEvent.Join
+import org.spongepowered.api.network.ChannelBuf
+import ru.allformine.afmcp.AFMCorePlugin
+import ru.allformine.afmcp.PacketChannels
 
-import java.util.Optional;
-
-public class FactionEventListener {
+class FactionEventListener {
     @Listener
-    public void onPlayerJoin(ClientConnectionEvent.Join event) {
-        Player player = event.getTargetEntity();
+    fun onPlayerJoin(event: Join) {
+        val player = event.targetEntity
+        val faction = EagleFactionsPlugin.getPlugin().factionLogic.getFactionByChunk(player.world.uniqueId, player.location.chunkPosition)
 
-        Optional<Faction> faction = EagleFactionsPlugin.getPlugin().getFactionLogic().getFactionByChunk(player.getWorld().getUniqueId(), player.getLocation().getChunkPosition());
-        sendToPlayer(player, getFactionNameForPlayer(faction.orElse(null), player));
+        sendToPlayer(player, getFactionNameForPlayer(faction.orElse(null), player))
     }
 
     @Listener
-    public void onFactionAreaChange(FactionAreaEnterEventImpl event) {
-        sendToPlayer(event.getCreator(), getFactionNameForPlayer(event.getEnteredFaction().orElse(null), event.getCreator()));
+    fun onFactionAreaChange(event: FactionAreaEnterEventImpl) {
+        sendToPlayer(event.creator, getFactionNameForPlayer(event.enteredFaction.orElse(null), event.creator))
+    }
+
+    @Listener
+    fun onFactionClaim(event: FactionClaimEventImpl) {
+        getAllPlayersInChunk(event.chunkPosition).forEach {
+            sendToPlayer(it, getFactionNameForPlayer(event.faction, it))
+        }
+    }
+
+    @Listener
+    fun onFactionUnclaim(event: FactionUnclaimEventImpl) {
+        getAllPlayersInChunk(event.chunkPosition).forEach {
+            sendToPlayer(it, getFactionNameForPlayer(event.faction, it))
+        }
     }
 
     // ============================== //
-
-    private void sendToPlayer(Player player, String string) {
-        PacketChannels.FACTIONS.sendTo(player, buf -> buf.writeString(string));
+    private fun sendToPlayer(player: Player, string: String) {
+        PacketChannels.FACTIONS.sendTo(player) { buf: ChannelBuf -> buf.writeString(string) }
     }
 
-    private String getFactionNameForPlayer(Faction faction, Player player) {
-        String factionName = faction == null ? "Общая" : faction.getName();
-        String factionColor;
+    private fun getFactionNameForPlayer(faction: Faction?, player: Player): String {
+        var factionName = if (faction == null) "Общая" else faction.name
+        val factionColor: String
 
         if (AFMCorePlugin.currentLobby != null && AFMCorePlugin.currentLobby.isPlayerInLobby(player)) {
-            factionColor = "§9";
-            factionName = "Лобби";
-        } else if (factionName.equals("SafeZone") || EagleFactionsPlugin.getPlugin().getConfiguration().getProtectionConfig().getSafeZoneWorldNames().contains(player.getWorld().getName())) {
-            factionColor = "§d";
-            factionName = "SafeZone";
-        } else if (factionName.equals("WarZone") || EagleFactionsPlugin.getPlugin().getConfiguration().getProtectionConfig().getWarZoneWorldNames().contains(player.getWorld().getName())) {
-            factionColor = "§4";
-            factionName = "WarZone";
+            factionColor = "§9"
+            factionName = "Лобби"
+        } else if (factionName == "SafeZone" || EagleFactionsPlugin.getPlugin().configuration.protectionConfig.safeZoneWorldNames.contains(player.world.name)) {
+            factionColor = "§d"
+            factionName = "SafeZone"
+        } else if (factionName == "WarZone" || EagleFactionsPlugin.getPlugin().configuration.protectionConfig.warZoneWorldNames.contains(player.world.name)) {
+            factionColor = "§4"
+            factionName = "WarZone"
         } else if (faction == null) {
-            factionColor = "§2";
+            factionColor = "§2"
         } else {
-            if (faction.containsPlayer(player.getUniqueId())) {
-                factionColor = "§a";
+            factionColor = if (faction.containsPlayer(player.uniqueId)) {
+                "§a"
             } else {
-                factionColor = "§6";
+                "§6"
             }
         }
 
-        return factionColor + factionName;
+        return factionColor + factionName
+    }
+
+    private fun getAllPlayersInChunk(pos: Vector3i): List<Player> {
+        return Sponge.getServer().onlinePlayers.filter { it.location.chunkPosition == pos }
     }
 }
