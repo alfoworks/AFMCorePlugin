@@ -74,6 +74,7 @@ minecraft {
     mappings = "snapshot_20171003"
     runDir = 'run'
 }
+
 compileKotlin {
     kotlinOptions {
         jvmTarget = "1.8"
