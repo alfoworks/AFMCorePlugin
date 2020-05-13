@@ -35,6 +35,8 @@ object WrappedTabList {
         for (entry in entries) {
             entry.setHeaderAndFooter()
             Sponge.getServer().onlinePlayers.forEach {
+                if (entry.vanished && !it.hasPermission("afmvanish.vanish.staff")) return@forEach
+
                 val nativeEntry = TabListEntry.builder()
                         .list(it.tabList)
                         .displayName(entry.name)

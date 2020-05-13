@@ -230,30 +230,27 @@ public class AFMCorePlugin {
     
     @Listener
     public void onServerStart(GameStartedServerEvent event) {
-        long time = configNode.getNode("webhook", "shutdown").getLong(0);
-        if (time == 0) logger.error("No last shutdown time.");
-        long loadingTime = System.currentTimeMillis() / 1000 - time;
-        
-        Webhook.sendServerMessage(Webhook.TypeServerMessage.SERVER_STARTED, String.valueOf(loadingTime));
-        
-        if (!Sponge.getPluginManager().isLoaded("afmvanish"))
-            Task.builder()
-            .execute(new UpdateTask())
-            .intervalTicks(20)
-            .name("AFMCP TabList Update Task")
-            .submit(this);
-        else
-            logger.info("AFMVanish detected! Not enabling our update task.");
-        
-        if (PluginConfig.broadcastEnabled)
-            Task.builder()
-            .execute(new BroadcastTask(Broadcast.getBroadcasts()))
-            .interval(2, TimeUnit.MINUTES)
-            .name("Broadcast Task (AFMCP)")
-            .submit(this);
-        
-        if (!PluginConfig.lobbyEnabled) {
-            return;
+	    long time = configNode.getNode("webhook", "shutdown").getLong(0);
+	    if (time == 0) logger.error("No last shutdown time.");
+	    long loadingTime = System.currentTimeMillis() / 1000 - time;
+	
+	    Webhook.sendServerMessage(Webhook.TypeServerMessage.SERVER_STARTED, String.valueOf(loadingTime));
+	
+	    Task.builder()
+	    .execute(new UpdateTask())
+	    .intervalTicks(20)
+	    .name("AFMCP TabList Update Task")
+	    .submit(this);
+	
+	    if (PluginConfig.broadcastEnabled)
+		    Task.builder()
+		    .execute(new BroadcastTask(Broadcast.getBroadcasts()))
+		    .interval(2, TimeUnit.MINUTES)
+		    .name("Broadcast Task (AFMCP)")
+		    .submit(this);
+	
+	    if (!PluginConfig.lobbyEnabled) {
+		    return;
         }
         
         if (Objects.equals(PluginConfig.lobbyId, "")) {

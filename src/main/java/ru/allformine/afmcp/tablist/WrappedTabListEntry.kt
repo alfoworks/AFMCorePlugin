@@ -5,8 +5,8 @@ import org.spongepowered.api.data.key.Keys
 import org.spongepowered.api.data.value.mutable.Value
 import org.spongepowered.api.entity.living.player.Player
 import org.spongepowered.api.entity.living.player.gamemode.GameMode
-import org.spongepowered.api.text.LiteralText
 import org.spongepowered.api.text.Text
+import org.spongepowered.api.text.format.TextColors
 import org.spongepowered.api.text.serializer.TextSerializers
 import ru.allformine.afmcp.PluginConfig
 import java.util.*
@@ -24,7 +24,8 @@ class WrappedTabListEntry(val player: Player) {
             .find { player.hasPermission("group.%s".format(it.string)) }
             ?.let { PluginConfig.tablistSorting.childrenList.indexOf(it) } ?: 2147483647
     private val prefix = player.getOption("prefix").orElse("")!!
-    val name: LiteralText = Text.of(prefix + player.name)
+    val vanished: Boolean = player.get(Keys.VANISH).orElse(false)
+    val name: Text = Text.of(if (vanished) Text.EMPTY else Text.of(TextColors.DARK_AQUA, "V", TextColors.RESET, " "), prefix + player.name)
     val latency = player.connection.latency
     val uuid: UUID = player.uniqueId
     val gameMode: Value<GameMode> = player.gameMode()
@@ -43,7 +44,7 @@ class WrappedTabListEntry(val player: Player) {
         header = TextSerializers.FORMATTING_CODE.deserialize(PluginConfig.tabListHeader +
                 if (PluginConfig.tabListOnlineCount.isBlank()) "" else "\n" +
                         String.format(PluginConfig.tabListOnlineCount,
-                                Sponge.getServer().onlinePlayers.filter { !it.get(Keys.VANISH).orElse(false) }.size,
+                                if (!player.hasPermission("afmvanish.vanish.staff")) Sponge.getServer().onlinePlayers.filter { !it.get(Keys.VANISH).orElse(false) }.size else Sponge.getServer().onlinePlayers.size,
                                 Sponge.getServer().maxPlayers))
         footer = TextSerializers.FORMATTING_CODE.deserialize(PluginConfig.tabListFooter +
                 if (PluginConfig.tabListCoordinates.isBlank()) "" else "\n" +
