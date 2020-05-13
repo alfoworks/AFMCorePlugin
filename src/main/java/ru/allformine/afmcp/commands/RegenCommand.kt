@@ -24,10 +24,10 @@ class RegenCommand : AFMCPCommand() {
     }
 
     override fun getName(): String {
-        return "Regen";
+        return "Regen"
     }
 
     override fun getColor(): TextColor {
-        return TextColors.GOLD;
+        return TextColors.GOLD
     }
 }

@@ -10,23 +10,24 @@ import org.spongepowered.api.text.format.TextColors;
 import ru.allformine.afmcp.AFMCorePlugin;
 
 public class DebugCommand extends AFMCPCommand {
-    private static Task task;
-
-    @Override
-    public CommandResult execute(CommandSource src, CommandContext args) {
-        AFMCorePlugin.debugSwitch = !AFMCorePlugin.debugSwitch;
-        reply(src, Text.of("Теперь дебаг " + (AFMCorePlugin.debugSwitch ? "включен" : "выключен")));
-
-        return CommandResult.success();
-    }
-
-    @Override
-    public String getName() {
-        return "Debug";
-    }
-
-    @Override
-    public TextColor getColor() {
-        return TextColors.BLUE;
-    }
+	
+	private static Task task;
+	
+	@Override
+	public CommandResult execute(CommandSource src, CommandContext args) {
+		AFMCorePlugin.debugSwitch = !AFMCorePlugin.debugSwitch;
+		reply(src, Text.of("Теперь дебаг " + (AFMCorePlugin.debugSwitch ? "включен" : "выключен")));
+		
+		return CommandResult.success();
+	}
+	
+	@Override
+	public String getName() {
+		return "Debug";
+	}
+	
+	@Override
+	public TextColor getColor() {
+		return TextColors.BLUE;
+	}
 }

@@ -13,30 +13,31 @@ import ru.allformine.afmcp.net.api.Eco;
 import java.util.OptionalInt;
 
 public class TokensCommand extends AFMCPCommand {
-    public CommandResult execute(CommandSource source, CommandContext args) {
-        if (source instanceof Player) {
-            Eco eco = new Eco((Player) source);
-            OptionalInt balance = eco.getBalance();
-
-            if (balance.isPresent()) {
-                reply(source, TextTemplate.of("Ваш баланс: ", getColor(), balance.getAsInt(), " токенов", TextColors.WHITE, ".").toText());
-            } else {
-                reply(source, Text.of("Произошла неизвестная ошибка."));
-            }
-        } else {
-            reply(source, Text.of("Данную команду может выполнить только игрок."));
-        }
-
-        return CommandResult.success();
-    }
-
-    @Override
-    public String getName() {
-        return "AFMEco";
-    }
-
-    @Override
-    public TextColor getColor() {
-        return TextColors.LIGHT_PURPLE;
-    }
+	
+	public CommandResult execute(CommandSource source, CommandContext args) {
+		if (source instanceof Player) {
+			Eco eco = new Eco((Player) source);
+			OptionalInt balance = eco.getBalance();
+			
+			if (balance.isPresent()) {
+				reply(source, TextTemplate.of("Ваш баланс: ", getColor(), balance.getAsInt(), " токенов", TextColors.WHITE, ".").toText());
+			} else {
+				reply(source, Text.of("Произошла неизвестная ошибка."));
+			}
+		} else {
+			reply(source, Text.of("Данную команду может выполнить только игрок."));
+		}
+		
+		return CommandResult.success();
+	}
+	
+	@Override
+	public String getName() {
+		return "AFMEco";
+	}
+	
+	@Override
+	public TextColor getColor() {
+		return TextColors.LIGHT_PURPLE;
+	}
 }

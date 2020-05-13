@@ -10,56 +10,58 @@ import java.util.OptionalInt;
 
 @SuppressWarnings("unused")
 public class Eco {
-    private static ConfigurationNode configNode = AFMCorePlugin.getConfig().getNode("eco");
-    private static String key = configNode.getNode("key").getString();
-    private static String apiUrl = configNode.getNode("balanceApiUrl").getString() + "&key=" + key;
-    private String nickname;
-    public Eco(Player player) {
-        this.nickname = player.getName();
-    }
-
-    public Eco(String nickname) {
-        this.nickname = nickname;
-    }
-
-    private Response sendGet(String url) {
-        Response response = Requests.sendGet(url);
-        if (response != null && response.responseCode != 200) {
-            AFMCorePlugin.logger.error(
-                    String.format("An error occurred while executing GET request %s\nResponse code: %s\nResponse body:%s",
-                            url,
-                            response.responseCode,
-                            response.response)
-            );
-        }
-        return response;
-    }
-
-    public OptionalInt getBalance() {
-        String url = String.format("%s&act=%s&nick=%s", apiUrl, "get", this.nickname);
-        Response response = sendGet(url);
-        if (response != null && response.responseCode == 200) {
-            return OptionalInt.of(Integer.parseInt(response.response));
-        } else {
-            return OptionalInt.empty();
-        }
-    }
-
-    public boolean increase(int count) {
-        String url = String.format("%s&act=%s&nick=%s&var=%s", apiUrl, "increase", this.nickname, count);
-        Response response = sendGet(url);
-        return response != null && response.responseCode == 200;
-    }
-
-    public boolean decrease(int count) {
-        String url = String.format("%s&act=%s&nick=%s&var=%s", apiUrl, "reduction", this.nickname, count);
-        Response response = sendGet(url);
-        return response != null && response.responseCode == 200;
-    }
-
-    public boolean reset() {
-        String url = String.format("%s&act=%s&nick=%s", apiUrl, "reset", this.nickname);
-        Response response = sendGet(url);
-        return response != null && response.responseCode == 200;
-    }
+	
+	private static ConfigurationNode configNode = AFMCorePlugin.getConfig().getNode("eco");
+	private static String key = configNode.getNode("key").getString();
+	private static String apiUrl = configNode.getNode("balanceApiUrl").getString() + "&key=" + key;
+	private String nickname;
+	
+	public Eco(Player player) {
+		this.nickname = player.getName();
+	}
+	
+	public Eco(String nickname) {
+		this.nickname = nickname;
+	}
+	
+	private Response sendGet(String url) {
+		Response response = Requests.sendGet(url);
+		if (response != null && response.responseCode != 200) {
+			AFMCorePlugin.logger.error(
+			String.format("An error occurred while executing GET request %s\nResponse code: %s\nResponse body:%s",
+			url,
+			response.responseCode,
+			response.response)
+			);
+		}
+		return response;
+	}
+	
+	public OptionalInt getBalance() {
+		String url = String.format("%s&act=%s&nick=%s", apiUrl, "get", this.nickname);
+		Response response = sendGet(url);
+		if (response != null && response.responseCode == 200) {
+			return OptionalInt.of(Integer.parseInt(response.response));
+		} else {
+			return OptionalInt.empty();
+		}
+	}
+	
+	public boolean increase(int count) {
+		String url = String.format("%s&act=%s&nick=%s&var=%s", apiUrl, "increase", this.nickname, count);
+		Response response = sendGet(url);
+		return response != null && response.responseCode == 200;
+	}
+	
+	public boolean decrease(int count) {
+		String url = String.format("%s&act=%s&nick=%s&var=%s", apiUrl, "reduction", this.nickname, count);
+		Response response = sendGet(url);
+		return response != null && response.responseCode == 200;
+	}
+	
+	public boolean reset() {
+		String url = String.format("%s&act=%s&nick=%s", apiUrl, "reset", this.nickname);
+		Response response = sendGet(url);
+		return response != null && response.responseCode == 200;
+	}
 }

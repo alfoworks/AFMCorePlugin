@@ -92,7 +92,7 @@ class RestartCommand : AFMCPCommand() {
 
         companion object {
             private fun pluralize(number: Int, nomSing: String, genSing: String, genPl: String): String {
-                 // val numberString = number.toString()
+                // val numberString = number.toString()
                 // val lastDigit = numberString.substring(numberString.length - 1).toInt()
                 // val lastTwoDigits = if (numberString.length > 1) numberString.substring(numberString.length - 2).toInt() else lastDigit
                 val lastDigit = number % 10

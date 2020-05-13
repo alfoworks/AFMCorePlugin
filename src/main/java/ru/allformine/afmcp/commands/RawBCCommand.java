@@ -11,24 +11,25 @@ import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.serializer.TextSerializers;
 
 public class RawBCCommand extends AFMCPCommand {
-    @Override
-    public CommandResult execute(CommandSource src, CommandContext args) {
-        for (Player player : Sponge.getServer().getOnlinePlayers()) {
-            player.sendMessage(TextSerializers.FORMATTING_CODE.deserialize(Text.of(args.<String>getOne("text").orElse("")).toPlain()));
-        }
-
-        reply(src, Text.of("Сообщение успешно отправлено!"));
-
-        return CommandResult.success();
-    }
-
-    @Override
-    public String getName() {
-        return "RawBC";
-    }
-
-    @Override
-    public TextColor getColor() {
-        return TextColors.DARK_PURPLE;
-    }
+	
+	@Override
+	public CommandResult execute(CommandSource src, CommandContext args) {
+		for (Player player : Sponge.getServer().getOnlinePlayers()) {
+			player.sendMessage(TextSerializers.FORMATTING_CODE.deserialize(Text.of(args.<String>getOne("text").orElse("")).toPlain()));
+		}
+		
+		reply(src, Text.of("Сообщение успешно отправлено!"));
+		
+		return CommandResult.success();
+	}
+	
+	@Override
+	public String getName() {
+		return "RawBC";
+	}
+	
+	@Override
+	public TextColor getColor() {
+		return TextColors.DARK_PURPLE;
+	}
 }

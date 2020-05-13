@@ -6,13 +6,10 @@ import org.spongepowered.api.command.CommandResult
 import org.spongepowered.api.command.CommandSource
 import org.spongepowered.api.command.args.CommandContext
 import org.spongepowered.api.entity.living.player.Player
-import org.spongepowered.api.service.permission.PermissionService
-import org.spongepowered.api.service.permission.SubjectData
 import org.spongepowered.api.text.Text
 import org.spongepowered.api.text.TextTemplate
 import org.spongepowered.api.text.format.TextColor
 import org.spongepowered.api.text.format.TextColors
-import org.spongepowered.api.util.Tristate
 import ru.allformine.afmcp.AFMCorePlugin
 import ru.allformine.afmcp.net.api.Eco
 import ru.allformine.afmcp.net.api.Webhook
@@ -39,7 +36,7 @@ class VipCommand : AFMCPCommand() {
         }
 
         if (source is Player) {
-            val player = source as Player
+            val player = source
             val vipNode = configNode.getNode("vips", vipToBuy.toLowerCase())
 
             if (!vipNode.isVirtual) {

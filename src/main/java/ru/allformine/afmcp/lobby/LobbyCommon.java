@@ -22,151 +22,152 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class LobbyCommon {
-    private Set<Player> lobbyPlayers = new HashSet<>();
-    HashMap<Player, LobbyPlayerInventory> lobbyPlayerInventories = new HashMap<>();
-    HashMap<Player, PlayerState> previousStates = new HashMap<>();
-
-    public String getLobbyId() {
-        return "";
-    }
-
-    public boolean isPlayerInLobby(Player player) {
-        return lobbyPlayers.contains(player);
-    }
-
-    public boolean removePlayerFromLobby(Player player) {
-        if (lobbyPlayers.remove(player)) {
-            lobbyPlayerInventories.remove(player);
-
-            player.getInventory().clear();
-
-            if (previousStates.containsKey(player)) {
-                previousStates.get(player).applyTo(player);
-            }
-
-            return true;
-        }
-
-        return false;
-    }
-
-    public boolean addPlayerToLobby(Player player) {
-        if (!PluginConfig.lobbyEnabled) {
-            return false;
-        }
-
-        if (lobbyPlayers.contains(player)) {
-            return false;
-        }
-
-        if (PluginConfig.lobbySpawn == null) {
-            AFMCorePlugin.logger.error("Lobby spawn location is not set. Lobby is not working.");
-
-            return false;
-        }
-
-        if (player.get(Keys.VANISH).get()) {
-            sendLobbyMessage(player, "Выйдите из ваниша для того, чтобы попасть в лобби!");
-
-            return false;
-        }
-
-        previousStates.put(player, new PlayerState(player));
-        lobbyPlayers.add(player);
-
-        // На всякий случай очищаем инвентарь, мало ли, говно какое-нибудь будет
-        player.getInventory().clear();
-
-        // Хп/жрачка/опыт на дефолт
-        player.health().set(20D);
-        player.foodLevel().set(20);
-        player.offer(Keys.TOTAL_EXPERIENCE, 0);
-        player.gameMode().set(GameModes.ADVENTURE);
-
-        // Телепортим в лобби
-        player.setLocation(PluginConfig.lobbySpawn);
-
-        // Отправляем сообщения
-
-        sendLobbyMessage(player, "Добро пожаловать в лобби!");
-
-        if (player.hasPermission("afmcp.lobby.exit")) {
-            sendLobbyMessage(player, "Вы можете прописать /lobby exit для выхода из лобби.");
-        }
-
-        return true;
-    }
-
-    @Listener
-    public void onPlayerJoin(ClientConnectionEvent.Join event){
-        if (event.getTargetEntity().hasPermission("afmcp.lobby.ignore")) {
-            return; // Игрок уже зарегистрирован в каком-то из городов или у него стоит игнор лобби
-        } else if (event.getTargetEntity().get(Keys.VANISH).get()) {
-            sendLobbyMessage(event.getTargetEntity(), "Выйдите из ваниша для того, чтобы попасть в лобби!");
-
-            return;
-        }
-
-        addPlayerToLobby(event.getTargetEntity());
-    }
-
-    @Listener
-    public void onPlayerQuit(ClientConnectionEvent.Disconnect event) {
-        if (lobbyPlayers.remove(event.getTargetEntity())) lobbyPlayerInventories.remove(event.getTargetEntity());
-        previousStates.remove(event.getTargetEntity());
-    }
-    // ======== Классы для взаимодействия в лобби ======== //
-
-    @Listener
-    public void onInteract(InteractItemEvent event) {
-        if (!(event.getSource() instanceof Player)) {
-            return;
-        }
-
-        ItemStack item = event.getItemStack().createStack();
-
-        DataItem dataItem = new DataItem(item);
-        Player player = (Player) event.getSource();
-
-        if (!dataItem.get("afmcp_lobby_item_id").isPresent()) {
-            return;
-        }
-
-        int id = (Integer) dataItem.get("afmcp_lobby_item_id").get();
-
-        for (LobbyItem lobbyItem : lobbyPlayerInventories.get(player).items) {
-            if (lobbyItem.id == id) {
-                lobbyItem.onClick(player);
-                return;
-            }
-        }
-    }
-
-    @Listener
-    public void onInventoryChange(ChangeInventoryEvent event) {
-        event.setCancelled(lobbyPlayers.contains(event.getSource()) && !(event instanceof ChangeInventoryEvent.Held));
-    }
-
-    @Listener
-    public void onBlockPlace(ChangeBlockEvent.Break event, @Root Player player) {
-        event.setCancelled(lobbyPlayers.contains(player));
-    }
-
-    @Listener
-    public void onBlockBreak(ChangeBlockEvent.Place event, @Root Player player) {
-        event.setCancelled(lobbyPlayers.contains(player));
-    }
-
-    @Listener
-    public void onDamage(DamageEntityEvent event) {
-        event.setCancelled(event.getTargetEntity() instanceof Player && lobbyPlayers.contains(event.getTargetEntity()));
-    }
-
-    void sendLobbyMessage(Player player, String message) {
-        player.sendMessage(Text.builder()
-                .append(Text.builder().append(Text.of("Lobby")).color(TextColors.GREEN).build())
-                .append(Text.builder().append(Text.of(" > ")).color(TextColors.RESET).build())
-                .append(Text.of(message))
-                .build());
-    }
+	
+	HashMap<Player, LobbyPlayerInventory> lobbyPlayerInventories = new HashMap<>();
+	HashMap<Player, PlayerState> previousStates = new HashMap<>();
+	private Set<Player> lobbyPlayers = new HashSet<>();
+	
+	public String getLobbyId() {
+		return "";
+	}
+	
+	public boolean isPlayerInLobby(Player player) {
+		return lobbyPlayers.contains(player);
+	}
+	
+	public boolean removePlayerFromLobby(Player player) {
+		if (lobbyPlayers.remove(player)) {
+			lobbyPlayerInventories.remove(player);
+			
+			player.getInventory().clear();
+			
+			if (previousStates.containsKey(player)) {
+				previousStates.get(player).applyTo(player);
+			}
+			
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public boolean addPlayerToLobby(Player player) {
+		if (!PluginConfig.lobbyEnabled) {
+			return false;
+		}
+		
+		if (lobbyPlayers.contains(player)) {
+			return false;
+		}
+		
+		if (PluginConfig.lobbySpawn == null) {
+			AFMCorePlugin.logger.error("Lobby spawn location is not set. Lobby is not working.");
+			
+			return false;
+		}
+		
+		if (player.get(Keys.VANISH).get()) {
+			sendLobbyMessage(player, "Выйдите из ваниша для того, чтобы попасть в лобби!");
+			
+			return false;
+		}
+		
+		previousStates.put(player, new PlayerState(player));
+		lobbyPlayers.add(player);
+		
+		// На всякий случай очищаем инвентарь, мало ли, говно какое-нибудь будет
+		player.getInventory().clear();
+		
+		// Хп/жрачка/опыт на дефолт
+		player.health().set(20D);
+		player.foodLevel().set(20);
+		player.offer(Keys.TOTAL_EXPERIENCE, 0);
+		player.gameMode().set(GameModes.ADVENTURE);
+		
+		// Телепортим в лобби
+		player.setLocation(PluginConfig.lobbySpawn);
+		
+		// Отправляем сообщения
+		
+		sendLobbyMessage(player, "Добро пожаловать в лобби!");
+		
+		if (player.hasPermission("afmcp.lobby.exit")) {
+			sendLobbyMessage(player, "Вы можете прописать /lobby exit для выхода из лобби.");
+		}
+		
+		return true;
+	}
+	
+	@Listener
+	public void onPlayerJoin(ClientConnectionEvent.Join event) {
+		if (event.getTargetEntity().hasPermission("afmcp.lobby.ignore")) {
+			return; // Игрок уже зарегистрирован в каком-то из городов или у него стоит игнор лобби
+		} else if (event.getTargetEntity().get(Keys.VANISH).get()) {
+			sendLobbyMessage(event.getTargetEntity(), "Выйдите из ваниша для того, чтобы попасть в лобби!");
+			
+			return;
+		}
+		
+		addPlayerToLobby(event.getTargetEntity());
+	}
+	
+	@Listener
+	public void onPlayerQuit(ClientConnectionEvent.Disconnect event) {
+		if (lobbyPlayers.remove(event.getTargetEntity())) lobbyPlayerInventories.remove(event.getTargetEntity());
+		previousStates.remove(event.getTargetEntity());
+	}
+	// ======== Классы для взаимодействия в лобби ======== //
+	
+	@Listener
+	public void onInteract(InteractItemEvent event) {
+		if (!(event.getSource() instanceof Player)) {
+			return;
+		}
+		
+		ItemStack item = event.getItemStack().createStack();
+		
+		DataItem dataItem = new DataItem(item);
+		Player player = (Player) event.getSource();
+		
+		if (!dataItem.get("afmcp_lobby_item_id").isPresent()) {
+			return;
+		}
+		
+		int id = (Integer) dataItem.get("afmcp_lobby_item_id").get();
+		
+		for (LobbyItem lobbyItem : lobbyPlayerInventories.get(player).items) {
+			if (lobbyItem.id == id) {
+				lobbyItem.onClick(player);
+				return;
+			}
+		}
+	}
+	
+	@Listener
+	public void onInventoryChange(ChangeInventoryEvent event) {
+		event.setCancelled(lobbyPlayers.contains(event.getSource()) && !(event instanceof ChangeInventoryEvent.Held));
+	}
+	
+	@Listener
+	public void onBlockPlace(ChangeBlockEvent.Break event, @Root Player player) {
+		event.setCancelled(lobbyPlayers.contains(player));
+	}
+	
+	@Listener
+	public void onBlockBreak(ChangeBlockEvent.Place event, @Root Player player) {
+		event.setCancelled(lobbyPlayers.contains(player));
+	}
+	
+	@Listener
+	public void onDamage(DamageEntityEvent event) {
+		event.setCancelled(event.getTargetEntity() instanceof Player && lobbyPlayers.contains(event.getTargetEntity()));
+	}
+	
+	void sendLobbyMessage(Player player, String message) {
+		player.sendMessage(Text.builder()
+		                   .append(Text.builder().append(Text.of("Lobby")).color(TextColors.GREEN).build())
+		                   .append(Text.builder().append(Text.of(" > ")).color(TextColors.RESET).build())
+		                   .append(Text.of(message))
+		                   .build());
+	}
 }
