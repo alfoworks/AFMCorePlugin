@@ -40,11 +40,10 @@ class WrappedTabListEntry(val player: Player) {
 
     private fun generateDynamicStuff(player: Player) {
         val playerLocation = player.location
-
         header = TextSerializers.FORMATTING_CODE.deserialize(PluginConfig.tabListHeader +
                 if (PluginConfig.tabListOnlineCount.isBlank()) "" else "\n" +
                         String.format(PluginConfig.tabListOnlineCount,
-                                Sponge.getServer().onlinePlayers.filter { !it.keys.contains(Keys.VANISH) }.size,
+                                Sponge.getServer().onlinePlayers.filter { !it.get(Keys.VANISH).orElse(false) }.size,
                                 Sponge.getServer().maxPlayers))
         footer = TextSerializers.FORMATTING_CODE.deserialize(PluginConfig.tabListFooter +
                 if (PluginConfig.tabListCoordinates.isBlank()) "" else "\n" +
