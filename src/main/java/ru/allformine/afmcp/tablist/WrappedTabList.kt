@@ -1,8 +1,11 @@
 package ru.allformine.afmcp.tablist
 
 import org.spongepowered.api.Sponge
+import org.spongepowered.api.data.key.Keys
 import org.spongepowered.api.entity.living.player.Player
 import org.spongepowered.api.entity.living.player.tab.TabListEntry
+import org.spongepowered.api.text.Text
+import org.spongepowered.api.text.format.TextColors
 import java.util.*
 
 
@@ -35,11 +38,12 @@ object WrappedTabList {
         for (entry in entries) {
             entry.setHeaderAndFooter()
             Sponge.getServer().onlinePlayers.forEach {
-                if (entry.vanished && !it.hasPermission("afmvanish.vanish.staff")) return@forEach
+                val seeVanished = entry.player.get(Keys.VANISH).orElse(false) && !it.hasPermission("afmvanish.vanish.staff")
+                if (seeVanished) return@forEach
 
                 val nativeEntry = TabListEntry.builder()
                         .list(it.tabList)
-                        .displayName(entry.name)
+                        .displayName(Text.of((if (seeVanished) Text.of(TextColors.DARK_AQUA, "[V]", TextColors.RESET, " ") else Text.EMPTY), entry.name))
                         .gameMode(entry.gameMode.get())
                         .latency(entry.latency)
                         .profile(entry.player.profile)

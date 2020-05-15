@@ -6,7 +6,6 @@ import org.spongepowered.api.data.value.mutable.Value
 import org.spongepowered.api.entity.living.player.Player
 import org.spongepowered.api.entity.living.player.gamemode.GameMode
 import org.spongepowered.api.text.Text
-import org.spongepowered.api.text.format.TextColors
 import org.spongepowered.api.text.serializer.TextSerializers
 import ru.allformine.afmcp.PluginConfig
 import java.util.*
@@ -24,8 +23,7 @@ class WrappedTabListEntry(val player: Player) {
             .find { player.hasPermission("group.%s".format(it.string)) }
             ?.let { PluginConfig.tablistSorting.childrenList.indexOf(it) } ?: 2147483647
     private val prefix = player.getOption("prefix").orElse("")!!
-    val vanished: Boolean = player.get(Keys.VANISH).orElse(false)
-    val name: Text = Text.of(if (vanished) Text.EMPTY else Text.of(TextColors.DARK_AQUA, "V", TextColors.RESET, " "), prefix + player.name)
+    val name: Text = Text.of(prefix + player.name)
     val latency = player.connection.latency
     val uuid: UUID = player.uniqueId
     val gameMode: Value<GameMode> = player.gameMode()
