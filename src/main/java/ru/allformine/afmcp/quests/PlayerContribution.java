@@ -1,6 +1,5 @@
 package ru.allformine.afmcp.quests;
 
-import com.typesafe.config.ConfigException;
 import io.github.aquerr.eaglefactions.api.entities.Faction;
 import io.github.aquerr.eaglefactions.common.EagleFactionsPlugin;
 import ninja.leaping.configurate.commented.CommentedConfigurationNode;
@@ -8,13 +7,14 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.EventContext;
+import org.spongepowered.api.event.cause.EventContextKey;
 import org.spongepowered.api.event.cause.EventContextKeys;
+import org.spongepowered.api.profile.GameProfile;
+import org.spongepowered.api.profile.property.ProfileProperty;
 import org.spongepowered.api.text.Text;
 import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.quests.events.QuestAssignedEventImpl;
-import ru.allformine.afmcp.quests.events.QuestsEventContextKeys;
 
-import java.util.ArrayList;
 import java.util.UUID;
 
 // DataClass which represents Player Contribution to a certain faction
@@ -49,12 +49,9 @@ public class PlayerContribution {
             if (activeQuests[i] == null) {
                 activeQuests[i] = quest;
                 EventContext eventContext = EventContext.builder()
-                        .add(QuestsEventContextKeys.UUID, player)
-                        .add(QuestsEventContextKeys.PLAYER_CONTRIBUTION, this)
-                        .add(QuestsEventContextKeys.FACTION, getFaction())
-                        .add(QuestsEventContextKeys.QUEST, quest)
+                        .add(EventContextKeys.PLAYER_SIMULATED, GameProfile.of(player))
                         .build();
-                Cause cause = Cause.builder().build(eventContext);
+                Cause cause = Cause.of(eventContext, this, quest);
 
                 Sponge.getEventManager().post(new QuestAssignedEventImpl(cause));
                 return true;

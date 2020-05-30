@@ -3,7 +3,9 @@ package ru.allformine.afmcp.listeners;
 import io.github.aquerr.eaglefactions.api.entities.Faction;
 import org.slf4j.Logger;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
@@ -42,6 +44,7 @@ public class QuestEventListener {
         Text originTitle = event.getTargetInventory().getInventoryProperty(InventoryTitle.class)
                 .orElse(InventoryTitle.of(Text.of(""))).getValue();
         if (Objects.equals(originTitle, Text.of(TextColors.YELLOW, "Quest Menu"))) {
+            event.setCancelled(true);
 
             Object player = event.getSource();
             assert player instanceof Player;
@@ -53,31 +56,52 @@ public class QuestEventListener {
             if (!(questId == 0 || questId == 26)) {
                 AFMCorePlugin.questDataManager.openGUI((Player) player, questId);
             }
-            event.setCancelled(true);
         } else if (Objects.equals(originTitle, Text.of(TextColors.DARK_GREEN, "Begin Quest?"))) {
+            event.setCancelled(true);
+
             Object player = event.getSource();
             assert player instanceof Player;
 
-            ItemStackSnapshot itemStackSnapshot = event.getTransactions().get(0).getOriginal();
+            Text slotName = null;
+
+            for (SlotTransaction t: event.getTransactions()) {
+                ItemStack s = t.getOriginal().createStack();
+
+                Optional<Text> text = s.get(Keys.DISPLAY_NAME);
+                if (text.isPresent()) {
+                    slotName = text.get();
+                    logger.error(slotName.toString());
+                } else {
+                    logger.error("No text data");
+                }
+            }
+
             ItemStack questData = null;
 
             for (Inventory i: event.getTargetInventory().slots()) {
-                Slot s = (Slot) i;
-                SlotIndex index = i.getInventoryProperty(SlotIndex.class).orElse(null);
-                if (index == null) continue;
-                if (index.getValue() == 4)
-                    questData = s.peek().orElse(null);
+                Optional<SlotIndex> slot;
+                slot = i.getInventoryProperty(SlotIndex.class);
+                if (slot.isPresent()) {
+                    int slotIndex = slot.get().getValue();
+                    Optional<ItemStack> item = i.peek();
+                    if (!item.isPresent())
+                        continue;
+
+                    if (slotIndex == 4)
+                        questData = item.get();
+                } else {
+                    logger.error("No slot data");
+                }
             }
 
             if (questData == null) {
                 event.setCancelled(true);
+                logger.error("No quest data");
                 return;
             }
 
             Player playerR = (Player) player;
             PlayerContribution contribution = AFMCorePlugin.questDataManager.getContribution(playerR.getUniqueId());
-
-            Text slotName = itemStackSnapshot.get(Keys.DISPLAY_NAME).orElse(Text.of(""));
 
             // Quest data
             List<Text> lore = questData.get(Keys.ITEM_LORE).orElse(null);
@@ -87,15 +111,16 @@ public class QuestEventListener {
             if (lore != null) {
                 questId = Integer.parseInt(lore.get(lore.size()-1).toPlainSingle());
             }
-
-            if (slotName.equals(Text.of(TextColors.GREEN, "Apply"))) { // Apply click
-                if (contribution.assignQuest(AFMCorePlugin.questDataManager.getQuest(questLevel, questId))) {
-
+            if (slotName != null) {
+                if (slotName.equals(Text.of(TextColors.GREEN, "Apply"))) { // Apply click
+                    if (contribution.assignQuest(AFMCorePlugin.questDataManager.getQuest(questLevel, questId))) {
+                        logger.error("Apply final");
+                    }
+                } else if (slotName.equals(Text.of(TextColors.RED, "Deny"))) { // Deny click
+                    AFMCorePlugin.questDataManager.openGUI(playerR, -1);
+                    logger.error("Deny final");
                 }
-            } else if (slotName.equals(Text.of(TextColors.RED, "Deny"))) { // Deny click
-                AFMCorePlugin.questDataManager.openGUI(playerR, -1);
             }
-            event.setCancelled(true);
         }
     }
 
@@ -128,8 +153,10 @@ public class QuestEventListener {
     // Update JSON data with event provided information
     @Listener
     public void QuestAssignedEvent(QuestAssignedEvent event) {
-        questTracker.put(event.getPlayer(), event.getQuest());
-        AFMCorePlugin.questDataManager.updateContribution(event.getContribution(), "u");
+        if (!event.isCancelled()) {
+            questTracker.put(event.getPlayer(), event.getQuest());
+            AFMCorePlugin.questDataManager.updateContribution(event.getContribution(), "u");
+        }
     }
 
     @Listener

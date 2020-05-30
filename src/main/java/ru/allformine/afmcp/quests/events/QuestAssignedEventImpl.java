@@ -4,9 +4,11 @@ import io.github.aquerr.eaglefactions.api.entities.Faction;
 import org.spongepowered.api.command.args.ArgumentParseException;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.EventContext;
+import org.spongepowered.api.event.cause.EventContextKeys;
 import ru.allformine.afmcp.quests.PlayerContribution;
 import ru.allformine.afmcp.quests.Quest;
 
+import java.util.Optional;
 import java.util.UUID;
 
 public class QuestAssignedEventImpl implements QuestAssignedEvent {
@@ -17,12 +19,13 @@ public class QuestAssignedEventImpl implements QuestAssignedEvent {
     private Cause cause;
 
     public QuestAssignedEventImpl(Cause cause) {
-        EventContext context = cause.getContext();
-        if (context.get(QuestsEventContextKeys.QUEST).isPresent()) {
-            this.player = context.get(QuestsEventContextKeys.UUID).orElse(null);
-            this.playerContribution = context.get(QuestsEventContextKeys.PLAYER_CONTRIBUTION).orElse(null);
-            this.host = context.get(QuestsEventContextKeys.FACTION).orElse(null);
-            this.quest = context.get(QuestsEventContextKeys.QUEST).orElse(null);
+        Optional<PlayerContribution> playerContribution = cause.first(PlayerContribution.class);
+        Optional<Quest> quest = cause.first(Quest.class);
+        if (playerContribution.isPresent() && quest.isPresent()) {
+            this.player = playerContribution.get().getPlayer();
+            this.playerContribution = playerContribution.get();
+            this.host = playerContribution.get().getFaction();
+            this.quest = quest.get();
             this.cause = cause;
         } else {
             throw new IllegalArgumentException("Wrong QuestAssignedEvent cause");

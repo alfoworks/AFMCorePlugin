@@ -49,7 +49,7 @@ jar {
 
 task copyForShared(type: Copy){
     from jar
-    into 'build/libs/'
+    into 'D:\\Desktop\\Coding\\TestServer\\mods'
 
     logger.lifecycle("Changing compiled JAR filename")
 
