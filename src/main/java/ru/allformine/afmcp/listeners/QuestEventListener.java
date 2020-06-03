@@ -16,6 +16,7 @@ import org.spongepowered.api.event.cause.EventContextKey;
 import org.spongepowered.api.event.cause.EventContextKeys;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.event.item.inventory.ChangeInventoryEvent;
+import org.spongepowered.api.event.item.inventory.ClickInventoryEvent;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -40,7 +41,7 @@ public class QuestEventListener {
     private Map<UUID, Quest> questTracker = new HashMap<>();
 
     @Listener
-    public void ChangeInventoryEvent(ChangeInventoryEvent event) {
+    public void ClickInventoryEvent(ClickInventoryEvent event) {
         Text originTitle = event.getTargetInventory().getInventoryProperty(InventoryTitle.class)
                 .orElse(InventoryTitle.of(Text.of(""))).getValue();
         if (Objects.equals(originTitle, Text.of(TextColors.YELLOW, "Quest Menu"))) {
@@ -54,7 +55,7 @@ public class QuestEventListener {
             int questId = slotIndex.getValue();
 
             if (!(questId == 0 || questId == 26)) {
-                AFMCorePlugin.questDataManager.openGUI((Player) player, questId);
+                AFMCorePlugin.questDataManager.openGUI((Player) player, questId, event);
             }
         } else if (Objects.equals(originTitle, Text.of(TextColors.DARK_GREEN, "Begin Quest?"))) {
             event.setCancelled(true);
@@ -70,7 +71,6 @@ public class QuestEventListener {
                 Optional<Text> text = s.get(Keys.DISPLAY_NAME);
                 if (text.isPresent()) {
                     slotName = text.get();
-                    logger.error(slotName.toString());
                 } else {
                     logger.error("No text data");
                 }
@@ -114,11 +114,14 @@ public class QuestEventListener {
             if (slotName != null) {
                 if (slotName.equals(Text.of(TextColors.GREEN, "Apply"))) { // Apply click
                     if (contribution.assignQuest(AFMCorePlugin.questDataManager.getQuest(questLevel, questId))) {
-                        logger.error("Apply final");
+                        AFMCorePlugin.questDataManager.closeGUI(playerR, event);
+                        Text message = Text.of(TextColors.YELLOW, "WORK IN PROGRESS");
+                        playerR.sendMessage(message);
+                        logger.debug("Apply final");
                     }
                 } else if (slotName.equals(Text.of(TextColors.RED, "Deny"))) { // Deny click
-                    AFMCorePlugin.questDataManager.openGUI(playerR, -1);
-                    logger.error("Deny final");
+                    AFMCorePlugin.questDataManager.openGUI(playerR, -1, event);
+                    logger.debug("Deny final");
                 }
             }
         }

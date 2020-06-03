@@ -12,24 +12,19 @@ import java.util.Optional;
 import java.util.UUID;
 
 public class QuestAssignedEventImpl implements QuestAssignedEvent {
-    private UUID player;
-    private PlayerContribution playerContribution;
-    private Faction host;
-    private Quest quest;
-    private Cause cause;
+    private final UUID player;
+    private final PlayerContribution playerContribution;
+    private final Faction host;
+    private final Quest quest;
+    private final Cause cause;
+    private boolean cancelled;
 
-    public QuestAssignedEventImpl(Cause cause) {
-        Optional<PlayerContribution> playerContribution = cause.first(PlayerContribution.class);
-        Optional<Quest> quest = cause.first(Quest.class);
-        if (playerContribution.isPresent() && quest.isPresent()) {
-            this.player = playerContribution.get().getPlayer();
-            this.playerContribution = playerContribution.get();
-            this.host = playerContribution.get().getFaction();
-            this.quest = quest.get();
-            this.cause = cause;
-        } else {
-            throw new IllegalArgumentException("Wrong QuestAssignedEvent cause");
-        }
+    public QuestAssignedEventImpl(PlayerContribution contribution, Quest quest, UUID player, Cause cause) {
+        this.player = player;
+        this.playerContribution = contribution;
+        this.host = playerContribution.getFaction();
+        this.quest = quest;
+        this.cause = cause;
     }
 
     @Override
@@ -49,12 +44,12 @@ public class QuestAssignedEventImpl implements QuestAssignedEvent {
 
     @Override
     public boolean isCancelled() {
-        return quest == null;
+        return cancelled;
     }
 
     @Override
     public void setCancelled(boolean cancel) {
-        this.quest = null;
+        this.cancelled = cancel;
     }
 
     @Override
@@ -65,5 +60,10 @@ public class QuestAssignedEventImpl implements QuestAssignedEvent {
     @Override
     public Cause getCause() {
         return cause;
+    }
+
+    @Override
+    public String toString() {
+        return "QuestAssignedEvent";
     }
 }

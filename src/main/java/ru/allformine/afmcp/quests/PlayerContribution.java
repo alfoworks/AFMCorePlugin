@@ -9,10 +9,12 @@ import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.EventContext;
 import org.spongepowered.api.event.cause.EventContextKey;
 import org.spongepowered.api.event.cause.EventContextKeys;
+import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.profile.property.ProfileProperty;
 import org.spongepowered.api.text.Text;
 import ru.allformine.afmcp.AFMCorePlugin;
+import ru.allformine.afmcp.quests.events.QuestAssignedEvent;
 import ru.allformine.afmcp.quests.events.QuestAssignedEventImpl;
 
 import java.util.UUID;
@@ -48,13 +50,16 @@ public class PlayerContribution {
         for (int i = 0; i < activeQuests.length; i++) {
             if (activeQuests[i] == null) {
                 activeQuests[i] = quest;
+                PluginContainer plugin = Sponge.getPluginManager().getPlugin("afmcp").get();
                 EventContext eventContext = EventContext.builder()
+                        .add(EventContextKeys.PLUGIN, plugin)
                         .add(EventContextKeys.PLAYER_SIMULATED, GameProfile.of(player))
                         .build();
-                Cause cause = Cause.of(eventContext, this, quest);
+                QuestAssignedEvent questAssignedEvent =
+                        new QuestAssignedEventImpl(this, quest, player, Cause.of(eventContext, plugin));
+                Sponge.getEventManager().post(questAssignedEvent);
 
-                Sponge.getEventManager().post(new QuestAssignedEventImpl(cause));
-                return true;
+                return !questAssignedEvent.isCancelled();
             }
         }
         return false;

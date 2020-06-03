@@ -7,6 +7,7 @@ import com.google.gson.GsonBuilder;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.event.item.inventory.ClickInventoryEvent;
 import ru.allformine.afmcp.AFMCorePlugin;
 
 
@@ -87,7 +88,6 @@ public class QuestDataManager {
         Type type = new TypeToken<Map<String, Quest[]>>() {
         }.getType();
 
-        logger.error(jsonData);
         return gson.fromJson(jsonData, type);
     }
 
@@ -137,17 +137,20 @@ public class QuestDataManager {
 
     private void updateFaction(@NotNull PlayerContribution[] contributions, PlayerContribution contribution,
                                Map<String, PlayerContribution[]> map, String factionName, Gson gson) {
-        for (int i = 0; i < contributions.length - 1; i++) {
+        for (int i = 0; i < contributions.length; i++) {
             if (contribution.getPlayer().equals(
                     contributions[i].getPlayer())) {
                 contributions[i] = contribution;
+                logger.debug("Found player - " + contribution.getPlayer());
                 break;
+            } else {
+                logger.debug("X player - " + contribution.getPlayer());
             }
         }
 
         map.replace(factionName, contributions);
         updateFactionListFile(gson.toJson(map));
-        logger.debug("Finished quest FACTION UPDATE");
+        logger.error("Finished quest FACTION UPDATE");
     }
 
     private void appendFaction(@NotNull PlayerContribution[] contributions, PlayerContribution contribution,
@@ -295,6 +298,14 @@ public class QuestDataManager {
 
     public void openGUI(Player player, int id) {
         gui.showToPlayer(getContribution(player.getUniqueId()), player, id);
+    }
+
+    public void openGUI(Player player, int id, ClickInventoryEvent event) {
+        gui.showToPlayer(getContribution(player.getUniqueId()), player, id, event);
+    }
+
+    public void closeGUI(Player player, ClickInventoryEvent event) {
+        gui.closeGUI(player, event);
     }
 
     public Quest getQuest(int questLevel, int questId) {

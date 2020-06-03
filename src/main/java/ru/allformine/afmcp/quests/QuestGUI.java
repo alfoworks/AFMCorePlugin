@@ -3,13 +3,16 @@ package ru.allformine.afmcp.quests;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.event.item.inventory.ClickInventoryEvent;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.property.InventoryTitle;
 import org.spongepowered.api.plugin.Plugin;
+import org.spongepowered.api.scheduler.Task;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextColors;
@@ -282,5 +285,20 @@ public class QuestGUI {
 
     public void showToPlayer(PlayerContribution playerContribution, Player player, int id) {
         player.openInventory(bakeGui(playerContribution, id));
+    }
+
+    public void showToPlayer(PlayerContribution playerContribution, Player player, int id, ClickInventoryEvent event) {
+        Task.builder()
+                .execute(() -> {
+                    player.closeInventory();
+                    player.openInventory(bakeGui(playerContribution, id));
+                })
+                .submit(Sponge.getPluginManager().getPlugin("afmcp").get().getInstance().get());
+    }
+
+    public void closeGUI(Player player, ClickInventoryEvent event) {
+        Task.builder()
+                .execute(player::closeInventory)
+                .submit(Sponge.getPluginManager().getPlugin("afmcp").get().getInstance().get());
     }
 }

@@ -22,5 +22,7 @@ public interface QuestAssignedEvent extends Event, Cancellable {
 
     void setCancelled(boolean cancel);
 
+    String toString();
+
     Quest getQuest();
 }

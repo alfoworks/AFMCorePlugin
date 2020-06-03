@@ -212,6 +212,7 @@ public class FactionEventListener {
                             .name("Self-Cancelling FRename Timer Task").submit(
                                     Objects.requireNonNull(Sponge.getPluginManager().getPlugin("afmcp").orElse(null)));
                 }
+                //// TODO: Fix issue #2
                 if (event.getArguments().equals("disband")) {
                     EventContext eventContext = EventContext.builder().add(EventContextKeys.OWNER, player)
                             .add(EventContextKeys.PLAYER, player).add(EventContextKeys.CREATOR, player).build();
