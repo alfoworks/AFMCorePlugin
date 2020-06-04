@@ -24,8 +24,10 @@ public class FactionSerializer implements JsonSerializer<PlayerContribution> {
                 continue;
             }
 
-            if (q.getTarget().getProgress() == q.getTarget().getCount())
+            if (q.getTarget().finished()) {
                 src.completeQuest(q);
+                activeQuests[i] = "";
+            }
             else
                 activeQuests[i] = q.toString();
         }

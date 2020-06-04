@@ -56,6 +56,19 @@ public class PlayerContribution {
         return false;
     }
 
+    public void updateQuest(Quest quest) {
+        for (int i = 0; i < activeQuests.length; i++) {
+            if (activeQuests[i] != null) {
+                if (activeQuests[i].getName().equals(quest.getName())) {
+                    activeQuests[i] = quest;
+                    if (quest.getTarget().finished())
+                        completeQuest(quest);
+                    break;
+                }
+            }
+        }
+    }
+
     public void completeQuest(Quest quest) {
         QuestTarget questTarget = quest.getTarget();
         Quest temp = null;

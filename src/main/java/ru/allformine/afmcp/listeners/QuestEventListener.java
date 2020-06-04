@@ -158,6 +158,16 @@ public class QuestEventListener {
         PlayerContribution contribution = AFMCorePlugin.questDataManager.getContribution(uuid);
         if (!questTracker.containsKey(uuid)) {
             questTracker.put(uuid, contribution.getActiveQuests());
+            logger.debug(String.format("Loaded %s quest data",
+                    player.getName()));
+
+            // Useless data here. Can be removed
+            int size = 0;
+            for (Quest q: contribution.getActiveQuests())
+                if (q != null)
+                    size++;
+
+            logger.debug(String.format("Have %s active quests", size));
         } else {
             throw new AssertionError(String.format("Player %s haven't unloaded questTracker", player.getName()));
         }
@@ -170,32 +180,51 @@ public class QuestEventListener {
         UUID uuid = player.getUniqueId();
         if (questTracker.containsKey(uuid)) {
             questTracker.remove(uuid);
+            logger.debug(String.format("Unloaded %s quest data",
+                    player.getName()));
         } else {
             throw new AssertionError(String.format("Player %s hadn't created his questTracker", player.getName()));
         }
     }
 
     // Entity Kill quest
-    /*@Listener
+    @Listener
     public void DamageEntityEvent(DamageEntityEvent event) {
         if (event.willCauseDeath()) {
-            if (event.getSource() instanceof Entity) {
-                UUID uuid = ((Entity) event.getSource()).getUniqueId();
+            if (event.getCause().first(Player.class).isPresent()) {
+                Player player = event.getCause().first(Player.class).get();
+                UUID uuid = player.getUniqueId();
                 if (questTracker.containsKey(uuid)) {
-                    Quest quest = questTracker.get(uuid);
-                    QuestTarget questTarget = quest.getTarget();
-                    if (questTarget.getProgress() < questTarget.getCount()) {
-                        questTarget.appendProgress(1);
-                        quest.setRawTarget(questTarget);
+                    Quest[] quests = questTracker.get(uuid);
+                    for (Quest quest : quests) {
+                        if (quest != null) {
+                            if (quest.getType().equals("entity")) {
+                                QuestTarget questTarget = quest.getTarget();
+                                if (questTarget.getProgress() < questTarget.getCount()) {
+                                    questTarget.appendProgress(1);
+                                    quest.setRawTarget(questTarget);
 
-                        questTracker.replace(uuid, quest);
-                    } else {
-                        //// TODO: Quest Complete Event
+                                    PlayerContribution contribution =
+                                            AFMCorePlugin.questDataManager.getContribution(player.getUniqueId());
+                                    contribution.updateQuest(quest);
+
+                                    AFMCorePlugin.questDataManager.updateContribution(contribution, "u");
+
+                                    if (questTarget.finished())
+                                        //// TODO: Quest Complete Event
+                                        player.getMessageChannel().send(Text.of(TextColors.GREEN, "НИХУЯ ТЫ КВЕСТ ПРОШЕЛ"));
+                                } /*else {
+                                    // not possible
+                                }*/
+                            }
+                        }
                     }
+
+                    questTracker.replace(uuid, quests);
                 }
             }
         }
-    }*/
+    }
 
     //// TODO: Item Gather quest
 }

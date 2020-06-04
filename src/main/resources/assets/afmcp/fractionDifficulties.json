@@ -12,7 +12,7 @@
         "name": "First clean-up",
         "type": "entity",
         "target": "skeleton",
-        "count": 10,
+        "count": 2,
         "priority": 7
       },
       {

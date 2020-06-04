@@ -37,6 +37,10 @@ public class QuestTarget {
         return this.count;
     }
 
+    public boolean finished() {
+        return progress >= count;
+    }
+
     public String toString() {
         return String.format("/%s/%s/%s/", progress, count, priority);
     }

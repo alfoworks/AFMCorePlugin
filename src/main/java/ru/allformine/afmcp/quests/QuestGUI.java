@@ -174,15 +174,11 @@ public class QuestGUI {
         QeS = new ItemStack[questMax];
         for (int x = 0; x < questMax; x++) {
             Quest quest = AFMCorePlugin.questDataManager.getQuest(questLvl, x);
-            QuestTarget target = quest.getTarget();
             String questName = quest.getName();
 
             // Progress format
             Text progressText = Text.of(TextColors.DARK_GREEN, "Begin Quest");
             ItemType status = questAllow;
-
-            int progress = target.getProgress();
-            int count = target.getCount();
 
             if (!ignore) {
                 for (Quest q: data.getCompletedQuests()) {
@@ -197,6 +193,10 @@ public class QuestGUI {
                 for (Quest q: data.getActiveQuests()) {
                     if (q == null) continue;
                     if (quest.getName().equals(q.getName())) {
+                        QuestTarget questTarget = q.getTarget();
+                        int progress = questTarget.getProgress();
+                        int count = questTarget.getCount();
+
                         String typeMessage;
                         if (q.getType().equals("entity"))
                             typeMessage = "killed";

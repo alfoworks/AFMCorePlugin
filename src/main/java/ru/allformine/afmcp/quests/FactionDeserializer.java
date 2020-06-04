@@ -38,6 +38,7 @@ public class FactionDeserializer implements JsonDeserializer<Map<String, PlayerC
                             for (int i = 0; i < queue.length; i++) {
                                 if (queue[i] == null && x != null) {
                                     queue[i] = deserializeQuest(x);
+                                    break;
                                 }
                             }
                         });
