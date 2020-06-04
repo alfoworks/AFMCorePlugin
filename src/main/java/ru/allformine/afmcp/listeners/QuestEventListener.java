@@ -121,6 +121,8 @@ public class QuestEventListener {
                         AFMCorePlugin.questDataManager.closeGUI(playerR, event);
                         Text message = Text.of(TextColors.YELLOW, "WORK IN PROGRESS");
                         playerR.sendMessage(message);
+
+                        updateQuestTracker(contribution);
                         logger.debug("Apply final");
                     }
                 } else if (slotName.equals(Text.of(TextColors.RED, "Deny"))) { // Deny click
@@ -142,49 +144,58 @@ public class QuestEventListener {
                     AFMCorePlugin.questDataManager.closeGUI(playerR, event);
                     Text message = Text.of(TextColors.RED, "QUEST HAS BEEN ABORTED");
                     playerR.sendMessage(message);
+
+                    updateQuestTracker(contribution);
                     logger.debug("Abort final");
                 }
             }
         }
     }
 
-    // Quest Tracker
+    // Quest Tracking system
 
-    // Load Quest Tracker
-    @Listener
-    public void onPlayerJoin(ClientConnectionEvent.Join event) {
-        Player player = event.getTargetEntity();
-        UUID uuid = player.getUniqueId();
-        PlayerContribution contribution = AFMCorePlugin.questDataManager.getContribution(uuid);
-        if (!questTracker.containsKey(uuid)) {
-            questTracker.put(uuid, contribution.getActiveQuests());
-            logger.debug(String.format("Loaded %s quest data",
-                    player.getName()));
-
-            // Useless data here. Can be removed
-            int size = 0;
-            for (Quest q: contribution.getActiveQuests())
-                if (q != null)
-                    size++;
-
-            logger.debug(String.format("Have %s active quests", size));
+    private void updateQuestTracker(PlayerContribution contribution) {
+        if (questTracker.containsKey(contribution.getPlayer())) {
+            questTracker.replace(contribution.getPlayer(), contribution.getActiveQuests());
+            logger.debug(String.format("Updated %s quest data",
+                    contribution.getPlayer()));
         } else {
-            throw new AssertionError(String.format("Player %s haven't unloaded questTracker", player.getName()));
+            throw new AssertionError(String.format("Player %s hadn't loaded questTracker", contribution.getPlayer()));
         }
     }
 
-    // Unload Quest Tracker
-    @Listener
-    public void unloadQuestTracker(ClientConnectionEvent.Disconnect event) {
-        Player player = event.getTargetEntity();
-        UUID uuid = player.getUniqueId();
-        if (questTracker.containsKey(uuid)) {
-            questTracker.remove(uuid);
+    private void loadQuestTracker(PlayerContribution contribution) {
+        if (!questTracker.containsKey(contribution.getPlayer())) {
+            questTracker.put(contribution.getPlayer(), contribution.getActiveQuests());
+            logger.debug(String.format("Loaded %s quest data",
+                    contribution.getPlayer()));
+        } else {
+            throw new AssertionError(String.format("Player %s hadn't unloaded questTracker", contribution.getPlayer()));
+        }
+    }
+
+    private void unloadQuestTracker(Player player) {
+        if (questTracker.containsKey(player.getUniqueId())) {
+            questTracker.remove(player.getUniqueId());
             logger.debug(String.format("Unloaded %s quest data",
                     player.getName()));
         } else {
             throw new AssertionError(String.format("Player %s hadn't created his questTracker", player.getName()));
         }
+    }
+
+    // Player join/leave updater
+    @Listener
+    public void onPlayerJoin(ClientConnectionEvent.Join event) {
+        Player player = event.getTargetEntity();
+        UUID uuid = player.getUniqueId();
+        loadQuestTracker(AFMCorePlugin.questDataManager.getContribution(uuid));
+    }
+
+    @Listener
+    public void onPlayerLeave(ClientConnectionEvent.Disconnect event) {
+        Player player = event.getTargetEntity();
+        unloadQuestTracker(player);
     }
 
     // Entity Kill quest

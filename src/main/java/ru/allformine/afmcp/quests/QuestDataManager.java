@@ -150,7 +150,7 @@ public class QuestDataManager {
 
         map.replace(factionName, contributions);
         updateFactionListFile(gson.toJson(map));
-        logger.error("Finished quest FACTION UPDATE");
+        logger.debug("Finished quest FACTION UPDATE");
     }
 
     private void appendFaction(@NotNull PlayerContribution[] contributions, PlayerContribution contribution,
