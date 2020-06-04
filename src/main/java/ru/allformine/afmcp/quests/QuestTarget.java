@@ -38,13 +38,7 @@ public class QuestTarget {
     }
 
     public String toString() {
-        String targetString;
-        if (target instanceof EntityType)
-            targetString = "entity";
-        else
-            targetString = "item";
-
-        return String.format("/%s/%s/%s/%s/", progress, count, priority, targetString);
+        return String.format("/%s/%s/%s/", progress, count, priority);
     }
 
     // Be aware of NullPointerException!

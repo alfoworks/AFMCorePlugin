@@ -43,7 +43,7 @@ public class Quest {
     }
 
     public String toString() {
-        return type + getTarget() + name;
+        return target + getTarget() + type + "/" + name;
     }
 
     public String getType() {

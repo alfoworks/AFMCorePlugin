@@ -9,7 +9,7 @@ public class FactionDeserializer implements JsonDeserializer<Map<String, PlayerC
 
     private Quest deserializeQuest(JsonElement x) {
         String[] c = x.getAsString().split("/");
-        Quest q = new Quest(c[5], c[0], c[1], Integer.parseInt(c[2]), Integer.parseInt(c[3]));
+        Quest q = new Quest(c[5], c[4], c[0], Integer.parseInt(c[2]), Integer.parseInt(c[3]));
         q.getTarget().setProgress(Integer.parseInt(c[1]));
         return q;
     }
