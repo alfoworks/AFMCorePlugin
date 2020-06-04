@@ -1,6 +1,7 @@
 package ru.allformine.afmcp.listeners;
 
 import io.github.aquerr.eaglefactions.api.entities.Faction;
+import io.github.aquerr.eaglefactions.common.listeners.PlayerJoinListener;
 import org.slf4j.Logger;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Transaction;
@@ -17,6 +18,7 @@ import org.spongepowered.api.event.cause.EventContextKeys;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.event.item.inventory.ChangeInventoryEvent;
 import org.spongepowered.api.event.item.inventory.ClickInventoryEvent;
+import org.spongepowered.api.event.network.ClientConnectionEvent;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -26,19 +28,20 @@ import org.spongepowered.api.item.inventory.property.InventoryTitle;
 import org.spongepowered.api.item.inventory.property.SlotIndex;
 import org.spongepowered.api.item.inventory.property.SlotPos;
 import org.spongepowered.api.item.inventory.transaction.SlotTransaction;
+import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColors;
 import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.quests.PlayerContribution;
 import ru.allformine.afmcp.quests.Quest;
 import ru.allformine.afmcp.quests.QuestTarget;
-import ru.allformine.afmcp.quests.events.*;
 
+import java.net.ConnectException;
 import java.util.*;
 
 public class QuestEventListener {
     private final Logger logger = AFMCorePlugin.logger;
-    private Map<UUID, Quest> questTracker = new HashMap<>();
+    private Map<UUID, Quest[]> questTracker = new HashMap<>();
 
     @Listener
     public void ClickInventoryEvent(ClickInventoryEvent event) {
@@ -114,6 +117,7 @@ public class QuestEventListener {
             if (slotName != null) {
                 if (slotName.equals(Text.of(TextColors.GREEN, "Apply"))) { // Apply click
                     if (contribution.assignQuest(AFMCorePlugin.questDataManager.getQuest(questLevel, questId))) {
+                        AFMCorePlugin.questDataManager.updateContribution(contribution, "u");
                         AFMCorePlugin.questDataManager.closeGUI(playerR, event);
                         Text message = Text.of(TextColors.YELLOW, "WORK IN PROGRESS");
                         playerR.sendMessage(message);
@@ -122,6 +126,23 @@ public class QuestEventListener {
                 } else if (slotName.equals(Text.of(TextColors.RED, "Deny"))) { // Deny click
                     AFMCorePlugin.questDataManager.openGUI(playerR, -1, event);
                     logger.debug("Deny final");
+                } else if (slotName.equals(Text.of(TextColors.GREEN, "Continue"))) {
+                    AFMCorePlugin.questDataManager.openGUI(playerR, -1, event);
+                    logger.debug("Continue final");
+                } else if (slotName.equals(Text.of(TextColors.RED, "Abort"))) {
+                    Quest[] temp = contribution.getCompletedQuests();
+                    String name = AFMCorePlugin.questDataManager.getQuest(questLevel, questId).getName();
+
+                    Quest quest = contribution.getQuest(name);
+                    quest.getTarget().setProgress(quest.getTarget().getCount());
+                    contribution.completeQuest(quest);
+                    contribution.resetCompletedQuests(temp);
+                    AFMCorePlugin.questDataManager.updateContribution(contribution, "u");
+
+                    AFMCorePlugin.questDataManager.closeGUI(playerR, event);
+                    Text message = Text.of(TextColors.RED, "QUEST HAS BEEN ABORTED");
+                    playerR.sendMessage(message);
+                    logger.debug("Abort final");
                 }
             }
         }
@@ -129,8 +150,33 @@ public class QuestEventListener {
 
     // Quest Tracker
 
-    // Entity Kill quest
+    // Load Quest Tracker
     @Listener
+    public void onPlayerJoin(ClientConnectionEvent.Join event) {
+        Player player = event.getTargetEntity();
+        UUID uuid = player.getUniqueId();
+        PlayerContribution contribution = AFMCorePlugin.questDataManager.getContribution(uuid);
+        if (!questTracker.containsKey(uuid)) {
+            questTracker.put(uuid, contribution.getActiveQuests());
+        } else {
+            throw new AssertionError(String.format("Player %s haven't unloaded questTracker", player.getName()));
+        }
+    }
+
+    // Unload Quest Tracker
+    @Listener
+    public void unloadQuestTracker(ClientConnectionEvent.Disconnect event) {
+        Player player = event.getTargetEntity();
+        UUID uuid = player.getUniqueId();
+        if (questTracker.containsKey(uuid)) {
+            questTracker.remove(uuid);
+        } else {
+            throw new AssertionError(String.format("Player %s hadn't created his questTracker", player.getName()));
+        }
+    }
+
+    // Entity Kill quest
+    /*@Listener
     public void DamageEntityEvent(DamageEntityEvent event) {
         if (event.willCauseDeath()) {
             if (event.getSource() instanceof Entity) {
@@ -149,21 +195,7 @@ public class QuestEventListener {
                 }
             }
         }
-    }
+    }*/
 
     //// TODO: Item Gather quest
-
-    // Update JSON data with event provided information
-    @Listener
-    public void QuestAssignedEvent(QuestAssignedEvent event) {
-        if (!event.isCancelled()) {
-            questTracker.put(event.getPlayer(), event.getQuest());
-            AFMCorePlugin.questDataManager.updateContribution(event.getContribution(), "u");
-        }
-    }
-
-    @Listener
-    public void QuestCompletedEvent(QuestCompletedEvent event) {
-        AFMCorePlugin.questDataManager.updateContribution(event.getContribution(), "u");
-    }
 }

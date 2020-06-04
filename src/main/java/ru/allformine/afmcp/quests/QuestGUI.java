@@ -195,6 +195,7 @@ public class QuestGUI {
 
             if (!ignore1) {
                 for (Quest q: data.getActiveQuests()) {
+                    if (q == null) continue;
                     if (quest.getName().equals(q.getName())) {
                         String typeMessage;
                         if (q.getType().equals("entity"))
@@ -202,7 +203,7 @@ public class QuestGUI {
                         else
                             typeMessage = "gathered";
 
-                        progressText = Text.of(TextColors.GREEN, String.format("%s/%s %s", count, progress, typeMessage));
+                        progressText = Text.of(TextColors.GREEN, String.format("%s/%s %s", progress, count, typeMessage));
                         status = questActive;
                     }
                 }
@@ -228,10 +229,12 @@ public class QuestGUI {
                 .add(Keys.DISPLAY_NAME, Text.of(TextColors.GREEN, "Apply"))
                 .build();
 
+
         NOO = ItemStack.builder()
                 .itemType(denyButton)
                 .add(Keys.DISPLAY_NAME, Text.of(TextColors.RED, "Deny"))
                 .build();
+
 
         if (id != -1) {
             //// TODO: Quest Lore implementation
@@ -247,8 +250,24 @@ public class QuestGUI {
             LOR = null;
         }
 
+        // Check if quest has begun
+        // If true - show player quest data, abort and continue options
+        boolean currentActive = false;
+        if (id != -1) {
+            Quest[] active = data.getActiveQuests();
+            String current = AFMCorePlugin.questDataManager.getQuest(questLvl, id-1).getName();
+            for (Quest q: active) {
+                if (q != null) {
+                    if (q.getName().equals(current)) {
+                        currentActive = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+        AFMCorePlugin.logger.debug("----QUEST BUILD----");
         for (Inventory slot: slots) {
-            AFMCorePlugin.logger.debug("Iteration Start");
             if (id == -1) {
                 if (slotN == 0 || slotN == 9 * 3 - 1) {
                     slot.set(LVL);
@@ -257,7 +276,7 @@ public class QuestGUI {
                     slot.set(QeS[slotN - 1]);
                     AFMCorePlugin.logger.debug("Adding QeS");
                 }
-            } else {
+            } else if (!currentActive) {
                 if (slotN == 8 || slotN == 0 || slotN == 18 || slotN == 26) {
                     slot.set(LVL);
                     AFMCorePlugin.logger.debug("Adding LVL");
@@ -274,11 +293,29 @@ public class QuestGUI {
                     slot.set(NOO);
                     AFMCorePlugin.logger.debug("Adding NOO");
                 }
+            } else {
+                if (slotN == 8 || slotN == 0 || slotN == 18 || slotN == 26) {
+                    slot.set(LVL);
+                    AFMCorePlugin.logger.debug("Adding LVL");
+                } else if (slotN == 4) {
+                    slot.set(QeS[id-1]);
+                    AFMCorePlugin.logger.debug("Adding QeS");
+                } else if (slotN == 11) {
+                    YES.offer(Keys.DISPLAY_NAME, Text.of(TextColors.GREEN, "Continue"));
+                    slot.set(YES);
+                    AFMCorePlugin.logger.debug("Adding CON");
+                } else if (slotN == 13) {
+                    slot.set(LOR);
+                    AFMCorePlugin.logger.debug("Adding LOR");
+                } else if (slotN == 15) {
+                    NOO.offer(Keys.DISPLAY_NAME, Text.of(TextColors.RED, "Abort"));
+                    slot.set(NOO);
+                    AFMCorePlugin.logger.debug("Adding ABO");
+                }
             }
-
-            AFMCorePlugin.logger.debug("Iteration End");
             slotN++;
         }
+        AFMCorePlugin.logger.debug("----QUEST FINAL----");
 
         return inventory;
     }

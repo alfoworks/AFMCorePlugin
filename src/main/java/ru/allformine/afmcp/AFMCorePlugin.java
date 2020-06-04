@@ -287,10 +287,6 @@ public class AFMCorePlugin {
         }
 
         PluginConfig.lobbySpawn = new LocationSerializer().deserialize(configNode.getNode("lobby").getNode("location"));
-    }
-
-    @Listener
-    public void postInit(GamePostInitializationEvent event) {
         cleanQuestFactions();
     }
 

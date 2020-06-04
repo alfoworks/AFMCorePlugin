@@ -14,9 +14,9 @@ import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.profile.property.ProfileProperty;
 import org.spongepowered.api.text.Text;
 import ru.allformine.afmcp.AFMCorePlugin;
-import ru.allformine.afmcp.quests.events.QuestAssignedEvent;
-import ru.allformine.afmcp.quests.events.QuestAssignedEventImpl;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.UUID;
 
 // DataClass which represents Player Contribution to a certain faction
@@ -50,16 +50,7 @@ public class PlayerContribution {
         for (int i = 0; i < activeQuests.length; i++) {
             if (activeQuests[i] == null) {
                 activeQuests[i] = quest;
-                PluginContainer plugin = Sponge.getPluginManager().getPlugin("afmcp").get();
-                EventContext eventContext = EventContext.builder()
-                        .add(EventContextKeys.PLUGIN, plugin)
-                        .add(EventContextKeys.PLAYER_SIMULATED, GameProfile.of(player))
-                        .build();
-                QuestAssignedEvent questAssignedEvent =
-                        new QuestAssignedEventImpl(this, quest, player, Cause.of(eventContext, plugin));
-                Sponge.getEventManager().post(questAssignedEvent);
-
-                return !questAssignedEvent.isCancelled();
+                return true;
             }
         }
         return false;
@@ -67,14 +58,30 @@ public class PlayerContribution {
 
     public void completeQuest(Quest quest) {
         QuestTarget questTarget = quest.getTarget();
+        Quest temp = null;
         if (questTarget.getProgress() >= questTarget.getCount()) {
             for (int i = 0; i < activeQuests.length; i++) {
-                if (activeQuests[i] == quest) {
+                if (activeQuests[i] == null) continue;
+                if (activeQuests[i].getName().equals(quest.getName())) {
+                    temp = activeQuests[i];
                     activeQuests[i] = null;
-                    completedQuests[i] = quest;
+                    break;
                 }
             }
         }
+        if (temp != null) {
+            Quest[] tempX = Arrays.copyOf(completedQuests, completedQuests.length+1);
+            tempX[tempX.length-1] = temp;
+            resetCompletedQuests(tempX);
+        }
+    }
+
+    public Quest getQuest(String name) {
+        for (Quest q: activeQuests)
+            if (q.getName().equals(name))
+                return q;
+
+        return null;
     }
 
     // ONLY FOR DESERIALIZER!!!
