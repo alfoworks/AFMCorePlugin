@@ -20,13 +20,10 @@ import org.spongepowered.api.text.format.TextStyles;
 import ru.allformine.afmcp.AFMCorePlugin;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Objects;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class QuestGUI {
+
     private Inventory bakeGui(PlayerContribution data, int id) {
         Inventory inventory = Inventory.builder()
                 .property("inventorytitle", new InventoryTitle(
@@ -46,6 +43,7 @@ public class QuestGUI {
         ItemType questComplete = ItemTypes.ENCHANTED_BOOK;
         ItemType applyButton = ItemTypes.EMERALD_BLOCK;
         ItemType denyButton = ItemTypes.REDSTONE_BLOCK;
+        ItemType nothingButton = ItemTypes.COAL_BLOCK;
         ItemType loreData = ItemTypes.MAP;
 
         /* Quest List
@@ -253,17 +251,19 @@ public class QuestGUI {
         // Check if quest has begun
         // If true - show player quest data, abort and continue options
         boolean currentActive = false;
+        boolean currentComplete = false;
         if (id != -1) {
-            Quest[] active = data.getActiveQuests();
             String current = AFMCorePlugin.questDataManager.getQuest(questLvl, id-1).getName();
-            for (Quest q: active) {
-                if (q != null) {
-                    if (q.getName().equals(current)) {
-                        currentActive = true;
-                        break;
-                    }
-                }
-            }
+            currentActive = Arrays.stream(data.getActiveQuests()).anyMatch(q ->
+            { if (q != null)
+                return q.getName().equals(current);
+                return false;
+            });
+            currentComplete = Arrays.stream(data.getCompletedQuests()).anyMatch(q ->
+            { if (q != null)
+                return q.getName().equals(current);
+                return false;
+            });
         }
 
         AFMCorePlugin.logger.debug("----QUEST BUILD----");
@@ -276,12 +276,35 @@ public class QuestGUI {
                     slot.set(QeS[slotN - 1]);
                     AFMCorePlugin.logger.debug("Adding QeS");
                 }
-            } else if (!currentActive) {
+            } else if (currentComplete) {
                 if (slotN == 8 || slotN == 0 || slotN == 18 || slotN == 26) {
                     slot.set(LVL);
                     AFMCorePlugin.logger.debug("Adding LVL");
                 } else if (slotN == 4) {
                     slot.set(QeS[id-1]);
+                    AFMCorePlugin.logger.debug("Adding QeS");
+                } else if (slotN == 11) {
+                    YES.offer(Keys.DISPLAY_NAME, Text.of(TextColors.GREEN, "Continue"));
+                    slot.set(YES);
+                    AFMCorePlugin.logger.debug("Adding CON");
+                } else if (slotN == 13) {
+                    slot.set(LOR);
+                    AFMCorePlugin.logger.debug("Adding LOR");
+                } else if (slotN == 15) {
+                    NOO = ItemStack.builder()
+                            .itemType(nothingButton)
+                            .add(Keys.DISPLAY_NAME, Text.of(TextColors.DARK_GRAY, "Abort"))
+                            .build();
+
+                    slot.set(NOO);
+                    AFMCorePlugin.logger.debug("Adding NOT");
+                }
+            } else if (!currentActive) {
+                if (slotN == 8 || slotN == 0 || slotN == 18 || slotN == 26) {
+                    slot.set(LVL);
+                    AFMCorePlugin.logger.debug("Adding LVL");
+                } else if (slotN == 4) {
+                    slot.set(QeS[id - 1]);
                     AFMCorePlugin.logger.debug("Adding QeS");
                 } else if (slotN == 11) {
                     slot.set(YES);

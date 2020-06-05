@@ -46,7 +46,13 @@ public class PlayerContribution {
         this.activeQuests = new Quest[config.getNode("quests", "activeLimit").getInt()];
     }
 
+    public boolean containsName(final String name){
+        return completedQuests != null && Arrays.stream(completedQuests).anyMatch(o -> o.getName().equals(name));
+    }
+
     public boolean assignQuest(Quest quest) {
+        if (containsName(quest.getName()))
+            return false;
         for (int i = 0; i < activeQuests.length; i++) {
             if (activeQuests[i] == null) {
                 activeQuests[i] = quest;

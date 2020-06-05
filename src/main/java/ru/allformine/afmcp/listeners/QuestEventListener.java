@@ -99,7 +99,6 @@ public class QuestEventListener {
 
             if (questData == null) {
                 event.setCancelled(true);
-                logger.error("No quest data");
                 return;
             }
 
@@ -124,6 +123,8 @@ public class QuestEventListener {
 
                         updateQuestTracker(contribution);
                         logger.debug("Apply final");
+                    } else {
+                        playerR.kick(Text.of(TextColors.RED, "ТЫ ЕБЛАН Я ТВОЮ МАТЬ ЕБАЛ"));
                     }
                 } else if (slotName.equals(Text.of(TextColors.RED, "Deny"))) { // Deny click
                     AFMCorePlugin.questDataManager.openGUI(playerR, -1, event);
@@ -155,13 +156,12 @@ public class QuestEventListener {
     // Quest Tracking system
 
     private void updateQuestTracker(PlayerContribution contribution) {
-        if (questTracker.containsKey(contribution.getPlayer())) {
-            questTracker.replace(contribution.getPlayer(), contribution.getActiveQuests());
-            logger.debug(String.format("Updated %s quest data",
-                    contribution.getPlayer()));
-        } else {
-            throw new AssertionError(String.format("Player %s hadn't loaded questTracker", contribution.getPlayer()));
+        if (!questTracker.containsKey(contribution.getPlayer())) {
+            loadQuestTracker(contribution);
         }
+        questTracker.replace(contribution.getPlayer(), contribution.getActiveQuests());
+        logger.debug(String.format("Updated %s quest data",
+                contribution.getPlayer()));
     }
 
     private void loadQuestTracker(PlayerContribution contribution) {
