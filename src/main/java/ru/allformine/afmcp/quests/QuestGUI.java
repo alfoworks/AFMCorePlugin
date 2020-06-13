@@ -191,9 +191,8 @@ public class QuestGUI {
                 for (Quest q: data.getActiveQuests()) {
                     if (q == null) continue;
                     if (quest.getName().equals(q.getName())) {
-                        QuestTarget questTarget = q.getTarget();
-                        int progress = questTarget.getProgress();
-                        int count = questTarget.getCount();
+                        int progress = quest.getProgress();
+                        int count = quest.getCount();
 
                         String typeMessage;
                         if (q.getType().equals("entity"))
@@ -259,11 +258,13 @@ public class QuestGUI {
                 return q.getName().equals(current);
                 return false;
             });
-            currentComplete = Arrays.stream(data.getCompletedQuests()).anyMatch(q ->
-            { if (q != null)
-                return q.getName().equals(current);
-                return false;
-            });
+            if (data.getCompletedQuests() != null) {
+                currentComplete = Arrays.stream(data.getCompletedQuests()).anyMatch(q ->
+                { if (q != null)
+                    return q.getName().equals(current);
+                    return false;
+                });
+            }
         }
 
         AFMCorePlugin.logger.debug("----QUEST BUILD----");

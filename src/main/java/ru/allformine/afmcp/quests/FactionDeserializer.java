@@ -6,14 +6,6 @@ import java.lang.reflect.Type;
 import java.util.*;
 
 public class FactionDeserializer implements JsonDeserializer<Map<String, PlayerContribution[]>> {
-
-    private Quest deserializeQuest(JsonElement x) {
-        String[] c = x.getAsString().split("/");
-        Quest q = new Quest(c[5], c[4], c[0], Integer.parseInt(c[2]), Integer.parseInt(c[3]));
-        q.getTarget().setProgress(Integer.parseInt(c[1]));
-        return q;
-    }
-
     @Override
     public Map<String, PlayerContribution[]> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         JsonObject factions = json.getAsJsonObject();
@@ -30,27 +22,7 @@ public class FactionDeserializer implements JsonDeserializer<Map<String, PlayerC
                                 playerContribution.get("factionName").getAsString(),
                                 playerContribution.get("factionTag").getAsString()
                         );
-                Quest[] queue = new Quest[playerContribution.get("completedQuests").getAsJsonArray().size()];
 
-                playerContribution.get("completedQuests").getAsJsonArray()
-                        .iterator()
-                        .forEachRemaining(x -> {
-                            for (int i = 0; i < queue.length; i++) {
-                                if (queue[i] == null && x != null) {
-                                    queue[i] = deserializeQuest(x);
-                                    break;
-                                }
-                            }
-                        });
-                playerContribution.get("activeQuests").getAsJsonArray()
-                        .iterator()
-                        .forEachRemaining(x -> {
-                            if (!x.getAsString().equals("")) {
-                                realContribution.assignQuest(deserializeQuest(x));
-                            }
-                        });
-
-                realContribution.resetCompletedQuests(queue);
                 realContribution.setPresent(playerContribution.get("present").getAsBoolean());
                 playerContributions.add(realContribution);
             }

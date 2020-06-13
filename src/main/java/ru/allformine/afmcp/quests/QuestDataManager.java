@@ -53,6 +53,7 @@ public class QuestDataManager {
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
                 .registerTypeAdapter(type, new FactionDeserializer())
+                .registerTypeAdapter(Quest.class, new QuestDeserializer())
                 .create();
 
         // Represent Json as Map
@@ -248,6 +249,7 @@ public class QuestDataManager {
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
                 .registerTypeAdapter(PlayerContribution.class, new FactionSerializer())
+                .registerTypeAdapter(Quest.class, new QuestSerializer())
                 .create();
 
         if (contribution != null) {

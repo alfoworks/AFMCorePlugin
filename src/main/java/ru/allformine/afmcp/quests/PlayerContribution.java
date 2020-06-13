@@ -51,6 +51,7 @@ public class PlayerContribution {
     }
 
     public boolean assignQuest(Quest quest) {
+        quest.setParent(player);
         if (containsName(quest.getName()))
             return false;
         for (int i = 0; i < activeQuests.length; i++) {
@@ -67,7 +68,7 @@ public class PlayerContribution {
             if (activeQuests[i] != null) {
                 if (activeQuests[i].getName().equals(quest.getName())) {
                     activeQuests[i] = quest;
-                    if (quest.getTarget().finished())
+                    if (quest.finished())
                         completeQuest(quest);
                     break;
                 }
@@ -76,9 +77,8 @@ public class PlayerContribution {
     }
 
     public void completeQuest(Quest quest) {
-        QuestTarget questTarget = quest.getTarget();
         Quest temp = null;
-        if (questTarget.getProgress() >= questTarget.getCount()) {
+        if (quest.finished()) {
             for (int i = 0; i < activeQuests.length; i++) {
                 if (activeQuests[i] == null) continue;
                 if (activeQuests[i].getName().equals(quest.getName())) {
@@ -103,7 +103,6 @@ public class PlayerContribution {
         return null;
     }
 
-    // ONLY FOR DESERIALIZER!!!
     public void resetCompletedQuests(Quest[] quests) {
         this.completedQuests = quests;
     }
@@ -137,8 +136,7 @@ public class PlayerContribution {
     }
 
     public String toString() {
-        return String.format("%s - %s\n%s - %s/%s", getPlayer(), isPresent(),
-                getFaction(), activeQuests.length, completedQuests.length);
+        return String.format("%s | %s", getPlayer(), getFaction());
     }
 
     public void setPresent(boolean present) {
