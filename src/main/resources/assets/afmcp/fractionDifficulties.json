@@ -1,70 +1,342 @@
-[
-  {
-    "level1": [
-      {
-        "name": "Starting a stronghold",
-        "type": "item",
-        "target": "minecraft:iron_ingot",
-        "count": 64,
-        "startMessage": "Start1",
-        "finalMessage": "Final1",
-        "description": "Lore1",
-        "timeLimit": "0"
-      },
-      {
-        "name": "First clean-up",
-        "type": "entity",
-        "target": "minecraft:skeleton",
-        "count": 2,
-        "startMessage": "Start1",
-        "finalMessage": "Final1",
-        "description": "Lore1",
-        "timeLimit": "0"
-      },
-      {
-        "name": "Taste of richness",
-        "type": "item",
-        "target": "gold_ingot",
-        "count": 16,
-        "startMessage": "Start1",
-        "finalMessage": "Final1",
-        "description": "Lore1",
-        "timeLimit": "0"
-      }
-    ]
-  },
-  {
-    "level2": [
-      {
-        "name": "The true king",
-        "type": "item",
-        "target": "diamond",
-        "count": 16,
-        "startMessage": "Start1",
-        "finalMessage": "Final1",
-        "description": "Lore1",
-        "timeLimit": "0"
-      },
-      {
-        "name": "Power of Flame",
-        "type": "entity",
-        "target": "blitz",
-        "count": 13,
-        "startMessage": "Start1",
-        "finalMessage": "Final1",
-        "description": "Lore1",
-        "timeLimit": "0"
-      },
-      {
-        "name": "Starting a stronghold 2",
-        "type": "item",
-        "target": "iron_block",
-        "count": 32,
-        "startMessage": "Start1",
-        "finalMessage": "Final1",
-        "description": "Lore1",
-        "timeLimit": "0"
-      }
-    ]
-  }
-]
+{
+  "level1": [
+    {
+      "name": "Starting a stronghold",
+      "type": "item",
+      "target": "minecraft:iron_ingot",
+      "progress":0,
+      "count": 64,
+      "startMessage": "Start1",
+      "finalMessage": "Final1",
+      "lore": "Lore1",
+      "timeLimit": "0",
+      "parent":null
+    },
+    {
+      "name": "First clean-up",
+      "type": "entity",
+      "target": "minecraft:skeleton",
+      "progress": 0,
+      "count": 2,
+      "startMessage": "Start1",
+      "finalMessage": "Final1",
+      "lore": "Lore1",
+      "timeLimit": "0",
+      "parent": null
+    },
+    {
+      "name": "Taste of richness",
+      "type": "item",
+      "target": "minecraft:gold_ingot",
+      "progress": 0,
+      "count": 16,
+      "startMessage": "Start1",
+      "finalMessage": "Final1",
+      "lore": "Lore1",
+      "timeLimit": "0",
+      "parent": null
+    },
+    {
+      "name": "",
+      "type": "",
+      "target": "",
+      "progress": 0,
+      "count": 0,
+      "startMessage": "",
+      "finalMessage": "",
+      "lore": "",
+      "timeLimit": "0",
+      "parent": null
+    },
+    {
+      "name": "",
+      "type": "",
+      "target": "",
+      "progress": 0,
+      "count": 0,
+      "startMessage": "",
+      "finalMessage": "",
+      "lore": "",
+      "timeLimit": "0",
+      "parent": null
+    },
+    {
+      "name": "",
+      "type": "",
+      "target": "",
+      "progress": 0,
+      "count": 0,
+      "startMessage": "",
+      "finalMessage": "",
+      "lore": "",
+      "timeLimit": "0",
+      "parent": null
+    },
+    {
+      "name": "",
+      "type": "",
+      "target": "",
+      "progress": 0,
+      "count": 0,
+      "startMessage": "",
+      "finalMessage": "",
+      "lore": "",
+      "timeLimit": "0",
+      "parent": null
+    },
+    {
+      "name": "",
+      "type": "",
+      "target": "",
+      "progress": 0,
+      "count": 0,
+      "startMessage": "",
+      "finalMessage": "",
+      "lore": "",
+      "timeLimit": "0",
+      "parent": null
+    },
+    {
+      "name": "",
+      "type": "",
+      "target": "",
+      "progress": 0,
+      "count": 0,
+      "startMessage": "",
+      "finalMessage": "",
+      "lore": "",
+      "timeLimit": "0",
+      "parent": null
+    },
+    {
+      "name": "",
+      "type": "",
+      "target": "",
+      "progress": 0,
+      "count": 0,
+      "startMessage": "",
+      "finalMessage": "",
+      "lore": "",
+      "timeLimit": "0",
+      "parent": null
+    },
+    {
+      "name": "",
+      "type": "",
+      "target": "",
+      "progress": 0,
+      "count": 0,
+      "startMessage": "",
+      "finalMessage": "",
+      "lore": "",
+      "timeLimit": "0",
+      "parent": null
+    },
+    {
+      "name": "",
+      "type": "",
+      "target": "",
+      "progress": 0,
+      "count": 0,
+      "startMessage": "",
+      "finalMessage": "",
+      "lore": "",
+      "timeLimit": "0",
+      "parent": null
+    },
+    {
+      "name": "",
+      "type": "",
+      "target": "",
+      "progress": 0,
+      "count": 0,
+      "startMessage": "",
+      "finalMessage": "",
+      "lore": "",
+      "timeLimit": "0",
+      "parent": null
+    },
+    {
+      "name": "",
+      "type": "",
+      "target": "",
+      "progress": 0,
+      "count": 0,
+      "startMessage": "",
+      "finalMessage": "",
+      "lore": "",
+      "timeLimit": "0",
+      "parent": null
+    },
+    {
+      "name": "",
+      "type": "",
+      "target": "",
+      "progress": 0,
+      "count": 0,
+      "startMessage": "",
+      "finalMessage": "",
+      "lore": "",
+      "timeLimit": "0",
+      "parent": null
+    },
+    {
+      "name": "",
+      "type": "",
+      "target": "",
+      "progress": 0,
+      "count": 0,
+      "startMessage": "",
+      "finalMessage": "",
+      "lore": "",
+      "timeLimit": "0",
+      "parent": null
+    },
+    {
+      "name": "",
+      "type": "",
+      "target": "",
+      "progress": 0,
+      "count": 0,
+      "startMessage": "",
+      "finalMessage": "",
+      "lore": "",
+      "timeLimit": "0",
+      "parent": null
+    },
+    {
+      "name": "",
+      "type": "",
+      "target": "",
+      "progress": 0,
+      "count": 0,
+      "startMessage": "",
+      "finalMessage": "",
+      "lore": "",
+      "timeLimit": "0",
+      "parent": null
+    },
+    {
+      "name": "",
+      "type": "",
+      "target": "",
+      "progress": 0,
+      "count": 0,
+      "startMessage": "",
+      "finalMessage": "",
+      "lore": "",
+      "timeLimit": "0",
+      "parent": null
+    },
+    {
+      "name": "",
+      "type": "",
+      "target": "",
+      "progress": 0,
+      "count": 0,
+      "startMessage": "",
+      "finalMessage": "",
+      "lore": "",
+      "timeLimit": "0",
+      "parent": null
+    },
+    {
+      "name": "",
+      "type": "",
+      "target": "",
+      "progress": 0,
+      "count": 0,
+      "startMessage": "",
+      "finalMessage": "",
+      "lore": "",
+      "timeLimit": "0",
+      "parent": null
+    },
+    {
+      "name": "",
+      "type": "",
+      "target": "",
+      "progress": 0,
+      "count": 0,
+      "startMessage": "",
+      "finalMessage": "",
+      "lore": "",
+      "timeLimit": "0",
+      "parent": null
+    },
+    {
+      "name": "",
+      "type": "",
+      "target": "",
+      "progress": 0,
+      "count": 0,
+      "startMessage": "",
+      "finalMessage": "",
+      "lore": "",
+      "timeLimit": "0",
+      "parent": null
+    },
+    {
+      "name": "",
+      "type": "",
+      "target": "",
+      "progress": 0,
+      "count": 0,
+      "startMessage": "",
+      "finalMessage": "",
+      "lore": "",
+      "timeLimit": "0",
+      "parent": null
+    },
+    {
+      "name": "",
+      "type": "",
+      "target": "",
+      "progress": 0,
+      "count": 0,
+      "startMessage": "",
+      "finalMessage": "",
+      "lore": "",
+      "timeLimit": "0",
+      "parent": null
+    }
+  ],
+  "level2": [
+    {
+      "name": "The true king",
+      "type": "item",
+      "target": "diamond",
+      "progress": 0,
+      "count": 16,
+      "startMessage": "Start1",
+      "finalMessage": "Final1",
+      "lore": "Lore1",
+      "timeLimit": "0",
+      "parent": null
+    },
+    {
+      "name": "Power of Flame",
+      "type": "entity",
+      "target": "blitz",
+      "progress": 0,
+      "count": 13,
+      "startMessage": "Start1",
+      "finalMessage": "Final1",
+      "lore": "Lore1",
+      "timeLimit": "0",
+      "parent": null
+    },
+    {
+      "name": "Starting a stronghold 2",
+      "type": "item",
+      "target": "iron_block",
+      "progress": 0,
+      "count": 32,
+      "startMessage": "Start1",
+      "finalMessage": "Final1",
+      "lore": "Lore1",
+      "timeLimit": "0",
+      "parent": null
+    }
+  ]
+}

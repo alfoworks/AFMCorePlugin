@@ -191,14 +191,19 @@ public class QuestGUI {
                 for (Quest q: data.getActiveQuests()) {
                     if (q == null) continue;
                     if (quest.getName().equals(q.getName())) {
-                        int progress = quest.getProgress();
-                        int count = quest.getCount();
+                        int progress = q.getProgress();
+                        int count = q.getCount();
 
-                        String typeMessage;
-                        if (q.getType().equals("entity"))
-                            typeMessage = "killed";
-                        else
-                            typeMessage = "gathered";
+                        String typeMessage = q.getTarget().split(":")[1];;
+                        typeMessage = typeMessage.substring(0, 1).toUpperCase() + typeMessage.substring(1); // Capitalizing
+
+                        if (q.getType().equals("entity")) {
+                            typeMessage += " killed";
+                        }
+                        else {
+                            typeMessage = q.getTarget();
+                            typeMessage += " gathered";
+                        }
 
                         progressText = Text.of(TextColors.GREEN, String.format("%s/%s %s", progress, count, typeMessage));
                         status = questActive;
@@ -251,7 +256,7 @@ public class QuestGUI {
         // If true - show player quest data, abort and continue options
         boolean currentActive = false;
         boolean currentComplete = false;
-        if (id != -1) {
+        if (id != -1 ) {
             String current = AFMCorePlugin.questDataManager.getQuest(questLvl, id-1).getName();
             currentActive = Arrays.stream(data.getActiveQuests()).anyMatch(q ->
             { if (q != null)
@@ -349,12 +354,14 @@ public class QuestGUI {
     }
 
     public void showToPlayer(PlayerContribution playerContribution, Player player, int id, ClickInventoryEvent event) {
-        Task.builder()
-                .execute(() -> {
-                    player.closeInventory();
-                    player.openInventory(bakeGui(playerContribution, id));
-                })
-                .submit(Sponge.getPluginManager().getPlugin("afmcp").get().getInstance().get());
+        if (id < 26) { //// TODO: Fix array index out of bounds. Allow user to move items in his inventory
+            Task.builder()
+                    .execute(() -> {
+                        player.closeInventory();
+                        player.openInventory(bakeGui(playerContribution, id));
+                    })
+                    .submit(Sponge.getPluginManager().getPlugin("afmcp").get().getInstance().get());
+        }
     }
 
     public void closeGUI(Player player, ClickInventoryEvent event) {

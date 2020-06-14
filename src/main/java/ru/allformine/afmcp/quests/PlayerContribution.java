@@ -22,7 +22,6 @@ import java.util.UUID;
 // DataClass which represents Player Contribution to a certain faction
 public class PlayerContribution {
     private final String factionName;
-    private final Text factionTag;
     private Quest[] completedQuests;
     private Quest[] activeQuests;
     private boolean present;
@@ -32,17 +31,15 @@ public class PlayerContribution {
         CommentedConfigurationNode config = AFMCorePlugin.getConfig();
         this.player = player.getUniqueId();
         this.factionName = faction.getName();
-        this.factionTag = faction.getTag();
         this.present = true;
         this.activeQuests = new Quest[config.getNode("quests", "activeLimit").getInt()];
         this.completedQuests = new Quest[0];
     }
 
-    public PlayerContribution(String player, String factionName, String factionTag) {
+    public PlayerContribution(String player, String factionName) {
         CommentedConfigurationNode config = AFMCorePlugin.getConfig();
         this.player = UUID.fromString(player);
         this.factionName = factionName;
-        this.factionTag = Text.of(factionTag);
         this.activeQuests = new Quest[config.getNode("quests", "activeLimit").getInt()];
     }
 
@@ -57,6 +54,8 @@ public class PlayerContribution {
         for (int i = 0; i < activeQuests.length; i++) {
             if (activeQuests[i] == null) {
                 activeQuests[i] = quest;
+                if (quest.finished())
+                    completeQuest(quest);
                 return true;
             }
         }
@@ -88,7 +87,11 @@ public class PlayerContribution {
                 }
             }
         }
-        if (temp != null) {
+        if (temp != null && completedQuests == null) {
+            Quest[] tempX = new Quest[1];
+            tempX[0] = temp;
+            resetCompletedQuests(tempX);
+        } else if (temp != null) {
             Quest[] tempX = Arrays.copyOf(completedQuests, completedQuests.length+1);
             tempX[tempX.length-1] = temp;
             resetCompletedQuests(tempX);
@@ -113,10 +116,6 @@ public class PlayerContribution {
 
     public String getFactionName() {
         return factionName;
-    }
-
-    public Text getFactionTag() {
-        return factionTag;
     }
 
     public Quest[] getCompletedQuests() {

@@ -48,16 +48,22 @@ public class QuestDeserializer implements JsonDeserializer<Quest> {
             }
         }
 
+        JsonElement parent = jsonObject.get("parent");
+        UUID realParent = null;
+        if (!parent.isJsonNull()) {
+            realParent = UUID.fromString(parent.getAsString());
+        }
+
         Quest quest = new Quest(
-            jsonObject.get("name").toString(),
-            jsonObject.get("type").toString(),
-            jsonObject.get("target").toString(),
-            jsonObject.get("startMessage").toString(),
-            jsonObject.get("finalMessage").toString(),
-            jsonObject.get("lore").toString(),
+            jsonObject.get("name").getAsString(),
+            jsonObject.get("type").getAsString(),
+            jsonObject.get("target").getAsString(),
+            jsonObject.get("startMessage").getAsString(),
+            jsonObject.get("finalMessage").getAsString(),
+            jsonObject.get("lore").getAsString(),
             questEnd,
-            Integer.parseInt(jsonObject.get("count").toString()),
-            UUID.fromString(jsonObject.get("parent").getAsString())
+            Integer.parseInt(jsonObject.get("count").getAsString()),
+            realParent
         );
         
         quest.setProgress(jsonObject.get("progress").getAsInt());

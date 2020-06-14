@@ -1,7 +1,9 @@
 package ru.allformine.afmcp.listeners;
 
+import net.minecraft.util.datafix.walkers.ItemStackData;
 import org.slf4j.Logger;
 import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
@@ -197,7 +199,7 @@ public class QuestEventListener {
                     Quest[] quests = questTracker.get(uuid);
                     for (Quest quest : quests) {
                         if (quest != null) {
-                            if (quest.getType().equals("entity")) {
+                            if (quest.getTarget().equals(event.getTargetEntity().getType().getId())) {
                                 if (quest.getProgress() < quest.getCount()) {
                                     quest.appendProgress(1);
 
@@ -226,19 +228,15 @@ public class QuestEventListener {
     // Item Gather quest
     @Listener
     public void ItemPickupEvent(ChangeInventoryEvent.Pickup.Pre event) {
-        if (event.getCause().first(Player.class).isPresent()) {
-            Player player = event.getCause().first(Player.class).get();
-            if (questTracker.containsKey(player.getUniqueId())) {
-                Quest[] quests = questTracker.get(player.getUniqueId());
-                for (Quest quest: quests) {
-                    if (quest != null) {
-                        if (quest.getType().equals("item")) {
-                            ItemStackSnapshot item = event.getOriginalStack();
-                            if (quest.getTarget().equals(item.getType().getName())
-                                    &&  item.get(Keys.DISPLAY_NAME).isPresent()
-                                    && !item.get(Keys.DISPLAY_NAME).get()
-                                        .equals(Text.of(TextColors.GRAY, "Предмет ушел в уплату квеста"))) {
-
+        if (event.getTargetEntity().isOnGround()) {
+            if (event.getCause().first(Player.class).isPresent()) {
+                Player player = event.getCause().first(Player.class).get();
+                if (questTracker.containsKey(player.getUniqueId())) {
+                    Quest[] quests = questTracker.get(player.getUniqueId());
+                    for (Quest quest: quests) {
+                        if (quest != null) {
+                            if (quest.getTarget().equals(event.getOriginalStack().getType().getName())) {
+                                ItemStackSnapshot item = event.getOriginalStack();
                                 int count = item.getQuantity();
                                 List<ItemStackSnapshot> custom = new ArrayList<>();
                                 custom.add(
@@ -246,6 +244,7 @@ public class QuestEventListener {
                                                 .itemType(ItemTypes.PAPER)
                                                 .add(Keys.DISPLAY_NAME,
                                                         Text.of(TextColors.GRAY, "Предмет ушел в уплату квеста"))
+                                                .quantity(count)
                                                 .build()
                                                 .createSnapshot()
                                 );
@@ -262,6 +261,7 @@ public class QuestEventListener {
                                     if (quest.finished())
                                         //// TODO: Quest Complete Event
                                         player.getMessageChannel().send(Text.of(TextColors.GREEN, "НИХУЯ ТЫ КВЕСТ ПРОШЕЛ"));
+
                                 }
                             }
                         }
