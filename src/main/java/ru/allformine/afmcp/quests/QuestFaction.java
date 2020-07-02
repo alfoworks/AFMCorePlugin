@@ -1,6 +1,7 @@
 package ru.allformine.afmcp.quests;
 
 import io.github.aquerr.eaglefactions.common.EagleFactionsPlugin;
+import net.minecraft.command.CommandException;
 import org.spongepowered.api.text.Text;
 
 import java.util.Arrays;
@@ -20,7 +21,7 @@ public class QuestFaction {
 
     public QuestFaction(String name) {
         this.name = name;
-        this.tag = EagleFactionsPlugin.getPlugin().getFactionLogic().getFactions().get(name).getTag();
+        this.tag = EagleFactionsPlugin.getPlugin().getFactionLogic().getFactions().get(name.toLowerCase()).getTag();
     }
 
     public String getName() {

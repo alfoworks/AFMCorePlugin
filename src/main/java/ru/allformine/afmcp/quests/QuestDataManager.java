@@ -1,8 +1,8 @@
 package ru.allformine.afmcp.quests;
 
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import net.minecraft.command.CommandException;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.spongepowered.api.entity.living.player.Player;
@@ -37,6 +37,11 @@ public class QuestDataManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        assert jsonData != null;
+        if (jsonData.equals(""))
+            return new QuestFactionContainer();
+
 
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
@@ -88,6 +93,7 @@ public class QuestDataManager {
 
     public PlayerContribution getContribution(UUID playerUUID) {
         QuestFactionContainer container = getQuestFactions();
+        if (container == null) return null;
         Optional<QuestFaction> factions = container.getActiveQuestFaction(playerUUID);
         return factions.map(faction -> faction.getContribution(playerUUID)).orElse(null);
     }
@@ -183,6 +189,7 @@ public class QuestDataManager {
                 .setPrettyPrinting()
                 .serializeNulls()
                 .registerTypeAdapter(QuestFactionContainer.class, new QuestFactionContainerSerializer())
+                .registerTypeAdapter(QuestFaction.class, new QuestFactionSerializer())
                 .registerTypeAdapter(PlayerContribution.class, new PlayerContribtuionSerializer())
                 .registerTypeAdapter(Quest.class, new QuestSerializer())
                 .create();

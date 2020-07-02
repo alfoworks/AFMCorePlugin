@@ -190,12 +190,18 @@ public class FactionEventListener {
         @Override
         public void accept(Task task) {
             if (EagleFactionsPlugin.getPlugin().getFactionLogic().getFactionByName(event.getFaction().getName()) == null) {
-                if (AFMCorePlugin.questDataManager.getQuestFactions().getQuestFaction(event.getFaction().getName()).isPresent()) {
-                    logger.debug("Triggered quest FACTION DISBAND");
-                    PlayerContribution p = AFMCorePlugin.questDataManager.getContribution(event.getCreator().getUniqueId());
-                    AFMCorePlugin.questDataManager.updateContribution(p, "d");
+                try {
+                    if (AFMCorePlugin.questDataManager.getQuestFactions().getQuestFaction(event.getFaction().getName()).isPresent()) {
+                        logger.debug("Triggered quest FACTION DISBAND");
+                        PlayerContribution p = AFMCorePlugin.questDataManager.getContribution(event.getCreator().getUniqueId());
+                        AFMCorePlugin.questDataManager.updateContribution(p, "d");
+                    }
+                    task.cancel();
+                } catch (NullPointerException ignore) {
+                    logger.debug("Disbandned faction wasn't present in faction list");
+                    task.cancel();
                 }
-                task.cancel();
+
             }
         }
     }

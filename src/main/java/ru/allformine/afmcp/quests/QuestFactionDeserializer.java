@@ -2,6 +2,7 @@ package ru.allformine.afmcp.quests;
 
 import com.google.gson.*;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.serializer.TextSerializers;
 
 import java.lang.reflect.Type;
 import java.util.UUID;
@@ -13,8 +14,7 @@ public class QuestFactionDeserializer implements JsonDeserializer<QuestFaction> 
 
         QuestFaction questFaction = new QuestFaction(
                                                     jsonObject.get("name").getAsString(),
-                                                    Text.of(jsonObject.get("tag").getAsJsonObject())
-                                                    );
+                                                    TextSerializers.JSON.deserialize(jsonObject.get("tag").getAsString()));
 
         questFaction.setFactionPower(jsonObject.get("factionPower").getAsInt());
         questFaction.setCurrentLeader(UUID.fromString(jsonObject.get("currentLeader").getAsString()));

@@ -8,28 +8,22 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextColors;
+import org.spongepowered.api.text.serializer.TextSerializers;
 import ru.allformine.afmcp.AFMCorePlugin;
 
-public class QuestGUICommand extends AFMCPCommand {
+public class TestCommand extends AFMCPCommand {
     @Override
     public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
-        if (!(src instanceof Player)) {
-            throw new CommandException(Text.of("Эта команда может вызываться только игроком!"));
-        }
-        if (AFMCorePlugin.questDataManager.getContribution(((Player) src).getUniqueId()) != null) {
-            AFMCorePlugin.questDataManager.openGUI((Player) src, -1);
-        } else {
-            throw new CommandException(Text.of("Для работы этой команды, необходимо вступить в факцию!"));
-        }
+        reply(src, Text.of(TextSerializers.JSON.serialize(Text.of(TextColors.YELLOW, "Hi"))));
         return CommandResult.success();
     }
 
     public String getName() {
-        return "questgui";
+        return "test";
     }
 
     public TextColor getColor() {
-        return TextColors.GREEN;
+        return TextColors.YELLOW;
     }
 
     void reply(CommandSource source, Text text) {

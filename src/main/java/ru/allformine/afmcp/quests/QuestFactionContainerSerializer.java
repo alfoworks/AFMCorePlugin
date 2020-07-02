@@ -9,7 +9,7 @@ public class QuestFactionContainerSerializer implements JsonSerializer<QuestFact
     public JsonElement serialize(QuestFactionContainer src, Type typeOfSrc, JsonSerializationContext context) {
         JsonArray array = new JsonArray();
         for (QuestFaction faction: src.getQuestFactions()) {
-            array.add(context.serialize(faction));
+            array.add(context.serialize(faction, QuestFaction.class));
         }
 
         return array;

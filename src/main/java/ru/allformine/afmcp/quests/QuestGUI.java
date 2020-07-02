@@ -29,7 +29,7 @@ public class QuestGUI {
                 .property("inventorytitle", new InventoryTitle(
                         (id == -1) ?
                                 Text.of(TextColors.YELLOW, "Quest Menu") :
-                                Text.of(TextColors.DARK_GREEN, "Begin Quest?")))
+                                Text.of(TextColors.DARK_GREEN, "Quest Panel")))
                 .build(Objects.requireNonNull(Sponge.getPluginManager().getPlugin("afmcp").orElse(null)));
 
         ItemStack LVL;
@@ -37,6 +37,7 @@ public class QuestGUI {
         ItemStack LOR;
         ItemStack YES;
         ItemStack NOO;
+        ItemStack INP;
 
         ItemType questAllow = ItemTypes.BOOK;
         ItemType questActive = ItemTypes.WRITABLE_BOOK;
@@ -45,6 +46,7 @@ public class QuestGUI {
         ItemType denyButton = ItemTypes.REDSTONE_BLOCK;
         ItemType nothingButton = ItemTypes.COAL_BLOCK;
         ItemType loreData = ItemTypes.MAP;
+        ItemType inputField = ItemTypes.ENDER_CHEST;
 
         /* Quest List
         LVL QeS QeS QeS QeS QeS QeS QeS QeS
@@ -178,6 +180,7 @@ public class QuestGUI {
             Text progressText = Text.of(TextColors.DARK_GREEN, "Begin Quest");
             ItemType status = questAllow;
 
+            // If completed quests are present
             if (!ignore) {
                 for (Quest q: data.getCompletedQuests()) {
                     if (quest.getName().equals(q.getName())) {
@@ -187,6 +190,7 @@ public class QuestGUI {
                 }
             }
 
+            // If active quests are present
             if (!ignore1) {
                 for (Quest q: data.getActiveQuests()) {
                     if (q == null) continue;
@@ -237,11 +241,14 @@ public class QuestGUI {
                 .add(Keys.DISPLAY_NAME, Text.of(TextColors.RED, "Deny"))
                 .build();
 
+        INP = ItemStack.builder()
+                .itemType(inputField)
+                .add(Keys.DISPLAY_NAME, Text.of(TextColors.YELLOW, "Insert quest items here"))
+                .build();
 
         if (id != -1) {
-            //// TODO: Quest Lore implementation
             List<Text> lore = new ArrayList<>();
-            lore.add(Text.of(TextColors.YELLOW, "Work. ", TextColors.BLACK, "In. ", TextColors.YELLOW, "Progress."));
+            lore.add(Text.of(AFMCorePlugin.questDataManager.getQuest(questLvl, id).getLore()));
 
             LOR = ItemStack.builder()
                     .itemType(loreData)
@@ -256,17 +263,19 @@ public class QuestGUI {
         // If true - show player quest data, abort and continue options
         boolean currentActive = false;
         boolean currentComplete = false;
+        boolean item = false;
         if (id != -1 ) {
-            String current = AFMCorePlugin.questDataManager.getQuest(questLvl, id-1).getName();
+            Quest current = AFMCorePlugin.questDataManager.getQuest(questLvl, id-1);
+            item = current.getType().equals("item");
             currentActive = Arrays.stream(data.getActiveQuests()).anyMatch(q ->
             { if (q != null)
-                return q.getName().equals(current);
+                return q.getName().equals(current.getName());
                 return false;
             });
             if (data.getCompletedQuests() != null) {
                 currentComplete = Arrays.stream(data.getCompletedQuests()).anyMatch(q ->
                 { if (q != null)
-                    return q.getName().equals(current);
+                    return q.getName().equals(current.getName());
                     return false;
                 });
             }
@@ -321,6 +330,26 @@ public class QuestGUI {
                 } else if (slotN == 15) {
                     slot.set(NOO);
                     AFMCorePlugin.logger.debug("Adding NOO");
+                }
+            } else if (item) {
+                if (slotN == 8 || slotN == 0 || slotN == 18 || slotN == 26) {
+                    slot.set(LVL);
+                    AFMCorePlugin.logger.debug("Adding LVL");
+                } else if (slotN == 4) {
+                    slot.set(QeS[id - 1]);
+                    AFMCorePlugin.logger.debug("Adding QeS");
+                } else if (slotN == 11) {
+                    slot.set(YES);
+                    AFMCorePlugin.logger.debug("Adding YES");
+                } else if (slotN == 13) {
+                    slot.set(INP);
+                    AFMCorePlugin.logger.debug("Adding INP");
+                } else if (slotN == 15) {
+                    slot.set(NOO);
+                    AFMCorePlugin.logger.debug("Adding NOO");
+                } else if (slotN == 22) {
+                    slot.set(LOR);
+                    AFMCorePlugin.logger.debug("Adding LOR");
                 }
             } else {
                 if (slotN == 8 || slotN == 0 || slotN == 18 || slotN == 26) {

@@ -7,6 +7,10 @@ import java.util.*;
 public class QuestFactionContainer {
     private QuestFaction[] questFactions;
 
+    public QuestFactionContainer() {
+        questFactions = new QuestFaction[0];
+    }
+
     public Optional<QuestFaction[]> getQuestFaction(UUID player) {
         QuestFaction[] past = {};
 
@@ -46,7 +50,7 @@ public class QuestFactionContainer {
         }
 
         for (QuestFaction faction: questFactions) {
-            if (faction.getName().equals(factionName)) {
+            if (faction.getName().toLowerCase().equals(factionName.toLowerCase())) {
                 return Optional.of(faction);
             }
         }

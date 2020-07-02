@@ -6,6 +6,7 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
+import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.event.item.inventory.ChangeInventoryEvent;
 import org.spongepowered.api.event.item.inventory.ClickInventoryEvent;
@@ -20,6 +21,7 @@ import org.spongepowered.api.item.inventory.property.SlotIndex;
 import org.spongepowered.api.item.inventory.transaction.SlotTransaction;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColors;
+import org.spongepowered.api.text.format.TextStyles;
 import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.quests.PlayerContribution;
 import ru.allformine.afmcp.quests.Quest;
@@ -47,7 +49,7 @@ public class QuestEventListener {
             if (!(questId == 0 || questId == 26)) {
                 AFMCorePlugin.questDataManager.openGUI((Player) player, questId, event);
             }
-        } else if (Objects.equals(originTitle, Text.of(TextColors.DARK_GREEN, "Begin Quest?"))) {
+        } else if (Objects.equals(originTitle, Text.of(TextColors.DARK_GREEN, "Quest Panel"))) {
             event.setCancelled(true);
 
             Object player = event.getSource();
@@ -55,7 +57,7 @@ public class QuestEventListener {
 
             Text slotName = null;
 
-            for (SlotTransaction t: event.getTransactions()) {
+            for (SlotTransaction t : event.getTransactions()) {
                 ItemStack s = t.getOriginal().createStack();
 
                 Optional<Text> text = s.get(Keys.DISPLAY_NAME);
@@ -68,7 +70,7 @@ public class QuestEventListener {
 
             ItemStack questData = null;
 
-            for (Inventory i: event.getTargetInventory().slots()) {
+            for (Inventory i : event.getTargetInventory().slots()) {
                 Optional<SlotIndex> slot;
                 slot = i.getInventoryProperty(SlotIndex.class);
                 if (slot.isPresent()) {
@@ -97,24 +99,29 @@ public class QuestEventListener {
             int questId = -1;
             int questLevel = 1;
             if (contribution.getCompletedQuests() != null) {
-                questLevel = contribution.getCompletedQuests().length / 25 + 1;;
+                questLevel = contribution.getCompletedQuests().length / 25 + 1;
+                ;
             }
 
             if (lore != null) {
-                questId = Integer.parseInt(lore.get(lore.size()-1).toPlainSingle());
+                questId = Integer.parseInt(lore.get(lore.size() - 1).toPlainSingle());
             }
             if (slotName != null) {
                 if (slotName.equals(Text.of(TextColors.GREEN, "Apply"))) { // Apply click
-                    if (contribution.assignQuest(AFMCorePlugin.questDataManager.getQuest(questLevel, questId))) {
+                    Quest quest = AFMCorePlugin.questDataManager.getQuest(questLevel, questId);
+                    if (contribution.assignQuest(quest)) {
                         AFMCorePlugin.questDataManager.updateContribution(contribution, "u");
                         AFMCorePlugin.questDataManager.closeGUI(playerR, event);
-                        Text message = Text.of(TextColors.YELLOW, "WORK IN PROGRESS");
+                        Text message = Text.of(quest.getStartMessage());
                         playerR.sendMessage(message);
 
                         updateQuestTracker(contribution);
                         logger.debug("Apply final");
                     } else {
-                        playerR.kick(Text.of(TextColors.RED, "ТЫ ЕБЛАН Я ТВОЮ МАТЬ ЕБАЛ"));
+                        playerR.kick(Text.of(
+                                TextColors.DARK_RED, TextStyles.BOLD, "КРИТИЧЕСКАЯ ОШИБКА #1\n",
+                                TextColors.GREEN, "Напиши мне в дискорд как ты это сделал\n",
+                                TextColors.AQUA, "red#4596"));
                     }
                 } else if (slotName.equals(Text.of(TextColors.RED, "Deny"))) { // Deny click
                     AFMCorePlugin.questDataManager.openGUI(playerR, -1, event);
@@ -138,6 +145,31 @@ public class QuestEventListener {
 
                     updateQuestTracker(contribution);
                     logger.debug("Abort final");
+
+                // Item Quest Processing
+                } else if (slotName.equals(Text.of(TextColors.YELLOW, "Insert quest items here"))) {
+                    ItemStackSnapshot x = event.getCursorTransaction().getOriginal();
+                    if (x.getValue(Keys.DISPLAY_NAME).isPresent()) {
+                        if (!x.getValue(Keys.DISPLAY_NAME).get().get().equals(Text.of(TextColors.YELLOW, "Insert quest items here"))) {
+                            String name = AFMCorePlugin.questDataManager.getQuest(questLevel, questId).getName();
+                            Quest quest = contribution.getQuest(name);
+                            if (Objects.requireNonNull(getQuestQuestTracker(quest, playerR.getUniqueId())).getTarget()
+                                    .equals(x.getType().getId())) {
+
+                                if (quest.getProgress() < quest.getCount()) {
+                                    quest.appendProgress(x.getQuantity());
+
+                                    contribution.updateQuest(quest);
+                                    AFMCorePlugin.questDataManager.updateContribution(contribution, "u");
+                                    updateQuestTracker(contribution);
+
+                                    if (quest.finished())
+                                        //// TODO: Quest Complete Event
+                                        playerR.sendMessage(Text.of(quest.getFinalMessage()));
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -174,6 +206,21 @@ public class QuestEventListener {
         }
     }
 
+    private Quest[] getQuestsQuestTracker(UUID uuid) {
+        if (questTracker.containsKey(uuid)) {
+            return questTracker.get(uuid);
+        }
+        return null;
+    }
+
+    private Quest getQuestQuestTracker(Quest quest, UUID uuid) {
+        if (questTracker.containsKey(uuid)) {
+            Quest[] quests =  questTracker.get(uuid);
+            return Arrays.stream(quests).filter(q -> q.getName().equals(quest.getName())).findFirst().orElse(null);
+        }
+        return null;
+    }
+
     // Player join/leave updater
     @Listener
     public void onPlayerJoin(ClientConnectionEvent.Join event) {
@@ -195,75 +242,28 @@ public class QuestEventListener {
             if (event.getCause().first(Player.class).isPresent()) {
                 Player player = event.getCause().first(Player.class).get();
                 UUID uuid = player.getUniqueId();
-                if (questTracker.containsKey(uuid)) {
-                    Quest[] quests = questTracker.get(uuid);
-                    for (Quest quest : quests) {
-                        if (quest != null) {
-                            if (quest.getTarget().equals(event.getTargetEntity().getType().getId())) {
-                                if (quest.getProgress() < quest.getCount()) {
-                                    quest.appendProgress(1);
+                Quest[] quests = getQuestsQuestTracker(uuid);
+                if (quests == null) return;
+                for (Quest quest : quests) {
+                    if (quest != null) {
+                        if (quest.getTarget().equals(event.getTargetEntity().getType().getId())) {
+                            if (quest.getProgress() < quest.getCount()) {
+                                quest.appendProgress(1);
 
-                                    PlayerContribution contribution =
-                                            AFMCorePlugin.questDataManager.getContribution(player.getUniqueId());
-                                    contribution.updateQuest(quest);
+                                PlayerContribution contribution =
+                                        AFMCorePlugin.questDataManager.getContribution(player.getUniqueId());
+                                contribution.updateQuest(quest);
 
-                                    AFMCorePlugin.questDataManager.updateContribution(contribution, "u");
+                                AFMCorePlugin.questDataManager.updateContribution(contribution, "u");
 
-                                    if (quest.finished())
-                                        //// TODO: Quest Complete Event
-                                        player.getMessageChannel().send(Text.of(TextColors.GREEN, "НИХУЯ ТЫ КВЕСТ ПРОШЕЛ"));
-                                } /*else {
+                                updateQuestTracker(contribution);
+
+                                if (quest.finished())
+                                    //// TODO: Quest Complete Event
+                                    player.sendMessage(Text.of(quest.getFinalMessage()));
+                            } /*else {
                                     // not possible
                                 }*/
-                            }
-                        }
-                    }
-
-                    questTracker.replace(uuid, quests);
-                }
-            }
-        }
-    }
-
-    // Item Gather quest
-    @Listener
-    public void ItemPickupEvent(ChangeInventoryEvent.Pickup.Pre event) {
-        if (event.getTargetEntity().isOnGround()) {
-            if (event.getCause().first(Player.class).isPresent()) {
-                Player player = event.getCause().first(Player.class).get();
-                if (questTracker.containsKey(player.getUniqueId())) {
-                    Quest[] quests = questTracker.get(player.getUniqueId());
-                    for (Quest quest: quests) {
-                        if (quest != null) {
-                            if (quest.getTarget().equals(event.getOriginalStack().getType().getName())) {
-                                ItemStackSnapshot item = event.getOriginalStack();
-                                int count = item.getQuantity();
-                                List<ItemStackSnapshot> custom = new ArrayList<>();
-                                custom.add(
-                                        ItemStack.builder()
-                                                .itemType(ItemTypes.PAPER)
-                                                .add(Keys.DISPLAY_NAME,
-                                                        Text.of(TextColors.GRAY, "Предмет ушел в уплату квеста"))
-                                                .quantity(count)
-                                                .build()
-                                                .createSnapshot()
-                                );
-                                event.setCustom(custom);
-                                if (quest.getProgress() < quest.getCount()) {
-                                    quest.appendProgress(count);
-
-                                    PlayerContribution contribution =
-                                            AFMCorePlugin.questDataManager.getContribution(player.getUniqueId());
-                                    contribution.updateQuest(quest);
-
-                                    AFMCorePlugin.questDataManager.updateContribution(contribution, "u");
-
-                                    if (quest.finished())
-                                        //// TODO: Quest Complete Event
-                                        player.getMessageChannel().send(Text.of(TextColors.GREEN, "НИХУЯ ТЫ КВЕСТ ПРОШЕЛ"));
-
-                                }
-                            }
                         }
                     }
                 }

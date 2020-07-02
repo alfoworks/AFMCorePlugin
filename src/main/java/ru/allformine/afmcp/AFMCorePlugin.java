@@ -69,6 +69,11 @@ public class AFMCorePlugin {
     private Path questsFile;
     private Path factionListFile;
 
+    public final static String[] defaultFactions = {
+            "safezone",
+            "warzone"
+    };
+
     public static CommentedConfigurationNode getConfig() {
         return configNode;
     }
@@ -148,6 +153,14 @@ public class AFMCorePlugin {
                 .build();
 
         Sponge.getCommandManager().register(this, kotlinTestSpec, "kotlintest");
+
+        //// TODO: УДАЛИТЬ ////
+        CommandSpec testCommand = CommandSpec.builder()
+                .executor(new TestCommand())
+                .build();
+
+        Sponge.getCommandManager().register(this, testCommand, "test");
+        //// TODO: УДАЛИТЬ ////
 
         CommandSpec restartCommandSpec = CommandSpec.builder()
                 .description(Text.of("Команда для перезагрузки сервера, единственная верная."))
@@ -262,6 +275,7 @@ public class AFMCorePlugin {
         if (time == 0) logger.error("No last shutdown time.");
         long loadingTime = System.currentTimeMillis() / 1000 - time;
 
+        cleanQuestFactions();
         Webhook.sendServerMessage(Webhook.TypeServerMessage.SERVER_STARTED, String.valueOf(loadingTime));
 
         Task.builder()
@@ -287,15 +301,14 @@ public class AFMCorePlugin {
         }
 
         PluginConfig.lobbySpawn = new LocationSerializer().deserialize(configNode.getNode("lobby").getNode("location"));
-        cleanQuestFactions();
     }
 
     public static void cleanQuestFactions() {
         Map<String, Faction> map = EagleFactionsPlugin.getPlugin().getFactionLogic().getFactions();
         List<Faction> queue = new ArrayList<>();
         for (Map.Entry<String, Faction> e : map.entrySet()) {
-            if (Arrays.equals(questDataManager.getContribution(e.getKey()), new PlayerContribution[0])
-                    && !e.getKey().toLowerCase().equals("safezone") && !e.getKey().toLowerCase().equals("warzone")) {
+            if (Arrays.stream(defaultFactions).anyMatch(f -> f.equals(e.getKey()))) continue;
+            if (Arrays.equals(questDataManager.getContribution(e.getKey()), null)) {
                 try {
                     questDataManager.updateContribution(null, String.format("d%s", e.getValue().getName()));
                 } catch (AssertionError assertionError) {
