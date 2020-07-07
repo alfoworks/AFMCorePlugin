@@ -22,8 +22,11 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.format.TextStyles;
 import ru.allformine.afmcp.AFMCorePlugin;
+import ru.allformine.afmcp.commands.AFMCPCommand;
 import ru.allformine.afmcp.quests.PlayerContribution;
 import ru.allformine.afmcp.quests.Quest;
+import ru.allformine.afmcp.quests.QuestDataManager;
+import ru.allformine.afmcp.quests.QuestLevel;
 
 import java.util.*;
 
@@ -33,174 +36,175 @@ public class QuestEventListener {
 
     @Listener
     public void ClickInventoryEvent(ClickInventoryEvent event) {
-
-
-        Text originTitle = event.getTargetInventory().getInventoryProperty(InventoryTitle.class)
-                .orElse(InventoryTitle.of(Text.of(""))).getValue();
-        if (Objects.equals(originTitle, Text.of(TextColors.YELLOW, "Quest Menu"))) {
-            event.setCancelled(true);
-
-            Object player = event.getSource();
-            assert player instanceof Player;
-
-            Slot slot = event.getTransactions().get(0).getSlot();
-            SlotIndex slotIndex = slot.getInventoryProperty(SlotIndex.class).orElse(null);
-            int questId = slotIndex.getValue();
-
-            if (!(questId == 0 || questId == 26)) {
-                AFMCorePlugin.questDataManager.openGUI((Player) player, questId, event);
-            }
-        } else if (Objects.equals(originTitle, Text.of(TextColors.DARK_GREEN, "Quest Panel"))) {
-            Optional<Slot> slotX = event.getSlot();
-            if (slotX.isPresent()) {
-                Optional<SlotIndex> slotIndex = slotX.get().getInventoryProperty(SlotIndex.class);
-                slotIndex.ifPresent(index -> event.setCancelled(index.getValue() <= 26));
-            }
-
-            Object player = event.getSource();
-            assert player instanceof Player;
-
-            Text slotName = null;
-
-            for (SlotTransaction t : event.getTransactions()) {
-                ItemStack s = t.getOriginal().createStack();
-
-                Optional<Text> text = s.get(Keys.DISPLAY_NAME);
-                if (text.isPresent()) {
-                    slotName = text.get();
-                } else {
-                    logger.error("No text data");
-                }
-            }
-
-            ItemStack questData = null;
-
-            for (Inventory i : event.getTargetInventory().slots()) {
-                Optional<SlotIndex> slot;
-                slot = i.getInventoryProperty(SlotIndex.class);
-                if (slot.isPresent()) {
-                    int slotIndex = slot.get().getValue();
-                    Optional<ItemStack> item = i.peek();
-                    if (!item.isPresent())
-                        continue;
-
-                    if (slotIndex == 4)
-                        questData = item.get();
-                } else {
-                    logger.error("No slot data");
-                }
-            }
-
-            if (questData == null) {
+        if (AFMCorePlugin.questToggle) {
+            Text originTitle = event.getTargetInventory().getInventoryProperty(InventoryTitle.class)
+                    .orElse(InventoryTitle.of(Text.of(""))).getValue();
+            if (Objects.equals(originTitle, Text.of(TextColors.YELLOW, "Quest Menu"))) {
                 event.setCancelled(true);
-                return;
-            }
 
-            Player playerR = (Player) player;
-            PlayerContribution contribution = AFMCorePlugin.questDataManager.getContribution(playerR.getUniqueId());
+                Object player = event.getSource();
+                assert player instanceof Player;
 
-            // Quest data
-            List<Text> lore = questData.get(Keys.ITEM_LORE).orElse(null);
-            int questId = -1;
-            int questLevel = 1;
-            if (contribution.getCompletedQuests() != null) {
-                questLevel = contribution.getCompletedQuests().length / 25 + 1;
-                ;
-            }
+                Slot slot = event.getTransactions().get(0).getSlot();
+                SlotIndex slotIndex = slot.getInventoryProperty(SlotIndex.class).orElse(null);
+                int questId = slotIndex.getValue();
 
-            if (lore != null) {
-                questId = Integer.parseInt(lore.get(lore.size() - 1).toPlainSingle());
-            }
-            if (slotName != null) {
-                if (slotName.equals(Text.of(TextColors.GREEN, "Apply"))) { // Apply click
-                    Quest quest = AFMCorePlugin.questDataManager.getQuest(questLevel, questId);
-                    if (contribution.assignQuest(quest)) {
+                if (!(questId == 0 || questId == 26)) {
+                    AFMCorePlugin.questDataManager.openGUI((Player) player, questId, event);
+                }
+            } else if (Objects.equals(originTitle, Text.of(TextColors.DARK_GREEN, "Quest Panel"))) {
+                Optional<Slot> slotX = event.getSlot();
+                if (slotX.isPresent()) {
+                    Optional<SlotIndex> slotIndex = slotX.get().getInventoryProperty(SlotIndex.class);
+                    slotIndex.ifPresent(index -> event.setCancelled(index.getValue() <= 26));
+                }
+
+                Object player = event.getSource();
+                assert player instanceof Player;
+
+                Text slotName = null;
+
+                for (SlotTransaction t : event.getTransactions()) {
+                    ItemStack s = t.getOriginal().createStack();
+
+                    Optional<Text> text = s.get(Keys.DISPLAY_NAME);
+                    if (text.isPresent()) {
+                        slotName = text.get();
+                    } else {
+                        logger.error("No text data");
+                    }
+                }
+
+                ItemStack questData = null;
+
+                for (Inventory i : event.getTargetInventory().slots()) {
+                    Optional<SlotIndex> slot;
+                    slot = i.getInventoryProperty(SlotIndex.class);
+                    if (slot.isPresent()) {
+                        int slotIndex = slot.get().getValue();
+                        Optional<ItemStack> item = i.peek();
+                        if (!item.isPresent())
+                            continue;
+
+                        if (slotIndex == 4)
+                            questData = item.get();
+                    } else {
+                        logger.error("No slot data");
+                    }
+                }
+
+                if (questData == null) {
+                    event.setCancelled(true);
+                    return;
+                }
+
+                Player playerR = (Player) player;
+                PlayerContribution contribution = AFMCorePlugin.questDataManager.getContribution(playerR.getUniqueId());
+
+                // Quest data
+                List<Text> lore = questData.get(Keys.ITEM_LORE).orElse(null);
+                int questId = -1;
+
+                if (contribution.getLevel() == null) {
+                    contribution.setQuestLevel(AFMCorePlugin.questDataManager.getQuestDifficulties()[0]);
+                }
+
+                QuestLevel questLevel = contribution.getLevel();
+
+                if (lore != null) {
+                    questId = Integer.parseInt(lore.get(lore.size() - 1).toPlainSingle());
+                }
+                if (slotName != null) {
+                    if (slotName.equals(Text.of(TextColors.GREEN, "Apply"))) { // Apply click
+                        Quest quest = questLevel.getQuest(questId);
+                        if (contribution.assignQuest(quest)) {
+                            AFMCorePlugin.questDataManager.updateContribution(contribution, "u");
+                            AFMCorePlugin.questDataManager.closeGUI(playerR, event);
+                            Text message = Text.of(quest.getStartMessage());
+                            playerR.sendMessage(message);
+
+                            updateQuestTracker(contribution);
+                            logger.debug("Apply final");
+                        } else {
+                            playerR.kick(Text.of(
+                                    TextColors.DARK_RED, TextStyles.BOLD, "КРИТИЧЕСКАЯ ОШИБКА #1\n",
+                                    TextColors.GREEN, "Напиши мне в дискорд как ты это сделал\n",
+                                    TextColors.AQUA, "red#4596"));
+                        }
+                    } else if (slotName.equals(Text.of(TextColors.RED, "Deny"))) { // Deny click
+                        AFMCorePlugin.questDataManager.openGUI(playerR, -1, event);
+                        logger.debug("Deny final");
+                    } else if (slotName.equals(Text.of(TextColors.GREEN, "Continue"))) {
+                        AFMCorePlugin.questDataManager.openGUI(playerR, -1, event);
+                        logger.debug("Continue final");
+                    } else if (slotName.equals(Text.of(TextColors.RED, "Abort"))) {
+                        Quest[] temp = contribution.getCompletedQuests();
+                        String name = questLevel.getQuest(questId).getName();
+
+                        Quest quest = contribution.getQuest(name);
+                        quest.setProgress(quest.getCount());
+                        contribution.completeQuest(quest);
+                        contribution.resetCompletedQuests(temp);
                         AFMCorePlugin.questDataManager.updateContribution(contribution, "u");
+
                         AFMCorePlugin.questDataManager.closeGUI(playerR, event);
-                        Text message = Text.of(quest.getStartMessage());
+                        Text message = Text.of(TextColors.RED, "QUEST HAS BEEN ABORTED");
                         playerR.sendMessage(message);
 
                         updateQuestTracker(contribution);
-                        logger.debug("Apply final");
-                    } else {
-                        playerR.kick(Text.of(
-                                TextColors.DARK_RED, TextStyles.BOLD, "КРИТИЧЕСКАЯ ОШИБКА #1\n",
-                                TextColors.GREEN, "Напиши мне в дискорд как ты это сделал\n",
-                                TextColors.AQUA, "red#4596"));
-                    }
-                } else if (slotName.equals(Text.of(TextColors.RED, "Deny"))) { // Deny click
-                    AFMCorePlugin.questDataManager.openGUI(playerR, -1, event);
-                    logger.debug("Deny final");
-                } else if (slotName.equals(Text.of(TextColors.GREEN, "Continue"))) {
-                    AFMCorePlugin.questDataManager.openGUI(playerR, -1, event);
-                    logger.debug("Continue final");
-                } else if (slotName.equals(Text.of(TextColors.RED, "Abort"))) {
-                    Quest[] temp = contribution.getCompletedQuests();
-                    String name = AFMCorePlugin.questDataManager.getQuest(questLevel, questId).getName();
+                        logger.debug("Abort final");
+                    } else if (slotName.equals(Text.of(TextColors.YELLOW, "Insert quest items here"))) {
+                        ItemStackSnapshot x = event.getCursorTransaction().getOriginal();
+                        if (!x.getType().equals(ItemTypes.ENDER_CHEST)) {
+                            String name = questLevel.getQuest(questId).getName();
+                            Quest quest = contribution.getQuest(name);
+                            if (Objects.requireNonNull(getQuestQuestTracker(quest, playerR.getUniqueId())).getTarget()
+                                    .equals(x.getType().getId())) {
 
-                    Quest quest = contribution.getQuest(name);
-                    quest.setProgress(quest.getCount());
-                    contribution.completeQuest(quest);
-                    contribution.resetCompletedQuests(temp);
-                    AFMCorePlugin.questDataManager.updateContribution(contribution, "u");
+                                int quantity = x.getQuantity();
 
-                    AFMCorePlugin.questDataManager.closeGUI(playerR, event);
-                    Text message = Text.of(TextColors.RED, "QUEST HAS BEEN ABORTED");
-                    playerR.sendMessage(message);
+                                event.setCancelled(false);
+                                if (quest.getCount() < quest.getProgress() + quantity) {
+                                    ItemStack replacement = x.createStack();
+                                    replacement.setQuantity(quest.getProgress() + quantity - quest.getCount());
+                                    quantity -= replacement.getQuantity();
 
-                    updateQuestTracker(contribution);
-                    logger.debug("Abort final");
-                } else if (slotName.equals(Text.of(TextColors.YELLOW, "Insert quest items here"))) {
-                    ItemStackSnapshot x = event.getCursorTransaction().getOriginal();
-                    if (!x.getType().equals(ItemTypes.ENDER_CHEST)) {
-                        String name = AFMCorePlugin.questDataManager.getQuest(questLevel, questId).getName();
-                        Quest quest = contribution.getQuest(name);
-                        if (Objects.requireNonNull(getQuestQuestTracker(quest, playerR.getUniqueId())).getTarget()
-                                .equals(x.getType().getId())) {
+                                    // Moving left items to the first open slot of the inventory,
+                                    // Because when the inventory is closed the items get dropped down. We don't want it
+                                    for (Inventory s : playerR.getInventory().slots()) {
+                                        if (s.canFit(replacement)) {
+                                            if (s.peek().isPresent()) {
+                                                replacement.setQuantity(replacement.getQuantity()
+                                                        + s.peek().get().getQuantity());
+                                            }
 
-                            int quantity = x.getQuantity();
-
-                            event.setCancelled(false);
-                            if (quest.getCount() < quest.getProgress() + quantity) {
-                                ItemStack replacement = x.createStack();
-                                replacement.setQuantity(quest.getProgress() + quantity - quest.getCount());
-                                quantity -= replacement.getQuantity();
-
-                                // Moving left items to the first open slot of the inventory,
-                                // Because when the inventory is closed the items get dropped down. We don't want it
-                                for (Inventory s : playerR.getInventory().slots()) {
-                                    if (s.canFit(replacement)) {
-                                        if (s.peek().isPresent()) {
-                                            replacement.setQuantity(replacement.getQuantity()
-                                                    + s.peek().get().getQuantity());
+                                            s.set(replacement);
+                                            break;
                                         }
-
-                                        s.set(replacement);
-                                        break;
                                     }
                                 }
+
+                                event.getCursorTransaction().setCustom(ItemStackSnapshot.NONE);
+
+                                if (quest.getProgress() < quest.getCount()) {
+                                    quest.appendProgress(quantity);
+
+                                    contribution.updateQuest(quest);
+                                    AFMCorePlugin.questDataManager.updateContribution(contribution, "u");
+                                    updateQuestTracker(contribution);
+
+                                    if (quest.finished())
+                                        //// TODO: Quest Complete Event
+                                        playerR.sendMessage(Text.of(quest.getFinalMessage()));
+                                }
+
+                                // A quick fix that updates gui by just resetting it
+                                AFMCorePlugin.questDataManager.openGUI(playerR, questId + 1, event);
                             }
-
-                            event.getCursorTransaction().setCustom(ItemStackSnapshot.NONE);
-
-                            if (quest.getProgress() < quest.getCount()) {
-                                quest.appendProgress(quantity);
-
-                                contribution.updateQuest(quest);
-                                AFMCorePlugin.questDataManager.updateContribution(contribution, "u");
-                                updateQuestTracker(contribution);
-
-                                if (quest.finished())
-                                    //// TODO: Quest Complete Event
-                                    playerR.sendMessage(Text.of(quest.getFinalMessage()));
-                            }
-
-                            // A quick fix that updates gui by just resetting it
-                            AFMCorePlugin.questDataManager.openGUI(playerR, questId+1, event);
-                        }
                         /* else {
                             //// TODO: Make wrong item placement reaction
                         }*/
+                        }
                     }
                 }
             }
@@ -258,53 +262,56 @@ public class QuestEventListener {
     // Player join/leave updater
     @Listener
     public void onPlayerJoin(ClientConnectionEvent.Join event) {
-        Player player = event.getTargetEntity();
-        UUID uuid = player.getUniqueId();
-        loadQuestTracker(AFMCorePlugin.questDataManager.getContribution(uuid));
+        if (AFMCorePlugin.questToggle) {
+            Player player = event.getTargetEntity();
+            UUID uuid = player.getUniqueId();
+            loadQuestTracker(AFMCorePlugin.questDataManager.getContribution(uuid));
+        }
     }
 
     @Listener
     public void onPlayerLeave(ClientConnectionEvent.Disconnect event) {
-        Player player = event.getTargetEntity();
-        unloadQuestTracker(player);
+        if (AFMCorePlugin.questToggle) {
+            Player player = event.getTargetEntity();
+            unloadQuestTracker(player);
+        }
     }
 
     // Entity Kill quest
     @Listener
     public void DamageEntityEvent(DamageEntityEvent event) {
-        if (event.willCauseDeath()) {
-            if (event.getCause().first(Player.class).isPresent()) {
-                Player player = event.getCause().first(Player.class).get();
-                UUID uuid = player.getUniqueId();
-                Quest[] quests = getQuestsQuestTracker(uuid);
-                if (quests == null) return;
-                for (Quest quest : quests) {
-                    if (quest != null) {
-                        if (quest.getTarget().equals(event.getTargetEntity().getType().getId())) {
-                            if (quest.getProgress() < quest.getCount()) {
-                                quest.appendProgress(1);
+        if (AFMCorePlugin.questToggle) {
+            if (event.willCauseDeath()) {
+                if (event.getCause().first(Player.class).isPresent()) {
+                    Player player = event.getCause().first(Player.class).get();
+                    UUID uuid = player.getUniqueId();
+                    Quest[] quests = getQuestsQuestTracker(uuid);
+                    if (quests == null) return;
+                    for (Quest quest : quests) {
+                        if (quest != null) {
+                            if (quest.getTarget().equals(event.getTargetEntity().getType().getId())) {
+                                if (quest.getProgress() < quest.getCount()) {
+                                    quest.appendProgress(1);
 
-                                PlayerContribution contribution =
-                                        AFMCorePlugin.questDataManager.getContribution(player.getUniqueId());
-                                contribution.updateQuest(quest);
+                                    PlayerContribution contribution =
+                                            AFMCorePlugin.questDataManager.getContribution(player.getUniqueId());
+                                    contribution.updateQuest(quest);
 
-                                AFMCorePlugin.questDataManager.updateContribution(contribution, "u");
+                                    AFMCorePlugin.questDataManager.updateContribution(contribution, "u");
 
-                                updateQuestTracker(contribution);
+                                    updateQuestTracker(contribution);
 
-                                if (quest.finished())
-                                    //// TODO: Quest Complete Event
-                                    player.sendMessage(Text.of(quest.getFinalMessage()));
-                            } /*else {
+                                    if (quest.finished())
+                                        //// TODO: Quest Complete Event
+                                        player.sendMessage(Text.of(quest.getFinalMessage()));
+                                } /*else {
                                     // not possible
                                 }*/
+                            }
                         }
                     }
                 }
             }
         }
-    }
-
-    private class BreakException extends Throwable {
     }
 }

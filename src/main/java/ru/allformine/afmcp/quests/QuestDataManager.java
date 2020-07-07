@@ -18,16 +18,20 @@ import java.util.*;
 public class QuestDataManager {
     private Logger logger = AFMCorePlugin.logger;
 
-    private QuestLevel[] questDifficulties;
-    private Object factionContributions;
+    private final QuestLevel[] questDifficulties;
     private final Path factionPath;
     private final QuestGUI gui;
 
     // Constructs both data files
     public QuestDataManager(Path questsPath, Path factionsPath) {
+        this.questDifficulties = getQuests(questsPath);
         this.factionPath = factionsPath;
         this.gui = new QuestGUI();
-        this.questDifficulties = getQuests(questsPath);;
+
+        // If quest file is present and it's empty
+        if (questDifficulties == null) {
+            AFMCorePlugin.questToggle = false;
+        }
     }
 
     public QuestFactionContainer getQuestFactions() {
@@ -74,8 +78,8 @@ public class QuestDataManager {
 
     private PlayerContribution[] getFactionContributions(QuestFactionContainer container,
                                                          String factionName) {
-       Optional<QuestFaction> faction = container.getQuestFaction(factionName);
-       return faction.map(QuestFaction::getInvestors).orElse(null);
+        Optional<QuestFaction> faction = container.getQuestFaction(factionName);
+        return faction.map(QuestFaction::getInvestors).orElse(null);
     }
 
     private void updateFactionListFile(String s) {
@@ -130,7 +134,7 @@ public class QuestDataManager {
         QuestFaction[] factions = container.getQuestFactions();
         boolean a = true;
         if (factions != null) {
-            for (QuestFaction f: factions) {
+            for (QuestFaction f : factions) {
                 if (f.getName().equals(contribution.getFactionName())) {
                     a = false;
                 }
@@ -233,6 +237,10 @@ public class QuestDataManager {
         }
     }
 
+    public QuestLevel[] getQuestDifficulties() {
+        return questDifficulties;
+    }
+
     public void openGUI(Player player, int id) {
         gui.showToPlayer(getContribution(player.getUniqueId()), player, id);
     }
@@ -243,9 +251,5 @@ public class QuestDataManager {
 
     public void closeGUI(Player player, ClickInventoryEvent event) {
         gui.closeGUI(player, event);
-    }
-
-    public Quest getQuest(int questLevel, int questId) {
-        return questDifficulties[questLevel-1].getQuests()[questId];
     }
 }

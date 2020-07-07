@@ -26,6 +26,7 @@ public class PlayerContribution {
     private Quest[] activeQuests;
     private boolean present;
     private final UUID player;
+    private QuestLevel questLevel;
 
     public PlayerContribution(Player player, Faction faction) {
         CommentedConfigurationNode config = AFMCorePlugin.getConfig();
@@ -140,5 +141,13 @@ public class PlayerContribution {
 
     public void setPresent(boolean present) {
         this.present = present;
+    }
+
+    public QuestLevel getLevel() {
+        return questLevel;
+    }
+
+    public void setQuestLevel(QuestLevel questLevel) {
+        this.questLevel = questLevel;
     }
 }

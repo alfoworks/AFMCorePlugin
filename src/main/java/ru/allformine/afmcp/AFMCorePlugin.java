@@ -18,6 +18,7 @@ import org.spongepowered.api.plugin.Dependency;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.scheduler.Task;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.format.TextColors;
 import ru.allformine.afmcp.commands.*;
 import ru.allformine.afmcp.jumppad.JumpPadEventListener;
 import ru.allformine.afmcp.listeners.*;
@@ -28,10 +29,13 @@ import ru.allformine.afmcp.net.api.Broadcast;
 import ru.allformine.afmcp.net.api.Webhook;
 import ru.allformine.afmcp.quests.PlayerContribution;
 import ru.allformine.afmcp.quests.QuestDataManager;
+import ru.allformine.afmcp.quests.QuestEditor;
 import ru.allformine.afmcp.tablist.UpdateTask;
 import sun.security.ssl.Debug;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
@@ -73,6 +77,8 @@ public class AFMCorePlugin {
             "safezone",
             "warzone"
     };
+
+    public static boolean questToggle;
 
     public static CommentedConfigurationNode getConfig() {
         return configNode;
@@ -128,19 +134,46 @@ public class AFMCorePlugin {
 
         configSetup();
 
+        CommentedConfigurationNode quests = getConfig().getNode("quests");
+        String questsFilePath = quests.getNode("questsFile").getString();
+        assert questsFilePath != null;
 
-        questsFile = configDir.resolve("fractionDifficulties.json");
+        try {
+            String pathA = configDir.toString() + "/questFiles";
+            if (!Files.exists(Paths.get(pathA))) {
+                Files.createDirectory(Paths.get(pathA));
+                logger.debug("Created quest files directory");
+            }
+            if (!questsFilePath.equals("")) {
+                questsFile = configDir.resolve("questFiles").resolve(questsFilePath);
+                if (!Files.exists(questsFile)) {
+                    logger.error("Quests file is set in config, but file is not present in directory");
+                    logger.error("Creating new empty quests file with the same name - " + questsFilePath);
+                    Files.createFile(Paths.get(pathA + "/" + questsFilePath));
+                    questsFile = configDir.resolve("questFiles").resolve(questsFilePath);
+                    questToggleOff();
+                    logger.debug("Created quests file json file with name " + questsFilePath);
+                } else {
+                    questToggleOn();
+                }
+            } else {
+                logger.warn("Quest file isn't present in config. Quest System is disabled");
+                questToggleOff();
+            }
+        } catch (IOException e) {
+           e.printStackTrace();
+        }
+
+
         factionListFile = configDir.resolve("factionList.json");
         if (!Files.exists(factionListFile)) {
             try {
                 Files.createFile(Paths.get(configDir.toString() + "/factionList.json"));
+                logger.debug("Created faction list json file");
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
         }
-
-        questDataManager = new QuestDataManager(questsFile, factionListFile);
-
 
         CommandSpec tablistDebugSpec = CommandSpec.builder()
                 .executor(new TabListCommand())
@@ -153,14 +186,6 @@ public class AFMCorePlugin {
                 .build();
 
         Sponge.getCommandManager().register(this, kotlinTestSpec, "kotlintest");
-
-        //// TODO: УДАЛИТЬ ////
-        CommandSpec testCommand = CommandSpec.builder()
-                .executor(new TestCommand())
-                .build();
-
-        Sponge.getCommandManager().register(this, testCommand, "test");
-        //// TODO: УДАЛИТЬ ////
 
         CommandSpec restartCommandSpec = CommandSpec.builder()
                 .description(Text.of("Команда для перезагрузки сервера, единственная верная."))
@@ -180,18 +205,23 @@ public class AFMCorePlugin {
         Sponge.getCommandManager().register(this, tokensCommandSpec, "tokens");
 
         CommandSpec questGUICommandSpec = CommandSpec.builder()
-                .description(Text.of("Иди нахуй быдло."))
+                .description(Text.of("Меню квестов."))
                 .executor(new QuestGUICommand())
                 .build();
 
         Sponge.getCommandManager().register(this, questGUICommandSpec, "questgui");
 
+        CommandSpec questEDITORCommandSpec = CommandSpec.builder()
+                .description(Text.of("Редактор квестов."))
+                .executor(new QuestEDITORCommand(configDir, this))
+                //.permission("afmcp.admin")
+                .build();
+
+        Sponge.getCommandManager().register(this, questEDITORCommandSpec, "questeditor");
+
         CommandSpec vipCommandSpec = CommandSpec.builder()
                 .description(Text.of("Команда для покупки привелегий."))
                 .executor(new VipCommand())
-                .arguments(
-                        GenericArguments.optional(GenericArguments.string(Text.of("selectedVip")))
-                )
                 .build();
 
         Sponge.getCommandManager().register(this, vipCommandSpec, "vip");
@@ -275,7 +305,8 @@ public class AFMCorePlugin {
         if (time == 0) logger.error("No last shutdown time.");
         long loadingTime = System.currentTimeMillis() / 1000 - time;
 
-        cleanQuestFactions();
+        if (questToggle)
+            cleanQuestFactions();
         Webhook.sendServerMessage(Webhook.TypeServerMessage.SERVER_STARTED, String.valueOf(loadingTime));
 
         Task.builder()
@@ -366,5 +397,23 @@ public class AFMCorePlugin {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void questToggleOff() {
+        questToggle = false;
+        questDataManager = null;
+
+        logger.warn("Using vanilla EagleFactions power system");
+    }
+
+    private void questToggleOn() {
+        questToggle = true;
+        questDataManager = new QuestDataManager(questsFile, factionListFile);
+        if (!questToggle) {
+            questToggleOff();
+            return;
+        }
+
+        logger.warn("Using quests-AFMCP EagleFactions power system");
     }
 }

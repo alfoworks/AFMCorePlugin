@@ -16,16 +16,20 @@ public class QuestGUICommand extends AFMCPCommand {
         if (!(src instanceof Player)) {
             throw new CommandException(Text.of("Эта команда может вызываться только игроком!"));
         }
-        if (AFMCorePlugin.questDataManager.getContribution(((Player) src).getUniqueId()) != null) {
-            AFMCorePlugin.questDataManager.openGUI((Player) src, -1);
-        } else {
-            throw new CommandException(Text.of("Для работы этой команды, необходимо вступить в факцию!"));
+        if (AFMCorePlugin.questToggle) {
+            if (AFMCorePlugin.questDataManager.getContribution(((Player) src).getUniqueId()) != null) {
+                AFMCorePlugin.questDataManager.openGUI((Player) src, -1);
+            } else {
+                throw new CommandException(Text.of("Для работы этой команды, необходимо вступить в факцию!"));
+            }
+            return CommandResult.success();
         }
+        reply(src, Text.of(TextColors.RED, "Энергия при помощи квестов не работает! Используйте ванильную имплементацию"));
         return CommandResult.success();
     }
 
     public String getName() {
-        return "questgui";
+        return "Quests";
     }
 
     public TextColor getColor() {
@@ -33,7 +37,9 @@ public class QuestGUICommand extends AFMCPCommand {
     }
 
     void reply(CommandSource source, Text text) {
-        source.sendMessage(Text.builder(getName()).color(getColor()).append(Text.builder(" > ").color(TextColors.WHITE).append(text).build()).build());
+        source.sendMessage(Text.builder(" [ ").color(TextColors.GRAY).append(
+                Text.builder(getName()).color(getColor()).append(
+                        Text.builder(" ] ").color(TextColors.GRAY).append(text).build()).build()).build());
     }
 
     void replyString(CommandSource source, String string){

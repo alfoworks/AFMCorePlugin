@@ -1,5 +1,6 @@
 package ru.allformine.afmcp.quests;
 
+import org.spongepowered.api.CatalogTypes;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.entity.living.player.Player;
@@ -66,13 +67,7 @@ public class QuestGUI {
         boolean ignore = false;
         boolean ignore1 = false;
 
-        int questLvl;
-        try {
-            questLvl = data.getCompletedQuests().length / questMax + 1;
-        } catch (NullPointerException e) {
-            questLvl = 1;
-            ignore = true;
-        }
+        QuestLevel questLvl = data.getLevel();
 
         try {
             data.getActiveQuests()[0].getName();
@@ -80,100 +75,16 @@ public class QuestGUI {
             ignore1 = true;
         }
 
-        switch (questLvl) {
-            case 1:
-                LVL = ItemStack.builder()
-                        .itemType(ItemTypes.GRASS)
-                        .build();
-                LVL.offer(Keys.DISPLAY_NAME, Text.of(TextColors.GREEN, TextStyles.BOLD, "Level 1"));
-                break;
+        Optional<ItemType> lvlType = Sponge.getGame().getRegistry().getType(CatalogTypes.ITEM_TYPE, questLvl.getItemTypeId());
 
-            case 2:
-                LVL = ItemStack.builder()
-                        .itemType(ItemTypes.STONE)
-                        .build();
-                LVL.offer(Keys.DISPLAY_NAME, Text.of(TextColors.GRAY, TextStyles.BOLD, "Level 2"));
-                break;
-
-            case 3:
-                LVL = ItemStack.builder()
-                        .itemType(ItemTypes.COAL)
-                        .build();
-                LVL.offer(Keys.DISPLAY_NAME, Text.of(TextColors.DARK_GRAY, TextStyles.BOLD, "Level 3"));
-                break;
-
-            case 4:
-                LVL = ItemStack.builder()
-                        .itemType(ItemTypes.IRON_INGOT)
-                        .build();
-                LVL.offer(Keys.DISPLAY_NAME, Text.of(TextColors.WHITE, TextStyles.BOLD, "Level 4"));
-                break;
-
-            case 5:
-                LVL = ItemStack.builder()
-                        .itemType(ItemTypes.GOLD_INGOT)
-                        .build();
-                LVL.offer(Keys.DISPLAY_NAME, Text.of(TextColors.GOLD, TextStyles.BOLD, "Level 5"));
-                break;
-
-            case 6:
-                LVL = ItemStack.builder()
-                        .itemType(ItemTypes.DIAMOND)
-                        .build();
-                LVL.offer(Keys.DISPLAY_NAME, Text.of(TextColors.AQUA, TextStyles.BOLD, "Level 6"));
-                break;
-
-            case 7:
-                LVL = ItemStack.builder()
-                        .itemType(ItemTypes.TNT)
-                        .build();
-                LVL.offer(Keys.DISPLAY_NAME, Text.of(TextColors.RED, TextStyles.BOLD, "Level 7"));
-                break;
-
-            case 8:
-                LVL = ItemStack.builder()
-                        .itemType(ItemTypes.OBSIDIAN)
-                        .build();
-                LVL.offer(Keys.DISPLAY_NAME, Text.of(TextColors.DARK_BLUE, TextStyles.BOLD, "Level 8"));
-                break;
-
-            case 9:
-                LVL = ItemStack.builder()
-                        .itemType(ItemTypes.BLAZE_POWDER)
-                        .build();
-                LVL.offer(Keys.DISPLAY_NAME, Text.of(TextColors.YELLOW, TextStyles.BOLD, "Level 9"));
-                break;
-
-            case 10:
-                LVL = ItemStack.builder()
-                        .itemType(ItemTypes.ENDER_EYE)
-                        .build();
-                LVL.offer(Keys.DISPLAY_NAME, Text.of(TextColors.LIGHT_PURPLE, TextStyles.BOLD, "Level 10"));
-                break;
-
-            case 11:
-                LVL = ItemStack.builder()
-                        .itemType(ItemTypes.NETHER_STAR)
-                        .build();
-                LVL.offer(Keys.DISPLAY_NAME, Text.of(TextColors.DARK_RED, TextStyles.BOLD, "Level 11"));
-                break;
-
-            case 12:
-                LVL = ItemStack.builder()
-                        .itemType(ItemTypes.BEDROCK)
-                        .build();
-                LVL.offer(Keys.DISPLAY_NAME, Text.of(TextColors.BLACK, TextStyles.BOLD, "Level 12"));
-                break;
-
-            default:
-                LVL = ItemStack.builder()
-                        .itemType(ItemTypes.BARRIER)
-                        .build();
-        }
+        LVL = ItemStack.builder()
+                .itemType(lvlType.orElse(ItemTypes.BARRIER))
+                .build();
+        LVL.offer(Keys.DISPLAY_NAME, Text.of(TextColors.DARK_RED, TextStyles.BOLD, questLvl.getLevelId()));
 
         QeS = new ItemStack[questMax];
         for (int x = 0; x < questMax; x++) {
-            Quest quest = AFMCorePlugin.questDataManager.getQuest(questLvl, x);
+            Quest quest = questLvl.getQuest(x);
             String questName = quest.getName();
 
             // Progress format
@@ -248,7 +159,7 @@ public class QuestGUI {
 
         if (id != -1) {
             List<Text> lore = new ArrayList<>();
-            lore.add(Text.of(AFMCorePlugin.questDataManager.getQuest(questLvl, id).getLore()));
+            lore.add(Text.of(questLvl.getQuest(id).getLore()));
 
             LOR = ItemStack.builder()
                     .itemType(loreData)
@@ -265,7 +176,7 @@ public class QuestGUI {
         boolean currentComplete = false;
         boolean item = false;
         if (id != -1 ) {
-            Quest current = AFMCorePlugin.questDataManager.getQuest(questLvl, id-1);
+            Quest current = questLvl.getQuest(id-1);
             item = current.getType().equals("item");
             currentActive = Arrays.stream(data.getActiveQuests()).anyMatch(q ->
             { if (q != null)
