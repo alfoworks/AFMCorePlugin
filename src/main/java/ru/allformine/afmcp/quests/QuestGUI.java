@@ -331,26 +331,6 @@ public class QuestGUI {
                     slot.set(NOO);
                     AFMCorePlugin.logger.debug("Adding NOO");
                 }
-            } else if (item) {
-                if (slotN == 8 || slotN == 0 || slotN == 18 || slotN == 26) {
-                    slot.set(LVL);
-                    AFMCorePlugin.logger.debug("Adding LVL");
-                } else if (slotN == 4) {
-                    slot.set(QeS[id - 1]);
-                    AFMCorePlugin.logger.debug("Adding QeS");
-                } else if (slotN == 11) {
-                    slot.set(YES);
-                    AFMCorePlugin.logger.debug("Adding YES");
-                } else if (slotN == 13) {
-                    slot.set(INP);
-                    AFMCorePlugin.logger.debug("Adding INP");
-                } else if (slotN == 15) {
-                    slot.set(NOO);
-                    AFMCorePlugin.logger.debug("Adding NOO");
-                } else if (slotN == 22) {
-                    slot.set(LOR);
-                    AFMCorePlugin.logger.debug("Adding LOR");
-                }
             } else {
                 if (slotN == 8 || slotN == 0 || slotN == 18 || slotN == 26) {
                     slot.set(LVL);
@@ -362,13 +342,19 @@ public class QuestGUI {
                     YES.offer(Keys.DISPLAY_NAME, Text.of(TextColors.GREEN, "Continue"));
                     slot.set(YES);
                     AFMCorePlugin.logger.debug("Adding CON");
-                } else if (slotN == 13) {
+                } else if (slotN == 13 && !item) {
                     slot.set(LOR);
                     AFMCorePlugin.logger.debug("Adding LOR");
+                } else if (slotN == 13) {
+                    slot.set(INP);
+                    AFMCorePlugin.logger.debug("Adding INP");
                 } else if (slotN == 15) {
                     NOO.offer(Keys.DISPLAY_NAME, Text.of(TextColors.RED, "Abort"));
                     slot.set(NOO);
                     AFMCorePlugin.logger.debug("Adding ABO");
+                } else if (slotN == 22 && item) {
+                    slot.set(LOR);
+                    AFMCorePlugin.logger.debug("Adding LOR");
                 }
             }
             slotN++;
@@ -382,14 +368,24 @@ public class QuestGUI {
         player.openInventory(bakeGui(playerContribution, id));
     }
 
+    /**
+     * Should be called after inventory interaction.
+     *
+     * @param playerContribution data to be used in baking gui
+     * @param player to show to this player
+     * @param id quest id, usually it's clicked slot ID
+     * @param event using it we can determine should we cancel event or not
+     */
     public void showToPlayer(PlayerContribution playerContribution, Player player, int id, ClickInventoryEvent event) {
-        if (id < 26) { //// TODO: Fix array index out of bounds. Allow user to move items in his inventory
+        if (id < 26) {
             Task.builder()
                     .execute(() -> {
                         player.closeInventory();
                         player.openInventory(bakeGui(playerContribution, id));
                     })
                     .submit(Sponge.getPluginManager().getPlugin("afmcp").get().getInstance().get());
+        } else {
+            event.setCancelled(false);
         }
     }
 

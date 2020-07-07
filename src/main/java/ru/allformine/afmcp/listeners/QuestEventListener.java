@@ -1,7 +1,9 @@
 package ru.allformine.afmcp.listeners;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import net.minecraft.util.datafix.walkers.ItemStackData;
 import org.slf4j.Logger;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.player.Player;
@@ -12,10 +14,7 @@ import org.spongepowered.api.event.item.inventory.ChangeInventoryEvent;
 import org.spongepowered.api.event.item.inventory.ClickInventoryEvent;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
 import org.spongepowered.api.item.ItemTypes;
-import org.spongepowered.api.item.inventory.Inventory;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.item.inventory.Slot;
+import org.spongepowered.api.item.inventory.*;
 import org.spongepowered.api.item.inventory.property.InventoryTitle;
 import org.spongepowered.api.item.inventory.property.SlotIndex;
 import org.spongepowered.api.item.inventory.transaction.SlotTransaction;
@@ -34,6 +33,8 @@ public class QuestEventListener {
 
     @Listener
     public void ClickInventoryEvent(ClickInventoryEvent event) {
+
+
         Text originTitle = event.getTargetInventory().getInventoryProperty(InventoryTitle.class)
                 .orElse(InventoryTitle.of(Text.of(""))).getValue();
         if (Objects.equals(originTitle, Text.of(TextColors.YELLOW, "Quest Menu"))) {
@@ -50,7 +51,11 @@ public class QuestEventListener {
                 AFMCorePlugin.questDataManager.openGUI((Player) player, questId, event);
             }
         } else if (Objects.equals(originTitle, Text.of(TextColors.DARK_GREEN, "Quest Panel"))) {
-            event.setCancelled(true);
+            Optional<Slot> slotX = event.getSlot();
+            if (slotX.isPresent()) {
+                Optional<SlotIndex> slotIndex = slotX.get().getInventoryProperty(SlotIndex.class);
+                slotIndex.ifPresent(index -> event.setCancelled(index.getValue() <= 26));
+            }
 
             Object player = event.getSource();
             assert player instanceof Player;
@@ -145,35 +150,64 @@ public class QuestEventListener {
 
                     updateQuestTracker(contribution);
                     logger.debug("Abort final");
-
-                // Item Quest Processing
                 } else if (slotName.equals(Text.of(TextColors.YELLOW, "Insert quest items here"))) {
                     ItemStackSnapshot x = event.getCursorTransaction().getOriginal();
-                    if (x.getValue(Keys.DISPLAY_NAME).isPresent()) {
-                        if (!x.getValue(Keys.DISPLAY_NAME).get().get().equals(Text.of(TextColors.YELLOW, "Insert quest items here"))) {
-                            String name = AFMCorePlugin.questDataManager.getQuest(questLevel, questId).getName();
-                            Quest quest = contribution.getQuest(name);
-                            if (Objects.requireNonNull(getQuestQuestTracker(quest, playerR.getUniqueId())).getTarget()
-                                    .equals(x.getType().getId())) {
+                    if (!x.getType().equals(ItemTypes.ENDER_CHEST)) {
+                        String name = AFMCorePlugin.questDataManager.getQuest(questLevel, questId).getName();
+                        Quest quest = contribution.getQuest(name);
+                        if (Objects.requireNonNull(getQuestQuestTracker(quest, playerR.getUniqueId())).getTarget()
+                                .equals(x.getType().getId())) {
 
-                                if (quest.getProgress() < quest.getCount()) {
-                                    quest.appendProgress(x.getQuantity());
+                            int quantity = x.getQuantity();
 
-                                    contribution.updateQuest(quest);
-                                    AFMCorePlugin.questDataManager.updateContribution(contribution, "u");
-                                    updateQuestTracker(contribution);
+                            event.setCancelled(false);
+                            if (quest.getCount() < quest.getProgress() + quantity) {
+                                ItemStack replacement = x.createStack();
+                                replacement.setQuantity(quest.getProgress() + quantity - quest.getCount());
+                                quantity -= replacement.getQuantity();
 
-                                    if (quest.finished())
-                                        //// TODO: Quest Complete Event
-                                        playerR.sendMessage(Text.of(quest.getFinalMessage()));
+                                // Moving left items to the first open slot of the inventory,
+                                // Because when the inventory is closed the items get dropped down. We don't want it
+                                for (Inventory s : playerR.getInventory().slots()) {
+                                    if (s.canFit(replacement)) {
+                                        if (s.peek().isPresent()) {
+                                            replacement.setQuantity(replacement.getQuantity()
+                                                    + s.peek().get().getQuantity());
+                                        }
+
+                                        s.set(replacement);
+                                        break;
+                                    }
                                 }
                             }
+
+                            event.getCursorTransaction().setCustom(ItemStackSnapshot.NONE);
+
+                            if (quest.getProgress() < quest.getCount()) {
+                                quest.appendProgress(quantity);
+
+                                contribution.updateQuest(quest);
+                                AFMCorePlugin.questDataManager.updateContribution(contribution, "u");
+                                updateQuestTracker(contribution);
+
+                                if (quest.finished())
+                                    //// TODO: Quest Complete Event
+                                    playerR.sendMessage(Text.of(quest.getFinalMessage()));
+                            }
+
+                            // A quick fix that updates gui by just resetting it
+                            AFMCorePlugin.questDataManager.openGUI(playerR, questId+1, event);
                         }
+                        /* else {
+                            //// TODO: Make wrong item placement reaction
+                        }*/
                     }
                 }
             }
         }
     }
+
+
 
     // Quest Tracking system
 
@@ -215,8 +249,8 @@ public class QuestEventListener {
 
     private Quest getQuestQuestTracker(Quest quest, UUID uuid) {
         if (questTracker.containsKey(uuid)) {
-            Quest[] quests =  questTracker.get(uuid);
-            return Arrays.stream(quests).filter(q -> q.getName().equals(quest.getName())).findFirst().orElse(null);
+            Quest[] quests = questTracker.get(uuid);
+            return Arrays.stream(quests).filter(q -> q.getName().equals(quest.getName())).findAny().orElse(null);
         }
         return null;
     }
@@ -269,5 +303,8 @@ public class QuestEventListener {
                 }
             }
         }
+    }
+
+    private class BreakException extends Throwable {
     }
 }
