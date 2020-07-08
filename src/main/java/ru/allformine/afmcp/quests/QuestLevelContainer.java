@@ -21,4 +21,5 @@ public class QuestLevelContainer {
     public QuestLevel[] getQuestLevels() {
         return questLevels;
     }
+
 }
