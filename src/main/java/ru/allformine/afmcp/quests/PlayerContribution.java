@@ -50,7 +50,7 @@ public class PlayerContribution {
 
     public boolean assignQuest(Quest quest) {
         quest.setParent(player);
-        if (containsName(quest.getName()))
+        if (containsName(quest.getName().toPlain()))
             return false;
         for (int i = 0; i < activeQuests.length; i++) {
             if (activeQuests[i] == null) {

@@ -1,5 +1,6 @@
 package ru.allformine.afmcp.commands;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.CommandSource;
@@ -30,6 +31,15 @@ public class QuestEDITORCommand extends AFMCPCommand {
         }
         if (!AFMCorePlugin.questToggle) {
             reply(src, Text.of(TextColors.RED, "ВНИМАНИЕ!!! НЕЛЬЗЯ ВЫХОДИТЬ ВО ВРЕМЯ РАБОТЫ С ЭТОЙ КОМАНДОЙ, ИНАЧЕ ПИЗДА СЕРВЕРУ И НУЖНО ВСЕ ПЕРЕЗАПУСКАТЬ БУДЕТ"));
+            reply(src, Text.of(TextColors.RED, "Сейчас всех, кроме вас, кикнет с сервера и на время работы команды никто не сможет войти на сервер."));
+            for (Object o : Sponge.getServer().getOnlinePlayers().toArray()) {
+                if (o instanceof Player) {
+                    Player p = (Player) o;
+                    if (p.getUniqueId() != ((Player) src).getUniqueId()) {
+                        p.kick(Text.of(TextColors.RED, "Технические работы по редактированию квестов!\nИзвините за неудобства"));
+                    }
+                }
+            }
             reply(src, Text.of(TextColors.YELLOW, "Creating QuestEditor"));
             QuestEditor questEditor = new QuestEditor(src, configDir, afmcp);
         } else {

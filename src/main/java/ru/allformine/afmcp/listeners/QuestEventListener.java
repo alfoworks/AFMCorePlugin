@@ -139,9 +139,9 @@ public class QuestEventListener {
                         logger.debug("Continue final");
                     } else if (slotName.equals(Text.of(TextColors.RED, "Abort"))) {
                         Quest[] temp = contribution.getCompletedQuests();
-                        String name = questLevel.getQuest(questId).getName();
+                        Text name = questLevel.getQuest(questId).getName();
 
-                        Quest quest = contribution.getQuest(name);
+                        Quest quest = contribution.getQuest(name.toPlain());
                         quest.setProgress(quest.getCount());
                         contribution.completeQuest(quest);
                         contribution.resetCompletedQuests(temp);
@@ -156,8 +156,8 @@ public class QuestEventListener {
                     } else if (slotName.equals(Text.of(TextColors.YELLOW, "Insert quest items here"))) {
                         ItemStackSnapshot x = event.getCursorTransaction().getOriginal();
                         if (!x.getType().equals(ItemTypes.ENDER_CHEST)) {
-                            String name = questLevel.getQuest(questId).getName();
-                            Quest quest = contribution.getQuest(name);
+                            Text name = questLevel.getQuest(questId).getName();
+                            Quest quest = contribution.getQuest(name.toPlain());
                             if (Objects.requireNonNull(getQuestQuestTracker(quest, playerR.getUniqueId())).getTarget()
                                     .equals(x.getType().getId())) {
 

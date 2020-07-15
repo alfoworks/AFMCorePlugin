@@ -85,7 +85,7 @@ public class QuestGUI {
         QeS = new ItemStack[questMax];
         for (int x = 0; x < questMax; x++) {
             Quest quest = questLvl.getQuest(x);
-            String questName = quest.getName();
+            String questName = quest.getName().toPlain();
 
             // Progress format
             Text progressText = Text.of(TextColors.DARK_GREEN, "Begin Quest");

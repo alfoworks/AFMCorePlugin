@@ -1,17 +1,19 @@
 package ru.allformine.afmcp.quests;
 
+import org.spongepowered.api.text.Text;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
 // This is dataclass which represents quest
 public class Quest {
-    private final String name;
+    private final Text name;
     private final String type;
     private final String target;
-    private final String startMessage;
-    private final String finalMessage;
-    private final String lore;
+    private final Text startMessage;
+    private final Text finalMessage;
+    private final Text lore;
     private final Date questEnd;
     private final int count;
     private UUID parent;
@@ -19,12 +21,12 @@ public class Quest {
 
 
     // These setters are for GSON parser to work
-    public Quest(String name,
+    public Quest(Text name,
                  String type,
                  String target,
-                 String startMessage,
-                 String finalMessage,
-                 String lore,
+                 Text startMessage,
+                 Text finalMessage,
+                 Text lore,
                  Date questEnd,
                  int count,
                  UUID parent) {
@@ -60,7 +62,7 @@ public class Quest {
         return type;
     }
 
-    public String getName() {
+    public Text getName() {
         return name;
     }
 
@@ -72,15 +74,15 @@ public class Quest {
         return progress >= count;
     }
 
-    public String getStartMessage() {
+    public Text getStartMessage() {
         return startMessage;
     }
 
-    public String getFinalMessage() {
+    public Text getFinalMessage() {
         return finalMessage;
     }
 
-    public String getLore() {
+    public Text getLore() {
         return lore;
     }
 

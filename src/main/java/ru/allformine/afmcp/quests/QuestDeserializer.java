@@ -1,6 +1,7 @@
 package ru.allformine.afmcp.quests;
 
 import com.google.gson.*;
+import org.spongepowered.api.text.serializer.TextSerializers;
 
 import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
@@ -55,12 +56,12 @@ public class QuestDeserializer implements JsonDeserializer<Quest> {
         }
 
         Quest quest = new Quest(
-            jsonObject.get("name").getAsString(),
+            TextSerializers.JSON.deserialize(jsonObject.get("name").getAsString()),
             jsonObject.get("type").getAsString(),
             jsonObject.get("target").getAsString(),
-            jsonObject.get("startMessage").getAsString(),
-            jsonObject.get("finalMessage").getAsString(),
-            jsonObject.get("lore").getAsString(),
+            TextSerializers.JSON.deserialize(jsonObject.get("startMessage").getAsString()),
+            TextSerializers.JSON.deserialize(jsonObject.get("finalMessage").getAsString()),
+            TextSerializers.JSON.deserialize(jsonObject.get("lore").getAsString()),
             questEnd,
             Integer.parseInt(jsonObject.get("count").getAsString()),
             realParent
