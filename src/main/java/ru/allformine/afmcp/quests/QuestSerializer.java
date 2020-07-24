@@ -29,7 +29,12 @@ public class QuestSerializer implements JsonSerializer<Quest> {
         } else {
             result.add("timeLimit", null);
         }
-        result.addProperty("parent", src.getParent().toString());
+
+        if (src.getParent() != null) {
+            result.addProperty("parent", src.getParent().toString());
+        } else {
+            result.add("parent", null);
+        }
 
         return result;
     }

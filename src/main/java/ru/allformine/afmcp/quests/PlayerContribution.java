@@ -28,20 +28,24 @@ public class PlayerContribution {
     private final UUID player;
     private QuestLevel questLevel;
 
-    public PlayerContribution(Player player, Faction faction) {
+    public PlayerContribution(UUID uuid, Faction faction) {
         CommentedConfigurationNode config = AFMCorePlugin.getConfig();
-        this.player = player.getUniqueId();
+        this.player = uuid;
         this.factionName = faction.getName();
         this.present = true;
         this.activeQuests = new Quest[config.getNode("quests", "activeLimit").getInt()];
         this.completedQuests = new Quest[0];
+        setQuestLevel(AFMCorePlugin.questDataManager.getQuestDifficulties()[0]);
     }
 
-    public PlayerContribution(String player, String factionName) {
+    public PlayerContribution(String uuid, String factionName) {
         CommentedConfigurationNode config = AFMCorePlugin.getConfig();
-        this.player = UUID.fromString(player);
+        this.player = UUID.fromString(uuid);
         this.factionName = factionName;
+        this.present = true;
         this.activeQuests = new Quest[config.getNode("quests", "activeLimit").getInt()];
+        this.completedQuests = new Quest[0];
+        setQuestLevel(AFMCorePlugin.questDataManager.getQuestDifficulties()[0]);
     }
 
     public boolean containsName(final String name){
@@ -101,7 +105,7 @@ public class PlayerContribution {
 
     public Quest getQuest(String name) {
         for (Quest q: activeQuests)
-            if (q.getName().equals(name))
+            if (q.getName().toPlain().equals(name))
                 return q;
 
         return null;

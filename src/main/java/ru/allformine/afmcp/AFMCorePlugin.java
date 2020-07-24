@@ -27,9 +27,7 @@ import ru.allformine.afmcp.lobby.LobbySOI;
 import ru.allformine.afmcp.lobby.LobbyVanilla;
 import ru.allformine.afmcp.net.api.Broadcast;
 import ru.allformine.afmcp.net.api.Webhook;
-import ru.allformine.afmcp.quests.PlayerContribution;
-import ru.allformine.afmcp.quests.QuestDataManager;
-import ru.allformine.afmcp.quests.QuestEditor;
+import ru.allformine.afmcp.quests.*;
 import ru.allformine.afmcp.tablist.UpdateTask;
 import sun.security.ssl.Debug;
 
@@ -138,6 +136,16 @@ public class AFMCorePlugin {
         String questsFilePath = quests.getNode("questsFile").getString();
         assert questsFilePath != null;
 
+        factionListFile = configDir.resolve("factionList.json");
+        if (!Files.exists(factionListFile)) {
+            try {
+                Files.createFile(Paths.get(configDir.toString() + "/factionList.json"));
+                logger.debug("Created faction list json file");
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        }
+
         try {
             String pathA = configDir.toString() + "/questFiles";
             if (!Files.exists(Paths.get(pathA))) {
@@ -162,17 +170,6 @@ public class AFMCorePlugin {
             }
         } catch (IOException e) {
            e.printStackTrace();
-        }
-
-
-        factionListFile = configDir.resolve("factionList.json");
-        if (!Files.exists(factionListFile)) {
-            try {
-                Files.createFile(Paths.get(configDir.toString() + "/factionList.json"));
-                logger.debug("Created faction list json file");
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
         }
 
         CommandSpec tablistDebugSpec = CommandSpec.builder()
@@ -336,21 +333,26 @@ public class AFMCorePlugin {
 
     public static void cleanQuestFactions() {
         Map<String, Faction> map = EagleFactionsPlugin.getPlugin().getFactionLogic().getFactions();
-        List<Faction> queue = new ArrayList<>();
+        QuestFactionContainer container = questDataManager.getQuestFactions();
+
+        // Constructing QuestFaction from Faction data
         for (Map.Entry<String, Faction> e : map.entrySet()) {
-            if (Arrays.stream(defaultFactions).anyMatch(f -> f.equals(e.getKey()))) continue;
-            if (Arrays.equals(questDataManager.getContribution(e.getKey()), null)) {
-                try {
-                    questDataManager.updateContribution(null, String.format("d%s", e.getValue().getName()));
-                } catch (AssertionError assertionError) {
-                    queue.add(e.getValue());
-                    logger.debug(String.format("Disbanding %s", e.getValue().getName()));
+            // Faction
+            if (!container.getQuestFaction(e.getKey()).isPresent()) {
+                UUID leader = e.getValue().getLeader();
+                Set<UUID> officers = e.getValue().getOfficers();
+                Set<UUID> recruits = e.getValue().getRecruits();
+
+                questDataManager.updateContribution(new PlayerContribution(leader, e.getValue()), "c");
+
+                // Adding members
+                for (UUID u: officers) {
+                    questDataManager.updateContribution(new PlayerContribution(u, e.getValue()), "a");
+                }
+                for (UUID u: recruits) {
+                    questDataManager.updateContribution(new PlayerContribution(u, e.getValue()), "a");
                 }
             }
-        }
-
-        for (Faction f : queue) {
-            EagleFactionsPlugin.getPlugin().getFactionLogic().disbandFaction(f.getName());
         }
     }
 

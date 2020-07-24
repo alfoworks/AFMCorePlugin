@@ -30,6 +30,7 @@ public class QuestEDITORCommand extends AFMCPCommand {
             throw new CommandException(Text.of("Эта команда может вызываться только игроком!"));
         }
         if (!AFMCorePlugin.questToggle) {
+
             reply(src, Text.of(TextColors.RED, "ВНИМАНИЕ!!! НЕЛЬЗЯ ВЫХОДИТЬ ВО ВРЕМЯ РАБОТЫ С ЭТОЙ КОМАНДОЙ, ИНАЧЕ ПИЗДА СЕРВЕРУ И НУЖНО ВСЕ ПЕРЕЗАПУСКАТЬ БУДЕТ"));
             reply(src, Text.of(TextColors.RED, "Сейчас всех, кроме вас, кикнет с сервера и на время работы команды никто не сможет войти на сервер."));
             for (Object o : Sponge.getServer().getOnlinePlayers().toArray()) {
@@ -41,7 +42,12 @@ public class QuestEDITORCommand extends AFMCPCommand {
                 }
             }
             reply(src, Text.of(TextColors.YELLOW, "Creating QuestEditor"));
-            QuestEditor questEditor = new QuestEditor(src, configDir, afmcp);
+            try {
+                QuestEditor questEditor = new QuestEditor(src, configDir, afmcp);
+            } catch (Exception e) {
+                reply(src, Text.of(TextColors.RED, "ПРОИЗОШЛА ОШИБКА!"));
+                reply(src, Text.of(TextColors.RED, e.getStackTrace()));
+            }
         } else {
             reply(src, Text.of(TextColors.RED, "Отключите систему квестов для того, что бы начать редактирование"));
         }

@@ -203,7 +203,7 @@ public class QuestEditor {
 
                         // Quest level array state
                         case 2:
-                            QuestLevel[] array = (QuestLevel[]) buffer;
+                            QuestLevel[] array = ((QuestLevelContainer) buffer).getQuestLevels();
                             questLevels = array;
 
                             Optional<QuestLevel> optLevel = Arrays.stream(array)
@@ -232,26 +232,39 @@ public class QuestEditor {
 
                             // Index check
                             try {
-                                showQuest(level5.getQuest(Integer.parseInt(input)), "");
+                                //// TODO: NullPointerException
+                                Quest quest = level5.getQuest(Integer.parseInt(input));
+                                questBuffer = quest;
+                                showQuest(quest, "");
                             } catch (NumberFormatException e) {
                                 if (input.toUpperCase().equals("EXIT")) {
                                     Gson gson = new GsonBuilder()
                                             .setPrettyPrinting()
                                             .serializeNulls()
-                                            .registerTypeAdapter(QuestLevel[].class, new QuestLevelSerializer())
+                                            .registerTypeAdapter(QuestLevelContainer.class, new QuestLevelContainerSerializer())
+                                            .registerTypeAdapter(QuestLevel.class, new QuestLevelSerializer())
                                             .registerTypeAdapter(Quest.class, new QuestSerializer())
                                             .create();
 
-                                    if (questLevels.length > 1) {
+
+                                    // Overwriting
+                                    if (Arrays.stream(questLevels)
+                                            .anyMatch(questLevel -> questLevel.getLevelId().equals(
+                                                            ((QuestLevel) buffer).getLevelId()))) {
                                         for (int i = 0; i < questLevels.length; i++) {
                                             if (((QuestLevel) buffer).getLevelId().equals(questLevels[i].getLevelId())) {
                                                 questLevels[i] = (QuestLevel) buffer;
                                             }
                                         }
+                                    } else {
+                                        // Appending
+                                        questLevels = Arrays.copyOf(questLevels, questLevels.length+1);
+                                        questLevels[questLevels.length-1] = (QuestLevel) buffer;
                                     }
 
+                                    String data = gson.toJson(new QuestLevelContainer(questLevels));
                                     try {
-                                        Files.write(workingPath, gson.toJson(questLevels).getBytes());
+                                        Files.write(workingPath, data.getBytes());
                                     } catch (IOException ioException) {
                                         ioException.printStackTrace();
                                     }
@@ -260,7 +273,9 @@ public class QuestEditor {
                                     secondPart(workingPath);
                                 } else {
                                     // Quest name
-                                    showQuest(level5.getQuest(input), input);
+                                    Quest quest = level5.getQuest(input);
+                                    questBuffer = quest;
+                                    showQuest(quest, input);
                                 }
                             }
 
@@ -804,14 +819,15 @@ public class QuestEditor {
             workingPath = path;
 
             updateBufferJsonData();
-            if (((QuestLevel[]) buffer).length > 0) {
-                for (QuestLevel level : (QuestLevel[]) buffer) {
+            QuestLevelContainer container = (QuestLevelContainer) buffer;
+            if (container.getQuestLevels().length > 0) {
+                for (QuestLevel level : container.getQuestLevels()) {
                     reply(source, Text.of(
                             TextColors.GREEN, level.getLevelId() + ". ",
                             TextColors.GRAY, "Quests: " + level.getQuests().length));
-
-                    reply(source, Text.of(TextColors.YELLOW, "Write questLevelId to start editing level"));
                 }
+
+                reply(source, Text.of(TextColors.YELLOW, "Write questLevelId to start editing level"));
             }
             reply(source, Text.of(TextColors.YELLOW, "To create a new level write a new quest Id:"));
 

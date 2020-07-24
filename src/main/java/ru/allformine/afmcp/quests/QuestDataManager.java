@@ -40,10 +40,11 @@ public class QuestDataManager {
             jsonData = new String(Files.readAllBytes(factionPath));
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (NullPointerException e) {
+            return new QuestFactionContainer();
         }
 
-        assert jsonData != null;
-        if (jsonData.equals(""))
+        if (jsonData == null || jsonData.equals(""))
             return new QuestFactionContainer();
 
 
@@ -69,11 +70,12 @@ public class QuestDataManager {
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
                 .serializeNulls()
-                .registerTypeAdapter(QuestLevel[].class, new QuestLevelDeserializer())
+                .registerTypeAdapter(QuestLevelContainer.class, new QuestLevelContainerDeserializer())
+                .registerTypeAdapter(QuestLevel.class, new QuestLevelDeserializer())
                 .registerTypeAdapter(Quest.class, new QuestDeserializer())
                 .create();
 
-        return gson.fromJson(jsonData, QuestLevel[].class);
+        return gson.fromJson(jsonData, QuestLevelContainer.class).getQuestLevels();
     }
 
     private PlayerContribution[] getFactionContributions(QuestFactionContainer container,

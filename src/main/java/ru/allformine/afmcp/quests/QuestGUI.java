@@ -55,19 +55,19 @@ public class QuestGUI {
         QeS QeS QeS QeS QeS QeS QeS QeS LVL
          */
 
-        /* Begin quest %questName%?
+        /* Quest Panel
         LVL Air Air Air QeS Air Air Air LVL
         Air Air YES Air LOR Air NOO Air Air
         LVL Air Air Air Air Air Air Air LVL
          */
 
-        // Determine lvl by switch case
-        // Get quest lvl from / 25 of completed quests
-        int questMax = 25;
+        // Update quest lvl from number of completed quests compared to all quests
+        QuestLevel questLvl = data.getLevel();
+
+        int questSize = questLvl.getQuests().length;
         boolean ignore = false;
         boolean ignore1 = false;
 
-        QuestLevel questLvl = data.getLevel();
 
         try {
             data.getActiveQuests()[0].getName();
@@ -82,8 +82,8 @@ public class QuestGUI {
                 .build();
         LVL.offer(Keys.DISPLAY_NAME, Text.of(TextColors.DARK_RED, TextStyles.BOLD, questLvl.getLevelId()));
 
-        QeS = new ItemStack[questMax];
-        for (int x = 0; x < questMax; x++) {
+        QeS = new ItemStack[questSize];
+        for (int x = 0; x < questSize; x++) {
             Quest quest = questLvl.getQuest(x);
             String questName = quest.getName().toPlain();
 
@@ -159,7 +159,7 @@ public class QuestGUI {
 
         if (id != -1) {
             List<Text> lore = new ArrayList<>();
-            lore.add(Text.of(questLvl.getQuest(id).getLore()));
+            lore.add(Text.of(questLvl.getQuest(id-1).getLore()));
 
             LOR = ItemStack.builder()
                     .itemType(loreData)
@@ -199,8 +199,10 @@ public class QuestGUI {
                     slot.set(LVL);
                     AFMCorePlugin.logger.debug("Adding LVL");
                 } else {
-                    slot.set(QeS[slotN - 1]);
-                    AFMCorePlugin.logger.debug("Adding QeS");
+                    if (slotN - 1 < questSize) {
+                        slot.set(QeS[slotN - 1]);
+                        AFMCorePlugin.logger.debug("Adding QeS");
+                    }
                 }
             } else if (currentComplete) {
                 if (slotN == 8 || slotN == 0 || slotN == 18 || slotN == 26) {

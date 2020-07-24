@@ -103,7 +103,7 @@ public class FactionEventListener {
         @Override
         public void accept(Task task) {
             try {
-                PlayerContribution p = new PlayerContribution(event.getCreator(), event.getFaction());
+                PlayerContribution p = new PlayerContribution(event.getCreator().getUniqueId(), event.getFaction());
                 AFMCorePlugin.questDataManager.updateContribution(p, "a");
                 task.cancel();
             } catch (NullPointerException ignored) {
@@ -159,7 +159,7 @@ public class FactionEventListener {
             try {
                 if (EagleFactionsPlugin.getPlugin().getFactionLogic().getFactionByName(event.getFaction().getName()) != null) {
                     logger.debug("Triggered quest FACTION CREATE");
-                    PlayerContribution p = new PlayerContribution(event.getCreator(), event.getFaction());
+                    PlayerContribution p = new PlayerContribution(event.getCreator().getUniqueId(), event.getFaction());
                     AFMCorePlugin.questDataManager.updateContribution(p, "c");
                     task.cancel();
                 }
