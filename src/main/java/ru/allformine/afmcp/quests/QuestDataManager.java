@@ -137,8 +137,10 @@ public class QuestDataManager {
         boolean a = true;
         if (factions != null) {
             for (QuestFaction f : factions) {
-                if (f.getName().equals(contribution.getFactionName())) {
-                    a = false;
+                if (f != null) {
+                    if (f.getName().equals(contribution.getFactionName())) {
+                        a = false;
+                    }
                 }
             }
         }
@@ -155,7 +157,6 @@ public class QuestDataManager {
         }
     }
 
-    /*
     private void renameFaction(QuestFactionContainer container, String factionName, Gson gson) {
         Optional<QuestFaction> faction = container.getQuestFaction(factionName);
 
@@ -168,17 +169,11 @@ public class QuestDataManager {
                     "\nСделай ебучий fetch факций");
         }
     }
-     */
 
     private void deleteFaction(QuestFactionContainer container, String factionName, Gson gson) {
         Optional<QuestFaction> faction = container.getQuestFaction(factionName);
-        if (faction.isPresent()) {
-            container.disbandQuestFaction(faction.get());
-            updateFactionListFile(gson.toJson(container));
-        } else {
-            throw new AssertionError("какой то пиздец нахуй поризошел я ебу что ли." +
-                    "\nСделай ебучий fetch факций");
-        }
+        faction.ifPresent(container::disbandQuestFaction);
+        updateFactionListFile(gson.toJson(container));
     }
 
     //--//
@@ -186,8 +181,7 @@ public class QuestDataManager {
 
     // Contribution > Player because it contains more data we want
     public void updateContribution(PlayerContribution contribution, String mode) {
-        String factionName = "";
-        PlayerContribution[] contributions = new PlayerContribution[0];
+        String factionName = (contribution == null) ? "" : contribution.getFactionName();
 
         QuestFactionContainer container = getQuestFactions();
         String newFn = (mode.charAt(0) == 'r') ? mode.substring(1) : null;

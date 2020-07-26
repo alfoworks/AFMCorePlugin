@@ -88,6 +88,7 @@ public class QuestFactionContainer {
                 okFactions.add(faction);
         }
 
+        questFactions = new QuestFaction[okFactions.size()];
         okFactions.toArray(questFactions);
     }
 
