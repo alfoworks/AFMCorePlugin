@@ -1,9 +1,11 @@
-package ru.allformine.afmcp.quests;
+package ru.allformine.afmcp.quests.parsers;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
+import ru.allformine.afmcp.quests.QuestLevel;
+import ru.allformine.afmcp.quests.QuestLevelContainer;
 
 import java.lang.reflect.Type;
 

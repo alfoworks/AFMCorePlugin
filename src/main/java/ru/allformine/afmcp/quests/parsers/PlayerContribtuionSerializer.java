@@ -1,6 +1,8 @@
-package ru.allformine.afmcp.quests;
+package ru.allformine.afmcp.quests.parsers;
 
 import com.google.gson.*;
+import ru.allformine.afmcp.quests.PlayerContribution;
+import ru.allformine.afmcp.quests.Quest;
 
 import java.lang.reflect.Type;
 

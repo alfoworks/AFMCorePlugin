@@ -23,10 +23,7 @@ import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.format.TextStyles;
 import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.commands.AFMCPCommand;
-import ru.allformine.afmcp.quests.PlayerContribution;
-import ru.allformine.afmcp.quests.Quest;
-import ru.allformine.afmcp.quests.QuestDataManager;
-import ru.allformine.afmcp.quests.QuestLevel;
+import ru.allformine.afmcp.quests.*;
 
 import java.util.*;
 
@@ -49,8 +46,18 @@ public class QuestEventListener {
                 SlotIndex slotIndex = slot.getInventoryProperty(SlotIndex.class).orElse(null);
                 int questId = slotIndex.getValue();
 
+                // True - open quest panel; False - try to move to next/previous page
                 if (!(questId == 0 || questId == 26)) {
                     AFMCorePlugin.questDataManager.openGUI((Player) player, questId, event);
+                } else if (!event.getTransactions().get(0).getOriginal().isEmpty()) {
+                    ItemStackSnapshot item = event.getTransactions().get(0).getOriginal();
+                    if (item.get(Keys.DISPLAY_NAME).isPresent()) {
+                        String[] parts = item.get(Keys.DISPLAY_NAME).get().toPlain().split(" ");
+                        try {
+                            AFMCorePlugin.questDataManager.openGUI((Player) player, -1, event, Integer.parseInt(parts[parts.length-1])-1);
+                        } catch (NumberFormatException ignore) {
+                        }
+                    }
                 }
             } else if (Objects.equals(originTitle, Text.of(TextColors.DARK_GREEN, "Quest Panel"))) {
                 Optional<Slot> slotX = event.getSlot();
@@ -105,6 +112,8 @@ public class QuestEventListener {
                 List<Text> lore = questData.get(Keys.ITEM_LORE).orElse(null);
                 int questId = -1;
 
+
+                // Assigning player to the first level in the array
                 if (contribution.getLevel() == null) {
                     contribution.setQuestLevel(AFMCorePlugin.questDataManager.getQuestDifficulties()[0]);
                 }

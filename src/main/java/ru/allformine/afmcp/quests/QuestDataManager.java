@@ -2,12 +2,11 @@ package ru.allformine.afmcp.quests;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import net.minecraft.command.CommandException;
-import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.item.inventory.ClickInventoryEvent;
 import ru.allformine.afmcp.AFMCorePlugin;
+import ru.allformine.afmcp.quests.parsers.*;
 
 
 import java.io.IOException;
@@ -243,6 +242,12 @@ public class QuestDataManager {
 
     public void openGUI(Player player, int id, ClickInventoryEvent event) {
         gui.showToPlayer(getContribution(player.getUniqueId()), player, id, event);
+    }
+
+    public void openGUI(Player player, int id, ClickInventoryEvent event, int page) {
+        PlayerContribution playerContribution = getContribution(player.getUniqueId());
+        playerContribution.page = page;
+        gui.showToPlayer(playerContribution, player, id, event);
     }
 
     public void closeGUI(Player player, ClickInventoryEvent event) {

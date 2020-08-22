@@ -1,8 +1,10 @@
-package ru.allformine.afmcp.quests;
+package ru.allformine.afmcp.quests.parsers;
 
 import com.google.gson.*;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.serializer.TextSerializers;
+import ru.allformine.afmcp.quests.PlayerContribution;
+import ru.allformine.afmcp.quests.QuestFaction;
 
 import java.lang.reflect.Type;
 import java.util.UUID;

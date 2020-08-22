@@ -1,8 +1,10 @@
-package ru.allformine.afmcp.quests;
+package ru.allformine.afmcp.quests.parsers;
 
 import com.google.gson.*;
 import ibxm.Player;
 import net.minecraftforge.event.world.NoteBlockEvent;
+import ru.allformine.afmcp.quests.PlayerContribution;
+import ru.allformine.afmcp.quests.Quest;
 
 import java.lang.reflect.Type;
 import java.util.*;

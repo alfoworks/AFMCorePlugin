@@ -24,6 +24,23 @@ import java.lang.reflect.Array;
 import java.util.*;
 
 public class QuestGUI {
+    private boolean pageAccess(boolean next, PlayerContribution data) {
+        if (next && data.getLevel().getQuests().length / 25 > data.page) {
+            return true;
+        } else return !next && data.page != 0;
+    }
+
+    private int getPageSize(PlayerContribution data) {
+        int overall = data.getLevel().getQuests().length;
+
+        // Less than one page
+        if (overall < 26) {
+            return overall;
+        } else {
+            int extra = overall % 25;
+            return (pageAccess(true, data)) ? 25 : extra;
+        }
+    }
 
     private Inventory bakeGui(PlayerContribution data, int id) {
         Inventory inventory = Inventory.builder()
@@ -39,6 +56,8 @@ public class QuestGUI {
         ItemStack YES;
         ItemStack NOO;
         ItemStack INP;
+        ItemStack NEX;
+        ItemStack PRE;
 
         ItemType questAllow = ItemTypes.BOOK;
         ItemType questActive = ItemTypes.WRITABLE_BOOK;
@@ -48,6 +67,7 @@ public class QuestGUI {
         ItemType nothingButton = ItemTypes.COAL_BLOCK;
         ItemType loreData = ItemTypes.MAP;
         ItemType inputField = ItemTypes.ENDER_CHEST;
+        ItemType pageSwitchButton = ItemTypes.IRON_SWORD;
 
         /* Quest List
         LVL QeS QeS QeS QeS QeS QeS QeS QeS
@@ -64,10 +84,20 @@ public class QuestGUI {
         // Update quest lvl from number of completed quests compared to all quests
         QuestLevel questLvl = data.getLevel();
 
-        int questSize = questLvl.getQuests().length;
+        // Single quest page manages to contain 25 quests excluding leftmost-topmost and rightmost-bottommost items
+        Quest[] questPage = new Quest[getPageSize(data)];
+        id += (id != -1) ? data.page * 25 : 0; // Adding page offset
+
+        int questSize = questPage.length;
         boolean ignore = false;
         boolean ignore1 = false;
 
+        // Page Fill
+        int pageFillIterator = 0;
+        for (int x = data.page * 25; pageFillIterator < questSize; pageFillIterator++) {
+            questPage[pageFillIterator] = questLvl.getQuest(x);
+            x++;
+        }
 
         try {
             data.getActiveQuests()[0].getName();
@@ -80,11 +110,22 @@ public class QuestGUI {
         LVL = ItemStack.builder()
                 .itemType(lvlType.orElse(ItemTypes.BARRIER))
                 .build();
-        LVL.offer(Keys.DISPLAY_NAME, Text.of(TextColors.DARK_RED, TextStyles.BOLD, questLvl.getLevelId()));
+        LVL.offer(Keys.DISPLAY_NAME, questLvl.getLevelId());
 
+        NEX = ItemStack.builder()
+                .itemType(pageSwitchButton)
+                .build();
+        NEX.offer(Keys.DISPLAY_NAME, Text.of(TextColors.WHITE, "Go to page ", TextColors.GREEN, data.page + 2));
+
+        PRE = ItemStack.builder()
+                .itemType(pageSwitchButton)
+                .build();
+        PRE.offer(Keys.DISPLAY_NAME, Text.of(TextColors.WHITE, "Go to page ", TextColors.RED, data.page));
+
+        // Quest item composing
         QeS = new ItemStack[questSize];
         for (int x = 0; x < questSize; x++) {
-            Quest quest = questLvl.getQuest(x);
+            Quest quest = questPage[x];
             String questName = quest.getName().toPlain();
 
             // Progress format
@@ -159,7 +200,7 @@ public class QuestGUI {
 
         if (id != -1) {
             List<Text> lore = new ArrayList<>();
-            lore.add(Text.of(questLvl.getQuest(id-1).getLore()));
+            lore.add(questPage[id-1].getLore());
 
             LOR = ItemStack.builder()
                     .itemType(loreData)
@@ -176,7 +217,7 @@ public class QuestGUI {
         boolean currentComplete = false;
         boolean item = false;
         if (id != -1 ) {
-            Quest current = questLvl.getQuest(id-1);
+            Quest current = questPage[id-1];
             item = current.getType().equals("item");
             currentActive = Arrays.stream(data.getActiveQuests()).anyMatch(q ->
             { if (q != null)
@@ -195,10 +236,23 @@ public class QuestGUI {
         AFMCorePlugin.logger.debug("----QUEST BUILD----");
         for (Inventory slot: slots) {
             if (id == -1) {
-                if (slotN == 0 || slotN == 9 * 3 - 1) {
+                if (pageAccess(false, data) && slotN == 0) {
+                    slot.set(PRE);
+                    AFMCorePlugin.logger.debug("Adding PRE");
+                } else if (slotN == 0) {
                     slot.set(LVL);
                     AFMCorePlugin.logger.debug("Adding LVL");
-                } else {
+                }
+
+                if (pageAccess(true, data) &&  slotN == 9 * 3 - 1) {
+                    slot.set(NEX);
+                    AFMCorePlugin.logger.debug("Adding NEX");
+                } else if (slotN == 9 * 3 - 1) {
+                    slot.set(LVL);
+                    AFMCorePlugin.logger.debug("Adding LVL");
+                }
+
+                if (!(slotN == 0 || slotN == 9 * 3 - 1)){
                     if (slotN - 1 < questSize) {
                         slot.set(QeS[slotN - 1]);
                         AFMCorePlugin.logger.debug("Adding QeS");

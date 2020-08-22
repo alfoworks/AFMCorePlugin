@@ -1,7 +1,8 @@
-package ru.allformine.afmcp.quests;
+package ru.allformine.afmcp.quests.parsers;
 
 import com.google.gson.*;
 import org.spongepowered.api.text.serializer.TextSerializers;
+import ru.allformine.afmcp.quests.Quest;
 
 import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;

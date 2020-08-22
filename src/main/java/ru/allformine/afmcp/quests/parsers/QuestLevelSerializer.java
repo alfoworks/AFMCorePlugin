@@ -1,6 +1,9 @@
-package ru.allformine.afmcp.quests;
+package ru.allformine.afmcp.quests.parsers;
 
 import com.google.gson.*;
+import org.spongepowered.api.text.serializer.TextSerializers;
+import ru.allformine.afmcp.quests.Quest;
+import ru.allformine.afmcp.quests.QuestLevel;
 
 import java.lang.reflect.Type;
 
@@ -10,11 +13,14 @@ public class QuestLevelSerializer implements JsonSerializer<QuestLevel> {
         JsonObject result = new JsonObject();
 
         JsonArray array = new JsonArray();
-        for (Quest q : src.getQuests()) {
-            array.add(context.serialize(q));
+
+        if (src.getQuests() != null) {
+            for (Quest q : src.getQuests()) {
+                array.add(context.serialize(q));
+            }
         }
 
-        result.addProperty("levelId", src.getLevelId());
+        result.addProperty("levelId", TextSerializers.JSON.serialize(src.getLevelId()));
         result.addProperty("itemTypeId", src.getItemTypeId());
         result.add("quests", array);
 

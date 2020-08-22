@@ -23,10 +23,12 @@ public final class QuestEditorColorCodes {
         map.put("DARK_RED", TextColors.DARK_RED);
         map.put("GOLD", TextColors.GOLD);
         map.put("GRAY", TextColors.GRAY);
-        map.put("YELLOW", TextColors.YELLOW);
         map.put("GREEN", TextColors.GREEN);
         map.put("LIGHT_PURPLE", TextColors.LIGHT_PURPLE);
         map.put("RED", TextColors.RED);
+        map.put("RESET", TextColors.RESET);
+        map.put("WHITE", TextColors.WHITE);
+        map.put("YELLOW", TextColors.YELLOW);
         values = Collections.unmodifiableMap(map);
     }
 

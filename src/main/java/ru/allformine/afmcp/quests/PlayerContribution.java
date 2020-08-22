@@ -21,6 +21,8 @@ import java.util.UUID;
 
 // DataClass which represents Player Contribution to a certain faction
 public class PlayerContribution {
+    public int page = 0; // Local parameter that resets every time the player contribution has been found
+
     private final String factionName;
     private Quest[] completedQuests;
     private Quest[] activeQuests;

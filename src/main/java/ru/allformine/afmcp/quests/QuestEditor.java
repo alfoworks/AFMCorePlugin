@@ -2,7 +2,6 @@ package ru.allformine.afmcp.quests;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.spongepowered.api.CatalogTypes;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.entity.living.player.Player;
@@ -13,24 +12,20 @@ import org.spongepowered.api.event.item.inventory.DropItemEvent;
 import org.spongepowered.api.event.message.MessageChannelEvent;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
 import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.scheduler.Task;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextColors;
 import ru.allformine.afmcp.AFMCorePlugin;
-import scala.Int;
+import ru.allformine.afmcp.quests.parsers.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.annotation.Documented;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.rmi.UnexpectedException;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
-import java.util.List;
 
 /**
  * Грубо говоря здесь будет весь интерфейс редактора.
@@ -161,6 +156,9 @@ public class QuestEditor {
      * 'GREEN'
      * 'LIGHT_PURPLE'
      * 'RED'
+     * 'WHITE'
+     * 'RESET'
+     * 'GRAY'
      * </p>
      **/
     public class interestListener {
@@ -205,9 +203,10 @@ public class QuestEditor {
                         case 2:
                             QuestLevel[] array = ((QuestLevelContainer) buffer).getQuestLevels();
                             questLevels = array;
+                            Text text2 = parseText(input);
 
                             Optional<QuestLevel> optLevel = Arrays.stream(array)
-                                    .filter(l -> l.getLevelId().equals(input)).findFirst();
+                                    .filter(l -> l.getLevelId().toPlain().equals(text2.toPlain())).findFirst();
 
                             if (optLevel.isPresent()) {
                                 // Existing
@@ -216,8 +215,8 @@ public class QuestEditor {
                                 registerInterestId5.submit(afmcp);
                             } else {
                                 // New
-                                buffer = input; // Quest Level id
-                                reply(source, Text.of(TextColors.YELLOW, "Creating questLevel - " + input));
+                                buffer = text2; // Quest Level id
+                                reply(source, Text.of(TextColors.YELLOW, "Creating questLevel - ", text2));
                                 reply(source, Text.of("Drop a desired item to set it as quest level's item"));
                                 registerInterestId3.submit(afmcp);
                             }
@@ -650,15 +649,15 @@ public class QuestEditor {
             // Quest Level item state
             if (event.getSource() instanceof Player) {
                 if (interestId == 3) {
-                    if (buffer instanceof String) {
+                    if (buffer instanceof Text) {
                         ItemType type = event.getOriginalDroppedItems().get(0).getType();
                         reply(source, Text.of(TextColors.YELLOW, "Setting Level Item Type to - "
                                 + type.getTranslation().toString()));
                         buffer = new QuestLevel(null,
-                                String.valueOf(buffer), // Quest id that we got from the last event
+                                Text.of(buffer), // Quest id that we got from the last event
                                 type.getId());
                     } else if (buffer instanceof QuestLevel) {
-                        String id = ((QuestLevel) buffer).getLevelId();
+                        Text id = ((QuestLevel) buffer).getLevelId();
                         Quest[] quests = ((QuestLevel) buffer).getQuests();
                         ItemType type = event.getOriginalDroppedItems().get(0).getType();
                         reply(source, Text.of(TextColors.YELLOW, "Updating Level Item Type to - "
@@ -823,13 +822,13 @@ public class QuestEditor {
             if (container.getQuestLevels().length > 0) {
                 for (QuestLevel level : container.getQuestLevels()) {
                     reply(source, Text.of(
-                            TextColors.GREEN, level.getLevelId() + ". ",
+                            TextColors.GREEN, level.getLevelId(), ". ",
                             TextColors.GRAY, "Quests: " + level.getQuests().length));
                 }
 
                 reply(source, Text.of(TextColors.YELLOW, "Write questLevelId to start editing level"));
             }
-            reply(source, Text.of(TextColors.YELLOW, "To create a new level write a new quest Id:"));
+            reply(source, Text.of(TextColors.YELLOW, "To create a new level write a new quest Id: ", TextColors.WHITE, "(Color Support)"));
 
             Sponge.getEventManager().unregisterListeners(this);
             registerInterestId2.submit(afmcp);

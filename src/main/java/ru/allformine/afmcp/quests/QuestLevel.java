@@ -1,14 +1,16 @@
 package ru.allformine.afmcp.quests;
 
+import org.spongepowered.api.text.Text;
+
 import java.util.Arrays;
 import java.util.Optional;
 
 public class QuestLevel {
     private final Quest[] quests;
-    private final String levelId;
+    private final Text levelId;
     private final String itemTypeId;
 
-    public QuestLevel(Quest[] quests, String levelId, String itemTypeId) {
+    public QuestLevel(Quest[] quests, Text levelId, String itemTypeId) {
         this.quests = quests;
         this.levelId = levelId;
         this.itemTypeId = itemTypeId;
@@ -30,7 +32,7 @@ public class QuestLevel {
         return null;
     }
 
-    public String getLevelId() {
+    public Text getLevelId() {
         return levelId;
     }
 
