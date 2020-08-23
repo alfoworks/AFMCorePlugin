@@ -32,6 +32,17 @@ public class QuestLevel {
         return null;
     }
 
+    public int getQuestId(String name) {
+        if (quests != null) {
+            for (int i = 0; i < quests.length; i++) {
+                if (quests[i].getName().toPlain().equals(name)) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+
     public Text getLevelId() {
         return levelId;
     }

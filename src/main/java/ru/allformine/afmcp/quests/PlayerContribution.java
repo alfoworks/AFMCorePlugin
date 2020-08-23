@@ -23,12 +23,12 @@ import java.util.UUID;
 public class PlayerContribution {
     public int page = 0; // Local parameter that resets every time the player contribution has been found
 
-    private final String factionName;
+    private String factionName;
     private Quest[] completedQuests;
-    private Quest[] activeQuests;
+    private final Quest[] activeQuests;
     private boolean present;
     private final UUID player;
-    private QuestLevel questLevel;
+    private String questLevelId;
 
     public PlayerContribution(UUID uuid, Faction faction) {
         CommentedConfigurationNode config = AFMCorePlugin.getConfig();
@@ -37,7 +37,7 @@ public class PlayerContribution {
         this.present = true;
         this.activeQuests = new Quest[config.getNode("quests", "activeLimit").getInt()];
         this.completedQuests = new Quest[0];
-        setQuestLevel(AFMCorePlugin.questDataManager.getQuestDifficulties()[0]);
+        setQuestLevel(AFMCorePlugin.questDataManager.getQuestDifficulties().getQuestLevels()[0]);
     }
 
     public PlayerContribution(String uuid, String factionName) {
@@ -47,7 +47,7 @@ public class PlayerContribution {
         this.present = true;
         this.activeQuests = new Quest[config.getNode("quests", "activeLimit").getInt()];
         this.completedQuests = new Quest[0];
-        setQuestLevel(AFMCorePlugin.questDataManager.getQuestDifficulties()[0]);
+        setQuestLevel(AFMCorePlugin.questDataManager.getQuestDifficulties().getQuestLevels()[0]);
     }
 
     public boolean containsName(final String name){
@@ -145,15 +145,24 @@ public class PlayerContribution {
         return String.format("%s | %s", getPlayer(), getFaction());
     }
 
+    public void setFactionName(String factionName) {
+        this.factionName = factionName;
+    }
+
+
     public void setPresent(boolean present) {
         this.present = present;
     }
 
-    public QuestLevel getLevel() {
-        return questLevel;
+    public String getLevelId() {
+        return questLevelId;
     }
 
     public void setQuestLevel(QuestLevel questLevel) {
-        this.questLevel = questLevel;
+        this.questLevelId = questLevel.getLevelId().toPlain();
+    }
+
+    public void setQuestLevel(String questLevelId) {
+        this.questLevelId = questLevelId;
     }
 }

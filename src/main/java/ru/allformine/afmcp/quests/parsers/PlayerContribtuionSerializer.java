@@ -1,6 +1,7 @@
 package ru.allformine.afmcp.quests.parsers;
 
 import com.google.gson.*;
+import org.spongepowered.api.text.serializer.TextSerializers;
 import ru.allformine.afmcp.quests.PlayerContribution;
 import ru.allformine.afmcp.quests.Quest;
 
@@ -34,6 +35,7 @@ public class PlayerContribtuionSerializer implements JsonSerializer<PlayerContri
         result.addProperty("player", src.getPlayer().toString());
         result.addProperty("present", src.isPresent());
         result.addProperty("factionName", factionName);
+        result.addProperty("levelId", src.getLevelId());
         result.add("completedQuests", completed);
         result.add("activeQuests", active);
 

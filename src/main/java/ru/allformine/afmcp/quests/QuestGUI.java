@@ -25,13 +25,13 @@ import java.util.*;
 
 public class QuestGUI {
     private boolean pageAccess(boolean next, PlayerContribution data) {
-        if (next && data.getLevel().getQuests().length / 25 > data.page) {
+        if (next && AFMCorePlugin.questDataManager.getQuestDifficulties().getLevelById(data.getLevelId()).getQuests().length / 25 > data.page) {
             return true;
         } else return !next && data.page != 0;
     }
 
     private int getPageSize(PlayerContribution data) {
-        int overall = data.getLevel().getQuests().length;
+        int overall = AFMCorePlugin.questDataManager.getQuestDifficulties().getLevelById(data.getLevelId()).getQuests().length;
 
         // Less than one page
         if (overall < 26) {
@@ -82,7 +82,7 @@ public class QuestGUI {
          */
 
         // Update quest lvl from number of completed quests compared to all quests
-        QuestLevel questLvl = data.getLevel();
+        QuestLevel questLvl = AFMCorePlugin.questDataManager.getQuestDifficulties().getLevelById(data.getLevelId());
 
         // Single quest page manages to contain 25 quests excluding leftmost-topmost and rightmost-bottommost items
         Quest[] questPage = new Quest[getPageSize(data)];

@@ -104,7 +104,7 @@ public class FactionEventListener {
         public void accept(Task task) {
             try {
                 PlayerContribution p = new PlayerContribution(event.getCreator().getUniqueId(), event.getFaction());
-                AFMCorePlugin.questDataManager.updateContribution(p, "a");
+                AFMCorePlugin.questDataManager.updateContribution(p);
                 task.cancel();
             } catch (NullPointerException ignored) {
             }
@@ -131,7 +131,7 @@ public class FactionEventListener {
         public void accept(Task task) {
             try {
                 PlayerContribution p = AFMCorePlugin.questDataManager.getContribution(event.getCreator().getUniqueId());
-                AFMCorePlugin.questDataManager.updateContribution(p, "p");
+                AFMCorePlugin.questDataManager.updateContribution(p);
                 task.cancel();
             } catch (NullPointerException ignored) {
             }
@@ -160,7 +160,7 @@ public class FactionEventListener {
                 if (EagleFactionsPlugin.getPlugin().getFactionLogic().getFactionByName(event.getFaction().getName()) != null) {
                     logger.debug("Triggered quest FACTION CREATE");
                     PlayerContribution p = new PlayerContribution(event.getCreator().getUniqueId(), event.getFaction());
-                    AFMCorePlugin.questDataManager.updateContribution(p, "c");
+                    AFMCorePlugin.questDataManager.updateContribution(p);
                     task.cancel();
                 }
             } catch (AssertionError e) {
@@ -194,7 +194,7 @@ public class FactionEventListener {
                     if (AFMCorePlugin.questDataManager.getQuestFactions().getQuestFaction(event.getFaction().getName()).isPresent()) {
                         logger.debug("Triggered quest FACTION DISBAND");
                         PlayerContribution p = AFMCorePlugin.questDataManager.getContribution(event.getCreator().getUniqueId());
-                        AFMCorePlugin.questDataManager.updateContribution(p, "d");
+                        AFMCorePlugin.questDataManager.updateContribution(p);
                     }
                     task.cancel();
                 } catch (NullPointerException ignore) {

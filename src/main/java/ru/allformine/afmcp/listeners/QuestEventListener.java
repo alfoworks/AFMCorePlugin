@@ -114,11 +114,11 @@ public class QuestEventListener {
 
 
                 // Assigning player to the first level in the array
-                if (contribution.getLevel() == null) {
-                    contribution.setQuestLevel(AFMCorePlugin.questDataManager.getQuestDifficulties()[0]);
+                if (contribution.getLevelId() == null) {
+                    contribution.setQuestLevel(AFMCorePlugin.questDataManager.getQuestDifficulties().getQuestLevels()[0]);
                 }
 
-                QuestLevel questLevel = contribution.getLevel();
+                QuestLevel questLevel = AFMCorePlugin.questDataManager.getQuestDifficulties().getLevelById(contribution.getLevelId());
 
                 if (lore != null) {
                     questId = Integer.parseInt(lore.get(lore.size() - 1).toPlainSingle());
@@ -127,7 +127,7 @@ public class QuestEventListener {
                     if (slotName.equals(Text.of(TextColors.GREEN, "Apply"))) { // Apply click
                         Quest quest = questLevel.getQuest(questId);
                         if (contribution.assignQuest(quest)) {
-                            AFMCorePlugin.questDataManager.updateContribution(contribution, "u");
+                            AFMCorePlugin.questDataManager.updateContribution(contribution);
                             AFMCorePlugin.questDataManager.closeGUI(playerR, event);
                             Text message = Text.of(quest.getStartMessage());
                             playerR.sendMessage(message);
@@ -154,7 +154,7 @@ public class QuestEventListener {
                         quest.setProgress(quest.getCount());
                         contribution.completeQuest(quest);
                         contribution.resetCompletedQuests(temp);
-                        AFMCorePlugin.questDataManager.updateContribution(contribution, "u");
+                        AFMCorePlugin.questDataManager.updateContribution(contribution);
 
                         AFMCorePlugin.questDataManager.closeGUI(playerR, event);
                         Text message = Text.of(TextColors.RED, "QUEST HAS BEEN ABORTED");
@@ -199,7 +199,7 @@ public class QuestEventListener {
                                     quest.appendProgress(quantity);
 
                                     contribution.updateQuest(quest);
-                                    AFMCorePlugin.questDataManager.updateContribution(contribution, "u");
+                                    AFMCorePlugin.questDataManager.updateContribution(contribution);
                                     updateQuestTracker(contribution);
 
                                     if (quest.finished())
@@ -306,7 +306,7 @@ public class QuestEventListener {
                                             AFMCorePlugin.questDataManager.getContribution(player.getUniqueId());
                                     contribution.updateQuest(quest);
 
-                                    AFMCorePlugin.questDataManager.updateContribution(contribution, "u");
+                                    AFMCorePlugin.questDataManager.updateContribution(contribution);
 
                                     updateQuestTracker(contribution);
 

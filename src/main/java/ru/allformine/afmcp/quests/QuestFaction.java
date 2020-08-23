@@ -83,16 +83,16 @@ public class QuestFaction {
             investors = new PlayerContribution[1];
             investors[0] = investor;
         }
-
     }
 
-    public void updateInvestor(PlayerContribution investor) {
+    public boolean updateInvestor(PlayerContribution investor) {
         for (int i = 0; i < investors.length; i++) {
             if (investors[i].getPlayer().equals(investor.getPlayer())) {
                 investors[i] = investor;
-                break;
+                return true;
             }
         }
+        return false;
     }
 
     public void setInvestors(PlayerContribution[] investors) {

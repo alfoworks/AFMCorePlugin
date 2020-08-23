@@ -1,5 +1,7 @@
 package ru.allformine.afmcp.quests;
 
+import org.spongepowered.api.text.Text;
+
 import java.util.Arrays;
 
 public class QuestLevelContainer {
@@ -22,4 +24,11 @@ public class QuestLevelContainer {
         return questLevels;
     }
 
+    public QuestLevel getLevelById(String levelId) {
+        for (QuestLevel q: questLevels) {
+            if (q.getLevelId().toPlain().equals(levelId))
+                return q;
+        }
+        return null;
+    }
 }

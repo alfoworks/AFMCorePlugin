@@ -1,7 +1,9 @@
 package ru.allformine.afmcp.quests.parsers;
 
 import com.google.gson.*;
+import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.serializer.TextSerializers;
+import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.quests.Quest;
 
 import java.lang.reflect.Type;
@@ -50,23 +52,29 @@ public class QuestDeserializer implements JsonDeserializer<Quest> {
             }
         }
 
+        Quest quest;
         JsonElement parent = jsonObject.get("parent");
-        UUID realParent = null;
+        UUID realParent;
         if (!parent.isJsonNull()) {
             realParent = UUID.fromString(parent.getAsString());
+            String levelId = jsonObject.get("levelId").getAsString();
+            quest = AFMCorePlugin.questDataManager
+                    .getQuestById(levelId, jsonObject.get("questId").getAsInt());
+            quest.setParent(realParent);
+        } else {
+            quest = new Quest(
+                    TextSerializers.JSON.deserialize(jsonObject.get("name").getAsString()),
+                    jsonObject.get("type").getAsString(),
+                    jsonObject.get("target").getAsString(),
+                    TextSerializers.JSON.deserialize(jsonObject.get("startMessage").getAsString()),
+                    TextSerializers.JSON.deserialize(jsonObject.get("finalMessage").getAsString()),
+                    TextSerializers.JSON.deserialize(jsonObject.get("lore").getAsString()),
+                    questEnd,
+                    Integer.parseInt(jsonObject.get("count").getAsString()),
+                    null
+            );
         }
 
-        Quest quest = new Quest(
-            TextSerializers.JSON.deserialize(jsonObject.get("name").getAsString()),
-            jsonObject.get("type").getAsString(),
-            jsonObject.get("target").getAsString(),
-            TextSerializers.JSON.deserialize(jsonObject.get("startMessage").getAsString()),
-            TextSerializers.JSON.deserialize(jsonObject.get("finalMessage").getAsString()),
-            TextSerializers.JSON.deserialize(jsonObject.get("lore").getAsString()),
-            questEnd,
-            Integer.parseInt(jsonObject.get("count").getAsString()),
-            realParent
-        );
         
         quest.setProgress(jsonObject.get("progress").getAsInt());
         return quest;

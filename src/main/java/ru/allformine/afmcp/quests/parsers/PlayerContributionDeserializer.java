@@ -3,6 +3,7 @@ package ru.allformine.afmcp.quests.parsers;
 import com.google.gson.*;
 import ibxm.Player;
 import net.minecraftforge.event.world.NoteBlockEvent;
+import org.spongepowered.api.text.serializer.TextSerializers;
 import ru.allformine.afmcp.quests.PlayerContribution;
 import ru.allformine.afmcp.quests.Quest;
 
@@ -19,6 +20,7 @@ public class PlayerContributionDeserializer implements JsonDeserializer<PlayerCo
                 object.get("factionName").getAsString()
         );
 
+        contribution.setQuestLevel(object.get("levelId").getAsString());
         contribution.setPresent(object.get("present").getAsBoolean());
 
         for (JsonElement element: object.getAsJsonArray("activeQuests")) {

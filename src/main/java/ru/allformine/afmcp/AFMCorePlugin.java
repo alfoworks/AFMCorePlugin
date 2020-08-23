@@ -343,14 +343,14 @@ public class AFMCorePlugin {
                 Set<UUID> officers = e.getValue().getOfficers();
                 Set<UUID> recruits = e.getValue().getRecruits();
 
-                questDataManager.updateContribution(new PlayerContribution(leader, e.getValue()), "c");
+                questDataManager.updateContribution(new PlayerContribution(leader, e.getValue()));
 
                 // Adding members
                 for (UUID u: officers) {
-                    questDataManager.updateContribution(new PlayerContribution(u, e.getValue()), "a");
+                    questDataManager.updateContribution(new PlayerContribution(u, e.getValue()));
                 }
                 for (UUID u: recruits) {
-                    questDataManager.updateContribution(new PlayerContribution(u, e.getValue()), "a");
+                    questDataManager.updateContribution(new PlayerContribution(u, e.getValue()));
                 }
             }
         }
@@ -411,6 +411,7 @@ public class AFMCorePlugin {
     private void questToggleOn() {
         questToggle = true;
         questDataManager = new QuestDataManager(questsFile, factionListFile);
+        questDataManager.initializeQuestFactionContainer();
         if (!questToggle) {
             questToggleOff();
             return;
