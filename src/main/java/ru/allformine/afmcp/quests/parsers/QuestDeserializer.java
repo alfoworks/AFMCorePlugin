@@ -30,28 +30,6 @@ public class QuestDeserializer implements JsonDeserializer<Quest> {
                  PlayerContribution parent
          */
 
-        JsonElement unknownLimit = jsonObject.get("timeLimit");
-        Date questEnd;
-
-        if (unknownLimit.isJsonNull()) {
-            questEnd = null;
-        } else {
-            try {
-                String dateTime = unknownLimit.getAsString();
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-                questEnd = simpleDateFormat.parse(dateTime);
-            } catch (Exception e) {
-                int timeLimit = unknownLimit.getAsInt();
-                if (timeLimit != 0) {
-                    Calendar calender = Calendar.getInstance();
-                    calender.add(Calendar.MINUTE, timeLimit);
-                    questEnd = calender.getTime();
-                } else {
-                    questEnd = null; // No time limit
-                }
-            }
-        }
-
         Quest quest;
         JsonElement parent = jsonObject.get("parent");
         UUID realParent;
@@ -69,7 +47,6 @@ public class QuestDeserializer implements JsonDeserializer<Quest> {
                     TextSerializers.JSON.deserialize(jsonObject.get("startMessage").getAsString()),
                     TextSerializers.JSON.deserialize(jsonObject.get("finalMessage").getAsString()),
                     TextSerializers.JSON.deserialize(jsonObject.get("lore").getAsString()),
-                    questEnd,
                     Integer.parseInt(jsonObject.get("count").getAsString()),
                     null
             );

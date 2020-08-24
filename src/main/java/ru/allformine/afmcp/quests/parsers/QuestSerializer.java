@@ -41,13 +41,6 @@ public class QuestSerializer implements JsonSerializer<Quest> {
 
         result.addProperty("progress", src.getProgress());
 
-        //// TODO: Time Limited Quests
-        if (src.getQuestEnd() != null) {
-            result.addProperty("timeLimit", simpleDateFormat.format(src.getQuestEnd()));
-        } else {
-            result.add("timeLimit", null);
-        }
-
 
         return result;
     }

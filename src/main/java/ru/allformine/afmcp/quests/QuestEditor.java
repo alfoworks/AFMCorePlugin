@@ -58,7 +58,6 @@ public class QuestEditor {
     private final Task.Builder registerInterestId15;
     private final Task.Builder registerInterestId16;
     private final Task.Builder registerInterestId17;
-    private final Task.Builder registerInterestId18;
 
 
     /*
@@ -82,8 +81,6 @@ public class QuestEditor {
         this.registerInterestId15 = Task.builder().delay(100, TimeUnit.MILLISECONDS).name("Register editor interest id 15").execute(task -> Sponge.getEventManager().registerListeners(afmcp, new interestListener(15, null, source, afmcp)));
         this.registerInterestId16 = Task.builder().delay(100, TimeUnit.MILLISECONDS).name("Register editor interest id 16").execute(task -> Sponge.getEventManager().registerListeners(afmcp, new interestListener(16, null, source, afmcp)));
         this.registerInterestId17 = Task.builder().delay(100, TimeUnit.MILLISECONDS).name("Register editor interest id 17").execute(task -> Sponge.getEventManager().registerListeners(afmcp, new interestListener(17, null, source, afmcp)));
-        this.registerInterestId18 = Task.builder().delay(100, TimeUnit.MILLISECONDS).name("Register editor interest id 18").execute(task -> Sponge.getEventManager().registerListeners(afmcp, new interestListener(18, null, source, afmcp)));
-
 
         reply(source, Text.of(TextColors.GREEN, "Finished initialization of Quest Editor"));
 
@@ -376,7 +373,7 @@ public class QuestEditor {
                                 reply(source, Text.of(TextColors.GREEN, "New name ", TextColors.GRAY, " - ", text));
                                 questBuffer = new Quest(text,
                                         quest.getType(), quest.getTarget(), quest.getStartMessage(), quest.getFinalMessage(),
-                                        quest.getFinalMessage(), quest.getQuestEnd(), quest.getCount(), null);
+                                        quest.getFinalMessage(), quest.getCount(), null);
                             }
 
                             reply(source, Text.of("Enter quest lore ", TextColors.WHITE ,"(Color support)"));
@@ -402,7 +399,7 @@ public class QuestEditor {
                                         Quest quest = (Quest) questBuffer;
                                         questBuffer = new Quest(quest.getName(),
                                                 quest.getType(), quest.getTarget(), quest.getStartMessage(), quest.getFinalMessage(),
-                                                text, quest.getQuestEnd(), quest.getCount(), null);
+                                                text, quest.getCount(), null);
                                         reply(source, Text.of(TextColors.YELLOW, "Updating Lore to ", TextColors.GRAY, "- ", text));
                                         reply(source, Text.of("Write type of target (Entity / Item): "));
 
@@ -466,10 +463,9 @@ public class QuestEditor {
                                     if (((Quest) questBuffer).getTarget() != null) {
                                         reply(source, Text.of(TextColors.DARK_GRAY, "Skipping target part..."));
                                         reply(source, Text.of("Insert amount of ", TextColors.WHITE, ((Quest) questBuffer).getTarget(), TextColors.GRAY," to be killed:"));
-                                        registerInterestId15.submit(afmcp);
-
                                         event.setCancelled(true);
                                         Sponge.getEventManager().unregisterListeners(this);
+                                        registerInterestId15.submit(afmcp);
                                     } else {
                                         reply(source, Text.of(TextColors.DARK_RED, "Can't skip! Not assigned"));
                                     }
@@ -489,7 +485,6 @@ public class QuestEditor {
                                         reply(source, Text.of("Insert amount of desired ", TextColors.WHITE,  ((Quest) questBuffer).getTarget(), TextColors.GRAY, " to be gathered:"));
                                         event.setCancelled(true);
                                         Sponge.getEventManager().unregisterListeners(this);
-
                                         registerInterestId15.submit(afmcp);
                                     } else {
                                         reply(source, Text.of(TextColors.DARK_RED, "Can't skip! Not assigned"));
@@ -521,8 +516,7 @@ public class QuestEditor {
                                         Quest quest = (Quest) questBuffer;
                                         questBuffer = new Quest(quest.getName(), quest.getType(),
                                                 quest.getTarget(), quest.getStartMessage(),
-                                                quest.getFinalMessage(), quest.getLore(),
-                                                quest.getQuestEnd(), count, null);
+                                                quest.getFinalMessage(), quest.getLore(), count, null);
                                         reply(source, Text.of(TextColors.GREEN, "Setting count to", TextColors.GRAY, " - ", TextColors.WHITE, count));
                                         reply(source, Text.of("Enter Start Message for quest ", TextColors.WHITE, "(Color Support)"));
 
@@ -560,8 +554,7 @@ public class QuestEditor {
 
                                     questBuffer = new Quest(quest.getName(), quest.getType(),
                                             quest.getTarget(), text,
-                                            quest.getFinalMessage(), quest.getLore(),
-                                            quest.getQuestEnd(), quest.getCount(), null);
+                                            quest.getFinalMessage(), quest.getLore(), quest.getCount(), null);
 
                                     reply(source, Text.of(TextColors.GREEN, "Setting start message to", TextColors.GRAY, " - ", text));
                                     reply(source, Text.of("Enter Final Message for quest ", TextColors.WHITE, "(Color Support)"));
@@ -582,7 +575,9 @@ public class QuestEditor {
                                     if (((Quest) questBuffer).getStartMessage() != null) {
                                         reply(source, Text.of(TextColors.DARK_GRAY, "Skipping final message part..."));
                                         reply(source, Text.of("Enter Time Delay for quest ", TextColors.WHITE, "(minutes)"));
-                                        registerInterestId18.submit(afmcp);
+                                        event.setCancelled(true);
+                                        Sponge.getEventManager().unregisterListeners(this);
+                                        showQuest((Quest) questBuffer, "");
                                     } else {
                                         reply(source, Text.of(TextColors.DARK_RED, "Can't skip! Not assigned"));
                                     }
@@ -594,49 +589,18 @@ public class QuestEditor {
 
                                     questBuffer = new Quest(quest.getName(), quest.getType(),
                                             quest.getTarget(), quest.getStartMessage(),
-                                            text, quest.getLore(),
-                                            quest.getQuestEnd(), quest.getCount(), null);
+                                            text, quest.getLore(), quest.getCount(), null);
 
                                     reply(source, Text.of(TextColors.GREEN, "Setting final message to", TextColors.GRAY, " - ", text));
                                     reply(source, Text.of("Enter Time Delay for quest ", TextColors.WHITE, "(minutes)"));
                                     event.setCancelled(true);
                                     Sponge.getEventManager().unregisterListeners(this);
-                                    registerInterestId18.submit(afmcp);
+                                    showQuest((Quest) questBuffer, "");
                                 }
                             } else {
                                 transportingError(17);
                                 event.setCancelled(true);
                                 Sponge.getEventManager().unregisterListeners(this);
-                            }
-                            break;
-
-                        case 18:
-                            if (questBuffer instanceof Quest) {
-                                // Not possible now
-                                if (input.toUpperCase().equals("SKIP")) {
-                                    if (((Quest) questBuffer).getQuestEnd() != null) {
-                                        reply(source, Text.of(TextColors.DARK_GRAY, "Skipping quest end part..."));
-
-                                        Sponge.getEventManager().unregisterListeners(this);
-                                        showQuest((Quest) questBuffer, "");
-                                    } else {
-                                        reply(source, Text.of(TextColors.DARK_RED, "Can't skip! Not assigned"));
-                                    }
-                                } else {
-                                    Quest quest = (Quest) questBuffer;
-                                    reply(source, Text.of(TextColors.YELLOW, "This shit doesn't work now so it's just null huh"));
-                                    quest = new Quest(quest.getName(), quest.getType(),
-                                            quest.getTarget(), quest.getStartMessage(),
-                                            quest.getFinalMessage(), quest.getLore(),
-                                            null, quest.getCount(), null);
-                                    Sponge.getEventManager().unregisterListeners(this);
-                                    event.setCancelled(true);
-                                    showQuest(quest, "");
-                                }
-                            } else {
-                                transportingError(18);
-                                Sponge.getEventManager().unregisterListeners(this);
-                                event.setCancelled(true);
                             }
                             break;
                     }
@@ -680,8 +644,7 @@ public class QuestEditor {
                         String id = event.getOriginalDroppedItems().get(0).getType().getId();
                         questBuffer = new Quest(quest.getName(), "item",
                                 id, quest.getStartMessage(),
-                                quest.getFinalMessage(), quest.getLore(),
-                                quest.getQuestEnd(), quest.getCount(), null);
+                                quest.getFinalMessage(), quest.getLore(), quest.getCount(), null);
 
                         reply(source, Text.of("Insert amount of desired ", TextColors.WHITE,  id, TextColors.GRAY, " to be gathered:"));
                         registerInterestId15.submit(afmcp);
@@ -711,8 +674,7 @@ public class QuestEditor {
                     String id = event.getTargetEntity().getType().getId();
                     questBuffer = new Quest(quest.getName(), "entity",
                             id, quest.getStartMessage(),
-                            quest.getFinalMessage(), quest.getLore(),
-                            quest.getQuestEnd(), quest.getCount(), null);
+                            quest.getFinalMessage(), quest.getLore(), quest.getCount(), null);
 
                     reply(source, Text.of("Insert amount of ", TextColors.WHITE, id, TextColors.GRAY," to be killed:"));
                     registerInterestId15.submit(afmcp);
@@ -733,7 +695,6 @@ public class QuestEditor {
                 reply(source, Text.of("Type - ", TextColors.WHITE, quest.getType()));
                 reply(source, Text.of("Target - ", TextColors.WHITE, quest.getTarget()));
                 reply(source, Text.of("Count - ", TextColors.WHITE, quest.getCount()));
-                reply(source, Text.of(TextColors.GOLD, "(WIP) ", TextColors.GRAY ,"Time Limit - ", TextColors.WHITE, quest.getQuestEnd()));
                 reply(source, Text.of("SF Messages: "));
                 reply(source, quest.getStartMessage());
                 reply(source, quest.getFinalMessage());
@@ -749,7 +710,7 @@ public class QuestEditor {
                     reply(source, Text.of(TextColors.GREEN, "Creating quest ", TextColors.GRAY, "- ", TextColors.WHITE, text));
                     questBuffer = new Quest(text,
                             null, null, null, null,
-                            null, null, 0, null);
+                            null, 0, null);
                     reply(source, Text.of("Enter quest lore ", TextColors.WHITE ,"(Color support)"));
                     registerInterestId11.submit(afmcp);
                 } else {

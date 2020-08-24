@@ -14,7 +14,6 @@ public class Quest {
     private final Text startMessage;
     private final Text finalMessage;
     private final Text lore;
-    private final Date questEnd;
     private final int count;
     private UUID parent;
     private int progress;
@@ -27,7 +26,6 @@ public class Quest {
                  Text startMessage,
                  Text finalMessage,
                  Text lore,
-                 Date questEnd,
                  int count,
                  UUID parent) {
         this.name = name;
@@ -39,7 +37,6 @@ public class Quest {
         this.count = count;
         this.parent = parent;
         this.progress = 0;
-        this.questEnd = questEnd;
     }
 
     public int getCount() {
@@ -84,10 +81,6 @@ public class Quest {
 
     public Text getLore() {
         return lore;
-    }
-
-    public Date getQuestEnd() {
-        return questEnd;
     }
 
     public UUID getParent() {
