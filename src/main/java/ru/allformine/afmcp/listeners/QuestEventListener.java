@@ -1,16 +1,10 @@
 package ru.allformine.afmcp.listeners;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
-import net.minecraft.util.datafix.walkers.ItemStackData;
 import org.slf4j.Logger;
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
-import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
-import org.spongepowered.api.event.item.inventory.ChangeInventoryEvent;
 import org.spongepowered.api.event.item.inventory.ClickInventoryEvent;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
 import org.spongepowered.api.item.ItemTypes;
@@ -22,14 +16,14 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.format.TextStyles;
 import ru.allformine.afmcp.AFMCorePlugin;
-import ru.allformine.afmcp.commands.AFMCPCommand;
 import ru.allformine.afmcp.quests.*;
 
 import java.util.*;
 
+@SuppressWarnings("ConstantConditions")
 public class QuestEventListener {
     private final Logger logger = AFMCorePlugin.logger;
-    private Map<UUID, Quest[]> questTracker = new HashMap<>();
+    private final Map<UUID, Quest[]> questTracker = new HashMap<>();
 
     @Listener
     public void ClickInventoryEvent(ClickInventoryEvent event) {
@@ -128,9 +122,8 @@ public class QuestEventListener {
                         Quest quest = questLevel.getQuest(questId);
                         if (contribution.assignQuest(quest)) {
                             AFMCorePlugin.questDataManager.updateContribution(contribution);
-                            AFMCorePlugin.questDataManager.closeGUI(playerR, event);
-                            Text message = Text.of(quest.getStartMessage());
-                            playerR.sendMessage(message);
+                            AFMCorePlugin.questDataManager.closeGUI(playerR);
+                            sendSFMessage(playerR, quest.getStartMessage(), quest.getName());
 
                             updateQuestTracker(contribution);
                             logger.debug("Apply final");
@@ -156,7 +149,7 @@ public class QuestEventListener {
                         contribution.resetCompletedQuests(temp);
                         AFMCorePlugin.questDataManager.updateContribution(contribution);
 
-                        AFMCorePlugin.questDataManager.closeGUI(playerR, event);
+                        AFMCorePlugin.questDataManager.closeGUI(playerR);
                         Text message = Text.of(TextColors.RED, "QUEST HAS BEEN ABORTED");
                         playerR.sendMessage(message);
 
@@ -203,8 +196,7 @@ public class QuestEventListener {
                                     updateQuestTracker(contribution);
 
                                     if (quest.finished())
-                                        //// TODO: Quest Complete Event
-                                        playerR.sendMessage(Text.of(quest.getFinalMessage()));
+                                        sendSFMessage(playerR, quest.getFinalMessage(), quest.getName());
                                 }
 
                                 // A quick fix that updates gui by just resetting it
@@ -311,8 +303,7 @@ public class QuestEventListener {
                                     updateQuestTracker(contribution);
 
                                     if (quest.finished())
-                                        //// TODO: Quest Complete Event
-                                        player.sendMessage(Text.of(quest.getFinalMessage()));
+                                        sendSFMessage(player, quest.getFinalMessage(), quest.getName());
                                 } /*else {
                                     // not possible
                                 }*/
@@ -322,5 +313,19 @@ public class QuestEventListener {
                 }
             }
         }
+    }
+
+    private void sendSFMessage(Player player, Text message, Text name) {
+        Text prefix = Text.of(
+                TextColors.GRAY, "[ ",
+                TextColors.GREEN,"Quests",
+                TextColors.GRAY, " ] ",
+                TextColors.WHITE, '"',
+                name,
+                TextColors.WHITE, '"',
+                TextColors.GRAY, ": "
+        );
+
+        player.sendMessage(message.concat(prefix));
     }
 }

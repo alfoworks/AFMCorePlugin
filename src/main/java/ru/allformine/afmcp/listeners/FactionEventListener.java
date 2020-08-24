@@ -1,10 +1,8 @@
 package ru.allformine.afmcp.listeners;
 
-import com.typesafe.config.ConfigException;
 import io.github.aquerr.eaglefactions.api.entities.Faction;
 import io.github.aquerr.eaglefactions.api.events.FactionCreateEvent;
 import io.github.aquerr.eaglefactions.api.events.FactionDisbandEvent;
-import io.github.aquerr.eaglefactions.api.events.FactionLeaveEvent;
 import io.github.aquerr.eaglefactions.common.EagleFactionsPlugin;
 import io.github.aquerr.eaglefactions.common.events.FactionAreaEnterEventImpl;
 import io.github.aquerr.eaglefactions.common.events.FactionJoinEventImpl;
@@ -13,11 +11,6 @@ import org.slf4j.Logger;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
-import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.cause.EventContext;
-import org.spongepowered.api.event.cause.EventContextKeys;
-import org.spongepowered.api.event.command.SendCommandEvent;
-import org.spongepowered.api.event.filter.cause.Root;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
 import org.spongepowered.api.scheduler.Task;
 import ru.allformine.afmcp.AFMCorePlugin;
@@ -30,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
 public class FactionEventListener {
-    private static Logger logger = AFMCorePlugin.logger;
+    private static final Logger logger = AFMCorePlugin.logger;
 
     @Listener
     public void onPlayerJoin(ClientConnectionEvent.Join event) {
@@ -86,7 +79,7 @@ public class FactionEventListener {
 
     @Listener
     public void factionJoinEventImpl(FactionJoinEventImpl event) {
-        Task task = Task.builder().execute(new FactionJoinDelayTask(event))
+        Task.builder().execute(new FactionJoinDelayTask(event))
                 .interval(500, TimeUnit.MILLISECONDS)
                 .async()
                 .name("Self-Cancelling FJoin Timer Task").submit(
@@ -113,7 +106,7 @@ public class FactionEventListener {
 
     @Listener
     public void factionLeaveEventImpl(FactionLeaveEventImpl event) {
-        Task task = Task.builder().execute(new FactionLeaveDelayTask(event))
+        Task.builder().execute(new FactionLeaveDelayTask(event))
                 .interval(500, TimeUnit.MILLISECONDS)
                 .async()
                 .name("Self-Cancelling FLeave Timer Task").submit(
@@ -140,7 +133,7 @@ public class FactionEventListener {
 
     @Listener
     public void factionCreateEvent(FactionCreateEvent event) {
-        Task task = Task.builder().execute(new FactionCreateDelayTask(event))
+        Task.builder().execute(new FactionCreateDelayTask(event))
                 .interval(500, TimeUnit.MILLISECONDS)
                 .async()
                 .name("Self-Cancelling FCreate Timer Task").submit(
@@ -172,7 +165,7 @@ public class FactionEventListener {
 
     @Listener
     public void factionDisbandEvent(FactionDisbandEvent event) {
-        Task task = Task.builder().execute(new FactionDisbandDelayTask(event))
+        Task.builder().execute(new FactionDisbandDelayTask(event))
                 .interval(500, TimeUnit.MILLISECONDS)
                 .async()
                 .name("Self-Cancelling FDisband Timer Task").submit(

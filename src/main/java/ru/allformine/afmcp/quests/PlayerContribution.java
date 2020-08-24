@@ -3,19 +3,9 @@ package ru.allformine.afmcp.quests;
 import io.github.aquerr.eaglefactions.api.entities.Faction;
 import io.github.aquerr.eaglefactions.common.EagleFactionsPlugin;
 import ninja.leaping.configurate.commented.CommentedConfigurationNode;
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.event.cause.Cause;
-import org.spongepowered.api.event.cause.EventContext;
-import org.spongepowered.api.event.cause.EventContextKey;
-import org.spongepowered.api.event.cause.EventContextKeys;
-import org.spongepowered.api.plugin.PluginContainer;
-import org.spongepowered.api.profile.GameProfile;
-import org.spongepowered.api.profile.property.ProfileProperty;
-import org.spongepowered.api.text.Text;
+import org.jetbrains.annotations.NotNull;
 import ru.allformine.afmcp.AFMCorePlugin;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.UUID;
 
@@ -30,7 +20,7 @@ public class PlayerContribution {
     private final UUID player;
     private String questLevelId;
 
-    public PlayerContribution(UUID uuid, Faction faction) {
+    public PlayerContribution(@NotNull UUID uuid, Faction faction) {
         CommentedConfigurationNode config = AFMCorePlugin.getConfig();
         this.player = uuid;
         this.factionName = faction.getName();
@@ -51,7 +41,7 @@ public class PlayerContribution {
     }
 
     public boolean containsName(final String name){
-        return completedQuests != null && Arrays.stream(completedQuests).anyMatch(o -> o.getName().equals(name));
+        return completedQuests != null && Arrays.stream(completedQuests).anyMatch(o -> o.getName().toPlain().equals(name));
     }
 
     public boolean assignQuest(Quest quest) {
@@ -148,7 +138,6 @@ public class PlayerContribution {
     public void setFactionName(String factionName) {
         this.factionName = factionName;
     }
-
 
     public void setPresent(boolean present) {
         this.present = present;

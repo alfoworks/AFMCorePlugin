@@ -2,8 +2,6 @@ package ru.allformine.afmcp.quests;
 
 import org.spongepowered.api.text.Text;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.UUID;
 
 // This is dataclass which represents quest

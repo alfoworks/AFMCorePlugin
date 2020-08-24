@@ -4,19 +4,16 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.serializer.TextSerializers;
 import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.quests.Quest;
 
 import java.lang.reflect.Type;
-import java.text.SimpleDateFormat;
 
 public class QuestSerializer implements JsonSerializer<Quest> {
     @Override
     public JsonElement serialize(Quest src, Type typeOfSrc, JsonSerializationContext context) {
         JsonObject result = new JsonObject();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
         if (src.getParent() == null) {
             // Editor Serializer

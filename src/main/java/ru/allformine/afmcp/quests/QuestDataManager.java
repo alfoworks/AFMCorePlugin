@@ -2,11 +2,9 @@ package ru.allformine.afmcp.quests;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import io.github.aquerr.eaglefactions.common.EagleFactionsPlugin;
 import org.slf4j.Logger;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.item.inventory.ClickInventoryEvent;
-import org.spongepowered.api.text.Text;
 import ru.allformine.afmcp.AFMCorePlugin;
 import ru.allformine.afmcp.quests.parsers.*;
 
@@ -17,7 +15,7 @@ import java.nio.file.Path;
 import java.util.*;
 
 public class QuestDataManager {
-    private Logger logger = AFMCorePlugin.logger;
+    private final Logger logger = AFMCorePlugin.logger;
 
     public QuestFactionContainer questFactionContainer;
     private final QuestLevelContainer questDifficulties;
@@ -100,13 +98,13 @@ public class QuestDataManager {
 
     // Contribution > Player because it contains more data we want
     public void updateContribution(PlayerContribution contribution) {
-        String factionName = (contribution == null) ? "" : contribution.getFactionName();
+        String factionName = contribution.getFactionName();
 
         // update / append
         if (questFactionContainer.getQuestFaction(factionName).isPresent()) {
             QuestFaction faction = questFactionContainer.getQuestFaction(factionName).get();
             // Investor doesn't exist
-            if (!faction.updateInvestor(contribution)) {
+            if (!faction.updateInvestor(contribution) && faction.getContribution(contribution.getPlayer()).isPresent()) {
                 faction.addInvestor(contribution);
             }
         } else {
@@ -135,9 +133,7 @@ public class QuestDataManager {
                     }
                 } else {
                     // Create
-                    questFactionContainer.createQuestFaction(new QuestFaction(factionName,
-                            EagleFactionsPlugin.getPlugin().getFactionLogic()
-                                    .getFactions().get(factionName.toLowerCase()).getTag()));
+                    questFactionContainer.createQuestFaction(new QuestFaction(factionName));
                 }
             }
 
@@ -178,7 +174,7 @@ public class QuestDataManager {
         gui.showToPlayer(playerContribution, player, id, event);
     }
 
-    public void closeGUI(Player player, ClickInventoryEvent event) {
-        gui.closeGUI(player, event);
+    public void closeGUI(Player player) {
+        gui.closeGUI(player);
     }
 }

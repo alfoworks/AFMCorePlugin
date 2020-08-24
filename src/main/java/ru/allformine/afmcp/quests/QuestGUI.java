@@ -9,18 +9,13 @@ import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.property.InventoryTitle;
-import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.scheduler.Task;
 import org.spongepowered.api.text.Text;
-import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.format.TextStyles;
 import ru.allformine.afmcp.AFMCorePlugin;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class QuestGUI {
@@ -89,8 +84,7 @@ public class QuestGUI {
         id += (id != -1) ? data.page * 25 : 0; // Adding page offset
 
         int questSize = questPage.length;
-        boolean ignore = false;
-        boolean ignore1 = false;
+        boolean ignoreActive = false;
 
         // Page Fill
         int pageFillIterator = 0;
@@ -99,10 +93,8 @@ public class QuestGUI {
             x++;
         }
 
-        try {
-            data.getActiveQuests()[0].getName();
-        } catch (NullPointerException e) {
-            ignore1 = true;
+        if (Arrays.stream(data.getActiveQuests()).allMatch(Objects::isNull)) {
+            ignoreActive = true;
         }
 
         Optional<ItemType> lvlType = Sponge.getGame().getRegistry().getType(CatalogTypes.ITEM_TYPE, questLvl.getItemTypeId());
@@ -133,24 +125,22 @@ public class QuestGUI {
             ItemType status = questAllow;
 
             // If completed quests are present
-            if (!ignore) {
-                for (Quest q: data.getCompletedQuests()) {
-                    if (quest.getName().equals(q.getName())) {
-                        progressText = Text.of(TextColors.GREEN, TextStyles.ITALIC, "Quest Complete");
-                        status = questComplete;
-                    }
+            for (Quest q: data.getCompletedQuests()) {
+                if (quest.getName().equals(q.getName())) {
+                    progressText = Text.of(TextColors.GREEN, TextStyles.ITALIC, "Quest Complete");
+                    status = questComplete;
                 }
             }
 
             // If active quests are present
-            if (!ignore1) {
+            if (!ignoreActive) {
                 for (Quest q: data.getActiveQuests()) {
                     if (q == null) continue;
                     if (quest.getName().equals(q.getName())) {
                         int progress = q.getProgress();
                         int count = q.getCount();
 
-                        String typeMessage = q.getTarget().split(":")[1];;
+                        String typeMessage = q.getTarget().split(":")[1];
                         typeMessage = typeMessage.substring(0, 1).toUpperCase() + typeMessage.substring(1); // Capitalizing
 
                         if (q.getType().equals("entity")) {
@@ -343,6 +333,7 @@ public class QuestGUI {
      * @param id quest id, usually it's clicked slot ID
      * @param event using it we can determine should we cancel event or not
      */
+    @SuppressWarnings({"OptionalGetWithoutIsPresent"})
     public void showToPlayer(PlayerContribution playerContribution, Player player, int id, ClickInventoryEvent event) {
         if (id < 26) {
             Task.builder()
@@ -356,7 +347,8 @@ public class QuestGUI {
         }
     }
 
-    public void closeGUI(Player player, ClickInventoryEvent event) {
+    @SuppressWarnings({"OptionalGetWithoutIsPresent"})
+    public void closeGUI(Player player) {
         Task.builder()
                 .execute(player::closeInventory)
                 .submit(Sponge.getPluginManager().getPlugin("afmcp").get().getInstance().get());

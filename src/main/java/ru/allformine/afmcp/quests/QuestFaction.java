@@ -1,7 +1,6 @@
 package ru.allformine.afmcp.quests;
 
 import io.github.aquerr.eaglefactions.common.EagleFactionsPlugin;
-import net.minecraft.command.CommandException;
 import org.spongepowered.api.text.Text;
 
 import java.util.Arrays;
@@ -9,7 +8,7 @@ import java.util.UUID;
 
 public class QuestFaction {
     private String name;
-    private Text tag;
+    private final Text tag;
     private int factionPower;
     private UUID currentLeader;
     private PlayerContribution[] investors;
@@ -36,10 +35,6 @@ public class QuestFaction {
         return tag;
     }
 
-    public void setTag(Text tag) {
-        this.tag = tag;
-    }
-
     public int getFactionPower() {
         return factionPower;
     }
@@ -56,23 +51,12 @@ public class QuestFaction {
         this.currentLeader = currentLeader;
     }
 
-    public boolean hasInvestor(PlayerContribution investor) {
-        return Arrays.stream(investors).anyMatch(x -> x.getPlayer().equals(investor.getPlayer()));
-    }
-
     public boolean hasInvestor(UUID investorUUID) {
         return Arrays.stream(investors).anyMatch(x -> x.getPlayer().equals(investorUUID));
     }
 
     public PlayerContribution[] getInvestors() {
         return investors;
-    }
-
-    public void removeInvestor(PlayerContribution investor) {
-        for (PlayerContribution playerContribution : investors) {
-            if (playerContribution.getPlayer().equals(investor.getPlayer()))
-                playerContribution.setPresent(false);
-        }
     }
 
     public void addInvestor(PlayerContribution investor) {

@@ -135,7 +135,6 @@ public class QuestEditor {
      * 15 - Quest count state
      * 16 - Quest start message state
      * 17 - Quest final message state
-     * 18 - Quest time limit state
      * </p>
      * For existing quests 5 is first
      * <p>
@@ -228,7 +227,6 @@ public class QuestEditor {
 
                             // Index check
                             try {
-                                //// TODO: NullPointerException
                                 Quest quest = level5.getQuest(Integer.parseInt(input));
                                 questBuffer = quest;
                                 showQuest(quest, "");

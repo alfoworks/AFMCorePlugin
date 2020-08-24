@@ -1,7 +1,5 @@
 package ru.allformine.afmcp.quests;
 
-import scala.tools.cmd.gen.AnyValReps;
-
 import java.util.*;
 
 public class QuestFactionContainer {
@@ -92,14 +90,12 @@ public class QuestFactionContainer {
         okFactions.toArray(questFactions);
     }
 
-    public boolean disbandQuestFaction(QuestFaction faction) {
+    public void disbandQuestFaction(QuestFaction faction) {
         for (int i = 0; i < questFactions.length; i++) {
             if (questFactions[i].getTag().equals(faction.getTag())) {
                 questFactions[i] = null;
                 trimQuestFactions();
-                return true;
             }
         }
-        return false;
     }
 }
