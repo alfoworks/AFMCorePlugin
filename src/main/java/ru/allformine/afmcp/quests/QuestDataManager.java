@@ -104,7 +104,7 @@ public class QuestDataManager {
         if (questFactionContainer.getQuestFaction(factionName).isPresent()) {
             QuestFaction faction = questFactionContainer.getQuestFaction(factionName).get();
             // Investor doesn't exist
-            if (!faction.updateInvestor(contribution) && faction.getContribution(contribution.getPlayer()).isPresent()) {
+            if (!faction.updateInvestor(contribution)) {
                 faction.addInvestor(contribution);
             }
         } else {
