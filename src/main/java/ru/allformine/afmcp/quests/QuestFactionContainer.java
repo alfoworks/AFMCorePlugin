@@ -9,33 +9,14 @@ public class QuestFactionContainer {
         questFactions = new QuestFaction[0];
     }
 
-    public Optional<QuestFaction[]> getQuestFaction(UUID player) {
-        QuestFaction[] past = {};
-
-        for (QuestFaction faction: questFactions) {
-            if (faction.hasInvestor(player)) {
-                PlayerContribution contribution = faction.getContribution(player);
-                if (!contribution.isPresent()) {
-                    past = Arrays.copyOf(past, past.length + 1);
-                    past[past.length - 1] = faction;
-                }
-            }
-        }
-
-        return Optional.of(past);
-    }
-
-    public Optional<QuestFaction> getActiveQuestFaction(UUID player) {
+    public Optional<QuestFaction> getQuestFaction(UUID player) {
         if (questFactions == null) {
             return Optional.empty();
         }
 
         for (QuestFaction faction: questFactions) {
             if (faction.hasInvestor(player)) {
-                PlayerContribution contribution = faction.getContribution(player);
-                if (contribution.isPresent()) {
-                    return Optional.of(faction);
-                }
+                return Optional.of(faction);
             }
         }
 
@@ -61,7 +42,9 @@ public class QuestFactionContainer {
 
     public void updateQuestFaction(QuestFaction faction) {
         for (int i = 0; i < questFactions.length; i++) {
-            if (questFactions[i].getTag().equals(faction.getTag())) {
+            if (questFactions[i].getName().equals(faction.getName())) {
+                if (!faction.getContribution(faction.getCurrentLeader()).getFactionName().equals(faction.getName()))
+                    faction.setName(faction.getContribution(faction.getCurrentLeader()).getFactionName());
                 questFactions[i] = faction;
                 break;
             }
@@ -78,23 +61,11 @@ public class QuestFactionContainer {
         }
     }
 
-    private void trimQuestFactions() {
-        List<QuestFaction> okFactions = new ArrayList<>();
-
-        for (QuestFaction faction: questFactions) {
-            if (faction != null)
-                okFactions.add(faction);
-        }
-
-        questFactions = new QuestFaction[okFactions.size()];
-        okFactions.toArray(questFactions);
-    }
-
     public void disbandQuestFaction(QuestFaction faction) {
         for (int i = 0; i < questFactions.length; i++) {
-            if (questFactions[i].getTag().equals(faction.getTag())) {
-                questFactions[i] = null;
-                trimQuestFactions();
+            if (questFactions[i].getName().equalsIgnoreCase(faction.getName())) {
+                questFactions[i] = questFactions[questFactions.length - 1];
+                questFactions = Arrays.copyOf(questFactions, questFactions.length - 1);
             }
         }
     }

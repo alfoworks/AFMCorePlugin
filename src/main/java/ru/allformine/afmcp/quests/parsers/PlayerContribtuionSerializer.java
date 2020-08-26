@@ -11,14 +11,6 @@ public class PlayerContribtuionSerializer implements JsonSerializer<PlayerContri
     public JsonElement serialize(PlayerContribution src, Type typeOfSrc, JsonSerializationContext context) {
         JsonObject result = new JsonObject();
 
-        String factionName;
-
-        try {
-            factionName = src.getFaction().getName();
-        } catch (NullPointerException ignore) {
-            factionName = "";
-        }
-
         JsonArray completed = new JsonArray();
         JsonArray active = new JsonArray();
 
@@ -32,8 +24,6 @@ public class PlayerContribtuionSerializer implements JsonSerializer<PlayerContri
                 active.add(context.serialize(quest));
 
         result.addProperty("player", src.getPlayer().toString());
-        result.addProperty("present", src.isPresent());
-        result.addProperty("factionName", factionName);
         result.addProperty("levelId", src.getLevelId());
         result.add("completedQuests", completed);
         result.add("activeQuests", active);

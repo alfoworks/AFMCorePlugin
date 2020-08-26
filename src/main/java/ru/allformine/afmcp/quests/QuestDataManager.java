@@ -92,7 +92,7 @@ public class QuestDataManager {
     }
 
     public PlayerContribution getContribution(UUID playerUUID) {
-        Optional<QuestFaction> factions = questFactionContainer.getActiveQuestFaction(playerUUID);
+        Optional<QuestFaction> factions = questFactionContainer.getQuestFaction(playerUUID);
         return factions.map(faction -> faction.getContribution(playerUUID)).orElse(null);
     }
 
@@ -100,40 +100,31 @@ public class QuestDataManager {
     public void updateContribution(PlayerContribution contribution) {
         String factionName = contribution.getFactionName();
 
-        // update / append
+        // update / append / remove
         if (questFactionContainer.getQuestFaction(factionName).isPresent()) {
             QuestFaction faction = questFactionContainer.getQuestFaction(factionName).get();
             // Investor doesn't exist
-            if (!faction.updateInvestor(contribution)) {
+            if (contribution.removeFlag) {
+                faction.removeInvestor(contribution);
+            } else if (!faction.updateInvestor(contribution)) {
                 faction.addInvestor(contribution);
             }
         } else {
             // create / rename / disband
             Optional<QuestFaction> questFaction =
                     Arrays.stream(questFactionContainer.getQuestFactions())
-                    .filter(faction -> Arrays.stream(
-                            faction.getInvestors())
-                            .anyMatch(
-                                    investor -> investor.getPlayer().equals(contribution.getPlayer()) &&
-                                                investor.isPresent())).findFirst();
+                    .filter(faction -> faction.hasInvestor(contribution.getPlayer())).findFirst();
 
             // Rename
             if (questFaction.isPresent()) {
                 questFactionContainer.updateQuestFaction(questFaction.get());
             } else {
-                if (factionName.equals("")) {
-                    // Disband
-                    try {
-                        questFactionContainer
-                                .disbandQuestFaction(
-                                        questFactionContainer
-                                                .getActiveQuestFaction(contribution.getPlayer()).orElse(null));
-                    } catch (NullPointerException e) {
-                        logger.error(e.getMessage());
-                    }
-                } else {
+                if (!factionName.equals("")) {
                     // Create
-                    questFactionContainer.createQuestFaction(new QuestFaction(factionName));
+                    QuestFaction faction = new QuestFaction(factionName);
+                    faction.setCurrentLeader(contribution.getPlayer());
+                    faction.addInvestor(contribution);
+                    questFactionContainer.createQuestFaction(faction);
                 }
             }
 

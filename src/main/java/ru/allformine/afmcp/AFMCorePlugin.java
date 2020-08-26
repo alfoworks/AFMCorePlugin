@@ -96,42 +96,7 @@ public class AFMCorePlugin {
     }
 
     @Listener
-    public void init(GameInitializationEvent event) {
-        PacketChannels.FACTIONS = Sponge.getGame()
-                .getChannelRegistrar()
-                .createRawChannel(this, "factions");
-        PacketChannels.MESSAGING = Sponge.getGame()
-                .getChannelRegistrar()
-                .createRawChannel(this, "afmmessaging");
-    }
-
-    @Listener
-    public void preInit(GamePreInitializationEvent event) {
-        instance = this;
-
-        Sponge.getEventManager().registerListeners(this, new DiscordWebhookListener());
-        Sponge.getEventManager().registerListeners(this, new JumpPadEventListener());
-        Sponge.getEventManager().registerListeners(this, new TestEventListener());
-        Sponge.getEventManager().registerListeners(this, new MOTDEventListener());
-        Sponge.getEventManager().registerListeners(this, new JoinQuitMessageListener());
-        Sponge.getEventManager().registerListeners(this, new QuestEventListener());
-
-        if (Sponge.getPluginManager().isLoaded("eaglefactions")) {
-            Sponge.getEventManager().registerListeners(this, new FactionEventListener());
-        }
-
-        if (Sponge.getPluginManager().isLoaded("ultimatechat")) {
-            Sponge.getEventManager().registerListeners(this, new ChatCorrectionListener());
-            Sponge.getEventManager().registerListeners(this, new UltimateChatEventListener());
-        } else {
-            Sponge.getEventManager().registerListeners(this, new DefaultChatEventListener());
-        }
-
-        configFile = configDir.resolve("config.conf");
-        configLoader = HoconConfigurationLoader.builder().setPath(configFile).build();
-
-        configSetup();
-
+    public void ats(GameAboutToStartServerEvent event) {
         CommentedConfigurationNode quests = getConfig().getNode("quests");
         String questsFilePath = quests.getNode("questsFile").getString();
         assert questsFilePath != null;
@@ -169,8 +134,46 @@ public class AFMCorePlugin {
                 questToggleOff();
             }
         } catch (IOException e) {
-           e.printStackTrace();
+            e.printStackTrace();
         }
+    }
+
+    @Listener
+    public void init(GameInitializationEvent event) {
+        PacketChannels.FACTIONS = Sponge.getGame()
+                .getChannelRegistrar()
+                .createRawChannel(this, "factions");
+        PacketChannels.MESSAGING = Sponge.getGame()
+                .getChannelRegistrar()
+                .createRawChannel(this, "afmmessaging");
+    }
+
+    @Listener
+    public void preInit(GamePreInitializationEvent event) {
+        instance = this;
+
+        Sponge.getEventManager().registerListeners(this, new DiscordWebhookListener());
+        Sponge.getEventManager().registerListeners(this, new JumpPadEventListener());
+        Sponge.getEventManager().registerListeners(this, new TestEventListener());
+        Sponge.getEventManager().registerListeners(this, new MOTDEventListener());
+        Sponge.getEventManager().registerListeners(this, new JoinQuitMessageListener());
+        Sponge.getEventManager().registerListeners(this, new QuestEventListener());
+
+        if (Sponge.getPluginManager().isLoaded("eaglefactions")) {
+            Sponge.getEventManager().registerListeners(this, new FactionEventListener());
+        }
+
+        if (Sponge.getPluginManager().isLoaded("ultimatechat")) {
+            Sponge.getEventManager().registerListeners(this, new ChatCorrectionListener());
+            Sponge.getEventManager().registerListeners(this, new UltimateChatEventListener());
+        } else {
+            Sponge.getEventManager().registerListeners(this, new DefaultChatEventListener());
+        }
+
+        configFile = configDir.resolve("config.conf");
+        configLoader = HoconConfigurationLoader.builder().setPath(configFile).build();
+
+        configSetup();
 
         CommandSpec tablistDebugSpec = CommandSpec.builder()
                 .executor(new TabListCommand())
@@ -337,6 +340,10 @@ public class AFMCorePlugin {
 
         // Constructing QuestFaction from Faction data
         for (Map.Entry<String, Faction> e : map.entrySet()) {
+            if (e.getKey().equalsIgnoreCase("WarZone") || e.getKey().equalsIgnoreCase("SafeZone")) {
+                continue;
+            }
+
             // Faction
             if (!container.getQuestFaction(e.getKey()).isPresent()) {
                 UUID leader = e.getValue().getLeader();

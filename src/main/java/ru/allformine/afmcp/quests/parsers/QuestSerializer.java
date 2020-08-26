@@ -28,16 +28,18 @@ public class QuestSerializer implements JsonSerializer<Quest> {
         } else {
             // Faction Serializer
             // It's way more abstract for the sake of economy
-            String levelId = AFMCorePlugin.questDataManager.getContribution(src.getParent()).getLevelId();
-            int questId = AFMCorePlugin.questDataManager.getQuestDifficulties().getLevelById(levelId).getQuestId(src.getName().toPlain());
+            int questId = AFMCorePlugin.questDataManager
+                    .getQuestDifficulties()
+                    .getLevelById(AFMCorePlugin.questDataManager.getContribution(src.getParent()).getLevelId())
+                    .getQuestId(src.getName().toPlain());
             assert questId != -1; // Means that quest doesn't exist
-            result.addProperty("levelId", levelId);
             result.addProperty("questId", questId);
             result.addProperty("parent", src.getParent().toString());
+            //// TODO: Save levelId for completed quests for the sake of not messing up with quests
+            if (!src.finished()) {
+                result.addProperty("progress", src.getProgress());
+            }
         }
-
-        result.addProperty("progress", src.getProgress());
-
 
         return result;
     }

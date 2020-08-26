@@ -1,7 +1,6 @@
 package ru.allformine.afmcp.quests.parsers;
 
 import com.google.gson.*;
-import org.spongepowered.api.text.serializer.TextSerializers;
 import ru.allformine.afmcp.quests.PlayerContribution;
 import ru.allformine.afmcp.quests.QuestFaction;
 
@@ -18,7 +17,6 @@ public class QuestFactionSerializer implements JsonSerializer<QuestFaction> {
         }
 
         result.addProperty("name", src.getName());
-        result.addProperty("tag", TextSerializers.JSON.serialize(src.getTag()));
         result.addProperty("factionPower", src.getFactionPower());
         result.addProperty("currentLeader", src.getCurrentLeader().toString());
         result.add("investors", investors);

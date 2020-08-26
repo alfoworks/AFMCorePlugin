@@ -14,8 +14,7 @@ public class QuestFactionDeserializer implements JsonDeserializer<QuestFaction> 
         JsonObject jsonObject = json.getAsJsonObject();
 
         QuestFaction questFaction = new QuestFaction(
-                                                    jsonObject.get("name").getAsString(),
-                                                    TextSerializers.JSON.deserialize(jsonObject.get("tag").getAsString()));
+                                                    jsonObject.get("name").getAsString());
 
         questFaction.setFactionPower(jsonObject.get("factionPower").getAsInt());
         questFaction.setCurrentLeader(UUID.fromString(jsonObject.get("currentLeader").getAsString()));

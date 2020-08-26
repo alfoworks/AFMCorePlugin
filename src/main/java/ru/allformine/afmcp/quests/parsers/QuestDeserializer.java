@@ -31,10 +31,12 @@ public class QuestDeserializer implements JsonDeserializer<Quest> {
         UUID realParent;
         if (!parent.isJsonNull()) {
             realParent = UUID.fromString(parent.getAsString());
-            String levelId = jsonObject.get("levelId").getAsString();
+            String levelId = AFMCorePlugin.questDataManager.getContribution(realParent).getLevelId();
             quest = AFMCorePlugin.questDataManager
                     .getQuestById(levelId, jsonObject.get("questId").getAsInt());
             quest.setParent(realParent);
+            if (!jsonObject.get("progress").isJsonNull())
+                quest.setProgress(jsonObject.get("progress").getAsInt());
         } else {
             quest = new Quest(
                     TextSerializers.JSON.deserialize(jsonObject.get("name").getAsString()),
@@ -48,8 +50,7 @@ public class QuestDeserializer implements JsonDeserializer<Quest> {
             );
         }
 
-        
-        quest.setProgress(jsonObject.get("progress").getAsInt());
+
         return quest;
     }
 }

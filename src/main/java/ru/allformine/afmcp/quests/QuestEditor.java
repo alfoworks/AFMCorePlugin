@@ -13,6 +13,7 @@ import org.spongepowered.api.event.message.MessageChannelEvent;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.scheduler.Task;
+import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextColors;
@@ -39,7 +40,6 @@ public class QuestEditor {
 
     private final CommandSource source;
     private final Path configDir;
-    private final AFMCorePlugin afmcp;
 
     public static QuestLevel[] questLevels;
     public static Object buffer;
@@ -67,7 +67,6 @@ public class QuestEditor {
     public QuestEditor(CommandSource source, Path configDir, AFMCorePlugin afmcp) {
         this.source = source;
         this.configDir = configDir;
-        this.afmcp = afmcp;
 
         this.registerInterestId2 = Task.builder().delay(100, TimeUnit.MILLISECONDS).name("Register editor interest id 2").execute(task -> Sponge.getEventManager().registerListeners(afmcp, new interestListener(2, null, source, afmcp)));
         this.registerInterestId3 = Task.builder().delay(100, TimeUnit.MILLISECONDS).name("Register editor interest id 3").execute(task -> Sponge.getEventManager().registerListeners(afmcp, new interestListener(3, null, source, afmcp)));
@@ -173,7 +172,7 @@ public class QuestEditor {
         @Listener
         public void onChat(MessageChannelEvent.Chat event) {
             if (!AFMCorePlugin.questToggle) {
-                if (event.getContext().get(EventContextKeys.OWNER).get().getCommandSource().get().equals(source)) {
+                if (event.getContext().get(EventContextKeys.OWNER).flatMap(Subject::getCommandSource).get().equals(source)) {
                     String input = event.getMessage().toText().toPlain().split("> ")[1];
                     switch (interestId) {
                         // File state
@@ -302,9 +301,9 @@ public class QuestEditor {
                                         }
 
                                         if (create) {
-                                            try {
+                                            if (quests != null) {
                                                 quests = Arrays.copyOf(quests, quests.length+1);
-                                            } catch (NullPointerException e) {
+                                            } else {
                                                 quests = new Quest[1];
                                             }
 
@@ -327,14 +326,11 @@ public class QuestEditor {
                                         Quest[] quests1 = questLevel1.getQuests();
                                         String name = ((Quest) questBuffer).getName().toString();
                                         if (questLevel1.getQuest(name) != null) {
-                                            int index1 = 0;
                                             for (int i = 0; i < quests1.length; i++) {
-                                                if (index1 == 0 && quests1.length - 1 == 0) {
+                                                if (quests1.length - 1 == 0) {
                                                     quests1 = new Quest[0];
                                                 } else if (name.equals(quests1[i].getName().toString())) {
-                                                    index = i;
-                                                } else if (i == quests1.length - 1) {
-                                                    quests1[index1] = quests1[i];
+                                                    quests1[i] = quests1[quests1.length - 1];
                                                     quests1 = Arrays.copyOf(quests1, quests1.length-1);
                                                 }
                                             }

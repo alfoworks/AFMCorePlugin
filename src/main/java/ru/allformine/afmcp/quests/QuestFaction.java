@@ -1,26 +1,16 @@
 package ru.allformine.afmcp.quests;
 
-import io.github.aquerr.eaglefactions.common.EagleFactionsPlugin;
-import org.spongepowered.api.text.Text;
-
 import java.util.Arrays;
 import java.util.UUID;
 
 public class QuestFaction {
     private String name;
-    private final Text tag;
     private int factionPower;
     private UUID currentLeader;
     private PlayerContribution[] investors;
 
-    public QuestFaction(String name, Text tag) {
-        this.name = name;
-        this.tag = tag;
-    }
-
     public QuestFaction(String name) {
         this.name = name;
-        this.tag = EagleFactionsPlugin.getPlugin().getFactionLogic().getFactions().get(name.toLowerCase()).getTag();
     }
 
     public String getName() {
@@ -29,10 +19,6 @@ public class QuestFaction {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Text getTag() {
-        return tag;
     }
 
     public int getFactionPower() {
@@ -89,5 +75,14 @@ public class QuestFaction {
                 return playerContribution;
         }
         return null;
+    }
+
+    public void removeInvestor(PlayerContribution investor) {
+        for (int i = 0; i < investors.length; i++) {
+            if (investors[i].getPlayer().equals(investor.getPlayer())) {
+                investors[i] = investors[investors.length - 1];
+                investors = Arrays.copyOf(investors, investors.length - 1);
+            }
+        }
     }
 }

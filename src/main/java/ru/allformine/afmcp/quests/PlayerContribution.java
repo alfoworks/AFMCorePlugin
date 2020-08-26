@@ -13,10 +13,11 @@ import java.util.UUID;
 public class PlayerContribution {
     public int page = 0; // Local parameter that resets every time the player contribution has been found
 
+    public boolean removeFlag = false;
+
     private String factionName;
     private Quest[] completedQuests;
     private final Quest[] activeQuests;
-    private boolean present;
     private final UUID player;
     private String questLevelId;
 
@@ -24,7 +25,6 @@ public class PlayerContribution {
         CommentedConfigurationNode config = AFMCorePlugin.getConfig();
         this.player = uuid;
         this.factionName = faction.getName();
-        this.present = true;
         this.activeQuests = new Quest[config.getNode("quests", "activeLimit").getInt()];
         this.completedQuests = new Quest[0];
         setQuestLevel(AFMCorePlugin.questDataManager.getQuestDifficulties().getQuestLevels()[0]);
@@ -34,7 +34,6 @@ public class PlayerContribution {
         CommentedConfigurationNode config = AFMCorePlugin.getConfig();
         this.player = UUID.fromString(uuid);
         this.factionName = factionName;
-        this.present = true;
         this.activeQuests = new Quest[config.getNode("quests", "activeLimit").getInt()];
         this.completedQuests = new Quest[0];
         setQuestLevel(AFMCorePlugin.questDataManager.getQuestDifficulties().getQuestLevels()[0]);
@@ -127,20 +126,12 @@ public class PlayerContribution {
         return player;
     }
 
-    public boolean isPresent() {
-        return present;
-    }
-
     public String toString() {
         return String.format("%s | %s", getPlayer(), getFaction());
     }
 
     public void setFactionName(String factionName) {
         this.factionName = factionName;
-    }
-
-    public void setPresent(boolean present) {
-        this.present = present;
     }
 
     public String getLevelId() {
