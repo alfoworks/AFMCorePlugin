@@ -32,8 +32,17 @@ public class QuestDeserializer implements JsonDeserializer<Quest> {
         if (!parent.isJsonNull()) {
             realParent = UUID.fromString(parent.getAsString());
             String levelId = AFMCorePlugin.questDataManager.getContribution(realParent).getLevelId();
+            int questId = jsonObject.get("questId").getAsInt();
             quest = AFMCorePlugin.questDataManager
-                    .getQuestById(levelId, jsonObject.get("questId").getAsInt());
+                    .getQuestById(levelId, questId);
+
+            // Corrupt quest
+            if (quest == null) {
+                AFMCorePlugin.logger.error("Corrupted quest data was found during initial deserialization");
+                AFMCorePlugin.logger.error("Parent: " + realParent + ", LID: " + levelId + ", QID: " + questId);
+                return null;
+            }
+
             quest.setParent(realParent);
             if (!jsonObject.get("progress").isJsonNull())
                 quest.setProgress(jsonObject.get("progress").getAsInt());

@@ -127,7 +127,29 @@ public class AFMCorePlugin {
                     questToggleOff();
                     logger.debug("Created quests file json file with name " + questsFilePath);
                 } else {
-                    questToggleOn();
+                    if (EagleFactionsPlugin.getPlugin().getConfiguration().getPowerConfig().getKillAward() == 0
+                    && EagleFactionsPlugin.getPlugin().getConfiguration().getPowerConfig().getPenalty() == 0
+                    && EagleFactionsPlugin.getPlugin().getConfiguration().getPowerConfig().getPowerDecrement() == 0
+                    && EagleFactionsPlugin.getPlugin().getConfiguration().getPowerConfig().getPowerIncrement() == 0) {
+                        questToggleOn();
+                    } else {
+                        logger.error("To work with Quests system you need to set following settings into Eagle Factions config:\n" +
+                                "power {\n" +
+                                "    # How much power will be removed on player death. Default: 2.0\n" +
+                                "    decrement=0\n" +
+                                "    # How much power will be restored for player after 1 minute of playing. (0.04 per minute = 1,2 per hour.) Default: 0.04\n" +
+                                "    increment=0\n" +
+                                "    # Player kill award. Default: 2.0\n" +
+                                "    kill-award=0\n" +
+                                "    # Maximum amount of power a player can have. Default: 10.0\n" +
+                                "    max-power=[ANY]\n" +
+                                "    # Penalty after killing a teammate. Default: 1.0\n" +
+                                "    penalty=0\n" +
+                                "    # Starting amount of power. Default: 5.0\n" +
+                                "    start-power=[ANY]\n" +
+                                "}");
+                        questToggleOff();
+                    }
                 }
             } else {
                 logger.warn("Quest file isn't present in config. Quest System is disabled");

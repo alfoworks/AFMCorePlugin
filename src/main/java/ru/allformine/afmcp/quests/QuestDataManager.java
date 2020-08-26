@@ -2,7 +2,6 @@ package ru.allformine.afmcp.quests;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.slf4j.Logger;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.item.inventory.ClickInventoryEvent;
 import ru.allformine.afmcp.AFMCorePlugin;
@@ -15,8 +14,6 @@ import java.nio.file.Path;
 import java.util.*;
 
 public class QuestDataManager {
-    private final Logger logger = AFMCorePlugin.logger;
-
     public QuestFactionContainer questFactionContainer;
     private final QuestLevelContainer questDifficulties;
     private final Path factionPath;

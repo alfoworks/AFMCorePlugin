@@ -1,7 +1,15 @@
 package ru.allformine.afmcp.quests;
 
+import io.github.aquerr.eaglefactions.api.entities.Faction;
+import io.github.aquerr.eaglefactions.common.EagleFactionsPlugin;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.scheduler.Task;
+import ru.allformine.afmcp.AFMCorePlugin;
+
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.UUID;
+import java.util.function.Consumer;
 
 public class QuestFaction {
     private String name;
@@ -35,6 +43,7 @@ public class QuestFaction {
 
     public void setCurrentLeader(UUID currentLeader) {
         this.currentLeader = currentLeader;
+        calculateEnergy();
     }
 
     public boolean hasInvestor(UUID investorUUID) {
@@ -58,11 +67,20 @@ public class QuestFaction {
     public boolean updateInvestor(PlayerContribution investor) {
         for (int i = 0; i < investors.length; i++) {
             if (investors[i].getPlayer().equals(investor.getPlayer())) {
+                if (investors[i].getCompletedQuests().length < investor.getCompletedQuests().length)
+                    calculateEnergy();
                 investors[i] = investor;
                 return true;
             }
         }
         return false;
+    }
+
+    private void calculateEnergy() {
+        // Creating async task not to freeze server
+        Task.builder().execute(new EnergyCalculationTask())
+                .async()
+                .submit(Sponge.getPluginManager().getPlugin("afmcp").get());
     }
 
     public void setInvestors(PlayerContribution[] investors) {
@@ -82,6 +100,49 @@ public class QuestFaction {
             if (investors[i].getPlayer().equals(investor.getPlayer())) {
                 investors[i] = investors[investors.length - 1];
                 investors = Arrays.copyOf(investors, investors.length - 1);
+            }
+        }
+    }
+
+    private class EnergyCalculationTask implements Consumer<Task> {
+        @Override
+        public void accept(Task task) {
+            Optional<Faction> faction =
+                    EagleFactionsPlugin.getPlugin().getFactionLogic().getFactionByPlayerUUID(currentLeader);
+            if (faction.isPresent()) {
+                Faction f = faction.get();
+
+                //// TODO: Maybe we shouldn't always restrict players power and just do it while adding them into faction?
+                // Restricting vanilla power of players
+                for (PlayerContribution contribution : investors) {
+                    if (!contribution.getPlayer().equals(currentLeader)) {
+                        EagleFactionsPlugin.getPlugin().getPowerManager()
+                                .setPlayerMaxPower(contribution.getPlayer(), 0);
+                    } else {
+                        // Moving all power to the leader
+                        EagleFactionsPlugin.getPlugin().getPowerManager()
+                                .setPlayerMaxPower(currentLeader, (investors.length > 6) ? 300 : investors.length * 50);
+                    }
+
+                    // Maximum cap per file is 50 energy
+                    // 50 divided by All number of quests in file equals contribution by completing 1 quests
+                    double impact = 50.0 / contribution.getCompletedQuests().length;
+                    double power =
+                            0.0
+                            + EagleFactionsPlugin.getPlugin().getConfiguration().getPowerConfig().getStartingPower();
+                    for (int i = 0; i < contribution.getCompletedQuests().length; i++) {
+                        // There can't be any corrupted quests because they're cut off when deserializing from file
+                        power += impact;
+                    }
+
+                    // Assigning all power to leader
+                    EagleFactionsPlugin.getPlugin().getPowerManager()
+                            .setPlayerPower(currentLeader, Math.round(power));
+                }
+
+
+            } else {
+                throw new NullPointerException("No faction found by leader UUID");
             }
         }
     }
