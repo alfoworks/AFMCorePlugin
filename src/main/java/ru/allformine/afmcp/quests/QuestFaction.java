@@ -4,7 +4,6 @@ import io.github.aquerr.eaglefactions.api.entities.Faction;
 import io.github.aquerr.eaglefactions.common.EagleFactionsPlugin;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.scheduler.Task;
-import ru.allformine.afmcp.AFMCorePlugin;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -55,6 +54,10 @@ public class QuestFaction {
     }
 
     public void addInvestor(PlayerContribution investor) {
+        // Restricting hold power
+        EagleFactionsPlugin.getPlugin().getPowerManager()
+                .setPlayerMaxPower(investor.getPlayer(), 0);
+
         if (investors != null) {
             investors = Arrays.copyOf(investors, investors.length+1);
             investors[investors.length-1] = investor;
@@ -76,6 +79,11 @@ public class QuestFaction {
         return false;
     }
 
+    /**
+     * Doesn't give desired result when QuestFaction investors are empty
+     * Loop in EnergyCalculationTask class won't start
+     */
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
     private void calculateEnergy() {
         // Creating async task not to freeze server
         Task.builder().execute(new EnergyCalculationTask())
@@ -110,16 +118,9 @@ public class QuestFaction {
             Optional<Faction> faction =
                     EagleFactionsPlugin.getPlugin().getFactionLogic().getFactionByPlayerUUID(currentLeader);
             if (faction.isPresent()) {
-                Faction f = faction.get();
-
-                //// TODO: Maybe we shouldn't always restrict players power and just do it while adding them into faction?
                 // Restricting vanilla power of players
                 for (PlayerContribution contribution : investors) {
-                    if (!contribution.getPlayer().equals(currentLeader)) {
-                        EagleFactionsPlugin.getPlugin().getPowerManager()
-                                .setPlayerMaxPower(contribution.getPlayer(), 0);
-                    } else {
-                        // Moving all power to the leader
+                    if (contribution.getPlayer().equals(currentLeader)) {
                         EagleFactionsPlugin.getPlugin().getPowerManager()
                                 .setPlayerMaxPower(currentLeader, (investors.length > 6) ? 300 : investors.length * 50);
                     }

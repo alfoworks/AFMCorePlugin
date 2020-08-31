@@ -119,8 +119,8 @@ public class QuestDataManager {
                 if (!factionName.equals("")) {
                     // Create
                     QuestFaction faction = new QuestFaction(factionName);
-                    faction.setCurrentLeader(contribution.getPlayer());
                     faction.addInvestor(contribution);
+                    faction.setCurrentLeader(contribution.getPlayer());
                     questFactionContainer.createQuestFaction(faction);
                 }
             }
