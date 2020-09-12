@@ -29,6 +29,8 @@ class RestartCommand : AFMCPCommand() {
         } else if (args.hasAny("c")) {
             reply(src, Text.of("Не удалось отменить рестарт: нет запланированных рестартов."))
             return CommandResult.success()
+        } else if (args.hasAny("auto") && AFMCorePlugin.lastPlayerJoinTime <= System.currentTimeMillis() - 7200) {
+            return CommandResult.success()
         }
 
         var minutes = 0

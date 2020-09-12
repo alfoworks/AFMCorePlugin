@@ -15,6 +15,7 @@ import org.spongepowered.api.event.game.state.GameInitializationEvent;
 import org.spongepowered.api.event.game.state.GamePreInitializationEvent;
 import org.spongepowered.api.event.game.state.GameStartedServerEvent;
 import org.spongepowered.api.event.game.state.GameStoppingServerEvent;
+import org.spongepowered.api.event.network.ClientConnectionEvent;
 import org.spongepowered.api.plugin.Dependency;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.scheduler.Task;
@@ -62,11 +63,13 @@ public class AFMCorePlugin {
     @ConfigDir(sharedRoot = false)
     private Path configDir;
     private Path configFile;
-    
+
+    public static long lastPlayerJoinTime;
+
     public static CommentedConfigurationNode getConfig() {
         return configNode;
     }
-    
+
     public static void saveConfig() {
         try {
             configLoader.save(configNode);
@@ -79,26 +82,32 @@ public class AFMCorePlugin {
     private void setLogger(Logger logger) {
         AFMCorePlugin.logger = logger;
     }
-    
+
     @Listener
     public void init(GameInitializationEvent event) {
         PacketChannels.FACTIONS = Sponge.getGame()
-                                  .getChannelRegistrar()
-                                  .createRawChannel(this, "factions");
+                .getChannelRegistrar()
+                .createRawChannel(this, "factions");
         PacketChannels.MESSAGING = Sponge.getGame()
-                                   .getChannelRegistrar()
-                                   .createRawChannel(this, "afmmessaging");
+                .getChannelRegistrar()
+                .createRawChannel(this, "afmmessaging");
     }
-    
+
+    @Listener
+    public void onPlayerJoin(ClientConnectionEvent.Join event) {
+        lastPlayerJoinTime = System.currentTimeMillis();
+    }
+
     @Listener
     public void preInit(GamePreInitializationEvent event) {
         instance = this;
-        
+
         Sponge.getEventManager().registerListeners(this, new DiscordWebhookListener());
         Sponge.getEventManager().registerListeners(this, new JumpPadEventListener());
         Sponge.getEventManager().registerListeners(this, new TestEventListener());
         Sponge.getEventManager().registerListeners(this, new MOTDEventListener());
         Sponge.getEventManager().registerListeners(this, new JoinQuitMessageListener());
+        Sponge.getEventManager().registerListeners(this, this);
         
         if (Sponge.getPluginManager().isLoaded("eaglefactions")) {
             Sponge.getEventManager().registerListeners(this, new FactionEventListener());
