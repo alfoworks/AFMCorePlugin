@@ -51,14 +51,16 @@ class FactionEventListener {
         var factionName = if (faction == null) "Общая" else faction.name
         val factionColor: String
 
-        if (AFMCorePlugin.currentLobby != null && AFMCorePlugin.currentLobby.isPlayerInLobby(player)) {
+        if (EagleFactionsPlugin.ADMIN_MODE_PLAYERS.contains(player.uniqueId)) {
+            factionColor = "§4"
+        } else if (AFMCorePlugin.currentLobby != null && AFMCorePlugin.currentLobby.isPlayerInLobby(player)) {
             factionColor = "§9"
             factionName = "Лобби"
         } else if (factionName == "SafeZone" || EagleFactionsPlugin.getPlugin().configuration.protectionConfig.safeZoneWorldNames.contains(player.world.name)) {
             factionColor = "§d"
             factionName = "SafeZone"
         } else if (factionName == "WarZone" || EagleFactionsPlugin.getPlugin().configuration.protectionConfig.warZoneWorldNames.contains(player.world.name)) {
-            factionColor = "§4"
+            factionColor = "§c"
             factionName = "WarZone"
         } else if (faction == null) {
             factionColor = "§2"
